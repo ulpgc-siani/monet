@@ -1,0 +1,45 @@
+Unidad de negocio de nombre "monet" con su federación
+=====================================================
+
+  Federación por defecto. Nombre: federation
+  --------------------------------------
+  openssl genrsa -des3 -out ca-federation.key 4096
+
+  openssl req -new -x509 -days 3650 -key ca-federation.key -out ca-federation.crt -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Grupo de Ingenieria del Software y del Conocimiento/OU=Autoridad\ certificadora/CN=federation|federation/emailAddress=test.monet@siani.es/"
+
+  Federación 1. Nombre: empresa
+  --------------------------------------
+  openssl genrsa -des3 -out ca-federation-empresa.key 4096
+
+  openssl req -new -x509 -days 3650 -key ca-federation-empresa.key -out ca-federation-empresa.crt -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Grupo de Ingenieria del Software y del Conocimiento/OU=Autoridad\ certificadora/CN=federation|empresa/emailAddress=test.monet@siani.es/"
+
+
+
+  Unidad de negocio 1. Nombre: unidaddenegocio
+  ----------------------------------
+  openssl genrsa -des3 -out businessunit-unidaddenegocio.key 4096
+
+  openssl req -new -key businessunit-unidaddenegocio.key -out businessunit-unidaddenegocio.csr -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Gisc/OU=Grupo de ingenieria del software y el conocimiento/CN=business_unit|unidaddenegocio/emailAddress=test.monet@siani.es/"
+
+  openssl x509 -req -days 365 -CA ca-federation-empresa.crt -CAkey ca-federation-empresa.key -set_serial 01 -in businessunit-unidaddenegocio.csr -out businessunit-unidaddenegocio.crt
+
+  openssl pkcs12 -export -out businessunit-unidaddenegocio.p12 -inkey businessunit-unidaddenegocio.key -in businessunit-unidaddenegocio.crt -certfile ca-federation-empresa.crt
+
+
+  Unidad de negocio 2. Nombre: coordinacion
+  ----------------------------------
+  openssl genrsa -des3 -out businessunit-coordinacion.key 4096
+
+  openssl req -new -key businessunit-coordinacion.key -out businessunit-coordinacion.csr -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Gisc/OU=Grupo de ingenieria del software y el conocimiento/CN=business_unit|coordinacion/emailAddress=test.monet@siani.es/"
+
+  openssl x509 -req -days 365 -CA ca-federation-empresa.crt -CAkey ca-federation-empresa.key -set_serial 01 -in businessunit-coordinacion.csr -out businessunit-coordinacion.crt
+
+  openssl pkcs12 -export -out businessunit-coordinacion.p12 -inkey businessunit-coordinacion.key -in businessunit-coordinacion.crt -certfile ca-federation-empresa.crt
+
+
+Añadir las federaciones a la lista de autoridades raíces de la federación
+=========================================================================
+openssl crl2pkcs7 -nocrl -certfile ca-federation.crt -out rootCA.p7b
+
+openssl crl2pkcs7 -nocrl -certfile ca-federation-empresa.crt -out rootCA.p7b
+

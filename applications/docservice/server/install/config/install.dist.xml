@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration build-all="false">
+
+	<target-webxml build="false" display-name="docserviceInstall" />
+	
+	<target-classpath build="false" />
+
+	<target-contextxml build="true" as-resource-link="flase"> <!-- En caso de resource link solo especificar el global y name -->
+		<option name="global">jdbc/MonetDatabaseSource</option>
+		<option name="name">jdbc/MonetDatabaseSource</option>
+		<option name="username">root</option>
+		<option name="password">1234</option>
+		<option name="url">jdbc:mysql://localhost/federation</option>
+		<option name="driverClassName">com.mysql.jdbc.Driver</option><!-- oracle.jdbc.OracleDriver>-->
+		<option name="maxActive">1</option>
+		<option name="logAbandoned">true</option>
+		<option name="removeAbandonedTimeout">5</option>
+		<option name="removeAbandoned">true</option>
+		<option name="maxIdle">1</option>
+		<option name="auth">Container</option>
+	</target-contextxml>
+
+	<target-generic build="false" file="docservice.dist.config" is-properties-file="true" move-user-data="true">
+	  <option name="JDBC.Database">mysql</option>
+	  <option name="JDBC.DataSource">jdbc/MonetDatabaseSource</option>
+	  <option name="Path.TrueTypeFonts">C:/Windows/Fonts</option>
+	  <option name="Path.Temp">C:/Windows/Temp</option>
+	  <option name="WorkQueue.ThreadPoolSize">1</option>
+	  <option name="WorkQueue.CollectWorkPeriod">5</option>
+	  <option name="GeneratePdfA">false</option>
+	  <option name="PdfLicencePath"></option>
+	  <option name="ModelProducerClass">org.monet.docservice.docprocessor.templates.impl.ImplicitModelProducer</option>
+	  <option name="Sign.Height">100</option>
+	  <option name="Sign.OffsetX">50</option>
+	  <option name="Sign.OffsetY">600</option>
+	  <option name="Sign.Count">3</option>
+	</target-generic>
+	
+	<target-generic build="true" file="log4j.docservice.dist.config" is-properties-file="true" move-user-data="true">
+		<option name="log4j.appender.LoginServiceFileAppender.file">c:/users/fsantana/.docserviceInstall/log/docservice.log</option>
+	</target-generic>
+	
+	<target-copy-userdata build="true" />	
+	
+	<target-database build="true" folder="/database">
+		<option name="database-type">mysql</option>
+		<option name="user">root</option>
+		<option name="password">1234</option>
+		<option name="url">jdbc:mysql://localhost/docserviceInstall</option>
+	</target-database>
+</configuration>

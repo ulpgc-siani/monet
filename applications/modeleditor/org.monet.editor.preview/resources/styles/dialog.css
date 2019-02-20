@@ -1,0 +1,101 @@
+FORM {
+	padding: 0;
+	margin: 0;
+}
+
+DIV {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.DIALOG {
+	margin-top: 10%;
+}
+
+.DIALOG * {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+
+.DIALOG .TITLE {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-weight: Bold;
+	color: White;
+	text-align: left;
+	background-image: url(../images/dialog/title.gif);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	width: 100%;
+	padding-left: 39px;
+	padding-top: 16px;
+	padding-bottom: 6px;
+}
+
+.DIALOG .BODY {
+	padding-top: 12px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-image: url(../images/dialog/body.gif);
+	background-position: 0 0;
+	background-repeat: repeat-y;
+}
+
+.DIALOG .BODY .MESSAGE {
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.DIALOG .BODY TD {
+	height: 28px;
+}
+
+.DIALOG .BODY LABEL {
+	font-weight: bold;
+	margin-right: 5px;
+	white-space: nowrap;
+}
+
+.DIALOG .BODY INPUT.TEXT {
+	border: 1px solid #666;
+	width: 100%;
+	padding: 2px;
+	height: 20px;
+}
+
+.DIALOG .BODY SELECT {
+  width: 270px;
+}
+
+.DIALOG .BODY .BUTTONS {
+	width: 100%;
+	text-align: right;
+	padding-top: 4px;
+}
+
+.DIALOG .BODY INPUT.BUTTON {
+	font-weight: bold;
+}
+
+.DIALOG .ERROR {
+	margin-top: 6px;
+	border: 1px solid White;
+	background-color: #FFCC00;
+	background-image: url(../images/dialog/error.gif);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	padding: 2px 0px 2px 19px;
+}
+
+.DIALOG .ERROR H1 {
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 4px;
+}
+
+.DIALOG .BOTTOM {
+	background-image: url(../images/dialog/bottom.gif);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+}

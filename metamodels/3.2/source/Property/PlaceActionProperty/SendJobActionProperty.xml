@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="send-job" type="SendJobActionProperty" parent="SimpleActionProperty">
+	<description></description>
+
+  <attribute token="job" type="key" link="JobDefinition" required="true">
+    <description>Trabajo que se va a crear</description>
+  </attribute>
+  
+  <attribute token="role" type="key" link="RoleDefinition" required="true">
+    <description></description>
+  </attribute>
+  
+  <attribute token="mode" type="enumeration" default="SELECT">
+    <description>Modo de selección del proveedor en caso de existir más de una instancia</description>
+    <enumeration>
+      <option token="AUTOMATIC">
+        <description>Selección automática en base a una distribución</description>
+      </option>
+      <option token="SELECT">
+        <description>Selección por parte del usuario</description>
+      </option>
+    </enumeration>
+  </attribute>
+
+  <method name="on-select-job-role">
+    <parameter name="roleChooser" type="RoleChooser" />
+  </method>
+  
+  <method name="on-select-job-role-complete">
+    <parameter name="role" type="Role" />
+  </method>
+
+  <method name="on-setup-job">
+    <parameter name="js" type="JobSetup" />
+  </method>
+  
+  <method name="on-setup-job-complete">
+    <parameter name="providerLabel" type="String" />
+    <parameter name="suggestedStartDate" type="Date" />
+    <parameter name="suggestedEndDate" type="Date" />
+    <parameter name="observations" type="String" />
+    <parameter name="urgent" type="boolean" />
+  </method>
+  
+  <method name="on-create">
+    <parameter name="msg" type="JobRequest" />
+  </method>
+  
+  <method name="on-created">
+    <parameter name="instance" type="Job" />
+  </method>
+
+  <method name="on-finished">
+    <parameter name="msg" type="JobResponse" />
+  </method>
+
+</property>

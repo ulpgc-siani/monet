@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingTop="2dp"
+             android:paddingBottom="2dp">
+
+    <LinearLayout
+            android:id="@+id/in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="9dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/bg_dialog_in"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+        <org.monet.space.mobile.widget.EmojiTextView
+                android:id="@+id/message_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="18sp"/>
+
+        <TextView
+                android:id="@+id/date_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/bg_dialog_out"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:textSize="18sp">
+
+        <org.monet.space.mobile.widget.EmojiTextView
+                android:id="@+id/message_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="18sp"/>
+
+        <TextView
+                android:id="@+id/date_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textSize="14sp"/>
+    </LinearLayout>
+
+</FrameLayout>

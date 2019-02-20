@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="json-lib-2.4-jdk15.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor.preview/lib/json-lib-2.4-jdk15.jar!/"/>
+	</lib>
+	<lib name="commons-logging-1.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor.preview/lib/commons-logging-1.1.1.jar!/"/>
+	</lib>
+	<lib name="ezmorph-1.0.4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor.preview/lib/ezmorph-1.0.4.jar!/"/>
+	</lib>
+	<lib name="commons-collections-3.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor.preview/lib/commons-collections-3.2.jar!/"/>
+	</lib>
+	<lib name="commons-beanutils.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor.preview/lib/commons-beanutils.jar!/"/>
+	</lib>
+</component>

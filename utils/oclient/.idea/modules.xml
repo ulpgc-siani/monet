@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/oclient.iml" filepath="$PROJECT_DIR$/oclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oclientwar/oclientwar.iml" filepath="$PROJECT_DIR$/oclientwar/oclientwar.iml" />
+    </modules>
+  </component>
+</project>

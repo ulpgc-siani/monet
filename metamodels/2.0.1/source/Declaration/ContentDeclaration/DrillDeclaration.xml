@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="DrillDeclaration" parent="IndexedDeclaration" tag="drill">
+  <description>TODO</description>
+
+  <property name="use">
+    <description>Se utiliza para indicar la dimensión que se utiliza para desagrupar datos en un informe</description>
+    <attribute name="dimension" type="key" link="DimensionDeclaration">
+      <description>Nombre de la dimensión</description>
+    </attribute>
+  </property>
+  
+  <include name="drill">
+    <option class-name="DrillDeclaration" />
+  </include>
+
+</class>

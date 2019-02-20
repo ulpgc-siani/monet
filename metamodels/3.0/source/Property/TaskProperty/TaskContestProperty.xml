@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="contest" type="TaskContestProperty" parent="ReferenceableProperty">
+	<description></description>
+	
+  <attribute token="activity" type="key" link="ActivityDefinition" required="true">
+    <description></description>
+  </attribute>
+  
+  <property token="request" parent="TaskRequestProperty" multiple="true">
+    <method name="constructor">
+      <parameter name="msg" type="TransferRequest" />
+    </method>
+  </property>
+  
+  <property token="response" parent="TaskResponseProperty" multiple="true">
+    <method name="import">
+      <parameter name="msg" type="TransferResponse" />
+    </method>
+  </property>
+  
+  <property token="aborted">
+    <method name="onExecute"/>
+    <attribute token="unlock" type="key" link="DoorExitProperty">
+      <description></description>
+    </attribute>
+    <attribute token="goto" type="key" link="PlaceProperty">
+      <description></description>
+    </attribute>
+  </property>
+  
+  <method name="onInit"/>
+  <method name="onResponse">
+    <parameter name="msg" type="TransferResponse" />
+  </method>
+  <method name="onTerminate"/>  
+</property>

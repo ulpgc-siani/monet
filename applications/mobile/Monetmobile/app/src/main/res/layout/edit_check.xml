@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <TextView
+            android:id="@+id/field_editor_opener"
+            style="@style/editorSelectText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/clear_editor"
+            android:layout_toStartOf="@+id/clear_editor"
+            android:layout_alignWithParentIfMissing="true"
+            android:background="@drawable/button_background"
+            android:padding="4dp"
+            android:visibility="gone"/>
+
+    <include
+            android:id="@+id/clear_editor"
+            layout="@layout/widget_delete_button"/>
+
+</RelativeLayout>

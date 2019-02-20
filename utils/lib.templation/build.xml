@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<project name="Monet.Execution.App.DocServer.Applet" basedir="." default="main">
+  <property name="src.dir"             value="src"/>
+  <property name="lib.dir"             value="lib/"/>
+  <property name="build.dir"           value="build"/>
+  <property name="classes.dir"         value="${build.dir}/classes"/>
+  <property name="jar.dir"             value="${build.dir}/jar"/>
+  <property name="jar.file"            value="${jar.dir}/templation.jar"/>
+
+  <path id="libs.to.include">
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  
+  <path id="project.class.path">
+  	<pathelement path="${java.class.path}/"/>
+    <path refid="libs.to.include"/>
+    <pathelement path="${additional.path}"/>
+  </path>
+
+  <target name="clean">
+      <delete dir="${build.dir}"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${classes.dir}"/>
+    <javac target="1.5" srcdir="${src.dir}" destdir="${classes.dir}" debug="true">
+    	<classpath refid="project.class.path" />
+  	</javac>
+  </target>
+
+  <target name="jar" depends="compile">
+      <mkdir dir="${jar.dir}"/>
+      <jar destfile="${jar.file}" basedir="${classes.dir}" />
+  </target>
+
+	<target name="clean-build" depends="clean,jar"/>
+
+  <target name="main" depends="clean,jar"/>
+
+</project>

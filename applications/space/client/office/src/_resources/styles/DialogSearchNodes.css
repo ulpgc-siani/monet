@@ -1,0 +1,24 @@
+.dialog.searchnodes {
+}
+
+.dialog.searchnodes .condition {
+  width: 200px;
+  padding: 3px;
+  margin: 0px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+}
+
+.dialog.searchnodes .search {
+  color: #0D3C98;
+  margin: 0px;
+  padding: 0px 10px;
+}
+
+.ie .dialog.searchnodes .search {
+  position: absolute;
+}
+
+.dialog.searchnodes .search.disabled {
+  color: #666;
+}

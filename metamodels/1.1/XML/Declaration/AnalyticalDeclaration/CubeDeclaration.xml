@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CubeDeclaration" parent="AnalyticalDeclaration" tag="cube">
+  <description>Declaración que se utiliza para modelar un cubo multidimensional de la unidad de negocio</description>
+
+  <include name="fact">
+    <option class-name="FactDeclaration" />
+  </include>
+  
+  <include name="dimension" multiple="true">
+    <option class-name="DimensionDeclaration" />
+  </include>
+  
+</class>

@@ -1,0 +1,6 @@
+<application code="office" type="ApplicationExplorer" class="org.monet.space.explorer.ApplicationExplorer">
+  <labels>
+    <label language="es">Aplicación Explorer</label>
+    <label language="en">Explorer application</label>
+  </labels>
+</application>

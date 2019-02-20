@@ -1,0 +1,139 @@
+
+#model-view div.section {
+  margin-bottom: 15px;
+  clear: both;
+}
+
+#model-view img {
+  max-width: 200px;
+  max-height: 90px;    
+}
+
+#model-view .section-header {
+  width: 100%;
+  margin-bottom: 20px;
+  display: table;
+}
+
+#model-view .row {
+  margin-top: 5px;
+}
+
+#model-view input[type='text'] {
+  width: 70%;
+  height: 25px;  
+}
+
+#model-view input[name='name'] {
+  width: 97%;
+  height: 35px;
+  font-size: 160%;
+}
+
+#model-view .versions {
+  clear: both;
+  padding: 10px;
+}
+
+#model-view .versions .toolbar {
+  width: 60%;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 1px solid gray;
+  margin-bottom: 0px;
+  clear: both;
+  display: table;
+  padding: 10px;  
+}
+
+#model-view .versions .section-body {
+  border: 1px solid gray;
+  padding: 10px;
+  min-height: 300px;
+  height: 700px;
+  width: 60%;
+}
+
+#model-view .versions .section-body p {
+  min-height: 30px;
+  padding-top: 9px;
+  padding-left: 10px;	
+}
+
+#model-view .versions div.meta {
+  width: 80px;
+  float: left;
+}
+
+
+#model-view .versions .toolbar a {
+  width: 70%;
+  float:left;
+  text-align: right;
+  display: block;
+  margin-right: 10px;
+  float: right;
+}
+
+#model-view .versions ul {
+  clear: both;
+}
+
+#model-view .versions input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#model-view .versions ul li {
+}
+
+#model-view .versions ul li input {
+  padding-bottom: 10px;
+}
+
+#model-view .versions ul li.expanded img {
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+#model-view .versions ul li.collapsed img {
+  margin-right: 11px;
+}
+
+#model-view .versions img {
+  cursor: pointer;
+  float: left;
+  margin-right: 5px;
+}
+
+#model-view .versions .block .collapsed {
+  display: none;
+}
+
+#model-view .versions a.block-action {
+  display: block;
+  margin-bottom: 10px;
+  font-size: smaller;
+}
+
+#model-view .versions .block {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+#model-view .versions .block ul {
+  margin-top: 3px;
+  border: 1px solid #d0d0d0;
+  padding: 7px;  
+}
+
+#model-view .versions .block {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#model-view .versions .block ul {
+  margin-top: 3px;
+  border: 1px solid #d0d0d0;
+  padding: 7px;
+}

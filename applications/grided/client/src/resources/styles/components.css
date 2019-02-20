@@ -1,0 +1,33 @@
+
+/*
+--------------------------------------------------------------------------------------
+  Table 
+--------------------------------------------------------------------------------------
+*/
+
+table.grided-table {
+  padding: 10px;    
+}
+
+table.grided-table tr td {
+  border: 0px;
+  cursor: default;
+  padding-bottom: 3px;
+}
+
+table.grided-table tr {
+  border: 0px;
+}
+
+table.grided-table tr:hover {
+  background-color: #dee5f7;
+}
+
+table.grided-table tr td.action {
+  width: 5%;
+  opacity: 1;
+}
+
+table.grided-table tr:hover td.action {
+  opacity: 1;
+}

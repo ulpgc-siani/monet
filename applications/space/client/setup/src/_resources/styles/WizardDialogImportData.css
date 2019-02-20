@@ -1,0 +1,20 @@
+#import-data-wizard #import-data-dialog {
+ width: 600px;
+}
+
+#import-data-wizard .dialog-body table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#import-data-wizard .dialog-body table tr td {
+  padding-left: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+#import-data-wizard .dialog-body table tr td input.url  {
+  width: 450px;
+}
+#import-data-wizard .dialog-body table tr td input.select {
+  width: 450px;
+}

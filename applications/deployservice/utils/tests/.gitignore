@@ -1,0 +1,6 @@
+/bin/
+/bin-tests/
+/build/
+/dist/
+/*.jar
+

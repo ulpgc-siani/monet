@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="SyncLockDeclaration" parent="WorklockDeclaration" tag="sync-lock">
+  <description>Declaración de un bloqueo de sincronización de tareas. Estos bloqueos se resuelven automáticamente cuando una tarea termina</description>
+  <hint>Antes se llamaban wait-task</hint>
+
+  <property name="wait" required="true">
+    <description>Se utiliza para indicar el tipo de tarea por la que se debe esperar</description>
+    <attribute name="task" type="key" link="TaskDefinition" required="true">
+      <description>Nombre de la definición del proveedor de servicio</description>
+    </attribute>
+  </property>
+
+</class>

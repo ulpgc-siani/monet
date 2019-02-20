@@ -1,0 +1,29 @@
+Documentation  - Monet Component Encrypt
+
+Componente de verificacion y firma.
+
+Hash soportados:
+	 - MD5, SHA1: como array de bytes, base64 y hexadecimal.
+
+Firmas soportadas, clase Signer:
+	 - HMAC: Genera una string firmada a partir de un texto y un secreto con el que firmar ese texto.
+
+Operaciones con certificados, Certificater:
+	 - Generar par de claves publica y privada
+	 - Guardar y cargar par de claves
+	 - Generar certificados versiones 1 y 3
+	 - Guardar y cargar en pkcs12 certificado y clave privada. 
+	 - Guardar y cargar en archivo p7b certificados
+	 - Guardar certificado en formato PEM
+	 - Guardar certificado en base64 en archivo
+	 - Obtener una clave publica apartir de un mensage en formato pkcs10(Certificate Signing Request)   
+	 - Obtener una clave publica apartir de un mensage en formato spkac(Mensage generado por el tag html keygen)
+	 - Obtenre la codificacion de un certificado en base 64
+	 
+
+Verificaciones soportadas:
+	Clase VerifySigner:
+		- HMAC:  Verifica una signature en hmac, con el texto original y el secreto con el que se firmo.
+	Clase VerifyCertificate:
+		- Firma en pcsk7: Verifica un array de bytes que simbolizan el texto firmado con el texto original. Devuelve el certificado utilizado en caso de que se pueda verificar.
+		- Verificaci�n que el certificado utilizado en una firma sea emitido por una autoridad certificadora. A partir de el texto firmado en forma de array en base 64 y un almac�n de certificados.

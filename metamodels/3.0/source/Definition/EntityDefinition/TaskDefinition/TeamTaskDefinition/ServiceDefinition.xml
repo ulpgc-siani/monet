@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class token="service" type="ServiceDefinition" parent="ProcessDefinition" extensible="true">
+	<description>Una tarea es una trabajo colectivo o individual que se desarrolla en la unidad de negocio</description>
+	
+  <attribute token="ontology" type="uuid" required="true">
+    <description>Solo se desean los servicios que se declaren con la misma ontología que la definida con este atributo</description>
+  </attribute>
+  
+  <property token="customer" extensible="true" required="true">
+	<description></description>
+    
+    <property token="request" type="CustomerRequestProperty" multiple="true">
+      <attribute token="code" type="code" required="true">
+        <description>Código del mensaje</description>
+      </attribute>
+      <attribute token="name" type="string" required="true" specific="true">
+        <description>Nombre con el que se referencia la declaración en el modelo de negocio</description>
+      </attribute>      
+      <method name="import">
+        <parameter name="msg" type="CustomerRequest" />
+      </method>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <property token="response" type="CustomerResponseProperty" multiple="true">
+      <attribute token="code" type="code" required="true">
+        <description>Código del mensaje</description>
+      </attribute>
+      <attribute token="name" type="string" required="true" specific="true">
+        <description>Nombre con el que se referencia la declaración en el modelo de negocio</description>
+      </attribute>
+      <method name="constructor">
+        <parameter name="msg" type="CustomerResponse" />
+      </method>
+    </property>
+    
+    <property token="expiration">
+      <method name="onExecute"/>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <property token="aborted">
+      <method name="onExecute"/>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <method name="onInit"/>
+    <method name="onChatMessageReveived">
+      <parameter name="msg" type="CustomerResponse" />
+    </method>
+    <method name="onRequest">
+      <parameter name="msg" type="CustomerRequest" />
+    </method>
+    
+  </property>
+  
+  <property token="place" type="ServicePlaceProperty" parent="PlaceProperty" multiple="true" extensible="true" required="true">
+	<description></description>
+  
+  </property>
+
+</class>

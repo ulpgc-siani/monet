@@ -1,0 +1,141 @@
+#PreviewThumbnails {
+  overflow: visible;
+  overflow-y: hidden;
+  y-overflow: hidden;
+  max-height: 200px;
+  border: 1px solid #ddd;
+}
+
+.thumbsView {
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.thumbItem {
+  float: left;
+  margin: 15px 5px;
+}
+
+.thumbItem.selected .thumbItemImage img {
+  border: 2px solid Blue;
+}
+
+.thumbItem .thumbItemImage {
+  display: block;
+  margin: 0 auto;
+  background: url(../images/loading.gif) #FFFFFF no-repeat center center;
+  width: 138px;
+  text-align: right;
+}
+
+.thumbItem .thumbItemImage,
+.thumbItem .thumbItemImage img {
+  max-width: 138px;
+  max-height: 158px;
+}
+
+.thumbItem .thumbItemImage img {
+  border: 1px solid #000000;
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+.pagesLabel {
+  font-size: 15px !important;
+  text-align: center;
+}
+
+.pagesLabel .dialog {
+  border-radius: 0px;
+  border: 0px;
+  margin: 0px auto;
+  padding: 0px !important;
+}
+
+.pagesLabel .dialog input {
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  border: 0px;
+  width: 100%;
+  padding: 1px 0;
+  cursor: text;
+  border: 1px solid black;
+  font-size: 15px;
+}
+
+.pagesLabel .dialog input.active {
+  border: 1px solid #99BBE8;
+  background: #EFF7FF;
+}
+
+.pagesLabel .dialog .accept {
+  position: absolute;
+  right: 0;
+  margin-right: 29px;
+  margin-top: -27px;
+  font-size: 13px;
+}
+
+.pagesLabel .dialog .clear {
+  position: absolute;
+  display: block;
+  height: 18px;
+  width: 16px;
+  right: 0px;
+  margin-top: -29px;
+  margin-right: 4px;
+  cursor: pointer;
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.pagesLabel .dialog .clear:hover {
+  background-position: -17px 0px;
+}
+
+.pageItem {
+  margin: 0 0 20px 0;
+}
+
+.pageItem div {
+  margin: 0 auto;
+}
+
+.pageItem .pageItemImage {
+  display: block;
+  background: url(../images/loading.gif) #FFFFFF no-repeat center center;
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+
+.pagesView {
+  padding: 0px 5px;
+}
+
+.pagesView span {
+  color: #000000;
+  padding: 10px 10px 10px 30px;
+  display: block;
+  background: url(../images/icons/loading.gif) transparent no-repeat 5px 9px;
+}
+
+#PreviewButtons .next {
+  background: url(../images/icons/next.gif);
+}
+
+#PreviewButtons .previous {
+  background: url(../images/icons/previous.gif);
+}
+
+#PreviewButtons .zoomIn {
+  background: url(../images/icons/zoom_in.gif);
+}
+
+#PreviewButtons .zoomOut {
+  background: url(../images/icons/zoom_out.gif);
+}
+
+#PreviewButtons .page {
+  width: 26px;
+  text-align: center;
+}

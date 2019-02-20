@@ -1,0 +1,124 @@
+.account 
+  position: relative
+
+.account > table 
+  width: 100%
+  padding: 5px
+
+.account > table td 
+  vertical-align: top
+
+.account .photo, .account .photo img 
+  width: 60px
+  vertical-align: middle
+
+.account .full-name 
+  overflow: hidden
+  font-size: 13pt
+
+.account .email 
+  font-size: 10pt
+
+.account .email, .account .full-name 
+  margin-right: 4px
+  margin-left: 5px
+
+.account .photo img
+  height: 60px
+  width: 60px
+
+#main.reduced .account .photo img
+  width: 40px
+  height: 45px
+
+.account .photo img.default
+  background: url(../images/addphoto.png) no-repeat 8px 8px
+
+#main.reduced .account .photo img.default
+  background: url(../images/addphoto_reduced.png) no-repeat 8px 8px
+
+.account .photo img
+  margin: auto 5px
+  background-repeat: no-repeat
+
+.account .vertical-toolbar 
+  margin-right: 4px
+
+.account .vertical-toolbar li 
+  margin-top: 4px
+
+.account .vertical-toolbar li a 
+  display: block
+  height: 24px
+  width: 24px
+  border: 1px solid white
+  border-radius: 4px
+  padding: 2px
+
+.account .vertical-toolbar li a:hover 
+  background-color: #eee
+  border: 1px solid #aaa
+
+.account .vertical-toolbar .show-notifications 
+  background: transparent url(../../../images/show-notifications.png) no-repeat 2px 2px
+
+.account .vertical-toolbar .show-business-units 
+  background: transparent url(../../../images/show-business-units.png) no-repeat 2px 2px
+
+.account .popup 
+  position: absolute
+  background: white
+  border: 1px solid #eee
+  border-radius: 3px
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15)
+  height: 200px
+  width: 500px
+  margin-top: -145px
+  top: 0
+
+.account .popup label 
+  display: block
+  font-size: 15pt
+  margin: 12px 10px 0
+
+.account .popup .members, .account .popup .notifications 
+  height: 150px
+  margin: 10px
+
+.account .popup .items 
+  max-height: 150px
+
+.account .popup .items li 
+  border: 1px solid white
+  padding: 2px 5px
+
+.account .popup .items li:hover 
+  background-color: #efefef
+  border: 1px solid #aaa
+  padding: 2px 5px
+
+.account .popup .empty-notifications 
+  margin-top: 10px
+
+.account .popup .msg.empty 
+  margin: 0
+  padding: 0 10px
+
+.account .popup .command 
+  padding: 0 5px
+
+.account .popup .command a 
+  margin-top: 10px
+
+/* collapsed */
+.design-panel.left.collapsed .account .photo, .design-panel.left.collapsed .account .full-name, .design-panel.left.collapsed .account .email, .design-panel.left.collapsed .account .toolbar 
+  display: none
+
+.design-panel.left.collapsed .account 
+  display: block
+
+.design-panel.left.collapsed .account .vertical-toolbar .show-notifications 
+  display: block !important
+
+.design-panel.left.collapsed .account .vertical-toolbar .show-business-units 
+  display: block !important

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="door" type="DoorActionProperty" parent="PlaceActionProperty" extensible="true">
+	<description></description>
+
+  <property token="timeout">
+    <attribute token="after" type="time" required="true">
+      <description></description>
+    </attribute>
+    
+    <attribute token="take" type="key" link="ExitProperty">
+      <description>Parada que se cogerá de forma automática si se expira el tiempo</description>
+    </attribute>
+    
+    <method name="on-timeout"/>
+  </property>
+  
+	<property token="exit" type="ExitProperty" parent="ReferenceableProperty" multiple="true" required="true">
+		<description></description>
+		
+    <attribute token="goto" type="key" link="PlaceProperty" required="true">
+      <description>Lugar al que se moverá el flujo de ejecución una vez acabado este lugar</description>
+    </attribute>
+    
+    <attribute token="history" type="language" required="true">
+      <description>Entrada en el historial que se agregará una vez superado el lugar</description>
+    </attribute>
+    
+    <method name="on-take"/>
+	</property>
+  
+  <method name="on-solve"/>
+
+</property>

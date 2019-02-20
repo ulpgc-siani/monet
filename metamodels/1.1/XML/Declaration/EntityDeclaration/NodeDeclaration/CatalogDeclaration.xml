@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CatalogDeclaration" parent="NodeDeclaration" tag="catalog">
+  <description>Declaración que se utiliza para modelar un catálogo</description>
+
+  <property name="use" multiple="true">
+    <attribute name="reference" type="code" link="Definition" restriction="ReferenceDeclaration">
+    </attribute>
+  </property>
+  
+  <include name="parameter" multiple="true">
+    <option class-name="ParameterDeclaration" />
+  </include>
+  
+  <include name="view" multiple="true">
+    <option class-name="CatalogViewDeclaration" />
+  </include>
+</class>
+

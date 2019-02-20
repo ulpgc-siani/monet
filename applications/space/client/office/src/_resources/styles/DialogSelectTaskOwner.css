@@ -1,0 +1,62 @@
+.dialog.selecttaskowner {
+  /*height: 355px;*/
+  height: auto;
+  overflow-y: auto;
+}
+
+.dialog.selecttaskowner .tab {
+  padding: 10px;
+}
+
+.dialog.selecttaskowner .component {
+  width: 98%;
+  padding: 0;
+}
+
+.dialog.selecttaskowner .options {
+  position: absolute;
+  margin-top: -22px;
+  right: 0;
+  width: 20px;
+}
+
+.dialog.selecttaskowner .options a.clearvalue {
+  display: block;
+  height: 21px;
+  width: 16px;
+  cursor: pointer;
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.dialog.selecttaskowner .options a.clearvalue:hover {
+  background-position: -17px 0px;
+}
+
+.dialog.selecttaskowner .x-grid-header {
+  display: none;
+}
+
+.dialog.selecttaskowner .empty {
+  position: absolute;
+  top: 0;
+  margin-left: 5px;
+  margin-top: 55px;
+  color: #666;
+}
+
+.dialog.selecttaskowner .disabled {
+  color: #666;
+}
+
+.dialog.selecttaskowner .toolbar {
+  border-top: 1px dotted #ddd;
+  padding-top: 10px;
+}
+
+.dialog.selecttaskowner .toolbar li {
+  float: right;
+}
+
+.dialog.selecttaskowner .toolbar li a {
+  margin-right: 0;
+}

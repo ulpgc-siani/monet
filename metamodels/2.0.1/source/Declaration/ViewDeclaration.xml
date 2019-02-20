@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ViewDeclaration" parent="Declaration">
+  <description>Declaración abstracta de una vista</description>
+  
+  <attribute name="code" type="code" required="true">
+    <description>Nombre del campo</description>
+    <hint>No hay que editar este atributo. Se genera automáticamente</hint>
+  </attribute>
+
+  <attribute name="name" type="string">
+    <description>Nombre con el que se referencia la vista en el modelo de negocio</description>
+  </attribute>
+
+</class>
+

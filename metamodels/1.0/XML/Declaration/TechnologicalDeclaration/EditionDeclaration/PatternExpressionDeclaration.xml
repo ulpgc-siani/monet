@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="PatternExpressionDeclaration" parent="Declaration" tag="pattern">
+  
+  <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+	
+    <attribute name="value" type="String" required="true">
+      <description>Expresión regular que cumplirá el valor que se almacene en este campo</description>
+    </attribute>
+	
+  <property name="indicator" multiple="true" >
+    <description>Etiqueta las capturas realizadas en la expresión regular</description>
+	<attribute name="index" type="Integer" required="true">
+      <description>Posición de la captura</description>
+    </attribute>
+	<attribute name="label" type="String" required="true">
+      <description>Etiqueta que se le asignará a la captura</description>
+    </attribute>
+  </property>
+  
+</class>
+
+	

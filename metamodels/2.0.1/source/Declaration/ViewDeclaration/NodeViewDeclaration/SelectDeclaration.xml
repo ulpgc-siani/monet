@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SelectDeclaration" parent="Declaration" tag="select">
+  <description>Se utiliza para indicar qué nodos se muestran en la colección</description>
+    
+  <attribute name="node" type="key" link="NodeDefinition" required="true">
+    <description>Nombre de la definición de un nodo</description>
+  </attribute>
+    
+</class>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension id="org.monet.editor.runtimeproblemmarker" point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <persistent value="true"/>
+   </extension>
+   <extension id="org.monet.editor.resourceproblemmarker" point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <persistent value="true"/>
+   </extension>
+   <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
+   	 <classpathContainerInitializer
+       id="org.monet.editor.MONET_CONTAINER"
+       class="org.monet.editor.core.classpath.MonetContainerInitializer"/>
+   </extension>
+   <extension 
+       point="org.eclipse.jdt.ui.classpathContainerPage">
+      <classpathContainerPage
+          id="org.monet.modeling.MONET_CONTAINER"
+          name="Monet Libraries"
+          class="org.monet.editor.ui.classpathcontainer.MonetContainerPage"/>
+   </extension>
+   <extension
+         id="org.monet.editor.Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.monet.editor.MonetNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.monet.editor.builder.resourceBuilder">
+      </builder>
+   </extension>
+   <extension
+         id="org.monet.editor.builder.resourceBuilder"
+         name="Monet Resource Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder hasNature="true">
+         <run class="org.monet.editor.core.builders.ResourceBuilder"/>
+      </builder>
+   </extension>
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="MonetEditor.wizards"
+            name="Monet">
+      </category>
+      <wizard
+            id="MonetEditor.wizards.newproject"
+            name="Monet Project"
+            class="org.monet.editor.ui.wizards.NewProjectWizard"
+            category="MonetEditor.wizards"
+            icon="icons/newproject.png"
+            finalPerspective="MonetEditor.perspective"
+            project="True">
+      </wizard>
+      <wizard
+            id="MonetEditor.wizards.newdefinition"
+            name="Definition"
+            class="org.monet.editor.ui.wizards.NewDefinitionWizard"
+            category="MonetEditor.wizards"
+            icon="icons/newdefinition.png"
+            finalPerspective="MonetEditor.perspective"
+			hasPages="True">
+      </wizard>
+      <wizard
+            id="MonetEditor.wizards.newdistribution"
+            name="Distribution"
+            class="org.monet.editor.ui.wizards.NewDistributionWizard"
+            category="MonetEditor.wizards"
+            icon="icons/distribution.new.png"
+            finalPerspective="MonetEditor.perspective"
+			hasPages="False">
+      </wizard>
+      <wizard
+            id="MonetEditor.wizards.newlayout"
+            name="Layout File"
+            class="org.monet.editor.ui.wizards.NewLayoutWizard"
+            category="MonetEditor.wizards"
+            icon="icons/layout.png"
+            finalPerspective="MonetEditor.perspective"
+			hasPages="False">
+      </wizard>
+      <wizard
+            id="MonetEditor.wizards.newlocalization"
+            name="Localization File"
+            class="org.monet.editor.ui.wizards.NewLocalizationWizard"
+            category="MonetEditor.wizards"
+            icon="icons/localization.png"
+            finalPerspective="MonetEditor.perspective"
+			hasPages="False">
+      </wizard>
+   	</extension>
+   	<extension point="org.eclipse.ui.preferencePages">
+      	<page
+            id="MonetEditor.PreferencePage"
+            name="Monet"
+            class="org.monet.editor.ui.preference.PreferencePage">
+    	</page>
+   	</extension>
+   	<extension point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.monet.editor.ui.preference.PreferenceInitializer">
+      </initializer>
+   	</extension>
+    
+	<extension point="org.eclipse.ui.decorators"> 
+		<decorator 
+			objectClass="org.eclipse.core.resources.IResource"
+		    adaptable="true"
+		    label="Monet Library Folder" 
+		    state="true"
+		    class="org.monet.editor.ui.decorators.MonetFolderDecorator" 
+		    id="org.monet.editor.ui.decorators.folderdecorators">
+		    <description> 
+		      Monet Special Folder 
+		    </description> 
+		  </decorator> 
+	</extension>
+    
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="MonetEditor.views"
+            name="Monet">
+      </category>
+      <view
+            id="MonetEditor.views.deploy"
+            name="Deploy"
+            category="MonetEditor.views"
+            class="org.monet.editor.ui.views.DeployView"
+            icon="icons/deploy.gif"
+            restorable="true">
+      </view>
+      <view
+			id="MonetEditor.views.explorer"
+            name="Model Explorer"
+            category="MonetEditor.views"
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            icon="icons/modelexplorer.gif"
+            restorable="true">
+            <customFilters userDefinedPatternsEnabled="false">
+				<xmlDefinedFilters>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonSharedProjectsFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaElementFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.ContainedLibraryFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.CuAndClassFileFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaProjectsFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyInnerPackageFilter" isEnabled="true"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.PackageDeclarationFilter" isEnabled="true"/>
+					<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyPackageFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.ImportDeclarationFilter" isEnabled="true"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.FieldsFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.HideInnerClassFilesFilter" sEnabled="true"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonPublicFilter" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*" isEnabled="true"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter" isEnabled="true"/>
+					<child filterId="org.eclipse.pde.ui.BinaryProjectFilter1" isEnabled="false"/>
+					<child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
+					<child filterId="org.eclipse.m2e.MavenModuleFilter" isEnabled="false"/>
+				</xmlDefinedFilters>
+			</customFilters>
+      </view>      
+   </extension>
+       
+   <extension point="org.eclipse.ui.navigator.viewer">
+      <viewer viewerId="MonetEditor.views.explorer">
+         <popupMenu id="MonetEditor.views.explorer#PopupMenu" allowsPlatformContributions="true">
+            <insertionPoint name="group.new" separator="true"></insertionPoint>
+            <insertionPoint name="group.open" separator="true"></insertionPoint>
+            <insertionPoint name="group.edit" separator="true"></insertionPoint>
+            <insertionPoint name="group.build" separator="true"></insertionPoint>-->
+            <insertionPoint name="group.port" separator="true"></insertionPoint>
+            <insertionPoint name="group.reorganize" separator="true"></insertionPoint>
+            <insertionPoint name="group.properties" separator="true"></insertionPoint>
+
+            <!--<insertionPoint name="group.openWith" separator="true"></insertionPoint>-->
+            <insertionPoint name="group.search" separator="true"></insertionPoint>
+         </popupMenu>
+      </viewer>   
+      <viewerContentBinding viewerId="MonetEditor.views.explorer">
+          <includes>
+			<contentExtension pattern="org.eclipse.jdt.java.ui.javaContent" />
+			<contentExtension pattern="org.eclipse.ui.navigator.resources.*" />		       	      
+			<contentExtension pattern="org.eclipse.ui.navigator.resourceContent" />		       	      
+			<contentExtension pattern="org.eclipse.ui.navigator.resources.linkHelper" />		       	      
+            <contentExtension pattern="MonetEditor.filters.*"/> 
+          </includes>
+       </viewerContentBinding>
+       <viewerActionBinding viewerId="MonetEditor.views.explorer">
+          <includes>
+			<actionExtension pattern="org.eclipse.ui.navigator.resources.*" />
+          </includes>
+       </viewerActionBinding>
+   </extension>
+   
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+ 		<commonFilter activeByDefault="True" name="Binary and Output" description="Hide bin and out directories" id="MonetEditor.filters.bin">
+	         <filterExpression>
+	         	<or>
+		            <adapt type="org.eclipse.core.resources.IResource">
+	            		<test property="org.eclipse.core.resources.name" value="bin"/>
+	            	</adapt>	            
+		            <adapt type="org.eclipse.core.resources.IResource">
+	            		<test property="org.eclipse.core.resources.name" value="out"/>
+	            	</adapt>
+		            <adapt type="org.eclipse.core.resources.IResource">
+	            		<test property="org.eclipse.core.resources.name" value="preview"/>
+	            	</adapt>
+		        </or>
+	         </filterExpression>            
+        </commonFilter> 
+ 		<commonFilter activeByDefault="true" name="Class Path Containers" description="Hide class path containers" id="MonetEditor.filters.cpc">
+	         <filterExpression>
+	         	<and>           
+		            <instanceof value="org.eclipse.jdt.internal.ui.packageview.ClassPathContainer"/>
+		        </and>
+	         </filterExpression>            
+        </commonFilter> 
+		<commonWizard type="new" wizardId="MonetEditor.wizards.newdefinition">
+			<enablement>
+				<instanceof value="java.lang.Object" /> 
+			</enablement>
+		</commonWizard> 		
+		<commonWizard type="new" wizardId="MonetEditor.wizards.newdistribution">
+			<enablement>
+				<instanceof value="java.lang.Object" /> 
+			</enablement>
+		</commonWizard> 		
+		<commonWizard type="new" wizardId="MonetEditor.wizards.newlayout">
+			<enablement>
+				<instanceof value="java.lang.Object" /> 
+			</enablement>
+		</commonWizard> 		
+		<commonWizard type="new" wizardId="MonetEditor.wizards.newlocalization">
+			<enablement>
+				<instanceof value="java.lang.Object" /> 
+			</enablement>
+		</commonWizard> 		
+	</extension>
+	
+   <extension point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="label"
+            description="description"
+            id="MonetEditor.CreationSet">
+         <action
+               id="MonetEditor.NewTypeDropDown"
+               enablesFor="1"
+               class="org.eclipse.jdt.internal.ui.wizards.NewTypeDropDownAction"
+               label="label"
+               style="pulldown"
+               tooltip="tooltip">
+         </action>
+      </actionSet>
+   </extension>
+	
+
+   <extension point="org.eclipse.ui.actionSetPartAssociations">
+	<actionSetPartAssociation targetID="MonetEditor.CreationSet">
+		<part id="MonetEditor.views.explorer"></part>
+	</actionSetPartAssociation>
+	</extension> 
+	  
+		    
+   <extension point="org.eclipse.ui.perspectives">
+		<perspective id="MonetEditor.perspective" name="Monet" class="org.monet.editor.ui.perspectives.PerspectiveFactory" icon="icons/monet.png"/>
+   </extension>
+  
+   <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <perspectiveExtension targetID="MonetEditor.perspective"> 
+			<actionSet id="MonetEditor.CreationSet"/>
+			<showInPart id="MonetEditor.views.explorer"/>
+        </perspectiveExtension> 
+    </extension>     
+    
+	<extension point="org.eclipse.ui.commands">
+      	<command
+            defaultHandler="org.monet.editor.core.handlers.SyncWithParentProjectHandler"
+            id="org.monet.editor.core.commands.SyncWithParentProjectCommand"
+            name="MergeDefinitions">
+    	</command>
+   	</extension>    
+    
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:MonetEditor.views.explorer#PopupMenu?after=group.build">
+			<menu id="MonetEditor.views.explorer.monetmenu" 
+				  label="Monet">
+     		</menu>
+     		<separator name="group.monet" visible="true" />
+      	</menuContribution>    
+      	
+      	<menuContribution locationURI="popup:MonetEditor.views.explorer.monetmenu">
+         	<command commandId="org.monet.editor.core.commands.SyncWithParentProjectCommand"
+               		label="Sync with parent project"
+               		mnemonic="M1+P"
+               		tooltip="Merge definitions with generic ones, copy new resources">
+         	</command>
+      	</menuContribution>
+	</extension>
+
+
+   <!--<extension point="org.eclipse.ui.popupMenus">
+        <objectContribution id="MonetEditor.contribution.files" objectClass="org.eclipse.core.resources.IResource" nameFilter="*.mml">
+            <menu id="MonetEditor.contribution.files.menu" path="popUpEnd" label="Monet">
+                <separator name="group1"/>
+            </menu>
+            <action id="MonetEditor.contribution.files.Tool" label="Monet Tool" menubarPath="MonetEditor.contribution.files.menu/group1" icon="icons/tool.gif" class="org.monet.editor.ui.actions.Tool" enablesFor="1" />
+    </objectContribution>
+    
+   	<objectContribution id="MonetEditor.contribution.editor" objectClass="org.eclipse.ui.IEditorInput" nameFilter="*.mml">
+        <menu id="MonetEditor.contribution.editor.menu" label="Monet Code Assistant" path="new">
+            <separator name="group1"/>
+        </menu>
+        <action id="MonetEditor.contribution.editor.completedefinition" label="CompleteDefinition" class="org.monet.editor.ui.handlers.CompleteDefinitionHandler" menubarPath="MonetEditor.contribution.editor.menu/group1" enablesFor="1" />
+        <action id="MonetEditor.contribution.editor.generateviewform" label="Generate view from fields..." class="org.monet.editor.ui.handlers.GenerateViewFormHandler" menubarPath="MonetEditor.contribution.editor.menu/group1" enablesFor="1" />
+        <action id="MonetEditor.contribution.editor.generateschemaform" label="Generate schema from fields..." class="org.monet.editor.ui.handlers.GenerateSchemaFormHandler" menubarPath="MonetEditor.contribution.editor.menu/group1" enablesFor="1" />
+	</objectContribution>
+    
+    
+    -->
+</plugin>

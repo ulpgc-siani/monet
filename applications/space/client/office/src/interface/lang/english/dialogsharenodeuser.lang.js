@@ -1,0 +1,3 @@
+Lang.DialogShareNodeUser = {
+  Delete: "Delete"
+};

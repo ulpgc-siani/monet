@@ -1,0 +1,38 @@
+.tabcontrol .tabs {
+  margin-top: 10px;
+}
+
+.tabcontrol .tabs .ui-tabs-nav li a {
+  padding: 5px 0 5px 7px;
+}
+
+.tabcontrol .tabs .ui-tabs-nav li a .title {
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.tabcontrol .tabs .ui-tabs-nav li a .subtitle, .tabcontrol .tabs .ui-tabs-nav li a .period {
+  color: #aaa; 
+}
+
+.tabcontrol .tabs .deletetabs {
+  position: absolute;
+  margin-top: 3px;
+  top: 3px;
+  height: 30px;
+  margin-left: 5px;
+}
+
+.tabcontrol .tabs .deletetabs:hover {
+  color: #212121;
+}
+
+.tabcontrol .tabs li .ui-icon-close {
+  float: left;
+  margin: 5px 3px 5px 0;
+  cursor: pointer;
+}
+
+.tabcontrol .tabs li.uncloseable .deletetab {
+  visibility: hidden;
+}

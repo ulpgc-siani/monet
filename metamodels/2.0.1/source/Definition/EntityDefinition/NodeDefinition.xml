@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NodeDefinition" parent="EntityDefinition" extensible="true">
+  <description>Declaración abstracta de un nodo. Un nodo es un elemento navegable del sistema de información</description>
+
+  <property name="is-singleton">
+    <description>Su presencia indica que sólo puede existir una instancia de este tipo de nodo</description>
+  </property>
+  
+  <property name="is-component">
+    <description>Su presencia indica que este tipo de nodo sólo se puede crear como componente de otro nodo, nunca de forma aislada</description>
+  </property>
+  
+  <property name="is-read-only">
+    <description>Su presencia indica que el nodo es de sólo lectura</description>
+    <hint>Los nodos de sólo lectura no pueden ser modifcados por el usuario</hint>
+  </property>
+  
+  <property name="is-duplicable">
+    <description>Su presencia indica que la operación duplicar estará disponible</description>
+  </property>
+  
+  <property name="is-private">
+    <description>Su presencia indica que el nodo sólo es visible para el usuario propietario</description>
+  </property>
+  
+  <property name="is-georeferenced">
+    <description>Su presencia indica que el nodo tiene asociado información de localización, es decir, se puede mostrar en un mapa</description>
+  
+    <attribute name="default-location" type="string">
+      <description>Coordenadas iniciales del nodo</description>
+      <hint>Se utiliza la representación estándar Well-Known-Text para representar la geometría</hint>
+    </attribute>
+    
+    <attribute name="reference" type="key" link="ReferenceDefinition">
+      <description>Referencia que se utiliza para proporcionar de metadatos a la localización</description>
+    </attribute>
+    <attribute name="view" type="key" link="ReferenceViewDeclaration">
+      <description>Vista de la referencia a utilizar</description>
+    </attribute>
+  </property>
+
+  <property name="allow-import">
+    <description>Permite la importación de datos sobre este nodo con el importer especificado</description>
+    
+    <attribute name="importer" type="key" link="ImporterDefinition">
+      <description>Nombre del importer que se usará para importar datos</description>
+    </attribute>
+  </property>
+  
+  <property name="schema" >
+    <description>Esquema XML que representa la estructura del nodo. Permite operar con atributos del nodo</description>
+    <content type="xml"/>
+  </property>
+  
+  <property name="implements" multiple="true">
+    <description>La presencia de esta propiedad indica que se debe exportar el esquema a una referencia</description>
+    <attribute name="reference" type="key" link="ReferenceDefinition">
+      <description>Nombre de la definición de una referencia</description>
+    </attribute>
+  </property> 
+
+  <include name="view" multiple="true">
+    <option class-name="NodeViewDeclaration" />
+  </include>
+
+  <include name="operation" multiple="true">
+    <option class-name="OperationDeclaration" />
+  </include> 
+
+  <include name="rule" multiple="true">
+    <option class-name="RuleDeclaration" />
+  </include> 
+
+</class>

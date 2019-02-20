@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="DateFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-date">
+  <description>Declaración que se utiliza para modelar un campo fecha</description>
+  
+  <property name="format">
+    <description>Se utiliza para indicar el formato de fecha</description>
+    <attribute name="value" type="string" required="true">
+      <description>Valor con el formato para la fecha</description>
+      <hint><![CDATA[ <pre>
+Sample date:
+'Wed Jan 10 2007 15:05:01 GMT-0600 (Central Standard Time)'
+
+Format  Output      Description
+------  ----------  --------------------------------------------------------------
+  d      10         Day of the month, 2 digits with leading zeros
+  D      Wed        A textual representation of a day, three letters
+  j      10         Day of the month without leading zeros
+  l      Wednesday  A full textual representation of the day of the week
+  S      th         English ordinal day of month suffix, 2 chars (use with j)
+  w      3          Numeric representation of the day of the week
+  z      9          The julian date, or day of the year (0-365)
+  W      01         ISO-8601 2-digit week number of year, weeks starting on Monday (00-52)
+  F      January    A full textual representation of the month
+  m      01         Numeric representation of a month, with leading zeros
+  M      Jan        Month name abbreviation, three letters
+  n      1          Numeric representation of a month, without leading zeros
+  t      31         Number of days in the given month
+  L      0          Whether it's a leap year (1 if it is a leap year, else 0)
+  Y      2007       A full numeric representation of a year, 4 digits
+  y      07         A two digit representation of a year
+  a      pm         Lowercase Ante meridiem and Post meridiem
+  A      PM         Uppercase Ante meridiem and Post meridiem
+  g      3          12-hour format of an hour without leading zeros
+  G      15         24-hour format of an hour without leading zeros
+  h      03         12-hour format of an hour with leading zeros
+  H      15         24-hour format of an hour with leading zeros
+  i      05         Minutes with leading zeros
+  s      01         Seconds, with leading zeros
+  O      -0600      Difference to Greenwich time (GMT) in hours
+  T      CST        Timezone setting of the machine running the code
+  Z      -21600     Timezone offset in seconds (negative if west of UTC, positive if east)</pre>
+      ]]></hint>
+    </attribute>
+  </property>
+  <example>
+  </example>
+</class>

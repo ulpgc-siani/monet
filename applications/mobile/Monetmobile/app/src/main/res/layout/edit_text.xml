@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <EditText
+            android:id="@+id/item_editor"
+            style="@style/editorText"
+            android:tag="editor"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toLeftOf="@+id/clear_editor"
+            android:layout_toStartOf="@+id/clear_editor"
+            android:inputType="text"/>
+
+    <include
+            android:id="@+id/clear_editor"
+            layout="@layout/widget_delete_button"/>
+
+</RelativeLayout>

@@ -1,0 +1,3 @@
+ALTER TABLE `ts$links` ADD `ID_SOURCE_COMPONENT` INT(11);
+ALTER TABLE `ts$links` DROP PRIMARY KEY;
+CREATE INDEX `TS$LINKS_INDEX5` ON ts$links(id_source_component);

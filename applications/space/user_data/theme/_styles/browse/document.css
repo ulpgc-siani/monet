@@ -1,0 +1,120 @@
+.node .listviewer.signlist .item {
+  position: relative;
+}
+
+.node .listviewer.signlist .item .content .state, .node .flag {
+  color: white;
+  margin: 10px 0px;
+  padding: 0 10px;
+  text-align: center;
+  width: 60px;
+}
+
+.node .listviewer.signlist .item .content .label {
+  color: black;
+}
+
+.node .listviewer.signlist .item .content > .signing {
+  display: none;
+  position: absolute;
+  background: #99BBE8;
+  width: 100%;
+  height: calc(100% - 30px);
+  text-align: center;
+  color: black;
+  padding-top: 25px;
+  top: 0;
+  font-size: 18px;
+  -moz-opacity: 0.5;
+  opacity: .50;
+  font-weight: bold;
+}
+
+.node .listviewer.signlist .item .content.signing > .signing {
+  display: block;
+}
+
+.node .listviewer.signlist .item .content.signed, .node .listviewer.signlist .item .content.signed {
+  background: #eee !important;
+  cursor: default !important;
+}
+
+.node .listviewer.signlist .item .content.delayed, .node .listviewer.signlist .item .content.delayed:hover,
+.node .listviewer.signlist .item .content.disabled, .node .listviewer.signlist .item .content.disabled:hover {
+  background: none !important;
+  cursor: default !important;
+}
+
+.node .listviewer.signlist .item .content .body {
+  margin-top: 5px;
+  padding: 0px 8px 5px;
+  color: black;
+}
+
+.node .listviewer.signlist .item .content .body span {
+  color: #777;
+  margin-right: 5px;
+}
+
+.node .listviewer.signlist .item .body .message {
+  display: none;
+  color: black;
+  font-size: 13px;
+}
+
+.node .listviewer.signlist .item .content.delayed .message.delayed {
+  display: block;
+}
+
+.node .listviewer.signlist .item .content.signed .message.signed {
+  display: block;
+  color: #888;
+}
+
+.node .listviewer.signlist .item .body .action {
+  color: #0d3c98;
+  display: none;
+  margin-top: 3px;
+}
+
+.node .listviewer.signlist .item .body .users {
+  margin-top: 3px;
+}
+
+.node .listviewer.signlist .item .content.disabled .body .users {
+  display: none !important;
+}
+
+.node .listviewer.signlist .item .content.pending .action.pending {
+  display: block;
+}
+
+.node .listviewer.signlist .item .content.signed .roles {
+  display: none;
+}
+
+.node .listviewer.signlist .item .content .state.pending, .node .flag.pending {
+  background-color: #33942F;
+}
+
+.node .listviewer.signlist .item .content .state.signing, .node .flag.signing {
+  background-color: #3233AA;
+}
+
+.node .listviewer.signlist .item .content .state.waiting, .node .flag.waiting,
+.node .listviewer.signlist .item .content .state.pending, .node .flag.delayed {
+  background-color: #E37F2E;
+}
+
+.node .listviewer.signlist .item .content .state.pending, .node .flag.signed,
+.node .listviewer.signlist .item .content .state.pending, .node .flag.disabled {
+  background-color: #828282;
+}
+
+.node .listviewer.signlist .summary .count {
+	display: none !important;
+}
+
+.node .wizarddocument .wizard .steps, .node .wizarddocument .wizard .toolbar {
+  display: none;
+}

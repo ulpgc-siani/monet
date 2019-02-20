@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="WorkLineDeclaration" parent="ContentDeclaration" tag="workline">
+
+  <attribute name="code" type="Code">
+	<description>Identificador único de la declaración del campo</description>  
+  </attribute>
+  
+  <attribute name="name" type="string">
+	<description></description>
+  </attribute>
+
+  <attribute name="weight" type="Natural">
+	<description>
+		Indica que tipo de WorkPlace se trata.<br></br>
+		<ul>
+			<li><b>event:</b> Estado inicial con el que se inicia el WorkMap.</li>
+			<li><b>goal:</b> Estado final que indica que la tarea asociada al WorkMap ha terminado.</li>
+			<li><b>dead-end:</b> Estado de excepción que cuando ocurra se mostrará como tal.</li>
+		</ul>
+	</description>
+  </attribute>
+
+  <property name="label" multiple="true">
+    <description>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la etiqueta</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="type" type="enumeration" default="short" >
+      <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+      <enumeration>
+        <option>short</option>
+        <option>long</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="description" multiple="true">
+    <description>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la descripción</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+  
+  <property name="from">
+    <description>Define la origen de este WorkLine</description>
+    <attribute name="workplace" type="Code">
+      <description>WorkPlace desde el que parte esta línea</description>
+    </attribute>
+  </property>
+  
+  <include name="to" tag="to" multiple="true">
+	<option class="WorkStopDeclaration"/>
+  </include>
+  
+</class>

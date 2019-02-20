@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="rule" type="TaxonomyRuleProperty">
+	<description>Declaración de una regla para la clasificación de los componentes en alguna categoría de una taxonomía</description>
+	
+	<attribute token="exclusive" type="boolean">
+		<description>Indica si es necesario que se cumplan todas las validaciones (check) para que se considere la regla como válida</description>
+	</attribute>
+	
+	<property token="check" multiple="true">
+		<description>Hace una comprobación sobre una característica para determinar si el valor cumple con la regla</description>
+
+		<attribute token="type" type="enumeration" required="true">
+			<description>Cuando cambia un hermano de este nodo</description>
+			<enumeration>
+				<option token="RANGE">
+					<description>Comprueba que el valor de la característica esté en el rango dado por from y to</description>
+				</option>
+				<option token="VALUE">
+					<description>Comprueba el valor dado por el atributo value sea el de la característica</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<attribute token="feature" type="key" link="FeatureProperty" required="true">
+			<description>Indica la característica a la cual aplicar la regla</description>
+		</attribute>
+
+		<attribute token="from" type="integer">
+			<description>Indica el mínimo valor que satisface la regla</description>
+			<hint>Este atributo sólo se define para el caso en que el tipo sea RANGE</hint>
+		</attribute>
+
+		<attribute token="to" type="integer">
+			<description>Indica el máximo valor que satisface la regla</description>
+			<hint>Este atributo sólo se define para el caso en que el tipo sea RANGE</hint>
+		</attribute>
+		
+		<attribute token="value" type="string">
+			<description>Indica el valor que satisface la regla</description>
+			<hint>Este atributo sólo se define para el caso en que el tipo sea VALUE</hint>
+		</attribute>
+	</property>
+
+	<property token="report" required="true">
+		<description>Establece el valor devuelto por la regla si se cumplen todos los check</description>
+		
+		<attribute token="type" type="enumeration" required="true">
+			<description>Cuando cambia un hermano de este nodo</description>
+			<enumeration>
+				<option token="CATEGORY">
+					<description>Devuelve el nombre de la categoría</description>
+				</option>
+				<option token="FEATURE">
+					<description>Devuelve el valor de la característica</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<attribute token="category" type="string">
+			<description>Indica el nombre de la categoría</description>
+			<hint>Este atributo sólo se define para el caso en que el tipo sea CATEGORY</hint>
+		</attribute>
+		
+		<attribute token="feature" type="key" link="FeatureProperty">
+			<description>Indica el nombre de la característica</description>
+			<hint>Este atributo sólo se define para el caso en que el tipo sea FEATURE</hint>
+		</attribute>
+	</property>
+
+</property>

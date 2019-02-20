@@ -1,0 +1,25 @@
+# Systemd unit file for tomcat
+[Unit]
+Description=Apache Tomcat (tomcat-public)
+After=syslog.target network.target mnt-documents.mount mnt-federations.mount mnt-spaces.mount
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/jre
+Environment=CATALINA_PID=/opt/tomcat-pubic/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat-public
+Environment=CATALINA_BASE=/opt/tomcat-public
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+ExecStart=/opt/tomcat-public/bin/startup.sh
+ExecStop=/opt/tomcat-public/bin/shutdown.sh
+
+User=tomcat-public
+Group=monet
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

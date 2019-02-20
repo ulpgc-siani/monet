@@ -1,0 +1,505 @@
+<div class="header">
+  <!--
+    <div class="toolbar">
+      <span>::GotoField::</span>&nbsp;
+      <a class="command" href="firstfield()">::FirstField::</a>&nbsp;|&nbsp;
+      <a class="command" href="previousfield()">::PreviousField::</a>&nbsp;|&nbsp;
+      <a class="command" href="nextfield()">::NextField::</a>&nbsp;|&nbsp;
+      <a class="command" href="lastfield()">::LastField::</a>
+    </div>
+    <div class="toolbar right">
+      <a class="command undo" href="undonode()" title="::Undo::" alt="::Undo::"></a>
+      <a class="command redo" href="redonode()" title="::Redo::" alt="::Redo::"></a>
+    </div>
+  -->
+</div>
+
+<div class="editor eboolean">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a>
+  </div>
+  <div class="emessage">::MessageBoolean::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog store">
+      <div class="toolbar"></div>
+      <div class="grid"></div>
+    </div>
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor echeck">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageCheck::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog source">
+      <div class="subtitle">::Source::</div>
+      <select></select>
+    </div>
+    <div class="toolbar">
+      <div class="filter">
+        <span></span><input type="text" class="text filter"></input>
+      </div>
+    </div>
+    <div class="dialog history">
+      <div class="grid"></div>
+    </div>
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+      <!--<div><a class="behaviour togglecheck" href="togglecheck()">::Check::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor edate">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageDate::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog date">
+      <div>
+        <div class="datepicker"></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+    <div class="verrors">
+      <div class="verror format">::DateWrong::</div>
+    </div>
+  </div>
+</div>
+
+<div class="editor efile">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageFile::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog fileupload">
+      <div class="dialog">
+        <div>
+          <div>::FileLabel::</div>
+          <input class="label" type="text"></input>
+        </div>
+        <div>
+          <div>::File::</div>
+          <form class="form" method="post" enctype="multipart/form-data">
+            <input type="file" name="newFile" class="input file" multiple/>
+          </form>
+        </div>
+        <br>
+
+        <div class="uploading"></div>
+        <div class="filesize exceeded"></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+      <!--<div><a class="behaviour download" href="download()">::Download::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor egroup">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+  </div>
+</div>
+
+<div class="editor elink">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a>
+  </div>
+  <div class="emessage">::MessageLink::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog source">
+      <div class="subtitle">::Source::</div>
+      <select></select>
+    </div>
+    <div class="toolbar">
+      <div class="filter">
+        <span></span><input type="text" class="text filter"/>
+      </div>
+      <a class="view-table active" href="#" title="::Table::"></a>
+      <a class="view-locations" href="#" title="::Locations::"></a>
+    </div>
+    <div class="dialog store">
+      <div class="grid"></div>
+    </div>
+    <div class="dialog history">
+      <div class="grid"></div>
+    </div>
+    <div class="dialog location">
+      <div class="map"></div>
+      <div class="info"></div>
+    </div>
+    <div class="toolbar">
+      <div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div>
+      <div><a class="behaviour togglehistory" href="togglehistory()"></a></div>
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor elist">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageList::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog list">
+      <div class="toolbar">
+        ::Select::&nbsp;&nbsp;<a class="behaviour" href="selectall()">::All::</a><span>&nbsp;|&nbsp;</span><a class="behaviour" href="selectnone()">::None::</a><span>&nbsp;|&nbsp;</span><a class="behaviour" href="selectinvert()">::Invert::</a>
+      </div>
+      <ul class="items"></ul>
+      <div class="toolbar">
+        <div><a class="behaviour" href="additem()">::Add::</a></div>
+        <div><a class="behaviour deleteitems" href="deleteitems()">::DeleteSelected::</a></div>
+        <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+        <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+        <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+      </div>
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor enumber">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageNumber::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+      <div><a class="behaviour increment" href="increment()">::Increment::</a></div>
+      <div><a class="behaviour decrement" href="decrement()">::Decrement::</a></div>
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg format"></div>
+      <div class="fmsg increments"></div>
+      <div class="fmsg range"></div>
+      <div class="fmsg equivalences"></div>
+      <div class="fmsg ihelp"></div>
+    </div>
+    <div class="verrors">
+      <div class="verror format">::NumberWrong::</div>
+      <div class="verror range">::NumberRangeWrong::</div>
+    </div>
+  </div>
+</div>
+
+<div class="editor epattern">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageFormat::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+    <div class="verrors">
+      <div class="verror format">::FormatWrong::</div>
+    </div>
+  </div>
+</div>
+
+<div class="editor epicture">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessagePicture::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog pictureupload">
+      <div class="dialog">
+        <form class="form" method="post" enctype="multipart/form-data">
+          <input type="hidden" class="slicex" name="slicex" value="10"/>
+          <input type="hidden" class="slicey" name="slicey" value="10"/>
+          <input type="hidden" class="slicewidth" name="slicewidth" value=""/>
+          <input type="hidden" class="sliceheight" name="sliceheight" value=""/>
+          <input type="file" name="newPicture" class="input file" multiple/>
+        </form>
+        <div class="crop imageContainer">
+          <img class="preview"/>
+
+          <div class="toolbar upload">
+            <div class="message">::CropMessage::</div>
+            <a class="button upload" href="upload()">::Accept::</a>
+          </div>
+        </div>
+        <div class="uploading"></div>
+        <div class="filesize exceeded"></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+      <!--<div><a class="behaviour download" href="download()">::Download::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor ecomposite">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+  </div>
+</div>
+
+<div class="editor eselect">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageSelect::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog source">
+      <div class="subtitle">::Source::</div>
+      <select></select>
+    </div>
+    <div class="toolbar">
+      <div class="filter">
+        <span></span><input type="text" class="text filter"></input>
+      </div>
+    </div>
+    <div class="dialog store">
+      <div class="grid"></div>
+    </div>
+    <div class="dialog history">
+      <div class="grid"></div>
+    </div>
+    <div class="toolbar">
+      <div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div>
+      <div><a class="behaviour togglehistory" href="togglehistory()"></a></div>
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor etext">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageText::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <div class="filter">
+        <span></span><input type="text" class="text filter"></input>
+      </div>
+    </div>
+    <div class="dialog history">
+      <div class="grid"></div>
+    </div>
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+      <div><a class="behaviour supindex" href="supindex()">::SupIndex::</a></div>
+      <div><a class="behaviour subindex" href="subindex()">::SubIndex::</a></div>
+      <div><a class="behaviour bold" href="bold()">::Bold::</a></div>
+      <div><a class="behaviour italic" href="italic()">::Italic::</a></div>
+    </div>
+  </div>
+  <div class="edition">
+    <div class="preview"></div>
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+    <div class="verrors">
+      <div class="verror length">::LengthWrong::</div>
+    </div>
+  </div>
+</div>
+
+<div class="editor esnode">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageLink::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <div class="filter">
+        <span></span><input type="text" class="text filter"></input>
+      </div>
+    </div>
+    <div class="dialog store">
+      <div class="grid"></div>
+    </div>
+    <div class="dialog history">
+      <div class="grid"></div>
+    </div>
+    <div class="toolbar">
+      <div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div>
+      <div><a class="behaviour togglehistory" href="togglehistory()"></a></div>
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor eserial">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <!--<a class="help" href="#" title="::Help::"></a>--></div>
+  <div class="emessage"></div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="toolbar">
+      <!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>-->
+      <!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>-->
+    </div>
+  </div>
+  <div class="edition">::MessageSerial::</div>
+</div>
+
+<div class="editor elocation">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageLocation::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog location">
+      <div class="map"></div>
+      <div class="info"></div>
+      <div class="toolbar">
+        <div><a class="op point" href="#">::AddPoint::</a></div>
+        <div><a class="op line" href="#">::AddLine::</a></div>
+        <div><a class="op poly" href="#">::AddPolygon::</a></div>
+        <div><a class="op clean" href="#">::CleanLocation::</a></div>
+        <div><a class="op finish" href="#">::FinishEditingLocation::</a></div>
+        <div><a class="op cancel" href="#">::CancelEditingLocation::</a></div>
+        <div>&nbsp;</div>
+        <div><a class="op center" href="#">::CenterLocation::</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="edition">
+    <div class="preview"></div>
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>
+
+<div class="editor esummation">
+  <div class="info">
+    <div class="title">::Edition::</div>
+    <a class="help" href="#" title="::Help::"></a></div>
+  <div class="emessage">::MessageLocation::</div>
+  <div class="description"></div>
+  <div class="dialogs">
+    <div class="dialog summation">
+      <div class="info"></div>
+    </div>
+  </div>
+  <div class="edition">
+    <div class="preview"></div>
+    <div class="fmsgs">
+      <div class="fmsg ihelp"></div>
+    </div>
+  </div>
+</div>

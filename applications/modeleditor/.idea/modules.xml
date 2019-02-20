@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor/org.monet.editor.iml" filepath="$PROJECT_DIR$/org.monet.editor/org.monet.editor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.base/org.monet.editor.base.iml" filepath="$PROJECT_DIR$/org.monet.editor.base/org.monet.editor.base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.diff/org.monet.editor.diff.iml" filepath="$PROJECT_DIR$/org.monet.editor.diff/org.monet.editor.diff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.dsl/org.monet.editor.dsl.iml" filepath="$PROJECT_DIR$/org.monet.editor.dsl/org.monet.editor.dsl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.dsl.tests/org.monet.editor.dsl.tests.iml" filepath="$PROJECT_DIR$/org.monet.editor.dsl.tests/org.monet.editor.dsl.tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.dsl.ui/org.monet.editor.dsl.ui.iml" filepath="$PROJECT_DIR$/org.monet.editor.dsl.ui/org.monet.editor.dsl.ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.feature/org.monet.editor.feature.iml" filepath="$PROJECT_DIR$/org.monet.editor.feature/org.monet.editor.feature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.localupdatesite/org.monet.editor.localupdatesite.iml" filepath="$PROJECT_DIR$/org.monet.editor.localupdatesite/org.monet.editor.localupdatesite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.merger/org.monet.editor.merger.iml" filepath="$PROJECT_DIR$/org.monet.editor.merger/org.monet.editor.merger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.editor.preview/org.monet.editor.preview.iml" filepath="$PROJECT_DIR$/org.monet.editor.preview/org.monet.editor.preview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/org.monet.metamodel/org.monet.metamodel.iml" filepath="$PROJECT_DIR$/org.monet.metamodel/org.monet.metamodel.iml" />
+    </modules>
+  </component>
+</project>

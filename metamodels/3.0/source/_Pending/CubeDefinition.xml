@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="CubeDefinition" parent="EntityDefinition" token="cube" extensible="true">
+	<description>Un cubo es un repositorio de hechos en un esquema multidimensional</description>
+
+	<attribute token="resolution" type="enumeration" required="true">
+		<description>Resolución mínima de las fechas del cubo</description>
+		<enumeration>
+			<option token="MONTHS"></option>
+			<option token="DAYS"></option>
+			<option token="HOURS"></option>
+			<option token="MINUTES"></option>
+			<option token="SECONDS"></option>
+		</enumeration>
+	</attribute>
+
+	<attribute token="dimension" type="key" link="DimensionDefinition" required="true" multiple="true" >
+		<description>Permite establecer la relación entre un cubo y una dimensión. El cubo usa tantas dimensiones como necesite.</description>
+	</attribute>
+
+	<property token="measure" type="MeasureProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<description>Esta propiedad se utiliza para declarar una medida</description>
+
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta de la medida</description>
+		</attribute>
+
+		<attribute token="metric" type="key" link="MetricDefinition" required="true">
+			<description>Métrica que se usará para representar los datos de la medida</description>
+		</attribute>
+	</property>
+
+	<property token="indicator" type="IndicatorProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta del indicador</description>
+		</attribute>
+
+		<attribute token="measure" type="key" link="MeasureProperty" required="true">
+			<description>Medida usada para representar los valores del indicador</description>
+		</attribute>
+
+		<attribute token="metric" type="key" link="MetricDefinition">
+			<description>Métrica generada por el indicador</description>
+		</attribute>
+
+		<attribute token="interpolation" type="enumeration">
+			<description>Tipo de interpolación a aplicar en las medidas</description>
+			<enumeration>
+				<option token="LEFT_STEP">
+					<description>Se analiza la medida anterior y se interpola</description>
+				</option>
+				<option token="MIDDLE_STEP">
+					<description>Se cuentan los pasos hasta una medida existente e interpola la medida</description>
+				</option>
+				<option token="RIGHT_STEP">
+					<description>Se analiza la medida siguiente del indicador y se interpola</description>
+				</option>
+				<option token="LINEAR">
+					<description>Se interpola linealmente entre dos medidas del indicador</description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<attribute token="operator" type="enumeration" required="true">
+			<description>Operación a realizar con los valores de la medida</description>
+			<enumeration>
+				<option token="SUM">
+					<description>Se suman las medidas para todos los hechos de la consulta</description>
+				</option>
+				<option token="COUNT">
+					<description>Se suman el número de ocurrencias de las medidas para todos los hechos de la consulta</description>
+				</option>
+				<option token="AVERAGE">
+					<description>Se calcula la media de la medida para todos los hechos de la consulta</description>
+				</option>
+				<option token="DEVIATION">
+					<description>Se calcula la desviación de la medida para todos los hechos de la consulta</description>
+				</option>
+				<option token="INTEGRAL">
+					<description>Se calcula la integral de la medida para todos los hechos en un intervalo de tiempo</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<attribute token="chart" type="enumeration">
+			<description>Se usar para determinar cómo se considera que el indicador ha mejorado</description>
+			<enumeration>
+				<option token="BOTTOM">
+					<description>Se representa desde 0 y no hay valores negativos</description>
+				</option>
+				<option token="BASE">
+					<description>Se representa desde 0, y hay valores positivos y negativos</description>
+				</option>
+				<option token="TOP">
+					<description>Se representa desde 0 y no hay valores positivos</description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<attribute token="alert" type="enumeration">
+			<description>Se usar para resaltar los cambios que son negativos para el negocio (rojo)</description>
+			<enumeration>
+				<option token="INCREASE">
+					<description>Se muestra la alerta cuando incrementa el indicador</description>
+				</option>
+				<option token="DECREASE">
+					<description>Se muestra la alerta cuando decrementa el indicador</description>
+				</option>
+			</enumeration>
+		</attribute>
+	</property>
+
+	<property token="view" parent="ViewProperty" required="true" multiple="true">
+		<description>Esta propiedad se utiliza para añadir una vista a un cubo</description>
+		<attribute token="label" type="language">
+			<description>Etiqueta de la vista</description>
+		</attribute>
+
+		<property token="is-default">
+			<description>Esta propiedad se utiliza para indicar que es la vista por defecto</description>
+		</property>
+
+		<property token="is-widget">
+			<description>Esta propiedad se utiliza para indicar que la vista es un widget y por tanto empotrable en otra vista</description>
+		</property>
+
+		<property token="for">
+			<description>Esta propiedad se utiliza cuando se desea que la vista esté restringida a unos roles concretos</description>
+			<attribute token="role" type="key" link="RoleDefinition" required="true">
+				<description>Tipo de role al que se desea permitir el uso de la vista</description>
+			</attribute>
+		</property>
+
+		<property token="show" required="true">
+			<description>Esta propiedad se utiliza para configurar el contenido de la vista del cubo</description>
+
+			<attribute token="indicator" type="key" link="IndicatorProperty" multiple="true"></attribute>
+
+			<attribute token="scale" type="enumeration" required="true">
+				<description>Resolución mínima de las fechas del cubo</description>
+				<enumeration>
+					<option token="YEAR"></option>
+					<option token="MONTH"></option>
+					<option token="DAY"></option>
+					<option token="HOUR"></option>
+					<option token="MINUTE"></option>
+					<option token="SECOND"></option>
+				</enumeration>
+			</attribute>
+		</property>
+
+	</property>
+
+</class>

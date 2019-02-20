@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="SectionFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-section" extensible="true">
+	<description>Declaración que se utiliza para modelar un	campo sección</description>
+
+	<property name="is-extensible">
+		<description>Su presencia indica que la sección es extensible.
+			Cuando una sección es extensible, tiene una vista resumida y otra
+			extendida. Aquellos campos que se declaren dentro de la sección con
+			la propiedad "extended" solo se mostrarán en la versión extendida</description>
+	</property>
+
+	<property name="is-conditional">
+		<description>Su presencia indica que la sección es condicional. En
+			este campo se guarda un valor booleano, de forma que la sección
+			oculta los campos que contiene cuando el valor es "false", o los
+			muestra cuando el valor es "true"</description>
+	</property>
+
+	<include name="field" multiple="true">
+		<option class-name="FieldDeclaration" />
+	</include>
+
+	<include name="view">
+		<option class-name="SectionFieldViewDeclaration" />
+	</include>
+
+</class>
+

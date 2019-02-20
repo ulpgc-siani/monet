@@ -1,0 +1,82 @@
+.view.dashboard {
+	margin: 0px;
+}
+
+.view.dashboard .helper {
+	background: #EFF7FF;
+	border: 1px dotted #99BBE8;
+	display: block;
+	font-size: 12px;
+	padding: 5px;
+}
+
+.view.dashboard.embed .helper, .view.dashboard.print .toolbar, 
+.view.dashboard.embed .ui-layout-north, .view.dashboard.print .ui-layout-north, 
+.view.dashboard.print .ui-layout-west {
+	display: none !important;
+}
+
+.view.dashboard .toolbar {
+	float: right;
+}
+
+.view.dashboard .toolbar li {
+	float: left;
+	cursor: pointer;
+	margin-left: 3px;
+}
+
+.view.dashboard .toolbar li:hover img {
+	background-color: #efefef !important;
+}
+
+.view.dashboard .toolbar li.active img {
+  background-color: #efefef !important;
+}
+
+.view.dashboard .toolbar .chart img, .view.dashboard .toolbar .print img, .view.dashboard .toolbar .download img {
+	height: 26px;
+	width: 26px;
+}
+
+.view.dashboard .toolbar .print img {
+	margin-left: 18px;
+}
+
+.view.dashboard .toolbar .chart.line img {
+	background: url('../images/linechart.png') no-repeat 0 0;
+}
+
+.view.dashboard .toolbar .chart.bar img {
+  background: url('../images/barchart.png') no-repeat 0 0;
+}
+
+.view.dashboard .toolbar .chart.table img {
+  background: url('../images/tablechart.png') no-repeat 0 0;
+}
+
+.view.dashboard .toolbar .chart.bubble img {
+  background: url('../images/bubblechart.png') no-repeat 0 0;
+}
+
+.view.dashboard .toolbar .chart.map img {
+  background: url('../images/mapchart.png') no-repeat 0 0;
+}
+
+.view.dashboard .toolbar .print img {
+  background: url('../images/print.png') no-repeat 5px 5px;
+}
+
+.view.dashboard .toolbar .download img {
+  background: url('../images/download.png') no-repeat 3px 4px;
+}
+
+.view.dashboard .layer.chart {
+	clear: both;
+}
+
+.view.dashboard .layer.notLoaded {
+	margin-top: 25px;
+	font-size: 13pt;
+	text-align: center;
+}

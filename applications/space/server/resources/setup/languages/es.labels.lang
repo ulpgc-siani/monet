@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Etiquetas posibles de manager</comment>
+  <entry key="LBL_TITLE">Setup</entry>
+  <entry key="LBL_USERNAME">Usuario:</entry>
+  <entry key="LBL_PASSWORD">Contraseña:</entry>
+  <entry key="LBL_BUSINESS_UNIT">Mi Curriculum Vitae</entry>  
+  <entry key="LBL_ACCEPT">Iniciar sesión</entry>
+  <entry key="LBL_CLOSE">Cerrar</entry>
+  <entry key="LBL_LOGIN">Acceso - Setup</entry>
+  <entry key="LBL_LOGOUT">Salir</entry>
+  <entry key="LBL_GO_BACK">Ir atrás...</entry>
+  <entry key="LBL_TRY_AGAIN">Intentar de nuevo</entry>
+  <entry key="LBL_NO_FRAMES">Su navegador no soporta marcos</entry>
+  <entry key="LBL_SETUP_BAR">Aplicación de administración</entry>
+  <entry key="LBL_START_BUSINESS_UNIT">Arrancar</entry>
+  <entry key="LBL_STOP_BUSINESS_UNIT">Parar</entry>
+  <entry key="LBL_COMPONENTS">Componentes con los que se iniciará el sistema</entry>
+  <entry key="LBL_STATE">Estado</entry>
+  <entry key="LBL_MASTERS">Administradores</entry>
+  <entry key="LBL_DISTRIBUTION">Distribución</entry>
+  <entry key="LBL_DELETE">borrar</entry>
+  <entry key="LBL_COLONIZER">propietario</entry>
+  <entry key="LBL_ADD_MASTER_FROM_SIGNATURE">Añadir administrador</entry>
+  <entry key="LBL_ADD_MASTER_FROM_CERTIFICATE">Añadir administrador desde certificado</entry>
+  <entry key="LBL_ADD">Añadir</entry>
+  <entry key="LBL_UPDATE">Actualizar</entry>
+  <entry key="LBL_DOWNLOAD">Descargar</entry>
+  <entry key="LBL_NO_MAIL">Dirección de correo desconocida</entry>
+  <entry key="LBL_VERSION_INFO">Información de versión</entry>
+  <entry key="LBL_CONTEXT_INFO">Información de contexto</entry>
+  <entry key="LBL_APPLICATION_DIR">Directorio de la aplicación</entry>
+  <entry key="LBL_HOME_DIR">Directorio de inicio</entry>
+  <entry key="LBL_CONTEXT_NAME">Nombre del contexto</entry>
+  <entry key="LBL_CHARSET">Codificación</entry>
+  <entry key="LBL_CURRENT_DATE">Fecha actual</entry>
+  <entry key="LBL_DISTRIBUTION_INFO">Información</entry>
+  <entry key="LBL_DISTRIBUTION_NAME">Nombre</entry>
+  <entry key="LBL_DISTRIBUTION_TITLE">Título</entry>
+  <entry key="LBL_DISTRIBUTION_SUBTITLE">Subtítulo</entry>
+  <entry key="LBL_DISTRIBUTION_AUTHOR">Autor</entry>
+  <entry key="LBL_DISTRIBUTION_FEDERATION">Federación</entry>
+  <entry key="LBL_DISTRIBUTION_VERSION">Versión</entry>
+  <entry key="LBL_DISTRIBUTION_METAMODEL_VERSION">Versión del metamodelo</entry>
+  <entry key="LBL_DISTRIBUTION_RELEASE">Revisión</entry>
+  <entry key="LBL_UPLOAD_DISTRIBUTION">Actualizar distribución</entry>
+  <entry key="LBL_TOGGLE_MASTER_FROM_SIGNATURE_DIALOG">añadir administrador...</entry>
+  <entry key="LBL_TOGGLE_MASTER_FROM_CERTIFICATE_DIALOG">añadir administrador desde certificado...</entry>
+  <entry key="LBL_TOGGLE_DISTRIBUTION_DIALOG">actualizar distribución...</entry>
+  <entry key="LBL_SIGNATURE">Certificado instalado</entry>
+  <entry key="LBL_CERTIFICATE">Certificado público</entry>
+  <entry key="LBL_SELECT_CERTIFICATE">Seleccione un certificado</entry>
+  <entry key="LBL_NO_DISTRIBUTION">No se ha instalado ninguna distribución en este espacio de negocio</entry>
+  <entry key="LBL_INSTALL">Instalar</entry>
+  <entry key="LBL_INSTALL_DISTRIBUTION">Instalar distribución</entry>
+  <entry key="LBL_NO_CERTIFICATES">No existen certificados disponibles</entry>
+</properties>

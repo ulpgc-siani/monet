@@ -1,0 +1,54 @@
+object WinDgInput: TWinDgInput
+  Left = 1759
+  Height = 126
+  Top = 750
+  Width = 328
+  BorderStyle = bsDialog
+  ClientHeight = 126
+  ClientWidth = 328
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.0.10.0'
+  object BtnOk: TButton
+    Left = 157
+    Height = 25
+    Top = 88
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    Default = True
+    OnClick = BtnOkClick
+    TabOrder = 1
+  end
+  object BtnCancel: TButton
+    Left = 242
+    Height = 25
+    Top = 88
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Cancel = True
+    Caption = 'Cancel'
+    OnClick = BtnCancelClick
+    TabOrder = 2
+  end
+  object TxtInput: TEdit
+    Left = 16
+    Height = 25
+    Top = 41
+    Width = 301
+    Anchors = [akLeft, akRight, akBottom]
+    TabOrder = 0
+  end
+  object LblMessage: TLabel
+    Left = 17
+    Height = 27
+    Top = 13
+    Width = 300
+    Anchors = [akTop, akLeft, akRight]
+    AutoSize = False
+    Caption = 'LblMessage'
+    ParentColor = False
+    ParentFont = False
+    WordWrap = True
+  end
+end

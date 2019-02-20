@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="Definition" extensible="true">
+  <description>TODO</description>
+  
+  <attribute name="code" type="code" required="true">
+    <description>Nombre de la definición</description>
+    <hint>No hay que editar este atributo. Se genera automáticamente</hint>
+  </attribute>
+  
+  <attribute name="name" type="string" required="true">
+    <description>Nombre con el que se referencia una definición en el modelo de negocio</description>
+    <hint>El nombre debe ser único dentro del proyecto</hint>
+  </attribute>
+  
+  <attribute name="extends" type="key" link="Definition">
+    <description>Indica la definición de la que se heredan los atributos, propiedades y declaraciones</description>
+  </attribute>
+  
+  <property name="is-abstract">
+    <description>Su presencia indica que la definición es abstracta</description>
+  </property>
+  
+  <property name="is-environment">
+    <description>Su presencia indica que la definición representa un tipo de entidad que se puede utilizar para configurar el entorno del usuario en el espacio de negocio</description>
+    <hint>Cuando se creen los nodos tipo desktop esto desaparecerá</hint>
+  </property>  
+  
+  <property name="label" multiple="true" key="language" required="true">
+    <description>Etiqueta de una definición. Se utiliza para mostrar a los usuarios el nombre de un tipo de entidad</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="description" multiple="true" key="language">
+    <description>Descripción de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada de un tipo de entidad</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="help" multiple="true" key="language" value="filename">
+    <description>Se utiliza para mostrar una página de ayuda de un tipo de entidad</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma del fichero de ayuda</description>
+    </attribute>
+    <attribute name="filename" type="file" required="true">
+      <description>Nombre del archivo en formato HTML que contiene la ayuda</description>
+      <hint>Este fichero se ubica en el directorio "/help/(lang)" del modelo de negocio</hint>
+    </attribute>
+  </property>
+  
+  <include name="generic" multiple="true">
+    <option class-name="GenericDeclaration" />
+  </include>
+  
+  <include name="resolve" multiple="true">
+    <option class-name="ResolveDeclaration" />
+  </include>
+</class>

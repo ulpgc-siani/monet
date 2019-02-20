@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="JobDefinition" parent="TaskDefinition" token="job" extensible="true">
+  <description>Un trabajo o job es una pequeña tarea o actividad que se realiza en un entorno de mobilidad</description>
+  
+  <property token="check-position">
+    <description></description>
+  </property>
+	
+	<property token="step" multiple="true" required="true" parent="ReferenceableProperty">
+		<description></description>
+    
+      <attribute token="label" type="language" required="true">
+        <description>Etiqueta</description>
+      </attribute>
+      
+      <property token="is-multiple">
+        <description>Indica que este paso se repite tantas veces como valores se encuentre en los valores por defecto del trabajo</description>
+      </property>
+  
+      <include property="StepEditProperty" multiple="true" />
+      
+      <property token="capture-position" parent="ReferenceableProperty">
+        <description></description>
+      </property>
+      
+      <property token="capture-date" parent="ReferenceableProperty">
+        <description></description>
+      </property>
+      
+      <attribute token="show-text" type="string">
+        <description></description>
+      </attribute>
+      
+      <property token="view">
+        <description></description>
+        
+        <attribute token="show" type="key" link="StepEditProperty" multiple="true" required="true">
+          <description></description>
+        </attribute>
+      </property>
+      
+	</property>
+	
+</class>

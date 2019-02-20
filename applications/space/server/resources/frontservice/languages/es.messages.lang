@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Mensajes posibles de Frontservice</comment>
+  <entry key="MSG_UNDEFINED">Mensaje desconocido</entry>
+</properties>

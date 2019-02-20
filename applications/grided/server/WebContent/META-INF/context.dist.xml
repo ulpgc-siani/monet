@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Context>
+<Context>
+  <!--<ResourceLink global="jdbc/MonetDatabaseSource" name="jdbc/MonetDatabaseSource" type="javax.sql.DataSource"/>-->
+  <!--<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" global="jdbc/MonetDatabaseSource" maxActive="1" maxIdle="1" maxWait="30000" name="jdbc/MonetDatabaseSource" password="[password]" type="javax.sql.DataSource" url="[connection chain to database]" username="[username]" removeAbandoned="true" removeAbandonedTimeout="5" logAbandoned="true" />--> 
+  #resource#
+</Context>

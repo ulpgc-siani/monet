@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="RoleDefinition" parent="EntityDefinition" tag="role">
+  <description>Definition que se utiliza para modelar un rol que ejerce alguno de los trabajadores del espacio de negocio</description>
+
+  <property name="use">
+    <description>Se utiliza para definir el nodo de entorno para los usuarios de este rol</description>
+    <attribute name="environment" type="key" link="NodeDefinition" required="true">
+      <description>Nombre de la definición de nodo de entorno</description>
+    </attribute>
+  </property>
+</class>
+

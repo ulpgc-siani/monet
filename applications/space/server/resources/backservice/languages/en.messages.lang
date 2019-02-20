@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible message of Backservice</comment>
+  <entry key="MSG_UNDEFINED">Unknown message</entry>
+  <entry key="MSG_ACCOUNT_SAVED">The account has been updated correctly</entry>
+  <entry key="MSG_TRASH_EMPTY">The trash has been emptied</entry>
+  <entry key="MSG_NODE_SAVED">The node has been saved correctly</entry>
+  <entry key="MSG_NODES_ATTRIBUTE_SAVED">The nodes attribute has been saved correctly</entry>
+  <entry key="MSG_NODE_REMOVED">The node has been deleted correctly</entry>
+  <entry key="MSG_NODE_IMPORTED">The node has been imported correctly</entry>
+  <entry key="MSG_MADE_PUBLIC">The node has been published</entry>
+  <entry key="MSG_MADE_PRIVATE">the node has been made private</entry>
+  <entry key="MSG_NODE_COMMAND_EXECUTED">The command was executed sucessfully</entry>
+  <entry key="MSG_TASK_SAVED">The task has been saved correctly</entry>
+  <entry key="MSG_TASK_REMOVED">The task has been deleted correctly</entry>
+  <entry key="MSG_SUBSCRIBED">It has subscribed correctly</entry>
+</properties>

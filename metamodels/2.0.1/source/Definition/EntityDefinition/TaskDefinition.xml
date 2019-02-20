@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="TaskDefinition" parent="EntityDefinition" tag="task" extensible="true">
+  <description>Declaración que se utiliza para modelar una tarea</description>
+
+  <property name="is-private">
+    <description>Su presencia indica que el nodo sólo es visible para el usuario propietario</description>
+  </property>
+  
+  <!--
+  <property name="is-automatic" multiple="true">
+    <description>Se utiliza para definir si la tarea se puede ejecutar automáticamente</description>
+    <attribute name="event" type="enumeration" required="true">
+      <description>Evento que dispara la ejecución automática de la tarea</description>
+      <enumeration>
+        <option>SERVICE</option>
+        <option>TIMER</option>
+      </enumeration>
+    </attribute>
+    <attribute name="timer" type="string">
+      <description>Cuando el evento que la dispara es un temporizador, la periodicidad de ejecución de la tarea</description>
+    </attribute>
+    <attribute name="service" type="key" link="ServiceDefinition">
+      <description>Cuando el evento que la dispara es un servicio, la definición de servicio con el que está asociado</description>
+    </attribute>
+  </property>
+
+  <property name="is-manual">
+    <description>Se utiliza para definir si la tarea se puede ejecutar manualmente</description>
+  </property>
+  -->
+  
+  <property name="execution" required="true">
+    <description>Se utiliza para definir cómo se ejecuta la tarea</description>
+    <attribute name="mode" type="enumeration" required="true">
+      <description>Modo de ejecución de la tarea</description>
+      <enumeration>
+        <option>MANUAL</option>
+        <option>SERVICE</option>
+        <option>TIMER</option>
+      </enumeration>
+    </attribute>
+    <attribute name="timer" type="string">
+      <description>Periodicidad de ejecución de las tareas temporizadas</description>
+    </attribute>
+  </property>
+
+  <property name="target" required="true">
+    <description>Se utiliza para definir el documento asociado a la ejecución de la tarea</description>
+    <attribute name="node" type="key" link="NodeDefinition" required="true">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+
+  <property name="input">
+    <description>Se utiliza para definir el documento con el que se inicia la ejecución de la tarea</description>
+    <attribute name="node" type="key" link="NodeDefinition" required="true">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="output">
+    <description>Se utiliza para definir el documento con el que se da respuesta a la ejecución de la tarea</description>
+    <attribute name="node" type="key" link="NodeDefinition" required="true">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="implements" multiple="true">
+    <description>Permite definir un transformador de manera que, cuando finalize el servicio, se llamará al método onCalculateFact del comportamiento asociado a esta tarea para generar una salida XML que se inyectará al cubo definido por el atributo cube.</description>
+    <attribute name="cube" type="key" link="CubeDefinition" required="true">
+      <description>Nombre de la definición de un cubo</description>
+    </attribute>
+  </property>
+
+  <include name="workmap">
+    <option class-name="WorkmapDeclaration" />
+  </include>
+  
+  <include name="view">
+    <option class-name="TaskViewDeclaration" />
+  </include>
+  
+</class>
+

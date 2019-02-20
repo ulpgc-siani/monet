@@ -1,0 +1,12 @@
+#ViewBusinessModel table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#ViewBusinessModel table tr td span.meta {
+  color: #696969;  
+}
+
+#ViewBusinessSpace table tr td.right {
+  margin-left: 5px;
+}

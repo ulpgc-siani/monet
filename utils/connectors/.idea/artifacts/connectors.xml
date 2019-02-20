@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="connectors">
+    <output-path>$PROJECT_DIR$/out/artifacts/connectors</output-path>
+    <root id="archive" name="connectors.jar">
+      <element id="module-output" name="connectors" />
+    </root>
+  </artifact>
+</component>

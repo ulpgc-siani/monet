@@ -1,0 +1,316 @@
+@CHARSET "UTF-8";
+
+html, body, input, table, td, select, option, textarea, p {
+  font-family: Roboto, Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  margin: 0;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 22px;
+  margin: 0 auto;
+  padding: 1px 4px;
+  width: 449px;
+}
+
+h1.wellcome {
+  background: none;
+  text-align: left;
+  color: #336699;
+  font-size: 20px;
+  width: 100%;
+  display: inline;
+}
+
+.textbox {
+  border: 1px solid #99BBE8;
+  width: 98%;
+  padding: 4px;
+}
+
+.textbox:hover {
+  background: white;
+  border-color: #336699;
+}
+
+.formCLang{
+  float: right;
+  margin-top: 5px;
+}
+
+.layout {
+  margin-top: 10px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box {
+  height: 350px;
+  border: 1px solid #99BBE8;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.dialogs {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.dialogs .dialog {
+  padding: 10px;
+}
+
+.dialogs .dialog.login {
+  width: 300px;
+}
+
+.dialogs .dialog.login h1 {
+  width: 428px;
+}
+
+.dialogs .dialog.login .tab_container {
+  width: 450px;
+}
+
+.dialogs .dialog.login .tab_content {
+  height: 115px;
+  padding: 10px;
+}
+
+.dialogs .dialog.login .tab_content .rememberme, .dialogs .dialog.login .tab_content label {
+  float: left;
+}
+
+.dialogs .dialog.login .tab_content label {
+  margin-left: 4px;
+  margin-top: -1px;
+}
+
+.dialogs .dialog.register .tab_container table {
+  padding: 5px 10px 0 5px;
+}
+
+.dialogs .dialog.register .tab_container .buttons {
+  padding: 0 6px;
+}
+
+ul.tabs {
+  padding: 0;
+  list-style: none;
+  height: 25px;
+  width: 416px;
+  margin: 0 auto;
+  border-left: 1px solid #336699;
+}
+
+ul.tabs li {
+  float: left;
+  padding: 0;
+  height: 24px;
+  line-height: 24px;
+  border: 1px solid #336699;
+  border-left: none;
+  margin: -1px 0 0;
+  overflow: hidden;
+  position: relative;
+  background: #EFF7FF;
+  width: 120px;
+}
+
+ul.tabs li a {
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+  display: block;
+  border: 1px solid #fff;
+  outline: none;
+}
+
+html ul.tabs li.active {
+  background: white;
+  border-top: 1px solid #fff;
+}
+
+.tab_container {
+  overflow: hidden;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.tab_content {
+  padding: 20px;
+}
+
+.certificate {
+  width: 100%;
+}
+
+.error, .success {
+  width: 200px;
+}
+
+.validation.dialog .error, .validation.dialog .success {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.error {
+  color:#ff0000;
+}
+
+.success {
+  color:#0000ff;
+}
+
+.buttons .button {
+  float: right;
+  margin: 10px 0;
+  border: 1px solid #c2e1ef;
+  text-decoration:none;
+  color:#336699;
+  cursor:pointer;
+  padding: 2px 10px;
+  font-size: 16px;
+  background: none;
+}
+
+.buttons .button img {
+  margin: 0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+}
+
+.buttons .button:hover {
+  background-color:#dff4ff;
+  border:1px solid #c2e1ef;
+  color:#336699;
+}
+
+.button.block {
+  display: block;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  width: 100px;
+  text-decoration: none;
+}
+
+button.register {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: #336699;
+}
+
+.button.accept {
+  margin-right: 10px;
+}
+
+.captcha {
+  margin-top: 10px;
+}
+
+.captcha input {
+  margin-top: 5px;
+}
+
+.retries {
+  color: blue;
+}
+
+.message {
+  margin: 10px;
+}
+
+.miniButton {
+  background-color:#ececec;
+  border:1px solid #c2e1ef;
+  color:#000000;
+}
+
+option.imagebacked {
+  padding: 2px 0 2px 20px;
+  background: no-repeat 1px 2px;
+  vertical-align: middle;
+}
+
+IMG.displayed {
+  display: block;
+}
+
+.copyright {
+  color:#767676;
+  text-align:center;
+}
+
+.cert {
+  text-align:center
+}
+
+.powered {
+  float: right;
+  font-size: 13px;
+}
+
+.units {
+  height: 300px;
+  margin: 10px 0;
+  overflow: auto;
+  padding: 10px;
+  background: white;
+  clear: both;
+}
+
+.units label {
+  font-size: 17px;
+}
+
+.units .empty {
+  margin-top: 10px;
+}
+
+.units .items li {
+  position: relative;
+  border: 2px solid #dfdfdf;
+  border-radius: 10px;
+  cursor: pointer;
+  float: left;
+  list-style: none outside none;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  width: 300px;
+}
+
+.units .items li:hover {
+  border: 2px solid #999999;
+}
+
+.units .items li a {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: -10px;
+}
+
+.units .items li img {
+  height: 50px;
+}
+
+.units .items li .title {
+  font-size: 17px;
+}
+
+.section h1 {
+  text-align: left;
+  font-size: 25px;
+  width: auto;
+  display: block;
+  background: none;
+  color: #336699;
+}

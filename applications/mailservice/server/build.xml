@@ -1,0 +1,103 @@
+<project name="jsmptd" default="buildFullRelease">
+	<description>Jsmtpd build file</description>
+	
+	<property name="release.tmpPath" location="/tmp/jsmtpdtemp" />
+	<property name="release.output" location="/tmp/" />
+	<property file="build.prop"></property>
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="bin/" />
+	<property name="release.dir" location="${release.tmpPath}/Jsmtpd/" />
+	<tstamp prefix="start"/>
+
+	<path id="lib">
+		<fileset dir="lib/">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+
+	<target name="cleanAll" description="deletes class files in the project">
+		<delete failonerror="false">
+			<fileset dir="${build.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</delete>
+		<delete dir="doc/Javadoc" failonerror="false"/>
+		<delete dir="${release.tmpPath}" failonerror="false"/>
+	</target>
+	
+	<target name="jsmtpd-jar" description="package jsmtpd">
+		<javac debug="on" srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib"
+			includes="org/jsmtpd/**" encoding="UTF-8" target="1.5" />
+		<jar destfile="${release.dir}/lib/jsmtpd-core.jar" basedir="bin/" includes="org/jsmtpd/**"/>
+	</target>
+			
+	<target name="cleanRelease" description="clean the release output folder">
+		<delete failonerror="false">
+			<fileset dir="${release.dir}" includes="**/*"/>
+		</delete>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${release.dir}"/>
+		<mkdir dir="${release.dir}/log"/>
+		<mkdir dir="${release.dir}/tmp"/>
+		<mkdir dir="${release.dir}/tmp/plugins"/>
+		<mkdir dir="${release.dir}/safeModeFolder/"/>
+		<mkdir dir="${release.dir}/tmp/mqueue/"/>
+		<mkdir dir="${release.dir}/tmp/mqueue/pending"/>
+		<mkdir dir="${release.dir}/tmp/mqueue/retry"/>
+		<mkdir dir="${release.dir}/etc/"/>
+		<mkdir dir="${release.dir}/plugins/"/>
+		<mkdir dir="${release.dir}/log/"/>
+		<mkdir dir="${release.dir}/mailboxes/"/>
+		<mkdir dir="${release.dir}/lib/"/>
+		<copy file="CHANGELOG" tofile="${release.dir}/CHANGELOG"/>
+		<copy file="gpl.txt" tofile="${release.dir}/gpl.txt"/>
+		<copy file="INSTALL" tofile="${release.dir}/INSTALL"/>
+		<copy file="README" tofile="${release.dir}/README"/>
+		<copy todir="${release.dir}/lib/">
+			<fileset dir="lib/"/>
+		</copy>
+	</target>
+	<target name="baseRelease" description="build the jsmtpd release folders and files" depends="cleanRelease">
+		<copy file="etc/jsmtpd.ini" tofile="${release.dir}/etc/jsmtpd.ini"/>
+		<copy file="etc/jsmtpd-plugin-config.xml" tofile="${release.dir}/etc/jsmtpd-plugin-config.xml"/>
+		<copy file="etc/log4j.properties" tofile="${release.dir}/etc/log4j.properties"/>
+		<copy file="etc/jsmtpd-plugin-config.xsd" tofile="${release.dir}/etc/jsmtpd-plugin-config.xsd"/>
+		<copy file="startup.bat" tofile="${release.dir}/startup.bat"/>
+		<copy file="addcp.bat" tofile="${release.dir}/addcp.bat"/>
+		<copy file="jsmtpd.sh" tofile="${release.dir}/jsmtpd.sh"/>
+		<chmod file="${release.dir}/jsmtpd.sh" perm="700"/>
+	</target>
+	
+	<target name="doc-src">
+		<mkdir dir="${release.dir}/doc/Javadoc"/>
+		<javadoc packagenames="org.jsmtpd.core.*,org.jsmtpd.plugins.*,org.jsmtpd.*"
+	           sourcepath="src"
+			classpathref="wholeLibs"
+			excludepackagenames="org.apache.*,org.xbill.*,javax.mail.*"
+	           defaultexcludes="yes"
+	           destdir="${release.dir}/doc/Javadoc"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="Jsmtpd API">
+	    <doctitle><![CDATA[<h1>Jsmtpd API</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>Copyright &#169; 2005 Jean-François POUX All Rights Reserved.</i>]]></bottom>
+	  </javadoc>
+		<copy todir="${release.dir}/doc/">
+				    <fileset dir="doc/"/>
+		</copy>
+		<mkdir dir="${release.dir}/src/"/>
+		<copy todir="${release.dir}/src/">
+			<fileset dir="src/"/>
+		</copy>
+		<copy file="build.xml" tofile="${release.dir}/build.xml"/>
+	</target>
+	
+	<target name="packRelease" depends="buildFullRelease">
+		<tar tarfile="${release.output}/Jsmtpd-${start.DSTAMP}${start.TSTAMP}.tar.bz2" basedir="${release.tmpPath}" compression="bzip2"/>
+		<tar tarfile="${release.output}/Jsmtpd-${start.DSTAMP}${start.TSTAMP}.tar.gz" basedir="${release.tmpPath}" compression="gzip"/>
+	</target>
+	
+	<target name="buildFullRelease" depends="cleanAll,cleanRelease,jsmtpd-jar,baseRelease"/>
+</project>

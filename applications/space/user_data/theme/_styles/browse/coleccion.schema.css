@@ -1,0 +1,141 @@
+.node.clec.schema .toolbar.navigation {
+  padding: 4px 0px;
+}
+
+.node.clec.schema .toolbar.listoperations {
+  margin: 10px 0px;
+}
+
+.node.clec.schema .header {
+  background: #D0E0F5;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #99BBE8;
+}
+
+.node.clec.schema .header .title {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.node.clec.schema .section {
+  padding-left: 5px;
+  clear: both;
+}
+
+.node.clec.schema .section ul {
+  margin: 0px 0px 10px;
+}
+
+.node.clec.schema .section .index {
+  color: #6887BC;  
+  float: left;
+  width: 3%;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+.node.clec.schema .section .section .index {
+  width: 4%;
+  font-weight: normal;
+}
+
+.node.clec.schema .section .content {
+  float: left;
+  width: 94%;
+}
+
+.node.clec.schema .section .section .content {
+  width: 92%;
+}
+
+.node.clec.schema .section .bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_closed.gif') no-repeat left center;  
+  float: left;
+  height: 18px;
+  width: 2%;
+}
+
+.node.clec.schema .section.opened .bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_opened.gif') no-repeat left center;
+}
+
+.node.clec.schema .section.closed .bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_closed.gif') no-repeat left center;
+}
+
+.node.clec.schema .section .head {
+  padding-top: 0px;
+}
+
+.node.clec.schema .section .head .title {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.node.clec.schema .section .section .head {
+  padding-top: 0px;
+}
+
+.node.clec.schema .section .section .head .title {
+  font-weight: normal;
+  float: left;
+}
+
+.node.clec.schema .section .section .head .helperpage {
+  background: white;
+  border: 1px solid #BBB;
+  color: #777;
+  display: block;
+  float: left;
+  font-size: 9px;
+  margin-left: 7px;
+  margin-top: 3px;
+  padding: 0px 4px;
+}
+
+.node.clec.schema .section .section .head .helperpage:hover {
+  border: 1px solid #555;
+  color: #333;
+}
+
+.node.clec.schema .section .body {
+  clear: both;
+  padding-top: 2px;
+  margin: 0px;
+}
+
+.node.clec.schema .section.opened .body, .node.clec.schema .node.opened .body {
+  display: block;
+}
+
+.node.clec.schema .section.closed .body, .node.clec.schema .node.closed .body {
+  display: none;
+}
+
+.node.clec.schema .section .body .info {
+}
+
+.node.clec.schema .section .description {
+  font-size: 12px;
+  color: gray;
+  display: block;
+  margin: 0px;
+}
+
+.node.clec.schema .section .body .info .date {
+  margin-top: 2px;
+}
+
+.node.clec.schema .section .body .info .toolbar a {
+  padding: 2px;
+}
+
+.node.clec.schema .section .body .info .toolbar .parent {
+  padding: 2px 10px 0px 0px;
+  display: block;
+}
+
+.node.clec.schema .section .body .view {
+  padding: 10px 5px;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../applications/mobile/libs/action-bar-sherlock/ActionBarSherlock.iml" filepath="$PROJECT_DIR$/../../applications/mobile/libs/action-bar-sherlock/ActionBarSherlock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_mobile.iml" filepath="$PROJECT_DIR$/_mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client.iml" filepath="$PROJECT_DIR$/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../applications/mobile/libs/google-play-services_lib/google-play-services.iml" filepath="$PROJECT_DIR$/../../applications/mobile/libs/google-play-services_lib/google-play-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../applications/mobile/libs/roboguice-sherlock/roboguice-sherlock.iml" filepath="$PROJECT_DIR$/../../applications/mobile/libs/roboguice-sherlock/roboguice-sherlock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shared.iml" filepath="$PROJECT_DIR$/shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../applications/mobile/libs/view-pager-indicator/view-pager-indicator.iml" filepath="$PROJECT_DIR$/../../applications/mobile/libs/view-pager-indicator/view-pager-indicator.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class token="datastore-builder" type="DatastoreBuilderDefinition" parent="AgentDefinition">
+	<description>Un transformador es un agente que permite generar hechos en varios cubos a partir del contenido de un documento</description>
+	
+	<attribute token="source" type="key" link="NodeDefinition" required="true">
+		<description>Tipo de nodo que se utiliza para obtener los datos</description>
+		<hint>Este transformador también se aplica a todos los nodos derivados de este</hint>
+	</attribute>
+	
+	<property token="to" required="true" multiple="true">
+		<description>Esta propiedad se utiliza para indicar en que cubos se añadirán los hechos de la transformación</description>
+		<attribute token="datastore" type="key" link="DatastoreDefinition" required="true">
+			<description>Cubo sobre el que se registrarán los hechos</description>
+		</attribute>
+		<method name="on-build">
+			<parameter name="nodeInstance" type="../../source" />
+			<parameter name="datastoreInstance" type="../datastore" />
+		</method>
+	</property>
+	
+</class>

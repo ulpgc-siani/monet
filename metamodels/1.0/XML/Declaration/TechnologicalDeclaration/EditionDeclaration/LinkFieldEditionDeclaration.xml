@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="LinkFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+
+  <property name="allow-history">
+    <description>La presencia de esta propiedad indica que el campo puede gestionar un historial de los valores introducidos por el usuario</description>
+    <attribute name="datastore" type="String" required="true">
+      <description>Nombre de la tabla en el que se almacenarán los valores. Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</description>
+      <hint>Antes se llamaba datasource</hint>
+    </attribute>
+  </property>
+  
+  <property name="allow-search">
+    <description>La presencia de esta propiedad indica que el campo está indexado y se pueden realizar búsquedas</description>
+  </property>
+  
+</class>

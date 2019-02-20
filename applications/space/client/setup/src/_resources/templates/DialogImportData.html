@@ -1,0 +1,23 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <div class="title"></div>
+  </div>
+
+  <div class="dialog-body">  
+    <div class="message meta"></div>    
+    <div> 
+      <form id="importdata" class="form" method="post" enctype="multipart/form-data">
+        <table>
+          <tr><td class="group">::importer_type::<select class="importer-type" name="importer-type"></select></td></tr>
+          <tr><td class="group"><input type="radio" class="radio" name="radio" value="0">::file::</input><br/></td></tr>
+          <tr><td class="item"><input class="file" type="file" name="source"></input></td></tr>      
+                                                   
+          <tr><td class="group"><input type="radio" class="radio" name="radio" value="1">::url::</input></td></tr>     
+          <tr><td class="item"><input class="url" type="text"  name="url"></input></td></tr>
+        </table>                  
+        <div class="dialog-footer right">    
+          <input class="button" type="button" value="::import::" />
+        </div>                                               
+    </form>
+  </div>  
+</div>      

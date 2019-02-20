@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="enroll" type="EnrollActionProperty" parent="SimpleActionProperty">
+	<description></description>
+<!-- 
+  <attribute token="contest" type="key" link="TaskContestProperty" required="true">
+    <description></description>
+  </attribute>
+  
+  <attribute token="classificate" type="expression:string">
+    <description>Expresión que se evalua para resolver a que instancia de tarea se le realiza la transferencia.</description>
+  </attribute>
+-->
+</property>

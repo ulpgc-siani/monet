@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite>
+
+<!--Configuration file for UrlRewriteFilter http://tuckey.org/urlrewrite/-->
+<urlrewrite>
+	<rule>
+		<from>/</from>
+		<to type="forward">/servlet/accounts/authorization/</to>
+	</rule>
+</urlrewrite>
+

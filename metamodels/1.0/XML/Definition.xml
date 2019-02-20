@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="Definition" tag="definition">
+  
+  <attribute name="code" type="key" required="true">
+    <description>Identificador único de la definición. Se autogenera. IMPORTANTE: No tocar este atributo</description>
+    <hint>Preguntar por el formato de este codigo. Sugerencias: ruta del fichero separada por puntos. Ejemplo: micv.definitions.</hint>
+  </attribute>
+  <attribute name="name" type="String" required="true">
+    <description>Nombre de la definición. El nombre debe ser único dentro del proyecto</description>
+  </attribute>
+  <attribute name="parent" type="Code">
+    <description>Indica la relación de herencia de la definición. Se especifica el nombre (hay que ponerle el caracter '@' delante ) de la definición de la que se heredan los atributos, propiedades y declaraciones</description>
+    <restriction>ONLY Definition FROM Model</restriction>
+  </attribute>
+  
+  <property name="abstract">
+    <description>Su presencia indica que la definición es abstracta</description>
+    <hint>Antes era un atributo</hint>
+  </property>
+  <property name="singleton">
+    <description>Su presencia indica que la definición representa un tipo de entidad de la que sólo puede existir una instancia</description>
+    <hint>Antes era un atributo</hint>
+  </property>
+  <property name="environment">
+    <description>Su presencia indica que la definición representa un tipo de entidad que se puede utilizar para configurar el entorno del usuario en el espacio de negocio</description>
+    <hint>Antes era un atributo</hint>
+    <restriction>Si la definición es enviroment no puede ser component</restriction>
+  </property>  
+  <property name="component">
+    <description></description>
+    <hint>Preguntar que es</hint>
+  </property>
+  <property name="blocked">
+    <description>Su presencia indica que la definición está bloqueada.</description>
+  </property>
+  <property name="internal">
+    <description>Esta propiedad indica que los datos se extraen del termList del thesaurus</description>
+    <restriction>Solo para las definiciones de tipo Thesaurus</restriction>
+  </property>
+  <property name="external">
+    <description>Los datos del thesaurus se encuentran en otra ubicación como puede ser una base de datos</description>
+    <restriction>Solo para las definiciones de tipo Thesaurus</restriction>
+  </property>
+  
+  <property name="label" multiple="true">
+    <description>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la etiqueta</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="type" type="enumeration" default="short" >
+      <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+      <enumeration>
+        <option>short</option>
+        <option>long</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="description" multiple="true">
+    <description>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la descripción</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="help">
+    <description>Página de ayuda asociada a la definición. El contenido debe estar en formato HTML</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se ha expresado el fichero de ayuda</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="filename" type="String" required="true">
+      <description>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio "/help/(lang)" del modelo de negocio</description>
+    </attribute>
+  </property>
+
+  <property name="tag">
+    <description>Etiqueta para facilitar la busqueda de definiciones. Las etiquetas se separan con ;</description>
+    <text-content/>
+  </property>
+
+  <include name="Declaration" required="true">
+    <option class="ServiceDeclaration" />
+    <option class="ServiceLinkDeclaration" />
+    <option class="DocumentFormatDeclaration"/>
+    <option class="EntityDeclaration" />
+    <!-- NUEVO -->
+    <option class="ThesaurusDeclaration"/>
+    <option class="ReferenceDeclaration"/>
+    <!-- <option class="FormatDeclaration"/> -->
+  </include>
+  
+</class>

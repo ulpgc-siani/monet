@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<federation>
+  <organization>
+    <label lang="EN">Tests federation</label>
+    <label lang="ES">Federación de pruebas</label>
+    <image src="" />
+  </organization>
+	
+  <authentication>
+    <!--<use-open-id />-->
+    
+    <use-certificate />
+    
+    <!--<use-password>
+      <ldap-auth url="" user="" password="" schema="" read-only="false">
+        <parameter name="" as=""/>
+        <parameter name="" as=""/>
+        <parameter name="" as=""/>
+      </ldap-auth>
+    </use-password>-->
+    
+    <use-password>
+      <!--<database-auth read-only="false"/>-->
+      <mock-auth />
+    </use-password>
+    
+    <!--<use-password>
+      <custom-auth class="" read-only=""/>
+    </use-password>-->
+
+    <!--<use-micv>
+      <micv-auth url="http://www.ulpgc.es/miulpgc/autorizacion/acceso.php" ldap_url="https://ldapbc.ulpgc.es/index.php" error_url="http://www.ulpgc.es/node" read-only="false"/>
+    </use-micv>-->
+
+  </authentication>
+	
+  <allow-user-registration />
+
+</federation>

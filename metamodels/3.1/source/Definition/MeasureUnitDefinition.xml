@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="MeasureUnitDefinition" parent="Definition" token="measure-unit">
+	<description>Permite definir una unidad de medida para ser usada en las métricas del análisis del negocio</description>
+
+	<property token="scale" type="ScaleProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<description>Etiqueta para la unidad de medida</description>
+		<hint>metros (max=1e3, factor=1), milimetros (max=1, factor=1e3), kilometros (max=1e6, factor=1e-3)</hint>
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta</description>
+		</attribute>
+		<attribute token="max" type="real" required="true">
+			<description>Define el rango máximo para el que es aplicable esta etiqueta</description>
+		</attribute>
+		<attribute token="factor" type="real" required="true">
+			<description>Factor que se aplica a la medida para obtener la equivalencia con la etiqueta de la métrica</description>
+		</attribute>
+	</property>
+
+</class>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="RoleDeclaration" parent="EntityDeclaration" tag="role">
+  <description>Declaración que se utiliza para modelar un role que ejerce alguno de los trabajadores del espacio de negocio</description>
+
+</class>
+

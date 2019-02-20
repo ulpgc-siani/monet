@@ -1,0 +1,61 @@
+@import "../../../styles/font-awesome/css/font-awesome.css"
+
+@mixin transition($effect...)
+  -webkit-transition: $effect
+  -moz-transition: $effect
+  -ms-transition: $effect
+  -o-transition: $effect
+  transition: $effect
+
+.search-panel
+  width: 300px
+  vertical-align: middle
+  white-space: nowrap
+  position: relative
+
+.search-panel input.search-input
+  height: 50px
+  background-color: $search-input-background-color
+  border: none
+  color: $search-input-text-color
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+  font-size: $search-input-font-size
+
+.search-panel:hover .icon
+  color: $search-icon-color-hover
+
+.search-panel.expanded input.search-input
+  width: 300px
+  padding-left: 45px
+  @include transition(background .55s ease)
+
+.search-panel.compact input.search-input
+  width: 50px
+  padding-left: 35px
+  @include transition(width .55s ease)
+
+.search-panel .icon
+  position: absolute
+  left: 6%
+  top: 34%
+  z-index: 1
+  color: $search-icon-color
+
+.search-panel.expanded input.search-input:hover, .search-panel.expanded input.search-input:focus, .search-panel.expanded input.search-input:active
+  outline: none
+  background: $search-input-background-color-hover
+
+@-moz-document url-prefix()
+  .search-panel.compact input.search-input
+    width: 15px
+
+  .search-panel.compact input.search-input:focus, .search-panel.compact input.search-input:active, .search-panel.compact:hover input.search-input
+    width: 295px !important
+
+  .search-panel.compact input.search-input:focus, .search-panel.compact input.search-input:active, .search-panel.compact:hover input.search-input
+    padding-left: 50px
+
+.search-panel.compact input.search-input:focus, .search-panel.compact input.search-input:active, .search-panel.compact:hover input.search-input
+  width: 300px

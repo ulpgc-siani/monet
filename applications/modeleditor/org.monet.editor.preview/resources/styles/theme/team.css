@@ -1,0 +1,7 @@
+.team .delegatelist, .team .workerlist {
+	height: 100%;
+}
+
+.team .delegatelist .delegates, .team .workerlist .workers {
+	height: 100%;
+}

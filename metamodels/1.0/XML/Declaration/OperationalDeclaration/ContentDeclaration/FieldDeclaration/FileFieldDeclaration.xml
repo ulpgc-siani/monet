@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FileFieldDeclaration" parent="FieldDeclaration" tag="field-file">
+
+<hint>¿Tienen datasource los campos de tipo fichero?</hint>
+
+
+</class>

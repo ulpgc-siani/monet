@@ -1,0 +1,114 @@
+.view.account {
+}
+
+.view.account .text {
+  margin-left: 5px;
+}
+
+.view.account span.username {
+  position: absolute; 
+}
+
+.view.account span.username .usernamelabel {
+  margin-right: 18px;
+}
+
+.view.account span.username img {
+  background: transparent url("../images/username.gif") no-repeat 0 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-top: -3px;
+  margin-right: -18px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.view.account span.username img:hover {
+  background-position: -16px 0;
+}
+
+.view.account .panel {
+  overflow: visible; 
+  position: absolute; 
+  top: 20px; 
+  left: -228px; 
+  width: 270px; 
+  background-color: white; 
+  border: 1px solid #99BBE8;
+  display: none;
+  border-radius: 5px;
+  z-index: 1;
+  
+  box-shadow: 2px 2px 5px #808080;
+  -webkit-box-shadow: 2px 2px 5px #808080;
+  -moz-box-shadow: 2px 2px 5px #808080;
+}
+
+.view.account .panel.active {
+  display: block;
+}
+
+.view.account .panel ul {
+  overflow: hidden;
+}
+
+.view.account .panel.username {
+  padding: 10px;
+  left: -245px;
+}
+
+.view.account .panel ul.environments, .view.account .panel ul.dashboards, .view.account .panel ul.units {
+  overflow-y: auto;
+}
+
+.view.account .panel ul.units {
+  height: 200px;
+}
+
+.view.account .panel.username ul.options {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.view.account .panel.username a.logout {
+  margin: 5px 2px 0px;
+  float: right;
+}
+
+.view.account .panel.username li.section ul li {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.view.account .panel.username li.section ul li.active_true, .view.account .panel.username li.section ul li.active_true a,
+.view.account .panel.username li.section ul li.disabled {
+  cursor: default;
+}
+
+.view.account .panel.username li.section ul li a {
+  display: block;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+.view.account .panel.username li.section ul li.active_true a,
+.view.account .panel.username li.section ul li.disabled a {
+  color: #999;
+}
+
+.view.account .panel.username li.section ul li.active_false:hover {
+  background-color: #EFF7FF;
+  border: 1px solid #99BBE8;
+}
+
+.view.account .panel.username li.section ul li.disabled:hover {
+  background: none;
+}
+
+.view.account .panel.username .title {
+  margin-bottom: 5px;
+  font-size: 14px;
+}

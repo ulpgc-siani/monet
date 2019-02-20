@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="term" type="TermProperty">
+	<description>Esta propiedad se utiliza para añadir un término</description>
+	
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta del término</description>
+	</attribute>
+	
+	<attribute token="key" type="string" required="true">
+		<description>Clave del término</description>
+	</attribute>
+	
+	<attribute token="tag" type="string" multiple="true">
+		<description>Etiqueta asociada al término</description>
+		<hint>Se usa para filtrar términos o consultar metadatos de un término. Para representar un metadato se usa la sintaxis "tag:value"</hint>
+	</attribute>
+
+	<property token="is-category">
+		<description>Esta propiedad se utiliza para indicar que un término es una categoría</description>
+		<hint>Las categorías no son seleccionables. Se usan para hacer agrupaciones de términos</hint>
+	</property>
+	
+	<include property="TermProperty" multiple="true" />
+	
+</property>

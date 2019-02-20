@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="AnalysisboardDefinition" parent="Definition" token="analysisboard" extensible="true">
+	<description>Representa el panel de control del sistema de información. En él se podrá tener una visión del estado actual de la organización</description>
+	
+	<attribute token="scale" type="enumeration" required="true">
+		<description>Nivel de resolución inicial que se quiere para el panel de control</description>
+		<enumeration>
+			<option token="MONTHS"></option>
+			<option token="DAYS"></option>
+			<option token="HOURS"></option>
+			<option token="MINUTES"></option>
+			<option token="SECONDS"></option>
+		</enumeration>
+	</attribute>
+	
+	<property token="view" type="AnalysisboardViewProperty" parent="ViewProperty" multiple="true">
+		<description>Esta propiedad se utiliza para declarar una vista al panel de control</description>
+		<include property="FolderProperty" multiple="true" />		
+	</property>	
+	
+</class>

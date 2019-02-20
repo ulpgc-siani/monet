@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="TaskResponseProperty">
+	<description></description>
+	
+  <attribute token="code" type="code" required="true">
+      <description>Código del mensaje</description>
+  </attribute>
+  <attribute token="name" type="string" required="true" specific="true">
+    <description>Nombre con el que se referencia la declaración en el modelo de negocio</description>
+  </attribute>
+  <attribute token="unlock" type="key" link="DoorExitProperty">
+    <description></description>
+  </attribute>
+  <attribute token="goto" type="key" link="PlaceProperty">
+    <description></description>
+  </attribute>
+</property>

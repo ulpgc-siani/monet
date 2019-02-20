@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CatalogDeclaration" parent="NodeDeclaration" tag="catalog">
+
+	<property name="parameter" multiple="true">
+		<description></description>
+		<attribute name="name" type="String">
+			<description></description>
+		</attribute>		
+		
+		<attribute name="type">
+			<description></description>
+		</attribute>		
+	</property>
+	
+	<property name="filter" multiple="true">
+		<description></description>
+		<attribute name="attribute" type="String">
+			<description></description>
+		</attribute>		
+		
+		<attribute name="value" type="String">
+			<description></description>
+		</attribute>		
+	</property>
+	
+	<property name="uses" multiple="true">
+		<attribute name="reference" type="Code" link="ReferenceDeclaration">
+			<restriction>ONLY Definition WITH ReferenceDeclaration FROM Model</restriction>    
+		</attribute>
+	</property> 
+	
+	<include name="views" multiple="true">
+		<option class="CatalogViewDeclaration" />
+	</include>
+</class>
+

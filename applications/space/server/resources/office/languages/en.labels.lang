@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Etiquetas posibles de office</comment>
+  <entry key="LBL_TITLE">Monet</entry>
+  <entry key="LBL_USERNAME">User name:</entry>
+  <entry key="LBL_PASSWORD">Password:</entry>
+  <entry key="LBL_BUSINESS_UNIT">Business unit:</entry>  
+  <entry key="LBL_ACCEPT">Start session</entry>
+  <entry key="LBL_LOGIN">Login</entry>
+  <entry key="LBL_LOGOUT">Logout</entry>
+  <entry key="LBL_WELCOME">Welcome. Insert your user name and the password bellow to access.</entry>
+  <entry key="LBL_GO_BACK">Go back...</entry>
+  <entry key="LBL_TRY_AGAIN">Insert again</entry>
+  <entry key="LBL_NO_LABEL">No label</entry>
+  <entry key="LBL_YES">Yes</entry>
+  <entry key="LBL_NO">No</entry>
+  <entry key="LBL_CLONE_FROM">Copy of</entry>
+  <entry key="LBL_CLONE_AT">Duplicate the</entry>
+  <entry key="LBL_NO_DESCRIPTION">(None comment)</entry>
+  <entry key="LBL_NO_NODE_TYPE_LABEL">Unknown type</entry>
+  <entry key="LBL_USER_NOT_GRANTED">You do not have permission to access</entry>
+  <entry key="LBL_LOCATION">Location</entry>
+  <entry key="LBL_BLANK_REPORT">New report</entry>
+  <entry key="LBL_COLUMN_LABEL">Title</entry>
+  <entry key="LBL_WITH_ROLE"> how </entry>
+  <entry key="LBL_DOCUMENT_PREVIEW">Preview</entry>
+  <entry key="LBL_RELOAD">Reload</entry>
+  <entry key="LBL_UPDATING_SPACE">Updating...</entry>
+  <entry key="LBL_RIGHTS_RESERVED">All rights reserved</entry>
+</properties>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ordenTrabajoInspeccionCorrectiva>
+    <id>234234</id>
+    <activo>Plaza Sancho Panza</activo>
+    <fechaInicio>13.05.08 (22:12)</fechaInicio>
+    <observaciones>Hay varios desperfectos en la plaza despues de una fiesta.</observaciones>
+    <fechaFin>14.05.08 (12:04)</fechaFin>
+    <listaIncidencias>
+        <incidencia>
+            <id>123123</id>
+            <tipo>Banco</tipo>
+            <origen>Desconocido</origen>
+            <fecha>14.05.08</fecha>
+            <estado>Pintado con graffitis</estado>
+            <activo>Banco azul numero 3</activo>
+            <operacion>Limpieza</operacion>
+            <descripcion>Se ha limpiado las pintadas y restaurado el esmalte</descripcion>
+        </incidencia>
+        <incidencia>
+            <id>55544</id>
+            <tipo>Banco</tipo>
+            <origen>Desconocido</origen>
+            <fecha>14.05.08</fecha>
+            <estado>Pintado con graffitis</estado>
+            <activo>Banco rojo numero 10</activo>
+            <operacion>Limpieza</operacion>
+            <descripcion>Se ha limpiado las pintadas y restaurado el esmalte</descripcion>
+        </incidencia>
+    </listaIncidencias>
+</ordenTrabajoInspeccionCorrectiva>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Errores posibles de datawarehouse</comment>
+  <entry key="ERR_UNDEFINED">Error desconocido.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">Ha habido un error en la factoría de acciones.</entry>
+  <entry key="ERR_RENDERS_FACTORY">Ha habido un error en la factoría de renderizadores.</entry>  
+  <entry key="ERR_USER_NOT_LOGGED">Usted no ha iniciado sesión.</entry>
+  <entry key="ERR_INCORRECT_PARAMETERS">Faltan parámetros o los parámetros pasados en la llamada no son correctos.</entry>
+  <entry key="ERR_CUBE_NOT_FOUND">No se ha encontrado el cubo.</entry>
+  <entry key="ERR_BUSINESSUNIT_STOPPED">La unidad de negocio ha sido parada. Contacte con el administrador del sistema.</entry>  
+  <entry key="ERR_BUSINESSUNIT_NOT_INSTALLED">No se ha instalado ningún modelo en la unidad de negocio. Contacte con el administrador del sistema.</entry>  
+</properties>

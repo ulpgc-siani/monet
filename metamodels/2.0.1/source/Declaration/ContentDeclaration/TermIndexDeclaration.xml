@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="TermIndexDeclaration" parent="Declaration" tag="term-index">
+  <description>Declaración que se utiliza para modelar una lista de términos</description>
+
+	<attribute name="language" type="language" required="true">
+		<description>Idioma en el que se expresa la lista de términos</description>
+	</attribute>
+
+	<include name="term" required="true" multiple="true">
+		<option class-name="TermDeclaration" />
+	</include>
+
+</class>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CollectionViewDeclaration" parent="ViewDeclaration" tag="view">
+
+  <attribute name="code" type="key" required="true">
+    <description>Identificador único de la declaración de vista de la colección</description>
+  </attribute>
+
+  <property name="label">
+    <description>Contiene una etiqueta descriptiva de la vista. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado de la vista declarado</description>
+    <attribute name="language" type="enumeration" required="true">
+      <description>Idioma en el que se expresa la etiqueta</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="type" type="enumeration" default="short">
+      <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+      <enumeration>
+        <option>short</option>
+        <option>long</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+  
+  <property name="uses">
+    <attribute name="reference" type="code" link="ReferenceDeclaration" required="true">
+      <restriction>ONLY Definition WITH Reference FROM Model</restriction>
+    </attribute>
+  </property>
+  
+  <property name="header">
+    <content>
+      <property name="column" multiple="true">
+        <attribute name="attribute" type="Code" >
+          <restriction>ONLY Attribute FROM Reference</restriction>
+        </attribute>
+        <attribute name="width" type="Natural">
+        </attribute>
+        <content>
+          <property name="label">
+            <description>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</description>
+            <attribute name="language" type="enumeration" required="true">
+              <description>Idioma en el que se expresa la etiqueta</description>
+              <enumeration>
+                <option>es</option>
+                <option>en</option>
+                <option>de</option>
+                <option>fr</option>
+                <option>it</option>
+                <option>pt</option>
+              </enumeration>
+            </attribute>
+            <attribute name="type" type="enumeration" default="short">
+              <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+              <enumeration>
+                <option>short</option>
+                <option>long</option>
+              </enumeration>
+            </attribute>
+            <text-content />
+          </property>
+
+        </content>
+      </property>
+    </content>
+  </property>
+
+  
+</class>

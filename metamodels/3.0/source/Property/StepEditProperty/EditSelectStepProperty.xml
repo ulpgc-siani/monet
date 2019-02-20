@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="EditSelectStepProperty" parent="EditCheckStepProperty" token="edit-select">
+  <description></description>
+
+  <property token="is-embedded">
+    <description></description>
+    <hint>Se recomienda su uso cuando el número de términos es pequeño</hint>
+  </property>
+</property>

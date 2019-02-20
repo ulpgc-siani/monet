@@ -1,0 +1,12 @@
+#import-data-wizard #import-data-dialog {
+ width: 600px;
+}
+
+#import-data-wizard #import-data-dialog select {  
+  width: 80%;
+  margin-left: 10px;
+}
+
+#import-data-wizard #import-data-dialog .item {  
+ padding-left: 60px; 
+}

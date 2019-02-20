@@ -1,0 +1,13 @@
+Operation = new Object;
+Operation.ADD = "ADD";
+Operation.COPY = "COPY";
+Operation.DOWNLOAD = "DOWNLOAD";
+Operation.PRINT = "PRINT";
+Operation.TOOL = "TOOL";
+Operation.CUSTOM = "CUSTOM";
+Operation.WIDGET = "WIDGET";
+Operation.EDIT = "EDIT";
+Operation.HELP = "HELP";
+Operation.OBSERVER = "OBSERVER";
+Operation.CONTEXT = "CONTEXT";
+Operation.NAVIGATION = "NAVIGATION";

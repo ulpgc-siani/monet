@@ -1,0 +1,68 @@
+#main.reduced .account > table
+  width: auto
+
+#main.reduced .account
+  margin-left: 0
+
+.account .photo, .account .photo img
+  border-radius: 150px
+  -webkit-border-radius: 150px
+  -moz-border-radius: 150px
+
+.account .photo img.default
+  margin: auto 5px
+  background: url(../images/addphoto.png) no-repeat 8px 5px
+
+#main.reduced .account .photo, #main.reduced .account .photo img
+  width: 40px
+  height: 40px
+
+#main.reduced .account .photo img.default
+  background: url(../images/addphoto_reduced.png) no-repeat 8px 5px
+
+#main:not(.reduced) .account
+  margin-left: -205px
+
+.account .info 
+  color: white
+  font-size: 12px
+  font-weight: bold
+  margin-top: 10px
+
+#main.reduced .account .info
+  margin-top: 12px
+
+.account .info .welcome 
+  color: #B3B3B3
+  font-weight: normal
+
+.account .full-name 
+  font-size: 12px
+  margin-left: 0
+
+.account .toolbar 
+  bottom: 7px
+  display: block
+  margin-right: 20px
+  position: absolute
+  right: 0
+  z-index: 3
+
+#main.reduced .account .toolbar
+  bottom: 12px
+
+.account .toolbar .logout a 
+  background: #5A84A3 url(../images/logout.png) no-repeat 8px 3px
+  display: block
+  height: 17px
+  width: 22px
+  border-radius: 3px
+  color: white
+  font-size: 12px
+  font-weight: 300
+
+.account .toolbar .logout a:hover
+  background: #7898AF url(../images/logout_hover.png) no-repeat 8px 3px
+
+.header-account .search-panel.compact input.search-input
+  padding-left: 25px

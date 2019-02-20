@@ -1,0 +1,95 @@
+.node.report { /* skipping report messages */
+  display: block;
+  left: auto;
+}
+
+.node.report div {
+  font-size: 12px;
+}
+
+.node.report a {
+  text-decoration: none;
+  color: #007;
+}
+
+.node.report a img {
+  border: 0px;
+}
+
+.node.report input {
+  margin-right: 5px;
+}
+
+.node.report .title {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.node.report .title input {
+  font-size: 19px;
+  padding: 0px 5px;
+  width: 70%;
+}
+
+.node.report .subtitle {
+  font-size: 15px;
+}
+
+.node.report .toolbar.right {
+  text-align: right;
+}
+
+.node.report .toolbar .action {
+  color: green;
+  padding-right: 10px;
+}
+
+.node.report .toolbar.listoperations {
+  margin-top: 10px;
+}
+
+.node.report .body .info.bottom {
+	margin-top: 20px;
+  *display: none;
+}
+
+.node.report .body .info .star {
+  background: url('office.api?op=loadthemefile&path=_images/icons/star_off.gif') no-repeat left center;
+  display: block;
+  height: 20px;
+  width: 17px;
+  display: inline;
+  float: left;
+  margin-right: 5px;
+}
+
+.node.report .body .info .star.highlighted {
+  background: url('office.api?op=loadthemefile&path=_images/icons/star_on.gif') no-repeat left center;
+}
+
+.node.report .body .info .subtitle {
+	margin-left: 22px;
+}
+
+.node.report .body .info.bottom .toolbar {
+	margin-top: 0px;
+}
+
+.node.report .body .properties .datelist {
+  color: #666;
+  margin: 10px 0px 4px;
+}
+
+.node.report .body .properties .datelist li {
+  display: inline;
+}
+
+.node.report .body .properties .description {
+  margin-bottom: 20px;
+}
+
+.node.report .body .content {
+  margin: 0px;  
+  background: white;  
+  clear: both;
+}

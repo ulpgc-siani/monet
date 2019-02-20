@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/_space.iml" filepath="$PROJECT_DIR$/_space.iml" />
+      <module fileurl="file://$PROJECT_DIR$/docservice.iml" filepath="$PROJECT_DIR$/docservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/federation.iml" filepath="$PROJECT_DIR$/federation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/federation.client.iml" filepath="$PROJECT_DIR$/federation.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/federation.shared.iml" filepath="$PROJECT_DIR$/federation.shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mobile.iml" filepath="$PROJECT_DIR$/mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../applications/space/server/space.iml" filepath="$PROJECT_DIR$/../../applications/space/server/space.iml" />
+    </modules>
+  </component>
+</project>

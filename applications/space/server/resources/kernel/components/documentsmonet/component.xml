@@ -1,0 +1,7 @@
+<component code="documentsmonet" type="documents"
+           class="org.monet.space.kernel.components.monet.ComponentDocumentsMonet">
+  <labels>
+    <label language="es">Monet</label>
+    <label language="en">Monet</label>
+  </labels>
+</component>

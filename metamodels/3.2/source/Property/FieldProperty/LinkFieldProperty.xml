@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-link" type="LinkFieldProperty" parent="MultipleableFieldProperty">
+	<description>Esta propiedad se utiliza para incluir un campo vínculo en un formulario</description>
+	
+	<property token="source" required="true">
+		<description>Esta propiedad se utiliza para indicar qué nodos se pueden vincular en el campo</description>
+		<attribute token="index" type="key" link="IndexDefinition" required="true">
+			<description>Indice que proporciona las referencias a nodos que se desean incluir</description>
+		</attribute>
+		<attribute token="view" type="key" link="IndexViewProperty">
+			<description>Vista que se desea del índice para mostrar las referencias a nodos</description>
+			<hint>En caso de no indicarse la vista, se mostrarán todos los atributos declarados en la referencia del índice</hint>
+		</attribute>
+		<attribute token="collection" type="key" link="CollectionDefinition">
+			<description>Colección en la que se añadirá el nodo</description>
+			<hint>Debe ser una colección singleton</hint>
+		</attribute>
+		<property token="filter" multiple="true">
+			<description>Esta propiedad se utiliza para filtrar entradas dentro del índice</description>
+			<attribute token="attribute" type="key" link="AttributeProperty" required="true">
+				<description>Atributo del índice por el que se desea filtrar</description>
+			</attribute>
+			<attribute token="value" type="value" link="FieldProperty" required="true">
+				<description>Valor o referencia a un campo que contiene el valor</description>
+			</attribute>
+			<attribute token="operator" type="enumeration" default="EQUALS">
+				<description>Permite indicar el operador que se usará cuando se aplica el filtro</description>
+				<enumeration>
+					<option token="EQUALS">
+						<description>El atributo ha de coincidir con el valor</description>
+					</option>
+					<option token="CONTAINS">
+						<description>El atributo ha de contener el valor</description>
+					</option>
+				</enumeration>
+			</attribute>
+		</property>
+	</property>
+	
+	<property token="allow-history">
+		<description>DEPRECATED!! Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+		
+	<property token="enable-history">
+		<description>Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+	
+	<property token="allow-search">
+		<description>Esta propiedad se utiliza cuando se desea que el campo se indexe y se pueden realizar búsquedas</description>
+	</property>
+	
+	<property token="allow-locations">
+		<description>Esta propiedad permite la selección de un valor en base a su posición geográfica. Aparecerá un mapa con todos los valores geo-posicionados en caso de que el nodo tuviera su posición geográfica cumplimentada.</description>
+		<hint>Es necesario definir al atributo collection de </hint>
+	</property>
+
+	<property token="allow-add">
+		<description>Esta propiedad se utiliza para permitir que el usuario pueda añadir nuevos nodos en caso de que no existan. En estos casos es necesario declarar el atributo collection en el source.</description>
+	</property>
+	
+	<property token="allow-edit">
+		<description>Esta propiedad se utiliza para permitir que el usuario pueda editar el nodo vinculado.</description>
+	</property>
+
+</property>

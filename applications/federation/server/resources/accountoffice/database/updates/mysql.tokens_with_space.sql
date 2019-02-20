@@ -1,0 +1,1 @@
+ALTER TABLE `fs$tokens` ADD COLUMN `space` VARCHAR(255) NULL AFTER `last_use`, ADD COLUMN `node` VARCHAR(255) NULL AFTER `space`;

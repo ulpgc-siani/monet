@@ -1,0 +1,7 @@
+<application code="backservice" type="ApplicationBackService"
+             class="org.monet.space.backservice.ApplicationBackService">
+  <labels>
+    <label language="es">Aplicación de backservice</label>
+    <label language="en">Backservice application</label>
+  </labels>
+</application>

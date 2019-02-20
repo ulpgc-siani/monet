@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documentModel>
+  <Apellido1>Ramirez</Apellido1>
+  <Apellido2>Navarro</Apellido2>
+  <Nombre>Jose</Nombre>
+  <MiTabla>
+    <item>
+      <Col1>PaC001</Col1>
+      <Col2>PaC002</Col2>
+      <Col3>PaC003</Col3>
+      <Col4>PaC004</Col4>
+    </item>
+    <item>
+      <Col1>PaC101</Col1>
+      <Col2>PaC102</Col2>
+      <Col3>PaC103</Col3>
+      <Col4>PaC104</Col4>
+    </item>
+    <item>
+      <Col1>PaC201</Col1>
+      <Col2>PaC202</Col2>
+      <Col3>PaC203</Col3>
+      <Col4>PaC204</Col4>
+    </item>
+    <item>
+      <Col1>PaC301</Col1>
+      <Col2>PaC302</Col2>
+      <Col3>PaC303</Col3>
+      <Col4>PaC304</Col4>
+    </item>
+    <item>
+      <Col1>PaC401</Col1>
+      <Col2>PaC402</Col2>
+      <Col3>PaC403</Col3>
+      <Col4>PaC404</Col4>
+    </item>
+  </MiTabla>
+  <MiLista>
+    <itemM>
+      <Nombre>Nombre 0</Nombre>
+      <Apellidos>Apellido 0</Apellidos>
+      <FechaNac>0/0/0</FechaNac>
+      <Observaciones>Obser.... 0</Observaciones>
+    </itemM>
+    <itemM>
+      <Nombre>Nombre 1</Nombre>
+      <Apellidos>Apellido 1</Apellidos>
+      <FechaNac>1/1/1</FechaNac>
+      <Observaciones>Obser.... 1</Observaciones>
+    </itemM>
+    <itemM>
+      <Nombre>Nombre 2</Nombre>
+      <Apellidos>Apellido 2</Apellidos>
+      <FechaNac>2/2/2</FechaNac>
+      <Observaciones>Obser.... 2</Observaciones>
+    </itemM>
+    <itemM>
+      <Nombre>Nombre 3</Nombre>
+      <Apellidos>Apellido 3</Apellidos>
+      <FechaNac>3/3/3</FechaNac>
+      <Observaciones>Obser.... 3</Observaciones>
+    </itemM>
+    <itemM>
+      <Nombre>Nombre 4</Nombre>
+      <Apellidos>Apellido 4</Apellidos>
+      <FechaNac>4/4/4</FechaNac>
+      <Observaciones>Obser.... 4</Observaciones>
+    </itemM>
+  </MiLista>
+</documentModel>

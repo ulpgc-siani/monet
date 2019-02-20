@@ -1,0 +1,181 @@
+.item-desktop {
+  margin-top: 10px;
+	margin-bottom: 10px; 
+}
+
+.item-desktop .list-desktop {
+  margin-left: 10px; 
+}
+
+.item-desktop .list-desktop li {
+  margin: 2px 0px;
+}
+
+.item-desktop .list-desktop li a {
+  font-size: 13px;
+}
+
+.news {
+}
+
+.news .update {
+  background-color: #FFC46A;
+  border: 1px solid #F29200;
+  padding: 3px 0 3px 8px;
+  margin: 10px 0px;
+}
+
+.news .newpost {
+  padding: 12px 35px 14px 18px;
+}
+
+.news .newpost.disable textarea {
+  height: 18px; 
+  color: gray;
+}
+
+.news .newpost textarea {
+  height: 100px; 
+  font-size: 11px; 
+  padding-left:3px; 
+  padding-top:3px; 
+  color: black;
+}
+
+.news .postlist {
+	position: relative;
+}
+
+.news .postlist .contextual {
+  float: right;
+  width: 21px;
+  height: 25px;
+  background: url("office.api?op=loadthemefile&path=_images/icons/bullet_opened.gif") no-repeat scroll 4px 5px transparent;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #F0F0F0;
+}
+
+.news .postlist .contextual ul {
+  border: 1px solid #F0F0F0;
+  padding: 5px;
+  position: absolute;
+  right: -1px;
+  top: 25px;
+  width: 240px;
+  display: none;
+}
+
+.news .postlist .contextual ul.active {
+  display: block;
+}
+
+.news .postlist .posticon {
+  position: absolute; 
+  width: 50px;
+  height: 50px;
+}
+
+.news .postlist .posticon.dialog {
+  background: url("office.api?op=loadthemefile&path=_images/news/dialog.png") no-repeat scroll center 0 transparent;
+}
+
+.news .postlist .posticon.info {
+  background: url("office.api?op=loadthemefile&path=_images/news/info.png") no-repeat scroll center 0 transparent;
+}
+
+.news .postlist .posticon.monet {
+  background: url("office.api?op=loadthemefile&path=_images/news/monet.png") no-repeat scroll center 0 transparent;
+}
+
+.news .postlist .posticon.order {
+  background: url("office.api?op=loadthemefile&path=_images/news/order.png") no-repeat scroll center 0 transparent;
+}
+
+.news .postlist .posticon.response {
+  background: url("office.api?op=loadthemefile&path=_images/news/response.png") no-repeat scroll center 0 transparent;
+}
+
+.news .postlist .comment .icon {
+  background: url("office.api?op=loadthemefile&path=_images/news/comment.png") no-repeat scroll center 0 transparent;
+  width: 32px;
+  height: 32px;
+}
+
+.news ul li.postlist {
+  padding: 12px 35px 14px 18px;
+  border-bottom: 1px dotted #CCCCCC;
+  margin-bottom: 10px;
+}
+
+.news .postlist .messageTitle {
+  margin-left: 60px;
+  margin-bottom: 5px;
+}
+
+.news .postlist .messageFooter,
+.news .postlist .messageBody {
+  margin-left: 61px;
+  margin-top: 5px;
+  display: block;
+}
+
+.news .postlist .messageFooter {
+  font-size: 11px; 
+  color: gray;
+}
+
+.news .postlist .messageFooter .createdate {
+  padding-left: 2px;
+}
+
+.news .postlist .commentlist {
+  width: 394px; 
+  margin-top: 10px; 
+  margin-left: 55px;
+}
+
+.news .postlist .commentlist .comment {
+  padding: 5px 5px 4px; 
+  clear: both;
+}
+
+.news .postlist .commentlist .comment .icon{
+  float: left; 
+  margin-right: 10px;
+}
+  
+.news .postlist .commentlist .newcomment {
+  padding: 5px 5px 4px; 
+  clear: both;
+}
+
+.news .postlist .commentlist .newcomment.disable textarea {
+  height: 18px; 
+  color: gray;
+}
+
+.news .newpost.disable a, .news .postlist .commentlist .newcomment.disable a {
+  display: none;
+}
+
+.news .postlist .commentlist .newcomment textarea {
+  height: 100px; 
+  font-size: 11px; 
+  padding-left:3px; 
+  padding-top:3px; 
+  color: black;
+}
+
+.news .postlist .commentlist .newcomment div {
+  text-align: right;
+}
+
+.news .newpost a, .news .postlist .commentlist .newcomment a {
+	float: left;
+	margin-top: 2px;
+}
+
+.news .postlist .commentlist .newcomment a {
+  margin-left: 3px;
+}

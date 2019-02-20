@@ -1,0 +1,144 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: 9ByqrUPKkrXfCg+x9wM/2TYmX/Y=
+Created-By: 1.6.0_16 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: 68PrD+CXG+7hWlP7IfZImeCY8eI=
+
+Name: es/uji/security/crypto/timestamp/TimeStampFactory.class
+SHA1-Digest: y7fNp6x8JZl2DudC5OaR//GcqNI=
+
+Name: uactivo951v_cifrado.p12
+SHA1-Digest: C2OVcv/6FOuW2Hgx+f1OA0tKqw4=
+
+Name: ocsp-response.bin
+SHA1-Digest: Tje91xX56VdMIFTCHDU8RVpb7UI=
+
+Name: es/uji/security/crypto/SignatureOptions.class
+SHA1-Digest: 4fW0ayVo1IHF7CuiwROR5A/96ac=
+
+Name: urevocado952h_cifrado.p12
+SHA1-Digest: oE6bvhp8DoL8wGDgUaqKGR46OBg=
+
+Name: es/uji/security/crypto/ocsp/OCSPChecker.class
+SHA1-Digest: hS49mwWn3KsadcCUJ3f8g3KzWGY=
+
+Name: es/uji/security/crypto/crl/CryptoCoreCRLException.class
+SHA1-Digest: 9zYBc7b374Y3nyWdOWqiKSar0pw=
+
+Name: cpruebas104p_cifrado.p12
+SHA1-Digest: 78YnLe68zT1yZC7wTqjv2eGXu7w=
+
+Name: es/uji/security/crypto/timestamp/TSResponse$TimestampException.c
+ lass
+SHA1-Digest: CQWDtpB3kNso77PnjCYUtT5eaMk=
+
+Name: es/uji/security/crypto/SupportedDataEncoding.class
+SHA1-Digest: /C7jp3cNx/xgTwikl2R65oi8j/c=
+
+Name: es/uji/security/crypto/crl/CRLChecker.class
+SHA1-Digest: k5M5dOAZiPNEXD7F2fXH9l7elM0=
+
+Name: es/uji/security/crypto/timestamp/TSRequest.class
+SHA1-Digest: EunWZO/3ei12t/om+u+17Hfa1Uk=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$4.class
+SHA1-Digest: V1Lk4sakrTcNy8DJfc7YhXBF8sE=
+
+Name: es/uji/security/crypto/SupportedKeystore.class
+SHA1-Digest: cE6BWY6lSo6DzwQXLNSLN/KGAGg=
+
+Name: es/uji/security/crypto/VerificationResult.class
+SHA1-Digest: 98JMODcNq07y/u7DxLIZ8C+lzIk=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$8.class
+SHA1-Digest: 5BjPglS9COfxS9P/wU6iDcjuyKI=
+
+Name: AEATPF_F2.p12
+SHA1-Digest: CFxpjUq3c61OHQ/nJtjAuqxjfjI=
+
+Name: es/uji/security/crypto/SignatureResult.class
+SHA1-Digest: Wx5UTLETIPEKeZWfchQcP36MZqQ=
+
+Name: META-INF/maven/es.uji.security/uji-crypto-core/pom.properties
+SHA1-Digest: iUr39qaZws5DEjXTX6z4zk5Ph7A=
+
+Name: urevocado952h_firma.p12
+SHA1-Digest: dfwtRHSsF0KwLKYTWwnOoVzgYks=
+
+Name: es/uji/security/crypto/ocsp/CryptoCoreOCSPException.class
+SHA1-Digest: Rgi7ZKITIjjH9SuJvhJMtclukMM=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$6.class
+SHA1-Digest: Umv/lLL/ex+Zx/VEYUrfjH2J+Wo=
+
+Name: es/uji/security/crypto/timestamp/TimestampToken.class
+SHA1-Digest: LZvNGmIgMEqXYq7aWFtSckkUmIk=
+
+Name: es/uji/security/crypto/timestamp/ASN1ParseException.class
+SHA1-Digest: 5mEd8t/ViUqbHe8RO2XV8tKbbzw=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$2.class
+SHA1-Digest: 9JNxW/FGBvMmo1OyUHznmiy7SUw=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$3.class
+SHA1-Digest: 7ScIeYUzK10Az/Anz0Wv9D0v8E0=
+
+Name: es/uji/security/crypto/timestamp/Timestamper.class
+SHA1-Digest: hGogsfq2z/uRUYqr4mzHhGyHAK0=
+
+Name: META-INF/maven/es.uji.security/uji-crypto-core/pom.xml
+SHA1-Digest: D1reJHcuiXraWidB6gOnDfmV2bo=
+
+Name: es/uji/security/crypto/timestamp/TSResponse.class
+SHA1-Digest: rmyZpjeFMMZUrm/LTwq4wQxomgo=
+
+Name: es/uji/security/crypto/timestamp/TSResponseToken.class
+SHA1-Digest: Kc30+luigx06LvZSh30IqFqgZDo=
+
+Name: uactivo951v_firma.p12
+SHA1-Digest: zQIdQbnE0fp6Ab5BxwB1MLQGFss=
+
+Name: es/uji/security/crypto/CryptoCoreException.class
+SHA1-Digest: u+mcUpK9QA/2lTJVlZHqBTpS7pg=
+
+Name: cpruebas104p_firma.p12
+SHA1-Digest: gO6kLcllv5yIWFOaNO+EfVK51yE=
+
+Name: es/uji/security/crypto/SupportedBrowser.class
+SHA1-Digest: azAwxYygUM7DqdbQS4SNOr35phA=
+
+Name: es/uji/security/crypto/timestamp/HttpTimestamper.class
+SHA1-Digest: ZRrZ7Z/RkIl+J9SvZvMb2pKkAp4=
+
+Name: es/uji/security/crypto/timestamp/TokenVerifyException.class
+SHA1-Digest: fCp064lUe7XpjcglbbnoUcnQbWg=
+
+Name: es/uji/security/crypto/ISignFormatProvider.class
+SHA1-Digest: a6ndwSp42nwFfW9QE3L/d66uSmI=
+
+Name: es/uji/security/crypto/OCSPResponseDetails.class
+SHA1-Digest: M7XJ/o+sobsUy+LkH1ye2SOUKC0=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$7.class
+SHA1-Digest: p/7zR1R3FkLU3V8zEYJ1N78R6qw=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$9.class
+SHA1-Digest: NBSH/uib874KzPz3ru77gI+5S2M=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$5.class
+SHA1-Digest: /3P857vZNajpqGCAevsP1v8HTIE=
+
+Name: es/uji/security/crypto/CRLResponseDetails.class
+SHA1-Digest: FoQtSmHyX1HImBVwh21Luns52ic=
+
+Name: es/uji/security/crypto/SHA1Digest.class
+SHA1-Digest: fM1LdDv/KonIr6d7c1O/a1dyh4c=
+
+Name: AEATPF_C2.p12
+SHA1-Digest: Ci/kYn/sb9W23/gw2fImD5ukcRo=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat.class
+SHA1-Digest: 3xwY7SbBILEUqnCVWbUq21dfoQc=
+
+Name: es/uji/security/crypto/SupportedSignatureFormat$1.class
+SHA1-Digest: GvWFVwVEY0nwVtgGOzPYRPmnXJE=
+

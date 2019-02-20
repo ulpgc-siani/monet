@@ -1,0 +1,112 @@
+.documentlistviewer .uploading, .documentlistviewer .loading {
+  background: url("../images/icons/loading.gif") no-repeat scroll 5px 9px transparent;
+  color: #000000;
+  display: block;
+  padding: 8px 10px 10px 30px;
+  position: relative;
+  border: 0px;
+  left: 0px;
+  top: 0px;
+  width: auto;
+  height: 16px;
+  text-align: left;
+}
+
+.documentlistviewer .header table {
+  margin: 0px auto;
+}
+
+.documentlistviewer .header, .documentlistviewer .dialog {
+  font-size: 15px;
+  display: block;
+  margin-top: 10px !important;
+  z-index: 1;
+}
+
+.documentlistviewer .dialog {
+  border: 1px solid #DDDDDD;
+  border-radius: 5px 5px 5px 5px;
+  padding: 10px !important;
+}
+
+.documentlistviewer .header select {
+  float: left;
+}
+
+.documentlistviewer .header select option {
+  color: #777;
+  padding: 1px 5px;
+}
+
+.documentlistviewer .header select option.document {
+  color: black;
+  padding-left: 15px;
+}
+
+.documentlistviewer .header a {
+  display: block;
+  height: 16px;
+  width: 16px;
+  font-size: 12px;
+  text-align: center;
+  padding: 3px 3px 0;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.documentlistviewer .header a.previous {
+  background: url("../images/icons/previous.gif") no-repeat scroll 3px 2px transparent;
+  margin-right: 10px;
+}
+
+.documentlistviewer .header a.previous.disabled {
+  background-image: url("../images/icons/previous_disabled.gif");
+}
+
+.documentlistviewer .header a.next {
+  background: url("../images/icons/next.gif") no-repeat scroll 3px 2px transparent;
+  margin-left: 10px;
+}
+
+.documentlistviewer .header a.next.disabled {
+  background-image: url("../images/icons/next_disabled.gif");
+}
+
+.documentlistviewer .dialog.node {
+  position: relative;
+}
+
+.documentlistviewer .dialog input {
+  width: 98%;
+}
+
+.documentlistviewer .dialog div.file {
+  margin-top: 5px;
+}
+
+.documentlistviewer .dialog.node div.file {
+  display: none;
+}
+
+.documentlistviewer .dialog .accept, .documentlistviewer .dialog .cancel {
+  margin-top: 10px;
+  width: 42px;
+  display: inline;
+}
+
+.documentlistviewer .dialog .uploading, .documentlistviewer .dialog .error {
+  display: none;
+  left: 50%;
+  top: 62px;
+  position: absolute;
+  border: 0px;
+}
+
+.documentlistviewer .empty {
+  margin-top: 10px;
+}
+
+.documentlistviewer .container {
+  margin: 14px auto;
+}

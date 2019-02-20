@@ -1,0 +1,49 @@
+.nvc {
+  overflow: auto;
+  height: 100%;
+}
+
+.nvc .panels {
+  clear: both;
+}
+
+.nvc .panels .panel {
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.nvc .panels .panel.arrow {
+  padding: 0px;
+  border: 0px;
+}
+
+.nvc .panels .panel .box {
+  width: 250px;
+  min-width: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.nvc .panels .panel .nav {
+  background: url('../images/icons/right_arrow.png') no-repeat 98% 5px;
+}
+
+.nvc .panels .panel a.nav:hover {
+  background: #DCE5F2 url('../images/icons/right_arrow.png') no-repeat 98% 5px !important;
+}
+
+.nvc .panels .panel .active a.nav {
+  background: #EAEEF2 url('../images/icons/right_arrow.png') no-repeat 98% 5px !important;
+}
+
+.nvc .panels .panel.arrow {
+  display: none;
+}
+
+.nvc .panels .panel.arrow img {
+  background: url('../images/icons/right_arrow.png') no-repeat right center;
+  height: 32px;
+  width: 15px;
+  position: relative;
+  margin-left: -35px;
+}

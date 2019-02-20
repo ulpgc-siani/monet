@@ -1,0 +1,90 @@
+<div id="SourceViewerWizard">
+  <div id="ViewHelperSource">
+    <div class="dialog publish" style="display:none;">
+      <div class="title">::NewTerms::</div>
+      <div class="description">::NewTermsDescription::</div>
+      <div class="toolbar" style="margin-top: 5px;">::Select::
+        <a class="selectall" href="javascript:void(null)">::SelectAll::</a>&nbsp;-&nbsp;
+        <a class="selectnone" href="javascript:void(null)">::SelectNone::</a>
+      </div>
+      <ul class="container"></ul>
+      <div class="toolbar">
+        <input class="button publish" type="button" value="::Publish::"/>
+      </div>
+    </div>
+    <div class="dialog term" style="display:none;">
+      <div class="title"></div>
+      <div class="fields">
+        <table>
+          <tr class="field code">
+            <td class="label"><label>::Code::</label></td>
+            <td><input type="text" class="component" readonly disabled></input></td>
+          </tr>
+          <tr class="field label">
+            <td class="label"><label>::Label::</label></td>
+            <td><input type="text" class="component"></input></td>
+          </tr>
+          <tr class="field type">
+            <td class="label"><label>::Type::</label></td>
+            <td>
+              <div class="component">
+                <div><input type="radio" id="source_type_term" name="source_type" class="type" value="0" checked/><label for="source_type_term">::Term::</label></div>
+                <div><input type="radio" id="source_type_category" name="source_type" class="type" value="2"/><label for="source_type_category">::Category::</label></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="field tags">
+            <td class="label"><label>::Tags::</label></td>
+            <td>
+              <div class="component">
+                <ul></ul>
+                <ul class="template">
+                  <li>
+                    <table>
+                      <tr>
+                        <td style="width:47%"><input type="text" class="name" placeholder="::Name::"/></td>
+                        <td style="width:47%"><input type="text" class="value" placeholder="::Value::"/></td>
+                        <td><a class="deletetag" href="javascript:void(null)"></a></td>
+                      </tr>
+                    </table>
+                  </li>
+                </ul>
+                <a class="addtag" href="javascript:void(null)">::Add::...</a>
+              </div>
+            </td>
+          </tr>
+          <tr class="field superterm">
+            <td class="label"><label for="source_superterm" class="superterm">::SuperTerm::</label></td>
+            <td><input type="checkbox" id="source_superterm" class="component" value="true"/></td>
+          </tr>
+        </table>
+      </div>
+      <div class="toolbar">
+        <input class="button enable" type="button" value="::Enable::"/>
+        <input class="button disable" type="button" value="::Disable::"/>
+        <input class="button delete" type="button" value="::Delete::"/>
+      </div>
+    </div>
+    <div class="dialog children" style="display:none;">
+      <div class="title"></div>
+      <div class="fields">
+        <table>
+          <tr class="field childcode">
+            <td class="label"><label>::Code::</label>
+
+              <div class="message term exists">::TermExists::</div>
+            </td>
+            <td><input type="text" class="component"></input></td>
+          </tr>
+          <tr class="field childlabel">
+            <td class="label"><label>::Label::</label></td>
+            <td><input type="text" class="component"></input></td>
+          </tr>
+        </table>
+      </div>
+      <div class="toolbar">
+        <input class="button add" type="button" value="::Add::"/>
+      </div>
+    </div>
+  </div>
+</div>

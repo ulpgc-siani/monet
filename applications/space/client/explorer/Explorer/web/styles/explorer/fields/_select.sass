@@ -1,0 +1,78 @@
+.field.select .component .input-panel .select
+  @include select-arrow()
+
+.field.select .popup
+  min-height: 0
+  max-height: none
+  overflow-y: visible !important
+
+.field.select .dialog .options
+  min-height: 160px
+  max-height: 160px
+
+.field.select .dialog td
+  vertical-align: middle !important
+
+.field.select .dialog .history .option
+  font-size: smaller
+
+.field.select .dialog > div:not(.history-panel) .container
+  max-height: 100px
+
+.field.select .radio.terms, .radio.terms .component
+  background: #FFFAD6
+
+.field.select .radio.terms li:hover, .radio.terms .component li:hover
+  background: #FAEB8C
+
+.field.select .other-panel
+  height: 65px
+
+.field.select .other-panel .other
+  height: 39px
+  margin-top: 5px
+
+.field.select .other-panel .other label
+  cursor: pointer
+
+.field.select .other-panel .other input[type="text"]
+  background: white
+  box-sizing: border-box
+  font-size: $field-select-other-font-size
+  padding-left: 7px
+  border-radius: 2px
+  border: 1px solid #B4B4B4
+
+.select.field.multiple .component
+  background-color: $component-background-color
+
+.select.field .dialog .other-panel .other
+  height: 35px
+
+.select.field .dialog .other-panel > table > tbody > tr > td:nth-child(2)
+  padding-right: 5px
+
+.field.check .component .category
+  position: relative
+
+.field.check .component .category .check-actions
+  display: none
+  position: absolute
+  top: 0
+  right: 0
+  width: auto
+  font-weight: normal
+  font-size: 12pt
+
+.field.check .component .category:hover .check-actions
+  display: block
+
+.field.check .component .category .check-actions td
+  padding-right: 20px
+
+.field.select .gwt-DisclosurePanel td, .field.check .gwt-DisclosurePanel td
+  padding: 1px
+
+.field.select .gwt-DisclosurePanel td .header td, .field.check .gwt-DisclosurePanel td .header td
+  font-weight: normal
+  font-size: 11pt

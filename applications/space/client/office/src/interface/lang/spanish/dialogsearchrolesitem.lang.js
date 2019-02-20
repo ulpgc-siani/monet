@@ -1,0 +1,3 @@
+Lang.DialogSearchRolesItem = {
+  Add: "Añadir"
+};

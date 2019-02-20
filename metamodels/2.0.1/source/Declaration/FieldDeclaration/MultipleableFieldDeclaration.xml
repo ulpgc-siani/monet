@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="MultipleableFieldDeclaration" parent="FieldDeclaration">
+  <description>Declaración que se utiliza para modelar un campo vínculo</description>
+
+  <property name="is-multiple">
+    <description>Su presencia indica que es un campo
+      replicable en el formulario. Cuando un campo es replicable, en el
+      espacio de negocio el usuario puede añadir instancias del campo, por
+      ejemplo para introducir varios teléfonos en una ficha de datos
+      personales</description>
+  </property>
+
+</class>

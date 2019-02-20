@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../applications/mobile/client/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../applications/mobile/client/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../applications/mobile/client/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../applications/mobile/client/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../applications/mobile/client/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../applications/mobile/client/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../applications/mobile/client/proguard_logs" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../applications/mobile/client">
+      <sourceFolder url="file://$MODULE_DIR$/../../applications/mobile/client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../applications/mobile/client/res" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../applications/mobile/client/gen" isTestSource="false" generated="true" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="client-libraries" level="project" />
+    <orderEntry type="module" module-name="shared" />
+    <orderEntry type="module" module-name="ActionBarSherlock" />
+    <orderEntry type="module" module-name="roboguice-sherlock" />
+    <orderEntry type="module" module-name="view-pager-indicator" />
+  </component>
+</module>

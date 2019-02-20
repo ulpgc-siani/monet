@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible labels of manager</comment>
+  <entry key="LBL_TITLE">Setup</entry>
+  <entry key="LBL_USERNAME">User name:</entry>
+  <entry key="LBL_PASSWORD">Password:</entry>
+  <entry key="LBL_BUSINESS_UNIT">My Curriculum Vitae</entry>  
+  <entry key="LBL_ACCEPT">Start session</entry>
+  <entry key="LBL_CLOSE">Close</entry>
+  <entry key="LBL_LOGIN">Access - Setup</entry>
+  <entry key="LBL_LOGOUT">Logout</entry>
+  <entry key="LBL_GO_BACK">Go back...</entry>
+  <entry key="LBL_TRY_AGAIN">Try again</entry>
+  <entry key="LBL_NO_FRAMES">Your browser does not support frames</entry>
+  <entry key="LBL_SETUP_BAR">Administration application</entry>
+  <entry key="LBL_START_BUSINESS_UNIT">Start</entry>
+  <entry key="LBL_STOP_BUSINESS_UNIT">Stop</entry>
+  <entry key="LBL_COMPONENTS">Components with which the system will start</entry>
+  <entry key="LBL_STATE">State</entry>
+  <entry key="LBL_MASTERS">Masters</entry>
+  <entry key="LBL_DISTRIBUTION">Distribution</entry>
+  <entry key="LBL_DELETE">delete</entry>
+  <entry key="LBL_COLONIZER">owner</entry>
+  <entry key="LBL_ADD_MASTER_FROM_SIGNATURE">Add master</entry>
+  <entry key="LBL_ADD_MASTER_FROM_CERTIFICATE">Add master from certificate</entry>
+  <entry key="LBL_ADD">Add</entry>
+  <entry key="LBL_UPDATE">Update</entry>
+  <entry key="LBL_DOWNLOAD">Download</entry>
+  <entry key="LBL_NO_MAIL">Email address unknown</entry>
+  <entry key="LBL_VERSION_INFO">Version information</entry>
+  <entry key="LBL_CONTEXT_INFO">Context information</entry>
+  <entry key="LBL_APPLICATION_DIR">Application directory</entry>
+  <entry key="LBL_HOME_DIR">Home directory</entry>
+  <entry key="LBL_CONTEXT_NAME">Context name</entry>
+  <entry key="LBL_CHARSET">Charset</entry>
+  <entry key="LBL_CURRENT_DATE">Current date</entry>
+  <entry key="LBL_DISTRIBUTION_INFO">Information</entry>
+  <entry key="LBL_DISTRIBUTION_NAME">Name</entry>
+  <entry key="LBL_DISTRIBUTION_TITLE">Title</entry>
+  <entry key="LBL_DISTRIBUTION_SUBTITLE">Subtitle</entry>
+  <entry key="LBL_DISTRIBUTION_AUTHOR">Author</entry>
+  <entry key="LBL_DISTRIBUTION_FEDERATION">Federation</entry>
+  <entry key="LBL_DISTRIBUTION_VERSION">Version</entry>
+  <entry key="LBL_DISTRIBUTION_METAMODEL_VERSION">Metamodel version</entry>
+  <entry key="LBL_DISTRIBUTION_RELEASE">Release</entry>
+  <entry key="LBL_UPLOAD_DISTRIBUTION">Update distribution</entry>
+  <entry key="LBL_TOGGLE_MASTER_FROM_SIGNATURE_DIALOG">add administrator...</entry>
+  <entry key="LBL_TOGGLE_MASTER_FROM_CERTIFICATE_DIALOG">add administrator from certificate...</entry>
+  <entry key="LBL_TOGGLE_DISTRIBUTION_DIALOG">update distribution...</entry>
+  <entry key="LBL_SIGNATURE">Installed certificate</entry>
+  <entry key="LBL_CERTIFICATE">Public certificate</entry>
+  <entry key="LBL_SELECT_CERTIFICATE">Select certificate</entry>
+  <entry key="LBL_NO_DISTRIBUTION">No distribution installed in this business space</entry>
+  <entry key="LBL_INSTALL">Install</entry>
+  <entry key="LBL_INSTALL_DISTRIBUTION">Install distribution</entry>
+  <entry key="LBL_NO_CERTIFICATES">No available certificates</entry>
+</properties>

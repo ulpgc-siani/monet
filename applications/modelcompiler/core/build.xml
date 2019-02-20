@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="compiler">
+  <property name="target" value="1.5" />
+  <property name="source" value="1.5" />
+
+  <path id="App Libraries.libraryclasspath">
+    <pathelement location="lib" />
+    <fileset dir="lib">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+  <path id="compiler.classpath">
+    <pathelement location="bin" />
+    <path refid="App Libraries.libraryclasspath" />
+  </path>
+
+  <target name="clean">
+    <delete dir="dist" />
+    <delete file="monet_compiler.jar"/>
+  </target>
+
+  <target name="compile" depends="clean">
+    <mkdir dir="dist" />
+    <javac debug="true" destdir="dist" source="${source}" target="${target}">
+      <src path="src" />
+      <classpath refid="compiler.classpath" />
+    </javac>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <copy includeemptydirs="false" todir="dist">
+      <fileset dir="lib">
+      </fileset>
+      <fileset dir="jar">
+      </fileset>
+    </copy>
+
+    <manifest file="MANIFEST.MF">
+        <attribute name="Manifest-Version" value="1.0"/>
+        <attribute name="Rsrc-Class-Path" value="./ image4j.jar"/>
+        <attribute name="Class-Path" value="."/>
+        <attribute name="Rsrc-Main-Class" value="Compiler"/>
+        <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+    </manifest>
+
+    <jar destfile="compiler.jar"
+         basedir="dist"
+         includes="**/*"
+         manifest="MANIFEST.MF"
+         />
+    <delete file="MANIFEST.MF"/>
+    <delete dir="dist" />
+
+  </target>
+  
+  <target name="compiler" depends="jar" />
+</project>
+

@@ -1,0 +1,90 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_16
+Built-By: paul
+Created-By: Apache Maven
+Archiver-Version: Plexus Archiver
+
+Name: uji.jpg
+SHA1-Digest: gkqMbEtkuhzDGYOe8Urcm8FXK7M=
+
+Name: i18n_EN_en.properties
+SHA1-Digest: FK4igKl1QCazNUM86qRCwvc2NwA=
+
+Name: ocsp-gva.crt
+SHA1-Digest: 05SUWuMZ9KwpWhBfTZCFg1d9U48=
+
+Name: ACDNIE001.pem
+SHA1-Digest: ZcjqpGggQ1jxmGKx3E5u/nSd6w4=
+
+Name: META-INF/maven/es.uji.security/uji-config/pom.properties
+SHA1-Digest: 2tqv1OttHyNDhOugyTsyh5X9vkg=
+
+Name: es/uji/security/crypto/config/ConfigManager.class
+SHA1-Digest: jImOEOLTmmMUf3ix+RcANdC1tzc=
+
+Name: DNIEOCSP.pem
+SHA1-Digest: tvCcRbun2IzjxCu8xsa/QmHFSuE=
+
+Name: config.xml
+SHA1-Digest: ebRz3la2hZxKfnSjIhBigh+Z4Gg=
+
+Name: ACDNIE002-SHA1.pem
+SHA1-Digest: u0o2BTSLArHr39msXrofwB/FtZw=
+
+Name: tsa1_accv.der
+SHA1-Digest: Ghx2hX+/RAiYHnXicwFOGRH1qnM=
+
+Name: cagva.pem
+SHA1-Digest: U6hRhLxvyCCVEXdYgaGmpoh6Wdk=
+
+Name: test.pem
+SHA1-Digest: ajYZ9OXmrWrKflswfSX4aDUhzjQ=
+
+Name: i18n_GL_es.properties
+SHA1-Digest: 4WuQXuQ6Kb765LbJz7ICUS1KEM8=
+
+Name: META-INF/maven/es.uji.security/uji-config/pom.xml
+SHA1-Digest: zOV8oul84wKzW7MqSEWfEeMlchw=
+
+Name: accv-ca2.pem
+SHA1-Digest: kY7f6oaO3oEDuJ5P6JMarTt8Rk8=
+
+Name: testKeyStore
+SHA1-Digest: RnzhuXY7Rs19n2PtsIZ9koWVC8Q=
+
+Name: i18n.properties
+SHA1-Digest: OvVg4kC0tcANgXESJOBzLVyQXXI=
+
+Name: ujica.pem
+SHA1-Digest: ktIcqNaeIFAJDGnB2wnpJF4u4Ms=
+
+Name: ocsp-gva-old.crt
+SHA1-Digest: zTI25nn4c4SEQ6E4TyOP/fqv0HY=
+
+Name: NisuCa.pem
+SHA1-Digest: 61r7ZPfZ8Y8ef78UXm+SuJb6huw=
+
+Name: i18n_CA_ca.properties
+SHA1-Digest: jnr/ARTcxi4wKSA0eU3o1L1kf0E=
+
+Name: fnmt.pem
+SHA1-Digest: Oxcvp+LtAFiU3uXgjAMo4muxIIk=
+
+Name: i18n_ES_es.properties
+SHA1-Digest: /2rFU/0PPTq5SeaC/oekuzYL1Ao=
+
+Name: ujiCrypto.conf
+SHA1-Digest: skDU3lvW4mAon9N3CNzfajkdkFg=
+
+Name: data.xml
+SHA1-Digest: B+Q/ixA3SvLgrMR0RsiGzhC8bP4=
+
+Name: log4j.properties
+SHA1-Digest: XMK03Z3Imw1ZBJI5WSujpvMzrG4=
+
+Name: rootca.pem
+SHA1-Digest: dn9jzHFZvQFc9JCOle5Ap5+9cWE=
+
+Name: ACDNIE003-SHA1.pem
+SHA1-Digest: gBQn/i32KKmJ4BQRIeO+lILAe9Q=
+

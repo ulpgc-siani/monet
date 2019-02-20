@@ -1,0 +1,33 @@
+object FrmInformation: TFrmInformation
+  Left = 1973
+  Height = 469
+  Top = 81
+  Width = 653
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'Information'
+  ClientHeight = 469
+  ClientWidth = 653
+  Position = poMainFormCenter
+  LCLVersion = '1.2.4.0'
+  object MemInformation: TMemo
+    Left = 8
+    Height = 410
+    Top = 8
+    Width = 636
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+  object BtnClose: TButton
+    Left = 560
+    Height = 25
+    Top = 432
+    Width = 84
+    Anchors = [akRight, akBottom]
+    Caption = 'Close'
+    Default = True
+    OnClick = BtnCloseClick
+    TabOrder = 1
+  end
+end

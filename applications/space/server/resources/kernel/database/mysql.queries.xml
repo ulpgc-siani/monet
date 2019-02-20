@@ -1,0 +1,2690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <!-- COMMON -->
+  <entry key="INFO_LOAD_VERSION">
+    <![CDATA[
+select value from ts$info WHERE name='version'
+]]>
+  </entry>
+    <entry key="INFO_UPDATE_VERSION">
+        <![CDATA[
+update ts$info SET value=@value WHERE name='version'
+]]>
+    </entry>
+  <entry key="INFO_LOAD_YEAR_SEQUENCE">
+    <![CDATA[
+select value from ts$info WHERE name='year_sequence'
+]]>
+  </entry>
+  <entry key="INFO_INSERT_YEAR_SEQUENCE">
+    <![CDATA[
+INSERT INTO ts$info (name, value) VALUES ('year_sequence', @value)
+]]>
+  </entry>
+  <entry key="INFO_UPDATE_YEAR_SEQUENCE">
+    <![CDATA[
+update ts$info SET value=@value WHERE name='year_sequence'
+]]>
+  </entry>
+    <entry key="TABLE_NODES_DESCRIPTORS">
+        <![CDATA[
+ts$nodes_descriptors
+]]>
+    </entry>
+  <entry key="TABLE_REFERENCES_PREFIX">
+    <![CDATA[
+tr$
+]]>
+  </entry>
+
+  <!-- ACCOUNT -->
+  <entry key="ACCOUNT_EXISTS">
+    <![CDATA[
+SELECT ts$users.id FROM ts$users WHERE ts$users.id=@id
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOAD">
+    <![CDATA[
+SELECT * FROM ts$users WHERE ts$users.id=@id
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOAD_IDS_FROM_CODES">
+    <![CDATA[
+SELECT id FROM ts$users WHERE ts$users.username IN (::users::)
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOAD_BY_USERNAME">
+    <![CDATA[
+SELECT * FROM ts$users WHERE username=@username
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOCATE">
+    <![CDATA[
+SELECT * FROM ts$users WHERE LCASE(ts$users.username)=LCASE(@data)
+]]>
+  </entry>
+  <entry key="ACCOUNT_CREATE">
+    <![CDATA[
+INSERT INTO ts$users (id,username,fullname,email,photo,preferences,register_date) VALUES (@id,@username,@fullname,@email,@photo,@preferences,@registerdate)
+]]>
+  </entry>
+  <entry key="ACCOUNT_SAVE">
+    <![CDATA[
+UPDATE ts$users SET fullname=@fullname, email=@email, photo=@photo, preferences=@preferences WHERE id=@id
+]]>
+  </entry>
+  <entry key="ACCOUNT_REMOVE">
+    <![CDATA[
+DELETE FROM ts$users WHERE id=@id
+]]>
+  </entry>
+  <entry key="ACCOUNT_LIST_LOAD_USERS">
+    <![CDATA[
+SELECT * FROM ts$users
+]]>
+  </entry>
+  <entry key="ACCOUNT_LIST_LOAD_USERS_IDS">
+    <![CDATA[
+SELECT id FROM ts$users
+]]>
+  </entry>
+  <entry key="ACCOUNT_LIST_LOAD_USERS_FILTERED">
+    <![CDATA[
+SELECT * FROM ts$users WHERE id IN (::users::)
+]]>
+  </entry>
+  <entry key="ACCOUNT_LIST_SEARCH_USERS">
+    <![CDATA[
+SELECT * FROM ts$users WHERE (MATCH(username) AGAINST (@condition IN BOOLEAN MODE) OR username LIKE '%::condition::%') LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="ACCOUNT_LIST_SEARCH_USERS_COUNT">
+    <![CDATA[
+SELECT COUNT(id) as counter FROM ts$users WHERE (MATCH(username) AGAINST (@condition IN BOOLEAN MODE) OR username LIKE '%::condition::%')
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOAD_LINKED_NODES">
+    <![CDATA[
+SELECT id_node, code, role FROM ts$users, ts$users_nodes, ts$nodes WHERE ts$users.id=@id AND ts$users.id=ts$users_nodes.id_user AND ts$users_nodes.id_node=ts$nodes.id
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOAD_LINKED_USER">
+    <![CDATA[
+SELECT id_user FROM ts$users_nodes WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="ACCOUNT_LINK_TO_NODE">
+    <![CDATA[
+INSERT INTO ts$users_nodes (id_user, id_node, role) VALUES (@iduser,@idnode,@role)
+]]>
+  </entry>
+  <entry key="ACCOUNT_UNLINK_FROM_NODE">
+    <![CDATA[
+DELETE FROM ts$users_nodes WHERE id_user=@iduser AND role=@role
+]]>
+  </entry>
+  <entry key="ACCOUNT_LOAD_LINKED_DASHBOARDS">
+    <![CDATA[
+SELECT id_dashboard, role FROM ts$users, ts$users_dashboards WHERE ts$users.id=@id AND ts$users.id=ts$users_dashboards.id_user
+]]>
+  </entry>
+  <entry key="ACCOUNT_LINK_TO_DASHBOARD">
+    <![CDATA[
+INSERT INTO ts$users_dashboards (id_user, id_dashboard, role) VALUES (@iduser,@iddashboard,@role)
+]]>
+  </entry>
+  <entry key="ACCOUNT_UNLINK_FROM_DASHBOARD">
+    <![CDATA[
+DELETE FROM ts$users_dashboards WHERE id_user=@iduser AND role=@role
+]]>
+  </entry>
+
+  <!-- MASTER LIST -->
+  <entry key="MASTER_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$masters WHERE ts$masters.username=@username AND ts$masters.certificate_authority=@certificateauthority
+]]>
+  </entry>
+  <entry key="MASTER_LOAD">
+    <![CDATA[
+SELECT id, username, certificate_authority, email, fullname, colonizer, register_date FROM ts$masters WHERE ts$masters.username=@username AND ts$masters.certificate_authority=@certificateauthority
+]]>
+  </entry>
+  <entry key="MASTER_CREATE">
+    <![CDATA[
+INSERT INTO ts$masters (username, certificate_authority, email, fullname, colonizer, register_date) VALUES (@username, @certificateauthority, @email, @fullname, @colonizer, @registerdate);id
+]]>
+  </entry>
+  <entry key="MASTER_REMOVE">
+    <![CDATA[
+DELETE FROM ts$masters WHERE id=@id
+]]>
+  </entry>
+  <entry key="MASTER_LIST_LOAD">
+    <![CDATA[
+  SELECT id, username, certificate_authority, email, fullname, colonizer, register_date 
+  FROM ts$masters
+]]>
+  </entry>
+  <entry key="MASTER_LIST_LOAD_COUNT">
+    <![CDATA[
+  SELECT COUNT(id) AS counter 
+  FROM ts$masters
+]]>
+  </entry>
+
+  <!-- ROLE LIST -->
+  <entry key="ROLE_LIST_LOAD">
+    <![CDATA[
+SELECT ts$roles.* 
+FROM ts$roles 
+WHERE ts$roles.code=@code ::nature:: ::nonexpired:: ::condition::
+ORDER BY id DESC
+LIMIT @startpos,@limit 
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(ts$roles.id) as counter 
+FROM ts$roles 
+WHERE ts$roles.code=@code ::nature:: ::nonexpired:: ::condition::
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_SUBQUERY_NON_EXPIRED">
+    <![CDATA[
+AND (ts$roles.expire_date IS NULL OR @date <= ts$roles.expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_SUBQUERY_NATURE_EXTERNAL">
+    <![CDATA[
+AND NOT ts$roles.partner_id IS NULL
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_SUBQUERY_NATURE_INTERNAL">
+    <![CDATA[
+AND ts$roles.partner_id IS NULL
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_SUBQUERY_CONDITION">
+    <![CDATA[
+AND MATCH(ts$roles.cache) AGAINST (@condition IN BOOLEAN MODE)
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_FOR_ACCOUNT">
+    <![CDATA[
+SELECT ts$roles.*, ts$users.id as id_user, ts$users.username as username 
+FROM ts$users, ts$roles 
+WHERE ts$users.id=@id AND ts$roles.id_user=ts$users.id AND (ts$roles.expire_date IS NULL OR @date <= ts$roles.expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_USERS_IDS">
+    <![CDATA[
+SELECT id_user FROM ts$roles WHERE ts$roles.code=@code AND (expire_date IS NULL OR @date<=expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_LOAD">
+    <![CDATA[
+SELECT ts$roles.* 
+FROM ts$roles
+WHERE ts$roles.id=@id
+]]>
+  </entry>
+  <entry key="ROLE_SAVE">
+    <![CDATA[
+UPDATE ts$roles SET id_user=@iduser, code=@code, type=@type, begin_date=@begindate, expire_date=@expiredate, partner_id=@partnerid, partner_service_name=@partnerservicename, cache=@cache WHERE id=@id
+]]>
+  </entry>
+  <entry key="ROLE_USER_EXISTS">
+    <![CDATA[
+SELECT * 
+FROM ts$roles 
+WHERE code=@code AND id_user=@iduser AND (expire_date IS NULL OR @date<=expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_SERVICE_EXISTS">
+    <![CDATA[
+SELECT * 
+FROM ts$roles 
+WHERE code=@code AND partner_id=@partnerid AND partner_service_name=@partnerservicename AND (expire_date IS NULL OR @date<=expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_FEEDER_EXISTS">
+    <![CDATA[
+SELECT * 
+FROM ts$roles 
+WHERE code=@code AND partner_id=@partnerid AND partner_feeder_name=@partnerfeedername AND (expire_date IS NULL OR @date<=expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_CREATE">
+    <![CDATA[
+INSERT INTO ts$roles (id_user, code, type, begin_date, expire_date, partner_id, partner_service_name, cache) VALUES (@iduser, @code, @type, @begindate, @expiredate, @partnerid, @partnerservicename, @cache)
+]]>
+  </entry>
+  <entry key="ROLE_REMOVE">
+    <![CDATA[
+DELETE ts$roles WHERE id=@id
+]]>
+  </entry>
+
+  <!-- EVENT LOG -->
+  <entry key="EVENT_LOG_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(*) FROM ts$eventlog WHERE (logger=@logger OR ISNULL(@logger))
+]]>
+  </entry>
+  <entry key="EVENT_LOG_LOAD">
+    <![CDATA[
+SELECT creation_time, logger, priority, message, stacktrace FROM ts$eventlog WHERE (logger=@logger OR ISNULL(@logger)) ORDER BY creation_time DESC LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="EVENT_LOG_INSERT">
+    <![CDATA[
+INSERT INTO ts$eventlog (creation_time, logger, priority, message, stacktrace) VALUES (@creationtime, @logger, @priority, @message, @stacktrace)
+]]>
+  </entry>
+  <entry key="EVENT_LOG_CLEAR">
+    <![CDATA[
+DELETE FROM ts$eventlog WHERE (logger=@logger OR ISNULL(@logger))
+]]>
+  </entry>
+
+  <!-- NODE -->
+  <entry key="NODE_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$nodes WHERE ts$nodes.id=@id
+]]>
+  </entry>
+  <entry key="NODE_LOAD">
+    <![CDATA[
+SELECT id, id_parent, id_owner, id_prototype, code, definition_type, ordering, valid FROM ts$nodes WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_LOAD_DATA">
+    <![CDATA[
+SELECT data FROM ts$nodes WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_LOAD_FLAGS">
+    <![CDATA[
+SELECT flags FROM ts$nodes WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_LOAD_NOTES">
+    <![CDATA[
+SELECT notes FROM ts$nodes WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_LOAD_PARENTS_LABELS">
+    <![CDATA[
+SELECT ts$nodes_descriptors.id_node, code, label, MAX(ancestor_level) as max_level
+FROM ts$nodes_descriptors 
+INNER JOIN ts$nodes_ancestors on ts$nodes_ancestors.id_ancestor=ts$nodes_descriptors.id_node
+WHERE ts$nodes_ancestors.id_node=@idnode
+GROUP BY ts$nodes_descriptors.id_node, code, label
+ORDER BY max_level DESC
+]]>
+  </entry>
+  <entry key="NODE_LOAD_PARTNER_CONTEXT">
+    <![CDATA[
+SELECT partner_context FROM ts$nodes WHERE id=@id AND NOT partner_context IS NULL 
+]]>
+  </entry>
+  <entry key="NODE_LOAD_PROTOTYPES_INFO">
+    <![CDATA[
+SELECT id_node, id_parent, code, label, description FROM ts$nodes_descriptors WHERE code IN (::codenodes::) AND prototype=1 AND delete_date IS NULL AND (id_parent=@idnode OR id_parent IS NULL)
+]]>
+  </entry>
+  <entry key="NODE_REVISION_LOAD">
+    <![CDATA[
+SELECT * FROM ts$nodes_revisions WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_REVISION_CREATE">
+    <![CDATA[
+INSERT INTO ts$nodes_revisions (id_node, id_user, data, merged, revision_date) VALUES (@idnode,@iduser,@data,@merged,@revisiondate)
+]]>
+  </entry>
+  <entry key="NODE_REVISION_LIST_LOAD_NODE_IDS">
+    <![CDATA[
+SELECT id_node FROM ts$nodes_ancestors WHERE id_ancestor=@idnode AND ancestor_level=1
+]]>
+  </entry>
+  <entry key="NODE_REVISION_LIST_LOAD_ITEMS">
+    <![CDATA[
+SELECT * FROM ts$nodes_revisions WHERE id_node in (::idnodes::) OR id_node=@idnode  ORDER BY revision_date DESC LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_REVISION_LIST_LOAD_ITEMS_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS counter FROM ts$nodes_revisions WHERE id_node in (::idnodes::) OR id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_LOAD_CHILDREN">
+    <![CDATA[
+SELECT id, code FROM ts$nodes WHERE id_parent=@id
+]]>
+  </entry>
+  <entry key="NODE_LOAD_DESCENDANTS">
+    <![CDATA[
+SELECT id_node FROM ts$nodes_ancestors WHERE id_ancestor=@idnode
+]]>
+  </entry>
+  <entry key="NODE_CREATE">
+    <![CDATA[
+INSERT INTO ts$nodes (id_parent, id_owner, id_prototype, code, definition_type, partner_context, ordering, data, valid) VALUES (@idparent,@idowner,@idprototype,@code,@definitiontype,@partnercontext,@ordering,@data,@valid)
+]]>
+  </entry>
+  <entry key="NODE_TRASH_SUBQUERY">
+    <![CDATA[
+SELECT id_node FROM ts$nodes_ancestors WHERE id_ancestor=@idnode OR id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_MOVE_TO_TRASH">
+    <![CDATA[
+UPDATE ts$nodes_descriptors SET delete_date=@deletedate WHERE id_node IN (::idnodes::)
+]]>
+  </entry>
+  <entry key="NODE_RECOVER_FROM_TRASH">
+    <![CDATA[
+UPDATE ts$nodes_descriptors SET delete_date=null WHERE id_node IN (::idnodes::)
+]]>
+  </entry>
+  <entry key="NODE_REMOVE_LOAD_ANCESTORS">
+    <![CDATA[
+SELECT id_node FROM ts$nodes_ancestors WHERE ts$nodes_ancestors.id_ancestor=@id
+]]>
+  </entry>
+  <entry key="NODE_REMOVE">
+    <![CDATA[
+DELETE FROM ts$nodes 
+WHERE id=@id OR id_parent=@id OR id_parent IN (::idnodes::)
+]]>
+  </entry>
+  <entry key="NODE_ANCESTORS_CLEAN">
+    <![CDATA[
+DELETE FROM ts$nodes_ancestors WHERE (id_node IN (SELECT id_node FROM (SELECT dummy.id_node FROM ts$nodes_ancestors AS dummy WHERE dummy.id_ancestor=@idnode) AS id_node) 
+                                 AND  id_ancestor IN (SELECT id_ancestor FROM (SELECT dummy2.id_ancestor FROM ts$nodes_ancestors AS dummy2 WHERE dummy2.id_node=@idnode) AS id_ancestor))
+                                  OR id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_ANCESTORS_INSERT_FROM_PARENT">
+    <![CDATA[
+INSERT INTO ts$nodes_ancestors (id_ancestor, id_node, ancestor_level) 
+  SELECT DISTINCT parents.id_ancestor AS id_ancestor, childs.id_node AS id_node, childs.ancestor_level + 1 AS ancestor_level
+  FROM ts$nodes_ancestors AS parents, ts$nodes_ancestors AS childs 
+  WHERE parents.id_node=@idnode AND
+        childs.id_ancestor=@idnode AND 
+        (parents.id_ancestor, childs.id_node, childs.ancestor_level+1) NOT IN (SELECT id_ancestor, id_node, ancestor_level FROM (SELECT rep.id_ancestor, rep.id_node, rep.ancestor_level FROM ts$nodes_ancestors AS rep) AS rep_table)
+  UNION
+    SELECT id_ancestor, @idnode, ancestor_level+1 FROM (SELECT dummy.id_ancestor, dummy.ancestor_level FROM ts$nodes_ancestors as dummy WHERE dummy.id_node=@idparent) AS dummy_table
+]]>
+  </entry>
+  <entry key="NODE_ANCESTORS_INSERT">
+    <![CDATA[
+INSERT INTO ts$nodes_ancestors (id_ancestor, id_node, ancestor_level) VALUES (@idparent, @idnode, 1)
+]]>
+  </entry>
+  <entry key="NODE_SAVE">
+    <![CDATA[
+UPDATE ts$nodes SET id_parent=@idparent, id_owner=@idowner, id_prototype=@idprototype, code=@code, definition_type=@definitiontype, ordering=@ordering, data=@data, valid=@valid WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SAVE_PARENT">
+    <![CDATA[
+UPDATE ts$nodes SET id_parent=@idparent WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SAVE_DATA">
+    <![CDATA[
+UPDATE ts$nodes SET data=@data WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SAVE_FLAGS">
+    <![CDATA[
+UPDATE ts$nodes SET flags=@flags WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SAVE_NOTES">
+    <![CDATA[
+UPDATE ts$nodes SET notes=@notes WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SAVE_PROTOTYPE">
+    <![CDATA[
+UPDATE ts$nodes SET id_prototype=@idprototype WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SAVE_PARTNER_CONTEXT">
+    <![CDATA[
+UPDATE ts$nodes SET partner_context=@partnercontext WHERE id IN (::idnodes::)
+]]>
+  </entry>
+  <entry key="NODE_MAKE_PUBLIC">
+    <![CDATA[
+UPDATE ts$nodes SET id_owner=null WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_MAKE_PRIVATE">
+    <![CDATA[
+UPDATE ts$nodes SET id_owner=@idowner WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_MAKE_PROTOTYPE">
+    <![CDATA[
+UPDATE ts$nodes_descriptors SET prototype=1 WHERE id_node IN (SELECT id_node FROM ts$nodes_ancestors WHERE ts$nodes_ancestors.id_ancestor=@idnode) OR id_node=@idnode 
+]]>
+  </entry>
+  <entry key="NODE_SUPER_DATA_LOAD">
+    <![CDATA[
+SELECT * FROM ts$nodes_superdata WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_SUPER_DATA_LOAD_FOR_NODES">
+    <![CDATA[
+SELECT * FROM ts$nodes_superdata WHERE id_node IN (::nodes::) AND code_attribute='::codeattribute::'
+]]>
+  </entry>
+  <entry key="NODE_SUPER_DATA_ADD">
+    <![CDATA[
+INSERT INTO ts$nodes_superdata (id_node, code_attribute, code, value, data) VALUES (@idnode,@codeattribute,@code,@value,@data)
+]]>
+  </entry>
+  <entry key="NODE_SUPER_DATA_ADD_REVISION">
+    <![CDATA[
+INSERT INTO ts$nodes_superdata_revisions (id_node, id_super_data, id_user, code_attribute, code, value, data, merged, revision_date) VALUES (@idnode,@idsuperdata,@iduser,@codeattribute,@code,@value,@data,@merged,@revisiondate)
+]]>
+  </entry>
+  <entry key="NODE_SUPER_DATA_SAVE">
+    <![CDATA[
+UPDATE ts$nodes_superdata SET code=@code, value=@value, data=@data WHERE id=@id
+]]>
+  </entry>
+  <entry key="NODE_SUPER_DATA_DELETE">
+    <![CDATA[
+DELETE FROM ts$nodes_superdata WHERE id_node=@idnode AND code_attribute=@codeattribute
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_REFERENCE_SUBQUERY">
+    <![CDATA[
+::referencetable:: LEFT JOIN ts$nodes_descriptors on ts$nodes_descriptors.id_node=::referencetable::.id_node
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_REFERENCE_SUBQUERY_FOR_LOCATIONS">
+    <![CDATA[
+::referencetable::, ts$nodes_descriptors
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_REFERENCE_SUBQUERY_CONDITION_FOR_LOCATIONS">
+    <![CDATA[
+AND ts$nodes_descriptors.id_node=::referencetable::.id_node
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_DESCRIPTOR_ATTRIBUTES">
+    <![CDATA[
+DISTINCT(id_node), id_parent, code,  
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_REFERENCE_ATTRIBUTES">
+    <![CDATA[
+::reference::.*,
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_CODENODES">
+    <![CDATA[
+AND ::nodesdescriptorstable::code IN (::codenodes::)
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_SORTBY">
+    <![CDATA[
+::name:: ::mode::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_GROUPBY">
+    <![CDATA[
+AND (::options::)
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_GROUPBY_OPTION">
+    <![CDATA[
+::or:: ::referencetable::::name::='::value::'
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_GROUPBY_DATE_LT_OPTION">
+    <![CDATA[
+::or:: ::referencetable::::name::$ex <= STR_TO_DATE("::value::", "%d/%m/%Y") + interval 1 day
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_GROUPBY_DATE_GT_OPTION">
+    <![CDATA[
+::or:: ::referencetable::::name::$ex >= STR_TO_DATE("::value::", "%d/%m/%Y")
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_GROUPBY_OPTION_WITH_NULL">
+    <![CDATA[
+::or:: ::referencetable::::name:: IS NULL
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_PARAMETERS">
+    <![CDATA[
+AND (::parameters::)
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_PARAMETER">
+    <![CDATA[
+::or:: (::referencetable::::name:: LIKE '%::data::%')
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_PARAMETER_WITH_EXTRA_DATA">
+    <![CDATA[
+::or:: (::referencetable::::name:: LIKE '%::data::%' OR ::referencetable::::name::$ex LIKE '%::data::%')
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_PARENT_SUBQUERY">
+    <![CDATA[
+AND ts$nodes_descriptors.id_parent=@idparent
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_VIEW_PARENT_SUBQUERY">
+    <![CDATA[
+AND ts$nodes_descriptors.id_parent=::idparent::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_VIEW">
+    <![CDATA[
+    CREATE VIEW tv$items_::idnode:: AS
+    SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
+    FROM ::referencesubquery::
+    WHERE ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::parent::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_VIEW_EXISTS">
+    <![CDATA[
+    SELECT table_name as viewname FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA="::schema::" AND TABLE_NAME='tv$items_::idnode::'
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_VIEW_DELETE">
+    <![CDATA[
+    DROP VIEW tv$items_::idnode::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS">
+    <![CDATA[
+  SELECT * FROM tv$items_::idnode:: WHERE ::part1:: 1=1 ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_COUNT">
+    <![CDATA[
+  SELECT COUNT(id_node) AS counter FROM tv$items_::idnode:: WHERE ::part1:: 1=1 ::codenodessubquery:: ::groupsby:: ::parameters::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_LOCATIONS">
+    <![CDATA[
+SELECT ts$locations.id, ts$locations.id_node, ts$locations.id_location, ts$locations.geometry, ts$locations.create_date, ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
+  FROM ::referencesubquery::, ts$locations
+  WHERE
+    ::part1::
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.georeferenced=1 AND ts$locations.id_node = ts$nodes_descriptors.id_node AND ts$nodes_descriptors.prototype=0 ::referencesubquerycondition:: ::codenodessubquery:: ::parent:: ::groupsby:: ::parameters:: ::location:: ::boundingbox::
+  LIMIT @startpos,@limit
+    ]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ITEMS_LOCATIONS_COUNT">
+    <![CDATA[
+SELECT count(ts$locations.id) as counter
+  FROM ::referencesubquery::, ts$locations
+  WHERE
+    ::part1::
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.georeferenced=1 AND ts$locations.id_node = ts$nodes_descriptors.id_node AND ts$nodes_descriptors.prototype=0 ::referencesubquerycondition:: ::codenodessubquery:: ::parent:: ::groupsby:: ::parameters:: ::location:: ::boundingbox::
+    ]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_IDS">
+    <![CDATA[
+  SELECT id
+  FROM ts$nodes
+  WHERE ts$nodes.code = @code
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_IDS_WITH_CODES">
+    <![CDATA[
+  SELECT distinct(id)
+  FROM ts$nodes
+  WHERE ts$nodes.code IN (::codenodes::)
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_LINKS_IN_ITEMS">
+    <![CDATA[
+  SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.id_node IN (SELECT id_source FROM ts$links WHERE type_source='node' AND type_target='node' AND id_target=@idnode) AND
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_LINKS_IN_ITEMS_COUNT">
+    <![CDATA[
+  SELECT COUNT(DISTINCT(::referencesubquery::.id_node)) AS counter
+  FROM ::referencesubquery::
+  WHERE
+  ::part1:: 
+    ts$nodes_descriptors.id_node IN (SELECT id_source FROM ts$links WHERE type_source='node' AND type_target='node' AND id_target=@idnode) AND
+  ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_LINKS_OUT_ITEMS">
+    <![CDATA[
+  SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.id_node IN (SELECT id_target FROM ts$links WHERE type_source='node' AND type_target='node' AND id_source=@idnode) AND
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_LINKS_OUT_ITEMS_COUNT">
+    <![CDATA[
+  SELECT COUNT(DISTINCT(::referencesubquery::.id_node)) AS counter 
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.id_node IN (SELECT id_target FROM ts$links WHERE type_source='node' AND type_target='node' AND id_source=@idnode) AND
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_OWNED_PROTOTYPES_ITEMS">
+    <![CDATA[
+  SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=1 AND ts$nodes_descriptors.id_parent=@idnode ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_OWNED_PROTOTYPES_ITEMS_COUNT">
+    <![CDATA[
+  SELECT COUNT(DISTINCT(ts$nodes_descriptors.id_node)) AS counter
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=1 AND ts$nodes_descriptors.id_parent=@idnode ::codenodessubquery:: ::groupsby:: ::parameters::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_SHARED_PROTOTYPES_ITEMS">
+    <![CDATA[
+  SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=1 AND ts$nodes_descriptors.id_parent IS NULL AND @idnode=@idnode ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_SET_SHARED_PROTOTYPES_ITEMS_COUNT">
+    <![CDATA[
+  SELECT COUNT(DISTINCT(ts$nodes_descriptors.id_node)) AS counter
+  FROM ::referencesubquery::
+  WHERE
+    ::part1:: 
+    ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=1 AND ts$nodes_descriptors.id_parent IS NULL AND @idnode=@idnode ::codenodessubquery:: ::groupsby:: ::parameters::
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_FROM_SYSTEM">
+    <![CDATA[
+SELECT * FROM ts$nodes_descriptors WHERE id_parent=@idparent AND delete_date IS NULL ORDER BY ::field:: ::mode::, ordering DESC
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_ALL_FROM_SYSTEM">
+    <![CDATA[
+SELECT * FROM ts$nodes_descriptors
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_FROM_TRASH">
+    <![CDATA[
+SELECT DISTINCT * FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ORDER BY delete_date DESC, ordering DESC LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_FROM_TRASH_COUNT">
+    <![CDATA[
+SELECT COUNT(DISTINCT(id_node)) as counter FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_FROM_TRASH_OFPARENT">
+    <![CDATA[
+SELECT DISTINCT(id_node) FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOCATE">
+    <![CDATA[
+SELECT id_node FROM ts$nodes_descriptors WHERE code=@code
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_ITEMS">
+    <![CDATA[
+SELECT ts$nodes_descriptors.* FROM ts$nodes_descriptors INNER JOIN ts$nodes on ts$nodes_descriptors.id_node = ts$nodes.id WHERE ts$nodes_descriptors.id_node IN (::ancestors::) ::datefilter:: AND ts$nodes_descriptors.delete_date IS NULL ::condition:: LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_ITEMS_COUNT">
+    <![CDATA[
+SELECT COUNT(*) as counter FROM ts$nodes_descriptors INNER JOIN ts$nodes on ts$nodes_descriptors.id_node = ts$nodes.id WHERE ts$nodes_descriptors.id_node IN (::ancestors::) ::datefilter:: AND ts$nodes_descriptors.delete_date IS NULL ::condition::
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_ANCESTORS">
+    <![CDATA[
+SELECT id_node FROM ts$nodes_ancestors WHERE ts$nodes_ancestors.id_ancestor=@idnode
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_PART_1">
+    <![CDATA[
+(MATCH(::referencetable::cache) AGAINST (@condition IN BOOLEAN MODE) OR ::nodesdescriptorstable::label LIKE '%::conditionsubquery::%') AND
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_PART_1_IN_NODES_DESCRIPTORS">
+    <![CDATA[
+(::nodesdescriptorstable::label LIKE '%::conditionsubquery::%') AND
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_PART_1_IN_TITLE">
+    <![CDATA[
+(::nodesdescriptorstable::label LIKE '%::conditionsubquery::%') AND
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_CONDITION">
+    <![CDATA[
+ AND (CONTAINS(data, @condition, 10) > 0 OR CONTAINS(label, @condition, 20) > 0 OR CONTAINS(description, @condition, 30) > 0)
+]]>
+  </entry>
+  <entry key="NODE_LIST_SEARCH_DATE_FILTER">
+    <![CDATA[
+ AND (ts$nodes_descriptors.update_date >= @fromdate) AND (ts$nodes_descriptors.update_date <= @todate)
+]]>
+  </entry>
+
+  <entry key="NODE_LINKS_COUNT_SOURCES">
+    <![CDATA[
+SELECT count(id_source) as counter FROM ts$nodes_links WHERE id_target=@idtarget
+]]>
+  </entry>
+  <entry key="NODE_LINKS_COUNT_TARGETS">
+    <![CDATA[
+SELECT count(id_target) as counter FROM ts$nodes_links WHERE id_source=@idsource
+]]>
+  </entry>
+  <entry key="NODE_LINKS_ADD">
+    <![CDATA[
+INSERT INTO ts$nodes_links (id_source, id_target, name_field) VALUES (@idsource,@idtarget,@namefield)
+]]>
+  </entry>
+  <entry key="NODE_LINKS_DELETE">
+    <![CDATA[
+DELETE FROM ts$nodes_links WHERE id_source=@idsource
+]]>
+  </entry>
+
+  <entry key="NODE_PERMISSION_LIST_LOAD">
+    <![CDATA[
+SELECT id, id_node, id_user, type, begin_date, expire_date 
+FROM ts$nodes_permissions 
+WHERE id_node IN (::idnodes::) AND @date >= begin_date AND (expire_date IS NULL OR @date <= expire_date)
+]]>
+  </entry>
+  <entry key="NODE_PERMISSION_LIST_LOAD_SUBQUERY">
+    <![CDATA[
+SELECT id_ancestor as id_node FROM ts$nodes_ancestors WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_PERMISSION_LIST_ADD">
+    <![CDATA[
+INSERT INTO ts$nodes_permissions (id_node, id_user, type, begin_date, expire_date) VALUES (@idnode,@iduser,@type,@begindate,@expiredate)
+]]>
+  </entry>
+  <entry key="NODE_PERMISSION_LIST_DELETE">
+    <![CDATA[
+DELETE FROM ts$nodes_permissions WHERE id_node=@idnode 
+]]>
+  </entry>
+
+  <entry key="NODE_SCHEMA_LOAD">
+    <![CDATA[
+SELECT data FROM ts$nodes_schemas WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_SCHEMA_ADD">
+    <![CDATA[
+INSERT INTO ts$nodes_schemas (id_node, data) VALUES (@idnode,@data)
+]]>
+  </entry>
+  <entry key="NODE_SCHEMA_DELETE">
+    <![CDATA[
+DELETE FROM ts$nodes_schemas WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="CHECK_NODE_SCHEMA_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS count FROM ts$nodes_schemas
+]]>
+  </entry>
+
+  <entry key="NODE_REFERENCE_EXISTS">
+    <![CDATA[
+SELECT id_node FROM ::referencetable:: WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_LOAD">
+    <![CDATA[
+SELECT * FROM ::referencetable:: WHERE ::referencetable::.id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_LOAD_FROM_SYSTEM">
+    <![CDATA[
+SELECT ts$nodes_descriptors.* FROM ts$nodes_descriptors WHERE ts$nodes_descriptors.id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_SAVE">
+    <![CDATA[
+UPDATE ::referencetable:: SET ::fields:: WHERE id_node IN (::idnodes::)
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_UPDATE_PARENT">
+    <![CDATA[
+UPDATE ::referencetable:: SET id_parent=@idparent WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_SAVE_UPDATE_DATE">
+    <![CDATA[
+UPDATE ::referencetable:: SET update_date=@updatedate WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_DELETE">
+    <![CDATA[
+DELETE FROM ::referencetable:: WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_MAKE_PUBLIC">
+    <![CDATA[
+UPDATE ts$nodes_descriptors SET id_owner=null WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="NODE_REFERENCE_MAKE_PRIVATE">
+    <![CDATA[
+UPDATE ts$nodes_descriptors SET id_owner=@idowner WHERE id_node=@idnode
+]]>
+  </entry>
+
+  <!-- NOTIFICATIONS -->
+  <entry key="NOTIFICATION_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$notifications WHERE id_publication=@idpublication
+]]>
+  </entry>
+  <entry key="NOTIFICATION_CREATE">
+    <![CDATA[
+INSERT INTO ts$notifications (id_user, id_publication, label, icon, `read`, create_date, target) VALUES (@iduser, @idpublication, @label, @icon, @read, @createdate, @target)
+]]>
+  </entry>
+  <entry key="NOTIFICATION_PRIORIZE">
+    <![CDATA[
+UPDATE ts$notifications SET create_date=@createdate, `read`=0 WHERE id_publication=@idpublication
+]]>
+  </entry>
+  <entry key="NOTIFICATION_MARK_READ">
+    <![CDATA[
+UPDATE ts$notifications SET `read`=1 WHERE id IN (::ids::)
+]]>
+  </entry>
+  <entry key="NOTIFICATION_MARK_ALL_READ">
+    <![CDATA[
+UPDATE ts$notifications SET `read`=1
+]]>
+  </entry>
+  <entry key="NOTIFICATION_LIST_LOAD">
+    <![CDATA[
+SELECT id, id_user, id_publication, label, icon, `read`, create_date, target FROM ts$notifications WHERE id_user=@iduser ORDER BY create_date DESC LIMIT @startpos, @limit
+]]>
+  </entry>
+  <entry key="NOTIFICATION_LIST_LOAD_WITH_PUBLICATION">
+    <![CDATA[
+SELECT id, id_user, id_publication, label, icon, `read`, create_date, target FROM ts$notifications WHERE id_publication=@idpublication
+]]>
+  </entry>
+  <entry key="NOTIFICATION_LIST_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS totalCount, SUM(`read`) AS 'read' FROM ts$notifications WHERE id_user=@iduser
+]]>
+  </entry>
+
+  <!-- REFERENCE -->
+  <entry key="REFERENCE_TABLE_EXISTS">
+    <![CDATA[
+SELECT * FROM information_schema.tables WHERE table_name=@referencetable AND table_schema=@schema
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_CREATE">
+    <![CDATA[
+CREATE TABLE ::referencetable:: (
+  id_node int(11) NOT NULL, 
+  id_parent int(11), 
+  code varchar(100) NOT NULL, 
+  ::attributes::, 
+  cache text, 
+  PRIMARY KEY(id_node), 
+  KEY ::referencetable::_code (code),
+  CONSTRAINT fk_::referencetable::_idnode 
+  FOREIGN KEY (id_node) REFERENCES ts$nodes (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_CREATE_TRIGGER_COLUMN">
+    <![CDATA[
+,NEW.::code::, ' '
+ ]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_CREATE_TRIGGER">
+    <![CDATA[
+CREATE TRIGGER ::referencetable::_cache_trigger BEFORE UPDATE ON ::referencetable:: 
+FOR EACH ROW BEGIN
+  SET NEW.cache=CONCAT_WS(' '::columns::);
+END;
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_CREATE_INDEX">
+    <![CDATA[
+CREATE INDEX ::referencetable::_::index:: ON ::referencetable:: (::index::)
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_CREATE_TEXT_INDEX">
+    <![CDATA[
+CREATE INDEX ::referencetable::_::index:: ON ::referencetable:: (::index::(333))
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_CREATE_FULLTEXT_INDEX">
+    <![CDATA[
+CREATE FULLTEXT INDEX ::referencetable::_cache_FT ON ::referencetable:: (cache)
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_DELETE">
+    <![CDATA[
+DROP TABLE ::referencetable::
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_REFRESH_PREPARE">
+    <![CDATA[
+RENAME TABLE ::referencetable:: TO ::referencetable::_OLD ::SEMICOLON:: DROP TRIGGER ::referencetable::_cache_trigger
+]]>
+  </entry>
+  <entry key="REFERENCE_TABLE_REFRESH_MIGRATE">
+    <![CDATA[
+INSERT INTO ::referencetable:: (id_node, id_parent, code) SELECT id_node, id_parent, code FROM ::referencetable::_OLD ::SEMICOLON:: DROP TABLE ::referencetable::_OLD
+]]>
+  </entry>
+  <entry key="REFERENCE_EXISTS">
+    <![CDATA[
+SELECT id_node FROM ::referencetable:: WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="REFERENCE_ADD">
+    <![CDATA[
+INSERT INTO ::referencetable:: (id_node,id_parent,code,::attributes::) VALUES (@idnode,@idparent,@code,::values::)
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES">
+    <![CDATA[
+SELECT DISTINCT(::referencetable::.::attribute::) FROM ::referencetable::
+LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=::referencetable::.id_node
+WHERE ts$nodes_descriptors.delete_date IS NULL AND ::referencetable::.code IN (::codenodes::) ::parameters:: ORDER BY ::referencetable::.::attribute::
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_FOR_OWNER">
+    <![CDATA[
+SELECT DISTINCT(::attribute::) FROM tv$items_::idnode::
+WHERE code IN (::codenodes::) ::parameters:: ORDER BY ::attribute::
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES">
+    <![CDATA[
+SELECT DISTINCT(code) FROM ::referencetable::
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES_FOR_OWNER">
+    <![CDATA[
+SELECT DISTINCT(code) FROM tv$items_::idnode::
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_COUNT">
+    <![CDATA[
+SELECT ::referencetable::.::attribute::, COUNT(*) AS counter FROM ::referencetable::
+LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=::referencetable::.id_node
+WHERE ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 AND ::referencetable::.code IN (::codenodes::) ::parameters:: GROUP BY ::referencetable::.::attribute::
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_COUNT_FOR_OWNER">
+    <![CDATA[
+SELECT ::attribute::, COUNT(*) AS counter FROM tv$items_::idnode::
+WHERE code IN (::codenodes::) ::parameters:: GROUP BY ::attribute::
+]]>
+  </entry>
+  <entry key="REFERENCE_LIST_LOAD">
+    <![CDATA[
+SELECT * FROM ::referencetable:: WHERE ::where:: AND id_node IN (SELECT id_node FROM ts$nodes_descriptors WHERE delete_date IS NULL) ::orderby:: LIMIT @startpos, @limit
+]]>
+  </entry>
+  <entry key="REFERENCE_LIST_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS totalCount FROM ::referencetable:: WHERE ::where:: AND id_node IN (SELECT id_node FROM ts$nodes_descriptors WHERE delete_date IS NULL)
+]]>
+  </entry>
+  <entry key="REFERENCE_LIST_LOAD_NODE_ID">
+    <![CDATA[
+SELECT id_node FROM ::referencetable::
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_CONDITION">
+    <![CDATA[
+AND MATCH(code, label, flatten_label) AGAINST (@condition IN BOOLEAN MODE)
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_FILTERS">
+    <![CDATA[
+AND MATCH(tr$::tablename::.::fieldtag::) AGAINST (@filters IN BOOLEAN MODE)
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_ANCESTOR_LEVEL">
+    <![CDATA[
+AND ts$nodes_ancestors.ancestor_level<=@ancestorlevel
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_ANCESTOR_LEVEL_FROM_TERM">
+    <![CDATA[
+AND ts$nodes_ancestors.ancestor_level>(SELECT ancestor_level FROM ts$nodes_ancestors WHERE id_node IN (SELECT id_node FROM tr$::tablename:: WHERE tr$::tablename::.::fieldkey::=@from)) AND ts$nodes_ancestors.ancestor_level<=(SELECT ancestor_level+@depth FROM ts$nodes_ancestors WHERE id_node IN (SELECT id_node FROM tr$::tablename:: WHERE tr$::tablename::.::fieldkey::=@from))
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_FROM_TERM">
+    <![CDATA[
+AND ts$nodes_descriptors.id_node IN (SELECT id_node FROM tr$::tablename:: WHERE tr$::tablename::.::fieldkey::=@from)
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_TERMS_ONLY">
+    <![CDATA[
+AND (type=0 OR type=1)
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE">
+    <![CDATA[
+SELECT DISTINCT(tr$::tablename::.::fieldkey::) AS code, tr$::tablename::.::fieldlabel:: AS label, tr$::tablename::.::fieldtag:: AS tags, (SELECT COUNT(*) FROM ts$nodes_ancestors WHERE id_ancestor=ts$nodes_descriptors.id_node) AS childs_count
+FROM ts$nodes_descriptors 
+INNER JOIN tr$::tablename:: ON tr$::tablename::.id_node=ts$nodes_descriptors.id_node
+INNER JOIN ts$nodes_ancestors ON ts$nodes_ancestors.id_node=ts$nodes_descriptors.id_node 
+WHERE delete_date IS NULL ::condition:: ::filters:: ::ancestorlevel:: ::from::
+ORDER BY label
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_COUNT">
+    <![CDATA[
+SELECT COUNT(DISTINCT(ts$nodes_descriptors.id_node)) AS counter
+FROM ts$nodes_descriptors 
+INNER JOIN tr$::tablename:: ON tr$::tablename::.id_node=ts$nodes_descriptors.id_node
+INNER JOIN ts$nodes_ancestors ON ts$nodes_ancestors.id_node=ts$nodes_descriptors.id_node 
+WHERE delete_date IS NULL ::condition:: ::filters:: ::ancestorlevel:: ::from::
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_SEARCH">
+    <![CDATA[
+SELECT (MATCH(tr$::tablename::.::fieldlabel::) AGAINST (@condition IN BOOLEAN MODE)) AS score, tr$::tablename::.::fieldlabel:: AS label, tr$::tablename::.::fieldkey:: AS `code`, tr$::tablename::.::fieldtag:: AS tags
+FROM ts$nodes_descriptors 
+INNER JOIN tr$::tablename:: ON tr$::tablename::.id_node=ts$nodes_descriptors.id_node WHERE (MATCH(tr$::tablename::.cache) AGAINST (@condition IN BOOLEAN MODE)) ORDER BY score DESC LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_SEARCH_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS counter FROM ts$nodes_descriptors INNER JOIN tr$::tablename:: ON tr$::tablename::.id_node=ts$nodes_descriptors.id_node WHERE (MATCH(tr$::tablename::.cache) AGAINST (@condition IN BOOLEAN MODE))
+]]>
+  </entry>
+  <entry key="REFERENCE_AS_SOURCE_ANCESTORS">
+    <![CDATA[
+SELECT tr$::tablename::.::fieldkey:: AS code, tr$::tablename::.::fieldlabel:: AS label, tr$::tablename::.::fieldtag:: AS tags, ts$nodes_ancestors.ancestor_level, MAX(ts$nodes_ancestors.ancestor_level) as max_level 
+FROM ts$nodes_descriptors
+INNER JOIN tr$::tablename:: ON tr$::tablename::.id_node=ts$nodes_descriptors.id_node 
+INNER JOIN ts$nodes_ancestors ON ts$nodes_ancestors.id_ancestor=ts$nodes_descriptors.id_node 
+WHERE ts$nodes_ancestors.id_node=@idnode AND delete_date IS NULL
+GROUP BY code, label
+ORDER BY max_level DESC
+]]>
+  </entry>
+
+  <!-- CUBE -->
+  <entry key="CUBE_LOAD">
+    <![CDATA[
+SELECT type, label, description, data, create_date, update_date FROM ts$cubes WHERE id=@id
+]]>
+  </entry>
+  <entry key="CUBE_LOCATE">
+    <![CDATA[
+SELECT id FROM ts$cubes WHERE type=@type
+]]>
+  </entry>
+  <entry key="CUBE_CREATE">
+    <![CDATA[
+INSERT INTO ts$cubes (type, label, description, data, create_date, update_date) VALUES (@type, @label, @description, @data, @createdate, @updatedate);id
+]]>
+  </entry>
+  <entry key="CUBE_REMOVE">
+    <![CDATA[
+DELETE FROM ts$cubes WHERE id=@id
+]]>
+  </entry>
+  <entry key="CUBE_FILTERGROUP_LOAD">
+    <![CDATA[
+SELECT id, id_cube, id_user, label, data, create_date FROM ts$cubes_filtergroups WHERE id=@id
+]]>
+  </entry>
+  <entry key="CUBE_FILTERGROUP_SAVE">
+    <![CDATA[
+UPDATE ts$cubes_filtergroups SET label=@label, data=@data WHERE id=@id
+]]>
+  </entry>
+  <entry key="CUBE_FILTERGROUP_CREATE">
+    <![CDATA[
+INSERT INTO ts$cubes_filtergroups (id_cube, id_user, label, data, create_date) VALUES (@idcube, @iduser, @label, @data, @createdate);id
+]]>
+  </entry>
+  <entry key="CUBE_FILTERGROUP_REMOVE">
+    <![CDATA[
+DELETE FROM ts$cubes_filtergroups WHERE id=@id
+]]>
+  </entry>
+  <entry key="CUBE_FILTERGROUP_LIST_LOAD">
+    <![CDATA[
+  SELECT id, id_cube, id_user, label, data, create_date 
+  FROM ts$cubes_filtergroups
+  WHERE id_cube=@idcube AND id_user=@iduser
+]]>
+  </entry>
+
+  <!-- SERVICES -->
+  <entry key="SERVICE_LOAD">
+    <![CDATA[
+SELECT id, code, id_request, id_input, id_output, id_task, callback_uri, create_date, response_state, response_date, remote_unit_label FROM ts$services WHERE id=@id
+]]>
+  </entry>
+  <entry key="SERVICE_LOAD_FOR_TASK">
+    <![CDATA[
+SELECT id, code, local_mailbox, id_task, reply_mailbox, create_date, remote_unit_label 
+FROM ts$services 
+WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="SERVICE_LOAD_BY_REQUEST_ID">
+    <![CDATA[
+SELECT id, code, local_mailbox, id_task, reply_mailbox, create_date, remote_unit_label 
+FROM ts$services 
+WHERE id_request=@idrequest
+]]>
+  </entry>
+  <entry key="SERVICE_CREATE">
+    <![CDATA[
+INSERT INTO ts$services 
+  (code, local_mailbox, id_task, reply_mailbox, create_date, remote_unit_label) 
+VALUES 
+  (@code,@localmailbox,@idtask,@replymailbox,@createdate,@remoteunitlabel)
+]]>
+  </entry>
+  <entry key="SERVICE_SAVE">
+    <![CDATA[
+UPDATE ts$services SET local_mailbox=@localmailbox, id_task=@idtask, reply_mailbox=@replymailbox, remote_unit_label=@remoteunitlabel WHERE id=@id
+]]>
+  </entry>
+  <entry key="SERVICE_REMOVE">
+    <![CDATA[
+DELETE FROM ts$services WHERE id=@id
+]]>
+  </entry>
+
+  <!-- MAILBOXES -->
+  <entry key="MAILBOX_CREATE">
+    <![CDATA[
+INSERT INTO ts$mailboxes (id, id_task, code, type) VALUES (@id,@idtask,@code,@type)
+]]>
+  </entry>
+    <entry key="MAILBOX_EXISTS">
+        <![CDATA[
+SELECT id FROM ts$mailboxes WHERE id=@id
+]]>
+    </entry>
+  <entry key="MAILBOX_LOAD">
+    <![CDATA[
+SELECT id, id_task, code, type FROM ts$mailboxes WHERE id=@id
+]]>
+  </entry>
+  <entry key="MAILBOX_REMOVE">
+    <![CDATA[
+DELETE FROM ts$mailboxes WHERE id=@id
+]]>
+  </entry>
+  <entry key="MAILBOX_REMOVE_WITH_TASK_ID">
+    <![CDATA[
+DELETE FROM ts$mailboxes WHERE id_task=@idtask
+]]>
+  </entry>
+
+  <!-- MAILBOXES_PERMISSIONS -->
+  <entry key="MAILBOX_PERMISSION_CREATE">
+    <![CDATA[
+INSERT INTO ts$mailboxes_permissions (id, id_user) VALUES (@id,@iduser)
+]]>
+  </entry>
+  <entry key="MAILBOX_PERMISSION_LOAD">
+    <![CDATA[
+SELECT id, id_user FROM ts$mailboxes_permissions WHERE id=@id AND id_user=@iduser
+]]>
+  </entry>
+  <entry key="MAILBOX_PERMISSION_REMOVE">
+    <![CDATA[
+DELETE FROM ts$mailboxes_permissions WHERE id=@id AND id_user=@iduser
+]]>
+  </entry>
+
+  <!-- TASK -->
+  <entry key="TASK_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE ts$tasks.id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_LOAD">
+    <![CDATA[
+SELECT 
+  id, id_owner, owner_fullname, id_sender, sender_fullname, id_target, partner_context, code_role, label, description, code, state, urgent, classificator, initializer, background, new_messages, create_date, update_date, start_date, suggested_start_date, end_date, suggested_end_date, comments, geometry, geometry_label
+FROM ts$tasks 
+WHERE id=@idtask
+]]>
+  </entry>
+  <entry key="TASK_LOAD_DATA">
+    <![CDATA[
+SELECT ts$tasks.data AS data FROM ts$tasks WHERE ts$tasks.id=@id
+]]>
+  </entry>
+  <entry key="TASK_LOAD_SHORTCUTS">
+    <![CDATA[
+SELECT shortcuts 
+FROM ts$tasks 
+WHERE id=@idtask
+]]>
+  </entry>
+  <entry key="TASK_CREATE">
+    <![CDATA[
+INSERT INTO ts$tasks 
+  (id_owner,owner_fullname,id_sender,sender_fullname,id_target,partner_context,code_role,label,description,shortcuts,code,state,urgent,classificator,initializer,background,new_messages,create_date,available_date,update_date,start_date,suggested_start_date,end_date,suggested_end_date,comments,data)
+VALUES 
+  (@idowner,@ownerfullname,@idsender,@senderfullname,@idtarget,@partnercontext,@role,@label,@description,@shortcuts,@code,@state,@urgent,@classificator,@initializer,@background,@newmessages,@createdate,@availabledate,@updatedate,@startdate,@suggestedstartdate,@enddate,@suggestedenddate,@comments,@data)
+]]>
+  </entry>
+  <entry key="TASK_SAVE">
+    <![CDATA[
+UPDATE ts$tasks 
+SET 
+  id_owner=@idowner,
+  owner_fullname=@ownerfullname,
+  id_sender=@idsender,
+  sender_fullname=@senderfullname,
+  id_target=@idtarget,
+  partner_context=@partnercontext,
+  code_role=@role,
+  label=@label,
+  description=@description,
+  shortcuts=@shortcuts,
+  code=@code,
+  state=@state,
+  urgent=@urgent,
+  classificator=@classificator,
+  update_date=@updatedate,
+  start_date=@startdate,
+  suggested_start_date=@suggestedstartdate,
+  end_date=@enddate,
+  suggested_end_date=@suggestedenddate,
+  comments=@comments,
+  geometry=NULL,
+  geometry_label=NULL
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_GEOMETRY">
+    <![CDATA[
+UPDATE ts$tasks 
+SET 
+  id_owner=@idowner,
+  owner_fullname=@ownerfullname,
+  id_sender=@idsender,
+  sender_fullname=@senderfullname,
+  id_target=@idtarget,
+  partner_context=@partnercontext,
+  code_role=@role,
+  label=@label,
+  description=@description,
+  shortcuts=@shortcuts,
+  code=@code,
+  state=@state,
+  urgent=@urgent,
+  classificator=@classificator,
+  update_date=@updatedate,
+  start_date=@startdate,
+  suggested_start_date=@suggestedstartdate,
+  end_date=@enddate,
+  suggested_end_date=@suggestedenddate,
+  comments=@comments,
+  geometry=@geometry,
+  geometry_label=@geometrylabel
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_URGENCY">
+    <![CDATA[
+UPDATE ts$tasks 
+SET 
+  urgent=@urgent
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_STATE">
+    <![CDATA[
+UPDATE ts$tasks 
+SET 
+  state=@state, description=@description
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_OWNER">
+    <![CDATA[
+UPDATE ts$tasks 
+SET 
+  id_owner=@idowner,
+  owner_fullname=@ownerfullname,
+  id_sender=@idsender,
+  sender_fullname=@senderfullname
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_END_DATE">
+    <![CDATA[
+UPDATE ts$tasks SET end_date=@enddate WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_ABORT_DATE">
+    <![CDATA[
+UPDATE ts$tasks SET end_date=@enddate, state='aborted' WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_SAVE_PROCESS">
+    <![CDATA[
+UPDATE ts$tasks SET data=@data, state=@state, update_date=@updatedate WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_UPDATE_NEW_MESSAGES">
+    <![CDATA[
+UPDATE ts$tasks SET new_messages=(SELECT SUM(new_messages) FROM ts$tasks_orders WHERE id_task=@id) WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_REMOVE">
+    <![CDATA[
+DELETE FROM ts$tasks WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_FIND">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE ts$tasks.code=@code
+]]>
+  </entry>
+  <entry key="TASK_FIND_WITH_CLASSIFICATOR">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE ts$tasks.code=@code AND ts$tasks.classificator=@classificator
+]]>
+  </entry>
+  <entry key="TASK_FIND_CURRENT_INITIALIZER">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE ts$tasks.initializer=1 AND ts$tasks.state<>'new' AND ts$tasks.end_date IS NULL
+]]>
+  </entry>
+
+  <entry key="TASK_LIST_LOAD_TYPES">
+    <![CDATA[
+SELECT DISTINCT(code) FROM ts$tasks
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_ROLES">
+    <![CDATA[
+SELECT DISTINCT(code_role) FROM ts$tasks WHERE code_role IS NOT NULL
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_OWNERS">
+    <![CDATA[
+SELECT DISTINCT(id_owner), owner_fullname FROM ts$tasks WHERE id_owner IS NOT NULL 
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SENDERS">
+    <![CDATA[
+SELECT DISTINCT(id_sender), sender_fullname FROM ts$tasks WHERE id_sender IS NOT NULL 
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SENDERS_OF_OWNER">
+    <![CDATA[
+SELECT DISTINCT(id_sender), sender_fullname FROM ts$tasks WHERE id_sender IS NOT NULL AND id_owner=@iduser 
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_ACTIVE_TYPES">
+    <![CDATA[
+SELECT ts$tasks_definition.code, ts$tasks_definition.label FROM ts$tasks_definition WHERE code IN (SELECT DISTINCT code FROM ts$tasks) AND language=@language
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_STATES">
+    <![CDATA[
+SELECT DISTINCT state FROM ts$tasks WHERE state IS NOT NULL
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_TASK">
+    <![CDATA[
+AND MATCH(data,label,description,comments) AGAINST (@condition IN BOOLEAN MODE)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_TYPE">
+    <![CDATA[
+AND ts$tasks.code = @code
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_DESCRIPTION">
+    <![CDATA[
+AND ts$tasks.description=@description
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_ROLE">
+    <![CDATA[
+AND (code_role=@role)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_URGENT">
+    <![CDATA[
+AND (urgent=@urgent)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_OWNER">
+    <![CDATA[
+AND (id_owner=@idowner)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_OWNER_NULL">
+    <![CDATA[
+AND (id_owner IS NULL)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_SENDER">
+    <![CDATA[
+AND (id_sender=@idsender)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_BACKGROUND">
+    <![CDATA[
+AND (background=@background)
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_SITUATION_ALIVE">
+    <![CDATA[
+AND (state<>'finished' AND state<>'aborted' AND state<>'expired')
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_SITUATION_ACTIVE">
+    <![CDATA[
+AND (state='new' OR state='pending' OR state='failure')
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_SITUATION_PENDING">
+    <![CDATA[
+AND (state='waiting')
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_SUBQUERY_SITUATION_FINISHED">
+    <![CDATA[
+AND (state='finished' OR state='aborted' OR state='expired')
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD">
+    <![CDATA[
+SELECT id, id_owner, owner_fullname, id_sender, sender_fullname, id_target, partner_context, code_role, label, description, code, state, urgent, classificator, initializer, background, new_messages, create_date, update_date, start_date, suggested_start_date, end_date, suggested_end_date, comments, geometry, geometry_label
+FROM ts$tasks 
+WHERE 1=1 ::tasksubquery:: ::typesubquery:: ::statesubquery:: ::situationsubquery:: ::urgentsubquery:: ::rolesubquery:: ::ownersubquery:: ::sendersubquery:: ::backgroundsubquery::
+ORDER BY ::sortsby:: 
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS counter FROM ts$tasks 
+WHERE 1=1 ::tasksubquery:: ::typesubquery:: ::statesubquery:: ::situationsubquery:: ::urgentsubquery:: ::rolesubquery:: ::ownersubquery:: ::sendersubquery:: ::backgroundsubquery::
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_NODE_ALL">
+    <![CDATA[
+SELECT id, id_owner, owner_fullname, id_sender, sender_fullname, id_target, partner_context, code_role, label, description, code, state, urgent, classificator, initializer, background, new_messages, create_date, update_date, start_date, suggested_start_date, end_date, suggested_end_date, comments, geometry, geometry_label
+FROM ts$tasks 
+WHERE id_target=@idtarget 
+      AND code IN (::code::)
+      AND background=0
+ORDER BY create_date DESC
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_NODE_ACTIVE">
+    <![CDATA[
+SELECT id, id_owner, owner_fullname, id_sender, sender_fullname, id_target, partner_context, code_role, label, description, code, state, urgent, classificator, initializer, background, new_messages, create_date, update_date, start_date, suggested_start_date, end_date, suggested_end_date, comments, geometry, geometry_label
+FROM ts$tasks 
+WHERE id_target=@idtarget 
+      AND end_date IS NULL 
+      AND (suggested_end_date IS NULL OR suggested_end_date <= end_date) 
+      AND code IN (::code::)
+      AND background=0
+ORDER BY create_date DESC
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_LINKED_WITH_NODE_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS counter FROM ts$tasks WHERE id_target=@id OR id IN (::ids::) AND background=0
+]]>
+  </entry>
+  <entry key="TASK_LIST_LOAD_LINKED_WITH_NODE">
+    <![CDATA[
+SELECT id, id_owner, owner_fullname, id_sender, sender_fullname, id_target, partner_context, code_role, label, description, code, state, urgent, classificator, initializer, background, new_messages, create_date, update_date, start_date, suggested_start_date, end_date, suggested_end_date, comments, geometry, geometry_label
+FROM ts$tasks 
+WHERE id_target=@id OR id IN (::ids::) AND background=0
+ORDER BY create_date DESC
+]]>
+  </entry>
+  <entry key="TASK_LIST_DELETE">
+    <![CDATA[
+DELETE FROM ts$tasks WHERE id_owner=@idowner AND id_target=@idtarget AND code=@code
+]]>
+  </entry>
+
+  <entry key="TASK_JOBS_LOAD_NOT_READ">
+    <![CDATA[
+SELECT id, code, label, description, partner_context, suggested_start_date, suggested_end_date, urgent, comments, geometry
+FROM ts$tasks
+INNER JOIN ts$tasks_jobs ON ts$tasks.id = ts$tasks_jobs.id_task
+WHERE id_owner=@idowner AND response IS NULL AND ts$tasks_jobs.create_date > @syncmark AND ts$tasks.end_date IS NULL
+]]>
+  </entry>
+
+  <entry key="TASK_JOBS_LOAD_ASSIGNED_TO_DELETE">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE id IN (::ids::) AND (end_date IS NOT NULL OR id_owner <> @idowner OR id_owner IS NULL)
+]]>
+  </entry>
+
+  <entry key="TASK_JOBS_LOAD_FINISHED_TO_DELETE">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE id IN (::ids::) AND (end_date IS NOT NULL OR id_owner <> @idowner OR id_owner IS NULL)
+]]>
+  </entry>
+
+  <entry key="TASK_JOBS_LOAD_UNASSIGNED_TO_DELETE">
+    <![CDATA[
+SELECT id FROM ts$tasks WHERE id IN (::ids::) AND (end_date IS NOT NULL OR id_owner IS NOT NULL)
+]]>
+  </entry>
+
+  <entry key="TASK_JOBS_LOAD_AVAILABLE_NOT_READ">
+    <![CDATA[
+SELECT id, code, label, description, partner_context, suggested_start_date, suggested_end_date, urgent, comments, geometry
+FROM ts$tasks
+INNER JOIN ts$tasks_jobs ON ts$tasks.id = ts$tasks_jobs.id_task
+WHERE code_role IN (SELECT code FROM ts$roles WHERE id_user=@iduser AND begin_date <= @date AND (expire_date >= @date OR expire_date IS NULL))
+  AND id_owner IS NULL 
+  AND response IS NULL
+  AND ts$tasks.available_date > @syncmark
+  AND ts$tasks.end_date IS NULL
+]]>
+  </entry>
+  <entry key="TASK_JOBS_LOAD_AVAILABLE">
+    <![CDATA[
+SELECT id, code, label, description, partner_context, suggested_start_date, suggested_end_date, urgent, comments, geometry
+FROM ts$tasks
+INNER JOIN ts$tasks_jobs ON ts$tasks.id = ts$tasks_jobs.id_task
+WHERE code_role IN (SELECT code FROM ts$roles WHERE id_user=@iduser AND begin_date <= @date AND (expire_date >= @date OR expire_date IS NULL))
+  AND id_owner IS NULL 
+  AND response IS NULL
+  AND ts$tasks.end_date IS NULL
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="TASK_JOBS_LOAD_REQUEST">
+    <![CDATA[
+SELECT request
+FROM ts$tasks_jobs
+WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_JOBS_LOAD_RESPONSE">
+    <![CDATA[
+SELECT response
+FROM ts$tasks_jobs
+WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_JOBS_LOAD_CALLBACK_TASK_ID">
+    <![CDATA[
+SELECT callback_task_id, callback_code
+FROM ts$tasks_jobs
+WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_JOB_CREATE">
+    <![CDATA[
+INSERT INTO ts$tasks_jobs (id_task, request, create_date, callback_task_id, callback_code, callback_order_id) VALUES (@idtask, @request, @createdate, @callbacktaskid, @callbackcode, @callbackorderid)
+]]>
+  </entry>
+    <entry key="TASK_JOB_REMOVE">
+        <![CDATA[
+DELETE FROM ts$tasks_jobs WHERE id_task=@idtask
+]]>
+    </entry>
+  <entry key="TASK_JOB_SAVE_RESPONSE">
+    <![CDATA[
+UPDATE ts$tasks_jobs SET response=@response, finish_date=@finishdate WHERE id_task=@idtask
+]]>
+  </entry>
+    <entry key="TASK_JOB_ADD_ATTACHMENT">
+        <![CDATA[
+INSERT INTO ts$tasks_jobs_attachments (id_task, id_attachment) VALUES (@idtask, @idattachment)
+]]>
+    </entry>
+    <entry key="TASK_JOB_LOAD_ATTACHMENTS">
+        <![CDATA[
+SELECT id_attachment FROM ts$tasks_jobs_attachments WHERE id_task=@idtask
+]]>
+    </entry>
+  <entry key="TASK_JOB_REFRESH_TIME_MARK">
+    <![CDATA[
+UPDATE ts$tasks_jobs SET create_date=@createdate WHERE id_task IN (::jobs::)
+]]>
+  </entry>
+  <entry key="TASK_JOB_ASSIGN">
+    <![CDATA[
+UPDATE ts$tasks SET id_owner=@idowner, owner_fullname=@ownerfullname, available_date=null WHERE id=@idtask
+]]>
+  </entry>
+  <entry key="TASK_JOB_UNASSIGN">
+    <![CDATA[
+UPDATE ts$tasks SET id_owner=NULL, owner_fullname=NULL, available_date=@availabledate WHERE id=@idtask AND id_owner=@idowner
+]]>
+  </entry>
+  <entry key="TASK_JOB_LOAD_NEW_CHAT_LIST_ITEM">
+    <![CDATA[
+SELECT ts$tasks.id AS id_task, ts$tasks_orders_chats_entries.id, ts$tasks_orders_chats_entries.id_order, ts$tasks_orders_chats_entries.message, ts$tasks_orders_chats_entries.type, ts$tasks_orders_chats_entries.sent, ts$tasks_orders_chats_entries.create_date
+    FROM ts$tasks_orders_chats_entries
+      INNER JOIN ts$tasks_jobs ON ts$tasks_jobs.callback_order_id=ts$tasks_orders_chats_entries.id_order
+      INNER JOIN ts$tasks ON ts$tasks.id=ts$tasks_jobs.id_task
+    WHERE ts$tasks_orders_chats_entries.create_date > @syncmark AND (id_owner = @iduser OR id_owner IS NULL)
+]]>
+  </entry>
+  <entry key="TASK_JOB_LOAD_ORDER_ID">
+    <![CDATA[
+SELECT callback_order_id AS id_order FROM ts$tasks_jobs WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_JOB_LOAD_USER_ID_FROM_ORDER">
+    <![CDATA[
+SELECT id_owner FROM ts$tasks_jobs INNER JOIN ts$tasks ON ts$tasks_jobs.id_task = ts$tasks.id WHERE callback_order_id=@idorder
+]]>
+  </entry>
+
+  <entry key="TASK_ORDER_LOAD">
+    <![CDATA[
+SELECT 
+  id, id_task, id_setup_node, id_role, code, type, partner_context, comments, urgent, closed, new_messages, create_date, suggested_start_date, suggested_end_date 
+FROM ts$tasks_orders 
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_ORDER_LOAD_BY_CODE">
+    <![CDATA[
+SELECT 
+  id, id_task, id_setup_node, id_role, code, type, partner_context, comments, urgent, closed, new_messages, create_date, suggested_start_date, suggested_end_date 
+FROM ts$tasks_orders 
+WHERE id_task=@idtask AND code=@code ORDER BY create_date DESC
+]]>
+  </entry>
+  <entry key="TASK_ORDER_CREATE">
+    <![CDATA[
+INSERT INTO ts$tasks_orders 
+  (id_task,id_setup_node,id_role,code,type,partner_context,comments,urgent,closed,new_messages,create_date,suggested_start_date,suggested_end_date) 
+VALUES 
+  (@idtask,@idsetupnode,@idrole,@code,@type,@partnercontext,@comments,@urgent,@closed,@newmessages,@createdate,@suggestedstartdate,@suggestedenddate)
+]]>
+  </entry>
+  <entry key="TASK_ORDER_SAVE">
+    <![CDATA[
+UPDATE ts$tasks_orders 
+SET 
+  id_setup_node=@idsetupnode,
+  comments=@comments,
+  urgent=@urgent,
+  closed=@closed,
+  suggested_start_date=@suggestedstartdate,
+  suggested_end_date=@suggestedenddate
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_ORDER_CLOSE_ALL_OF_TASK">
+    <![CDATA[
+UPDATE ts$tasks_orders 
+SET closed=1
+WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_ORDER_RESET_NEW_MESSAGES">
+    <![CDATA[
+UPDATE ts$tasks_orders 
+SET new_messages=0
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_ORDER_INCREMENT_NEW_MESSAGES">
+    <![CDATA[
+UPDATE ts$tasks_orders 
+SET new_messages=new_messages+1
+WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_ORDER_CHAT_LOAD_ENTRIES">
+    <![CDATA[
+  SELECT id, id_order, message, type, sent, create_date 
+  FROM ts$tasks_orders_chats_entries
+  WHERE id_order=@idorder
+  ORDER BY create_date ASC
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="TASK_ORDER_CHAT_LOAD_ENTRIES_COUNT">
+    <![CDATA[
+  SELECT COUNT(*) AS counter
+  FROM ts$tasks_orders_chats_entries
+  WHERE id_order=@idorder
+]]>
+  </entry>
+  <entry key="TASK_ORDER_CHAT_ADD_ENTRY">
+    <![CDATA[
+  INSERT INTO ts$tasks_orders_chats_entries 
+    (id_order, message, type, sent, create_date) 
+  VALUES 
+    (@idorder, @message, @type, 0, @createdate);id
+]]>
+  </entry>
+  <entry key="TASK_ORDER_CHAT_UPDATE_ENTRY_STATE_TO_SENT">
+    <![CDATA[
+  UPDATE ts$tasks_orders_chats_entries SET sent=1 WHERE id=@id
+]]>
+  </entry>
+  <entry key="TASK_ORDER_LIST_LOAD_ITEMS">
+    <![CDATA[
+SELECT 
+  id, id_task, id_setup_node, id_role, code, type, partner_context, comments, urgent, closed, new_messages, create_date, suggested_start_date, suggested_end_date 
+FROM ts$tasks_orders 
+WHERE id_task=@idtask
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="TASK_ORDER_LIST_LOAD_ITEMS_COUNT">
+    <![CDATA[
+SELECT COUNT(id) as counter
+FROM ts$tasks_orders 
+WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_ORDER_LIST_LOAD_ROLES">
+    <![CDATA[
+SELECT ts$roles.* 
+FROM ts$tasks_orders, ts$roles 
+WHERE ts$tasks_orders.id_task=@idtask AND ts$tasks_orders.id_role=ts$roles.id
+]]>
+  </entry>
+
+  <entry key="TASK_DEFINITION_INSERT">
+    <![CDATA[
+INSERT INTO ts$tasks_definition (code, label, language) VALUES (@code, @label, @language)
+]]>
+  </entry>
+  <entry key="TASK_DEFINITION_CLEAN">
+    <![CDATA[
+DELETE FROM ts$tasks_definition
+]]>
+  </entry>
+
+  <entry key="TASK_FACTS_CREATE_ENTRY">
+    <![CDATA[
+INSERT INTO ts$tasks_facts (id_task, id_user, title, subtitle, extra_data, create_date) VALUES (@idtask,@iduser,@title,@subtitle,@extradata,@createdate)
+]]>
+  </entry>
+  <entry key="TASK_FACTS_LOAD">
+    <![CDATA[
+SELECT *
+FROM ts$tasks_facts
+WHERE id_task=@idtask ORDER BY create_date DESC
+]]>
+  </entry>
+  <entry key="TASK_FACTS_LOAD_ENTRIES">
+    <![CDATA[
+SELECT * 
+FROM ts$tasks_facts 
+WHERE id_task=@idtask ORDER BY create_date DESC LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="TASK_FACTS_LOAD_ENTRIES_COUNT">
+    <![CDATA[
+SELECT COUNT(id_task) as counter FROM ts$tasks_facts WHERE id_task=@idtask
+]]>
+  </entry>
+
+  <entry key="TASK_TIMER_CREATE">
+    <![CDATA[
+INSERT INTO ts$tasks_timers (id_task, tag, delay, create_date) VALUES (@idtask, @tag, @delay, @createdate)
+]]>
+  </entry>
+  <entry key="TASK_TIMER_LOAD">
+    <![CDATA[
+SELECT id, id_task, tag, delay, create_date FROM ts$tasks_timers
+]]>
+  </entry>
+  <entry key="TASK_TIMER_DELETE">
+    <![CDATA[
+DELETE FROM ts$tasks_timers WHERE id=@id
+]]>
+  </entry>
+
+  <entry key="TASK_PROCESS_SNAPSHOT_CREATE">
+    <![CDATA[
+INSERT INTO ts$tasks_snapshots (id_task, data, create_date) VALUES (@idtask, @data, @createdate)
+]]>
+  </entry>
+  <entry key="TASK_PROCESS_SNAPSHOT_COUNT">
+    <![CDATA[
+SELECT COUNT(*) as counter FROM ts$tasks_snapshots WHERE id_task=@idtask
+]]>
+  </entry>
+  <entry key="TASK_PROCESS_SNAPSHOT_LOAD_LAST">
+    <![CDATA[
+SELECT id, data FROM ts$tasks_snapshots WHERE id_task=@idtask ORDER BY create_date DESC
+]]>
+  </entry>
+  <entry key="TASK_PROCESS_SNAPSHOT_DELETE">
+    <![CDATA[
+DELETE FROM ts$tasks_snapshots WHERE id=@id
+]]>
+  </entry>
+
+  <!-- LINK -->
+  <entry key="LINK_SOURCES">
+    <![CDATA[
+SELECT id_source FROM ts$links WHERE id_target=@idtarget AND type_target=@typetarget AND type_source=@typesource AND delete_date IS NULL
+]]>
+  </entry>
+  <entry key="LINK_COUNT_SOURCES">
+    <![CDATA[
+SELECT count(id_source) as counter FROM ts$links WHERE id_target=@idtarget AND type_target=@typetarget AND delete_date IS NULL
+]]>
+  </entry>
+  <entry key="LINK_TARGETS">
+    <![CDATA[
+SELECT id_target FROM ts$links WHERE id_source=@idsource AND type_source=@typesource AND delete_date IS NULL
+]]>
+  </entry>
+  <entry key="LINK_COUNT_TARGETS">
+    <![CDATA[
+SELECT count(id_target) as counter FROM ts$links WHERE id_source=@idsource AND type_source=@typesource AND delete_date IS NULL
+]]>
+  </entry>
+  <entry key="LINK_ADD">
+    <![CDATA[
+INSERT INTO ts$links (id_source, id_source_component, type_source, id_target, type_target, data, delete_date) VALUES (@idsource,@idsourcecomponent,@typesource,@idtarget,@typetarget,@data,@deletedate)
+]]>
+  </entry>
+  <entry key="LINK_SAVE">
+    <![CDATA[
+UPDATE ts$links SET delete_date=@deletedate WHERE id_source=@idsource AND type_source=@typesource
+]]>
+  </entry>
+  <entry key="LINK_DELETE">
+    <![CDATA[
+DELETE FROM ts$links WHERE id_source=@idsource AND type_source=@typesource AND (id_source_component=@idsourcecomponent OR id_source_component IS NULL)
+]]>
+  </entry>
+
+  <!-- ATTACHMENT -->
+  <entry key="ATTACHMENT_ADD">
+    <![CDATA[
+INSERT INTO ts$attachments (id_source, id_target, type_target, code_target, data, delete_date) VALUES (@idsource,@idtarget,@typetarget,@codetarget,@data,@deletedate)
+]]>
+  </entry>
+  <entry key="ATTACHMENT_DELETE">
+    <![CDATA[
+DELETE FROM ts$attachments WHERE id_source=@idsource
+]]>
+  </entry>
+  <entry key="ATTACHMENT_LOAD_ITEMS">
+    <![CDATA[
+  SELECT DISTINCT(ts$attachments.id_source), ts$attachments.id_target, ts$attachments.type_target, ts$attachments.code_target, ts$attachments.data, ts$attachments.delete_date 
+  FROM ts$attachments, ts$nodes_descriptors
+  WHERE
+    id_source=@idsource 
+    AND (
+      ((type_target='node' AND id_target=ts$nodes_descriptors.id_node AND ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0)
+      OR type_target<>'node')
+      AND code_target IN (::codes::)
+    ) 
+  ORDER BY ts$attachments.data
+]]>
+  </entry>
+  <entry key="ATTACHMENT_LOAD_ITEMS_COUNT">
+    <![CDATA[
+  SELECT count(distinct(id_target)) AS counter 
+  FROM ts$attachments, ts$nodes_descriptors
+  WHERE
+    id_source=@idsource 
+    AND (
+      ((type_target='node' AND id_target=ts$nodes_descriptors.id_node AND ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0)
+      OR type_target<>'node')
+      AND code_target IN (::codes::)
+    ) 
+]]>
+  </entry>
+
+  <!-- BOOKS -->
+  <entry key="LOGBOOKNODE_CREATE_ENTRY">
+    <![CDATA[
+INSERT INTO ts$logbooknode (host, layer, id_user, id_node, visited, created, deleted, modified, create_date) VALUES (@host, @layer, @iduser, @idnode, @visited, @created, @deleted, @modified, @createdate)
+]]>
+  </entry>
+  <entry key="LOGBOOKNODE_SEARCH">
+    <![CDATA[
+SELECT DISTINCT(id_node) FROM ts$logbooknode WHERE (::condition::) AND (create_date BETWEEN @fromdate AND @todate)
+]]>
+  </entry>
+  <entry key="LOGBOOKNODE_SUBSCRIBER_LIST_LOAD">
+    <![CDATA[
+SELECT server_name, server_host, server_port, type, register_date FROM ts$logbooknode_subscribers
+]]>
+  </entry>
+  <entry key="LOGBOOKNODE_SUBSCRIBER_LIST_ADD">
+    <![CDATA[
+INSERT INTO ts$logbooknode_subscribers (server_name, server_host, server_port, type, id_user, register_date) VALUES (@servername,@serverhost,@serverport,@type,@iduser,@registerdate)
+]]>
+  </entry>
+  <entry key="LOGBOOKNODE_SUBSCRIBER_LIST_DELETE">
+    <![CDATA[
+REMOVE FROM ts$logbooknode_subscribers WHERE server_host=@serverhost AND server_port=@serverport AND type=@servertype
+]]>
+  </entry>
+
+  <!-- LOCATIONS -->
+
+  <entry key="LOCATION_CREATE">
+    <![CDATA[
+INSERT INTO ts$locations (id_node, id_location, geometry, create_date) VALUES (@idnode, @idlocation, @geometry, @createdate)
+]]>
+  </entry>
+  <entry key="LOCATION_SAVE">
+    <![CDATA[
+UPDATE ts$locations SET id_node=@idnode, id_location=@idlocation, geometry=@geometry, create_date=@createdate WHERE id=@id
+]]>
+  </entry>
+  <entry key="LOCATION_LOAD_BY_NODE_ID">
+    <![CDATA[
+SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=ts$locations.id_node AND ts$nodes_descriptors.georeferenced=1 ::reference:: WHERE ts$locations.id_node=@idnode
+]]>
+  </entry>
+  <entry key="LOCATION_LIST_LOAD_IN_NODE_WITHIN_BOX">
+    <![CDATA[
+AND Intersects(geometry, @boundingbox)
+]]>
+  </entry>
+  <entry key="LOCATION_LIST_LOAD_IN_NODE_WITH_LOCATION">
+    <![CDATA[
+AND id_location = @idlocation
+]]>
+  </entry>
+  <entry key="LOCATION_LIST_LOAD_IN_NODE_WITH_PARENT">
+    <![CDATA[
+AND ts$locations.id_node IN (SELECT id_node FROM ts$nodes_ancestors WHERE id_ancestor = @idparent)
+]]>
+  </entry>
+  <entry key="LOCATION_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$locations WHERE id_node=@idnode
+]]>
+  </entry>
+  <entry key="LOCATION_LOAD_REFERENCE">
+    <![CDATA[
+LEFT JOIN ::referencetable:: ON ::referencetable::.id_node=ts$locations.id_node
+]]>
+  </entry>
+  <entry key="LOCATION_LOAD_REFERENCE_ATTRIBUTES">
+    <![CDATA[
+, ::referencetable::.*
+]]>
+  </entry>
+  <entry key="LOCATION_LIST_LOAD_IN_NODE">
+    <![CDATA[
+SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node = ts$locations.id_node AND ts$nodes_descriptors.georeferenced=1 ::reference:: WHERE ts$nodes_descriptors.delete_date IS NULL ::parent:: ::location:: ::boundingbox::
+]]>
+  </entry>
+
+  <!-- POSTS -->
+  <entry key="POST_LOAD">
+    <![CDATA[
+  SELECT id, create_date, type, title, body, target, target_code, tag, body_target, wall_user_id FROM ts$posts WHERE id=@id
+]]>
+  </entry>
+  <entry key="POST_SAVE">
+    <![CDATA[
+  UPDATE ts$posts SET title=@title, body=@body, target=@target, wall_user_id=@walluserid ts$posts WHERE id=@id 
+]]>
+  </entry>
+  <entry key="POST_CREATE">
+    <![CDATA[
+  INSERT INTO ts$posts (create_date, type, title, body, target, target_code, tag, body_target, wall_user_id) VALUES (@createdate, @type, @title, @body, @target, @targetcode, @tag, @bodytarget, @walluserid);id
+]]>
+  </entry>
+  <entry key="POST_LOAD_LIST">
+    <![CDATA[
+  SELECT id, create_date, type, title, body, target, target_code, tag, body_target, wall_user_id
+  FROM ts$posts 
+  WHERE (wall_user_id=@iduser OR wall_user_id IS NULL) AND
+        id NOT IN (SELECT id_post FROM ts$post_user_filter WHERE id_user=@iduser) AND
+        (target NOT IN (SELECT id_author FROM ts$post_user_author_filter WHERE id_user=@iduser) OR type<>9)
+  ORDER BY create_date DESC
+  LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="POST_LOAD_LIST_IDS"><![CDATA[]]></entry>
+  <entry key="POST_LOAD_POSTS_COMMENTS_SUBQUERY_IDS">
+    <![CDATA[
+  id_post IN (::postsids::)
+]]>
+  </entry>
+  <entry key="POST_LOAD_POSTS_COMMENTS">
+    <![CDATA[
+  SELECT id, create_date, text, id_author, author, id_post 
+  FROM ts$post_comments 
+  WHERE ::postsidssubquery::
+  ORDER BY id_post, create_date
+]]>
+  </entry>
+  <entry key="POST_LOAD_COMMENTS">
+    <![CDATA[
+  SELECT id, create_date, text, id_author, author, id_post 
+  FROM ts$post_comments 
+  WHERE id_post = @idpost
+  ORDER BY create_date
+]]>
+  </entry>
+  <entry key="POST_COMMENT_CREATE">
+    <![CDATA[
+  INSERT INTO ts$post_comments (create_date, text, id_author, author, id_post) VALUES (@createdate, @text, @idauthor, @author, @idpost)
+]]>
+  </entry>
+  <entry key="POST_FILTER_POST_ADD">
+    <![CDATA[
+  INSERT INTO ts$post_user_filter (id_user, id_post) VALUES (@iduser, @idpost)
+]]>
+  </entry>
+  <entry key="POST_FILTER_AUTHOR_ADD">
+    <![CDATA[
+  INSERT INTO ts$post_user_author_filter (id_user, id_author) VALUES (@iduser, @idauthor)
+]]>
+  </entry>
+
+  <!-- SOURCE -->
+  <entry key="SOURCE_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$sources WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_FEEDER_EXISTS">
+    <![CDATA[
+SELECT id FROM ts$sources WHERE code=@code AND uri=@uri
+]]>
+  </entry>
+  <entry key="SOURCE_LOAD">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources WHERE id=@id
+]]>
+  </entry>
+  <entry key="SOURCE_LOCATE">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_FEEDER_LOCATE">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources WHERE code=@code AND uri=@uri
+]]>
+  </entry>
+  <entry key="SOURCE_ADD">
+    <![CDATA[
+INSERT INTO ts$sources(code, name, type, ontology, partner_name, partner_label, uri, label, create_date, update_date, enabled) VALUES (@code,@name,@type,@ontology,@partnername,@partnerlabel,@uri,@label,@createdate,@updatedate,@enabled);id
+]]>
+  </entry>
+  <entry key="SOURCE_SAVE">
+    <![CDATA[
+UPDATE ts$sources SET partner_name=@partnername, partner_label=@partnerlabel, uri=@uri, label=@label, update_date=@updatedate, enabled=@enabled WHERE id=@id
+]]>
+  </entry>
+  <entry key="SOURCE_SAVE_UPDATE_DATE">
+    <![CDATA[
+UPDATE ts$sources SET update_date=@updatedate WHERE id=@id
+]]>
+  </entry>
+  <entry key="SOURCE_DELETE">
+    <![CDATA[
+DELETE FROM ts$sources WHERE id=@id
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD_GLOSSARIES">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources WHERE type='Glossary'
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(id) AS counter FROM ts$sources
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD_WITH_CODE">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD_WITH_CODE_AND_PARTNER">
+    <![CDATA[
+SELECT id, code, name, type, partner_name, partner_label, uri, label, create_date, update_date, enabled FROM ts$sources WHERE code=@code AND partner_name=@partnername
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD_PARTNERS">
+    <![CDATA[
+SELECT partner_name, partner_label, ontology FROM ts$sources ::ontologiessubquery::
+]]>
+  </entry>
+  <entry key="SOURCE_LIST_LOAD_PARTNERS_SUBQUERY_ONTOLOGIES">
+    <![CDATA[
+WHERE ontology IN (::ontologies::)
+]]>
+  </entry>
+
+  <entry key="SOURCE_STORE_CREATE">
+    <![CDATA[
+CREATE TABLE IF NOT EXISTS td$::source:: (code VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, code_parent VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci, label VARCHAR(2500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, flatten_label VARCHAR(2500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, tags TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL, type INT(1) NOT NULL, is_enable INT(1) NOT NULL, is_new INT(1) NOT NULL DEFAULT 0, is_leaf INT(1) NOT NULL, ancestor_level INT(11) NOT NULL, update_date DECIMAL(17,3) NOT NULL, PRIMARY KEY (code), KEY FK_td$::source::_code_parent (code_parent), FULLTEXT KEY code (code,label,flatten_label), FULLTEXT INDEX tags (tags)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_CREATE_ANCESTORS">
+    <![CDATA[
+CREATE TABLE td$::source::_ancestors (code VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, code_ancestor VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci, ancestor_level INT(11) NOT NULL, KEY FK_td$::source::_ancestors_code_ancestor (code_ancestor), KEY FK_td$::source::_ancestors_code (code)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_CLEAN">
+    <![CDATA[
+TRUNCATE TABLE td$::source:: ::SEMICOLON:: TRUNCATE TABLE td$::source::_ancestors
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_REMOVE">
+    <![CDATA[
+DROP TABLE td$::source::
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_REMOVE_ANCESTORS">
+    <![CDATA[
+DROP TABLE td$::source::_ancestors
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_EXISTS_TERM">
+    <![CDATA[
+SELECT code FROM td$::source:: WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_ADD_TERM">
+    <![CDATA[
+INSERT INTO td$::source:: (code, code_parent, label, flatten_label, tags, type, is_enable, is_new, is_leaf, ancestor_level, update_date) VALUES (@code, @codeparent, @label, @flattenlabel, @tags, @type, @isenable, @isnew, @isleaf, (SELECT MAX(ancestor_level) FROM td$::source::_ancestors WHERE code=@code), @updatedate)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_ADD_TERM_ANCESTORS">
+    <![CDATA[
+INSERT INTO td$::source::_ancestors (code, code_ancestor, ancestor_level)
+  SELECT DISTINCT childs.code AS code, parents.code_ancestor AS code_ancestor, childs.ancestor_level + 1 AS ancestor_level
+  FROM td$::source::_ancestors AS parents, td$::source::_ancestors AS childs 
+  WHERE parents.code=@code AND
+        childs.code_ancestor=@code AND 
+        (childs.code, parents.code_ancestor, childs.ancestor_level+1) NOT IN (SELECT code, code_ancestor, ancestor_level FROM (SELECT rep.code, rep.code_ancestor, rep.ancestor_level FROM td$::source::_ancestors AS rep) AS rep_table)
+  UNION
+    SELECT @code, code_ancestor, ancestor_level+1 FROM (SELECT dummy.code_ancestor, dummy.ancestor_level FROM td$::source::_ancestors AS dummy WHERE dummy.code=@codeparent) AS dummy_table
+  UNION
+    SELECT @code, @codeparent, 1 FROM DUAL
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_CALCULATE_TERM_FLATTEN_LABEL">
+    <![CDATA[
+SELECT GROUP_CONCAT(label SEPARATOR '. ') AS label FROM td$::source:: RIGHT JOIN (SELECT '::code::' AS code_ancestor, 0 AS ancestor_level FROM DUAL UNION SELECT code_ancestor, ancestor_level FROM td$::source::_ancestors WHERE code='::code::' ORDER BY ancestor_level ASC) AS dummy2 ON dummy2.code_ancestor=code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_LOAD_TERM">
+    <![CDATA[
+SELECT * FROM td$::source:: WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_SAVE_TERM">
+    <![CDATA[
+UPDATE td$::source:: SET label=@label, tags=@tags, type=@type, is_enable=@isenable, is_new=@isnew, is_leaf=@isleaf, update_date=@updatedate WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_UPDATE_TERM_FLATTEN_LABEL">
+    <![CDATA[
+UPDATE td$::source:: SET flatten_label=@flattenlabel WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_DELETE_TERM">
+    <![CDATA[
+DELETE FROM td$::source:: WHERE code=@code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_DELETE_TERM_ANCESTORS">
+    <![CDATA[
+DELETE FROM td$::source::_ancestors WHERE code=@code or code_ancestor=@code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_PUBLISH_TERMS">
+    <![CDATA[
+UPDATE td$::source:: SET is_new=0 WHERE code IN (::terms::)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_LOAD_DATA">
+    <![CDATA[
+SELECT code, code_parent, label, flatten_label, tags, type, is_enable, is_new, is_leaf, ancestor_level 
+FROM td$::source:: 
+WHERE 1=1 ::isnew:: ::isenable:: ::condition:: ::filters:: ::isleaf:: ::ancestorlevel:: ::from:: ::termsonly:: 
+ORDER BY ancestor_level ASC, label ASC 
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_LOAD_NEW_DATA">
+    <![CDATA[
+SELECT code, code_parent, label, flatten_label, tags, type, is_enable, is_new, is_leaf, ancestor_level 
+FROM td$::source:: 
+WHERE is_new=1 
+ORDER BY ancestor_level ASC, label ASC
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_LOAD_DATA_COUNT">
+    <![CDATA[
+SELECT COUNT(code) as counter FROM td$::source:: WHERE 1=1 ::isnew:: ::isenable:: ::condition:: ::filters:: ::isleaf:: ::ancestorlevel:: ::from:: ::termsonly::
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_LOAD_ANCESTORS">
+    <![CDATA[
+SELECT td$::source::.code, code_parent, label, flatten_label, tags, type, is_enable, is_new, is_leaf, td$::source::_ancestors.ancestor_level, MAX(td$::source::_ancestors.ancestor_level) as max_level
+FROM td$::source:: 
+INNER JOIN td$::source::_ancestors on td$::source::_ancestors.code_ancestor=td$::source::.code
+WHERE td$::source::_ancestors.code=@code
+GROUP BY td$::source::.code, td$::source::.label
+ORDER BY max_level DESC
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_CONDITION">
+    <![CDATA[
+AND MATCH(code, label, flatten_label) AGAINST (@condition IN BOOLEAN MODE)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_FILTERS">
+    <![CDATA[
+AND MATCH(tags) AGAINST (@filters IN BOOLEAN MODE)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_ANCESTOR_LEVEL">
+    <![CDATA[
+AND ancestor_level=@ancestorlevel
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_ANCESTOR_LEVEL_FROM_TERM">
+    <![CDATA[
+AND ancestor_level>(SELECT ancestor_level FROM td$::source:: WHERE CODE=@from) AND ancestor_level<=(SELECT ancestor_level+@depth FROM td$::source:: WHERE CODE=@from)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_LEAF">
+    <![CDATA[
+AND is_leaf=@isleaf
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_ENABLE">
+    <![CDATA[
+AND is_enable=@isenable
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_NEW">
+    <![CDATA[
+AND is_new=@isnew
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_FROM_TERM">
+    <![CDATA[
+AND CODE IN (SELECT CODE FROM td$::source::_ancestors WHERE code_ancestor=@from)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_TERMS_ONLY">
+    <![CDATA[
+AND (type=0 OR type=1)
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_SEARCH">
+    <![CDATA[
+SELECT MATCH(code, label, flatten_label) AGAINST (@condition IN BOOLEAN MODE) AS score, code, code_parent, label, flatten_label, tags, type, is_enable, is_new, is_leaf, ancestor_level FROM td$::source:: WHERE 1=1 ::isnew:: ::isenable:: ::condition:: ::filters:: ::isleaf:: ::ancestorlevel:: ::from:: ::termsonly:: ORDER BY score DESC, ancestor_level ASC, label ASC LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_SEARCH_COUNT">
+    <![CDATA[
+SELECT COUNT(*) AS counter FROM td$::source:: WHERE 1=1 ::isnew:: ::isenable:: ::condition:: ::filters:: ::isleaf:: ::ancestorlevel:: ::from:: ::termsonly:: 
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_SEARCH_CODE">
+    <![CDATA[
+SELECT code FROM td$::source:: WHERE MATCH(label) AGAINST (@label IN BOOLEAN MODE) AND is_enable=1 ORDER BY code
+]]>
+  </entry>
+  <entry key="SOURCE_STORE_SEARCH_LABEL">
+    <![CDATA[
+SELECT label FROM td$::source:: WHERE code LIKE @code AND is_enable=1 ORDER BY label
+]]>
+  </entry>
+
+  <!-- HISTORY STORE -->
+  <entry key="HISTORY_STORE_EXISTS">
+    <![CDATA[
+SELECT * FROM information_schema.tables WHERE table_name='th$::store::' AND table_schema='::schema::'
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_CREATE">
+    <![CDATA[
+CREATE TABLE IF NOT EXISTS th$::store:: (id_user int(11) NOT NULL, code varchar(255) collate utf8_unicode_ci NOT NULL, label varchar(2500) collate utf8_unicode_ci NOT NULL, frequency int(11), PRIMARY KEY (id_user,code), KEY label(label)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_REMOVE">
+    <![CDATA[
+DROP TABLE th$::store::
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_LOAD_DATA">
+    <![CDATA[
+SELECT code, label, frequency FROM th$::store:: WHERE id_user=@iduser AND LOWER(label) LIKE @condition ORDER BY frequency DESC, label LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_LOAD_DATA_COUNT">
+    <![CDATA[
+SELECT COUNT(code) as counter FROM th$::store:: WHERE id_user=@iduser AND LOWER(label) LIKE @condition
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_EXIST_DATA">
+    <![CDATA[
+SELECT code, label, frequency FROM th$::store:: WHERE code=@code AND id_user=@iduser
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_ADD_DATA">
+    <![CDATA[
+INSERT INTO th$::store:: VALUES (@iduser,@code,@label,@frequency)
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_UPDATE_FREQUENCY">
+    <![CDATA[
+UPDATE th$::store:: SET frequency=@frequency WHERE code=@code AND id_user=@iduser
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_LOAD_DEFAULT_VALUES">
+    <![CDATA[
+SELECT property, data FROM ts$default_values WHERE code_node=@codenode AND id_user=@iduser
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_LOAD_DEFAULT_VALUE">
+    <![CDATA[
+SELECT property, data FROM ts$default_values WHERE code_node=@codenode AND id_user=@iduser AND property=@property
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_ADD_DEFAULT_VALUE">
+    <![CDATA[
+INSERT INTO ts$default_values VALUES (@codenode,@iduser,@property,@data)
+]]>
+  </entry>
+  <entry key="HISTORY_STORE_UPDATE_DEFAULT_VALUE">
+    <![CDATA[
+UPDATE ts$default_values SET data=@data WHERE code_node=@codenode AND id_user=@iduser AND property=@property
+]]>
+  </entry>
+
+  <!-- DATA LINK -->
+  <entry key="DATA_LINK_LOAD">
+    <![CDATA[
+SELECT ts$nodes_descriptors.label, ts$nodes_descriptors.description,ts$nodes_descriptors.color, ::referencetable::.*
+FROM ts$nodes_descriptors, ::referencetable:: 
+WHERE 
+  ::condition::
+  (ts$nodes_descriptors.delete_date IS NULL) 
+  AND (ts$nodes_descriptors.prototype=0) 
+  ::owner:: 
+  AND (ts$nodes_descriptors.id_node=::referencetable::.id_node) 
+  ::parameters:: 
+ORDER BY ::sortsby::
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_LOCATIONS">
+    <![CDATA[
+SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, ts$nodes_descriptors.label, ts$nodes_descriptors.description, ts$nodes_descriptors.color, ::referencetable::.*
+FROM ts$locations, ts$nodes_descriptors, ::referencetable::
+WHERE
+  ::condition::
+  (ts$nodes_descriptors.delete_date IS NULL)
+  AND (ts$nodes_descriptors.prototype=0)
+  ::owner::
+  AND (ts$nodes_descriptors.id_node=::referencetable::.id_node)
+  AND (ts$nodes_descriptors.id_node=ts$locations.id_node)
+  AND (ts$nodes_descriptors.georeferenced=1)
+  ::parameters::
+  ::boundingbox::
+LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_LOCATIONS_COUNT">
+    <![CDATA[
+SELECT count(id) as counter
+FROM ts$locations, ts$nodes_descriptors, ::referencetable::
+WHERE
+  ::condition::
+  (ts$nodes_descriptors.delete_date IS NULL)
+  AND (ts$nodes_descriptors.prototype=0)
+  ::owner::
+  AND (ts$nodes_descriptors.id_node=::referencetable::.id_node)
+  AND (ts$nodes_descriptors.id_node=ts$locations.id_node)
+  AND (ts$nodes_descriptors.georeferenced=1)
+  ::parameters::
+  ::boundingbox::
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_COUNT">
+    <![CDATA[
+SELECT COUNT(*) as counter 
+FROM ts$nodes_descriptors, ::referencetable:: 
+WHERE 
+  ::condition::
+  (ts$nodes_descriptors.delete_date IS NULL) 
+  AND (ts$nodes_descriptors.prototype=0) 
+  ::owner:: 
+  AND (ts$nodes_descriptors.id_node=::referencetable::.id_node) 
+  ::parameters:: 
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_SORTBY">
+    <![CDATA[
+::name:: ::mode::
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_PARAMETER">
+    <![CDATA[
+AND (::referencetable::.::name:: ::operator:: '::dataprefix::::data::::dataprefix::')
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_PARAMETER_WITH_EXTRA_DATA">
+    <![CDATA[
+AND (::referencetable::.::name:: ::operator:: '::dataprefix::::data::::dataprefix::' OR ::referencetable::.::name::$ex ::operator:: '::dataprefix::::data::::dataprefix::')
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_SEARCH">
+    <![CDATA[
+MATCH(::referencetable::.cache) AGAINST (@condition IN BOOLEAN MODE) AND
+]]>
+  </entry>
+  <entry key="DATA_LINK_LOAD_OWNER">
+    <![CDATA[
+AND ((ts$nodes_descriptors.id_owner=@idowner) OR (ts$nodes_descriptors.id_owner IS NULL))
+]]>
+  </entry>
+
+  <!-- EVENT -->
+  <entry key="EVENT_CREATE">
+    <![CDATA[
+INSERT INTO ts$events (name,due_date,data) VALUES (@name,@duedate,@data)
+]]>
+  </entry>
+  <entry key="EVENT_LOAD">
+    <![CDATA[
+SELECT name, due_date, data FROM ts$events WHERE name=@name
+]]>
+  </entry>
+  <entry key="EVENT_SAVE_FIRED">
+    <![CDATA[
+UPDATE ts$events SET fired=@fired WHERE name=@name
+]]>
+  </entry>
+  <entry key="EVENT_REMOVE">
+    <![CDATA[
+DELETE FROM ts$events WHERE name=@name
+]]>
+  </entry>
+  <entry key="EVENT_LIST_LOAD">
+    <![CDATA[
+SELECT name, due_date, data FROM ts$events WHERE DATE(due_date) <= CURDATE() AND fired='0'
+]]>
+  </entry>
+
+  <!-- DATASTORE EVENT -->
+  <entry key="DATASTORE_QUEUE_CREATE">
+    <![CDATA[
+INSERT INTO ts$datastorequeue (datastore, type, code, data, create_date) VALUES (@datastore, @type, @code, @data, @createdate)
+]]>
+  </entry>
+  <entry key="DATASTORE_QUEUE_LOAD">
+    <![CDATA[
+SELECT id, datastore, code, type, data, create_date FROM ts$datastorequeue WHERE datastore=@datastore ORDER BY create_date ASC
+]]>
+  </entry>
+  <entry key="DATASTORE_QUEUE_REMOVE">
+    <![CDATA[
+DELETE FROM ts$datastorequeue WHERE id IN (::ids::)
+]]>
+  </entry>
+
+  <!-- SEQUENCE -->
+  <entry key="SEQUENCE_EXISTS">
+    <![CDATA[
+SELECT code FROM ts$sequences WHERE code=@code
+]]>
+  </entry>
+  <entry key="SEQUENCE_CREATE">
+    <![CDATA[
+INSERT INTO ts$sequences (code,code_subsequence,value) VALUES (@code,@codesubsequence,@value)
+]]>
+  </entry>
+  <entry key="SEQUENCE_RESET_VALUE">
+    <![CDATA[
+UPDATE ts$sequences SET value=0 WHERE code=@code
+]]>
+  </entry>
+  <entry key="SEQUENCE_CREATE_VALUE">
+    <![CDATA[
+UPDATE ts$sequences SET value=value+1 WHERE code=@code
+]]>
+  </entry>
+  <entry key="SEQUENCE_SELECT_LAST_VALUE">
+    <![CDATA[
+SELECT code_subsequence, value FROM ts$sequences WHERE code=@code
+]]>
+  </entry>
+
+  <!-- WORKQUEUE -->
+  <entry key="WORKQUEUE_LIST_LOAD_PENDING">
+    <![CDATA[
+SELECT id, type, state, retries, creation_time, last_update_time FROM ts$workqueue WHERE (state=0 OR state=2) AND retries < 5 ORDER BY creation_time
+]]>
+  </entry>
+  <entry key="WORKQUEUE_ADD">
+    <![CDATA[
+INSERT INTO ts$workqueue (target, type, state, retries, creation_time, last_update_time) VALUES (@target, @type, @state, 0, @creationtime, @lastupdatetime)
+]]>
+  </entry>
+  <entry key="WORKQUEUE_REMOVE">
+    <![CDATA[
+DELETE FROM ts$workqueue WHERE id=@id
+]]>
+  </entry>
+  <entry key="WORKQUEUE_LOAD_TARGET">
+    <![CDATA[
+SELECT target FROM ts$workqueue WHERE id=@id
+]]>
+  </entry>
+  <entry key="WORKQUEUE_UPDATE_WITH_ERROR">
+    <![CDATA[
+UPDATE ts$workqueue SET retries=retries+1, last_update_time=@lastupdatetime, state=2, last_error=@lasterror WHERE id=@id
+]]>
+  </entry>
+  <entry key="WORKQUEUE_UPDATE_FINISHED">
+    <![CDATA[
+UPDATE ts$workqueue SET state=1, last_update_time=@lastupdatetime WHERE id=@id
+]]>
+  </entry>
+
+  <!-- MESSAGE QUEUE -->
+  <entry key="MESSAGEQUEUE_LIST_LOAD_PENDING">
+    <![CDATA[
+SELECT id, code, type, uri, state, retries, hash, order_id, last_update_time
+FROM ts$messagequeue 
+WHERE state=0 OR state=2 
+ORDER BY creation_time
+]]>
+  </entry>
+  <entry key="MESSAGEQUEUE_LOAD_CONTENT">
+    <![CDATA[
+SELECT message FROM ts$messagequeue WHERE id=@id
+]]>
+  </entry>
+  <entry key="MESSAGEQUEUE_INSERT">
+    <![CDATA[
+INSERT INTO ts$messagequeue (order_id, state, retries, uri, message, code, type, hash, creation_time, last_update_time) VALUES (@idorder, 0, 0, @uri, @message, @code, @type, @hash, @creationtime, @lastupdatetime)
+]]>
+  </entry>
+  <entry key="MESSAGEQUEUE_REMOVE">
+    <![CDATA[
+DELETE FROM ts$messagequeue WHERE id=@id
+]]>
+  </entry>
+  <entry key="MESSAGEQUEUE_UPDATE">
+    <![CDATA[
+UPDATE ts$messagequeue SET state=@state, retries=@retries, last_error=@lasterror, last_update_time=@lastupdatetime WHERE id=@id
+]]>
+  </entry>
+
+</properties>

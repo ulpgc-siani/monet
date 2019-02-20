@@ -1,0 +1,3 @@
+Lang.ImportResultComposite = {
+  close : 'Close'  
+};

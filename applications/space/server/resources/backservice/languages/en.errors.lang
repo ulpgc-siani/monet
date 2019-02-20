@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible error of BackserviceErrores posibles de Backservice</comment>
+  <entry key="ERR_UNDEFINED">Unknown error.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">Error in the actions factory.</entry>
+  <entry key="ERR_INVALID_REQUEST">Invalid request.</entry>
+  <entry key="ERR_WRONG_PARAMETERS">Wrong parameters.</entry>
+</properties>

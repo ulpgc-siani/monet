@@ -1,0 +1,43 @@
+<schema>
+   <codigo>C-0005/11-V</codigo>
+   <responsable>Juan gonzález</responsable>
+   <id-incidencia>I-0005/11</id-incidencia>
+   <tipo-incidencia code="m7sk4jw">Rotura</tipo-incidencia>
+   <fecha-inicio-real internal="2011-09-13 07:44:20.0 BST">13/09/2011 07:44:20</fecha-inicio-real>
+   <fecha-fin-real internal="2011-09-13 07:44:20.0 BST">13/09/2011 07:44:20</fecha-fin-real>
+   <resultado>true</resultado>
+   <observaciones-resultado>rghfghdfg</observaciones-resultado>
+   <calculo-coste internal="224.0" metric="">224,00</calculo-coste>
+   <calculo-coste-facturable internal="0.0" metric="">,00</calculo-coste-facturable>
+   <coste-consumible internal="80.0" metric="">80,00</coste-consumible>
+   <coste-consumible-facturable internal="0.0" metric="">,00</coste-consumible-facturable>
+   <coste-repuesto internal="144.0" metric="">144,00</coste-repuesto>
+   <coste-repuesto-facturable internal="0.0" metric="">,00</coste-repuesto-facturable>
+   <coste-esfuerzo internal="0.0" metric="">,00</coste-esfuerzo>
+   <coste-esfuerzo-facturable internal="0.0" metric="">,00</coste-esfuerzo-facturable>
+   <adjuntos-resultado/>
+   <esfuerzos>
+      <esfuerzo>
+         <trabajador>trabajador</trabajador>
+         <numero-horas internal="10.0" metric="">10</numero-horas>
+         <coste-hora internal="0.0" metric="">,00</coste-hora>
+         <facturable-esfuerzo>false</facturable-esfuerzo>
+      </esfuerzo>
+   </esfuerzos>
+   <consumibles>
+      <consumible>
+         <consumible>consumible</consumible>
+         <cantidad-metrica internal="16.0" metric="">16,00</cantidad-metrica>
+         <coste-unidad-consumible internal="80.0" metric="">80,00</coste-unidad-consumible>
+         <facturable-consumible>false</facturable-consumible>
+      </consumible>
+   </consumibles>
+   <repuestos>
+      <repuesto>
+         <repuesto>repuesto</repuesto>
+         <cantidad-unidad internal="18.0" metric="">18,00</cantidad-unidad>
+         <coste-unidad-repuesto internal="144.0" metric="">144,00</coste-unidad-repuesto>
+         <facturable-repuesto>false</facturable-repuesto>
+      </repuesto>
+   </repuestos>
+</schema>

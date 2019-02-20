@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="ExporterDefinition" parent="AgentDefinition" token="exporter">
+	<description>Un exportador es un agente que permite generar una representación XML a partir de los datos del sistema de información</description>
+	
+	<attribute token="target" type="key" link="DocumentDefinition" required="true">
+		<description>Documento desde el que se importan los datos</description>
+	</attribute>	
+	
+	<method name="on-initialize" />
+	<method name="on-export-item" required="true">
+		<parameter name="i" type="../target/document/schema" />
+	</method>
+
+</class>

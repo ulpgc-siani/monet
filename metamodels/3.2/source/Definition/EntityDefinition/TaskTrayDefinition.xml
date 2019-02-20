@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="TaskTrayDefinition" parent="SetDefinition" token="tasktray" extensible="true">
+	<description>Permite definir cómo se verán las tareas en el panel de tareas</description>
+	<hint>Se utiliza para definir la vista de las tareas</hint>
+</class>

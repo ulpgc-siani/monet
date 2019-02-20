@@ -1,0 +1,81 @@
+
+#server-view input[name='name'] {
+  width: 97%;
+  height: 35px;
+  font-size: 160%;
+}
+
+#server-view input[name='ip'] {
+  width: 70%;
+  height: 25px;  
+}
+
+#server-view .section {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#server-view .section-left div.bar .title {
+ width: 70%;
+ float: left;
+}
+
+#server-view .section-left div.section-list {
+  clear: both;
+  margin-left: 0px;
+  margin-top: 5px;
+}
+
+#server-view .table-border {
+  height: 400px;
+}
+
+
+#server-view #state-tab {
+  padding: 20px;
+}
+
+#server-view #state-tab ul {
+  display: table;
+  width: 95%;
+  background-color: #f3f3f3;
+  padding: 5px;
+}
+
+#server-view #state-tab .horizontal-panel {
+  width: 100%;
+  clear: both;
+  display: table;
+}
+
+#server-view #state-tab .vertical-panel {
+  display: table;
+  width: 200px;
+  float: left;
+  margin-right: 40px;  
+}
+
+#server-view #state-tab .vertical-panel ul {
+  height : 91px;  
+}
+
+#server-view #state-tab  div.section {
+  clear: both;
+  font-weight: bolder;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+#server-view #state-tab li div.meta {
+  width: 63%;
+  float: left; 
+}
+#server-view #state-tab li div.value {
+  width: 35%;  
+  float: left;
+  text-align: right; 
+}
+
+#server-view #logs-tab {
+ padding: 20px;
+}

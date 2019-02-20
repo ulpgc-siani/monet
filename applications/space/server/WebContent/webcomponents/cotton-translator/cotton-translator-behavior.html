@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+'use strict';
+
+var CottonBehaviors = CottonBehaviors || {};
+
+CottonBehaviors.TranslatorBehavior = {
+
+  properties: {
+    language: { type : String }
+  },
+
+  translate: function (dictionary) {
+    var widget = this;
+    var languageDictionary = dictionary[this.getLanguage()];
+
+    Object.keys(languageDictionary).forEach(function(key) {
+      widget[key] = languageDictionary[key];
+    });
+  },
+
+  getLanguage: function() {
+    var widget = this;
+
+    while (widget != null && widget.language == null)
+        widget = widget.parentElement;
+
+    if (widget == null)
+      return "es";
+
+    return widget.language;
+  }
+
+};
+</script>

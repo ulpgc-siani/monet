@@ -1,0 +1,34 @@
+::view::
+
+@view.isNull
+<div class="summary"><div class="error" style="clear:both;">No se ha indicado la vista a renderizar</div></div>
+
+@taskState.new
+Nueva
+
+@taskState.pending
+Pendiente
+
+@taskState.waiting
+En espera
+      
+@taskState.expired
+Expirada
+
+@taskState.finished
+Finalizada
+
+@taskState.aborted
+Abortada
+
+@taskState.failure
+Alerta
+
+@taskState.undefined
+Sin definir
+
+@template
+preview
+
+@template.readonly
+preview

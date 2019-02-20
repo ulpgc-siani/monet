@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="MetaTextFieldDeclaration" parent="TextFieldDeclaration" tag="field-metatext">
+  <hint>Antes se llamaba pattern</hint>
+
+  <attribute name="pattern" type="String" required="true">
+    <description>Expresión regular que permite analizar el texto introducido y separarlo en partes</description>
+  </attribute>
+
+  <property name="part">
+    <description>Cada una de las partes en las que se divide el texto introducido</description>
+    <attribute name="index" type="Integer">
+      <description>Identificador de la parte</description>
+    </attribute>
+    <attribute name="meta" type="String">
+      <description>Etiqueta que se asigna al metadato</description>
+    </attribute>
+  </property>
+
+
+  <example>
+  <![CDATA[
+    <pattern value="(#*)–(#*)">
+     <indicator index="1" label="prefix"/>
+     <indicator index="2" label="number"/>
+    </pattern>
+  ]]>
+  </example>
+
+</class>

@@ -1,0 +1,18 @@
+
+Quick Setup
+
+Jsmtpd needs a JRE (Java Runtime Environnement), version 1.5
+
+Unzip the archive. You'll find several directories. 
+Edit the jsmtpd config file etc/jsmtpd.ini
+You'll need to change localHost to match your hostname (FQDN)
+
+The other interesting configuration file is 
+etc/jsmtpd-plugin-config.xml. Take a look at the manual 
+(http://www.jsmtpd.org) for advanced configuration.
+
+
+Once your configuration is done, you may start the server.
+Depending on your platform, use startup.bat or startup.sh
+	
+

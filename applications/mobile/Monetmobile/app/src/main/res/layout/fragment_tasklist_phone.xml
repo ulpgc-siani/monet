@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true">
+
+    <FrameLayout
+            android:id="@+id/tray_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_background">
+
+        <org.monet.space.mobile.widget.SegmentedRadioGroup
+                android:id="@+id/tray_selector"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dip"
+                android:checkedButton="@+id/radio_button_assigned"
+                android:orientation="horizontal">
+
+            <RadioButton
+                    android:id="@+id/radio_button_assigned"
+                    android:minWidth="45dip"
+                    android:minHeight="35dip"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/tab_pending"/>
+
+            <RadioButton
+                    android:id="@+id/radio_button_finished"
+                    android:minWidth="45dip"
+                    android:minHeight="35dip"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/tab_finished"/>
+
+            <RadioButton
+                    android:id="@+id/radio_button_available"
+                    android:minWidth="45dip"
+                    android:minHeight="35dip"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/tab_available"/>
+
+        </org.monet.space.mobile.widget.SegmentedRadioGroup>
+
+    </FrameLayout>
+
+    <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tray_frame"
+            android:layout_above="@+id/sync_text"
+            android:choiceMode="multipleChoice"/>
+
+    <TextView
+            android:id="@android:id/empty"
+            style="@style/listEmptyText"
+            android:layout_centerVertical="true"
+            android:text="@string/empty_task_list_loading"/>
+
+    <TextView
+            android:id="@+id/sync_text"
+            android:layout_width="match_parent"
+            android:paddingLeft="8dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical|start"
+            android:background="#888888"
+            android:text="@string/sync_last_update"
+            android:textSize="14sp"/>
+
+</RelativeLayout>

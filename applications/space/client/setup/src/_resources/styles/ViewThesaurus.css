@@ -1,0 +1,25 @@
+
+#ViewThesaurus #thesaurus-grid-panel {
+  width: 100%;
+  height: 100%;
+}
+
+#ViewThesaurus #thesaurus-list a {
+  color: black;
+  font: normal 12px arial, tahoma, helvetica, sans-serif;
+  white-space: nowrap;  
+  text-decoration: none; 
+}
+#ViewThesaurus #thesaurus-grid-panel {
+  width: 100%;
+  height: 100%;
+}
+#ViewThesaurus #thesaurus-list ul li, #ViewThesaurus #thesaurus-list ul li.item_unselected a {   
+  color: black; 
+  padding: 1px;;
+}
+#ViewThesaurus #thesaurus-list ul li.item_selected a {
+  background-color: #3366CC; 
+  padding: 1px;;
+  color: white;
+}

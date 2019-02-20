@@ -1,0 +1,29 @@
+package com.prueba {
+
+	["mjcrqzq"]
+	definition Home is desktop {
+		label = "Home";
+
+		for {
+			role = ref common.User;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+			//role = ref common.Delegate;
+		}
+
+		["mdzqsnw"]
+		view {
+			label ="Last news";
+			is-default;
+			show {  
+				news;
+			}			
+		}
+	}
+
+}

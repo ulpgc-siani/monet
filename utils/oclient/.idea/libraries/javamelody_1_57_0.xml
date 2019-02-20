@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="javamelody-1.57.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/oclientwar/web/WEB-INF/lib/javamelody-1.57.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

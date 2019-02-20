@@ -1,0 +1,307 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="secret">1234</string>
+    <string name="sender_id">215439778723</string>
+    
+    <!-- Menu labels -->
+    <string name="menu_item_sync">Sincronizar ahora</string>
+    <string name="menu_item_new">Nueva</string>
+    <string name="menu_item_search">Buscar</string>
+   	<string name="menu_item_map">Ver en mapa</string>
+    <string name="menu_item_sort">Ordenar</string>
+    <string name="menu_item_settings">Ajustes</string>
+    <string name="menu_item_switch_tiles">Mapa o satélite</string>
+    <string name="menu_item_add_account">Añadir cuenta</string>
+    
+    <!-- Federation -->
+    <string name="federation_authenticator_name">Monet Mobile</string>
+    <string name="federation_authenticator_activity_label">Inicio de sesión en Monet</string>
+    <string name="federation_account_serverurl_label">Unidad de negocio</string>
+    <string name="federation_account_username_label">Nombre de usuario</string>
+    <string name="federation_account_password_label">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="welcome_intro">Bienvenido a</string>
+    <string name="login_in_progress">Iniciando sesión&#8230;</string>
+    
+    <string name="sync_data">Datos</string>
+    
+    <string name="err_bad_serverurl">La dirección no es válida</string>
+    <string name="err_empty_username">Introduce tu nombre de usuario</string>
+    <string name="err_empty_password">Introduce una contraseña</string>
+    <string name="error_no_data_connection">No se ha podido conectar. No hay Wifi o conexión de datos disponible.</string>
+    <string name="error_cant_connect_server">Error al conectar con el servidor. Compruebe los datos introducidos.</string>
+    <string name="error_cant_setup_account">Error al crear la cuenta de Monet. Contacte con el servicio técnico.</string>
+    
+    <string name="app_name">Monet Mobile</string>
+    <string name="title_activity_tasklist">Tareas</string>
+    <string name="title_activity_taskmap">Tareas</string>
+    <string name="title_activity_taskresume">Detalles del trabajo</string>
+    <string name="title_activity_newtask">Empezar una tarea nueva</string>
+    <string name="title_activity_taskstep">Confección del trabajo</string>
+    <string name="title_activity_taskpreparepackage">Finalizando el trabajo</string>
+    <string name="title_activity_account">Unidades de negocio</string>
+    <string name="title_activity_sourcelist">Source List Activity</string>
+    <string name="title_activity_splash">Monet Mobile</string>
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="title_activity_pickterm">Seleccionar término</string>
+    <string name="title_activity_pickcheck">Seleccionar valores</string>
+    <string name="title_activity_image_handwriting">Capturar trazo</string>
+    
+    <string name="tab_pending">Pendientes</string>
+    <string name="tab_finished">Finalizadas</string>
+    <string name="tab_available">Disponibles</string>
+    
+    <string name="all">Todos</string>
+    <string name="splash_logo_description">Logo of Monet Mobile</string>
+    <string name="tasks_navigation_menu_title">Tareas</string>
+    <string name="loading_more_items">Cargando elementos&#8230;</string>
+    <plurals name="selected_items">
+        <item quantity="zero"></item>
+        <item quantity="one">1 seleccionado</item>
+        <item quantity="other">%d seleccionados</item>
+    </plurals>
+    
+    <string name="no_tasks_founds">No se han encontrado tareas localizadas</string>
+    <string name="empty_assigned_task_list">No tienes tareas asignadas. \n\nSi acabas de añadir una cuenta, las nuevas tareas pueden tardar en aparecer unos minutos.</string>
+    <string name="empty_finished_task_list">No tienes tareas finalizadas. \n\nSi se ha sincronizado recientemente, las tareas finalizadas ya no se muestran.</string>
+    <string name="empty_available_task_list">No tienes tareas disponibles. \n\nSi acabas de añadir una cuenta, las nuevas tareas pueden tardar en aparecer unos minutos.</string>
+    
+    <string name="distance_in_meters">%.0f m</string>
+    <string name="distance_in_kilometers">%.1f km</string>
+    
+    <string name="no_app_available">No tienes ninguna aplicación que pueda abrir este adjunto.</string>
+    <string name="sync_message">Se ha iniciado una actualización, esta puede tardar unos minutos en completarse.</string>
+    <string name="sync_last_update">Última actualización %1$s</string>
+    <string name="sync_updating">Actualizando&#8230;</string>
+    <string name="not_synchronized">Aún no se ha actualizado</string>
+    
+    <string name="search_label">Monet</string>
+    <string name="search_hint">Buscar</string>
+    
+    <string name="details_tab">Detalles</string>
+    <string name="chat_tab">Chat</string>
+    <string name="send">Enviar</string>
+    
+    <string name="assign_selected">Asignamelas</string>
+    <string name="error_cant_complete_operation">No se ha podido completar la operación</string>
+    <string name="tasks_to_appear_when_sync_complete">Los trabajos aparecerán en unos minutos</string>
+    
+    <string name="abandon_selected">Abandonar tareas</string>
+    <string name="abandon_tasks_result_message">Tareas abandonadas</string>
+    
+    <string name="empty_task_list_loading">Espere mientras se carga su trabajo &#8230;</string>
+    <string name="empty_task_definition_list_loading">Espere mientras se cargan los tipos de tarea</string>
+    
+    <string-array name="sort_tasks_entries">
+        <item>Distancia</item>
+        <item>Prioridad</item>
+        <item>Etiqueta</item>
+        <item>Fecha propuesta</item>
+        <item>Fecha límite</item>
+    </string-array>
+    <string-array name="sort_tasks_entry_values">
+        <item>distance ASC</item>
+        <item>distance DESC</item>
+        <item>urgent DESC, suggested_end_date ASC</item>
+        <item>urgent ASC, suggested_end_date DESC</item>
+        <item>label ASC</item>
+        <item>label DESC</item>
+        <item>suggested_start_date ASC</item>
+        <item>suggested_start_date DESC</item>
+        <item>suggested_end_date ASC</item>
+        <item>suggested_end_date DESC</item>
+        </string-array>
+    <string name="ordering">Ordenar por&#8230;</string>
+    
+    <!-- Section Headers -->
+    <string name="description">Descripción</string>
+    <string name="progress">Progreso</string>
+    <string name="scheduled">Temporización</string>
+    <string name="comments">Observaciones</string>
+    <string name="attachments">Adjuntos</string>
+    
+    <!-- Task Details Form labels -->
+    <string name="loading_task_details">Cargando los detalles del trabajo&#8230;</string>
+    <string name="urgent">Urgente</string>
+    <string name="geolocated">Lugar de actuación</string>
+    <string name="suggested_start_date_label">Fecha propuesta</string>
+    <string name="suggested_end_date_label">Fecha límite</string>
+    <string name="start_date_label">Fecha de inicio</string>
+    <string name="end_date_label">Fecha de finalización</string>
+    <string name="suggested_start_date">Sin fecha propuesta</string>
+    <string name="suggested_end_date">Sin fecha límite</string>
+    <string name="start_date">No iniciado aún</string>
+    <string name="end_date">No finalizado aún</string>
+    <string name="progress_text">&#37; completado</string>
+    <string name="assign_task">Asignar</string>
+    <string name="unassign_task">Abandonar</string>
+    <string name="continue_task">Avanzar</string>
+    <string name="display_task">Mostrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="close">Cerrar</string>
+    <string name="unassign_dialog_message">¿Está seguro de que desea abandonar esta tarea?</string>
+    <string name="unassign_dialog_title">Abandonar</string>
+    <string name="unassign_dialog_result_message">Tarea abandonada</string>
+    <string name="assign_dialog_result_message">Tarea asignada</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    
+    <string name="delayed_message">Llevas un retraso de %s</string>
+    <string name="pending_message">Quedan %s</string>
+    <plurals name="days">
+        <item quantity="one">un día</item>
+        <item quantity="other">%d días</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">una hora</item>
+        <item quantity="other">%d horas</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">un minuto</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <string name="seconds">en unos instantes</string>
+    
+    <!-- Steps -->
+    <string name="previous_step">Anterior</string>
+    <string name="next_step">Siguiente</string>
+    <string name="finish_task">Finalizar</string>
+    
+    <!-- Editors -->
+    <string name="add_new_editor">Añadir nuevo</string>
+    
+    <!-- Description of delete editor button -->
+    <string name="description_minus_button">borrar</string>
+    
+    <string name="error_empty_editor">No puede ser vacío</string>
+    <string name="err_login_incorrect">El usuario o contraseña son incorrectos.</string>
+    <string name="err_ip_banned">El servidor ha rechazado la autenticación por hacer demasiados intentos fallidos seguidos.</string>
+    
+    <!-- Pick Map Position -->
+    <string name="maps_not_supported">Su dispositivo no soporta esta característica, se require OpenGL ES 2.0 o superior.</string>
+    <string name="default_point_description">Lat: %1$f Lon: %2$f</string>
+    <string name="no_location_label"><i>Sin localización</i></string>
+    <string name="pick_position_content_description">Acción para seleccionar una nueva posición en un mapa.</string>
+    
+    <!-- Select editor -->
+    <string name="no_select_value"><i>Sin valor</i></string>
+    <string name="term_list_loading">Espere mientras se cargan los términos&#8230;</string>
+    <string name="term_list_empty">No hay elementos</string>
+    <string name="select_this_btn">Seleccionar este elemento</string>
+    <string name="check_empty">No hay elementos seleccionados</string>
+    <string name="check_count">elementos seleccionados</string>
+    <string name="filter_condition">Indique la condición para filtrar</string>
+    
+    <!-- Draw Image Source Dialog -->
+    <string name="draw_image_dialog_title">Trazo</string>
+    
+    <!-- Choose Image Source Dialog -->
+    <string name="choose_image_source_dialog_title">Origen</string>
+    <string-array name="choose_image_source_dialog_items_emtpy">
+      <item>Hacer una foto</item>
+      <item>Seleccionar foto de la galería</item>
+    </string-array>
+    <string-array name="choose_image_source_dialog_items_filled">
+      <item>Abrir imagen actual</item>
+      <item>Hacer una foto</item>
+      <item>Seleccionar foto de la galería</item>
+    </string-array>
+    
+    <!-- Choose Video Source Dialog -->
+    <string name="choose_video_source_dialog_title">Origen</string>
+    <string-array name="choose_video_source_dialog_items_emtpy">
+      <item>Hacer un video</item>
+      <item>Seleccionar video de la galería</item>
+    </string-array>
+    <string-array name="choose_video_source_dialog_items_filled">
+      <item>Abrir video actual</item>
+      <item>Hacer un nuevo video</item>
+      <item>Seleccionar video de la galería</item>
+    </string-array>
+    
+    <!-- Preparing package activity -->
+    <string name="msg_creating_package">Creando resultado&#8230;</string>
+    <string name="msg_package_created">Trabajo finalizado correctamente.</string>
+    
+    <!-- New tasks notification -->
+    <plurals name="notification_title">
+        <item quantity="zero"></item>
+        <item quantity="one">Tienes un nuevo trabajo</item>
+        <item quantity="other">%d nuevos trabajos</item>
+    </plurals>
+    
+    <!-- Settings Activity -->
+    <string name="accounts_settings">Cuentas</string>
+    <string name="remove_account_title">Eliminar cuenta</string>
+    <string name="remove_account_message">¿Está seguro de que desea eliminar esta cuenta?</string>
+    
+    <string name="general_settings">General</string>
+    <string name="notifications_title">Notificaciones</string>
+    <string name="notifications_summary">Notificarme sobre nuevos trabajos descargados</string>
+    <string name="wifi_only_title">Sincronizar solo por Wi-Fi</string>
+    <string name="wifi_only_summary">Permite ahorrar datos móviles</string>
+    <string name="roaming_sync_title">No sincronizar en Roaming</string>
+    <string name="roaming_sync_summary">Evita sobrecostes cuando viajas a otros países</string>
+    
+    <string-array name="sync_interval_entries">
+        <item>10 minutos</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+        <item>4 horas</item>
+        <item>12 horas</item>
+        <item>24 horas</item>
+        <item>1 semana</item>
+        </string-array>
+    <string-array name="sync_interval_entry_values">
+        <item>600</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>14400</item>
+        <item>43200</item>
+        <item>86400</item>
+        <item>604800</item>
+    </string-array>
+    <string name="sync_interval_title">Intervalo de sincronización</string>
+    
+    <string-array name="days_keep_finished_entries">
+        <item>1 día</item>
+        <item>2 días</item>
+        <item>3 días</item>
+        <item>7 días</item>
+        <item>30 días</item>
+    </string-array>
+    <string-array name="days_keep_finished_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>7</item>
+        <item>30</item>
+    </string-array>
+    <string name="days_keep_finished_title">Conservar las tareas finalizadas</string>
+    
+    <!-- Source activity -->
+    <string name="edit">Editar</string>
+    <string name="remove">Borrar</string>
+    <string name="business_unit">Unidad de negocio</string>
+    <string name="sync_enabled">Sincronización activa</string>
+    <string name="organization">Organización</string>
+    <string name="account_removed">La cuenta ha sido borrada</string>
+    <string name="account_cant_be_removed">No se ha podido borrar la cuenta</string>
+    
+    <!-- Dialogs -->
+    <string name="selectNone">Ninguno</string>
+    <string name="selectAll">Todos</string>
+    <string name="select">Seleccionar: </string>
+    
+    <!-- Images and video -->
+    <string name="error_processing_image">No se ha podido cargar la imagen</string>
+    <string name="error_processing_video">No se ha podido cargar el video</string>
+    <string name="error_video_file_size">El video seleccionado es demasiado grande. Tamaño máximo %s MB</string>
+    
+    <!-- Notifications -->
+    <string name="notification_task_details">&lt;b>%1$s&lt;/b> %2$s</string>
+    
+    <string name="untrusted_server">Servidor de Monet no confiable</string>
+    <string name="sync_disabled">Monet ha desactivado la sincronización</string>
+    <string name="sync_disabled_content">No es posible sincronizar los datos. Compruebe su conexión, si persiste contacte con su proveedor</string>
+    <string name="sync_incorrect_credentials">Sus datos de inicio de sesión han cambiado. No es posible sincronizar los datos.</string>
+</resources>

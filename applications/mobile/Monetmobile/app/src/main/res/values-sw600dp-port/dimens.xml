@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="left_list_panel_width">240dp</dimen>
+    
+    <dimen name="step_margin">0dp</dimen>
+    
+    <dimen name="timeline_height">96dp</dimen>
+</resources>

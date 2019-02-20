@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="backservice:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/backservice_jar</output-path>
+    <root id="archive" name="monet.api.space.backservice-3.0.jar">
+      <element id="module-output" name="backservice" />
+    </root>
+  </artifact>
+</component>

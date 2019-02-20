@@ -1,0 +1,47 @@
+.dialog.editnodedocument {
+  z-index: 0;
+  border: 1px solid black;
+  position: absolute;
+  margin-top: 25px;
+  border-radius: 8px;
+}
+
+.dialog.editnodedocument .outtitle {
+  font-size: 14px;
+  margin-bottom: 1px;
+  font-weight: bold;
+}
+
+.dialog.editnodedocument .outdescription {
+  color: #444;
+}
+
+.dialog.editnodedocument .outbody {
+  margin: 10px 0px;;
+}
+
+.dialog.editnodedocument .button {
+  text-align: center;
+  width: 80px;
+}
+
+.dialog.editnodedocument .button.download.again {
+  width: 120px;
+}
+
+.dialog.editnodedocument .button.replace {
+  width: 186px;
+}
+
+.dialog.editnodedocument .step {
+  height: 200px;
+  width: 380px;
+  padding: 20px 40px 20px 20px;
+  background-color: #fef49c;
+  border-radius: 8px;
+}
+
+.dialog.editnodedocument .cancel {
+  display: block;
+  margin-top: 5px;
+}

@@ -1,0 +1,13 @@
+/* Layout column left */ 
+.x-layout-collapsed-west {
+   background-image: url('../images/layout/collapse-west-bg.en.gif');
+   background-repeat:no-repeat;
+   background-position:center;
+}
+
+/* Layout column right */ 
+.x-layout-collapsed-east {
+   background-image: url('../images/layout/collapse-east-bg.en.gif');
+   background-repeat:no-repeat;
+   background-position:center;
+}

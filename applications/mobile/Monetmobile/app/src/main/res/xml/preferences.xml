@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory 
+        android:title="@string/accounts_settings"
+        android:key="pref_key_accounts_settings">
+        <org.monet.space.mobile.widget.AccountsPreference
+            android:key="pref_key_accounts"
+            android:layout="@layout/preference_accounts_list" />
+    </PreferenceCategory>
+    <PreferenceCategory 
+        android:title="@string/general_settings"
+        android:key="pref_key_general_settings">
+        <ListPreference 
+            android:key="pref_key_days_keep_finished"
+            android:title="@string/days_keep_finished_title"
+            android:summary="%1$s"
+            android:defaultValue="1"
+            android:entries="@array/days_keep_finished_entries"
+            android:entryValues="@array/days_keep_finished_entry_values"/>
+        <ListPreference 
+            android:key="pref_key_sync_interval"
+            android:title="@string/sync_interval_title"
+            android:summary="%1$s"
+            android:defaultValue="1800"
+            android:entries="@array/sync_interval_entries"
+            android:entryValues="@array/sync_interval_entry_values"/>
+        <CheckBoxPreference
+            android:key="pref_key_notifications"
+            android:summary="@string/notifications_summary"
+            android:title="@string/notifications_title"
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_key_wifi_only"
+            android:summary="@string/wifi_only_summary"
+            android:title="@string/wifi_only_title"
+            android:defaultValue="false" />
+        <CheckBoxPreference 
+            android:key="pref_key_roaming_sync"
+            android:summary="@string/roaming_sync_summary"
+            android:title="@string/roaming_sync_title"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>

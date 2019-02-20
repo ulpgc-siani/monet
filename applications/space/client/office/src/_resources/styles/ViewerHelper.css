@@ -1,0 +1,420 @@
+.viewer.helper {
+  margin: 10px 10px 20px;
+}
+
+.viewer.helper .block, .viewer.helper .group {
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
+.viewer.helper .block.add li, .viewer.helper .block.tools li {
+  margin: 4px 10px 4px 0px;
+  display: inline;
+}
+
+.viewer.helper .block.tools .dialog.selectprintattributes li {
+  display: block;
+}
+
+.viewer.helper .dialog {
+  margin-top: 10px;
+}
+
+.viewer.helper .date .dialog {
+  margin-top: 0px;
+}
+
+.viewer.helper .dialog.publish {
+    border: 1px solid #AAAAAA;
+    display: block;
+    padding: 10px;
+}
+
+.viewer.helper .dialog.publish .title {
+    color: #000077;
+}
+
+.viewer.helper .dialog.publish .description {
+    color: #777777;
+}
+
+.viewer.helper .source .container {
+  margin: 2px 0 10px;
+}
+
+.viewer.helper .source .container label {
+  margin-left: 5px;
+}
+
+.viewer.helper .source .template {
+  display: none;
+}
+
+.viewer.helper .source .field.tags.empty table {
+  display: none;
+}
+
+.viewer.helper .source .field.tags.empty ul {
+  color: #666;
+  font-style: italic;
+}
+
+.viewer.helper .source .field.tags ul li {
+  position: relative;
+}
+
+.viewer.helper .source .field.tags ul li input {
+  margin-bottom: 2px;
+}
+
+.viewer.helper .source .field.tags ul li input.name, .viewer.helper .source .field.tags ul li input.value {
+  margin-right: 10px;
+  width: 93%;
+}
+
+.viewer.helper .source .field.tags a.addtag {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  width: 80px;
+}
+
+.viewer.helper .source .field.tags a.deletetag {
+  height: 19px;
+  width: 18px;
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+  display: block;
+}
+
+.viewer.helper .source .field.tags a.deletetag:hover {
+  background-position: -17px 0px;
+}
+
+.viewer.helper .title {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.viewer.helper .fields {
+  margin: 10px 0px;
+  border: 1px solid #aaa;
+  padding: 10px;
+}
+
+.viewer.helper .fields table {
+  width: 100%;
+}
+
+.viewer.helper .fields .field {
+  margin-bottom: 10px;
+  clear: both;
+  height: 18px;
+  position: relative;
+}
+
+.viewer.helper .fields .field.url {
+  height: 38px;
+}
+
+.viewer.helper .fields .field td.label {
+  width: 30%;
+}
+
+.viewer.helper .role .dialog .title {
+  margin-bottom: 0;
+  display: inline;
+  margin-right: 10px;
+}
+
+.viewer.helper .role .dialog .subtitle {
+  color: #555555;
+  font-size: 13px;
+}
+
+.viewer.helper .role .dialog .states {
+  margin-top: 5px;
+}
+
+.viewer.helper .role .dialog .states .state {
+  display: none;
+  color: white;
+  padding: 0 5px;
+  border-radius: 3px;
+  text-align: center;
+  width: 53px;
+}
+
+.viewer.helper .role .dialog .states .state.active {
+  background: #33942F;
+}
+
+.viewer.helper .role .dialog.began_true.expired_false .states .state.active,
+.viewer.helper .role .dialog.began_true.expires_false .states .state.active {
+  display: inline !important;
+}
+
+.viewer.helper .role .dialog .states .state.pending {
+  background: #E37F2E;
+}
+
+.viewer.helper .role .dialog.began_false.expired_false .states .state.pending {
+  display: inline !important;
+}
+
+.viewer.helper .role .dialog .states .state.inactive {
+  background: #828282;
+}
+
+.viewer.helper .role .dialog.expired_true .states .state.inactive {
+  display: inline !important;
+}
+
+.viewer.helper .role .dialog.expired_true .field.begindate, .viewer.helper .role .dialog.expired_true .field.expiredate {
+  display: none !important;
+}
+
+.viewer.helper .role .dialog .dates {
+  margin-top: 8px;
+}
+
+.viewer.helper .role .dialog .dates .date {
+  display: none;
+  color: black;
+}
+
+.viewer.helper .role .dialog.began_false .dates .date.pending {
+  display: block;
+}
+
+.viewer.helper .role .dialog.began_true.expired_false .dates .date.active {
+  display: block;
+}
+
+.viewer.helper .role .dialog.expires_false .dates .date.noexpires {
+  display: block;
+}
+
+.viewer.helper .role .dialog.expired_false.expires_true .dates .date.expires {
+  display: block;
+}
+
+.viewer.helper .role .dialog.expired_true .dates .date.expired {
+  display: block;
+}
+
+.viewer.helper .role .dialog.save .field.definitiontype, .viewer.helper .role .dialog.save .dialog.user,
+.viewer.helper .role .dialog.save .dialog.partner, .viewer.helper .role .dialog.save .field.type {
+  display: none !important;
+}
+
+.viewer.helper .role .dialog.users .grid {
+  margin-bottom: 10px;
+  width: 97%;
+  min-height: 289px;
+}
+
+.viewer.helper .role .dialog.services, .viewer.helper .role .dialog.feeders {
+  margin-bottom: 15px;
+}
+
+.viewer.helper .role .fields .field.type .component {
+  height: auto;
+  width: 100%;
+}
+
+.viewer.helper .role .fields .field.type .dialog {
+  margin-top: 0;
+}
+
+.viewer.helper .role .fields .field.type .dialog.users .usersbox .layer,
+.viewer.helper .role .fields .field.type .dialog.services .servicesbox .layer,
+.viewer.helper .role .fields .field.type .dialog.feeders .feedersbox .layer {
+  margin-bottom: 15px;
+  min-height: 210px;
+  width: 97%;
+  overflow: auto;
+  height: 210px;
+  float: left;
+}
+
+.viewer.helper .role .fields .field.type .dialog.services .servicesbox.listviewer .itemgroup .label,
+.viewer.helper .role .fields .field.type .dialog.feeders .feedersbox.listviewer .itemgroup .label {
+  font-size: 16px;
+}
+
+.viewer.helper .role .fields .field.type .dialog.users .usersbox.listviewer .item .label,
+.viewer.helper .role .fields .field.type .dialog.services .servicesbox.listviewer .item .label,
+.viewer.helper .role .fields .field.type .dialog.feeders .feedersbox.listviewer .item .label {
+  font-size: 14px;
+  color: #0D3C98;
+}
+
+.viewer.helper .role .fields .field.type .dialog.users .usersbox.listviewer .item .email {
+  font-size: 13px;
+}
+
+.viewer.helper .role .fields .field.type .dialog.users .usersbox.listviewer .item .content,
+.viewer.helper .role .fields .field.type .dialog.services .servicesbox.listviewer .item .content,
+.viewer.helper .role .fields .field.type .dialog.feeders .feedersbox.listviewer .item .content {
+  width: 98%;
+}
+
+.viewer.helper .role .datepicker .behaviours {
+  display: none;
+}
+
+.viewer.helper .datepicker .dialog {
+  margin-top: 0;
+}
+
+.viewer.helper .role .fields .fields .field .datepicker label {
+  display: inline;
+  font-size: 12px;
+  margin: 0px;
+}
+
+.viewer.helper .role .fields .field .component.readonly {
+  color: #888;
+}
+
+.viewer.helper .role .fields .field.begindate .component, .viewer.helper .role .fields .field.expiredate .component {
+  margin-top: -3px;
+  margin-bottom: 10px;
+  width: 98%;
+}
+
+.viewer.helper .role .fields .field.begindate .component label, .viewer.helper .role .fields .field.expiredate .component label {
+  float: none;
+  margin-left: 5px;
+}
+
+.viewer.helper .role .fields .field.begindate .datepicker, .viewer.helper .role .fields .field.expiredate .datepicker {
+  background: none repeat scroll 0 0 white;
+  position: absolute;
+  margin-left: -23px;
+  margin-top: 23px;
+  z-index: 10;
+}
+
+.viewer.helper .role .fields .field.expiredate {
+  height: 19px;
+}
+
+.viewer.helper .role .historyroles .listviewer .items .item .content {
+  border: 0;
+  background: #efefef;
+  margin-bottom: 6px;
+  padding: 4px 0;
+}
+
+.viewer.helper .role .historyroles .listviewer .items .item .content:hover {
+  background: #efefef !important;
+  cursor: default;
+}
+
+.viewer.helper .role .historyroles .listviewer .wizard, .viewer.helper .role .historyroles .listviewer .summary {
+  display: none !important;
+}
+
+.viewer.helper .role .historyroles .role .label {
+  display: none !important;
+}
+
+.viewer.helper .role .historyroles .listviewer .role .date {
+  display: none;
+  color: black;
+}
+
+.viewer.helper .role .historyroles .listviewer .role.began_false .date.pending {
+  display: block;
+}
+
+.viewer.helper .role .historyroles .listviewer .role.began_false.expired_true .date.pending {
+  display: none;
+}
+
+.viewer.helper .role .historyroles .listviewer .role.began_true.expired_false .date.active {
+  display: block;
+}
+
+.viewer.helper .role .historyroles .listviewer .role.expires_false .date.noexpires {
+  display: block;
+}
+
+.viewer.helper .role .historyroles .listviewer .role.expired_false.expires_true .date.expires {
+  display: block;
+}
+
+.viewer.helper .role .historyroles .listviewer .role.expired_true .date.expired {
+  display: block;
+}
+
+.viewer.helper .fields .field label.disabled {
+  color: #aaa;
+}
+
+.viewer.helper .fields .field .component label {
+  float: none;
+  margin-left: 5px;
+}
+
+.viewer.helper .fields .field .component {
+  width: 99%;
+  float: left;
+  margin-bottom: 10px;
+}
+
+.viewer.helper .fields .field table {
+  width: 100%;
+}
+
+.viewer.helper .fields .field.enable .component, .viewer.helper .fields .field.superterm .component, .viewer.helper .fields .field.expires .component {
+  width: auto;
+}
+
+.viewer.helper .fields .field.type .component {
+  width: 137px;
+  height: 50px;
+}
+
+.viewer.helper .message {
+  color: red;
+  position: absolute;
+  left: 52px;
+}
+
+.viewer.helper .toolbar.upload .message {
+  position: relative;
+  color: #666;
+  left: 0;
+}
+
+.viewer.helper .message.user, .viewer.helper .message.service, .viewer.helper .message.feeder {
+  margin-top: 10px;
+  position: relative;
+  left: 0;
+}
+
+.viewer.helper .message.expire {
+  top: -6px;
+  left: 0;
+  position: relative;
+}
+
+.viewer.helper .message.begin {
+  left: 15%;
+  top: -21px;
+}
+
+.viewerhelperroleuser {
+  padding: 3px;
+}
+
+.viewerhelperroleuser .label {
+  font-weight: bold;
+}
+
+.viewerhelperroleuser .email {
+  color: #666;
+}

@@ -1,0 +1,31 @@
+.node .summary {
+  padding: 0px;
+}
+
+.node .summary .view {
+  margin: 10px;
+}
+
+.node .summary .view .label {
+  font-size: 15px;
+}
+
+.node .summary .view table {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.node .summary .view table td label, .node .summary .view table td ul {
+  margin-right: 10px;
+}
+
+.node .summary .view table td label {
+  color: #666;
+  border-bottom: 1px dotted #666;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.node .summary .view table td ul li {
+  margin-bottom: 2px;
+}

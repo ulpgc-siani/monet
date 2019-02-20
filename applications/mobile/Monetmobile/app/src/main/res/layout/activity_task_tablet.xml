@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <fragment
+            class="org.monet.space.mobile.fragment.TaskListFragment"
+            android:id="@+id/tasklist"
+            android:layout_width="@dimen/left_list_panel_width"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            tools:layout="@layout/fragment_tasklist_tablet"/>
+
+    <FrameLayout
+            android:id="@+id/taskdetails"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/tasklist">
+
+    </FrameLayout>
+</RelativeLayout>

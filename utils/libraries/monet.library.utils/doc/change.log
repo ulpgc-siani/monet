@@ -1,0 +1,14 @@
+ChangeLog  - Monet Library Utils
+
+# 26 - 09 - 2011 Version 0.4
+	-	Added Thread pool 
+	
+# 18 - 07 - 2011 Version 0.2
+	-	Reanme component to library 
+
+# 13 - 07 - 2011 Version 0.1 
+	- Added Date operations
+	- Moved Base64 to encrypt component
+	
+# 15 - 06 - 2011 Version 0.1 
+	- Added Base64 operation

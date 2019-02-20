@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Etiquetas posibles del núcleo de monet</comment>
+  <entry key="LBL_NO_LABEL">Sin etiqueta</entry>
+  <entry key="LBL_CLONE_FROM">Copia de</entry>
+  <entry key="LBL_CLONE_AT">Duplicado el</entry>
+  <entry key="LBL_NO_NODE_TYPE_LABEL">Tipo desconocido</entry>
+  <entry key="LBL_ERROR_FIELDS">datos necesarios</entry>
+  <entry key="LBL_WARNING_FIELDS">advertencias</entry>
+  <entry key="LBL_IMPORTATION">Importación del día</entry>
+  <entry key="LBL_NO_LABEL">Sin etiqueta</entry>
+  <entry key="LBL_ABORT">Abortar</entry>
+  <entry key="LBL_RETRY">Reintentar</entry>
+  <entry key="LBL_POST_SERVICE_REQUEST_RECEIVED">%s ha solicitado un servicio. %s</entry>
+  <entry key="LBL_POST_SERVICE_RESPONSE_SENT">Se ha recibido una respuesta para el servicio hecho por %s. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_REQUEST">Se ha enviado una solicitud a %s. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_RESPONSE">%s ha respondido a una solicitud. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_NOTIFY_SENT">Se ha enviado una notificación a %s. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_NOTIFY_RECEIVED">%s ha enviado una notificación. %s</entry>
+  <entry key="LBL_POST_BUSINESS_MODEL_UPDATED">El modelo de negocio ha sido actualizado</entry>
+  <entry key="LBL_POST_BUSINESS_MODEL_INSTALLED">¡Enhorabuena! El modelo de negocio ha sido instalado</entry>
+  <entry key="LBL_POST_TASK_EVENT">Evento de tarea...</entry>
+  <entry key="LBL_POST_NEW_NODE">Elemento nuevo...</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_ALERT">No se pudo enviar la solicitud a %s. %s</entry>
+  <entry key="LBL_POST_TASK_ALERT_USER">%s ha solicitado participar en la tarea %s</entry>
+  <entry key="LBL_POST_NODE_ALERT_USER">%s ha solicitado que pongas atención en %s</entry>
+  <entry key="LBL_POST_COMMENT_TASK_PENDING">La tarea está pendiente</entry>
+  <entry key="LBL_NOTIFICATION_NEWS_ADDED">Hay nuevas entradas en el muro</entry>
+</properties>

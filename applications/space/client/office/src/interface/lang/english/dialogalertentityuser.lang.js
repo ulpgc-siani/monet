@@ -1,0 +1,3 @@
+Lang.DialogAlertEntityUser = {
+  Delete: "Delete"
+};

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="BalanceScorecardDeclaration" parent="AnalyticalDeclaration" tag="balance-scorecard">
+  <description>Declaración que se utiliza para modelar un cuadro de mando integral</description>
+
+  <property name="dashboard">
+    <description>Se utiliza para definir el panel del cuadro de mando</description>
+    <attribute name="report" type="code" link="Definition" restriction="ReportDeclaration">
+      <description>Código de la definición de un informe</description>
+    </attribute>
+  </property>
+  
+  <include name="section" multiple="true">
+    <option class-name="BalanceScoreCardSectionDeclaration" />
+  </include>
+  
+</class>

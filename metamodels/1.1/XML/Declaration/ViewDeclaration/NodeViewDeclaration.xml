@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NodeViewDeclaration" parent="ViewDeclaration">
+  <description>Declaración abstracta de una vista de un nodo</description>
+
+  <attribute name="code" type="key" required="true">
+    <description>Código de la vista</description>
+  </attribute>
+
+  <attribute name="name" type="string" required="true">
+    <description>Nombre de la vista</description>
+  </attribute>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta de la vista</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+    
+</class>

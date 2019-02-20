@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="main" basedir=".">
+	<target name="main" >
+ 		<java jar="jars/monet.runnable.install-0.3.jar" fork="true" />
+		<java jar="jars/monet.runnable.checkchanges-0.2.jar" fork="true" />
+		<eclipse.refreshLocal resource="monet.federation" depth="infinite"/>
+ </target>
+</project>

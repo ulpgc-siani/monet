@@ -1,0 +1,18 @@
+<schema>
+   <codigo>C-0001/11-V</codigo>
+   <id-incidencia>I-0001/11</id-incidencia>
+   <tipo-incidencia code="mrwy1na">Corrección</tipo-incidencia>
+   <fecha-inicio-real internal="2011-09-13 02:27:07.0 BST">13/09/2011 02:27:07</fecha-inicio-real>
+   <fecha-fin-real internal="2011-09-13 02:27:07.0 BST">13/09/2011 02:27:07</fecha-fin-real>
+   <corregida>true</corregida>
+   <observaciones-resultado></observaciones-resultado>
+   <calculo-coste internal="0.0" metric="">,00</calculo-coste>
+   <calculo-coste-facturable internal="0.0" metric="">,00</calculo-coste-facturable>
+   <coste-consumible internal="0.0" metric="">,00</coste-consumible>
+   <coste-consumible-facturable internal="0.0" metric="">,00</coste-consumible-facturable>
+   <coste-repuesto internal="0.0" metric="">,00</coste-repuesto>
+   <coste-repuesto-facturable internal="0.0" metric="">,00</coste-repuesto-facturable>
+   <coste-esfuerzo internal="0.0" metric="">,00</coste-esfuerzo>
+   <coste-esfuerzo-facturable internal="0.0" metric="">,00</coste-esfuerzo-facturable>
+   <adjuntos-resultado/>
+</schema>

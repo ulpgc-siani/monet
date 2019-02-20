@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ContainDeclaration" parent="ContentDeclaration" tag="contain">
+  <description>Indica un tipo nodo que puede añadirse a un compuesto (container, collection, field-collections)</description>
+
+  <property name="contain" multiple="true">
+    <description>La presencia de esta propiedad indica qué se pueden incluir tipo de nodo concreto. Se podrán agregar muchos nodos de este tipo.</description>
+    <attribute name="node" type="String" link="NodeDeclaration" required="true">
+      <description>Nombre de una definición de nodo. Sólo se pueden indicar nombres de definiciones en los que se haya declarado algún tipo nodo.  IMPORTANTE: Poner el caracter '@' delante del nombre (@name).</description>
+      <restriction>ONLY Definition WITH NodeDeclaration FROM Model</restriction>
+    </attribute>
+  </property>
+
+</class>
+

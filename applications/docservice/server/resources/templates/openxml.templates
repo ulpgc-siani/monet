@@ -1,0 +1,26 @@
+FIELD_BEGIN = <w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve">
+FIELD_SEPARATE = </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>
+FIELD_END = <w:r><w:fldChar w:fldCharType="end"/></w:r>
+
+NEW_STYLE = </w:t></w:r><w:r><w:rPr>
+NEW_TAB = </w:t><w:tab/></w:r><w:r><w:rPr>
+NEW_LINE = </w:t><w:br/><w:t>
+NEW_WORD = </w:r><w:r><w:rPr>
+
+#STYLES
+STYLE_SUPERSCRIPT_TEXT = <w:vertAlign w:val="superscript"/>
+STYLE_SUBSCRIPT_TEXT = <w:vertAlign w:val="subscript"/>
+STYLE_BOLD_TEXT = <w:b/>
+STYLE_ITALIC_TEXT = <w:i/>
+STYLE_STRIKE_TEXT = <w:strike/>
+STYLE_UNDERLINE_TEXT = <w:u w:val="single"/>
+
+#START OF A TEXT BLOCK
+START_TEXT = <w:noProof/></w:rPr><w:t>
+
+#END OF A FIELD
+END_FIELD = </w:t></w:r><w:r>
+
+#SINGLE ITEMS
+CLOSE_TEXT = </w:t>
+SINGLE_TAB = <w:tab/>

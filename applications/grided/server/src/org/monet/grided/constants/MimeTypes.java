@@ -1,0 +1,195 @@
+
+package org.monet.grided.constants;
+
+import java.util.HashMap;
+
+public class MimeTypes {
+  private HashMap<String, String> hmMimeTypes;
+  private static MimeTypes oInstance;
+  private static final String DEFAULT_MIME_TYPE = "bin";
+
+  private MimeTypes() {
+    this.hmMimeTypes = new HashMap<String, String>();
+    this.hmMimeTypes.put("ez", "application/andrew-inset");
+    this.hmMimeTypes.put("hqx", "application/mac-binhex40");
+    this.hmMimeTypes.put("cpt", "application/mac-compactpro");
+    this.hmMimeTypes.put("doc", "application/msword");
+    this.hmMimeTypes.put("docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+    this.hmMimeTypes.put("odt", "application/vnd.oasis.opendocument.text");
+    this.hmMimeTypes.put("bin", "application/octet-stream");
+    this.hmMimeTypes.put("dms", "application/octet-stream");
+    this.hmMimeTypes.put("lha", "application/octet-stream");
+    this.hmMimeTypes.put("lzh", "application/octet-stream");
+    this.hmMimeTypes.put("exe", "application/octet-stream");
+    this.hmMimeTypes.put("class", "application/octet-stream");
+    this.hmMimeTypes.put("so", "application/octet-stream");
+    this.hmMimeTypes.put("dll", "application/octet-stream");
+    this.hmMimeTypes.put("oda", "application/oda");
+    this.hmMimeTypes.put("ogg", "application/ogg");
+    this.hmMimeTypes.put("pdf", "application/pdf");
+    this.hmMimeTypes.put("ai", "application/postscript");
+    this.hmMimeTypes.put("eps", "application/postscript");
+    this.hmMimeTypes.put("ps", "application/postscript");
+    this.hmMimeTypes.put("rtf", "application/rtf");
+    this.hmMimeTypes.put("smi", "application/smil");
+    this.hmMimeTypes.put("smil", "application/smil");
+    this.hmMimeTypes.put("mif", "application/vnd.mif");
+    this.hmMimeTypes.put("xls", "application/vnd.ms-excel");
+    this.hmMimeTypes.put("ppt", "application/vnd.ms-powerpoint");
+    this.hmMimeTypes.put("sxw", "application/vnd.sun.xml.writer");
+    this.hmMimeTypes.put("stw", "application/vnd.sun.xml.writer.template");
+    this.hmMimeTypes.put("sxc", "application/vnd.sun.xml.calc");
+    this.hmMimeTypes.put("stc", "application/vnd.sun.xml.calc.template");
+    this.hmMimeTypes.put("sxd", "application/vnd.sun.xml.draw");
+    this.hmMimeTypes.put("std", "application/vnd.sun.xml.draw.template");
+    this.hmMimeTypes.put("sxi", "application/vnd.sun.xml.impress");
+    this.hmMimeTypes.put("sti", "application/vnd.sun.xml.impress.template");
+    this.hmMimeTypes.put("sxg", "application/vnd.sun.xml.writer.global");
+    this.hmMimeTypes.put("sxm", "application/vnd.sun.xml.math");
+    this.hmMimeTypes.put("wbxml", "application/vnd.wap.wbxml");
+    this.hmMimeTypes.put("wmlc", "application/vnd.wap.wmlc");
+    this.hmMimeTypes.put("wmlsc", "application/vnd.wap.wmlscriptc");
+    this.hmMimeTypes.put("bcpio", "application/x-bcpio");
+    this.hmMimeTypes.put("torrent", "application/x-bittorrent");
+    this.hmMimeTypes.put("bz2", "application/x-bzip2");
+    this.hmMimeTypes.put("vcd", "application/x-cdlink");
+    this.hmMimeTypes.put("pgn", "application/x-chess-pgn");
+    this.hmMimeTypes.put("cpio", "application/x-cpio");
+    this.hmMimeTypes.put("csh", "application/x-csh");
+    this.hmMimeTypes.put("dcr", "application/x-director");
+    this.hmMimeTypes.put("dir", "application/x-director");
+    this.hmMimeTypes.put("dxr", "application/x-director");
+    this.hmMimeTypes.put("dvi", "application/x-dvi");
+    this.hmMimeTypes.put("spl", "application/x-futuresplash");
+    this.hmMimeTypes.put("gtar", "application/x-gtar");
+    this.hmMimeTypes.put("gz", "application/x-gzip");
+    this.hmMimeTypes.put("tgz", "application/x-gzip");
+    this.hmMimeTypes.put("hdf", "application/x-hdf");
+    this.hmMimeTypes.put("js", "application/x-javascript");
+    this.hmMimeTypes.put("kwd", "application/x-kword");
+    this.hmMimeTypes.put("kwt", "application/x-kword");
+    this.hmMimeTypes.put("ksp", "application/x-kspread");
+    this.hmMimeTypes.put("kpr", "application/x-kpresenter");
+    this.hmMimeTypes.put("kpt", "application/x-kpresenter");
+    this.hmMimeTypes.put("chrt", "application/x-kchart");
+    this.hmMimeTypes.put("kil", "application/x-killustrator");
+    this.hmMimeTypes.put("skp", "application/x-koan");
+    this.hmMimeTypes.put("skd", "application/x-koan");
+    this.hmMimeTypes.put("skt", "application/x-koan");
+    this.hmMimeTypes.put("skm", "application/x-koan");
+    this.hmMimeTypes.put("latex", "application/x-latex");
+    this.hmMimeTypes.put("nc", "application/x-netcdf");
+    this.hmMimeTypes.put("cdf", "application/x-netcdf");
+    this.hmMimeTypes.put("rpm", "application/x-rpm");
+    this.hmMimeTypes.put("sh", "application/x-sh");
+    this.hmMimeTypes.put("shar", "application/x-shar");
+    this.hmMimeTypes.put("swf", "application/x-shockwave-flash");
+    this.hmMimeTypes.put("sit", "application/x-stuffit");
+    this.hmMimeTypes.put("sv4cpio", "application/x-sv4cpio");
+    this.hmMimeTypes.put("sv4crc", "application/x-sv4crc");
+    this.hmMimeTypes.put("tar", "application/x-tar");
+    this.hmMimeTypes.put("tcl", "application/x-tcl");
+    this.hmMimeTypes.put("tex", "application/x-tex");
+    this.hmMimeTypes.put("texinfo", "application/x-texinfo");
+    this.hmMimeTypes.put("texi", "application/x-texinfo");
+    this.hmMimeTypes.put("t", "application/x-troff");
+    this.hmMimeTypes.put("tr", "application/x-troff");
+    this.hmMimeTypes.put("roff", "application/x-troff");
+    this.hmMimeTypes.put("man", "application/x-troff-man");
+    this.hmMimeTypes.put("me", "application/x-troff-me");
+    this.hmMimeTypes.put("ms", "application/x-troff-ms");
+    this.hmMimeTypes.put("ustar", "application/x-ustar");
+    this.hmMimeTypes.put("src", "application/x-wais-source");
+    this.hmMimeTypes.put("xhtml", "application/xhtml+xml");
+    this.hmMimeTypes.put("xht", "application/xhtml+xml");
+    this.hmMimeTypes.put("zip", "application/zip");
+    this.hmMimeTypes.put("au", "audio/basic");
+    this.hmMimeTypes.put("snd", "audio/basic");
+    this.hmMimeTypes.put("mid", "audio/midi");
+    this.hmMimeTypes.put("midi", "audio/midi");
+    this.hmMimeTypes.put("kar", "audio/midi");
+    this.hmMimeTypes.put("mpga", "audio/mpeg");
+    this.hmMimeTypes.put("mp2", "audio/mpeg");
+    this.hmMimeTypes.put("mp3", "audio/mpeg");
+    this.hmMimeTypes.put("aif", "audio/x-aiff");
+    this.hmMimeTypes.put("aiff", "audio/x-aiff");
+    this.hmMimeTypes.put("aifc", "audio/x-aiff");
+    this.hmMimeTypes.put("m3u", "audio/x-mpegurl");
+    this.hmMimeTypes.put("ram", "audio/x-pn-realaudio");
+    this.hmMimeTypes.put("rm", "audio/x-pn-realaudio");
+    this.hmMimeTypes.put("ra", "audio/x-realaudio");
+    this.hmMimeTypes.put("wav", "audio/x-wav");
+    this.hmMimeTypes.put("pdb", "chemical/x-pdb");
+    this.hmMimeTypes.put("xyz", "chemical/x-xyz");
+    this.hmMimeTypes.put("bmp", "image/bmp");
+    this.hmMimeTypes.put("gif", "image/gif");
+    this.hmMimeTypes.put("ief", "image/ief");
+    this.hmMimeTypes.put("jpeg", "image/jpeg");
+    this.hmMimeTypes.put("jpg", "image/jpeg");
+    this.hmMimeTypes.put("jpe", "image/jpeg");
+    this.hmMimeTypes.put("png", "image/png");
+    this.hmMimeTypes.put("tiff", "image/tiff");
+    this.hmMimeTypes.put("tif", "image/tiff");
+    this.hmMimeTypes.put("djvu", "image/vnd.djvu");
+    this.hmMimeTypes.put("djv", "image/vnd.djvu");
+    this.hmMimeTypes.put("wbmp", "image/vnd.wap.wbmp");
+    this.hmMimeTypes.put("ras", "image/x-cmu-raster");
+    this.hmMimeTypes.put("pnm", "image/x-portable-anymap");
+    this.hmMimeTypes.put("pbm", "image/x-portable-bitmap");
+    this.hmMimeTypes.put("pgm", "image/x-portable-graymap");
+    this.hmMimeTypes.put("ppm", "image/x-portable-pixmap");
+    this.hmMimeTypes.put("rgb", "image/x-rgb");
+    this.hmMimeTypes.put("xbm", "image/x-xbitmap");
+    this.hmMimeTypes.put("xpm", "image/x-xpixmap");
+    this.hmMimeTypes.put("xwd", "image/x-xwindowdump");
+    this.hmMimeTypes.put("igs", "model/iges");
+    this.hmMimeTypes.put("iges", "model/iges");
+    this.hmMimeTypes.put("msh", "model/mesh");
+    this.hmMimeTypes.put("mesh", "model/mesh");
+    this.hmMimeTypes.put("silo", "model/mesh");
+    this.hmMimeTypes.put("wrl", "model/vrml");
+    this.hmMimeTypes.put("vrml", "model/vrml");
+    this.hmMimeTypes.put("css", "text/css");
+    this.hmMimeTypes.put("html", "text/html");
+    this.hmMimeTypes.put("htm", "text/html");
+    this.hmMimeTypes.put("asc", "text/plain");
+    this.hmMimeTypes.put("txt", "text/plain");
+    this.hmMimeTypes.put("rtx", "text/richtext");
+    this.hmMimeTypes.put("rtf", "text/rtf");
+    this.hmMimeTypes.put("sgml", "text/sgml");
+    this.hmMimeTypes.put("sgm", "text/sgml");
+    this.hmMimeTypes.put("tsv", "text/tab-separated-values");
+    this.hmMimeTypes.put("wml", "text/vnd.wap.wml");
+    this.hmMimeTypes.put("wmls", "text/vnd.wap.wmlscript");
+    this.hmMimeTypes.put("etx", "text/x-setext");
+    this.hmMimeTypes.put("xml", "text/xml");
+    this.hmMimeTypes.put("xsl", "text/xml");
+    this.hmMimeTypes.put("mpeg", "video/mpeg");
+    this.hmMimeTypes.put("mpg", "video/mpeg");
+    this.hmMimeTypes.put("mpe", "video/mpeg");
+    this.hmMimeTypes.put("qt", "video/quicktime");
+    this.hmMimeTypes.put("mov", "video/quicktime");
+    this.hmMimeTypes.put("mxu", "video/vnd.mpegurl");
+    this.hmMimeTypes.put("avi", "video/x-msvideo");
+    this.hmMimeTypes.put("movie", "video/x-sgi-movie");
+    this.hmMimeTypes.put("ice", "x-conference/x-cooltalk");
+    this.hmMimeTypes.put("cv", "text/xml");
+  }
+  
+  public synchronized static MimeTypes getInstance() {
+    if (oInstance == null) oInstance = new MimeTypes();
+    return oInstance;
+  }
+  
+  public String get(String code) {
+    if (! this.hmMimeTypes.containsKey(code)) code = MimeTypes.DEFAULT_MIME_TYPE;
+    return this.hmMimeTypes.get(code);
+  }
+  
+//  public String getFromFilename(String sFilename) {
+//    String sExtension = LibraryFile.getExtension(sFilename);
+//    if (! this.hmMimeTypes.containsKey(sExtension)) sExtension = MimeTypes.DEFAULT_MIME_TYPE;
+//    return this.hmMimeTypes.get(sExtension);
+//  }
+
+}

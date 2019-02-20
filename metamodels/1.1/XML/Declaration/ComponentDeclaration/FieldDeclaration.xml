@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="FieldDeclaration" parent="ComponentDeclaration">
+  <description>Declaración abstracta que se utiliza para  modelar un campo de un formulario</description>
+
+  <attribute name="code" type="key" required="true">
+    <description>Código del campo</description>
+    <hint>No hay que editar este atributo. Se genera automáticamente</hint>
+  </attribute>
+
+  <attribute name="name" type="string">
+    <description>Nombre con el que se referencia un campo en el modelo de negocio</description>
+  </attribute>
+
+  <property name="is-required">
+    <description>Su presencia indica que es obligatorio cumplimentar el campo</description>
+    <hint>Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones</hint>
+  </property>
+
+  <property name="is-multiple">
+    <description>Su presencia indica que es un campo
+      replicable en el formulario. Cuando un campo es replicable, en el
+      espacio de negocio el usuario puede añadir instancias del campo, por
+      ejemplo para introducir varios teléfonos en una ficha de datos
+      personales</description>
+  </property>
+
+  <property name="is-extended">
+    <description>Su presencia indica que es un campo pertenece a la parte extendida de un campo sección</description>
+  </property>
+
+  <property name="default-value">
+    <description>Es el contenido por defecto de un campo cuando se crea el formulario</description>
+    <content type="xml"/>
+  </property>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del campo. Se utiliza para mostrar a los usuarios el nombre del campo</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="description" multiple="true" key="language">
+    <description>Descripción del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="message" multiple="true" key="language">
+    <description>Mensaje de ayuda para explicar al usuario el significado del campo</description>
+    <attribute name="type" type="enumeration">
+      <enumeration>
+        <option>if-editing</option>
+        <option>if-empty</option>
+        <option>if-required</option>
+      </enumeration>
+    </attribute>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma del mensaje</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+</class>
+

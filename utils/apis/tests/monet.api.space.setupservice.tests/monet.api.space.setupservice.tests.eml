@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="bcmail-jdk15-145.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/bcmail-jdk15-145.jar!/"/>
+	</lib>
+	<lib name="bcprov-jdk15-145.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/bcprov-jdk15-145.jar!/"/>
+	</lib>
+	<lib name="commons-lang-2.3.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/commons-lang-2.3.jar!/"/>
+	</lib>
+	<lib name="httpclient-4.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/httpclient-4.1.1.jar!/"/>
+	</lib>
+	<lib name="httpclient-cache-4.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/httpclient-cache-4.1.1.jar!/"/>
+	</lib>
+	<lib name="httpcore-4.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/httpcore-4.1.jar!/"/>
+	</lib>
+	<lib name="httpmime-4.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/httpmime-4.1.1.jar!/"/>
+	</lib>
+	<lib name="jdom.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/jdom.jar!/"/>
+	</lib>
+	<lib name="monet.api.setupservice-3.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/monet.api.setupservice-3.0.jar!/"/>
+	</lib>
+	<lib name="xpp3-1.1.4c.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/utils/apis/tests/monet.api.space.setupservice.tests/lib/xpp3-1.1.4c.jar!/"/>
+	</lib>
+</component>

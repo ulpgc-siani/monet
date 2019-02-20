@@ -1,0 +1,492 @@
+/* -BEGIN-------------------General configuration-------------------- */
+img {
+	border: none;
+}
+
+.hidden {
+	display: none;
+}
+
+a.disabled {
+	color: #666;
+}
+
+.behaviour, .trigger {
+	cursor: pointer;
+}
+
+.behaviour.descriptor {
+  padding: 2px;
+}
+
+.behaviour.descriptor:hover {
+  border: 1px solid #aaa;
+}
+
+img.icon {
+	vertical-align: middle;
+	margin: 3px;
+	border: none;
+}
+
+.vSpace {
+	height: 6px;
+}
+
+input.double {
+	width: 80px;
+}
+
+form.dialog, .form.dialog {
+  position: static;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  width: 100%;
+}
+
+ul.card {
+	border: 1px solid #B5B8C8;
+	border-right: 0px;
+	padding: 10px;
+	padding-bottom: 0px;
+	position: relative;
+	left: 1px !important;
+	background: white;
+  overflow-y: auto;
+}
+
+ul.card li {
+	margin-bottom: 10px;
+}
+
+ul.card li .label {
+  display: block;
+  height: 16px;
+  margin: 0;
+  padding: 5px 4px;
+  width: 100%;
+  cursor: pointer !important;
+}
+
+ul.card li .label:hover {
+  background-color: #EFF7FF;
+}
+
+ul.card li.active .label {
+  background-color: #D0E0F5;
+}
+
+.field.multiple .cardview ul.list {
+  border: 1px solid #B5B8C8;
+  padding: 10px;
+}
+
+.field.multiple .cardview ul.list ul.list {
+  border: 0px;
+  padding: 0px;
+}
+
+.nodeFields {
+  padding: 2px 10px;
+  margin: 10px;
+}
+
+.node.embed .nodeFields {
+  margin: 0px;
+}
+
+.wlist .wnode .nodeFields {
+  margin: 0px;
+  padding: 10px;
+}
+
+.fnode .wlist li .elementwidget {
+  border: 1px dotted #d0d0d0;
+}
+
+.wlist .wnode .nodeFields .field {
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+.wnode .nodebox .node {
+  padding: 0px;
+}
+
+.nodeFields a {
+	color: #000077;
+}
+
+.nodeFields .title {
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 19px;
+	padding-top: 18px;
+	text-transform: capitalize;
+}
+
+.nodeFields .field {
+  clear: both;
+  margin: 3px 0 0;
+  padding: 10px 0 0;
+}
+
+.nodeFields .field label, .nodeFields .field .label {
+  color: #333;
+  display: block;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.nodeFields .field.readonly label, .nodeFields .field.readonly .label, .nodeFields .field.readonly .title {
+  cursor: default;
+  color: #333;
+}
+
+.nodeFields.readonly .field.readonly label, .nodeFields.readonly .field.readonly .label {
+  cursor: default;
+}
+
+.nodeFields .field .field label {
+  background: none;
+  font-weight: normal;
+}
+
+.nodeFields .field label .msgwhenrequired {
+  float: right;
+  color: #1517AF;
+  font-size: 10px;
+  margin-right: 5px;
+  cursor: default;
+}
+
+.nodeFields .field .widget input, .nodeFields .field .widget textarea {
+  color: black;
+}
+
+.nodeFields .field.readonly .widget .component {
+  border: 1px solid #CCCCCC;
+  background: #FFFADD;
+  display: block;
+  color: black;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  width: 100%;
+  height: 25px;
+  padding: 4px 2px 0 4px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nodeFields .field.readonly .widget .component.text, .nodeFields .field.readonly .widget .component.picture, .nodeFields .field.readonly .widget .component.file,
+.nodeFields .field.readonly .widget .component.link, .nodeFields .field.readonly .widget .component.select, .nodeFields .field.readonly .widget .component.number, 
+.nodeFields .field.readonly .widget .component.pattern, .nodeFields .field.readonly .widget .component.date, 
+.nodeFields .field.readonly .widget .component.node, .nodeFields .field.readonly .widget .component.serial {
+  /*float: left;*/
+}
+
+.nodeFields .field.readonly .widget .component.memo {
+  height: 100px;
+  white-space: normal;
+  overflow: auto;
+}
+
+.nodeFields .field.readonly .widget .component.hidden {
+  display: none;
+}
+
+.nodeFields .field.readonly .widget .component:hover {
+  cursor: default;
+}
+
+.nodeFields .flink.readonly .widget .component, .nodeFields .ffile.readonly .widget .component, .nodeFields .fpicture.readonly .widget .component, .nodeFields .fsummation.readonly .widget .component {
+  cursor: pointer;
+  color: blue;
+}
+
+.nodeFields .flink.readonly .widget .component:hover, .nodeFields .ffile.readonly .widget .component:hover, .nodeFields .fpicture.readonly .widget .component:hover, .nodeFields .fsummation.readonly .widget .component:hover {
+  cursor: pointer;
+}
+
+.nodeFields.readonly .field.readonly .widget .component:hover, body.print .nodeFields .field.readonly .widget .component:hover {
+  cursor: default;
+  border: 1px solid #B5B8C8;
+  padding: 4px 2px 0 4px;
+  *padding-left: 4px;
+}
+
+body.print .nodeFields .field.readonly .widget .component:hover {
+  border: 0px;
+}
+
+.nodeFields input.focus, .nodeFields .field.readonly .widget .component.focus, .wlink .nodebox .nodeFields input.focus, .wcomposite .fieldsbox .field input.focus, .wcheck.focus .checklist, .wselect.focus .radiolist {
+  border: 3px solid #99BBE8 !important;
+  padding: 1px 0px 0px 2px;
+  *padding-left: 2px;
+  background: #EFF7FF;
+}
+
+.wcheck.focus .checklist, .wselect.focus .radiolist {
+  height: 100%;
+  min-height: 18px;
+}
+
+.nodeFields .observer {
+  color: white;
+  font-size: 10px;
+  margin-right: 3px;
+  margin-top: -14px;
+  padding: 1px 5px;
+  position: absolute;
+  right: 0;
+}
+
+.nodeFields .observer a {
+  color: white;
+  text-decoration: underline;
+}
+
+.nodeFields textarea.focus {
+  border: 3px solid #99BBE8 !important;
+  height: 96px;
+  padding: 2px 0px 0px 2px;
+  *padding-left: 2px;
+}
+
+.wpicture .thumbnail.focus {
+  border: 3px solid #99BBE8 !important;
+  padding: 0px;
+  *padding-left: 0px;
+}
+
+.view .view .nodeFields .widget.wlist li .elementwidget {
+  float: none;
+}
+
+.editable .nodeFields .fpicture .widget.wlist li {
+  float: none;
+  clear: both;
+}
+  
+.nodeFields .fpicture .widget.wlist li {
+  clear: none;
+  float: left;
+  padding: 2px 7px 2px 0;
+}
+
+.nodeFields .fpicture .widget input, .nodeFields .fpicture .widget input.focus {
+  width: 1px;
+  height: 1px;
+  border: 0px !important;
+  background: white;
+  margin: -1px;
+  padding: 0px;
+}
+
+.nodeFields .fieldsbox .wboolean input.focus {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.nodeFields input.wrong, .wlink .nodebox .nodeFields input.wrong, .wcomposite .fieldsbox input.wrong {
+  border: 1px solid #DD7870;
+}
+
+.nodeFields input.focus.wrong, .wlink .nodebox .nodeFields input.focus.wrong, .wcomposite .fieldsbox input.focus.wrong {
+  border: 3px solid #DD7870 !important;
+}
+
+.nodeFields .widget.wcomposite.focus, .nodeFields .widget.wcomposite.focus, .nodeFields .widget.wlist.focus {
+  border: 3px solid #99BBE8;
+}
+
+.nodeFields .widget.wcomposite.focus .widget.wcomposite {
+  border: 1px solid #d0d0d0;
+}
+
+.nodeFields .field .info, .nodeFields .field .pattern, .nodeFields .field .increments, .node.form .field .range, .node.form .field .unit, .node.form .def {
+  display: none;
+}
+
+.nodeFields .field.mediumSize {
+	width: 64.5%;
+}
+
+.nodeFields .field.fullSize {
+	width: 100%;
+}
+
+.nodeFields .field.smallSize {
+	width: 31%;
+}
+
+.nodeFields .list li .size {
+	font-weight: bold;
+	margin-left: 8px;
+}
+
+.nodeFields fieldset.visible {
+	border: solid 1px #D8D9DB;
+	width: 500px;
+	margin: 15px 0px;
+	padding: 5px;
+}
+
+.dialog fieldset legend {
+	margin-bottom: 10px;
+}
+
+.nodeFields .fcomposite {
+  padding: 0px;
+  margin: 10px 0px;
+}
+
+.nodeFields .fcomposite label, .nodeFields .fcomposite .label {
+  display: block;
+}
+
+.nodeFields .fcomposite .element .title {
+  display: block;
+  font-size: 15px;
+  margin: 0 10px;
+  padding-bottom: 4px;
+  font-weight: normal;
+  float: left;
+  width: 98%;
+  text-transform: none;
+}
+
+.view .nodeFields .fcomposite.conditional label {
+  display: inline;
+}
+
+.view .nodeFields .fcomposite span.option {
+  margin-left: 10px;
+  color: blue;
+}
+
+.nodeFields .fcomposite .options label, .nodeFields .fcomposite .options div.label {
+  margin-top: 0px;
+}
+
+.nodeFields .fcomposite.conditional .options.conditional input {	
+  float: left;
+  height: 15px;
+}
+
+.nodeFields .fcomposite.conditional .widget.focus .options.conditional input {	
+  border: 0px;
+}
+
+.nodeFields .fcomposite.conditional .options.conditional label {	
+  float: left;
+  padding: 1px;
+}
+
+.nodeFields .fcomposite .wcomposite {
+  padding: 0px 10px 10px;
+  border: 1px dotted #d0d0d0;
+}
+
+.nodeFields .fcomposite .wtable .wcomposite {
+  border: 0px;
+  margin: 0px;
+}
+
+.nodeFields .fcomposite .wtable .toolbar {
+  padding: 5px 10px;
+  border-top: 1px solid #aaa;
+}
+
+.nodeFields .fcomposite .wtable .toolbar.item {
+  border-top: 1px dotted #B5B8C8;
+}
+
+.widget.wtable .paging {
+  float: right;
+  border: 1px solid #D0D0D0;
+}
+
+.nodeFields .fcomposite .wtable .paging a, .nodeFields .fcomposite .wtable .paging span {
+  padding-top: 5px;
+	width: 17px;
+	height: 20px;
+	display: block;
+  text-align: center;
+}
+
+.nodeFields .fcomposite .wtable .paging a.previous  {
+  background: url("office.api?op=loadthemefile&path=_images/icons/previous.gif") no-repeat scroll 0 5px transparent;
+}
+
+.nodeFields .fcomposite .wtable .paging a.previous.disabled {
+  background: url("office.api?op=loadthemefile&path=_images/icons/previous_disabled.gif") no-repeat scroll 0 5px transparent;
+} 
+
+.nodeFields .fcomposite .wtable .paging a.next {
+  background: url("office.api?op=loadthemefile&path=_images/icons/next.gif") no-repeat scroll 0 5px transparent;
+}
+
+.nodeFields .fcomposite .wtable .paging a.next.disabled {
+  background: url("office.api?op=loadthemefile&path=_images/icons/next_disabled.gif") no-repeat scroll 0 5px transparent;
+}
+
+.nodeFields .fcomposite .wtable .paging span {
+  border-right: 1px solid #D0D0D0;
+  border-left: 1px solid #D0D0D0;
+  font-weight: bold;
+  width: 25px;
+}
+	
+.nodeFields .fcomposite .wtable .filter {
+	background: none;
+  border: 0px;
+  margin: 0px;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  width: 100%;
+}
+
+.nodeFields .fcomposite .wtable .filterempty {
+  color: #888;
+  font-style: italic;
+  margin-left: 5px;
+  margin-top: -20px;
+	position: relative;
+	height: 20px;
+}
+
+.nodeFields .fcomposite .wtable .filterclear {
+  background: url("office.api?op=loadthemefile&path=_images/icons/clear.gif") no-repeat scroll 0 0 transparent;
+  display: block;
+  margin-right: 4px;
+  margin-top: -24px;
+  position: absolute;
+  right: 0;
+  height: 20px;
+  width: 17px;
+}
+
+.nodeFields .fcomposite .wtable .filterclear:hover {
+	background-position: -17px 0px;
+}
+
+.nodeFields .fcomposite .wtable .paging a.disabled {
+  color: #555;
+}
+
+.nodeFields .fcomposite .cardview .wcomposite {
+  border: 0px;
+}
+
+.nodeFields .fcomposite .wcomposite .label .options {
+  border: 0px;
+}
+
+.nodeFields .fcomposite.focus .wcomposite .fieldsbox {
+  border: 3px solid #99BBE8;
+  border-top: 0px;
+}

@@ -1,0 +1,40 @@
+<div class='header'>
+  <table>
+    <tr>
+      <td><a class='previous' title='::Previous::'></a></td>
+      <td><select class="documents"></select></td>
+      <td><a class='next' title='::Next::'></a></td>
+    </tr>
+  </table>
+</div>
+<div class="dialog add" style="display:none;">
+  <div>
+    <div>::FileLabel::</div>
+    <input class="label" type="text"></input>
+  </div>
+  <div class="file">
+    <div>::File::</div>
+    <form class="form" method="post" enctype="multipart/form-data">
+      <input type="file" name="newFile" class="input file"/>
+    </form>
+  </div>
+  <div style="margin-top:15px;">
+    <a class="button accept">::Accept::</a>
+    <a class="button cancel">::Cancel::</a>
+  </div>
+  <div class="uploading">::Uploading::</div>
+  <div class="error">::ErrorOnUpload::</div>
+</div>
+<div class="dialog rename" style="display:none;">
+  <div>
+    <div>::FileLabel::</div>
+    <input class="label" type="text"></input>
+  </div>
+  <div style="margin-top:15px;">
+    <a class="button accept">::Accept::</a>
+    <a class="button cancel">::Cancel::</a>
+  </div>
+</div>
+<div class="empty" style="display:none;">::NoDocuments::</div>
+<div class='loading' style='display:none;'>::Loading::</div>
+<div class='container'></div>

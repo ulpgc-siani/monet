@@ -1,0 +1,67 @@
+@import "../../../../styles/explorer/components/htmllist-filtertools"
+
+@mixin transition($effect...)
+  -webkit-transition: $effect
+  -moz-transition: $effect
+  -ms-transition: $effect
+  -o-transition: $effect
+  transition: $effect
+
+.html-list-filter-tools
+  display: inline-block
+
+ul.filters
+  display: inline-block
+  margin-left: 12px
+  @extend .field
+
+ul.filters li.filter, ul.filters li.filter > .popup
+  border: 1px solid #8FA6BF
+
+ul.filters li.filter
+  @include transition(background .55s ease)
+
+ul.filters li.filter.active, ul.filters li.filter:hover, ul.filters li.filter > .popup .searchBox:hover,
+ul.filters li.filter > .popup .searchBox:focus, ul.filters li.filter > .popup .searchBox:active,
+ul.filters li.filter > .popup > .toolbar
+  background-color: rgba(197, 205, 217, 0.5)
+
+ul.filters li.filter > .popup
+  width: 300% !important
+  height: 450% !important
+  border-top: none
+
+ul.filters li.filter > .popup.align-left
+  left: 0
+
+ul.filters li.filter > .popup.align-right
+  right: -1px
+
+ul.filters li.filter > .popup > div
+  height: 100%
+
+ul.filters li.filter > .popup .searchBox
+  @include transition(background .55s ease)
+
+ul.filters li.filter > .popup > div > .html-list
+  height: 73%
+
+ul.filters li.filter > .popup > div > .html-list > .msg.empty, ul.filters li.filter > .popup > div .command
+  font-size: 14px
+
+ul.filters li.filter > .popup .scroll-panel ul.items > li .content-panel .check label
+  font-size: small
+
+ul.filters li.filter > .popup > .toolbar
+  border-top: 1px dashed #ccc
+
+ul.filters li.filter > .gwt-Anchor
+  position: absolute
+  top: 0
+  width: 100%
+  height: 100%
+
+ul.filters .popup .toolbar div
+  text-indent: 0
+  width: auto
+  height: auto

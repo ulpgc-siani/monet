@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Mensajes posibles del núcleo de monet</comment>
+  <entry key="MSG_REQUIRED_FIELDS">Se encontraron campos necesarios vacíos. No olvide completarlos.</entry>
+  <entry key="MSG_IMPORTATION">Listado de nodos obtenido a partir de una importación del día</entry>
+  <entry key="MSG_NEW_MESSAGE_RECEIVED">Tiene nuevos mensajes</entry>
+  <entry key="MSG_NEW_MESSAGE_RECEIVED_FROM">Tiene nuevos mensajes de</entry>
+  <entry key="MSG_TASK_ASSIGNED">Tarea asignada a %s por %s.</entry>
+  <entry key="MSG_TASK_UNASSIGNED">Tarea desasignada de %s por %s.</entry>
+</properties>

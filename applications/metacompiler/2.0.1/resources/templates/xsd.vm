@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.monet.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.monet.org">
+
+#foreach ( $metaclass in $metamodel.getMetaClassList() )
+  #if ($metaclass.isAbstract() == false)
+    #showMetaClass ($metaclass)
+  #end
+#end  
+
+<xs:simpleType name="code">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="\w+((['.']\w+)?)*"></xs:pattern>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="string">
+  <xs:restriction base="xs:string"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="boolean">
+  <xs:restriction base="xs:boolean"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="integer">
+  <xs:restriction base="xs:integer"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="natural">
+  <xs:restriction base="xs:positiveInteger"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="language">
+  <xs:restriction base="xs:string"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="key">
+  <xs:restriction base="xs:string"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="file">
+  <xs:restriction base="xs:string"></xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="formula">
+  <xs:restriction base="xs:string"></xs:restriction>
+</xs:simpleType>
+
+<xs:element name="form" type="FormDefinition"></xs:element>
+
+</xs:schema>
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showMetaClass $metaclass)
+<xs:complexType name="$metaclass.getName()">
+  <xs:annotation>
+    <xs:documentation>$metaclass.getDescription()</xs:documentation>
+  </xs:annotation>
+  <xs:sequence>
+    #showProperties ($metaclass)
+    #showIncludes ($metaclass)
+  </xs:sequence>
+  #showAttributes ($metaclass)
+</xs:complexType>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showAttributes $syntagma)
+  #if ($syntagma.hasAttributes())
+  #set ($attributeList = $syntagma.getAttributeList())
+    #foreach ($attribute in $attributeList)
+      #showAttribute($attribute)
+    #end
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showAttribute $attribute)
+  #set ($type = "")
+  #set ($values = $attribute.getValues("|"))
+  #if ($values == "") 
+    #set ($type = "type=$attribute.getType()")
+  #end
+  
+  <xs:attribute name="$attribute.getName()" $type #requiredAttribute($attribute.isRequired()) >
+    <xs:annotation>
+      <xs:documentation>$attribute.getDescription()</xs:documentation>
+    </xs:annotation>
+    #if ($values != "") 
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="$values"/>
+        </xs:restriction>
+      </xs:simpleType>      
+    #end
+  </xs:attribute>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showProperties $metaclass)
+  #set ($propertyList = $metaclass.getPropertyList())
+  #if ($propertyList.size() > 0)
+    #foreach ($property in $propertyList)
+      #showProperty($property)
+    #end
+  #end
+
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showProperty $property)
+  <xs:element name="$property.getName()" #required($property.isRequired()) #multiple($property.isMultiple()) >
+    <xs:annotation>
+      <xs:documentation>$property.getDescription()</xs:documentation>
+    </xs:annotation>
+    #if ($property.isText())
+      <xs:complexType>
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            #if ($property.hasAttributes())
+              #showAttributes ($property)
+            #end
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+    #else
+      #if ($property.hasAttributes())
+        <xs:complexType>
+          #showAttributes ($property)
+        </xs:complexType>
+      #end
+    #end
+  </xs:element>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showIncludes $metaclass)
+  #set ($includeList = $metaclass.getIncludeList())
+  #if ($includeList.size() > 0)
+    #foreach ($include in $includeList)
+      #showInclude($include)
+    #end
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showInclude $include)
+  #set ($linkList = $include.getLinkTree())
+  #set ($tag = $include.getTag())
+  #if ($tag != "")
+    <xs:element name="$tag">
+      <xs:annotation>
+        <xs:documentation>$include.getDescription()</xs:documentation>
+      </xs:annotation>
+    <xs:complexType>
+  #end
+  <xs:sequence #required($include.isRequired()) #multiple($include.isMultiple())>
+    <xs:choice>
+      #showLinkList($linkList)
+    </xs:choice>
+  </xs:sequence>  
+  #if ($tag != "")
+    </xs:complexType>
+    </xs:element>
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showLinkList $linkList)
+  #if ($include.hasLinks())
+    #foreach ($link in $linkList)
+      #if ($link.isAbstract() == false)
+        <xs:element name="$link.getTag()" type="$link.getName()")></xs:element>
+      #end
+    #end
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (multiple $isMultiple)
+  #if ($isMultiple == true)
+    maxOccurs="unbounded"
+  #end
+#end
+  
+#* ********************************************************************************************************************************************* *#
+
+#macro (required $isRequired)
+  #if ($isRequired == true)
+    "minOccurs="1"
+  #else
+    "minOccurs="0"
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (requiredAttribute $isRequired)
+  #if ($isRequired == true)
+    use = "required"
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (text $isText)
+  #if ($isText == true)
+    type="xs:string"
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+

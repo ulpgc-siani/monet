@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="LocationFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-location">
+  <description>Declaración que se utiliza para modelar un campo vínculo</description>
+
+  <property name="use">
+    <description>Se utiliza para indicar qué mapa se utiliza para mostrar el contenido de este campo</description>
+    <attribute name="map" type="key" link="MapDefinition" required="true">
+      <description>Nombre del mapa que se visualizará</description>
+    </attribute>
+  </property>
+  
+  <include name="attribute" multiple="true" required="true">
+    <option class-name="AttributeDeclaration" />
+  </include>
+  
+  <include name="style" multiple="true">
+		<option class-name="StyleDeclaration" />
+	</include>
+
+</class>

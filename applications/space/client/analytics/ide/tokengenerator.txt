@@ -1,0 +1,5 @@
+Este script php se basa en el resultado generado por el Stunnix JavaScript Obfuscator. Este es un programa de pago, pero que genera un resultado muy interesante para generarlos tokens.
+
+Antes de ejecutar este script (tokengenerator.php) debe ejecutarse el Stunnix para que genere los ficheros temporales (dentro de la carpeta temp) en los que se basa este script.
+
+El resultado de este script es el fichero tokens.php que es luego usado por el compilador.

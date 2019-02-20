@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="jsmtpdsetup">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="filtersetup">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element ref="filterInit" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="smtpExtensions">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element ref="smtpExtension" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="bodyFilterTree">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element ref="filter"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ACLSetup">
+					<xs:complexType>
+						<xs:sequence minOccurs="0" maxOccurs="unbounded">
+							<xs:element ref="propertyset"/>
+						</xs:sequence>
+						<xs:attribute name="name"/>
+						<xs:attribute name="class"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DNSSetup">
+					<xs:complexType>
+						<xs:sequence minOccurs="0" maxOccurs="unbounded">
+							<xs:element ref="propertyset"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="class" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="LocalDeliveryService">
+					<xs:complexType>
+						<xs:sequence minOccurs="0" maxOccurs="unbounded">
+							<xs:element ref="propertyset"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string"/>
+						<xs:attribute name="class" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RemoteDeliveryService">
+					<xs:complexType>
+						<xs:sequence minOccurs="0" maxOccurs="unbounded">
+							<xs:element ref="propertyset"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string"/>
+						<xs:attribute name="class" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="inputIPFilterChain">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element name="ipFilter" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="filter">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="true">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element ref="filter"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="false">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element ref="filter"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="propertyset">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="filterInit">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="propertyset" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="smtpExtension">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="propertyset" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="class" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

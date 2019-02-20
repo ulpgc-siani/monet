@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ThesaurusUseDeclaration" parent="ContentDeclaration" tag="uses">
+
+  <attribute name="thesaurus" type="Code" link="ThesaurusDeclaration">
+    <description>Codigo de definición del tesauro que se va a usar</description>
+    <restriction>ONLY Definition WITH ThesaurusDeclaration FROM Model</restriction>
+    <restriction>Si se incluye un Wordbook, este atributo no se puede especificar</restriction>
+  </attribute>
+  
+</class>

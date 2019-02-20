@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="MapDefinition" parent="EntityDefinition" tag="map">
+  <description>Definición que se utiliza para modelar un mapa</description>
+  
+  <property name="contain" multiple="true">
+    <description></description>
+    
+    <attribute name="location" type="string">
+      <description>Nombre de la localización a mostrar</description>
+    </attribute>
+    
+    <attribute name="node" type="key" link="NodeDefinition">
+      <description>Nombre del nodo geolocalizable a mostrar en el mapa</description>
+    </attribute>
+  </property>
+</class>

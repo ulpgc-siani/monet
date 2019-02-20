@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="send-response" type="SendResponseActionProperty" parent="SimpleActionProperty">
+	<description></description>
+
+  <attribute token="response" type="key" link="CustomerResponseProperty" required="true">
+    <description>Mensaje que se enviará al solicitante</description>
+  </attribute>
+  
+</property>

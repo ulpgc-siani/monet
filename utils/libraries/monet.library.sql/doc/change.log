@@ -1,0 +1,9 @@
+ChangeLog  - Monet Library SQL
+
+# 18 - 07 - 2011 Version 0.2
+	-	Reanme component to library 
+	
+# 17 - 06 - 2011 Version 0.1
+	-Added QueryBuilder
+	-Added NamedParameterStatment
+	-Added ConnectionHelper

@@ -1,0 +1,12 @@
+ 
+.x-layout-collapsed-west {
+   background-image: url('../images/layout/collapse-west-bg.es.gif');
+   background-repeat:no-repeat;
+   background-position:center;
+}
+ 
+.x-layout-collapsed-east {
+}
+.dialog.sharenode .x-layout-collapsed-east {
+}
+

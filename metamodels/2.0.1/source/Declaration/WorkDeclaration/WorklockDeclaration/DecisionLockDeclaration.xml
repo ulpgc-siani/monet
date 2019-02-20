@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="DecisionLockDeclaration" parent="WorklockDeclaration" tag="decision-lock">
+  <description>Declaración de un bloqueo de decisión. Estos bloqueos se resuelven cuando el usuario selecciona un workstop</description>
+  <hint>Antes se llamaban user-action-lock</hint>
+
+</class>

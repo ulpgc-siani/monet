@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Mensajes posibles de Setupservice</comment>
+  <entry key="MSG_UNDEFINED">Mensaje desconocido</entry>
+  <entry key="MSG_LABEL_PUT">Se ha actualizado el título del espacio.</entry>
+  <entry key="MSG_LOGO_PUT">Se ha actualizado el logo del espacio.</entry>
+  <entry key="MSG_RUNNING">El espacio ha sido arrancado.</entry>
+  <entry key="MSG_STOPPED">Se ha parado el espacio.</entry>
+</properties>

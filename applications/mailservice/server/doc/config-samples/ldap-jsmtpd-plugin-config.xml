@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsmtpdsetup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="jsmtpd-plugin-config.xsd">
+
+	<!-- Note : Configuration is case sensitive -->
+		
+	<ACLSetup name="Ldap ACL" class="org.jsmtpd.plugins.acls.LdapACL">
+		<propertyset name="adminBindDn" value="cn=administrator,dc=jsmtpd,dc=org"/>
+		<propertyset name="adminBindPassword" value="your password"/>
+		<propertyset name="ldapUrl" value="ldap://ldapserver.yourdomain.com/"/>
+		<propertyset name="ldapUserProvider" value="ou=people,dc=jsmtpd,dc=org"/>
+		<propertyset name="ldapNetworkProvider" value="ou=networks,dc=jsmtpd,dc=org"/> <!-- node holding your relayed networks -->
+	</ACLSetup>
+	
+	<DNSSetup class="org.jsmtpd.plugins.dnsServices.DNSJavaResolver" name="DNS Java">
+		<propertyset name="DnsServers" value="x.x.x.x"/>
+	</DNSSetup>
+	
+	<LocalDeliveryService name="umw" class="org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter">
+		<propertyset name="mailDir" value="mailboxes/"/>
+	</LocalDeliveryService>
+	
+	<RemoteDeliveryService name="Remote smtp sender" class="org.jsmtpd.plugins.deliveryServices.RemoteSmtpSender"></RemoteDeliveryService>
+	
+	<smtpExtensions>
+		<smtpExtension name="tls" class="org.jsmtpd.plugins.smtpExtension.TLSSwitcher">
+			<propertyset name="KeystoreName" value="keystore"/> <!-- must be in classpath, eg etc/ --> 
+			<propertyset name="KeystorePassword" value="demodemo"/> 		
+		</smtpExtension>
+		<smtpExtension name="auth" class="org.jsmtpd.plugins.smtpExtension.LdapAuthenticator">
+			<propertyset name="adminBindDn" value="cn=administrator,dc=jsmtpd,dc=org"/>
+			<propertyset name="adminBindPassword" value="your password"/>
+			<propertyset name="ldapUrl" value="ldap://ldapserver.yourdomain.com/"/>
+			<propertyset name="ldapUserProvider" value="ou=people,dc=jsmtpd,dc=org"/>
+			<propertyset name="ldapUserPassword" value="userPassword"/>	
+		</smtpExtension>
+		
+	</smtpExtensions>
+	
+	<filtersetup>
+				<filterInit class="org.jsmtpd.plugins.filters.ldap.LdapBodyRewriter" name="ldap rewriter">
+					<propertyset name="adminBindDn" value="cn=administrator,dc=jsmtpd,dc=org"/>
+					<propertyset name="adminBindPassword" value="your password"/>
+					<propertyset name="ldapUrl" value="ldap://ldapserver.yourdomain.com/"/>
+					<propertyset name="ldapUserProvider" value="ou=people,dc=jsmtpd,dc=org"/>
+			</filterInit>
+	</filtersetup>
+	
+	<inputIPFilterChain> </inputIPFilterChain>
+	
+	<bodyFilterTree>
+		<filter name="ldap rewriter">
+			<true/>
+			<false/>
+		</filter>
+	</bodyFilterTree>
+
+</jsmtpdsetup>

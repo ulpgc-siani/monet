@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DimensionDeclaration" parent="IndexedDeclaration" tag="dimension">
+  <description>Declaración que se utiliza para modelar un dimensión de un cubo</description>
+  <hint>Una dimensión tiene que estar vinculada con un tesauro o con una referencia</hint>
+
+  <attribute name="reference" type="key" link="ReferenceDefinition">
+    <description>Referencia con la que está vinculada la dimensión</description>
+  </attribute>
+
+  <attribute name="thesaurus" type="key" link="ThesaurusDefinition">
+    <description>Tesauro con el que está vinculado la dimensión</description>
+  </attribute>
+
+  <property name="is-embedded">
+    <description>La dimensión se integra dentro de la tabla de hechos</description>
+  </property>
+  
+  <property name="label" multiple="true" key="language">
+		<description>Etiqueta de la dimensión</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+		<content type="text" />
+	</property>
+  
+  <include name="attribute" multiple="true" required="true">
+    <option class-name="AttributeDeclaration" />
+  </include>
+
+</class>
+

@@ -1,0 +1,3 @@
+Lang.DialogSearchUsersItem = {
+  Add: "Add"
+};

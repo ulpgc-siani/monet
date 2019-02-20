@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="WorkMapDeclaration" parent="ContentDeclaration" tag="workmap">
+
+  <property name="label" multiple="true">
+    <description>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la etiqueta</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="type" type="enumeration" default="short" >
+      <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+      <enumeration>
+        <option>short</option>
+        <option>long</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="description" multiple="true">
+    <description>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la descripción</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <include name="workplace" multiple="true">
+    <option class="WorkPlaceDeclaration"/>
+  </include>
+  
+  <include name="workline" multiple="true">
+	<option class="WorkLineDeclaration"/>
+  </include>
+  
+  <example><![CDATA[
+		<workmap>
+  <workplaces>
+    <workplace code="1" type="event">
+      <label>Petición compra vehículo</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="2" type="goal">
+      <label>Venta vehículo</label>
+      <description>...</description>
+    </workplace>
+    
+    <workplace code="10">
+      <label>Vehículo reservado</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="20">
+      <label>No existe vehículo en stock</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="11">
+      <label>Vehículo cobrado</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="30">
+      <label>El cliente acepta el vehículo ofertado</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="40">
+      <label>El cliente no acepta la oferta</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="41">
+      <label>No hay vehículos que ofertar</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="50">
+      <label>El cliente desea hacer el pedido</label>
+      <description>...</description>
+    </workplace>
+    <workplace code="51">
+      <label>El cliente no desea hacer el pedido</label>
+      <description>...</description>
+    </workplace>
+    
+    <workplace code="4" type="dead-end">
+      <label>Venta cancelada</label>
+      <description>...</description>
+    </workplace>
+  </workplaces>
+  
+  
+  <worklines>
+    <workline>
+      <label>Comprobar vehículo en stock</label>
+	  <description>...</description>
+    
+      <from>
+		<workstop workplace="1" />
+	  </from>
+      <to>
+        <workstop workplace="10"/>
+        <workstop workplace="20"/>
+      </to>
+    </workline>
+    
+    <workline>
+      <label>Cobrar importe vehículo</label>
+	  <description>...</description>
+    
+      <from>
+		<workstop workplace="10" />
+        <workstop workplace="30" />
+	  </from>
+      <to>
+        <workstop workplace="2"/>
+      </to>
+    </workline>
+    
+    <workline>
+      <label>Ofertar vehículo similar en stock</label>
+	  <description>...</description>
+    
+      <from>
+		<workstop workplace="20" />
+	  </from>
+      <to>
+        <workstop workplace="30"/>
+        <workstop workplace="40"/>
+        <workstop workplace="41"/>
+      </to>
+    </workline>
+    
+    <workline>
+      <label>Hacer un pedido a fábrica</label>
+	  <description>...</description>
+    
+      <from>
+		<workstop workplace="40" />
+        <workstop workplace="41" />
+	  </from>
+      <to>
+        <workstop workplace="50"/>
+        <workstop workplace="51"/>
+      </to>
+    </workline>
+    
+    <workline>
+      <label>Pedir a fábrica</label>
+	  <description>...</description>
+    
+      <from>
+		<workstop workplace="50" />
+	  </from>
+      <to>
+        <workstop workplace="10"/>
+      </to>
+    </workline>
+    
+    <workline>
+      <label>Cancelar pedido</label>
+	  <description>...</description>
+    
+      <from>
+		<workstop workplace="51" />
+	  </from>
+      <to>
+        <workstop workplace="4"/>
+      </to>
+    </workline>
+  </worklines>
+
+</workmap>
+]]>
+	</example>
+</class>

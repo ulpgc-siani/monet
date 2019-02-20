@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="ExpressionDeclaration" parent="Declaration" tag="expression">
+  <description>Declaración que se utiliza para modelar una expressión en una formula</description>
+  
+	<attribute name="type" type="enumeration" required="true">
+		<description>Tipo de operación</description>
+		<enumeration>
+      <option>INDICATOR</option>
+			<option>CONSTANT</option>
+		</enumeration>
+	</attribute>
+
+	<attribute name="indicator" type="key" link="IndicatorDeclaration">
+		<description>Indicador desde el que obtener el valor</description>
+	</attribute>
+
+ 	<attribute name="value" type="real">
+		<description>Valor de la constante</description>
+	</attribute>
+
+</class>
+

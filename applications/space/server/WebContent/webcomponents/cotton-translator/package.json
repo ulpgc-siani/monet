@@ -1,0 +1,13 @@
+{
+  "name": "cotton-translator",
+  "version": "1.0.0",
+  "description": "Allow translations on other cotton components",
+  "main": "cotton-translator.html",
+  "author": "SIANI <info.cottons@siani.es>",
+  "license": "MIT",
+  "devDependencies": {
+    "connect": "^3.4.0",
+    "open": "0.0.5",
+    "serve-static": "^1.10.0"
+  }
+}

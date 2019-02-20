@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-picture" type="PictureFieldProperty" parent="MultipleableFieldProperty">
+	<description>Esta propiedad se utiliza para incluir un campo imagen en un formulario</description>
+	
+	<attribute token="default" type="string">
+		<description>Este atributo se utiliza para definir la imagen por defecto</description>
+	</attribute>
+	
+	<property token="size">
+		<description>Esta propiedad se utiliza para definir el tamaño de la imagen</description>
+		<attribute token="width" type="natural" required="true">
+			<description>Ancho de la imagen</description>
+		</attribute>
+		<attribute token="height" type="natural" required="true">
+			<description>Alto de la imagen</description>
+		</attribute>
+	</property>
+	
+</property>

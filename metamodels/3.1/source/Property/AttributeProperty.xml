@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="attribute" type="AttributeProperty" parent="ReferenceableProperty" multiple="true" required="true">
+	<description>Esta propiedad se utiliza para añadir un atributo a un índice</description>
+
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta del atributo</description>
+		<hint>Se utiliza para mostrar a los usuarios el nombre del atributo
+		</hint>
+	</attribute>
+
+	<attribute token="description" type="language">
+		<description>Descripción del atributo</description>
+		<hint>Se utiliza para ofrecer a los usuarios una explicación más
+			detallada del atributo</hint>
+	</attribute>
+
+	<attribute token="type" type="enumeration" required="true">
+		<description>Tipo del atributo</description>
+		<hint>Los tipos DATE y TIME solo se pueden utilizar en los cubos
+		</hint>
+		<enumeration>
+			<option token="BOOLEAN">
+				<description>Booleano</description>
+			</option>
+			<option token="STRING">
+				<description>Texto</description>
+			</option>
+			<option token="INTEGER">
+				<description>Entero</description>
+			</option>
+			<option token="REAL">
+				<description>Real</description>
+			</option>
+			<option token="DATE">
+				<description>Fecha/hora</description>
+			</option>
+			<option token="TERM">
+				<description>Término</description>
+			</option>
+			<option token="LINK">
+				<description>Enlace a un nodo</description>
+			</option>
+			<option token="CHECK">
+				<description>Comprobación</description>
+			</option>
+			<option token="PICTURE">
+				<description>Imagen</description>
+			</option>
+			<option token="CATEGORY">
+				<description>Categoría</description>
+				<hint>Se usa para permitir la clasificación de los nodos y así poder agrupar nodos que pertenezcan a la misma categoría. 
+              Este tipo de atributos no es visible al usuario</hint>
+			</option>
+		</enumeration>
+	</attribute>
+
+	<attribute token="precision" type="enumeration" default="SECONDS">
+		<description>Precisión de los atributos tipo fecha</description>
+		<hint>Sólo tiene sentido en los campos de tipo fecha</hint>
+		<enumeration>
+			<option token="YEARS">
+				<description>Años</description>
+			</option>
+			<option token="MONTHS">
+				<description>Meses</description>
+			</option>
+			<option token="DAYS">
+				<description>Días</description>
+			</option>
+			<option token="HOURS">
+				<description>Horas</description>
+			</option>
+			<option token="MINUTES">
+				<description>Minutos</description>
+			</option>
+			<option token="SECONDS">
+				<description>Segundos</description>
+			</option>
+		</enumeration>
+	</attribute>
+
+	<attribute token="source" type="key" link="SourceDefinition">
+		<description>Fuente de datos al que está vinculado</description>
+		<hint>Sólo tiene sentido en los campos de tipo término</hint>
+	</attribute>
+
+</property>

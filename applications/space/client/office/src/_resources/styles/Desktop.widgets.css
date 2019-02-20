@@ -1,0 +1,1191 @@
+.widget {
+  clear: both;
+  position: relative;
+}
+
+.widget.optional {
+  display: none;
+}
+
+.widget.optional a.optional {
+  display: block;
+}
+
+.widget input, .widget textarea, .widget .thumbnail, .wboolean .box, .wcheck .checklist, .wselect .radiolist {
+  margin: 0px;
+  background: #FFFFFF url('../images/backgrounds/text-bg.gif') repeat-x scroll 0px 0px;
+  border: 1px solid #B5B8C8;
+  padding: 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.widget input.highlighted, .widget textarea.highlighted, .widget .thumbnail.highlighted, .wboolean .box.highlighted, .wcheck .checklist.highlighted, .wselect .radiolist.highlighted {
+  background: #EFF7FF;
+  font-weight: normal;
+}
+
+.wcheck .checklist, .wselect .radiolist {
+  min-height: 21px;
+  overflow-y: auto;
+}
+
+.wcheck .checklist {
+  height: 100%;
+}
+
+.widget input, .widget textarea, .wboolean .box, .wcheck .checklist, .wselect .radiolist {
+  padding: 1px 2px 0px 4px;
+}
+
+.wcheck .checklist, .wselect .radiolist {
+  padding-top: 5px;
+}
+
+.ie .widget input, .ie .widget textarea, .ie .wboolean .box, .ie .wcheck .checklist, .ie .wselect .radiolist {
+  padding-left: 4px;
+}
+
+.widget .template {
+  display: none;
+}
+
+.widget .thumbnail {
+  padding: 2px;
+  max-width: 96px;
+  max-height: 96px;
+  width: auto;
+}
+
+.widget input, .wboolean .box {
+  height: 25px;
+}
+
+.widget textarea {
+  height: 100px;
+}
+
+.widget .options, .widget.wcomposite .widget .options {
+  float: left;
+  margin-top: 3px;
+  margin-left: -28px;
+  border: 0px;
+  width: 20px;
+  position: relative;
+  background: transparent;
+}
+
+.ie .widget .options, .ie .widget.wcomposite .widget .options {
+  position: static;
+}
+
+.widget.wtext.long .options {
+  margin-left: -23px;
+}
+
+.widget .options a {
+  height: 20px;
+  width: 17px;
+  color: #666;
+  margin-top: -2px;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+}
+
+.ie .widget .options a {
+  position: static;
+}
+
+.widget .options a.active {
+  background-color: #355FA6;
+  color: white;
+}
+
+.widget .options a.clearvalue {
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.ie .widget .options a.clearvalue {
+  display: block;
+}
+
+.widget.wpicture .onlinemenu {
+  top: 88px;
+  width: 141px;
+}
+
+.widget .onlinemenu {
+  background: none repeat scroll 0 0 #EFF7FF;
+  border: 3px solid #99BBE8;
+  padding: 5px 10px;
+  position: absolute;
+  top: 23px;
+  z-index: 10;
+  visibility: visible;
+}
+
+.readonly .widget .onlinemenu {
+}
+
+.widget .onlinemenu a {
+  cursor: pointer;
+}
+
+.widget.locked .options {
+  display: none;
+}
+
+.widget .options a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.widget.locked .component {
+  background: #EFF7FF;
+}
+
+.widget .wloading {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.widget .wloading span {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.x-form-field-wrap .x-form-plus-trigger {
+  background: transparent url('../images/icons/add-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.x-form-field-wrap .x-form-plus-trigger.x-form-trigger-over {
+  background-position: -17px 0px;
+}
+
+.x-form-field-wrap .x-form-plus-trigger.x-form-trigger-click {
+  background-position: -34px 0px;
+}
+
+.x-trigger-wrap-focus .x-form-plus-trigger {
+  background-position: -51px 0px;
+}
+
+#uploadDialog .x-dlg-bd {
+  padding: 4px;
+}
+
+#uploadDialog .loadingIcon {
+  width: 15px;
+  height: 15px;
+
+  vertical-align: middle;
+  margin: 3px;
+  border: none;
+}
+
+img.required {
+  margin: 0px 4px;
+}
+
+.widget .empty {
+  color: #888;
+  font-style: italic;
+  margin-left: 6px;
+  margin-top: 5px;
+  position: absolute;
+}
+
+.widget.wcheck .empty {
+  margin-left: 20px;
+  margin-top: -20px;
+}
+
+.widget .radio.category, .widget .check.category {
+  background: transparent url('../images/icons/term-category.png') no-repeat scroll 0px 0px;
+  padding-left: 19px;
+}
+
+.widget .radio.ancestorlevel_2 {
+  margin-left: 20px;
+}
+
+.widget .radio.ancestorlevel_2.category {
+  margin-left: 21px;
+}
+
+.widget .radio.ancestorlevel_3 {
+  margin-left: 40px;
+}
+
+.widget .radio.ancestorlevel_3.category {
+  margin-left: 41px;
+}
+
+.widget .check.category .checker {
+  display: none;
+}
+
+.widget .radio.ancestorlevel_2, .widget .check.ancestorlevel_2 {
+  margin-left: 20px;
+}
+
+.widget .radio.ancestorlevel_2.category, .widget .check.ancestorlevel_2.category {
+  margin-left: 21px;
+}
+
+.widget .radio.ancestorlevel_3, .widget .check.ancestorlevel_3 {
+  margin-left: 40px;
+}
+
+.widget .radio.ancestorlevel_3.category, .widget .check.ancestorlevel_3.category {
+  margin-left: 41px;
+}
+
+.widget .radio.ancestorlevel_4, .widget .check.ancestorlevel_4 {
+  margin-left: 60px;
+}
+
+.widget .radio.ancestorlevel_4.category, .widget .check.ancestorlevel_4.category {
+  margin-left: 61px;
+}
+
+/* text */
+.widget.wtext {
+  clear: both;
+  height: 25px;
+}
+
+.widget.wtext.long {
+  height: 105px;
+}
+
+.widget.wtext .component {
+  float: left;
+}
+
+.widget.wtext.long .component {
+  overflow: auto;
+}
+
+/* picture, picture */
+.widget.wfile, .widget.wpicture {
+  clear: both;
+}
+
+.widget.wfile {
+  height: 25px;
+}
+
+.widget.wfile input.component, .widget.wpicture input.component {
+  float: left;
+}
+
+.widget.wpicture .preview {
+  cursor: pointer;
+}
+
+.widget.wfile .options, .widget.wcomposite .widget.wfile .options {
+  margin-left: -49px;
+  width: 44px;
+}
+
+.widget.wpicture .options, .widget.wcomposite .widget.wpicture .options {
+  margin-top: -2px;
+  margin-left: -20px;
+  width: 44px;
+}
+
+.widget.wfile .options a.download, .widget.wpicture .options a.download {
+  background: transparent url('../images/icons/download-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wfile .options a.download:hover, .widget.wpicture .options a.download:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.widget.wfile .options a.clearvalue, .widget.wpicture .options a.clearvalue {
+  margin-left: 21px;
+}
+
+.widget.wpicture .pictureframe {
+  float: left;
+}
+
+/* section */
+.widget.wcomposite.expanded {
+  height: 100%;
+}
+
+.widget.wcomposite .options.conditional {
+  float: none;
+  margin: 0px;
+}
+
+.widget.wcomposite .options.extensible {
+  float: none;
+  margin: 0px;
+  height: 20px;
+}
+
+.widget.wcomposite .options.extensible a {
+  width: 200px;
+}
+
+.widget.wcomposite .fieldsbox .options input {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.widget.wcomposite .options {
+  height: 20px;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.widget.wcomposite .options img {
+  height: 23px;
+  width: 17px;
+}
+
+.widget.wcomposite .options a.active {
+  background-color: #D0E0F5;
+  border: 1px solid #99BBE8;
+  color: #0D3C98;
+  margin-top: -1px;
+  padding-right: 60px;
+}
+
+.widget.wcomposite .options a .trigger {
+  float: left;
+}
+
+.widget.wcomposite .options a span {
+  float: left;
+  padding: 4px 2px;
+}
+
+.widget.wcomposite .options a.expand {
+  margin-left: 2px;
+}
+
+.widget.wcomposite .options a.expand .trigger {
+  background: transparent url('../images/icons/expand-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wcomposite .options a.collapse {
+  margin-left: 2px;
+}
+
+.widget.wcomposite .options a.collapse .trigger {
+  background: transparent url('../images/icons/collapse-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wcomposite .options a.search {
+  margin-left: 80px;
+}
+
+.widget.wcomposite .options a.search .trigger {
+  background: transparent url('../images/icons/search-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wcomposite .options a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+/* link */
+.widget.wlink {
+  clear: both;
+  height: 25px;
+}
+
+.widget.wlink .nodebox {
+  display: none;
+}
+
+.widget.wlink.expanded {
+  height: 100%;
+}
+
+.widget.wlink .component {
+  float: left;
+}
+
+.widget.wlink.expanded .component {
+  border-bottom: 1px dotted #B5B8C8;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.ie .widget.wlink.expanded .component {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.widget.wlink .options a.hiperlink {
+  background: transparent url('../images/icons/hiperlink-trigger.gif') no-repeat scroll 0px 0px;
+  margin-left: -20px;
+}
+
+.widget.wlink .options a.hiperlink:hover, .widget.wpicture .options a.hiperlink:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.widget.wlink .nodebox {
+  border: 1px solid #B5B8C8;
+  border-top: 0px;
+  width: 99%;
+}
+
+.ie .widget.wlink .nodebox {
+  width: 99.2%;
+}
+
+.widget.wlink .nodebox.focus {
+  border: 3px solid #99BBE8;
+  border-top: 0px;
+}
+
+.widget.wlink .nodebox .component {
+  border: 1px solid #B5B8C8;
+}
+
+.widget.wlink .nodebox .options input {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* list, table */
+.widget.wlist, .widget.wtable {
+  position: relative;
+}
+
+.widget.wtable {
+  border: 1px solid #B5B8C8;
+}
+
+.widget.wlist .more {
+  clear: both;
+  display: block;
+  width: 40px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.widget.wlist.locked .more {
+  color: #777;
+}
+
+.widget.wlist ul.draglist, .widget.wtable ul.draglist {
+  position: relative;
+}
+
+.widget.wlist ul, .widget.wtable ul {
+  z-index: 1;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  top: 0px;
+  left: 0px;
+}
+
+.widget.wtable ul.list {
+  position: absolute;
+  width: 89%;
+  margin-left: 50px;
+}
+
+.widget.wtable .widget.wcomposite ul.list {
+  position: relative;
+}
+
+.widget.wlist li {
+  clear: both;
+  padding: 2px 0px;
+}
+
+.widget.wtable li {
+  clear: both;
+}
+
+.ie .widget.wlist li, .ie .widget.wtable li {
+  padding: 5px 0px;
+}
+
+.widget.wtable li.header {
+  background: #eee;
+}
+
+.widget.wlist li .elementwidget .widget.wdate .options, .widget.wlist li .elementwidget .widget.wlist .widget.wdate .options,
+.widget.wlist li .elementwidget .widget.wfile .options, .widget.wlist li .elementwidget .widget.wlist .widget.wfile .options,
+.widget.wlist li .elementwidget .widget.wlink .options, .widget.wlist li .elementwidget .widget.wlist .widget.wlink .options,
+.widget.wlist li .elementwidget .widget.wpattern .options, .widget.wlist li .elementwidget .widget.wlist .widget.wpattern .options,
+.widget.wlist li .elementwidget .widget.wselect .options, .widget.wlist li .elementwidget .widget.wlist .widget.wselect .options,
+.widget.wlist li .elementwidget .widget.wtext .options, .widget.wlist li .elementwidget .widget.wlist .widget.wtext .options,
+.widget.wtable li .elementwidget .widget.wdate .options, .widget.wtable li .elementwidget .widget.wtable .widget.wdate .options,
+.widget.wtable li .elementwidget .widget.wfile .options, .widget.wtable li .elementwidget .widget.wtable .widget.wfile .options,
+.widget.wtable li .elementwidget .widget.wlink .options, .widget.wtable li .elementwidget .widget.wtable .widget.wlink .options,
+.widget.wtable li .elementwidget .widget.wpattern .options, .widget.wtable li .elementwidget .widget.wtable .widget.wpattern .options,
+.widget.wtable li .elementwidget .widget.wselect .options, .widget.wtable li .elementwidget .widget.wtable .widget.wselect .options,
+.widget.wtable li .elementwidget .widget.wtext .options, .widget.wtable li .elementwidget .widget.wtable .widget.wtext .options {
+  margin-top: 3px;
+}
+
+.widget.wlist li .elementwidget .widget.wfile .options, .widget.wlist li .elementwidget .widget.wlist .widget.wfile .options,
+.widget.wtable li .elementwidget .widget.wfile .options, .widget.wtable li .elementwidget .widget.wtable .widget.wfile .options {
+  margin-left: -49px;
+}
+
+.widget.wlist li .elementwidget .widget.wcheck .options, .widget.wlist li .elementwidget .widget.wlist .widget.wcheck .options,
+.widget.wtable li .elementwidget .widget.wcheck .options, .widget.wtable li .elementwidget .widget.wtable .widget.wcheck .options {
+  /*margin-left: -58px;*/
+  margin-left: -6px;
+  width: 1px;
+}
+
+.widget.wlist li .elementwidget .widget.wpicture .options, .widget.wlist li .elementwidget .widget.wlist .widget.wpicture .options,
+.widget.wtable li .elementwidget .widget.wpicture .options, .widget.wtable li .elementwidget .widget.wtable .widget.wpicture .options {
+  margin-left: -51px;
+}
+
+.widget.wlist li .elementwidget .widget.wnumber .options, .widget.wlist li .elementwidget .widget.wlist .widget.wnumber .options,
+.widget.wlist li .elementwidget .widget.wpicture .options, .widget.wlist li .elementwidget .widget.wlist .widget.wpicture .options,
+.widget.wtable li .elementwidget .widget.wnumber .options, .widget.wtable li .elementwidget .widget.wtable .widget.wnumber .options,
+.widget.wtable li .elementwidget .widget.wpicture .options, .widget.wtable li .elementwidget .widget.wtable .widget.wpicture .options {
+  margin-left: -28px;
+  margin-top: 3px;
+}
+
+.widget.wlist li .elementwidget .wcomposite .widget .options, .widget.wlist li .elementwidget .wnode .widget .options,
+.widget.wtable li .elementwidget .wcomposite .widget .options, .widget.wtable li .elementwidget .wnode .widget .options {
+  margin-left: -28px;
+}
+
+.widget.wlist li .elementwidget .widget.wboolean .options,
+.widget.wtable li .elementwidget .widget.wboolean .options {
+  margin: 5px 0px 0px;
+}
+
+.widget.wlist li.drag, .widget.wtable .table li.drag {
+  z-index: 100;
+  position: absolute;
+  opacity: .50;
+  filter: alpha(opacity=50);
+  width: 100%;
+}
+
+.widget.wlist li .elementoptions, .widget.wtable .table li .elementoptions {
+  float: left;
+  height: 22px;
+  width: 20px;
+  position: relative;
+  background: transparent;
+  margin-right: 5px;
+  padding-top: 2px;
+  border: 1px solid #B5B8C8;
+}
+
+.ie .widget.wlist li .elementoptions, .ie .widget.wtable .table li .elementoptions {
+  position: static;
+}
+
+.widget.wlist li .elementoptions a, .widget.wlist li a.delete,
+.widget.wtable li .elementoptions a, .widget.wtable li a.delete {
+  float: left;
+  margin-left: 5px;
+  position: absolute;
+  cursor: pointer;
+  height: 23px;
+  width: 17px;
+  display: block;
+  margin-top: -2px;
+}
+
+.ie .widget.wlist li .elementoptions a, .ie .widget.wtable li .elementoptions a {
+  position: static;
+}
+
+.widget.wlist li a.delete, .widget.wtable li a.delete {
+  margin: 2px 6px;
+  z-index: 10;
+  right: 0;
+}
+
+.widget.wtable .hidelist {
+  float: left;
+}
+
+.widget.wtable li a.delete {
+  margin-left: -1px;
+  float: left;
+  position: relative;
+}
+
+.widget.wtable li .elementwidget a.delete {
+  margin: 0 15px;
+  position: absolute;
+  right: 0;
+}
+
+.widget.wlist li a.delete, .widget.wtable li a.delete {
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wlist li .elementoptions a.move, .widget.wtable li .elementoptions a.move {
+  cursor: move;
+  background: transparent url('../images/icons/move-trigger.gif') no-repeat scroll 0px 0px;
+  margin: 0px 0px 0px 3px;
+  padding: 0px;
+}
+
+.widget.wlist li .elementoptions a.move.grabbing, .widget.wtable li .elementoptions a.move.grabbing {
+  cursor: move;
+}
+
+.widget.wlist li .elementoptions a:hover, .widget.wtable li .elementoptions a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.widget.wtable .table .element {
+  cursor: pointer;
+  position: relative;
+}
+
+.widget.wtable .table .element.readonly {
+  cursor: default;
+}
+
+.widget.wtable .table .element.active.readonly .content {
+  padding-bottom: 10px;
+}
+
+.widget.wtable .table .header th div, .widget.wtable .table .element .value {
+  padding: 5px;
+}
+
+.widget.wtable .table .header th.flag div {
+  width: 12px;
+}
+
+.widget.wtable .table .header th, .widget.wtable .table .element table tr td {
+  border-top: 1px dotted #B5B8C8;
+}
+
+.widget.wtable .table .element table tr td.flag {
+  width: 5px;
+  background: white;
+  border-right: 1px dotted #aaa;
+  color: black;
+}
+
+.widget.wtable .table .element table tr td.flag.right {
+  border-right: 0px;
+}
+
+.widget.wtable .table .element table tr td.flag .move, .widget.wtable .table .element table tr td.flag .close {
+  display: block;
+  width: 22px;
+  padding-top: 5px;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.widget.wtable .table .element table tr td.flag .check {
+  margin: 0px;
+  margin-top: 6px;
+  margin-left: 4px;
+  padding: 0px;
+  width: 22px;
+}
+
+.mozilla .widget.wtable .table .element table tr td.flag .check {
+  margin-top: 3px;
+  margin-left: 2px;
+  width: 16px;
+}
+
+.widget.wtable .table .element table tr td.flag .move {
+  background: transparent url('../images/icons/move-trigger.gif') no-repeat scroll 4px 0px;
+  cursor: move;
+}
+
+.widget.wtable .table .element.active table tr td.flag .move {
+  display: none;
+}
+
+.widget.wtable .table .element table tr td.flag .move:hover {
+  background-position: -13px 0px;
+}
+
+.widget.wtable .table .element table tr td.flag .close {
+  background: transparent url('../images/icons/collapse_trigger.gif') no-repeat scroll center bottom;
+  margin-top: 4px;
+  position: absolute;
+  width: 100%;
+}
+
+.widget.wtable .table .element table tr td.flag .close:hover {
+  background-color: #D0E0F5;
+}
+
+.widget.wtable .table .element.active table tr td.flag {
+  background: #EFF7FF;
+}
+
+.widget.wtable .table .element.active table tr td.flag a {
+  color: black;
+  margin-left: -10px;
+}
+
+.widget.wtable .table .header th div {
+  color: #666;
+}
+
+.widget.wtable .toolbar {
+  border: 0px;
+  margin: 0px;
+}
+
+.widget.wtable li.readonly table .flag div {
+  width: 22px;
+}
+
+.widget.wtable .table li.active.readonly table tr td.flag {
+  background: #EFF7FF;
+}
+
+.widget.wtable li.active.readonly table.box {
+  display: block;
+}
+
+.widget.wtable li.active.readonly table.box .flag .close {
+  width: 26px;
+}
+
+.widget.wtable .table li.readonly table tr td td {
+  border: 0px;
+}
+
+/* check */
+.widget.wcheck.long {
+  height: 105px;
+}
+
+.widget.wcheck .check {
+  height: 25px;
+}
+
+.widget.wcheck .check .checker {
+  float: left;
+  margin-right: 3px;
+  width: 17px;
+}
+
+.widget.wcheck .check label {
+  float: left;
+  margin-top: 2px;
+}
+
+.widget.wcheck .check img.checker {
+  margin-top: 1px;
+  height: 13px;
+  width: 13px;
+}
+
+.widget.wcheck .check a.check {
+  color: black;
+}
+
+/* select */
+.widget.wselect, .widget.wboolean {
+  clear: both;
+  /*height: 25px;*/
+}
+
+.widget.wselect {
+
+}
+
+.widget.wselect input.component {
+  float: left;
+}
+
+.widget.wselect .radio {
+  height: 26px;
+}
+
+.widget.wselect .radio input {
+  float: left;
+  margin-right: 3px;
+  width: 15px;
+}
+
+.widget.wselect .radio label {
+  float: left;
+  margin-top: 4px;
+  margin-left: 1px;
+}
+
+.widget.wboolean .capsule {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.widget.wboolean .capsule .checker {
+  width: 13px;
+  height: 25px;
+  position: absolute;
+  border: 0px;
+  padding: 0px;
+  background: none;
+  margin-left: 6px;
+}
+
+.widget.wboolean .capsule img.checker {
+  margin-top: 6px;
+  height: 13px;
+}
+
+.widget.wboolean .capsule .component {
+  height: 22px;
+  padding-left: 22px !important;
+  padding-top: 2px;
+}
+
+.widget.wboolean input.component {
+  float: left;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin-left: 7px;
+  /*margin-top: 4px;*/
+  padding: 10px;
+  position: relative;
+  width: 13px;
+}
+
+.ie .widget.wboolean input.component {
+  padding: 0px !important;
+  border: 0px !important;
+  margin-top: 1px;
+}
+
+.widget.wboolean input.component {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.widget.wboolean .options, .widget.wcomposite .widget.wboolean .options {
+  float: left;
+  margin-top: 5px;
+  margin-left: 0px;
+  width: 100px;
+  border: 0px;
+}
+
+.widget.wboolean .message {
+  float: left;
+  font-style: italic;
+  padding-top: 3px;
+}
+
+.widget.wboolean .options a {
+  color: #000077;
+}
+
+.widget.wboolean .options a.mark {
+  width: 100px;
+}
+
+/* number */
+.widget.wnumber {
+  clear: both;
+  height: 25px;
+}
+
+.widget.wnumber input.component {
+  float: left;
+}
+
+.widget.wnumber .metrics {
+  border: 0 none;
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  width: 100px;
+}
+
+.widget.wnumber .increments {
+  display: none;
+}
+
+.widget.wnumber .options, .widget.wcomposite .widget.wnumber .options {
+  float: left;
+  margin-top: 3px;
+  margin-left: -28px;
+  border: 0px;
+}
+
+.widget.wcomposite .widget.wnumber .options a {
+  display: inline;
+}
+
+.widget.wcomposite .widget.wnumber .options a img {
+  float: none;
+}
+
+.widget.wnumber .options a.add .trigger {
+  height: 16px;
+  background: transparent url('../images/icons/addition-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wnumber .options a.subtract {
+  margin-left: 17px;
+}
+
+.ie .widget.wnumber .options a.subtract {
+  margin-left: 0px;
+}
+
+.widget.wnumber .options a.subtract .trigger {
+  height: 16px;
+  background: transparent url('../images/icons/subtraction-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wnumber .options a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+/* picture */
+.widget.wpicture {
+  position: relative;
+}
+
+.widget.wpicture img {
+  cursor: pointer;
+}
+
+/* pattern */
+.widget.wpattern {
+  clear: both;
+  height: 25px;
+}
+
+.widget.wpattern input.component {
+  float: left;
+}
+
+/* date */
+.widget.wdate {
+  clear: both;
+  height: 25px;
+}
+
+.widget.wdate input.component {
+  float: left;
+}
+
+/* serial */
+.widget.wserial {
+  clear: both;
+  height: 25px;
+}
+
+.widget.wserial .component {
+  background: #EFF7FF;
+}
+
+/* summation */
+.widget.wsummation ul.summationlist {
+  border-style: none solid dotted;
+  border-width: 0px 1px 1px;
+  border-color: #aaa;
+  padding: 10px 3px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.widget.wsummation .close {
+  background: white url('../images/icons/collapse_trigger.gif') no-repeat scroll center 0px;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-top: 0px;
+  display: block;
+  text-align: center;
+  padding: 2px 3px 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  display: none;
+}
+
+.widget.wsummation .close:hover {
+  background-color: #D0E0F5;
+}
+
+.widget.wsummation .summationitem ul {
+  display: none;
+}
+
+.widget.wsummation .summationitem table {
+  border-bottom: 1px dotted #ddd;
+  width: 100%;
+}
+
+.widget.wsummation .summationitem table td {
+  vertical-align: middle;
+}
+
+.widget.wsummation .summationitem a.label {
+  color: #000077;
+  cursor: pointer;
+}
+
+.widget.wsummation .summationitem div.label {
+  cursor: default;
+}
+
+.widget.wsummation .summationitem .label img, .widget.wsummation .summationitem.expanded .summationitem .label img {
+  background: transparent url('../images/icons/summation_collapsed.gif') no-repeat scroll 0px 0px;
+  width: 18px;
+  height: 18px;
+}
+
+.widget.wsummation .summationitem .label img.none, .widget.wsummation .summationitem.expanded .summationitem .label img.none {
+  background: none;
+}
+
+.widget.wsummation .summationitem .label:hover img {
+  background-position: -17px 0px;
+}
+
+.widget.wsummation .summationitem.expanded .label img, .widget.wsummation .summationitem.expanded .summationitem.expanded .label img {
+  background: transparent url('../images/icons/summation_expanded.gif') no-repeat scroll 0px 0px;
+}
+
+.widget.wsummation .summationitem.expanded .label img.none, .widget.wsummation .summationitem.expanded .summationitem.expanded .label img.none {
+  background: none;
+}
+
+.widget.wsummation .summationitem table input.label {
+  width: 93%;
+}
+
+.widget.wsummation .summationitem table .value, .widget.wsummation .summationitem table .widget .component {
+  margin: 0px;
+  text-align: right;
+  width: 125px;
+}
+
+.widget.wsummation .summationitem table .value.readonly {
+  height: 20px;
+  border: 1px solid #B5B8C8;
+  padding: 4px 2px 0 4px;
+}
+
+.widget.wsummation .summationitem.highlighted .label, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .label, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted .label {
+  font-weight: normal;
+}
+
+.widget.wsummation .summationitem.highlighted .summationitem .label, .widget.wsummation .summationitem.highlighted .summationitem .summationitem .label {
+  background: none;
+  border-radius: 0px;
+}
+
+.widget.wsummation .summationitem.highlighted table .value, .widget.wsummation .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted table .value, .widget.wsummation .summationitem.highlighted .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .value, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .widget .component {
+  background: #EFF7FF;
+}
+
+.widget.wsummation .summationitem.highlighted table .value.readonly, .widget.wsummation .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .widget .component {
+  background: #EFF7FF;
+}
+
+.widget.wsummation .summationitem.highlighted .summationitem table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem .summationitem table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem .summationitem table .widget .component {
+  background: #FFFADD;
+}
+
+.widget.wsummation .summationitem.highlighted .summationitem table .value, .widget.wsummation .summationitem.highlighted .summationitem table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem .summationitem table .value, .widget.wsummation .summationitem.highlighted .summationitem .summationitem table .widget .component {
+  background: white;
+}
+
+.widget.wsummation .summationitem.highlighted .summationitem table .value.focus, .widget.wsummation .summationitem.highlighted .summationitem table .widget .component.focus,
+.widget.wsummation .summationitem.highlighted .summationitem .summationitem table .value.focus, .widget.wsummation .summationitem.highlighted .summationitem .summationitem table .widget .component.focus {
+  background: #EFF7FF;
+}
+
+.widget.wsummation .summationitem table .widget.wselect .component {
+  text-align: left;
+  width: 89%;
+}
+
+.widget.wsummation .summationitem table .widget.wnumber .options {
+  display: none;
+}
+
+.widget.wsummation .summationitem table a.value {
+  float: right;
+}
+
+.widget.wsummation .summationitem table .value.readonly {
+  background: #FFFADD;
+}
+
+.widget.wsummation .summationitem.subtotal .value {
+  font-weight: bold;
+  background: #FFFADD;
+}
+
+.widget.wsummation .summationitem.subtotal .value {
+  font-weight: normal;
+}
+
+.widget.wsummation .summationitem table .more {
+  float: right;
+  margin-bottom: 5px;
+}
+
+.widget.wsummation .summationitem .summationitem .tabbed {
+  margin-left: 15px;
+}
+
+.widget.wsummation .summationitem .summationitem .summationitem .tabbed {
+  margin-left: 30px;
+}
+
+.widget.wsummation .summationitem .summationitem .summationitem .summationitem .tabbed {
+  margin-left: 45px;
+}
+
+.widget.wsummation .summationitem .wselect img.none {
+  display: block;
+  float: left;
+  width: 16px;
+}
+
+.widget.wsummation .widget.wselect .options {
+  margin-left: -22px;
+}

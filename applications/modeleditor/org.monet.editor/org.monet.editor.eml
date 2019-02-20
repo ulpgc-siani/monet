@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="bcprov-jdk15-145.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/bcprov-jdk15-145.jar!/"/>
+	</lib>
+	<lib name="httpclient-4.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/httpclient-4.1.1.jar!/"/>
+	</lib>
+	<lib name="httpcore-4.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/httpcore-4.1.jar!/"/>
+	</lib>
+	<lib name="bcmail-jdk15-145.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/bcmail-jdk15-145.jar!/"/>
+	</lib>
+	<lib name="templation.jar" scope="COMPILE">
+		<srcroot url="file:///templation"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/templation.jar!/"/>
+	</lib>
+	<lib name="json-lib-2.4-jdk15.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/json-lib-2.4-jdk15.jar!/"/>
+	</lib>
+	<lib name="httpmime-4.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/httpmime-4.1.1.jar!/"/>
+	</lib>
+	<lib name="commons-logging-1.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/commons-logging-1.1.1.jar!/"/>
+	</lib>
+	<lib name="diff.jar" scope="COMPILE">
+		<srcroot url="file://$MODULE_DIR$/../org.monet.editor.diff"/>
+		<relative-module-src project-related="file://$PROJECT_DIR$/org.monet.editor.diff"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/diff.jar!/"/>
+	</lib>
+	<lib name="httpclient-cache-4.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/org.monet.editor/lib/httpclient-cache-4.1.1.jar!/"/>
+	</lib>
+</component>

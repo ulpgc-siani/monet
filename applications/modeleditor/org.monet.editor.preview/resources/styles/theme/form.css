@@ -1,0 +1,111 @@
+.node.embed .body {
+  margin-top: 10px;
+}
+
+.node.embed .document .body {
+  margin-top: 0px;
+}
+
+.node.form .widget.wsection .options input {
+  border: 0px;
+  background: none;
+  width: 14px;
+  height: 13px;
+}
+
+.node.form .widget.wsection .fsection .options input {
+  *margin-top: -15px;
+}
+
+.node.form .toolbar.right {
+  text-align: right;
+}
+
+.node.form .toolbar .action {
+  color: green;
+  padding-right: 10px;
+}
+
+.node.form .toolbar.listoperations {
+  margin-top: 10px;
+}
+
+.node.form .body .info.bottom {
+	margin-top: 20px;
+  *display: none;
+}
+
+.node.form .body .info .star {
+  background: url('../../images/theme/icons/star_off.gif') no-repeat left center;
+  display: block;
+  height: 20px;
+  width: 17px;
+  display: inline;
+  float: left;
+  margin-right: 5px;
+}
+
+.node.form .body .info .star.highlighted {
+  background: url('../../images/theme/icons/star_on.gif') no-repeat left center;
+}
+
+.node.form .body .info.bottom .toolbar {
+	margin-top: 0px;
+}
+
+.node.form .body .properties .datelist {
+  color: #666;
+  margin: 10px 0px 4px;
+}
+
+.node.form .body .properties .datelist li {
+  display: inline;
+}
+
+.node.form .body .properties .description {
+  margin-bottom: 20px;
+}
+
+.node.form .body .content {
+  margin: 0px;  
+  background: white;  
+  clear: both;
+}
+
+.node.form .body .info .content {
+  background: none;
+}
+
+.node.form .body .content .view .fields {
+  margin-bottom: 6px;
+}
+
+.node.form .body .content .view .fields .name {
+  font-weight: bold;
+  margin-right: 4px;
+  display: inline;
+}
+
+.node.form .body .content .view .fields .value {
+  color: #666;
+  display: inline;
+}
+
+.node.form .body .content .dialog {
+}
+
+.node.form .body .content .pictureframe {
+  width: 102px; 
+  height: 102px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.node.form .body .content .fpicture  .options ,
+.node.form .body .content .fpicture  .widget.wpicture .options {
+  top: 0;
+  position: absolute;
+  margin-left: 85px;
+  margin-top: -2px;
+}

@@ -1,0 +1,7 @@
+<application code="frontservice" type="ApplicationFrontService"
+             class="org.monet.space.frontservice.ApplicationFrontService">
+  <labels>
+    <label language="es">Aplicación de frontservice</label>
+    <label language="en">Frontservice application</label>
+  </labels>
+</application>

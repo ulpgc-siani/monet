@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MetaCompiler" basedir="." default="refresh">
+
+	<property name="basePath"				 value="../.." />
+	<property name="metamodel.dir" 			 value="${basePath}/metamodels/3.0" />
+	<property name="MML.dir" 				 value="${metamodel.dir}/translated/MML" />
+	<property name="MetaModelStructure.file" value="MetaModelStructureImpl.java" />
+	<property name="MMLGrammar.file"		 value="MonetModelingLanguage.xtext" />
+	<property name="modelSerializer.dir" 	 value="${metamodel.dir}/translated/ModelSerializer" />
+	
+	<property name="spaceMetamodel.dir" value="${basePath}/applications/space/server/src/org/monet/metamodel"/>
+	<!--<property name="biengineMetamodel.dir" value="${basePath}/applications/biengine/datawarehouse/src/org/monet/metamodel"/>-->
+	<property name="previewerMetamodel.dir" value="${basePath}/applications/modeleditor/org.monet.editor.preview/src/org/monet/metamodel"/>
+	<property name="editorMetamodel.dir" value="${basePath}/applications/modeleditor/org.monet.metamodel/src/org/monet/metamodel"/>
+	<property name="editorDSL.dir" value="${basePath}/applications/modeleditor/org.monet.editor.dsl/src/org/monet/editor/dsl"/>
+	
+	<target name="compile">
+		<exec executable="java">
+			<arg line="-jar compiler/MetaCompiler.jar ${metamodel.dir}"/>
+        </exec>
+	</target>
+	
+	<target name="copy" depends="compile">
+		<copydir src="${modelSerializer.dir}" dest="${spaceMetamodel.dir}"/>
+		<!--<copydir src="${modelSerializer.dir}" dest="${biengineMetamodel.dir}"/>-->
+		<copydir src="${modelSerializer.dir}" dest="${previewerMetamodel.dir}"/>
+		<copydir src="${modelSerializer.dir}" dest="${editorMetamodel.dir}"/>
+		<copyfile src="${MML.dir}/${MetaModelStructure.file}" dest="${editorDSL.dir}/metamodel/${MetaModelStructure.file}" forceoverwrite="true" />
+		<copyfile src="${MML.dir}/${MMLGrammar.file}" dest="${editorDSL.dir}/${MMLGrammar.file}" forceoverwrite="true" />
+	</target>
+	
+	<target name="refresh" depends="copy">
+		<eclipse.refreshLocal resource="monet.space" depth="infinite"/>
+		<eclipse.refreshLocal resource="org.monet.metamodel" depth="infinite"/>
+		<eclipse.refreshLocal resource="org.monet.editor.dsl" depth="infinite"/>
+		<eclipse.refreshLocal resource="org.monet.editor.preview" depth="infinite"/>
+		<eclipse.refreshLocal resource="monet.biengine" depth="infinite"/>
+	</target>
+	
+</project>

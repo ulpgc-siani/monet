@@ -1,0 +1,163 @@
+#federation-view img {
+  max-width: 200px;
+  max-height: 90px;	   
+}
+
+#federation-view .table-border {
+  height: 400px;  
+}
+
+#federation-view .section-left .toolbar a {
+  margin-right: 5px;
+};
+
+#federation-view .section-left div.bar {
+  width: 100%;
+}
+
+#federation-view .section-left div.bar .title {
+ width: 70%;
+ float: left;
+}
+
+#federation-view .section-left div.section-list {
+  clear: both;
+  margin-left: 0px;
+  margin-top: 5px;
+}
+
+#federation-view div.section {
+  margin-bottom: 15px;
+  clear: both;
+}
+
+#federation-view input[type='text'] {
+  width: 70%;
+  height: 25px;  
+}
+
+#federation-view input[name='name'] {
+  width: 97%;
+  height: 35px;
+  font-size: 160%;
+}
+
+#federation-view .upload-dialog {
+  width: 200px;  
+  float: left;
+  text-align: center;
+  height: 100px;
+}
+
+#upload-federation-image-dialog {
+  width: 169px
+  height: 69px;
+  padding-top: 10px;
+  padding-right: 5px;
+  border: 1px dotted gray;
+}
+
+#federation-view .section-right #connection-editor {
+  width: 80%;
+  border: 1px dotted gray;
+  padding: 10px;
+  margin: 10px 0px 10px 10px;
+}
+
+#federation-view select {
+  min-width: 160px;
+  height: 25px;
+}
+
+#federation-view .section-left div.bar div.section {
+  width: 220px;    
+  border: 1px solid black;
+}
+
+#federation-view .section .title a {
+ float: left; 
+}
+
+#federation-view .section-right input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#federation-view .section-right select {
+ display: block;
+ margin-top: 10px;
+}
+
+#federation-view .section-right .level1 {
+  margin-bottom: 10px;  
+}
+
+#federation-view .section-right .row {
+  width: 100%;
+  margin-top: 5px;
+}
+
+#federation-view .section-right .row .meta {
+  margin-right: 10px;
+  float: left;
+}
+
+#federation-view .section-right #connection-editor .row {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* #federation-view .section-right #connection-editor .row .meta {
+  width: 20%;
+  min-width: 140px;
+  float: left;
+}
+ */
+#federation-view .section-right #connection-editor .row input[type="text"],input[type="password"] {
+  width: 70%;
+  height: 25px;  
+}
+
+#federation-view .section-header  {
+  width: 100%;	
+  min-height: 120px;	
+}
+
+#federation-view #ldap-editor .section  {
+  margin-left: 110px; 
+}
+
+#federation-view #ldap-editor .section .row {
+  margin-top: 2px;
+}
+
+#federation-view #ldap-editor .section .row div  {
+  border: 1px solid gray;
+  width: 140px;
+  height: 23px; 
+  padding-top: 2px; 
+  padding-bottom: 2px; 
+  padding-left: 10px;
+  float: left;
+  background-color: #e6e6e6;
+}
+
+#federation-view #ldap-editor .section .row input[type="text"] {
+  width: 200px;
+  margin-left: 10px;    
+}
+
+#federation-view div.state {
+  background-color: #F9FBFA;      
+  padding: 20px;
+  vertical-align: middle;  
+}
+
+#federation-view .state a.button {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 69px;
+  text-align: center;
+  margin-top: 20px;
+  vertical-align: bottom;
+}

@@ -1,0 +1,10 @@
+
+.item-selected {
+  background-color: #b7d0ef;	
+  font-weight: bold;
+}
+
+.item-unselected {
+  background-color: #aaaaaa;	
+  font-weight: normal;	
+}

@@ -1,0 +1,2275 @@
+defrule type(Home)
+<html>
+
+<head>
+    <title>Monet explorer</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+
+    <meta name="company" content="ULPGC Software Engeniering Group"/>
+    <meta name="author" content="Jose Juan Hernández Cabrera"/>
+    <meta name="author" content="Mario Caballero Ramírez"/>
+    <meta name="keywords" content="html, rtf, pdf, gisc, ulpgc"/>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100"/>
+    <link rel="stylesheet" type="text/css" href="styles/loading.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/chrome.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/common.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/$theme~/styles/main.css"/>
+
+    <style type="text/css">
+        .configuration, .theme, .holder, body > div.layout, #apiUrl {
+            display: none;
+        }
+
+        .loading {
+            margin: 10px;
+        }
+    </style>
+
+    <script src="javascript/prototype.js"></script>
+    <script src="javascript/pushclient.js"></script>
+    <script type="text/javascript" language="javascript" src="Application/Application.nocache.js"></script>
+
+</head>
+
+<body>
+
+<div id="apiUrl">$apiUrl</div>
+
+<div id="main">
+    <div class="loading">
+        <table id="BusinessUnitLoad" width="100%" height="100%">
+            <tr>
+                <td align="center">
+                    <div id="loadingAni">
+                        <table>
+                            <tr height="250px">
+                                <td width="30%" style="vertical-align:middle;">
+                                    <img class="federation logosplash" src="$federationLogoSplash"
+                                         title="$federationLabel"/>
+                                </td>
+                                <td style="vertical-align:middle;">
+                                    <div class="subtitle">$subTitle</div>
+                                    <div class="title">$title</div>
+                                </td>
+                            </tr>
+                            <tr height="150px">
+                                <td width="100px">&nbsp;</td>
+                                <td style="vertical-align:bottom;"><img src="$modelLogoSplash" title="$title"
+                                                                        class="model logosplash">
+                                </td>
+                            </tr>
+                            <tr height="70px">
+                                <td colspan="2">
+                                    <div class="footer left">
+                                        <img src="$monetLogoSplash" title="powered by Monet">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="holder">
+        <div class="presenter">ApplicationDisplay</div>
+        <div class="layout">application</div>
+    </div>
+</div>
+
+<!---------------------- THEMES ---------------------->
+
+<div class="theme default">
+    <div class="layout application">
+        <div class="holder">
+            <div class="presenter">LayoutDisplay</div>
+        </div>
+
+        <div class="design-panel left">
+            <div class="header color-header">
+                <div class="holder space">
+                    <div class="presenter">SpaceDisplay</div>
+                    <div class="layout">space</div>
+                </div>
+                <div class="holder message">
+                    <div class="presenter">MessageDisplay</div>
+                </div>
+            </div>
+            <div class="panel content">
+                <div class="entities system">
+                    <div class="holder search">
+                        <div class="presenter">SearchOperation</div>
+                    </div>
+                    <div class="holder">
+                        <div class="presenter">ExplorationDisplay</div>
+                        <div class="design">tab</div>
+                        <div class="layout">tab</div>
+                    </div>
+                    <div class="holder">
+                        <div class="presenter">ToggleHelperOperation</div>
+                        <div class="layout">icon</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="holder">
+                    <div class="presenter">OperationListDisplay</div>
+                    <div class="design">toolbar</div>
+                </div>
+                <div class="holder">
+                    <div class="presenter">AccountDisplay</div>
+                    <div class="layout">account</div>
+                </div>
+            </div>
+        </div>
+        <div class="design-panel main">
+            <table height="100%" width="100%">
+                <tr>
+                    <td>
+                        <div class="holder">
+                            <div class="presenter">VisitingDisplay</div>
+                            <div class="layout">visiting entity</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="helper-display">
+                        <div class="holder">
+                            <div class="presenter">HelperDisplay</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="design-panel footer color-footer">
+            <div class="links">Powered by monet &reg;</div>
+        </div>
+    </div>
+
+    <div class="layout space">
+        <div class="holder inline">
+            <div class="presenter">ToggleLeftPanelOperation</div>
+            <div class="layout">icon</div>
+        </div>
+        <img class="logo" src="images/s.gif"/>
+    </div>
+
+    <div class="layout account">
+        <table>
+            <tr>
+                <td class="photo"><img src="images/s.gif"/></td>
+                <td>
+                    <div class="email"></div>
+                    <div class="full-name"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="holder inline">
+                                <div class="presenter">LogoutOperation</div>
+                                <div class="layout">link</div>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+                <td style="width: 1px;">
+                    <ul class="vertical-toolbar">
+                        <li><a class="show-business-units"></a></li>
+                        <li><a class="show-notifications"></a></li>
+                    </ul>
+                    <div class="dialog">
+                        <div class="holder">
+                            <div class="presenter">BusinessUnitListDisplay</div>
+                            <div class="layout">business-unit-list</div>
+                        </div>
+                        <div class="holder">
+                            <div class="presenter">NotificationListDisplay</div>
+                            <div class="layout">notification-list</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout helper">
+        <div class="header">
+            <label>::helper::</label>
+
+            <div class="holder">
+                <div class="presenter">HideHelperOperation</div>
+                <div class="layout">link</div>
+            </div>
+        </div>
+        <div class="page"></div>
+    </div>
+
+    <div class="layout business-unit-list">
+        <label>::members::</label>
+
+        <div class="members"></div>
+    </div>
+
+    <div class="layout notification-list">
+        <label>::notifications::</label>
+
+        <div class="notifications"></div>
+
+        <div class="empty-notifications">
+            <div class="msg empty">::empty-notifications::</div>
+            <div class="holder inline">
+                <div class="presenter">ShowNewsOperation</div>
+                <div class="layout">link</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout main-menu">
+        <div class="holder">
+            <div class="presenter">ViewListDisplay</div>
+            <div class="design">tab-vertical</div>
+        </div>
+    </div>
+
+    <div class="layout visiting entity">
+        <div class="header">
+            <a class="up"></a>
+
+            <div class="label"></div>
+            <a class="back"></a>
+
+            <ul class="observers"></ul>
+        </div>
+        <div class="baseline"></div>
+
+        <div class="holder main-display">
+            <div class="presenter">EntityDisplay</div>
+            <div class="layout">entity</div>
+        </div>
+    </div>
+
+    <div class="layout visiting entity-component">
+        <div class="holder main-display">
+            <div class="presenter">EntityDisplay</div>
+            <div class="layout">entity</div>
+        </div>
+    </div>
+
+    <div class="layout visiting search-results">
+        <div class="header">
+            <div class="label"></div>
+            <a class="back"></a>
+        </div>
+        <div class="baseline"></div>
+
+        <div class="holder main-display">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">default</div>
+            <div class="layout">list</div>
+        </div>
+    </div>
+
+    <div class="layout entity">
+        soy el main por defecto
+    </div>
+
+    <div class="layout entity node">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="air"></div>
+                        <div class="notes">
+                            <div class="label">Notas</div>
+                            <textarea rows="5"></textarea>
+                        </div>
+                        <div class="baseline air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">_defined-by-view-definition_</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity node-root node-component">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="100%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">_defined-by-view-definition_</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity collection">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">_defined-by-view-definition_</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity task-list">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">list</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity task">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="baseline air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout menu">
+        <h1 class="label"></h1>
+        <ul class="items"></ul>
+    </div>
+
+    <div class="layout view-set view-task-list stack tab">
+        <div class="label"></div>
+
+        <!--
+        <table class="search">
+          <tr>
+            <td class="label">::search::</td>
+            <td>
+              <div class="component"></div>
+            </td>
+          </tr>
+        </table>
+        -->
+        <div class="holder">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">filter-tools</div>
+        </div>
+
+        <div class="holder">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">default</div>
+            <div class="layout">list</div>
+        </div>
+
+        <div class="holder">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">toolbar</div>
+        </div>
+    </div>
+
+    <div class="layout view-set document">
+        <div class="label"></div>
+        <div class="loading">::loading::</div>
+        <div class="sections"></div>
+    </div>
+
+    <div class="layout view-set document section">
+        <div class="header">
+            <div class="title"></div>
+            <div class="toolbar th"></div>
+            <div class="command toggle"><a></a></div>
+            <div class="filter-tools"></div>
+        </div>
+        <div class="items"></div>
+        <div class="toolbar tf"></div>
+    </div>
+
+    <div class="layout search">
+        <div class="search-panel">
+            <div class="icon-background"></div>
+            <span class="icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input"></div>
+        </div>
+    </div>
+
+    <div class="layout view-desktop stack tab document">
+        <div class="label"></div>
+        <div class="operations"></div>
+    </div>
+
+    <div class="layout view-container stack tab document">
+        <div class="label"></div>
+        <div class="host">
+            <div class="holder">
+                <div class="presenter">NodeViewDisplay</div>
+                <div class="design">tab</div>
+                <div class="layout">_defined-by-view-definition_</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout view-form stack tab document">
+        <div class="configuration">
+            <div class="field-height">30</div>
+        </div>
+
+        <div class="fields"></div>
+        <div class="show-all"></div>
+        <div class="extended-fields"></div>
+    </div>
+
+    <div class="layout view-task-state">
+        <div class="date"></div>
+        <div class="flag"></div>
+        <div class="title"></div>
+        <div class="holder action">
+            <div class="presenter">TaskStateActionDisplay</div>
+        </div>
+        <div class="holder history">
+            <div class="presenter">TaskHistoryDisplay</div>
+        </div>
+    </div>
+
+    <div class="layout task-state-delegation-action">
+        <div class="message"></div>
+        <div class="step setup-role">
+            <ul></ul>
+        </div>
+        <div class="step setup-order">
+            <div class="entity"></div>
+            <div class="toolbar">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="holder">
+                                <div class="presenter">SetupTaskDelegationOrderOperation</div>
+                                <div class="layout">button</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout task-state-line-action">
+        <div class="timeout"></div>
+        <ul class="stops"></ul>
+    </div>
+
+    <div class="layout task-state-edition-action">
+        <div class="entity">
+            <div class="holder">
+                <div class="presenter">FormViewDisplay</div>
+            </div>
+        </div>
+        <div class="toolbar">
+            <table>
+                <tr>
+                    <td>
+                        <div class="holder">
+                            <div class="presenter">SolveTaskEditionOperation</div>
+                            <div class="layout">button</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout task-state-wait-action">
+        <div class="message"></div>
+        <div class="step configure">
+            <ul>
+                <li><a class="command hour plus" href="#">::one-hour::</a></li>
+                <li><a class="command day plus" href="#">::one-day::</a></li>
+                <li><a class="command month plus" href="#">::one-month::</a></li>
+                <li><a class="command year plus" href="#">::one-year::</a></li>
+            </ul>
+        </div>
+        <div class="step re-configure">
+            <ul>
+                <li><a class="command hour plus" href="#">::increment-one-hour::</a> / <a class="command hour minus"
+                                                                                          href="#">::decrement-one-hour::</a>
+                </li>
+                <li><a class="command day plus" href="#">::increment-one-day::</a> / <a class="command day minus"
+                                                                                        href="#">::decrement-one-day::</a>
+                </li>
+                <li><a class="command month plus" href="#">::increment-one-month::</a> / <a class="command month minus"
+                                                                                            href="#">::decrement-one-month::</a>
+                </li>
+                <li><a class="command year plus" href="#">::increment-one-year::</a> / <a class="command year minus"
+                                                                                          href="#">::decrement-one-year::</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layout view-task-shortcut">
+    </div>
+
+    <div class="layout field-templates">
+        <div class="inline">
+            <table>
+                <tr>
+                    <td vertical-align="middle" width="36.5%">
+                        <div class="field-label">
+                            <div class="label"></div>
+                            <ul class="information">
+                                <li>
+                                    <i class="fa fa-pencil editing"></i>
+                                </li>
+                                <li>
+                                    <div class="description"></div>
+                                    <span class="hint description-hint"></span>
+                                </li>
+                                <li>
+                                    <div class="warning"></div>
+                                    <span class="hint warning-hint"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td vertical-align="bottom">
+                        <div class="relative">
+                            <div class="component"></div>
+                            <div class="popup">
+                                <div class="toolbar"><span class="close">::close-dialog::</span></div>
+                                <div class="content dialog"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="horizontal-separator"></div>
+        </div>
+        <div class="multiline">
+            <table>
+                <tr>
+                    <td>
+                        <div class="field-label">
+                            <div class="label"></div>
+                            <ul class="information">
+                                <li>
+                                    <i class="fa fa-pencil editing"></i>
+                                </li>
+                                <li>
+                                    <div class="description"></div>
+                                    <span class="hint description-hint"></span>
+                                </li>
+                                <li>
+                                    <div class="warning"></div>
+                                    <span class="hint warning-hint"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="relative">
+                            <div class="component"></div>
+                            <div class="popup">
+                                <div class="toolbar"><span class="close">::close-dialog::</span></div>
+                                <div class="content dialog"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="horizontal-separator"></div>
+        </div>
+    </div>
+
+    <div class="layout field-component-templates">
+        <div class="component-text component-memo component-boolean component-date component-number">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-select">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-link">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <i class="fa fa-pencil edit"></i>
+                        </li>
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+            <div class="embedded-entity">
+                <div class="close"></div>
+                <div class="entity"></div>
+            </div>
+        </div>
+        <div class="component-uri">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-serial">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-file">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="download"></div>
+                        </li>
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-picture">
+            <div class="component">
+                <table>
+                    <tr>
+                        <td class="thumbnail">
+                            <div class="preview"></div>
+                        </td>
+                        <td>
+                            <ul class="toolbar">
+                                <li>
+                                    <div class="show"></div>
+                                </li>
+                                <li>
+                                    <div class="download"></div>
+                                </li>
+                                <li>
+                                    <div class="clear"></div>
+                                </li>
+                            </ul>
+                            <div class="input-panel">
+                                <div class="input"></div>
+                                <span class="underline"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="component-composite">
+            <div class="component">
+                <div class="condition"></div>
+                <ul class="fields"></ul>
+                <div class="show-all"></div>
+                <div class="extended-fields"></div>
+            </div>
+        </div>
+        <div class="component-text-multiple component-date-multiple component-file-multiple component-number-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-select-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-link-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <i class="fa fa-pencil edit"></i>
+                        </li>
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+            <div class="embedded-entity">
+                <div class="close"></div>
+                <div class="entity"></div>
+            </div>
+        </div>
+        <div class="component-picture-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <table>
+                    <tr>
+                        <td class="thumbnail">
+                            <div class="preview"></div>
+                        </td>
+                        <td>
+                            <div class="input-panel">
+                                <div class="input"></div>
+                                <span class="underline"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="component-memo-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <span class="underline"></span>
+                </div>
+                <div class="add-memo"></div>
+            </div>
+        </div>
+        <div class="component-serial-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+            </div>
+        </div>
+        <div class="component-composite-multiple-summary">
+            <div class="component">
+                <div class="condition"></div>
+                <ul class="values"></ul>
+                <ul class="fields"></ul>
+                <div class="show-all"></div>
+                <ul class="extended-fields"></ul>
+                <div class="horizontal-separator"></div>
+                <ul class="toolbar">
+                    <li>
+                        <button class="add-composite"></button>
+                    </li>
+                    <li>
+                        <div class="remove-composites"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="component-composite-multiple-table">
+            <div class="component">
+                <div class="condition"></div>
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <ul class="toolbar">
+                    <li>
+                        <div class="add-composite"></div>
+                    </li>
+                    <li>
+                        <div class="remove-composites"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="component-select-embedded component-check component-select-poll component-select-multiple-poll">
+            <div class="component">
+                <ul class="terms"></ul>
+            </div>
+        </div>
+
+        <div class="component-boolean-poll">
+            <div class="component">
+                <div class="editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout field-dialog-templates">
+        <div class="dialog-text dialog-memo">
+            <div class="header">::recent-options::</div>
+            <div class="history options"></div>
+        </div>
+        <div class="dialog-select">
+            <div class="search-box">
+                <div class="search-input"></div>
+            </div>
+            <div class="options-panel">
+                <div class="header">::options::</div>
+                <div class="options"></div>
+            </div>
+            <div class="history-panel">
+                <div class="header">::recent-options::</div>
+                <div class="history"></div>
+            </div>
+            <div class="other-panel">
+                <div class="header">::other::</div>
+                <div class="other"></div>
+            </div>
+        </div>
+        <div class="dialog-boolean">
+            <div class="options"></div>
+        </div>
+        <div class="dialog-number_slider">
+            <div class="slider"></div>
+        </div>
+        <div class="dialog-number_button">
+            <table>
+                <tr>
+                    <td width="30%">
+                        <div class="increment button"></div>
+                    </td>
+                    <td width="70%" rowspan="2">
+                        <div class="value"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">
+                        <div class="decrement button"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="dialog-link">
+            <div class="search-box">
+                <div class="search-input"></div>
+            </div>
+            <div class="headers"></div>
+            <div class="entries"></div>
+        </div>
+        <div class="dialog-file">
+            <div class="upload-component">
+                <div class="uploader"></div>
+                <div class="info"></div>
+                <div class="file-operations"></div>
+            </div>
+        </div>
+        <div class="dialog-picture">
+            <div class="upload-component">
+                <div class="uploader"></div>
+                <div class="editor"></div>
+                <div class="info"></div>
+                <div class="file-operations"></div>
+            </div>
+        </div>
+        <div class="dialog-date"></div>
+    </div>
+
+    <div class="layout index">
+        <div class="loading"></div>
+        <div class="items"></div>
+    </div>
+
+    <div class="layout index-search">
+        <div class="loading"></div>
+        <table>
+            <tr>
+                <td class="list-box">
+                    <div class="items"></div>
+                </td>
+                <td class="embedded-entity-box">
+                    <div class="embedded-entity"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-templates">
+        <div class="attribute">
+                <span class='attribute'>
+                  <span class='label'></span>&nbsp;
+                  <span class='value'></span>&nbsp;&nbsp;&nbsp;
+                </span>
+        </div>
+        <div class="attribute link">
+                <span class='attribute'>
+                  <span class='label'></span>&nbsp;
+                  <span><a class='link'></a></span>&nbsp;&nbsp;&nbsp;
+                </span>
+        </div>
+        <div class="attribute highlight">
+            <span class='value'></span>&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="attribute link highlight">
+                <span class='attribute'>
+                  <a class='link'></a>&nbsp;&nbsp;&nbsp;
+                </span>
+        </div>
+    </div>
+
+    <div class="layout index-entry">
+        <table width='100%'>
+            <tr>
+                <td width='1px' class="pict"><span class='attribute'><img/></span></td>
+                <td>
+                    <div class='label'></div>
+                    <div class='body'>
+                        <table width='100%'>
+                            <tr>
+                                <td width='80%'>
+                                    <div class="lines attributes"></div>
+                                    <div class="lines-below attributes"></div>
+                                    <div class="highlight attributes"></div>
+                                </td>
+                                <td class='icons attributes'>
+                                    <a class='attribute georef'></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr class="footer">
+                <td colspan='2'>
+                    <div class='attributes'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-entry simple">
+        <table width='100%'>
+            <tr>
+                <td>
+                    <div class='label'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-entry-document">
+        <table width='100%'>
+            <tr>
+                <td width='1px' class="pict"><span class='attribute'><img/></span></td>
+                <td>
+                    <div class='label'></div>
+                    <div class='body'>
+                        <table width='100%'>
+                            <tr>
+                                <td width='80%'>
+                                    <div class="lines attributes"></div>
+                                    <div class="lines-below attributes"></div>
+                                    <div class="highlight attributes"></div>
+                                </td>
+                                <td class='icons attributes'>
+                                    <a class='attribute georef'></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="embedded-entity"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr class="footer">
+                <td colspan='2'>
+                    <div class='attributes'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-entry icon">
+        <table width='100%'>
+            <tr>
+                <td width='1px' class="pict"><span class='attribute'><img/></span></td>
+                <td>
+                    <div class='icons attributes'>
+                        <a class='attribute georef'></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class='label'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout task-list index-entry">
+        <table width='100%'>
+            <tr>
+                <td class="type"><img/></td>
+                <td class="content">
+                    <div class="label"><span/></div>
+                    <div class="description"></div>
+                    <div class="owner"></div>
+                    <div class="sender"></div>
+                    <div class="dates"></div>
+                    <div class="message new"></div>
+                </td>
+                <td class="timeLine"><img/></td>
+                <td class="flags">
+                    <a class="urgent"></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-filter-tools">
+        <div class="filter-tools">
+            <div class="orders">
+                <div class="display"></div>
+                <div class="popup">
+                    <div class="toolbar">
+                        <span class="close">::close-dialog::</span>
+                    </div>
+                    <div class="content"></div>
+                </div>
+            </div>
+            <ul class="filters"></ul>
+        </div>
+        <div class="search"></div>
+    </div>
+
+    <div class="layout index-filter-tools-filter">
+        <table>
+            <tr>
+                <td>
+                    <div class="label"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="selected-options"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="theme micv">
+    <div class="layout application">
+        <div class="holder">
+            <div class="presenter">LayoutDisplay</div>
+        </div>
+
+        <div class="design-panel header color-header">
+            <table>
+                <tr>
+                    <td class="header-space">
+                        <div class="holder space">
+                            <div class="presenter">SpaceDisplay</div>
+                            <div class="layout">space</div>
+                        </div>
+                        <div class="holder message">
+                            <div class="presenter">MessageDisplay</div>
+                        </div>
+                    </td>
+                    <td class="header-account">
+                        <div class="holder search">
+                            <div class="presenter">SearchOperation</div>
+                        </div>
+                        <div class="holder">
+                            <div class="presenter">OperationListDisplay</div>
+                            <div class="design">toolbar</div>
+                        </div>
+                        <div class="holder">
+                            <div class="presenter">ToggleHelperOperation</div>
+                            <div class="layout">icon</div>
+                        </div>
+                        <div class="holder">
+                            <div class="presenter">AccountDisplay</div>
+                            <div class="layout">account</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="design-panel main">
+            <div class="entities system">
+                <div class="holder">
+                    <div class="presenter">ExplorationDisplay</div>
+                    <div class="design">tab</div>
+                    <div class="layout">enumeration</div>
+                </div>
+            </div>
+            <div>
+                <table height="100%" width="100%">
+                    <tr>
+                        <td>
+                            <div class="holder">
+                                <div class="presenter">VisitingDisplay</div>
+                                <div class="layout">visiting entity</div>
+                            </div>
+                        </td>
+                        <td class="helper-display">
+                            <div class="holder">
+                                <div class="presenter">HelperDisplay</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="design-panel footer color-footer">
+            <div class="links">Powered by monet &reg;</div>
+        </div>
+    </div>
+
+    <div class="layout space">
+        <div class="holder inline">
+            <div class="presenter">ToggleLeftPanelOperation</div>
+            <div class="layout">icon</div>
+        </div>
+        <img class="logo" src="images/s.gif"/>
+    </div>
+
+    <div class="layout account">
+        <table>
+            <tr>
+                <td class="photo"><img src="images/s.gif"/></td>
+                <td>
+                    <div class="info">
+                        MiCV &bull; <span class="welcome">::welcome::,</span> <span class="full-name"></span>
+                        <ul class="toolbar">
+                            <li>
+                                <div class="holder inline">
+                                    <div class="presenter">LogoutOperation</div>
+                                    <div class="layout">icon</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout helper">
+        <div class="header">
+            <label>::helper::</label>
+
+            <div class="holder">
+                <div class="presenter">HideHelperOperation</div>
+                <div class="layout">link</div>
+            </div>
+        </div>
+        <div class="page"></div>
+    </div>
+
+    <div class="layout business-unit-list">
+        <label>::members::</label>
+
+        <div class="members"></div>
+    </div>
+
+    <div class="layout notification-list">
+        <label>::notifications::</label>
+
+        <div class="notifications"></div>
+
+        <div class="empty-notifications">
+            <div class="msg empty">::empty-notifications::</div>
+            <div class="holder inline">
+                <div class="presenter">ShowNewsOperation</div>
+                <div class="layout">link</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout main-menu">
+        <div class="holder">
+            <div class="presenter">ViewListDisplay</div>
+            <div class="design">tab-vertical</div>
+        </div>
+    </div>
+
+    <div class="layout visiting entity">
+        <div class="header">
+            <a class="up"></a>
+
+            <div class="label"></div>
+            <a class="back"></a>
+
+            <ul class="observers"></ul>
+        </div>
+        <div class="baseline"></div>
+
+        <div class="holder main-display">
+            <div class="presenter">EntityDisplay</div>
+            <div class="layout">entity</div>
+        </div>
+    </div>
+
+    <div class="layout visiting entity-component">
+        <div class="holder main-display">
+            <div class="presenter">EntityDisplay</div>
+            <div class="layout">entity</div>
+        </div>
+    </div>
+
+    <div class="layout visiting search-results">
+        <div class="header">
+            <div class="label"></div>
+            <a class="back"></a>
+        </div>
+        <div class="baseline"></div>
+
+        <div class="holder main-display">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">default</div>
+            <div class="layout">list</div>
+        </div>
+    </div>
+
+    <div class="layout entity">
+        soy el main por defecto
+    </div>
+
+    <div class="layout entity node">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="air"></div>
+                        <div class="notes">
+                            <div class="label">Notas</div>
+                            <textarea rows="5"></textarea>
+                        </div>
+                        <div class="baseline air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">_defined-by-view-definition_</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity node-root node-component">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="100%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">_defined-by-view-definition_</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity collection">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">_defined-by-view-definition_</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity task-list">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                            <div class="layout">list</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout entity task">
+        <div class="content tab">
+            <table height="100%" width="100%" class="panel horizontal">
+                <tr>
+                    <td width="20%">
+                        <div class="views">
+                            <div class="holder">
+                                <div class="presenter">ViewListDisplay</div>
+                                <div class="design">tab-vertical</div>
+                            </div>
+                        </div>
+                        <div class="baseline air"></div>
+                        <div class="menu">
+                            <div class="holder">
+                                <div class="presenter">OperationListDisplay</div>
+                                <div class="design">menu</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="80%">
+                        <div class="holder">
+                            <div class="presenter">ViewDisplay</div>
+                            <div class="design">tab</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout menu">
+        <h1 class="label"></h1>
+        <ul class="items"></ul>
+    </div>
+
+    <div class="layout view-set view-task-list stack tab">
+        <div class="label"></div>
+
+        <!--
+        <table class="search">
+          <tr>
+            <td class="label">::search::</td>
+            <td>
+              <div class="component"></div>
+            </td>
+          </tr>
+        </table>
+        -->
+        <div class="holder">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">filter-tools</div>
+        </div>
+
+        <div class="holder">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">default</div>
+            <div class="layout">list</div>
+        </div>
+
+        <div class="holder">
+            <div class="presenter">IndexDisplay</div>
+            <div class="design">toolbar</div>
+        </div>
+    </div>
+
+    <div class="layout view-set document">
+        <div class="label"></div>
+        <div class="loading">::loading::</div>
+        <div class="sections"></div>
+    </div>
+
+    <div class="layout view-set document section">
+        <div class="header">
+            <div class="title"></div>
+            <div class="toolbar th"></div>
+            <div class="command toggle"><a></a></div>
+            <div class="filter-tools"></div>
+        </div>
+        <div class="items"></div>
+        <div class="toolbar tf"></div>
+    </div>
+
+    <div class="layout search">
+        <div class="search-panel">
+            <div class="icon-background"></div>
+            <span class="icon">
+                <i class="fa fa-search"></i>
+            </span>
+
+            <div class="search-input"></div>
+        </div>
+    </div>
+
+    <div class="layout view-desktop stack tab document">
+        <div class="label"></div>
+        <div class="operations"></div>
+    </div>
+
+    <div class="layout view-container stack tab document">
+        <div class="label"></div>
+        <div class="host">
+            <div class="holder">
+                <div class="presenter">NodeViewDisplay</div>
+                <div class="design">tab</div>
+                <div class="layout">_defined-by-view-definition_</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout view-form stack tab document">
+        <div class="configuration">
+            <div class="field-height">32</div>
+        </div>
+
+        <div class="fields"></div>
+        <div class="show-all"></div>
+        <div class="extended-fields"></div>
+    </div>
+
+    <div class="layout view-task-state">
+        <div class="date"></div>
+        <div class="flag"></div>
+        <div class="title"></div>
+        <div class="holder action">
+            <div class="presenter">TaskStateActionDisplay</div>
+        </div>
+        <div class="holder history">
+            <div class="presenter">TaskHistoryDisplay</div>
+        </div>
+    </div>
+
+    <div class="layout task-state-delegation-action">
+        <div class="message"></div>
+        <div class="step setup-role">
+            <ul></ul>
+        </div>
+        <div class="step setup-order">
+            <div class="entity"></div>
+            <div class="toolbar">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="holder">
+                                <div class="presenter">SetupTaskDelegationOrderOperation</div>
+                                <div class="layout">button</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout task-state-line-action">
+        <div class="timeout"></div>
+        <ul class="stops"></ul>
+    </div>
+
+    <div class="layout task-state-edition-action">
+        <div class="entity">
+            <div class="holder">
+                <div class="presenter">FormViewDisplay</div>
+            </div>
+        </div>
+        <div class="toolbar">
+            <table>
+                <tr>
+                    <td>
+                        <div class="holder">
+                            <div class="presenter">SolveTaskEditionOperation</div>
+                            <div class="layout">button</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout task-state-wait-action">
+        <div class="message"></div>
+        <div class="step configure">
+            <ul>
+                <li><a class="command hour plus" href="#">::one-hour::</a></li>
+                <li><a class="command day plus" href="#">::one-day::</a></li>
+                <li><a class="command month plus" href="#">::one-month::</a></li>
+                <li><a class="command year plus" href="#">::one-year::</a></li>
+            </ul>
+        </div>
+        <div class="step re-configure">
+            <ul>
+                <li><a class="command hour plus" href="#">::increment-one-hour::</a> / <a class="command hour minus"
+                                                                                          href="#">::decrement-one-hour::</a>
+                </li>
+                <li><a class="command day plus" href="#">::increment-one-day::</a> / <a class="command day minus"
+                                                                                        href="#">::decrement-one-day::</a>
+                </li>
+                <li><a class="command month plus" href="#">::increment-one-month::</a> / <a class="command month minus"
+                                                                                            href="#">::decrement-one-month::</a>
+                </li>
+                <li><a class="command year plus" href="#">::increment-one-year::</a> / <a class="command year minus"
+                                                                                          href="#">::decrement-one-year::</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layout view-task-shortcut">
+    </div>
+
+    <div class="layout field-templates">
+        <div class="inline">
+            <table>
+                <tr>
+                    <td vertical-align="middle" width="36.5%">
+                        <div class="field-label">
+                            <div class="label"></div>
+                            <ul class="information">
+                                <li>
+                                    <i class="fa fa-pencil editing"></i>
+                                </li>
+                                <li>
+                                    <div class="description"></div>
+                                    <span class="hint description-hint"></span>
+                                </li>
+                                <li>
+                                    <div class="warning"></div>
+                                    <span class="hint warning-hint"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td vertical-align="bottom">
+                        <div class="relative">
+                            <div class="component"></div>
+                            <div class="popup">
+                                <div class="toolbar"><span class="close">::close-dialog::</span></div>
+                                <div class="content dialog"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="multiline">
+            <table>
+                <tr>
+                    <td>
+                        <div class="field-label">
+                            <div class="label"></div>
+                            <ul class="information">
+                                <li>
+                                    <i class="fa fa-pencil editing"></i>
+                                </li>
+                                <li>
+                                    <div class="description"></div>
+                                    <span class="hint description-hint"></span>
+                                </li>
+                                <li>
+                                    <div class="warning"></div>
+                                    <span class="hint warning-hint"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="relative">
+                            <div class="component"></div>
+                            <div class="popup">
+                                <div class="toolbar"><span class="close">::close-dialog::</span></div>
+                                <div class="content dialog"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="layout field-component-templates">
+        <div class="component-text component-memo component-boolean component-date component-number">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-select">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-link">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <i class="fa fa-pencil edit"></i>
+                        </li>
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+            <div class="embedded-entity">
+                <div class="close"></div>
+                <div class="entity"></div>
+            </div>
+        </div>
+        <div class="component-uri">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-serial">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-file">
+            <div class="component">
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="download"></div>
+                        </li>
+                        <li>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-picture">
+            <div class="component">
+                <table>
+                    <tr>
+                        <td class="thumbnail">
+                            <div class="preview"></div>
+                        </td>
+                        <td>
+                            <ul class="toolbar">
+                                <li>
+                                    <div class="show"></div>
+                                </li>
+                                <li>
+                                    <div class="download"></div>
+                                </li>
+                                <li>
+                                    <div class="clear"></div>
+                                </li>
+                            </ul>
+                            <div class="input-panel">
+                                <div class="input"></div>
+                                <span class="underline"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="component-composite">
+            <div class="component">
+                <div class="condition"></div>
+                <ul class="fields"></ul>
+                <div class="show-all"></div>
+                <div class="extended-fields"></div>
+            </div>
+        </div>
+        <div
+                class="component-text-multiple component-date-multiple component-file-multiple component-number-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-select-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="component-link-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <ul class="toolbar">
+                        <li>
+                            <i class="fa fa-pencil edit"></i>
+                        </li>
+                        <li>
+                            <div class="select"></div>
+                        </li>
+                    </ul>
+                    <span class="underline"></span>
+                </div>
+            </div>
+            <div class="embedded-entity">
+                <div class="close"></div>
+                <div class="entity"></div>
+            </div>
+        </div>
+        <div class="component-picture-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <table>
+                    <tr>
+                        <td class="thumbnail">
+                            <div class="preview"></div>
+                        </td>
+                        <td>
+                            <div class="input-panel">
+                                <div class="input"></div>
+                                <span class="underline"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="component-memo-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <div class="input-panel">
+                    <div class="input"></div>
+                    <span class="underline"></span>
+                </div>
+                <div class="add-memo"></div>
+            </div>
+        </div>
+        <div class="component-serial-multiple">
+            <div class="component">
+                <ul class="values"></ul>
+            </div>
+        </div>
+        <div class="component-composite-multiple-summary">
+            <div class="component">
+                <div class="condition"></div>
+                <ul class="values"></ul>
+                <ul class="fields"></ul>
+                <div class="show-all"></div>
+                <ul class="extended-fields"></ul>
+                <div class="horizontal-separator"></div>
+                <ul class="toolbar">
+                    <li>
+                        <button class="add-composite"></button>
+                    </li>
+                    <li>
+                        <div class="remove-composites"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="component-composite-multiple-table">
+            <div class="component">
+                <div class="condition"></div>
+                <ul class="values"></ul>
+                <div class="horizontal-separator"></div>
+                <ul class="toolbar">
+                    <li>
+                        <div class="add-composite"></div>
+                    </li>
+                    <li>
+                        <div class="remove-composites"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="component-select-embedded component-check component-select-poll component-select-multiple-poll">
+            <div class="component">
+                <ul class="terms"></ul>
+            </div>
+        </div>
+
+        <div class="component-boolean-poll">
+            <div class="component">
+                <div class="editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout field-dialog-templates">
+        <div class="dialog-text dialog-memo">
+            <div class="header">::recent-options::</div>
+            <div class="history options"></div>
+        </div>
+        <div class="dialog-select">
+            <div class="search-box">
+                <div class="search-input"></div>
+            </div>
+            <div class="options-panel">
+                <div class="header">::options::</div>
+                <div class="options"></div>
+            </div>
+            <div class="history-panel">
+                <div class="header">::recent-options::</div>
+                <div class="history"></div>
+            </div>
+            <div class="other-panel">
+                <div class="header">::other::</div>
+                <div class="other"></div>
+            </div>
+        </div>
+        <div class="dialog-boolean">
+            <div class="options"></div>
+        </div>
+        <div class="dialog-number_slider">
+            <div class="slider"></div>
+        </div>
+        <div class="dialog-number_button">
+            <table>
+                <tr>
+                    <td width="30%">
+                        <div class="increment button"></div>
+                    </td>
+                    <td width="70%" rowspan="2">
+                        <div class="value"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="30%">
+                        <div class="decrement button"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="dialog-link">
+            <div class="search-box">
+                <div class="search-input"></div>
+            </div>
+            <div class="headers"></div>
+            <div class="entries"></div>
+        </div>
+        <div class="dialog-file">
+            <div class="upload-component">
+                <div class="uploader"></div>
+                <div class="info"></div>
+                <div class="file-operations"></div>
+            </div>
+        </div>
+        <div class="dialog-picture">
+            <div class="upload-component">
+                <div class="uploader"></div>
+                <div class="editor"></div>
+                <div class="info"></div>
+                <div class="file-operations"></div>
+            </div>
+        </div>
+        <div class="dialog-date"></div>
+    </div>
+
+    <div class="layout index">
+        <div class="loading"></div>
+        <div class="items"></div>
+    </div>
+
+    <div class="layout index-search">
+        <div class="loading"></div>
+        <table>
+            <tr>
+                <td class="list-box">
+                    <div class="items"></div>
+                </td>
+                <td class="embedded-entity-box">
+                    <div class="embedded-entity"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-templates">
+        <div class="attribute">
+              <span class='attribute'>
+                <span class='label'></span>&nbsp;
+                <span class='value'></span>&nbsp;&nbsp;&nbsp;
+              </span>
+        </div>
+        <div class="attribute link">
+              <span class='attribute'>
+                <span class='label'></span>&nbsp;
+                <span><a class='link'></a></span>&nbsp;&nbsp;&nbsp;
+              </span>
+        </div>
+        <div class="attribute highlight">
+            <span class='value'></span>&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="attribute link highlight">
+              <span class='attribute'>
+                <a class='link'></a>&nbsp;&nbsp;&nbsp;
+              </span>
+        </div>
+    </div>
+
+    <div class="layout index-entry">
+        <table width='100%'>
+            <tr>
+                <td width='1px' class="pict"><span class='attribute'><img/></span></td>
+                <td>
+                    <div class='label'></div>
+                    <div class='body'>
+                        <table width='100%'>
+                            <tr>
+                                <td width='80%'>
+                                    <div class="lines attributes"></div>
+                                    <div class="lines-below attributes"></div>
+                                    <div class="highlight attributes"></div>
+                                </td>
+                                <td class='icons attributes'>
+                                    <a class='attribute georef'></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr class="footer">
+                <td colspan='2'>
+                    <div class='attributes'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-entry simple">
+        <table width='100%'>
+            <tr>
+                <td>
+                    <div class='label'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-entry-document">
+        <table width='100%'>
+            <tr>
+                <td width='1px' class="pict"><span class='attribute'><img/></span></td>
+                <td>
+                    <div class='label'></div>
+                    <div class='body'>
+                        <table width='100%'>
+                            <tr>
+                                <td width='80%'>
+                                    <div class="lines attributes"></div>
+                                    <div class="lines-below attributes"></div>
+                                    <div class="highlight attributes"></div>
+                                </td>
+                                <td class='icons attributes'>
+                                    <a class='attribute georef'></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="embedded-entity"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr class="footer">
+                <td colspan='2'>
+                    <div class='attributes'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-entry icon">
+        <table width='100%'>
+            <tr>
+                <td width='1px' class="pict"><span class='attribute'><img/></span></td>
+                <td>
+                    <div class='icons attributes'>
+                        <a class='attribute georef'></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class='label'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout task-list index-entry">
+        <table width='100%'>
+            <tr>
+                <td class="type"><img/></td>
+                <td class="content">
+                    <div class="label"><span/></div>
+                    <div class="description"></div>
+                    <div class="owner"></div>
+                    <div class="sender"></div>
+                    <div class="dates"></div>
+                    <div class="message new"></div>
+                </td>
+                <td class="timeLine"><img/></td>
+                <td class="flags">
+                    <a class="urgent"></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="layout index-filter-tools">
+        <div class="filter-tools">
+            <div class="orders">
+                <div class="display"></div>
+                <div class="popup">
+                    <div class="toolbar">
+                        <span class="close">::close-dialog::</span>
+                    </div>
+                    <div class="content"></div>
+                </div>
+            </div>
+            <ul class="filters"></ul>
+        </div>
+        <div class="search"></div>
+    </div>
+
+    <div class="layout index-filter-tools-filter">
+        <table>
+            <tr>
+                <td>
+                    <div class="label"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="selected-options"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+endrule

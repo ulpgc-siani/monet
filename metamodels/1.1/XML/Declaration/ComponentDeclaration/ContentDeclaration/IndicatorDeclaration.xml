@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="IndicatorDeclaration" parent="ContentDeclaration" tag="indicator">
+  <description>TODO</description>
+
+  <attribute name="code" type="key">
+    <description>Código del atributo</description>
+    <hint>No hay que editar este atributo. Se genera automáticamente</hint>
+  </attribute>    
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del indicador. Se utiliza para mostrar a los usuarios el nombre del indicador</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text" />
+  </property>
+
+  <property name="hidden">
+    <description>Se utiliza para ocultar el indicador en el informe</description>
+  </property>
+  
+  <property name="data">
+    <description>TODO</description>
+    <attribute name="attribute" type="code" link="AttributeDeclaration" required="true">
+      <description>TODO</description>
+    </attribute>
+    <attribute name="operator" type="enumeration" required="true">
+      <description>TODO</description>
+      <enumeration>
+        <option>sum</option>
+        <option>average</option>
+        <option>count</option>
+      </enumeration>
+    </attribute>
+  </property>
+  
+  <property name="formula">
+    <content type="xml" />
+  </property>
+
+</class>

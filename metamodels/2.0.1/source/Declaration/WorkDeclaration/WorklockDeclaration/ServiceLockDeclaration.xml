@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="ServiceLockDeclaration" parent="WorklockDeclaration" tag="service-lock">
+  <description>Declaración de un bloqueo de servicio. Estos bloqueos realizan una petición de servicio y se resuelven automáticamente cuando el servicio termina</description>
+
+  <property name="use" required="true">
+    <description>Se utiliza para indicar el tipo de proveedor de servicio</description>
+    <attribute name="service-provider" type="key" link="ServiceProviderDefinition" required="true">
+      <description>Nombre de la definición del proveedor de servicio</description>
+    </attribute>
+  </property>
+
+  <property name="request" required="true">
+    <description>Documento que se usa para realizar la petición del servicio</description>
+    <attribute name="document" type="key" link="DocumentDefinition" required="true">
+      <description>Nombre de la definición del documento</description>
+    </attribute>
+  </property>
+  
+  <property name="response" required="false">
+    <description>Documento que se devuelve como respuesta de la petición del servicio</description>
+    <attribute name="document" type="key" link="DocumentDefinition" required="true">
+      <description>Nombre de la definición del documento</description>
+    </attribute>
+  </property>
+  
+</class>

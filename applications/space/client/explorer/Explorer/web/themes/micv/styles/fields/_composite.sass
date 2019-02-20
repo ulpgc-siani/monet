@@ -1,0 +1,35 @@
+@import "../../../../styles/explorer/fields/composite"
+
+.field.composite > table > tbody > tr > td > .component
+  padding: 0 5px
+
+.field.composite.table.multiple .component .fields .values .items .layout > tbody > tr > td:first-child
+  padding-right: 0
+
+.field.composite.table.multiple .component .fields .values .items .layout input[type="text"]
+  padding: 4px 5px
+
+.field.composite.table.multiple .component .values .field > table > tbody > tr > td:first-child > div
+  margin-left: 0 !important
+
+.field.composite.table.multiple .component .values .field > table > tbody > tr > td:last-child > div
+  margin-right: 0 !important
+
+.field.composite.multiple.summary .component .values .selected, .field.composite.multiple.summary .component > .fields > tbody > tr > td,
+.field.composite.multiple.summary .component .values .selected td
+  background-color: #B5D1E8
+
+.field.composite.multiple.summary .component > .fields > tbody > tr > td > table > tbody > tr > td
+  padding-top: 5px
+
+.field.composite.multiple.summary .component .values .selected.sticky span.gwt-CheckBox
+  padding-right: 35px
+
+.field.composite.multiple.summary .component > .fields
+  margin: 10px
+  width: calc(100% - 24px)
+
+@-moz-document url-prefix()
+
+  .field.composite.table.multiple .component .fields .values .items .header-row .layout > tbody > tr > td:first-child
+    padding: 0

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-memo" type="MemoFieldProperty" parent="MultipleableFieldProperty">
+	<description>Esta propiedad se utiliza para incluir un campo descripción en un formulario</description>
+	<hint>Este tipo de campos permite que el usuario puede editar un texto en varias línea</hint>
+	
+	<property token="allow-history">
+		<description>DEPRECATED!! Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+		
+	<property token="enable-history">
+		<description>Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+
+	<property token="length">
+		<description>Esta propiedad se utiliza para definir la longitud máxima/mínima del campo</description>
+		<attribute token="max" type="natural">
+			<description>Máximo número de caracteres que admite el campo</description>
+		</attribute>
+	</property>
+	
+	<property token="edition">
+		<description>Esta propiedad se utiliza para indicar cómo se edita el campo</description>
+		<attribute token="mode" type="enumeration" required="true">
+			<enumeration>
+				<option token="RICH">
+					<description>Muestra un asistente de formato para enriquecer el texto introducido</description>
+				</option>
+			</enumeration>
+		</attribute>
+	</property>
+		
+</property>

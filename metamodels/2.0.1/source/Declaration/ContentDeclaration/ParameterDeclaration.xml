@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="ParameterDeclaration" parent="IndexedDeclaration" tag="parameter">
+  <description>Declaración que se utiliza para modelar un parámetro de un catálogo/informe</description>
+
+	<attribute name="type" type="enumeration" required="true">
+		<description>Tipo del parámetro</description>
+		<enumeration>
+			<option>TEXT</option>
+			<option>NUMBER</option>
+			<option>DATE</option>
+      <option>DATE_RANGE</option>
+      <option>DIMENSION</option>
+		</enumeration>
+	</attribute>
+
+	<attribute name="precision" type="enumeration">
+    <description>Precisión de los atributos tipo fecha. Por defecto tiene precisión de segundos.</description>
+    <hint>Sólo se utiliza en los atributos de tipo fecha.</hint>
+		<enumeration>
+			<option>YEARS</option>
+			<option>MONTHS</option>
+			<option>DAYS</option>
+			<option>HOURS</option>
+			<option>MINUTES</option>
+			<option>SECONDS</option>
+		</enumeration>
+	</attribute>
+
+  <attribute name="dimension" type="key" link="DimensionDeclaration">
+    <description>Nombre de la dimensión a la que está vinculado</description>
+  </attribute>
+
+	<attribute name="default-value" type="string">
+		<description>Valor por defecto del parámetro</description>
+	</attribute>
+  
+  <property name="use">
+    <description>TODO</description>
+    <attribute name="attribute" type="string">
+      <description>TODO</description>
+    </attribute>
+  </property>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del campo. Se utiliza para mostrar a los usuarios el nombre del parámetro</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+		<content type="text" />
+	</property>
+
+</class>

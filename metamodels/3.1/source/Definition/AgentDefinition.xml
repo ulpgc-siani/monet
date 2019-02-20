@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="AgentDefinition" parent="Definition">
+	<description>Un agente es un objeto de la unidad de negocio capaz de realizar algún tipo de proceso</description>
+</class>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible labels of the kernel of Monet</comment>
+  <entry key="LBL_NO_LABEL">No label</entry>
+  <entry key="LBL_CLONE_FROM">Copy of</entry>
+  <entry key="LBL_CLONE_AT">Duplicate the</entry>
+  <entry key="LBL_NO_NODE_TYPE_LABEL">Unknown type</entry>
+  <entry key="LBL_ERROR_FIELDS">Necessary data</entry>
+  <entry key="LBL_WARNING_FIELDS">warnings</entry>
+  <entry key="LBL_IMPORTATION">Date importation</entry>
+  <entry key="LBL_NO_LABEL">No label</entry>
+  <entry key="LBL_ABORT">Abort</entry>
+  <entry key="LBL_RETRY">Retry</entry>
+  <entry key="LBL_POST_SERVICE_REQUEST_RECEIVED">%s has done a request. %s</entry>
+  <entry key="LBL_POST_SERVICE_RESPONSE_SENT">It has answered to the request done by %s. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_REQUEST">It has sent a request to %s. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_RESPONSE">%s has answered a request done. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_NOTIFY_SENT">It has sent a notification to %s. %s</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_NOTIFY_RECEIVED">%s has sent a notification. %s</entry>
+  <entry key="LBL_POST_BUSINESS_MODEL_UPDATED">The business model has been updated</entry>
+  <entry key="LBL_POST_BUSINESS_MODEL_INSTALLED">¡Congratulations! The business model has been installed successfully</entry>
+  <entry key="LBL_POST_TASK_EVENT">Task event...</entry>
+  <entry key="LBL_POST_NEW_NODE">New node...</entry>
+  <entry key="LBL_POST_SERVICE_PROVIDER_ALERT">It could not send the request to %s. %s</entry>
+  <entry key="LBL_POST_TASK_ALERT_USER">%s has requested you to participate in the task %s</entry>
+  <entry key="LBL_POST_NODE_ALERT_USER">%s has requested your attention about %s</entry>
+  <entry key="LBL_POST_COMMENT_TASK_PENDING">The task is pending</entry>
+  <entry key="LBL_NOTIFICATION_NEWS_ADDED">New entries in wall</entry>
+</properties>

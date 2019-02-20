@@ -1,0 +1,41 @@
+
+#servers-view {
+  width: 100%;
+}
+
+#servers-view .left-section {
+  width: 70%;
+  float: left;
+}
+
+#servers-view .right-section {
+  width: 29%;
+  float: left;
+  margin-left: 10px;
+}
+
+
+#servers-view .table-border {
+  height: 740px;
+}
+
+#servers-view table.grided-table tr td:first-child {
+  width: 5%;  
+}
+
+#servers-view table.grided-table {  
+  width: 100%;
+}
+
+#servers-view table.grided-table tr td:first-child {
+  width: 5%;
+}
+
+#servers-view table.grided-table tr td:last-child {
+  width: 95%;
+}
+
+#servers-view .message {
+  text-align: center;
+  margin-top: 200px;  
+}

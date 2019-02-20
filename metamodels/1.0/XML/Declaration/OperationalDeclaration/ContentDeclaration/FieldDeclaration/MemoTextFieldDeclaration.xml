@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="MemoFieldDeclaration" parent="FieldDeclaration" tag="field-memo">
+
+  <include name="edition">
+    <option class="MemoFieldEditionDeclaration"/>
+  </include>
+
+</class>

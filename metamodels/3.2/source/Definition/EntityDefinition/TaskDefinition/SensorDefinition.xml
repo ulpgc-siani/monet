@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="SensorDefinition" parent="JobDefinition" token="sensor" extensible="true">
+  <description>Un sensor es una pequeña tarea o actividad que se realiza en un entorno de mobilidad</description>
+
+  <method name="on-finished" required="true">
+    <parameter name="msg" type="SensorResponse" />
+  </method>
+
+</class>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Etiquetas posibles de office</comment>
+  <entry key="LBL_TITLE">Monet</entry>
+  <entry key="LBL_USERNAME">Usuario:</entry>
+  <entry key="LBL_PASSWORD">Contraseña:</entry>
+  <entry key="LBL_BUSINESS_UNIT">Centro:</entry>  
+  <entry key="LBL_ACCEPT">Iniciar sesión</entry>
+  <entry key="LBL_LOGIN">Acceso</entry>
+  <entry key="LBL_LOGOUT">Salir</entry>
+  <entry key="LBL_WELCOME">Bienvenido. Introduzca su nombre de usuario y contraseña a continuación para acceder.</entry>
+  <entry key="LBL_GO_BACK">Ir atrás...</entry>
+  <entry key="LBL_TRY_AGAIN">Intentar de nuevo</entry>
+  <entry key="LBL_NO_LABEL">Sin etiqueta</entry>
+  <entry key="LBL_YES">Si</entry>
+  <entry key="LBL_NO">No</entry>
+  <entry key="LBL_CLONE_FROM">Copia de</entry>
+  <entry key="LBL_CLONE_AT">Duplicado el</entry>
+  <entry key="LBL_NO_DESCRIPTION">(Ningún comentario)</entry>
+  <entry key="LBL_NO_NODE_TYPE_LABEL">Tipo desconocido</entry>
+  <entry key="LBL_USER_NOT_GRANTED">No tiene permisos para acceder</entry>
+  <entry key="LBL_UPDATING_SPACE">Actualizando...</entry>
+  <entry key="LBL_LOCATION">Localización</entry>
+  <entry key="LBL_BLANK_REPORT">Nuevo informe</entry>
+  <entry key="LBL_COLUMN_LABEL">Título</entry>
+  <entry key="LBL_WITH_ROLE"> como </entry>
+  <entry key="LBL_DOCUMENT_PREVIEW">Vista previa</entry>
+  <entry key="LBL_RELOAD">Recargar</entry>
+  <entry key="LBL_RIGHTS_RESERVED">Todos los derechos reservados</entry>
+</properties>

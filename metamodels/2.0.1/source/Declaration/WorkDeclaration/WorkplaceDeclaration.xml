@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorkplaceDeclaration" parent="IndexedDeclaration" tag="workplace" extensible="true">
+	<description>Declaración que se utiliza para modelar un workplace dentro de un workmap</description>
+
+	<attribute name="type" type="enumeration">
+		<description>Indica que tipo de workplace se trata</description>
+		<enumeration>
+			<option>EVENT</option>
+			<option>GOAL</option>
+			<option>DEAD_END</option>
+		</enumeration>
+	</attribute>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del workplace</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+
+</class>

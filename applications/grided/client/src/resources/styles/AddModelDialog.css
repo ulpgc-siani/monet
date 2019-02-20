@@ -1,0 +1,24 @@
+
+.add-model-dialog form {
+  padding-left: 11px;
+}
+
+.add-model-dialog .title {
+  font-size: 11pt;
+  font-weight: normal;
+  border-bottom: 1px solid #C6C6C6;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.add-model-dialog div.meta {
+  display: block;
+}
+
+.add-model-dialog .toolbar {
+  margin-top: 5px;
+}
+
+.add-model-dialog form input[type="text"] {
+  width: 98%;
+}

@@ -1,0 +1,41 @@
+<hubConfiguration port="58770">
+
+	<socketTextReaders>		
+		<socketTextReaderConfiguration port="58772" messageStart="vmstat : "/>
+	</socketTextReaders>
+	
+	<aggregatedFileLogConfiguration filename="../logs/hub.log" 
+									maximumFileSize="10000000" 
+									numberOfFiles="5" 
+									numberOfCompressed="10" 
+									openWithAppend="false"
+									writeAsynchronously="true"
+									asynchronousQueueWarningSize="10000"/>			
+
+<!-- 
+    <timeStampAggregatedFileLogConfiguration filename="hub" 
+                                             extension=".log" 
+                                             folder="../logs/"
+                                             maximumFileSize="10000000" 
+                                             numberOfFiles="5" 
+                                             numberOfCompressed="10" 
+                                             openWithAppend="false" 
+                                             writeAsynchronously="true" 
+                                             asynchronousQueueWarningSize="10000"/>
+ -->
+ 
+ <!-- 
+	<exportBridges>
+		<exportBridge host="other_hub_host1" port="58770"/>
+		<exportBridge host="other_hub_host2" port="58770"/>
+	</exportBridges>
+ -->
+ 
+ <!--
+	<importBridges>
+		<importBridge host="other_hub_host3" port="58770"/>
+		<importBridge host="other_hub_host4" port="58770"/>
+	</importBridges>
+ -->
+ 
+</hubConfiguration>

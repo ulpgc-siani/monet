@@ -1,0 +1,11 @@
+ChangeLog  - Monet Library Logger
+
+# 18 - 07 - 2011 Version 0.2
+	-	Reanme component to library 
+	
+# 15 - 06 - 2011 Version 0.1.1
+	- Rename
+	
+# 15 - 06 - 2011 Version 0.1
+	- Added Logger
+	- Added Get Stacktrace as string

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="folder" type="FolderProperty">
+	<description>Esta propiedad se utiliza para clasificar los indicadores de un panel de control de la organización</description>
+
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta del directorio</description>
+	</attribute>
+
+	<attribute token="indicator" type="key" link="IndicatorProperty" multiple="true">
+		<description>Representa el indicador del cubo a mostrar en este directorio</description>
+	</attribute>
+
+	<include property="FolderProperty" multiple="true" />
+</property>

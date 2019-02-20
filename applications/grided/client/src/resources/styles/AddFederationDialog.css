@@ -1,0 +1,27 @@
+.add-federation-dialog {
+ margin-top: 20px; 
+}
+
+.add-federation-dialog .title {
+ font-size: 11pt;
+ font-weight: normal;
+ border-bottom: 1px dotted gray;
+ margin-top: 5px;
+ margin-bottom: 10px;
+}
+
+.add-federation-dialog .toolbar {
+  margin-top: 5px;
+}
+
+.add-federation-dialog div.meta {
+  display: block;
+}
+
+.add-federation-dialog form {
+  margin-left: 10px
+}
+
+.add-federation-dialog form input[type="text"] {
+  width: 98%;
+}

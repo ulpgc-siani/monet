@@ -1,0 +1,70 @@
+<div id="dlgGenerateReport" class="dialog generatereport">
+  <div class="x-dlg-hd">::Title::</div>
+  <div class="x-dlg-bd">
+    <div id="dlgGenerateReport.center" class="x-layout-inactive-content body" style="padding:10px;">
+      <div id="dlgGenerateReport.status" class="status">
+        <div class="template">
+          <div class="x-box-tl">
+            <div class="x-box-tr">
+              <div class="x-box-tc"></div>
+            </div>
+          </div>
+          <div class="x-box-ml">
+            <div class="x-box-mr">
+              <div class="x-box-mc"><h3 class="title"></h3><span class="summary"></span></div>
+            </div>
+          </div>
+          <div class="x-box-bl">
+            <div class="x-box-br">
+              <div class="x-box-bc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="outfield">
+        <div class="outtitle">::Options::</div>
+        <div class="outbody">
+          <div class="radio option">
+            <input type="radio" name="dlgGenerateReport.options" id="dlgGenerateReport.optionall" value="all" checked/>
+            <label for="dlgGenerateReport.optionall">::OptionAll::</label>
+          </div>
+          <div class="radio option">
+            <input type="radio" name="dlgGenerateReport.options" id="dlgGenerateReport.optionselection" value="selection"/>
+            <label for="dlgGenerateReport.optionselection">::OptionSelection::</label>
+
+            <div class="info">::AddSelectedNodesInfo::</div>
+          </div>
+        </div>
+      </div>
+      <div class="outfield">
+        <div class="outtitle">::Filters::</div>
+        <div class="outbody">
+          <div class="radio filter">
+            <input type="checkbox" name="dlgGenerateReport.filtertype" id="dlgGenerateReport.filtertype" value="all"/>
+            <label for="dlgGenerateReport.filtertype">::FilterNodeType::</label>
+
+            <div class="dialog">
+              <div id="dlgGenerateReport.filtertypelist" class="list">::NoNodeTypes::</div>
+              <input id="dlgGenerateReport.filtertypeselector"></input>
+            </div>
+          </div>
+          <div class="radio filter">
+            <input type="checkbox" name="dlgGenerateReport.filterdates" id="dlgGenerateReport.filterdates" value="all"/>
+            <label for="dlgGenerateReport.filterdates">::FilterDates::</label>
+
+            <div class="dialog">
+              <div class="row">
+                <div class="column title">::FromDate::</div>
+                <div class="column selector" style="margin-left: 10px;"><input id="dlgGenerateReport.filterdatesfrom"></input></div>
+              </div>
+              <div class="row">
+                <div class="column title">::ToDate::</div>
+                <div class="column selector" style="margin-left: 14px;"><input id="dlgGenerateReport.filterdatesto"></input></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+  <server id="mvm">
+    <container id="tomcat-local" name="tomcat-local" mayor-version="1" minor-version="1" path="/opt/tomcat-local" user="tomcat-local" group="monet" user-path="/home" db-url="#url#" db-user="#db_spaces_username#" db-password="#db_spaces_password#" db-prefix="#db_spaces_prefix#" db-default-user="#db_spaces_username#" db-default-password="#db_spaces_password#" db-default-name="ROOT" url="http://localhost:8081" script-start="/usr/bin/systemctl start tomcat-local" script-start-debug="/usr/bin/systemctl start tomcat-local-debug" script-stop="/usr/bin/systemctl stop tomcat-local"/>
+  </server>
+</servers>

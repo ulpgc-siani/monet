@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="category" type="CategoryProperty" parent="ReferenceableProperty">
+	<description>Esta propiedad se utiliza para añadir una categoría a una taxonomía</description>
+	
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta de la categoría</description>
+	</attribute>
+	
+	<include property="CategoryProperty" multiple="true" />
+</property>

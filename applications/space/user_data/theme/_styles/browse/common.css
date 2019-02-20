@@ -1,0 +1,891 @@
+.controlinfo, .def, .onload {
+  display: none;
+}
+
+.button {
+  display: inline-block;
+  color: #007;
+  border: 1px solid #aaa;
+  margin-right: 10px;
+  padding: 2px 10px;
+  background: white;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+.button.highlight {
+  background: #FFC46A;
+  border: 1px solid #F29200;
+}
+
+.button.editing {
+  background: #D0E0F5;
+}
+
+.button.context {
+  position: absolute;
+  background: #eee;
+  right: 0;
+  margin-right: 15px;
+}
+
+.button:hover {
+  background: #D0E0F5;
+}
+
+.button.highlight:hover {
+  background: #FFD596;
+}
+
+.button.mergeright {
+  margin-right: -1px;
+  border-right: 0px;
+}
+
+.button.mergeleft {
+  border-left: 1px dotted #aaa;
+}
+
+.button.disabled {
+  color: #aaa;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.x-layout-panel .x-tabs-body {
+  overflow: visible;
+}
+
+.prototype .breadcrumbs {
+  display: none;
+}
+
+.emptynode {
+  color:#666;
+  font-style:italic;
+}
+
+.breadcrumbs {
+  background: none repeat scroll 0 0 #EFF7FF;
+  border: 1px dotted #99BBE8;
+  margin: 0;
+  padding: 5px;
+}
+
+.message.update {
+  background: none repeat scroll 0 0 #FFF1A8;
+  border: 1px solid #FCE055;
+  display: block;
+  margin: 5px 6px 0;
+  padding: 3px;
+}
+
+.tabs {
+  margin-top: 0;
+}
+
+.tabs.hide .x-tabs-wrap table {
+	display: none;
+}
+
+.tabs .x-tabs-body {
+  overflow: auto;
+  background: white;
+  border: 0px;
+}
+
+.tasks .task {
+  padding: 0px;
+}
+
+.tasks .task .flag {
+  width: 24px;
+}
+
+.tasks .task .flag span {
+  height: 77px;
+  display: block;
+}
+
+.tasks .task .content {
+  padding: 5px 10px;
+}
+
+.tasks .task .content .title.pending a {
+  color: #E46C0A;
+}
+
+.tasks .task .content .title.finished a {
+  color: #002D40;
+  font-weight: normal;
+}
+
+.tasks .task .content .title.aborted a {
+  color: #DDDDE0;
+  font-weight: normal;
+}
+
+.node .toolbar.tasks {
+  margin-bottom: 0px;
+}
+
+.node .notes {
+  margin: 10px;
+}
+
+.node ul.notes {
+  margin: 10px 0px;
+}
+
+.node ul.notes .note {
+  margin: 5px 0px;
+}
+
+.node .toolbar.navigation, .task .toolbar.navigation, .cube .toolbar.navigation {
+  margin: 15px 0px;
+  text-align: center;
+  border: 0px;
+}
+
+.node.partnercontext table {
+	width: 100%;
+	height: 100%;
+}
+
+.node.partnercontext table table {
+  height: auto;
+}
+
+.node.partnercontext table td {
+  vertical-align: middle;
+  text-align: center;
+  height: 30px;
+}
+
+.node.partnercontext table td .title {
+	margin-bottom: 10px;
+  height: auto;
+}
+
+.node.partnercontext table td a {
+  margin-bottom: 5px;
+  display: inline;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.node.partnercontext table td a:hover {
+  margin-bottom: 5px;
+  background: #efefef;
+  border: 1px solid #888;
+}
+
+.toolbar.navigation a {
+  margin-left: 10px;
+  padding: 3px 6px;
+  border: 1px solid #15428B;
+  float: none;
+}
+
+.toolbar.navigation a.selected, .node.clec .toolbar.navigation a:hover {
+  background-color: #D0E0F5;
+}
+
+.tabs.x-tabs-top .x-tabs-wrap {
+  border-width: 0px;
+  background: white;
+  padding-bottom: 0px;
+}
+
+.tabs .x-tabs-strip-wrap {
+  background: white;
+  padding-top: 0px;
+}
+
+.node ._link {
+  margin: 10px;
+  position: relative;
+}
+
+.node ._link .template {
+  display: none;
+}
+
+.node ._link .entities {
+	margin-left: 10px;
+	max-height: 210px;
+	overflow: auto;
+}
+
+.node ._link .entities .command {
+  font-size: 14px;
+}
+
+.node ._link .title {
+  font-size: 18px;
+}
+
+.node ._link .title .message {
+  font-size: 12px;
+  position: absolute;
+  margin-top: 2px;
+}
+
+.node ._otherlinks {
+  padding-bottom: 10px;
+}
+
+.node .error, .task.error {
+  margin: 5px 0px;
+  padding: 5px;
+  border: 1px solid red;
+  color: red;
+}
+
+.node .error.execution, .task .error.execution {
+}
+
+.node, .task, .tasklist, .trash, .dashboard, .dashboardlist, .pagenews, .notificationlist, .sourcelist, .source, .rolelist, .role, .team {
+  padding: 0px 10px;
+}
+
+.view.dashboard, .view.dashboardlist {
+	padding: 0;
+}
+
+.node .rolelist, .rolelist .rolelist {
+	padding: 0;
+	height: 100%;
+}
+
+.tasklist .tasklist {
+  padding: 0px;
+}
+
+.task .node {
+  padding: 0px;
+}
+
+.task .node .nodeFields {
+	padding: 0;
+	margin: 0;
+}
+
+.task .task {
+  padding: 0px;
+}
+
+.node .magnet, .node .contains {
+  display: none;
+}
+
+.node h1 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.node .info {
+  padding: 0px;
+  margin: 0px;
+}
+
+.task .info {
+  border: 1px dotted #99BBE8;
+  margin-top: 10px;
+  *position: static;
+}
+
+.node .info .content, .task .info .content {
+  width: 100%;
+}
+
+.task .info .content {
+  padding: 5px 10px;
+}
+
+.node .info .flags {
+  display: block;
+  border: 0px;
+}
+
+.node .info .flags {
+}
+
+.node .info .flags a {
+  width: 24px;
+  height: 16px;
+  width: 16px;
+  display: block;
+  margin: 3px 0 0 8px;
+}
+
+.node .info .flags a.locked {
+  background: transparent url('office.api?op=loadthemefile&path=_images/icons/locked.gif') no-repeat 0 0;
+}
+
+.node .info .title, .tasklist .info .title, .trash .info .title, .dashboard .info .title, .dashboardlist .info .title, .pagenews .info .title, .notificationlist .info .title, .sourcelist .info .title, .source .info .title {
+  font-size: 25px;
+  margin-top: 10px;
+  margin-left: 2px;
+}
+
+.node .info .subtitle, .node .info .subtitle, .cube .info .description, .cube .info .subtitle, .source .info .subtitle {
+  color: #666;
+  margin-left: 4px;
+}
+
+.source .info .subtitle {
+	font-size: 14px;
+	margin-left: 6px;
+}
+
+.node .info .description {
+  margin: 5px 4px;
+  color: #666;
+}
+
+.node .title {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.node .title input {
+  font-size: 19px;
+  padding: 0px 5px;
+  width: 70%;
+}
+
+.node div {
+  font-size: 14px;
+}
+
+.node a, .tasklist a, .trash a, .dashboard a, .dashboardlist a, .notificationlist a, .sourcelist a {
+  text-decoration: none;
+}
+
+.node a img {
+  border: 0px;
+}
+
+.node input {
+  margin-right: 5px;
+}
+
+.node .item-container .node, .node .item-desktop .node {
+  padding: 0px;
+}
+
+.node .item-container .node .node, .node .item-desktop .node .node {
+  padding: 0px;
+}
+
+.node .item-container .node.document, .node .item-desktop .node.document {
+  padding: 0px;
+}
+
+.node .summary, .node .node {
+  clear: both;
+  background: none;
+  padding: 0px 10px;
+  margin: 0px;
+  height: 97%;
+}
+
+.node .toolbar, .task .toolbar, .cube .toolbar {
+  clear: both;
+  margin: 10px 0px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #0D3C98;
+}
+
+.cube .toolbar {
+  border-bottom: 0px;
+}
+
+.node .listviewer .toolbar, .task .listviewer .toolbar, .cube .listviewer .toolbar, .trash .listviewer .toolbar, .tasklist .listviewer .toolbar, .notificationlist .listviewer .toolbar {
+  border: 0px;
+  margin: 0px;
+  padding-top: 10px;
+  padding: 0px;
+}
+
+.trash .listviewer .item .content .label, .notificationlist .listviewer .item .content .label,
+.node.prototypes .listviewer .item .content .label, .node.linksin .listviewer .item .content .label, .node.linksout .listviewer .item .content .label,
+.node .listviewer.signlist .item .content .label {
+  padding: 5px 8px 0px;
+}
+
+.trash .listviewer .item .content .body, .notificationlist .listviewer .item .content .body, .node.prototypes .listviewer .item .content .body,
+.node.prototypes .listviewer .item .content .body, .node.linksin .listviewer .item .content .body, .node.linksout .listviewer .item .content .body {
+  padding: 0px 8px 5px;
+  color: #666;
+}
+
+.trash .listviewer .toolbar {
+  margin-top: 5px;
+}
+
+.task .node .toolbar a {
+  cursor: pointer;
+}
+
+.task .node .toolbar a:hover {
+  color: #355FA5;
+}
+
+.node .info .prototype {
+  margin: 0 6px;
+  padding-top: 5px;
+}
+
+.node .info .toolbar, .task .info .toolbar {
+  border-bottom: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.node .info .toolbar, .trash .info .toolbar, .dashboard .info .toolbar, .dashboardlist .info .toolbar, .pagenews .info .toolbar, .notificationlist .info .toolbar, .tasklist .info .toolbar {
+  margin: 5px 4px 5px;
+}
+
+.cube.report .info .toolbar {
+	margin-left: 3px;
+}
+
+.node .toolbar.right, .task .toolbar.right, .cube .toolbar.right {
+  float: right;
+  margin-top: -20px;
+}
+
+.node .view .toolbar, .task .view .toolbar {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.node .toolbar .action, .task .toolbar .action, .cube .toolbar .action {
+  color: green;
+  padding-right: 10px;
+}
+
+.node .toolbar .parent, .task .toolbar .parent, .cube .toolbar .parent {
+	padding: 2px 10px 0px 0px;
+	display: block;
+}
+
+.node .toolbar input, .task .toolbar input, .cube .toolbar input {
+  padding: 0px 10px;
+}
+
+.node .listviewer .toolbar input, .task .listviewer .toolbar input, .cube .listviewer .toolbar input {
+  padding: 0px;
+}
+
+.node .toolbar li, .task .toolbar li, .cube .toolbar li, .notificationlist .toolbar li {
+  float: left;
+}
+
+.node .toolbar .selector, .task .toolbar .selector {
+  margin-top: 4px;
+}
+
+.node .toolbar .selector a.button, .task .toolbar .selector a.button, .cube .toolbar .selector a.button {
+  padding: 2px 25px 2px 5px;
+  background: white url('office.api?op=loadthemefile&path=_images/backgrounds/input_select.gif') no-repeat right center;
+}
+
+.node .toolbar .selector a.button:hover, .task .toolbar .selector a.button:hover, .cube .toolbar .selector a.button:hover {
+  background: #D0E0F5 url('office.api?op=loadthemefile&path=_images/backgrounds/input_select.gif') no-repeat right center;
+}
+
+.node .toolbar .selector a.button.mergeleft, .task .toolbar .selector a.button.mergeleft, .cube .toolbar .selector a.button.mergeleft {
+  padding-right: 13px;
+}
+
+.node .toolbar .selector ul.options, .task .toolbar .selector ul.options, .cube .toolbar .selector ul.options {
+  display: none;
+  border: 1px solid #aaa;
+  margin-top: -1px;
+  position: absolute;
+  padding: 5px 10px;
+  background-color: white;
+  min-width: 100px;
+  max-height: 300px;
+  z-index: 10;
+  margin-top: 5px;
+  border-radius: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.node .toolbar .selector ul.options.extensible, .task .toolbar .selector ul.options.extensible, .cube .toolbar .selector ul.options.extensible {
+  max-height: 300px;
+  *width: 280px;
+  overflow-y: auto;
+}
+
+.node .toolbar .selector ul.options.active, .task .toolbar .selector ul.options.active, .cube .toolbar .selector ul.options.active {
+  display: block;
+}
+
+.node .toolbar .selector ul.options li, .task .toolbar .selector ul.options li, .cube .toolbar .selector ul.options li {
+  float: none;
+  margin: 2px 0px;
+}
+
+.node .toolbar .selector ul.options li a, .task .toolbar .selector ul.options li a, .cube .toolbar .selector ul.options li a {
+  display: block;
+  padding: 3px;
+}
+
+.node .toolbar .selector ul.options li.group, .task .toolbar .selector ul.options li.group, .cube .toolbar .selector ul.options li.group {
+  color: #333;
+  font-weight: bold;
+  margin: 6px 0px;
+}
+
+.node .toolbar .selector ul.options li.option a, .task .toolbar .selector ul.options li.option a, .cube .toolbar .selector ul.options li.option a {
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: 0;
+  border: 1px solid white;
+  background: none;
+}
+
+.node .toolbar .selector ul.options li.option a:hover, .task .toolbar .selector ul.options li.option a:hover, .cube .toolbar .selector ul.options li.option a:hover {
+  border: 1px solid #0D3C98;
+  background-color: #D0E0F5;
+  color: #0D3C98;
+}
+
+.node .body.loading {
+  position: relative;
+  text-align: left;
+  border: 0px;
+  padding: 10px 10px 10px 20px;
+  background: url('office.api?op=loadthemefile&path=_images/icons/loading.gif') no-repeat left center;
+  display: block;
+  left: 0;
+  top: 0;
+}
+
+.node.clec a img {
+  border: 0px;
+}
+
+.node.clec .toolbar.right {
+  text-align: right;
+}
+
+.node.clec input {
+  margin-right: 5px;
+}
+
+.node.clec .listoperations {
+  margin: 15px 0px 10px;
+}
+
+.node.clec .listoperations {
+  margin: 0px;
+  border: 0px;
+}
+
+.node.clec .reference {
+  margin-bottom: 2px;
+  border-bottom: 1px solid #CCC;
+}
+
+.node.clec .listviewer .reference {
+  margin: 0px;
+  border: 0px;
+  padding: 5px;
+}
+
+.node.clec .listviewer .reference .label {
+  margin: 0px;
+}
+
+.node.clec .listviewer .reference .body {
+	margin: 0px;
+}
+
+.node.clec .listviewer .items .item .content {
+  margin-bottom: 5px;
+  min-height: 65px;
+}
+
+.node.clec .listviewer .reference .label, .node.clec .infowindow .label {
+  font-size: 17px;
+	margin-top: 0px;
+}
+
+.node.clec .listviewer .reference .lead.attributes, .node.clec .infowindow .lead.attributes {
+  color: black;
+}
+
+.node.clec .listviewer .reference .lead.attributes {
+  padding-bottom: 2px;
+  margin-bottom: 3px;  
+}
+
+.node.clec .listviewer .reference .highlight.attributes, .node.clec .infowindow .highlight.attributes {
+  color: #CD3E2D;
+  margin-top: 4px;
+}
+
+.node.clec .listviewer .reference .footer.attributes, .node.clec .infowindow .footer.attributes {
+  margin-top: 5px;
+  padding-top: 2px;
+}
+
+.node.clec .infowindow .footer.attributes {
+  border-top: 1px dotted #aaa;
+}
+
+.node.clec .listviewer .reference .attribute .title, .node.clec .infowindow .attribute .title {
+  color: #888;
+  font-size: 12px;
+}
+
+.node.clec .reference .picture, .node.clec .infowindow .picture {
+  margin-right: 5px;
+  border: 1px solid #ddd;
+  width: 96px;
+  height: 96px;
+}
+
+.node.clec .infowindow .picture {
+	margin-right: 10px;
+}
+
+.node.clec .reference.head {
+  color: #0D3C98;
+  padding-bottom: 3px;
+}
+
+.node.clec .reference.head td {
+  font-weight: bold;
+  color: black;
+}
+
+.node.clec .reference .row{
+  clear: both;
+  height: 20px;
+  padding: 0px;
+  margin: 3px 0px;
+}
+
+.node.clec .reference .selected {
+  background-color: #FFEDAF;
+}
+
+.node.clec .reference .short {
+  padding-left: 0px;
+  padding-right: 3px;
+}
+
+.node.clec .reference input {
+  margin-top: 4px;
+  *margin-top: 0px;
+}
+
+.node.clec .reference .text, .node.clec .reference .date {
+  padding-top: 3px;
+}
+
+.node.clec .reference .text div, .node.clec .reference .date div {
+}
+
+.node.clec .reference .main {
+  padding-top: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.node.clec .reference.edit .main {
+  padding-top: 0px;
+}
+
+.node.clec .reference .mark {
+  color: red;
+  font-size: 9px;
+  padding-top: 3px;
+  margin-left: 3px;
+  float: left;
+}
+
+.node.clec .reference .star {
+  background: url('office.api?op=loadthemefile&path=_images/icons/star_off_disabled.gif') no-repeat left center;
+  display: block;
+  height: 20px;
+  width: 17px;
+}
+
+.node.clec .reference.edit .star {
+  background: url('office.api?op=loadthemefile&path=_images/icons/star_off.gif') no-repeat left center;
+}
+
+.node.clec .reference .star.highlighted {
+  background: url('office.api?op=loadthemefile&path=_images/icons/star_on_disabled.gif') no-repeat left center;
+}
+
+.node.clec .reference.edit .star.highlighted {
+  background: url('office.api?op=loadthemefile&path=_images/icons/star_on.gif') no-repeat left center;
+}
+
+.node.clec.search .header {
+  background: #D0E0F5;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #99BBE8;
+}
+
+.node.clec.search .header .title {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.node.clec.search .header .toolbar .selector ul.options li.option a {
+  padding-left: 12px;
+  border: 1px solid white;
+}
+
+.node.clec.search .header .toolbar .selector ul.options li.option a:hover {
+  border: 1px solid #0D3C98;
+  background-color: #D0E0F5;
+  color: #0D3C98;
+}
+
+.node.clec.search .toolbar.navigation {
+  margin: 15px 0px;
+  text-align: center;
+}
+
+.node.clec.search .toolbar.navigation a {
+  margin-left: 10px;
+  padding: 3px 6px;
+  border: 1px solid #15428B;
+  float: none;
+}
+
+.node.clec.search .toolbar.navigation a.selected, .node.clec.search .toolbar.navigation a:hover {
+  background-color: #D0E0F5;
+}
+
+.node.container .summary .field .title, .node.form .summary .field .title {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.nodeFields .summary .title, .nodeFields .summary .title {
+  margin: 0px;
+}
+
+.nodeFields .summary .field {
+  margin: 2px 0px;
+}
+
+/* PRINT */
+body.print {
+  font-family: Roboto, Tahoma, Arial, Helvetica, sans-serif;
+  background: #B3C0DA;
+  margin: 0px;
+  font-size: 13px;
+  position: relative;
+  *overflow: hidden;
+}
+
+body.print h1, body.print h2, body.print h3 {
+  margin: 0px;
+  padding: 0px;
+  font-weight: normal;
+}
+
+body.print h1 {
+  font-size: 40px;
+  padding-bottom: 4px;
+}
+
+body.print h2 {
+  font-size: 25px;
+  padding-bottom: 5px;
+}
+
+body.print p {
+  line-height: 120%;
+  padding-bottom: 12px;
+}
+
+body.print .message {
+  background: #F4C865;
+  border-bottom: 1px solid #DF9800;
+  padding: 5px;
+  position: fixed;
+  width: 100%;
+}
+
+body.print .content {
+  padding-top: 30px;
+  *padding-top: 0px;
+  *overflow: auto;
+  *height: 100%;
+}
+
+body.print .content .pages {
+  height: 100%;
+}
+
+body.print .node {
+  padding: 0px;
+  margin: 0px;
+}
+
+body.print .page {
+  width: 600px;
+  min-height: 700px;
+  overflow: hidden;
+  height: expression(this.scrollHeight < 701? "700px":"auto");
+  margin: 10px;
+  padding: 40px;
+  background: white;
+  border-color: #666 #333 #333 #666;
+  border-style: solid;
+  border-width: 1px;
+}
+
+body.print .page .section.header {
+  color: #555;
+  border-bottom: 1px solid #555;
+  margin-bottom: 10px;
+  font-size: 12px;
+  text-align: right;
+}
+
+body.print .page .section.center {
+  margin-top: 200px;
+  margin-left: 10%;
+  width: 90%;
+}
+
+body.print .page .section.footer {
+  border-top: 1px solid #555;
+  color: #555;
+  font-size: 12px;
+  text-align: center;
+}
+
+.node .revision {
+	background: none repeat scroll 0 0 #E37F2E;
+	color: white;
+	display: inline;
+	font-size: 12px;
+	margin-left: 4px;
+	padding: 0 10px;
+	position: relative;
+	text-align: center;
+	top: 2px;	
+}

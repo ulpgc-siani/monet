@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-node" type="NodeFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo nodo en un formulario</description>
+	
+	<property token="contain">
+		<description>Esta propiedad se utiliza para indicar el nodo que crea asociado al campo</description>
+		<hint>No puede ser una definición abstracta, ni singleton. Como vista del nodo se usará la vista widget por defecto.</hint>
+		<attribute token="node" type="key" link="NodeDefinition" required="true">
+			<description>Tipo de nodo contenido en el campo</description>
+		</attribute>
+	</property>
+	
+	<property token="add">
+		<description>Esta propiedad se utiliza para indicar los nodos que se pueden añadir asociados al campo</description>
+		<hint>No puede ser una definición singleton. Como vista del nodo se usará la vista widget por defecto.</hint>
+		<attribute token="node" type="key" link="NodeDefinition" required="true" multiple="true">
+			<description>Tipo de nodo que se puede agregar al campo</description>
+		</attribute>
+	</property>
+	
+</property>

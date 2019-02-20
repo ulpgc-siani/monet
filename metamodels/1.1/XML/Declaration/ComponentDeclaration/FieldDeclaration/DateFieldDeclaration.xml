@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="DateFieldDeclaration" parent="FieldDeclaration" tag="field-date">
+  <description>Declaración que se utiliza para modelar un campo fecha</description>
+  
+  <property name="precision">
+    <description>Se utiliza para indicar la precisión con la que se gestionan los campos de tipo fecha</description>
+    <attribute name="value" type="enumeration" required="true">
+      <enumeration>
+        <option>year</option>
+        <option>month</option>
+        <option>day</option>
+        <option>hour</option>
+        <option>minute</option>
+        <option>second</option>
+      </enumeration>
+    </attribute>
+  </property>
+  <example>
+  </example>
+</class>

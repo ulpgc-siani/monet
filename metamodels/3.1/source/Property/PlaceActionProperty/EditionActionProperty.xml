@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="edition" type="EditionActionProperty" parent="SimpleActionProperty">
+	<description></description>
+
+	<property token="use" required="true">
+		<description>Configuración del bloqueo. Es necesario indicar el formulario que se usar</description>
+		<attribute token="form" type="key" link="FormDefinition" required="true">
+			<description>Tipo de definición de formulario que se utiliza para el bloqueo</description>
+		</attribute>
+		<attribute token="with-view" type="key" link="FormViewProperty" required="true">
+			<description>Vista del formulario (tipo widget) con que se muestra al usuario</description>
+		</attribute>
+	</property>
+
+	<method name="on-setup">
+		<parameter name="f" type="../use/form" />
+	</method>
+
+	<method name="on-solve">
+		<parameter name="f" type="../use/form" />
+	</method>
+  
+	<method name="on-validate">
+		<parameter name="f" type="../use/form" />
+		<parameter name="vr" type="ValidationResult" />
+	</method>
+
+</property>

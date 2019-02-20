@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="DimensionDefinition" parent="EntityDefinition" token="dimension" extensible="false">
+	<description>Permite definir una dimensión de análisis de negocio</description>
+
+	<property token="feature" type="FeatureProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<description>Declaración de una característica que permita describir a la dimensión</description>
+		
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta de la característica</description>
+		</attribute>
+		
+		<attribute token="type" type="enumeration" required="true">
+			<description>Tipo del atributo</description>
+			<hint>Los tipos DATE y TIME solo se pueden utilizar en los cubos</hint>
+			<enumeration>
+				<option token="STRING">
+					<description>Texto</description>
+				</option>
+				<option token="TERM">
+					<description>Término de un tesauro</description>
+				</option>
+				<option token="BOOLEAN">
+					<description>Booleano</description>
+				</option>
+				<option token="INTEGER">
+					<description>Entero</description>
+				</option>
+				<option token="REAL">
+					<description>Real</description>
+				</option>
+				<option token="DATE">
+					<description>Fecha/hora</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<attribute token="source" type="key" link="SourceDefinition">
+			<description></description>
+			<hint>Requerido cuando el tipo es TERM</hint>
+		</attribute>
+		
+		
+		<attribute token="metric" type="key" link="MetricDefinition">
+			<description>Métrica del atributo</description>
+			<hint>Sólo tiene sentido en atributos de tipo INTEGER o REAL</hint>
+		</attribute>
+		
+	</property>
+	
+	<property token="taxonomy" type="TaxonomyProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<description>Esta propiedad se utiliza para declarar la taxonomía de una dimensión</description>
+		
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta de la característica</description>
+		</attribute>
+
+	    <include property="CategoryProperty" multiple="true" />
+	    <include property="TaxonomyRuleProperty" multiple="true" />
+	</property>
+
+</class>

@@ -1,0 +1,140 @@
+.view.user {
+}
+
+.view.user .text {
+  margin-left: 5px;
+}
+
+.view.user #Username {
+  position: relative;
+}
+
+.view.user #UsernameLabel {
+  margin-right: 18px;
+}
+
+.view.user #Username img.toggle {
+  background: transparent url("../images/icons/username.gif") no-repeat 0 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-top: -3px;
+  margin-right: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.view.user #Username img:hover {
+  background-position: -16px 0;
+}
+
+.view.user .panel {
+  overflow: visible;
+  position: absolute;
+  top: 20px;
+  left: -228px;
+  width: 270px;
+  background-color: white;
+  border: 1px solid #99BBE8;
+  display: none;
+  border-radius: 5px;
+
+  box-shadow: 2px 2px 5px #808080;
+  -webkit-box-shadow: 2px 2px 5px #808080;
+  -moz-box-shadow: 2px 2px 5px #808080;
+}
+
+.view.user .panel.active {
+  display: block;
+}
+
+.view.user .panel ul {
+  overflow: hidden;
+}
+
+.view.user .panel.username {
+  padding: 10px;
+  left: -245px;
+}
+
+.view.user .panel.username .profile {
+  margin-bottom: 10px;
+}
+
+.view.user .panel.username .profile img {
+  width: 60px;
+  height: 60px;
+  border: 1px solid;
+  display: block;
+}
+
+.view.user .panel.username .profile .info {
+  margin-left: 8px;
+}
+
+.view.user .panel.username .profile .info .fullname {
+  font-size: 15px;
+}
+
+.view.user .panel.username .profile .info .email {
+  color: #777;
+}
+
+.view.user .panel.username .profile .info .toolbar {
+  margin-top: 5px;
+}
+
+.view.user .panel ul.units {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.view.user .panel.username ul.options {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.view.user .panel.username a.logout {
+  margin: 5px 2px 0px;
+  float: right;
+}
+
+.view.user .panel.username li.section ul li {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.view.user .panel.username li.section ul li.active_true, .view.user .panel.username li.section ul li.active_true a,
+.view.user .panel.username li.section ul li.disabled {
+  cursor: default;
+}
+
+.view.user .panel.username li.section ul li a {
+  display: block;
+  padding: 4px 6px;
+}
+
+.view.user .panel.username li.section ul li iframe {
+  padding: 0 6px;
+}
+
+.view.user .panel.username li.section ul li.active_true a,
+.view.user .panel.username li.section ul li.disabled a {
+  color: #999;
+}
+
+.view.user .panel.username li.section ul li.active_false:hover {
+  background-color: #EFF7FF;
+  border: 1px solid #99BBE8;
+}
+
+.view.user .panel.username li.section ul li.disabled:hover {
+  background: none;
+}
+
+.view.user .panel.username .title {
+  margin-bottom: 5px;
+  font-size: 14px;
+}

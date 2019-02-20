@@ -1,0 +1,22 @@
+#bar { 
+   border: 1px solid #B0CDF5; 
+   background:#ffffff; 
+   box-shadow: 0px 2px 5px #ccc;
+   text-align:right; 
+} 
+
+#pop { 
+   z-index:2; 
+   position:absolute; 
+   border: 1px solid #B0CDF5; 
+   text-align:center; 
+   background:#ffffff; 
+   box-shadow: 0px 2px 5px #ccc;
+} 
+
+.separatorLine{
+	border: 1;
+	width: 80%;
+	color: #f00;
+	background-color:#f00;
+}

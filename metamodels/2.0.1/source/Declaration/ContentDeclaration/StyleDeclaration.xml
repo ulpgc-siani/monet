@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="StyleDeclaration" parent="Declaration" tag="style">
+	<description>Declaración de un término</description>
+
+	<attribute name="color" type="string" required="true">
+		<description>Color asociado al nodo en hexadecimal</description>
+	</attribute>
+  
+  <property name="when" multiple="true">
+    <description>Se utiliza para asociar un color a la referencia en función de los valores de los atributos</description>
+    <attribute name="attribute" type="key" link="AttributeDeclaration" required="true">
+      <description>Nombre del atributo</description>
+    </attribute>
+    <attribute name="value" type="string" required="true">
+      <description>Valor del atributo</description>
+    </attribute>
+  </property>
+  
+</class>
+

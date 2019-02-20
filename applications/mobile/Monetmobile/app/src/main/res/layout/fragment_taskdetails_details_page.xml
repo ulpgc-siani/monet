@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tool_bar_holder">
+
+        <LinearLayout
+            android:id="@+id/page_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/container_padding" >
+
+            <TextView
+                android:id="@+id/text_label"
+                style="@style/formTitle"
+                android:textIsSelectable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_source_label"
+                style="@style/formSubtitleSingleLine"
+                android:textIsSelectable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/sectionHeader"
+                android:text="@string/scheduled" />
+
+            <org.monet.space.mobile.widget.Timeline
+                android:id="@+id/timeline"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/timeline_height"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                custom:delayColor="#FFf2f2f2"
+                custom:delayMarkColor="#FFFF0000"
+                custom:delayMarkStrokeColor="#FF7F7F7F"
+                custom:nowMarkAlertColor="#ffFF0000"
+                custom:nowMarkNotStartedColor="#ff000090"
+                custom:nowMarkPendingColor="#ff008000"
+                custom:nowMarkStrokeColor="#ffffffff"
+                custom:nowMarkWaitingColor="#ffFF6600"
+                custom:separatorColor="#ffffffff"
+                custom:suggestedPeriodColor="#000090"
+                custom:timelineColor="#fff2f2f2"
+                custom:timelineStrokeColor="#ff999999"
+                custom:workingPeriodColor="#FFC4BD97"
+                custom:workingPeriodStrokeColor="#ff999999"
+                 />
+
+            <TextView
+                android:id="@+id/time_to_finish"
+                style="@style/sectionText"
+                android:layout_width="wrap_content"
+                android:visibility="gone" />
+
+            <ToggleButton
+                android:id="@+id/show_dates_details"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@color/transparent"
+                android:drawableRight="@drawable/show_details_background"
+                android:textOff=""
+                android:textOn="" />
+
+            <TableLayout
+                android:id="@+id/dates_details"
+                style="@style/datesTable"
+                android:visibility="gone" >
+
+                <TableRow style="@style/datesTableRow" >
+
+                    <TextView
+                        style="@style/tableLabelText"
+                        android:text="@string/suggested_start_date_label" />
+
+                    <TextView
+                        android:id="@+id/text_suggested_start_date"
+                        style="@style/tableNoDateText"
+                        android:text="@string/suggested_start_date" />
+                </TableRow>
+
+                <TableRow style="@style/datesTableRow" >
+
+                    <TextView
+                        style="@style/tableLabelText"
+                        android:text="@string/suggested_end_date_label" />
+
+                    <TextView
+                        android:id="@+id/text_suggested_end_date"
+                        style="@style/tableNoDateText"
+                        android:text="@string/suggested_end_date" />
+                </TableRow>
+
+                <TableRow style="@style/datesTableRow" >
+
+                    <TextView
+                        style="@style/tableLabelText"
+                        android:text="@string/start_date_label" />
+
+                    <TextView
+                        android:id="@+id/text_start_date"
+                        style="@style/tableNoDateText"
+                        android:text="@string/start_date" />
+                </TableRow>
+
+                <TableRow style="@style/datesTableRow" >
+
+                    <TextView
+                        style="@style/tableLabelText"
+                        android:text="@string/end_date_label" />
+
+                    <TextView
+                        android:id="@+id/text_end_date"
+                        style="@style/tableNoDateText"
+                        android:text="@string/end_date" />
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:id="@+id/view_urgent"
+                    style="@style/buttonWithIcon"
+                    android:contentDescription="@string/urgent"
+                    android:src="@drawable/urgent" />
+
+                <ImageView
+                    android:id="@+id/view_geolocated"
+                    style="@style/buttonWithIcon"
+                    android:contentDescription="@string/geolocated"
+                    android:src="@drawable/location_place" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/sectionHeader"
+                android:text="@string/description" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:textIsSelectable="false"
+                style="@style/sectionText" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/picture_attachments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="8dp"
+                    android:visibility="gone" />
+            </HorizontalScrollView>
+
+            <TextView
+                style="@style/sectionHeader"
+                android:text="@string/progress" />
+
+            <TextView
+                android:id="@+id/progress_text"
+                style="@style/microText"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/progress_text" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/text_content_margin"
+                android:layout_marginRight="@dimen/text_content_margin"
+                android:max="100"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/header_comments"
+                style="@style/sectionHeader"
+                android:text="@string/comments"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/text_comments"
+                style="@style/sectionText"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/attachments_header"
+                style="@style/sectionHeader"
+                android:layout_marginBottom="0dp"
+                android:text="@string/attachments"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/attachments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/tool_bar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/abs__ab_bottom_solid_inverse_holo"
+        android:orientation="horizontal" >
+
+    </LinearLayout>
+    
+</RelativeLayout>

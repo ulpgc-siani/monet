@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible message of manager</comment>
+  <entry key="MSG_LOADING">Loading...</entry>
+  <entry key="MSG_USER_LOGOUT">The user has finished his current session...</entry>
+  <entry key="MSG_USER_LOGIN">The user has started session correctly</entry>
+  <entry key="MSG_WELCOME">Welcome. You can log in this application by using an installed certificate.</entry>
+  <entry key="MSG_UNKOWN_USERNAME_OR_PASSWORD">The user name and/or passowrd are not right</entry>
+  <entry key="MSG_UNKOWN_USERNAME_OR_PASSWORD_RECOMMENDATIONS">Be sure you have written them correctly. Remember it is case sensitive.</entry>
+  <entry key="MSG_BUSINESS_UNIT_STARTED">The system is started</entry>
+  <entry key="MSG_BUSINESS_UNIT_STARTED_INFO">If you click in "Stop", all the system services will be unavailable</entry>  
+  <entry key="MSG_BUSINESS_UNIT_STOPPED">The system is stopped</entry>
+  <entry key="MSG_BUSINESS_UNIT_STOPPED_INFO">All the system services are unavailable</entry>
+  <entry key="MSG_UNKOWN">It has produced an unknown error</entry>
+  <entry key="MSG_MASTERS_DISABLED">The system is stopped. Master list is disabled</entry>
+  <entry key="MSG_ADD_MASTER_FROM_SIGNATURE">When you select a certificate, you will sign text in order to be added as master</entry>
+  <entry key="MSG_ADD_MASTER_FROM_CERTIFICATE">Select a digital certificate from your computer</entry>
+  <entry key="MSG_UPLOAD_DISTRIBUTION">With this dialog you can update existing distribution to this business unit</entry>
+  <entry key="MSG_INSTALL_DISTRIBUTION">With this dialog you can install a distribution to this business space</entry>
+  <entry key="MSG_DOWNLOAD_DISTRIBUTION">Click on download to get installed distribution from server</entry>
+  <entry key="MSG_WAITING_RESPONSE">Waiting response...</entry>
+  <entry key="MSG_NOT_COLONIZED">This business space is not configured yet. You can use the certificate you want to access the space. Since you have logged, you only can access by either using the selected certificate or by using a certificate of an administrator added in this application.</entry>
+</properties>

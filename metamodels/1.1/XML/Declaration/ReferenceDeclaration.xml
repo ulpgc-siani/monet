@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ReferenceDeclaration" parent="Declaration" tag="reference">
+  <description>TODO</description>
+
+  <include name="attribute" multiple="true" required="true">
+    <option class-name="AttributeDeclaration" />
+  </include>
+
+</class>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ThesaurusDeclaration" parent="EntityDeclaration" tag="thesaurus">
+
+  <include name="termlist">
+    <option class="TermListDeclaration"/>
+  </include>
+
+
+</class>
+

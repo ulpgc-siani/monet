@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="TermDeclaration" parent="Declaration" tag="term">
+	<description>Declaración de un término</description>
+
+	<attribute name="code" type="string" required="true">
+		<description>Nombre del término</description>
+	</attribute>
+  
+	<attribute name="label" type="string" required="true">
+		<description>El término en si</description>
+	</attribute>
+  
+	<attribute name="is-category" type="boolean" required="false">
+		<description>Indica si este término es una categoría. Las categorías no son seleccionables. Se usan para hacer agrupaciones de términos.</description>
+	</attribute>
+
+	<include name="term" multiple="true">
+		<option class-name="TermDeclaration" />
+	</include>
+
+</class>
+

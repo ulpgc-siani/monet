@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CollectionDeclaration" parent="NodeDeclaration" tag="collection">
+  <description>Declaración que se utiliza para modelar una colección</description>
+
+  <property name="contain" multiple="true">
+    <description>Se utiliza para indicar que tipo de nodos se pueden agregar a una colección</description>
+    <attribute name="node" type="code" link="Definition" restriction="NodeDeclaration" required="true">
+      <description>Código de la definición de un nodo</description>
+    </attribute>
+  </property>
+  
+  <property name="use">
+    <description>Se utiliza para indicar qué referencia usa la colección para mostrar sus elementos</description>
+    <attribute name="reference" type="string" link="Definition" restriction="ReferenceDeclaration">
+      <description>Código de la definición de una referencia</description>
+    </attribute>
+  </property> 
+    
+  <include name="view" multiple="true">
+    <option class-name="CollectionViewDeclaration" />
+  </include>
+    
+
+</class>
+

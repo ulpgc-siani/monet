@@ -1,0 +1,25 @@
+
+
+Servidores, Federationes, modelos y espacios se almacenan en la base de datos y en disco
+Concretamente en disco se guardará los datos de estos objectos que se suben en el xml al crearlos.
+
+
+La estructura en disco es:
+
+Formato nombre de archivo:
+  servidores: s: servers 
+  prefijos: f: federations
+  nombre : id en la base de datos
+  extension: xml
+   
+  store/
+    servers/
+      federations/
+        f001.xml
+        f002.xml
+        f001/
+          spaces/
+            s001.xml
+            s002.xml
+            
+       

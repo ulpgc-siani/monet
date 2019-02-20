@@ -1,0 +1,103 @@
+
+
+#space-view .table-border {
+  height: 400px;  
+}
+
+#space-view .section-left .toolbar a {
+  margin-right: 5px;
+};
+#space-view .section-left div.bar {
+  width: 100%;
+}
+#space-view .section-left div.bar .title {
+ width: 70%;
+ float: left;
+}
+#space-view .section-left div.section-list {
+  clear: both;
+  margin-left: 0px;
+  margin-top: 5px;
+}
+
+#space-view .section {
+  margin-bottom: 15px;
+}
+
+#space-view .section-header  {
+  width: 100%;  
+  min-height: 120px;
+  margin-bottom: 20px;    
+}
+
+#space-view input[type='text'] {
+  width: 70%;
+  height: 25px;  
+}
+
+#space-view input[type='checkbox'] {
+  margin-top: 5px;
+  width: 20px;  
+}
+
+#space-view input[name='name'] {
+  width: 97%;
+  height: 35px;
+  font-size: 160%;
+}
+
+#space-view .section-right .row {
+  width: 100%;
+  margin-top: 5px;
+}
+
+#space-view .upload-dialog {
+  width: 200px;  
+  float: left;
+  text-align: center;
+  height: 100px;
+}
+
+#upload-space-image-dialog {
+  width: 169px
+  height: 69px;
+  padding-top: 10px;
+  padding-right: 5px;
+  border: 1px dotted gray;
+}
+
+#space-view #publish-tab {
+  padding: 20px;    
+}
+
+#space-view .section-right .message {
+  margin-bottom: 15px;
+}
+
+#space-view .section-right .grided-table {
+  width: 100%;
+}
+
+#space-view .section-right td:first-child {
+ width: 30px;
+}
+
+#space-view .section-right select {
+  width: 100%;
+}
+
+#space-view div.state {
+  background-color: #F9FBFA;      
+  padding: 20px;
+  vertical-align: middle;  
+}
+
+#space-view .state a.button {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  width: 69px;
+  text-align: center;
+  margin-top: 20px;
+  vertical-align: bottom;
+}

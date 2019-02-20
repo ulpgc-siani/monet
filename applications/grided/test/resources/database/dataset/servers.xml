@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <table name="components">
+    <column>id</column>
+    <column>parent_id</column>        
+    <column>name</column>
+    <column>type</column>
+    <column>code</column>
+    <column>data_path</column>
+    <row>
+      <value>0</value>
+      <value>3</value>
+      <value>server1</value>
+      <value>0</value>
+      <value>code1</value>
+      <value>c:/temp/store-test/servers/0</value>
+    </row>
+  </table>
+</dataset>

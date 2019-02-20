@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DocumentViewDeclaration" parent="NodeViewDeclaration" tag="view">
+  
+  <property name="use" multiple="true">
+    <description>Se utiliza para indicar que plantilla se utilizará para construir la vista del documento</description>
+    <attribute name="template" type="file">
+      <description>Nombre del fichero de la plantilla en formato DOCX/ODT</description>
+      <hint>Este fichero se ubica normalmente en el directorio "/templates/(language)" del modelo de negocio</hint>
+    </attribute>
+  </property>
+  
+</class>

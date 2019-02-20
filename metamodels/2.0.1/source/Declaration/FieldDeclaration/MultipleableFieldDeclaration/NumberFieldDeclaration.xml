@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="NumberFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-number">
+	<description>Declaración que se utiliza para modelar un campo numérico</description>
+
+	<property name="format">
+		<description>Formato con el que se representa el número</description>
+    
+		<attribute name="value" type="string" required="true">
+      <description>Expresión regular para definir el formato</description>
+      <hint>&lt;table border=0 cellspacing=3 cellpadding=0 summary=&quot;Chart showing symbol,
+  location, localized, and meaning.&quot;&gt; 
+     &lt;tr bgcolor=&quot;#ccccff&quot;&gt; 
+          &lt;th align=left&gt;Symbol
+          &lt;th align=left&gt;Location
+          &lt;th align=left&gt;Localized?
+          &lt;th align=left&gt;Meaning
+     &lt;tr valign=top&gt; 
+          &lt;td&gt;&lt;code&gt;0&lt;/code&gt; 
+          &lt;td&gt;Number
+          &lt;td&gt;Yes
+          &lt;td&gt;Digit
+     &lt;tr valign=top bgcolor=&quot;#eeeeff&quot;&gt; 
+          &lt;td&gt;&lt;code&gt;#&lt;/code&gt; 
+          &lt;td&gt;Number
+          &lt;td&gt;Yes
+          &lt;td&gt;Digit, zero shows as absent
+     &lt;tr valign=top&gt; 
+          &lt;td&gt;&lt;code&gt;.&lt;/code&gt; 
+          &lt;td&gt;Number
+          &lt;td&gt;Yes
+          &lt;td&gt;Decimal separator or monetary decimal separator
+     &lt;tr valign=top bgcolor=&quot;#eeeeff&quot;&gt; 
+          &lt;td&gt;&lt;code&gt;-&lt;/code&gt; 
+          &lt;td&gt;Number
+          &lt;td&gt;Yes
+          &lt;td&gt;Minus sign
+     &lt;tr valign=top&gt; 
+          &lt;td&gt;&lt;code&gt;,&lt;/code&gt; 
+          &lt;td&gt;Number
+          &lt;td&gt;Yes
+          &lt;td&gt;Grouping separator
+     &lt;tr valign=top bgcolor=&quot;#eeeeff&quot;&gt; 
+          &lt;td&gt;&lt;code&gt;E&lt;/code&gt; 
+          &lt;td&gt;Number
+          &lt;td&gt;Yes
+          &lt;td&gt;Separates mantissa and exponent in scientific notation.
+              &lt;em&gt;Need not be quoted in prefix or suffix.&lt;/em&gt; 
+     &lt;tr valign=top&gt; 
+          &lt;td&gt;&lt;code&gt;;&lt;/code&gt; 
+          &lt;td&gt;Subpattern boundary
+          &lt;td&gt;Yes
+          &lt;td&gt;Separates positive and negative subpatterns
+     &lt;tr valign=top bgcolor=&quot;#eeeeff&quot;&gt; 
+          &lt;td&gt;&lt;code&gt;%&lt;/code&gt; 
+          &lt;td&gt;Prefix or suffix
+          &lt;td&gt;Yes
+          &lt;td&gt;Multiply by 100 and show as percentage
+     &lt;tr valign=top&gt; 
+          &lt;td&gt;&lt;code&gt;&amp;#92;u2030&lt;/code&gt; 
+          &lt;td&gt;Prefix or suffix
+          &lt;td&gt;Yes
+          &lt;td&gt;Multiply by 1000 and show as per mille value
+     &lt;tr valign=top bgcolor=&quot;#eeeeff&quot;&gt; 
+          &lt;td&gt;&lt;code&gt;&amp;#164;&lt;/code&gt; (&lt;code&gt;&amp;#92;u00A4&lt;/code&gt;)
+          &lt;td&gt;Prefix or suffix
+          &lt;td&gt;No
+          &lt;td&gt;Currency sign, replaced by currency symbol.  If
+              doubled, replaced by international currency symbol.
+              If present in a pattern, the monetary decimal separator
+              is used instead of the decimal separator.
+     &lt;tr valign=top&gt; 
+          &lt;td&gt;&lt;code&gt;&#39;&lt;/code&gt; 
+          &lt;td&gt;Prefix or suffix
+          &lt;td&gt;No
+          &lt;td&gt;Used to quote special characters in a prefix or suffix,
+              for example, &lt;code&gt;&quot;&#39;#&#39;#&quot;&lt;/code&gt; formats 123 to
+              &lt;code&gt;&quot;#123&quot;&lt;/code&gt;.  To create a single quote
+              itself, use two in a row: &lt;code&gt;&quot;# o&#39;&#39;clock&quot;&lt;/code&gt;.
+ &lt;/table&gt; </hint>
+		</attribute>
+	</property>
+
+	<property name="range">
+		<description>Rango de valores que se permitirá para el valor introducido</description>
+		<attribute name="min" type="natural" required="true">
+      <description>Valor mínimo permitido</description>
+		</attribute>
+		<attribute name="max" type="natural" required="true">
+      <description>Valor máximo permitido</description>
+		</attribute>
+	</property>
+
+  <include name="metric" multiple="true">
+    <option class-name="MetricDeclaration" />
+  </include>
+
+</class>

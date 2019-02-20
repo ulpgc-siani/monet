@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DesktopDeclaration" parent="EntityDeclaration" tag="desktop">
+  <description>Declaración que se utiliza para modelar un escritorio</description>
+
+  <property name="link" multiple="true">
+    <description>Para asociar un nodo al escritorio</description>
+    <hint>El nodo debe ser singleton</hint>
+    <attribute name="node" type="code" link="Definition" restriction="NodeDeclaration">
+      <description>Código de la definición de un nodo que se desea vincular</description>
+    </attribute>
+  </property>
+  
+</class>
+

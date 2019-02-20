@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="MapProviderDefinition" parent="ProviderDefinition" tag="map-provider">
+  <description>Declaración que se utiliza para modelar un proveedor de una unidad de negocio</description>
+  
+</class>

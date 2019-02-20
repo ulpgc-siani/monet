@@ -1,0 +1,34 @@
+#app-logo {
+  padding-top: 0px;
+  margin-top: -8px;
+  width: 90px;
+  float: left;
+  font-size: 18pt;
+  font-weight: bolder;
+  color: #000099; 
+  cursor: pointer;
+}
+
+#notification-bar {
+  width: 200px;
+  position: absolute;
+  background-color: #F9FBFA;
+  border: 1px solid #DCD8CF;
+  text-align: center;
+  margin-left: 34%;
+  margin-top: 2%;
+  margin-top: 2px;
+  padding: 3px;
+  border-radius: 8px;
+  border-image: initial;
+}
+
+#navigation-bar div a.selected {
+  font-weight: bolder;   
+}
+
+#desktop {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;	
+}

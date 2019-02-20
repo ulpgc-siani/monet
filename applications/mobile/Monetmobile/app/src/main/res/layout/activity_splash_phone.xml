@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <ImageView
+        android:id="@+id/slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:scaleType="fitEnd"
+        android:src="@drawable/monet_slogan" />
+
+    <ImageView
+        android:id="@+id/tree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_logo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="70dp"
+        android:layout_below="@+id/slogan"
+        android:src="@drawable/monet_tree"
+        android:scaleType="fitEnd" />
+
+    <ImageView
+        android:id="@+id/bottom_logo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:scaleType="fitEnd"
+        android:paddingRight="15dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/monet_logo"
+        android:background="@drawable/monet_logo_bg" />
+
+</RelativeLayout>

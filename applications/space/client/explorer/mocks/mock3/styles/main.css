@@ -1,0 +1,491 @@
+@import url("common.css");
+@import url("layout.css");
+
+div, textarea {
+	font-family: Roboto;
+	font-size: 13pt;
+}
+textarea {
+	border: 0 none;
+	height: 100%;
+	resize: none;
+	font-weight: bold;
+	overflow: hidden;
+}
+.tab {
+}
+.arrow_down {
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;	
+	border-top: 5px solid #999;
+}
+.baseline {
+	height: 5px;
+	border-bottom: 1px dotted #ddd;
+}
+.baseline.discrete {
+	border-color: white;
+}
+.label {
+	font-size: 15pt;
+	color: #888;
+	cursor: default;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+	user-select:none;
+}
+.label.h2 {
+	font-size: 13pt;
+}
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	padding: 0;
+}
+.panel.horizontal td {
+	vertical-align: top;
+	padding-right: 20px;
+}
+.panel.horizontal td > div {
+	margin-right: 10px;
+}
+.panel.horizontal > div.label {
+	width: 100%;
+	margin: 0;
+}
+.panel.vertical {
+	width: 100%;
+}
+.p10 {
+	width: 10%;
+}
+.p20 {
+	width: 20%;
+}
+.p25 {
+	width: 25%;
+}
+.p30 {
+	width: 30%;
+}
+.p40 {
+	width: 40%;
+}
+.p50 {
+	width: 50%;
+}
+.p70 {
+	width: 70%;
+}
+.p80 {
+	width: 80%;
+}
+.p90 {
+	width: 90%;
+}
+.p100 {
+	width: 100%;
+}
+.air {
+	margin-top: 20px;
+}
+.boxed {
+	border-top: 1px solid #ccc/*BOX*/;
+	margin-bottom: 10px;
+}
+
+/* html list */
+
+.html-list ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.html-list .filters {
+	margin-top: 10px;
+	margin-left: 46px;
+}
+
+.html-list .filters td {
+	float: left;
+	border: 1px solid #ccc;
+	padding: 5px 30px 5px 10px;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+	color: #777;
+	margin-right: 10px;
+	width: 140px;
+	height: 35px;
+}
+
+.html-list .filters td div {
+	font-size: 11pt;
+	color: #aaa;
+}
+
+.html-list .filters td:hover {
+	background: #efefef;
+}
+
+.html-list .filters td span.arrow_down {
+	position: absolute;
+	top: 14px;
+	right: 0;
+	margin-right: 10px;
+}
+
+.html-list .filters td .value {
+	font-size: 8pt;
+	color: blue;
+}
+
+.html-list .items li {
+	clear: both;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.html-list.tab .items li a {
+	/*border: 1px solid transparent;*/
+	border-bottom: 2px solid transparent;
+	padding-left: 3px;
+	border-radius: 2px;
+}
+
+.html-list.tab .items li a:hover {
+	/*border: 1px solid #ccc;*/
+	border-bottom: 2px solid #ccc;
+}
+
+.html-list.tab .items li.selected a {
+	/*border: 1px solid blue;*/
+	border-bottom: 2px solid blue;
+}
+
+.html-list.tab .items li a {
+	color: black;
+	display: block;
+}
+
+.html-list.tab .items li ul.children li {
+ 	background: url("../images/arrow_up_16.png") no-repeat scroll 2px -1px rgba(0, 0, 0, 0);
+    margin-top: 0;
+    padding-top: 0;	
+    padding-left: 22px;
+}
+
+.html-list.tab .items li ul.children li.linked a, .html-list.tab .items li ul.children li.linked:hover a {
+	background: url(../images/removelink.png) no-repeat right center;
+}
+
+.html-list.tab .items li ul.children li:hover a {
+	background: url(../images/addlink.png) no-repeat right center;
+}
+
+.html-list.tab-horizontal .items li a {
+	border-bottom: 2px solid white;
+	margin: 5px 0;
+	white-space: nowrap;
+	color: black;
+	display: block;
+}
+
+.html-list.tab-horizontal .items li:hover a {
+	border-bottom: 2px solid #ccc;
+}
+
+.html-list.tab-horizontal .items li.selected a {
+	border-bottom: 2px solid blue;
+}
+
+.html-list .items li .control-operations, .html-list li .operations {
+	display: block;
+	width: 14px;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+.html-list .items li:hover .control-operations {
+  background: url(data:image/png;base64,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) no-repeat scroll right top rgba(0, 0, 0, 0);
+  width: 14px;
+  height: 11px;
+  display: block;
+}
+
+.html-list .items li:hover .operations {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAoCAYAAACiu5n/AAAB9klEQVRo3u2YTUsCURSGRYxaRDZliLhoIqJNURt3bQpxE9EiigoiCArCyKw2BUUQEi2iRSh92Af1E/yB9h44wvHmZCNqznEuPMz9YGQez7n3ztxAuVwOeBnXxRf2rvAu2AMDom8IpMGWNuEgyIIrkGFpkj3mvrTGCFtCkK6nXD+sirqyOWwJUeLISHF1whFDmNI8rFU4IlI6Y9TDNYWbtbq3c5eosWgdcBpboi/dbuE+MN9CYSo7vDX1G3N6H2z+JjwFLsU8kFyAMZfCPWCb70+2UNh9pERJ1JClP2HaZYQp1TaM35nrROEAp6B80EQDKb3okCkznSgsHzjZwBxecJCtZMtkk4XvwD0YFn0xUADXfxWmlJz1yCr9BkqgyNIk+8F9hZau0v+0D0eF4Dv45PpzVdSVvWmR9BeLEq9GiqsTjovIljjNR7QKx0VKv4h6sUpa0fdwZdF65DSOir6Cxgjf8tZkGXP6gbdB/0zLF9aIL+wL+8IdsVAF+QvuHOTBGbeD6oRZ9gSsg1EQAja3s/WkvSicIjmHMZJOaRPO0ZGswxgd1ea0CdOcDTmMUXrn/Qh7XHgZrDi8Yq7yuPO5nQeFe3k7WqNzK+6LcfsGTKgSFnN1iU9An/hK7XGWtlUJ1/lqsk1p7cI/pLtBWEpHukWYyqAZ4W8L6Rx3KONRZwAAAABJRU5ErkJggg==") no-repeat scroll right top rgba(0, 0, 0, 0);
+  height: 13px;
+  width: 12px;
+  margin-left: 8px;
+}
+
+.html-list:hover .toolbar {
+	visibility: visible;
+}
+
+.html-list .toolbar {
+	border-top: 1px dashed #ccc;
+	margin-bottom: 20px;
+    margin-top: 10px;
+    padding-top: 3px;
+    visibility: hidden;
+}
+
+.html-list .toolbar .left {
+	float: left;
+}
+
+/* nodes */
+.node {
+	margin-top: 4px;	
+}
+
+.node.form > table {
+}
+
+.node .html-list.nodes .items li {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+.node .html-list.nodes li span.title {
+	color: #aaa;
+} 
+
+.node .html-list.nodes li .highlight {
+	color: red;
+}
+
+.node .up {
+	background: url("../images/arrow_up.png") no-repeat scroll 0 -1px rgba(0, 0, 0, 0);
+    display: inline;
+    padding-left: 32px;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+}
+
+.node .back {
+	color: blue;
+	margin-left: 10px;
+	font-size: 13pt;
+}
+
+.node > .header .label {
+	font-size: 17pt;
+}
+
+.node > .header .baseline {
+	border-bottom-style: dashed;
+	margin-bottom: 10px;
+}
+
+.entities .label {
+	margin-bottom: 5px;
+}
+
+/* fields */
+
+.field {
+	height: 40px;
+	font-family: 'Gentium Basic', serif;
+}
+.field.height2 {
+	height: 92px;
+}
+.field.height3 {
+	height: 142px;
+}
+.field > table {
+	width: 100%;
+	height: 100%;
+}
+.field td.label {
+	font-size: 13pt;
+	min-width: 30%;
+	line-height: 11pt;
+	vertical-align: bottom;
+	padding-bottom: 8px;
+}
+.field label {
+	font-size: 13pt;
+}
+.field .widget {
+	width: 100%;
+	height: 100%;
+	float: left;
+	position: relative;
+	cursor: text;
+}
+.field .widget .component {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	font-weight: bold;
+}
+.field .widget .underline {
+	border-style: none solid solid;
+	border-width: medium 1px 1px;
+	border-color: #ccc;
+	position: absolute;
+	height: 5px;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	display: none;
+}
+.field:hover .widget .underline {
+	display: block;
+}
+.field.picture {
+	height: 150px;
+	background-color: #efefef;
+}
+.field.picture img {
+	height: 120px;
+	margin: 15px 35px;
+}
+.field.check .widget input {
+	display: none;
+}
+.field.check .widget input:checked + label:after {
+	opacity: 1;
+}
+.field.check .widget label:hover:after {
+	opacity: 0.3;
+}
+.field.check .widget label:after {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: white;
+	border-image: none;
+	border-style: none none solid solid;
+	border-width: medium medium 2px 2px;
+	content: "";
+	height: 5px;
+	opacity: 0;
+	position: absolute;
+	transform: rotate(-45deg);
+	width: 9px;
+}
+.field.check .widget label {
+	padding-left: 34px;
+	cursor: pointer;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+	user-select:none;
+}
+.field.check .widget label.box {
+	background: white;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	height: 20px;
+	left: 4px;
+	position: absolute;
+	top: 2px;
+	width: 20px;
+	padding-left: 0px;
+}
+.field.check .widget label.box:after {
+	left: 5px;
+	top: 5px;
+}
+.field.check .widget label:after {
+	left: 10px;
+	top: 8px;
+}
+.field.select .widget .option {
+	position: relative;
+	float: left;
+	margin-right: 10px;
+}
+.field.select .widget .option input {
+	display: none;
+}
+.field.select .widget .option input:checked + label:after {
+	opacity: 1;
+}
+.field.select .widget .option label:hover:after {
+	opacity: 0.3;
+}
+.field.select .widget .option label:after {
+	background: black repeat scroll;
+	border-radius: 50px 50px 50px 50px;
+	content: "";
+	height: 8px;
+	opacity: 0;
+	position: absolute;
+	width: 8px;
+}
+.field.select .widget .option.checked label {
+	font-weight: bold;
+}
+.field.select .widget .option label {
+	padding-left: 34px;
+	cursor: pointer;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-o-user-select:none;
+	user-select:none;
+}
+.field.select .widget .option label.box {
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 50px 50px 50px 50px;
+	cursor: pointer;
+	height: 20px;
+	left: 4px;
+	position: absolute;
+	top: 2px;
+	width: 20px;
+	padding-left: 0px;
+}
+.field.select .widget .option label.box:after {
+	left: 6px;
+	top: 6px;
+}
+.field.select .widget .option label:after {
+	left: 11px;
+	top: 9px;
+}
+.field.link .widget .component {
+	color: #043065;
+	cursor: pointer;
+	padding: 4px;
+}
+
+/* account */
+.account {
+	width: 100%;
+	height: 100%;
+}
+.account .picture, .account .picture img {
+	width: 60px;
+	vertical-align: middle;
+}
+
+.account .fullname {
+	height: 49px;
+    overflow: hidden;
+    font-size: 13pt; 
+}
+
+.account .email {
+	font-size: 10pt;
+}
+
+.account .picture img {
+	margin: auto 5px;
+}

@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        applicationId "org.monet.space.mobile"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        incremental true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    sourceSets {
+        main.java.srcDirs += '../../shared/src'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    useLibrary  'org.apache.http.legacy'
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+configurations{
+    compile.exclude group: "org.apache.httpcomponents", module: "httpcore"
+    compile.exclude group: "org.apache.httpcomponents", module: "httpclient"
+    compile.exclude group: 'xpp3', module: 'xpp3'
+    compile.exclude group: 'stax', module: 'stax'
+    compile.exclude group: 'stax', module: 'stax-api'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:preference-v7:23.3.0'
+    //compile 'com.google.android.gms:play-services:9.2.0'
+    compile 'com.google.android.gms:play-services-gcm:9.2.0'
+    compile 'com.google.android.gms:play-services-maps:9.2.0'
+
+    compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    compile 'org.simpleframework:simple-xml:2.6.7'
+
+    compile 'org.roboguice:roboguice:3.0.1'
+    provided 'org.roboguice:roboblender:3.0.1'
+
+    compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
+
+    compile 'org.siani.tools:string-clusterizer:1.0.3'
+}
+
+apply plugin: 'com.google.gms.google-services'

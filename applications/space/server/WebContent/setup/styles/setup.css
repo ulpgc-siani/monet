@@ -1,0 +1,231 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Trebuchet MS", Tahoma, Arial, Serif;
+}
+
+td.top {
+  background: white;
+  color: white;
+  font-family: Roboto, Tahoma;
+  font-size: 8pt;
+  padding: 3px;
+}
+
+td.top .logo {
+  float: left;
+  margin: 0px 15px;
+}
+
+td.top .toolbar {
+  float: right;
+  margin-right: 15px;
+}
+
+td.top .toolbar li a {
+  font-size: 12pt;
+  text-decoration: none;
+}
+
+td.bottom {
+  vertical-align: top;
+  text-align: left;
+}
+
+td.bottom .message {
+  font-size: 18pt;
+  color: #1D4191;
+}
+
+td.bottom .info {
+  color: #666;
+  font-size: 10pt;
+}
+
+td.bottom .error {
+  font-size: 19px;
+  margin-top: 10px;
+  padding: 2px;
+  color: red;
+}
+
+td.bottom .button.start, td.bottom .button.stop {
+  font-size: 25pt;
+  height: 80px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.tab {
+  margin: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+input.file {
+  margin: 10px;
+}
+
+#tab-state .dialog {
+  margin-top: 20px;
+}
+
+#tab-masters table {
+  width: 543px;
+}
+
+#tab-masters ul.masters li .email {
+  color: #666;
+  font-size: 14px;
+}
+
+ul.certificates {
+  margin: 0;
+  padding: 5px 10px;
+  height: 200px;
+  overflow: auto;
+}
+
+ul.certificates li {
+  margin: 0;
+  padding: 4px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul.certificates li:hover {
+  background: #eff7ff;
+  border: 1px solid #99bbe8;
+}
+
+ul.certificates li.active {
+  background: #eff7ff;
+  border: 1px solid #99bbe8;
+}
+
+#tab-masters .dialog .message, #tab-distribution .dialog .message {
+  color: #888;
+  margin: 10px;
+  margin-bottom: 0;
+  font-size: 11pt;
+}
+
+#tab-masters .button {
+  margin-top: 10px;
+}
+
+#tab-masters .delete {
+  margin-left: 10px;
+  text-decoration: none;
+  float: right;
+}
+
+#tab-distribution ul li {
+  margin-bottom: 3px;
+  color: #777;
+}
+
+#tab-distribution ul li span {
+  color: black;
+}
+
+#tab-distribution .uploaddistributionresponse {
+  display: none;
+  margin: 10px;
+  height: 250px;
+  padding: 10px;
+  overflow: auto;
+  font-size: 12px;
+}
+
+.dialog {
+  border: 1px solid #1D4191;
+  margin-top: 5px;
+  text-align: left;
+  width: 543px;
+  font-size: 11pt;
+}
+
+.dialog .label {
+  background-color: #1D4191;
+  color: white;
+  padding: 5px;
+}
+
+.dialog span {
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+.dialog tr {
+  height: 30px;
+}
+
+.dialog select {
+  width: 180px;
+  cursor: pointer;
+}
+
+.dialog form {
+  margin: 0;
+}
+
+table.login td.body {
+  border: 1px dotted #99BBE8;
+  font-size: 12px;
+  margin-top: 100px;
+  display: block;
+}
+
+table.login td.body .layout {
+  border: 1px solid #1D4191;
+  font-size: 11pt;
+  text-align: left;
+  border: 0;
+  margin: 10px;
+  padding: 10px;
+  background: #EFF7FF;
+}
+
+table.login td.body .layout .welcome, table.login td.body .layout .notcolonized {
+  margin: 10px;
+}
+
+table.login td.body .layout .notcolonized {
+  color: blue;
+}
+
+table.login td.body .layout .tabs .tab {
+  margin: 10px;
+}
+
+table.login td.body .layout .tabs .tab .dialog {
+  background: white;
+}
+
+table.login td.body .layout .tabs .tab .message {
+  margin: 10px 3px;
+}
+
+table.login td.body .layout .tabs .tab input {
+  margin: 10px;
+  display: block;
+}
+
+.username span {
+  color: #666;
+  font-size: 12px;
+}

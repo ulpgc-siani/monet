@@ -1,0 +1,455 @@
+<html>
+<head>
+<style>
+body {
+  font-family: cambria, times new roman;
+  font-size: 11pt;
+  margin:10;
+  padding:0;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #115;
+}
+a:hover {
+  color: red;
+}
+.header {
+  font-family: calibri, arial;
+}
+
+.tag {
+  font-family: courier new, courier;
+  font-weight: bold;
+  color: #722;
+}
+.inherited {
+  font-weight: normal;
+  font-style: italic;
+}
+.description {
+  font-style: italic;
+}
+.hint {
+  color: gray;
+  margin-bottom: 20px;
+}
+.restriction {
+  color: #262;
+  font-style: italic;
+}
+.stereotype {
+  color: #722;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.stereotype  span {
+  padding-left: 5px;
+}
+.include .stereotype  span {
+  padding: 0;
+  padding-right: 5px;
+}
+
+
+.metamodel {
+  margin-bottom: 20px;
+}
+.metamodel .header {
+  font-size: 28pt;
+  font-weight: bold
+  border: 0;
+  margin:0;
+  border-bottom: 2px dashed #227;
+  margin-bottom: 15px;
+}
+
+.metaclass {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 1000px;
+}
+.metaclass .header {
+  margin: 0px;
+  font-size: 22pt;
+}
+
+.metaclass .text {
+  margin: 0px;
+  margin-left: 20px;
+}
+
+.metaclass .section {
+}
+.metaclass .section .header {
+  font-size: 16pt;
+  border-bottom: 1px solid black;
+  margin-top: 30px;
+}
+.metaclass .section .text {
+  margin: 0;
+}
+
+.metaclass .section .attribute  {
+  margin-bottom: 20px;
+}
+.metaclass .section .attribute .header {
+  font-size: 12pt;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.metaclass .section  .attribute .text {
+  padding-left: 20px;
+}
+
+.metaclass .section .include {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px dotted silver;
+  background-color: #EED;
+}
+.metaclass .section .include .header {
+  font-size: 14pt;
+  padding:0;
+  border:0;
+  margin:0;
+}
+.metaclass .section  .include .text {
+  margin: 0;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+.metaclass .section .property {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px dotted silver;
+}
+.metaclass .section .property .header {
+  font-size: 14pt;
+  padding:0;
+  border:0;
+  margin:0;
+  padding-left: 5px;
+}
+
+.metaclass .section .property .text{
+  border:0;
+  margin:0;
+  padding-left: 20px;
+}
+
+.metaclass .section .property .attribute  {
+  padding:0;
+  border:0;
+  margin:0;
+  
+}
+.metaclass .section .property .attribute .header {
+  font-size: 12pt;
+  padding:0;
+  border:0;
+  margin:0;
+}
+
+.metaclass .section .property .attribute .text {
+  margin:0;
+}
+
+.code {
+  font-family: courier;
+}
+
+.reference .reference {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid silver;
+}
+</style>
+</head>
+
+<body>
+  <div class="metamodel">
+    <div class="header">$metamodel.getAttribute("name") $metamodel.getAttribute("version")</div>  
+  </div>
+  #foreach ( $metaclass in $metamodel.getMetaClassList() )
+    #showMetaClass ($metaclass) 
+  #end
+</body>
+</html>
+
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showMetaClass $metaclass)
+#set ($name = $metaclass.getName())
+<div class="metaclass" id="$name">
+  <a name="$name"></a>
+  <div>
+    <span class="stereotype>
+      #createStereotype ($metaclass.isAbstract(), "abstract" "&lt;$metaclass.getTag()&gt;")
+    </span>
+  </div>
+  <div class="header">#showLabel($metaclass)
+  </div>  
+  <div class="text">
+    <div class="description">$metaclass.getDescription()</div>
+    <div class="hint">$metaclass.getHint()</div>
+    #showAttributes ($metaclass)
+    #showProperties ($metaclass)
+    #showIncludes ($metaclass)
+    #showParents ($metaclass)
+    #showChildren ($metaclass)
+    #showLinkClasses ($metaclass)
+    #showRelatedClasses ($metaclass)
+  </div>
+</div>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showAttributes $metaclass)
+  #if ($metaclass.hasAttributes())
+  <div class="section">
+    <div class="header">attributes</div>
+    <div class="text">
+      #foreach ($attribute in $metaclass.getAttributeList())
+        #showAttribute ($attribute)
+      #end
+    </div>
+  </div>
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showAttribute $atrribute)
+<div class="attribute">
+  #set ($type = $attribute.getType())
+  #set ($values = $attribute.getValues(","))
+  #if ($values != "") 
+    #set ($type = "($values)")
+  #end
+  #set ($value = $attribute.getDefaultValue())
+  #if ($value != "") 
+    #set ($value = "<span> = $value</span>")
+  #end
+  #set ($link = "")
+  #set ($linkName = $attribute.getLink())
+  #if ($linkName != "") 
+    #set ($link = "<a href='#$linkName'>&gt;$linkName</a>")
+  #end  
+  
+  <div class="header">$attribute.getName(): $type $link $value 
+    <span class="stereotype">#createStereotype ($attribute.isRequired() "required" "optional")</span>
+  </div>
+  <div class="text>
+    #set ($owner = "")
+    #set ($label = "")
+    #set ($owner = $attribute.getOwner())
+    #if (($owner != "") && ($owner != $metaclass))
+      #set ($ownerName = $owner.getName())
+      <div class='inherited'>from <a href='#$ownerName'>$ownerName</a></div>
+    #end
+    <div class="description">$attribute.getDescription()</div>
+    <div class="restriction">$attribute.getRestriction()</div>
+    <div class="hint">$attribute.getHint()</div>
+  </div>
+</div>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showIncludes $metaclass)
+  #if ($metaclass.hasIncludes())
+    <div class="section">
+      <div class="header">includes</div>
+      <div class="text">
+        #foreach ($include in $metaclass.getIncludeList())
+          #showInclude ($include)
+        #end
+      </div>
+    </div>
+  #end
+#end
+  
+#* ********************************************************************************************************************************************* *#
+
+#macro (showInclude $include)
+<div class="include">
+  <div>
+    <span class="stereotype">
+    #createStereotype ($include.isMultiple(), "multiple")
+    #createStereotype ($include.isRequired() "required" "optional")
+    </span>
+  </div>
+  <div>
+    #if ($include.hasLinks())
+      #showClassTree ($include.getLinkList())
+    #end
+    <div class="text">
+      <div>&nbsp;</div>
+      #set ($owner = $include.getOwner())
+      #if ($owner != $metaclass)
+        #set ($ownerName = $owner.getName())
+        <div class='inherited'>from <a href='#$ownerName'>$ownerName</a></div>
+      #end      
+    </div>
+  </div>
+</div>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showProperties $metaclass)
+  #if ($metaclass.hasProperties())
+  <div class="section">
+    <div class="header">properties</div>
+    <div class="text">
+      #foreach ($property in $metaclass.getPropertyList())
+        #showProperty ($property)
+      #end
+      #set ($property = "")
+    </div>
+  </div>
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showProperty $property)
+<div class="property">
+  <div class="header">$property.getName()
+    <span class="stereotype">
+      #createStereotype ($property.isMultiple(), "multiple")
+      #createStereotype ($property.isRequired() "required" "optional")
+    </span>
+  </div>
+  <div class="text">
+    #set ($owner = $property.getOwner())
+    #if ($owner != $metaclass)
+      #set ($ownerName = $owner.getName())
+      <div class='inherited'>from <a href='#$ownerName'>$ownerName</a></div>
+    #end
+    <div class="description">$property.getDescription()</div>
+    <div class="hint">$property.getHint()</div>
+    #if ($property.hasAttributes())
+      #foreach ($attribute in $property.getAttributeList())
+        #showAttribute ($attribute)
+      #end
+    #end 
+    
+    #set ($content = $property.getContent())
+    #if ($content != "")
+      content: $content
+    #end
+
+  </div>
+</div>
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showLabel $metaclass)
+  #set ($label = $metaclass.getName())
+  #if ($metaclass.isAbstract())
+    <u>$label</u>
+  #else
+    $label
+  #end  
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showParents $metaclass)
+  #set ($parentList = $metaclass.getParentList())
+  #if ($parentList.size() > 0)
+    <div class="section">
+      <div class="header">parent classes</div>
+      <div class="text">
+        #showClassList ($parentList)
+      </div>
+    </div>
+  #end
+#end
+  
+#* ********************************************************************************************************************************************* *#
+
+#macro (showRelatedClasses $metaclass)
+  #if ($metaclass.hasRelatedClasses())
+  <div class="section">
+    <div class="header">related classes</div>
+    <div class="text">
+    #showClassTree ($metaclass.getRelatedList())
+    </div>
+  </div>
+  #end  
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showLinkClasses $metaclass)
+  #if ($metaclass.hasLinks())
+  <div class="section">
+    <div class="header">can be used in</div>
+    <div class="text">
+      #showClassTree ($metaclass.getLinkList())
+    </div>
+  </div>
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showChildren $metaclass)
+  #if ($metaclass.hasChildren())
+  <div class="section">
+    <div class="header">derived classes</div>
+    <div class="text">
+      #showClassTree ($metaclass.getChildrenList())
+    </div>
+  </div>
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createStereotype $value $mainStereotype $altStereotype)
+  #if ($value)
+    <span>$mainStereotype</span>
+  #else
+    #if ($altStereotype)
+      <span>$altStereotype</span>
+    #end
+  #end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showClassList $classList )
+  #foreach( $class in $classList )
+    #set ($name = $class.getName())
+    <div class="reference"><a href="#$name">#showLabel($class)</a></div>    
+  #end
+#end  
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (showClassTree $classList )
+  #foreach ( $class in $classList )
+  <div class="reference">
+    #set ($name = $class.getName())
+    <a href="#$name">#showLabel($class)</a>
+    #if ($class.hasChildren())
+    #showClassTree ($class.getChildrenList())
+    #end
+  </div>  
+  #end
+#end  
+
+#* ********************************************************************************************************************************************* *#
+

@@ -1,0 +1,176 @@
+.def {
+	display: none;
+}
+
+.widget .widget_hidden {
+  display: none;
+}
+
+.messagebox {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  left: 40%;
+}
+
+.messagebox .template.success .title {
+  color: green;
+}
+
+.messagebox .template.error .title {
+  color: red;
+}
+
+.messagebox .template.warning .title {
+  color: orange;
+}
+
+.messagebox.modal {
+  display: block;
+  position: relative;
+  left: 0px;
+}
+
+.messagebox.modal img {
+  background: transparent url("../images/loading.gif") no-repeat;
+  height: 32px;
+  width: 32px;
+  float: left;
+}
+
+.messagebox.modal span {
+  float: left;
+  margin: 5px 10px;
+}
+
+.reportbanner {
+  background-color: #FFC46A;
+  left: 0;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  width: 96%;
+  z-index: 1;
+  display: none;
+  margin: 0 5px 5px 10px;
+}
+
+.fleft {
+  float: left;
+}
+
+.fright {
+  float: right;
+}
+
+.list .empty {
+  margin: 5px;
+  color: #666;
+}
+
+/* frames */ 
+.history {
+  position: absolute;
+  left: -10000px;
+}
+
+.command.onload, .config {
+	display: none;
+}
+
+a.hoverable:hover {
+  background-position: -17px 0;
+}
+
+a.disabled {
+	color: #999 !important;
+	cursor: default !important;
+}
+
+#mainLoading {
+	color: #666;
+	margin: 10px;
+}
+
+.layout {
+  width: 100%;
+  height: 100%;
+}
+
+.layout .head {
+  display: block;
+  height: 24px;
+}
+  
+.layout .head .title {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 10px;
+  float: left;
+}
+
+.layout .ui-layout-north .logo table, .layout .ui-layout-north .loading {
+	float: left;
+}
+
+.layout .ui-layout-north .loading {
+  color: #777;
+  margin-left: 10px;
+  margin-top: 25px;
+  float: left;
+}
+
+.layout .ui-layout-north .leftbox div.logo {
+  cursor: pointer;
+  float: left;
+  margin: 0 10px;
+  position: relative;
+}
+
+.layout .ui-layout-north .leftbox div.logo a.home {
+	display: block;
+  height: 35px;
+  position: absolute;
+  width: 100%;
+}
+
+.layout .ui-layout-north .leftbox div.logo .title {
+	color: black;
+  float: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0;
+}
+
+.layout .ui-layout-north .rightbox {
+  float: right;
+  height: 100%;
+  width: 60%;
+}
+
+.layout .ui-layout-north .rightbox .block {
+  margin-right: 10px;
+  padding: 0 50px;
+}
+
+.layout .federation.image {
+  height: 50px;
+}
+
+@media print {
+    * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
+    -ms-filter: none !important; } /* Black prints faster: sanbeiji.com/archives/953 */
+    p a, p a:visited { color: #444 !important; text-decoration: underline; }
+    p a[href]:after { content: " (" attr(href) ")"; }
+    abbr[title]:after { content: " (" attr(title) ")"; }
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+    pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+    thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */
+    tr, img { page-break-inside: avoid; }
+    @page { margin: 0.5cm; }
+    p, h2, h3 { orphans: 3; widows: 3; }
+    h2, h3{ page-break-after: avoid; }
+    .hide-on-print { display: none !important; }
+    .print-only { display: block !important; }
+}

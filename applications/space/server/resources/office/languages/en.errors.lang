@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible errors from office</comment>
+  <entry key="ERR_UNDEFINED">Unknown error.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">You are not logged.</entry>
+  <entry key="ERR_INCORRECT_PARAMETERS">There are not enough parameters or the call parameters are not right.</entry>
+  <entry key="ERR_DOWNLOAD_DOCUMENT">Error trying to download the document.</entry>
+  <entry key="ERR_DOWNLOAD_NODE">Error trying to download the node.</entry>
+  <entry key="ERR_WRONG_FORMAT">Wrong data format.</entry>  
+  <entry key="ERR_USERNAME_OR_PASSWORD_INCORRECT">User name or password are wrong.</entry>
+  <entry key="ERR_LOAD_NODE_FROM_CACHE">It could not load the node from cache.</entry>
+  <entry key="ERR_AGENT_TEMPLATES">It has had an error in the templates agent.</entry>  
+  <entry key="ERR_TEMPLATE_NOT_FOUND">It could not find the template with wich watchs the form.</entry>  
+  <entry key="ERR_ACTIONS_FACTORY">It has had an error in the actions factory.</entry>  
+  <entry key="ERR_RENDERS_FACTORY">It has had an error in the renders factory.</entry>  
+  <entry key="ERR_VIEWS_FACTORY">It has had an error in the views factory.</entry>
+  <entry key="ERR_READ_LANGUAGE_FILE">It could not read the language file.</entry>  
+  <entry key="ERR_REDIRECT_TO_SETUP">It does not find the administration application. You could not start the business unit.</entry>  
+  <entry key="ERR_BUSINESSUNIT_STOPPED">The business unit has been stopped. Contact with the system administrator.</entry>  
+  <entry key="ERR_BUSINESSUNIT_NOT_INSTALLED">The business unit has not been charged with any model. Contact with the system administrator.</entry>  
+  <entry key="ERR_SEND_MAIL">It could not send the email to the address of destination.</entry>  
+  <entry key="ERR_LOAD_BUSINESS_MODEL_FILE">It could not obtain the file of the business model.</entry>  
+  <entry key="ERR_LOAD_THEME_FILE">It could not obtain the theme file.</entry>  
+  <entry key="ERR_LOAD_BUSINESS_MODEL_DEFINITION">It could not obtain the definition of the business model.</entry>  
+  <entry key="ERR_LOAD_BUSINESS_UNIT_FILE">It could not obtain the file of the business unit.</entry>  
+  <entry key="ERR_NODES_IN_USE">The selected nodes are relation with other nodes. They could not delete.</entry>  
+  <entry key="ERR_NODE_IN_USE">The node is linked with other node. It could not delete.</entry>  
+  <entry key="ERR_READ_TASK_PERMISSIONS">You do not have permissions to open the task.</entry>  
+  <entry key="ERR_WRITE_TASK_PERMISSIONS">You do not have permissions to modify the task.</entry>  
+  <entry key="ERR_READ_CUBE_PERMISSIONS">You do not have permissions to to open the cube.</entry>  
+  <entry key="ERR_READ_TEAM_PERMISSIONS">You do not have permissions to open the team.</entry>  
+  <entry key="ERR_READ_NODE_PERMISSIONS">You do not have permissions to open the object.</entry>  
+  <entry key="ERR_WRITE_NODE_PERMISSIONS">You do not have permissions to modify the object.</entry>
+  <entry key="ERR_CREATE_DELETE_NODE_PERMISSIONS">You do not have permissions to create/delete the object.</entry>
+  <entry key="ERR_PREVIEW_NODE">It could not generate the preview of the node.</entry>  
+  <entry key="ERR_PREVIEW_NOT_SUPPORTED">The preview of the nodes are not supported.</entry>  
+  <entry key="ERR_DOWNLOAD_NODE">It could not download the node.</entry>  
+  <entry key="ERR_DOWNLOAD_NOT_SUPPORTED">The download of nodes are not supported.</entry>  
+  <entry key="ERR_NODE_DEFINITION_INCORRECT">The node definition is not correct.</entry>  
+  <entry key="ERR_NODE_UPDATE_DOCUMENT">It could not update the document.</entry>  
+  <entry key="ERR_NOT_DOCUMENT_NEITHER_REPORT">The selected node is not a document neither a report.</entry>  
+  <entry key="ERR_DOWNLOAD_FILE">It could not download the file.</entry>  
+  <entry key="ERR_RENDER_NODE">It has had an error trying to show the element</entry>  
+  <entry key="ERR_RENDER_HELPER_PAGE">It has had an error trying to show the help page</entry>  
+  <entry key="ERR_USER_NOT_ENROLED_ON_TASK">The user is not a member of the team of the task.</entry>
+  <entry key="ERR_COULD_NOT_ABORT_TASK">It could not abort the task.</entry>
+  <entry key="ERR_LOAD_SYSTEM_TEMPLATE">It could not load the system template.</entry>
+  <entry key="ERR_ALERT_TYPE">The alert type is not valid</entry>
+  <entry key="ERR_DELETE_CUBE_REPORTS">It could not delete the cube reports</entry>
+  <entry key="ERR_CANT_SIGN">It can not sign the document</entry>
+  <entry key="ERR_PREVIEW_ATTACHMENT">It could not obtain the preview of the document</entry>
+  <entry key="ERR_EXECUTE_NODE_COMMAND">It could not execute command</entry>
+  <entry key="ERR_SAVE_TASK_PERMISSIONS">You cant save task. You dont have permissions.</entry>
+  <entry key="ERR_LOAD_CHAT_ENTRIES">It could not load chat entries.</entry>
+  <entry key="ERR_TASK_EDITION">It could not solve task edition.</entry>
+  <entry key="ERR_LOAD_TASKORDERLIST">It could not load task order list.</entry>
+  <entry key="ERR_ROLE_ACTIVE">Role is already active.</entry>
+</properties>

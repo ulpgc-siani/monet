@@ -1,0 +1,2 @@
+ALTER TABLE ts$tasks ADD (id_owner NUMBER(10,0));
+CREATE INDEX TS$TASKS_IDOWNER ON ts$tasks (ID_OWNER);

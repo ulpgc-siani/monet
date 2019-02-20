@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="TaskRequestProperty">
+	<description></description>
+	
+	<attribute token="code" type="code" required="true">
+      <description>Código del mensaje</description>
+  </attribute>
+  <attribute token="name" type="string" specific="true">
+    <description>Nombre con el que se referencia la declaración en el modelo de negocio</description>
+  </attribute>
+  
+</property>

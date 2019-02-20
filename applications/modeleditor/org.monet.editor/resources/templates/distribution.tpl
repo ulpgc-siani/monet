@@ -1,0 +1,3 @@
+distribution ::name:: extends ::project:: {
+
+}

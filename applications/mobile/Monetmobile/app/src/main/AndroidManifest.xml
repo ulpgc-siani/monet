@@ -1,0 +1,225 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.monet.space.mobile">
+
+    <permission
+        android:name="org.monet.space.mobile.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="org.monet.space.mobile.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="monet_accounts"
+        android:protectionLevel="dangerous" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="org.monet.space.mobile.permission.C2D_MESSAGE" />
+    <uses-permission android:name="org.monet.space.mobile.permission.MAPS_RECEIVE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:uiOptions="splitActionBarWhenNarrow">
+
+        <meta-data android:name="roboguice.modules" android:value="org.monet.space.mobile.guice.AppModule"/>
+
+        <activity
+            android:name="org.monet.space.mobile.activity.SplashActivity"
+            android:label="@string/title_activity_splash"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.monet.action.START" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.SettingsContainerActivity"
+            android:label="@string/title_activity_settings" >
+            <intent-filter>
+                <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.TaskActivity"
+            android:label="@string/title_activity_tasklist"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.TaskMapActivity"
+            android:label="@string/title_activity_taskmap"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.TaskDetailsContainerActivity"
+            android:label="@string/title_activity_taskresume" >
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.NewTaskContainerActivity"
+            android:label="@string/title_activity_newtask">
+            <!--android:theme="@style/AppTheme.Dialog" -->
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.TaskStepActivity"
+            android:label="@string/title_activity_taskstep"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:uiOptions="none" >
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.PickPositionContainerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_sourcelist"
+            android:uiOptions="none" >
+            <intent-filter>
+                <action android:name="monet.action.PICK_POSITION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.PickTermContainerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_pickterm">
+            <!--android:theme="@style/AppTheme.Dialog" -->
+            <intent-filter>
+                <action android:name="monet.action.PICK_TERM" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.PickCheckContainerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_pickcheck">
+            <!--android:theme="@style/AppTheme.Dialog" -->
+            <intent-filter>
+                <action android:name="monet.action.PICK_CHECK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.monet.space.mobile.activity.FederationAccountAuthenticatorActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/federation_authenticator_activity_label"
+            android:noHistory="true"
+            android:theme="@style/Monet.Theme.Light.NoTitleBar" >
+        </activity>
+
+        <service
+            android:name="org.monet.space.mobile.federation.FederationAuthenticationService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <service
+            android:name="org.monet.space.mobile.syncservice.SyncService"
+            android:exported="true"
+            android:permission="monet_accounts" >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <service
+            android:name="org.monet.space.mobile.locationservice.LocationService">
+        </service>
+
+        <provider
+            android:name="org.monet.space.mobile.provider.MonetDataProvider"
+            android:authorities="org.monet.mobile.sync"
+            android:enabled="true"
+            android:label="@string/sync_data"
+            android:permission="monet_accounts"
+            android:syncable="true" />
+        <provider
+            android:name="org.monet.space.mobile.provider.SuggestionsProvider"
+            android:authorities="org.monet.mobile.suggestions"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="org.monet.space.mobile" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".gcm.MonetGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".gcm.MonetIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".gcm.MonetRegistrationIntentService"
+            android:exported="false">
+        </service>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB2wOT1bctdiHmmCV_wVNJ8AzacDOgowoM" />
+
+    </application>
+
+</manifest>

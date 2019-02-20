@@ -1,0 +1,86 @@
+<div id="RoleViewerWizard">
+  <div id="ViewHelperRole">
+    <div class="dialog">
+      <div>
+        <span class="title"></span>
+	      <span class="states">
+	        <span class='state active'>::StateActive::</span>
+	        <span class='state pending'>::StatePending::</span>
+	        <span class='state inactive'>::StateInactive::</span>
+	      </span>
+      </div>
+      <div class="subtitle"><span></span>&nbsp;-&nbsp;<span class="definitiontype"></span></div>
+      <div class="dates">
+        <div class='date pending'></div>
+        <div class='date active'></div>
+        <div class='date noexpires'>::DateNoExpires::</div>
+        <div class='date expires'></div>
+        <div class='date expired begin'></div>
+        <div class='date expired end'></div>
+      </div>
+      <div class="fields">
+        <table>
+          <tr class="field definitiontype">
+            <td class="label"><label>::DefinitionType::</label></td>
+            <td><select class="component"></select></td>
+          </tr>
+          <tr class="field type">
+            <td class="label"><label>::Type::</label></td>
+            <td>
+              <div class="component">
+                <input type="radio" id="role_type_user" name="role_type" class="type" value="user" checked/><label id="role_type_user_label" for="role_type_user" style="margin-right:10px;">::TypeUser::</label>
+                <input type="radio" id="role_type_service" name="role_type" class="type" value="service"/><label id="role_type_service_label" for="role_type_service" style="margin-right:10px;">::TypeService::</label>
+                <input type="radio" id="role_type_feeder" name="role_type" class="type" value="feeder"/><label id="role_type_feeder_label" for="role_type_feeder">::TypeFeeder::</label>
+
+                <div class="dialog users" style="display:none;">
+                  <div class="message user">::SelectUser::</div>
+                  <div class="usersbox"></div>
+                </div>
+                <div class="dialog services" style="display:none;">
+                  <div class="message service">::SelectService::</div>
+                  <div class="servicesbox"></div>
+                </div>
+                <div class="dialog feeders" style="display:none;">
+                  <div class="message feeder">::SelectFeeder::</div>
+                  <div class="feedersbox"></div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr class="field begindate">
+            <td class="label"><label>::BeginDate::</label></td>
+            <td>
+              <div class="message begin">::SelectBeginDate::</div>
+              <input class="component" readonly></input>
+
+              <div class="picker"></div>
+            </td>
+          </tr>
+          <tr class="field expiredate">
+            <td class="label">
+              <input type="checkbox" id="role_expires" class="expires" value="true" style="margin-top:2px;margin-right:5px;width:13px;"/>
+              <label for="role_expires" class="expires">::Expires::</label>
+            </td>
+            <td style="height:30px;">
+              <div class="message expire">::SelectExpireDate::</div>
+              <input class="component" readonly></input>
+
+              <div class="picker"></div>
+            </td>
+          </tr>
+          <tr class="historyroles">
+            <td colspan="2">
+              <div class="title">::HistoryRoles::</div>
+              <div class="historyitems"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="toolbar">
+      <input class="button add" type="button" value="::ButtonAdd::"/>
+      <input class="button addother" type="button" value="::ButtonAddOther::"/>
+      <input class="button save" type="button" value="::ButtonSave::"/>
+    </div>
+  </div>
+</div>

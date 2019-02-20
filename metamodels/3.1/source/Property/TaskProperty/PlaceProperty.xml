@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property
+  type="PlaceProperty"
+  parent="ReferenceableProperty"
+  multiple="true"
+  required="true"
+  extensible="true">
+  <description></description>
+
+  <property token="is-initial">
+    <description>Indica que este lugar es el inicial</description>
+  </property>
+
+  <property token="is-oust">
+    <description>Indica que si se alcanza este lugar, la tarea finaliza con el estado de abortada</description>
+  </property>
+
+  <property token="is-final">
+    <description>Indica que si se alcanza este lugar, la tarea finaliza</description>
+  </property>
+
+  <include property="PlaceActionProperty" />
+
+  <property token="back-enable">
+    <description></description>
+
+    <attribute
+      token="when"
+      type="expression:boolean">
+      <description>Expresión que se evalua establecer si el botón atrás está disponible o no.</description>
+    </attribute>
+
+    <method name="onBack" />
+
+  </property>
+
+  <method name="onArrive" />
+</property>

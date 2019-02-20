@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-summation" type="SummationFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo sumatorio en un formulario</description>
+
+	<property token="terms">
+		<description>Esta propiedad se utiliza para definir los epígrafes jerarquizados del campo</description>
+		<include property="SummationItemProperty" multiple="true" />
+	</property>
+
+	<attribute token="source" type="key" link="SourceDefinition">
+		<description>Fuente de datos que contiene los items</description>
+		<hint>En lugar de usar una fuente de datos, se puede declarar directamente una lista de términos usando la propiedad terms</hint>
+	</attribute>
+
+	<property token="select">
+		<description>Esta propiedad permite personalizar el modo en que se ven los datos de la fuente de datos</description>
+		<hint>Actualmente solo implementado para las fuentes de datos indicadas mediante la propiedad source</hint>
+		
+		<attribute token="flatten" type="enumeration" default="NONE">
+			<description>Se utiliza para mostrar los términos descendientes</description>
+			<enumeration>
+				<option token="NONE">
+					<description>Se toman sólo los términos del primer nivel</description>
+				</option>
+				<option token="ALL">
+					<description>Se toman recursivamente todos los términos descendientes</description>
+				</option>
+				<option token="LEVEL">
+					<description>Se toman recursivamente todos los términos descendientes hasta la profundidad indicada por el atributo "depth"</description>
+				</option>
+				<option token="LEAF">
+					<description>Se toman recursivamente todos los nodos hoja</description>
+				</option>
+				<option token="INTERNAL">
+					<description>Se toman recursivamente todos los nodos no hoja</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<attribute token="depth" type="integer">
+			<description>Profundidad de descendientes que se desea.</description>
+			<hint>Solo válido cuando se indica flatten con valor LEVEL</hint>
+		</attribute>
+		
+		<attribute token="from" type="string" link="TermProperty">
+			<description>Término a partir del cual se cargan los términos hijos</description>
+		</attribute>
+	</property>
+
+	<attribute token="format" type="string">
+		<description>Expresión regular para definir el formato con el que se representa el número</description>
+		<hint>&lt;table border=0 cellspacing=3 cellpadding=0 summary="Chart showing symbol,
+			location, localized, and meaning."&gt;
+			&lt;tr bgcolor="#ccccff"&gt;
+			&lt;th align=left&gt;Symbol
+			&lt;th align=left&gt;Location
+			&lt;th align=left&gt;Localized?
+			&lt;th align=left&gt;Meaning
+			&lt;tr valign=top&gt;
+			&lt;td&gt;&lt;code&gt;0&lt;/code&gt;
+			&lt;td&gt;Number
+			&lt;td&gt;Yes
+			&lt;td&gt;Digit
+			&lt;tr valign=top bgcolor="#eeeeff"&gt;
+			&lt;td&gt;&lt;code&gt;#&lt;/code&gt;
+			&lt;td&gt;Number
+			&lt;td&gt;Yes
+			&lt;td&gt;Digit, zero shows as absent
+			&lt;tr valign=top&gt;
+			&lt;td&gt;&lt;code&gt;.&lt;/code&gt;
+			&lt;td&gt;Number
+			&lt;td&gt;Yes
+			&lt;td&gt;Decimal separator or monetary decimal separator
+			&lt;tr valign=top bgcolor="#eeeeff"&gt;
+			&lt;td&gt;&lt;code&gt;-&lt;/code&gt;
+			&lt;td&gt;Number
+			&lt;td&gt;Yes
+			&lt;td&gt;Minus sign
+			&lt;tr valign=top&gt;
+			&lt;td&gt;&lt;code&gt;,&lt;/code&gt;
+			&lt;td&gt;Number
+			&lt;td&gt;Yes
+			&lt;td&gt;Grouping separator
+			&lt;tr valign=top bgcolor="#eeeeff"&gt;
+			&lt;td&gt;&lt;code&gt;E&lt;/code&gt;
+			&lt;td&gt;Number
+			&lt;td&gt;Yes
+			&lt;td&gt;Separates mantissa and exponent in scientific notation.
+			&lt;em&gt;Need not be quoted in prefix or suffix.&lt;/em&gt;
+			&lt;tr valign=top&gt;
+			&lt;td&gt;&lt;code&gt;;&lt;/code&gt;
+			&lt;td&gt;Subpattern boundary
+			&lt;td&gt;Yes
+			&lt;td&gt;Separates positive and negative subpatterns
+			&lt;tr valign=top bgcolor="#eeeeff"&gt;
+			&lt;td&gt;&lt;code&gt;%&lt;/code&gt;
+			&lt;td&gt;Prefix or suffix
+			&lt;td&gt;Yes
+			&lt;td&gt;Multiply by 100 and show as percentage
+			&lt;tr valign=top&gt;
+			&lt;td&gt;&lt;code&gt;&amp;#92;u2030&lt;/code&gt;
+			&lt;td&gt;Prefix or suffix
+			&lt;td&gt;Yes
+			&lt;td&gt;Multiply by 1000 and show as per mille value
+			&lt;tr valign=top bgcolor="#eeeeff"&gt;
+			&lt;td&gt;&lt;code&gt;&amp;#164;&lt;/code&gt; (&lt;code&gt;&amp;#92;u00A4&lt;/code&gt;)
+			&lt;td&gt;Prefix or suffix
+			&lt;td&gt;No
+			&lt;td&gt;Currency sign, replaced by currency symbol. If
+			doubled, replaced by international currency symbol.
+			If present in a pattern, the monetary decimal separator
+			is used instead of the decimal separator.
+			&lt;tr valign=top&gt;
+			&lt;td&gt;&lt;code&gt;'&lt;/code&gt;
+			&lt;td&gt;Prefix or suffix
+			&lt;td&gt;No
+			&lt;td&gt;Used to quote special characters in a prefix or suffix,
+			for example, &lt;code&gt;"'#'#"&lt;/code&gt; formats 123 to
+			&lt;code&gt;"#123"&lt;/code&gt;. To create a single quote
+			itself, use two in a row: &lt;code&gt;"# o''clock"&lt;/code&gt;.
+			&lt;/table&gt; </hint>
+	</attribute>
+
+	<property token="range">
+		<description>Esta propiedad se utiliza para definir el rango de valores que se permite introducir</description>
+		<attribute token="min" type="natural" required="true">
+			<description>Valor mínimo permitido</description>
+		</attribute>
+		<attribute token="max" type="natural" required="true">
+			<description>Valor máximo permitido</description>
+		</attribute>
+	</property>
+
+
+
+</property>

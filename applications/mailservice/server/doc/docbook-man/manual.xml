@@ -1,0 +1,1931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<book>
+  <title>Jsmtpd Manual</title>
+
+  <chapter>
+    <title>Introduction</title>
+
+    <section>
+      <title>Whats' this ?</title>
+
+      <para>Jsmtpd is a compact SMTP daemon (Email server), entirely written
+      in Java. It is basicly able to receive E-mail following the SMTP
+      protocol, described in RFC 821. Each others functionnalities are
+      implemented as plugin modules, allowing the core to remain small and
+      easily understaindable.</para>
+
+      <para>As now, Jsmtpd is able to receive mail, check it's recipients
+      (ACL-SimpleACL plugin), check for viruses (filters-ClamAVFilter,
+      connects to a ClamAV daemon), check for spam using the Java Jasen engine
+      (filters-JasenAntiSpamFilter) or a spamassassin daemon, check senders
+      via RBL plugin or blacklist plugin. Emails can be delivered localy using
+      the mailbox writer (DeliveryServices-UnixMailboxWriter), or to a remote
+      STMP server (DeliveryServices-RemoteSmtpSender). DNSQueries are also
+      provided by a plugin (DNSJava).</para>
+    </section>
+
+    <section>
+      <title>Key Features</title>
+
+      <para>Jsmtpd comes with three main services :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>The receiver service : It's job is to listen for incoming STMP
+          connection, chat with the client in order to receive E-mails
+          according to ACL plugin.</para>
+        </listitem>
+
+        <listitem>
+          <para>The second service is the mail queue services. It holds the
+          received mails (loaded or writen to disk). Whenever possible, it
+          processes mails to the delivery service.</para>
+        </listitem>
+
+        <listitem>
+          <para>The delivery service is a filter plugin tree ending by a
+          delivery service. A filter is basicly a piece of code that answers
+          yes or not to an incoming email. Mails are then checked agains
+          theses plugins, following a tree model. A the end of the chain, the
+          mail is droped if it does not match the filters, or a delivery
+          plugin is invoked to deliver the mail. For now, only two delivery
+          services can be routed using the ACL plugin : local or remote
+          mail.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Modularity - Simplicity</title>
+
+      <para>Jsmtpd's design is heavily based on plugins. Most functionnalities
+      are implemented as plugins. Plugins interfaces are simple to understaind
+      and implement. With minimal time spent learning Jsmtpd, you can rewrite
+      how Jsmtpd handles :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Dns queries</para>
+        </listitem>
+
+        <listitem>
+          <para>Acces control list (who can do what on the runnning
+          server)</para>
+        </listitem>
+
+        <listitem>
+          <para>Deliveries : you want to put your mail directly into your
+          custom application ? Write a plugin !</para>
+        </listitem>
+
+        <listitem>
+          <para>IP filtering</para>
+        </listitem>
+
+        <listitem>
+          <para>Mail filtering</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Undesirable mail</title>
+
+      <para>This server is designed to provide efficient ways to stop
+      unsollicited mail or mail containing viruses. A Jsmtpd deamon can't be
+      set as open relay ( you'll have to write a plugin to do so ;).</para>
+
+      <para>Filtering spam can be done at two levels. Ip based filtering will
+      reject connections from well known spammers or open relais smtp servers
+      (ie misconfigured mail servers used by spammers to relay their mails).
+      Content based filtering allows to check mail containing spam (using
+      Spamassassin or Jasen) or viruses (using Clam Antivirus).</para>
+
+      <para>If you can't find a filter matching your needs, you can easily
+      write your own and plug it in Jsmtpd.</para>
+    </section>
+
+    <section>
+      <title>Targets</title>
+
+      <para>Jsmtpd is intended to remain small, understaindable and (quite)
+      fast. Without using filters plugin, minimal process is applied to the
+      email data, providing best performances. If you need a more powerfull
+      (in terms of functionnalities) email service solution, I recommend you
+      to check out the jakarta James project and their mailet API.</para>
+
+      <para>This server runs over a Java Virtual Machine, and should make
+      intrusions like buffer overflow more difficult to success.</para>
+    </section>
+
+    <section>
+      <title>Status</title>
+
+      <para>Jsmtp is currently in alpha stage, consider it unstable. This
+      document is updated when new features are added, and is now
+      incomplete.</para>
+    </section>
+
+    <section>
+      <title>About</title>
+
+      <para>This software is developped by Jean-Francois POUX
+      (jfp@jsmtpd.org). It is licenced under GPL Licence. The documentations
+      are available under Creative Common Licence. Drop me a mail if you have
+      any questions, suggestions, positive or negative feedback, it'll help
+      improving the project.</para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Installing</title>
+
+    <section>
+      <title>Requirements</title>
+
+      <para>Binaries versions of jsmtpd are compiled using a Sun JDK version
+      1.5 (or version 5.0, according to their new version numbering), so
+      you'll need the corresponding Runtime Environement from Sun, you can get
+      it at <ulink
+      url="http://java.sun.com/j2se/1.5.0/download.jsp">http://java.sun.com/j2se/1.5.0/download.jsp</ulink>,
+      the runtime environement (JRE) is suffisant if you use the binaries,
+      pick the developement kit (JDK) if you want to build jsmtpd from the
+      sources.</para>
+
+      <para>Install your Java environment, and have java in your path. To do
+      so under Windows platforms(xp, 2k), right click on my computer,
+      properties, go to advanced tab, environement, locate the Path variable,
+      edit and add your path to JVM install (something like c:\Programe
+      Files\java\jdkxxx\bin). On Linux platforms, edit your .profile file (or
+      /etc/profile as root) and add your java install to your path (something
+      like /usr/java/jdkxxx/bin), and don't forget to logout/login or include
+      the modified file with ". .profile".</para>
+
+      <para>You'll also need an internet domain name if you wish to receive
+      mail (MX configuration should be present), correctly configured. You'll
+      also need a DNS (Domain Name Server) in order to get name
+      resolution.</para>
+
+      <para>Jsmtpd by itself does not require much ressources (128Mo Ram), but
+      it can run much more faster with a bit of ram. Additionnals plugins like
+      the Jasen anti spam engine uses much more ressources.</para>
+    </section>
+
+    <section>
+      <title>Get the archive</title>
+
+      <para>You may want to look at the files releases to get the latest
+      release of Jsmtpd. You can get zip, tar.gz or tar.bz2 archive there
+      :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>File releases : <ulink
+          url="http://www.jsmtpd.org/ipage.php?module=download">http://www.jsmtpd.org/</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para>Auto build from source repository (likely unstable) : <ulink
+          url="http://www.taldius.net/~jef/Jsmtpd_autobuild">http://www.taldius.net/~jef/Jsmtpd_autobuild</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Package Overview</title>
+
+      <para>Once you have the Jsmtpd archive, uncompress it. You'll get
+      several directories :</para>
+
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry align="center">Folder</entry>
+
+              <entry align="center">Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>etc/</entry>
+
+              <entry>Contains the configuration files, you'll find jsmtpd.ini
+              (core config) and plugin-config.xml</entry>
+            </row>
+
+            <row>
+              <entry>log/</entry>
+
+              <entry>When running, the cores produces a logg file of what's
+              happening, you can find it here</entry>
+            </row>
+
+            <row>
+              <entry>mailboxes/</entry>
+
+              <entry>Local mails are by default writen to this directory,
+              using mbox format</entry>
+            </row>
+
+            <row>
+              <entry>tmp/</entry>
+
+              <entry>When runnning, mails may be temporary written to this
+              directory. It can happen if a delivery fails (mail is requeued
+              for later),or if Jsmtpd uses to much ram.</entry>
+            </row>
+
+            <row>
+              <entry>pugins/</entry>
+
+              <entry>This directory contains the plugin binary
+              archives.</entry>
+            </row>
+
+            <row>
+              <entry>src/</entry>
+
+              <entry>The sources of Jsmtpd</entry>
+            </row>
+
+            <row>
+              <entry>doc/</entry>
+
+              <entry>Documentation, javadoc, etc.</entry>
+            </row>
+
+            <row>
+              <entry>safeModeFolder/</entry>
+
+              <entry>Dump incoming mails to this folder (usefull with unstable
+              builds)</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+
+      <para>You'll also find a startup.bat or startup.sh to run Jsmtpd
+      according to your platform. Now, you should look at <link
+      linkend="basiconf">Basic setup</link></para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title id="basiconf">Basic Configuration</title>
+
+    <section>
+      <title>Edit the file etc/jsmtpd.ini</title>
+
+      <para>Change the <emphasis role="bold">localHost</emphasis> to match
+      your hostname, this has to be a MX record if you wish to receive
+      mail.</para>
+
+      <para>You may change <emphasis role="bold">temporaryFolder</emphasis> to
+      somewhere you have enough disk space, just copy the directory structure
+      inside the tmp/ distribution to the new location. The user running
+      Jsmtpd must have read/write/execution rights in this directory.</para>
+
+      <para><emphasis role="bold">maxTemporarySize</emphasis> set the amount
+      of disk space (in Mo) that Jsmtpd will use to store temporary mails.
+      When this amount is exceeded, Jsmtpd will refuse incoming mails.</para>
+
+      <para><emphasis role="bold">logType</emphasis> configures where Jsmtpd
+      puts its log. Set to file (log is written to log/jsmtpd.log), console or
+      debug for both. <emphasis role="bold">logLevel</emphasis> sets the level
+      of log to be kept. Possible values are : debug, info, warning, error,
+      fatal, from the most verbose to the least. If you chose to log to a
+      file, use logFile to set up the file where to write the data.</para>
+
+      <para><emphasis role="bold">connectionTimeout</emphasis> sets the amount
+      of time in seconds when an iddle connection should be droped.</para>
+
+      <para>Use the <emphasis role="bold">rPort</emphasis> to set up the TCP
+      port where Jsmtpd should be waiting for connections. By default, the
+      SMTP protocol is bound to port 25. On Unixes, it requires a special
+      right to bind to a port lower than 1024, Jsmtpd will report you this
+      error if it occurs.</para>
+
+      <para><emphasis role="bold">maxMessageSize</emphasis> sets the maximum
+      message in Mo, mails exceding this limit will be refused.</para>
+
+      <para><emphasis role="bold">rMaxInstances</emphasis> sets the maximum
+      number of receiver thread to be working at the same time. A low setting
+      may cause mails to be refused, a higher setting will use more memmory.
+      It can use maxMessageSize * rMaxInstances for receiving in the worst
+      case.</para>
+
+      <para><emphasis role="bold">dMaxInstances</emphasis> sets the maximum
+      number of delivery services thread to be working at the same time. A low
+      number of threads may cause mails to be stuck into mailqueue, a higher
+      setting will use more ressources.</para>
+
+      <para><emphasis role="bold">dDelayRetry</emphasis> when Jsmtpd fails to
+      deliver a mail (typically the remove server is no responding, etc..), it
+      will wait this amount of time (in minutes) before retrying</para>
+
+      <para><emphasis role="bold">dNumRetry</emphasis> each failed attempt to
+      deliver a mail is recorded, when this number is exceeded, the mail is
+      considered as non deliverable, and Jsmtpd will to try to send a mail
+      back to the sender to inform of the failure. The mail is then
+      deleted.</para>
+    </section>
+
+    <section>
+      <title>Edit the file etc/plugin-config.xml</title>
+
+      <para>We are going to set up the DNS server to be used, the acces
+      control list and the mailbox writer.</para>
+
+      <section>
+        <title>DNSService</title>
+
+        <para>Locate the element DNSSetup, it contains a propertyset element,
+        it should look like :</para>
+
+        <programlisting>&lt;DNSSetup class="org.jsmtpd.plugins.dnsServices.DNSJavaResolver" name="DNS Java"&gt;
+    &lt;propertyset name="DnsServers" value="172.16.0.200"&gt;&lt;/propertyset&gt;
+&lt;/DNSSetup&gt;</programlisting>
+
+        <para>Change the <emphasis role="bold">DnsServers</emphasis> value in
+        propertyset to the ip of you DNS server. You can setup multiple DNS
+        Servers by separating them by comma.</para>
+      </section>
+
+      <section>
+        <title>Acces Control List</title>
+
+        <para>Locate the element ACLSetup, it containts two propertyset
+        elements that configures the acces control list :</para>
+
+        <programlisting>&lt;ACLSetup name="Basic ACL" class="org.jsmtpd.plugins.acls.SimpleACL"&gt;
+    &lt;propertyset name="RelayedHosts" value="127.0.0.1,localhost,172.16.0.20,172.16.0.23"&gt;&lt;/propertyset&gt;
+    &lt;propertyset name="ValidUsers" value="*@localhost,*@mail.taldius.ath.cx"&gt;&lt;/propertyset&gt;
+&lt;/ACLSetup&gt;</programlisting>
+
+        <para>Change the <emphasis role="bold">RelayedHosts</emphasis> value
+        to add the hosts allowed to send mail throught the server, separate
+        the ip addresses with comma. Keep 127.0.01 and localhost.</para>
+
+        <para>Change the <emphasis role="bold">ValidUsers</emphasis> value to
+        add the users@domain that Jsmtpd will consider as localhost, eg for
+        itself. you can use the wildcard * to mean any user.</para>
+      </section>
+
+      <section>
+        <title>MailboxWriter</title>
+
+        <para>Localte the element LocalDeliveryService, it contains one
+        propertyset element that configures the path of mailboxes :</para>
+
+        <programlisting>&lt;LocalDeliveryService name="umw" class="org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter"&gt;
+    &lt;propertyset name="MailDir" value="mailboxes/"&gt;&lt;/propertyset&gt;
+&lt;/LocalDeliveryService&gt;</programlisting>
+
+        <para>Change the MailDir value to the path where mailboxes should be
+        stored. The user running Jsmtpd must have read/write/execute rights to
+        this directory.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>What you should have now</title>
+
+      <para>You should now have an xml configuration file that looks like
+      :</para>
+
+      <programlisting>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;jsmtpdsetup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="jsmtpd-plugin-config.xsd"&gt;
+&lt;!--Note : Configuration is case sensitive --&gt;
+&lt;!-- Manual : http://jsmtpd.sourceforge.net/user-man/index.html --&gt;
+
+&lt;!-- Initialise the Acces Control List (Who can use the smtp server and who are are local users) --&gt;
+&lt;ACLSetup name="Basic ACL" class="org.jsmtpd.plugins.acls.SimpleACL"&gt;
+  &lt;propertyset name="RelayedHosts" value="127.0.0.1,localhost,192.168.1.0/255.255.0.0"/&gt;
+  &lt;propertyset name="ValidUsers" value="*@localhost,*@yourdomain.com"/&gt;
+&lt;/ACLSetup&gt;
+&lt;!-- Set up the Domain Name Service. Change to your dns IP --&gt;
+&lt;DNSSetup class="org.jsmtpd.plugins.dnsServices.DNSJavaResolver" name="DNS Java"&gt;
+  &lt;propertyset name="DnsServers" value="172.16.0.200"/&gt;
+&lt;/DNSSetup&gt;
+&lt;!--Local Delivery service. unix mailbox writer writes the incoming mail to mailbox format in the MaiDir directory MailDir has to be writable. --&gt;
+&lt;LocalDeliveryService name="umw" class="org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter"&gt;
+  &lt;propertyset name="MailDir" value="mailboxes/"/&gt;
+&lt;/LocalDeliveryService&gt;
+&lt;!-- Remote Devliery service handles mails not from local domain --&gt;
+&lt;RemoteDeliveryService name="Remote smtp sender" class="org.jsmtpd.plugins.deliveryServices.RemoteSmtpSender"&gt;
+&lt;/RemoteDeliveryService&gt;
+
+&lt;!-- Initialises the filter plugins --&gt;
+&lt;filtersetup&gt;&lt;/filtersetup&gt;
+
+&lt;smtpExtensions&gt;&lt;/smtpExtensions&gt;
+
+&lt;!-- IP filtering, plugins are executed in this oder, on failure drops the incoming connection--&gt;
+&lt;!-- filter names must be something loaded in the previous section --&gt;
+&lt;inputIPFilterChain&gt;&lt;/inputIPFilterChain&gt;
+
+&lt;!-- Filter the email contents folowing this tree, plugin names must be something loaded in filtersetup --&gt;
+&lt;bodyFilterTree&gt;&lt;/bodyFilterTree&gt;
+
+&lt;/jsmtpdsetup&gt;</programlisting>
+    </section>
+
+    <section>
+      <title>Startup</title>
+
+      <para>Now that you have finished the configuration, you can start the
+      server with startup.sh or startup.bat and look for eventual errors in
+      the log file.</para>
+    </section>
+
+    <section>
+      <title>Notes</title>
+
+      <para>Emails are in most cases small (in terms of size), so the current
+      implementation of Jsmtpd tries at most to keep mails loaded in memory,
+      whenever possible. So, Jsmtpd may occasionnaly use much ram (peaks)
+      while processing big messages. This is a design decision, althought a
+      transparent swapping may be added in future releases. In the worst case,
+      it will uses about 30meg(depending on the plugins) + (number of receiver
+      thread + number of sender threads + 10 ) * maximum message size. This
+      changes depending on the plugins loaded.</para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Advanced Configuration</title>
+
+    <section>
+      <title>Architecture</title>
+
+      <section>
+        <title>General informations</title>
+
+        <para>Jsmtpd works in several times, each one is a service :</para>
+
+        <orderedlist>
+          <listitem>
+            <para>A receiver module listens for incoming connection. Once a
+            client is connected, this module delegates the processing task to
+            a threaded processor.</para>
+          </listitem>
+
+          <listitem>
+            <para>Upon connection, a first IP filter is applied. If this
+            filter fails, the connection is closed. It is used to blacklist
+            hosts (manually, or using real time black list servers).</para>
+          </listitem>
+
+          <listitem>
+            <para>The mail is then received during a smtp chat with the
+            client. Permissions are checked against the ACL module to
+            determine wether or not the mail is to be receive. It is then
+            passed to the delivery service. During this negotiation, the
+            client may also switch to TLS (SSL) mode or authenticate itself
+            against the ACL (feature pending).</para>
+          </listitem>
+
+          <listitem>
+            <para>Whenever ressources are available a mail is pending to be
+            sent, the delivery service delegates it to a delivery handler
+            module (it is threaded).</para>
+          </listitem>
+
+          <listitem>
+            <para>The delivery handler will then apply a body filter tree to
+            the mail (content is examined and might be modified). It
+            determines if the mail is to be handled localy or to be sent to a
+            remote SMTP host, invoking the aproriate plugin.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Note that if it has enough memory, Jsmtpd won't even write the
+        mail down to disk, it's directly processed by delivery handlers,
+        allowing good performances.</para>
+      </section>
+
+      <section>
+        <title>Diagram</title>
+
+        <para>Here is diagram summing up what was said in the last section
+        :</para>
+
+        <figure>
+          <title></title>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="archi.jpg" />
+            </imageobject>
+          </mediaobject>
+        </figure>
+      </section>
+    </section>
+
+    <section>
+      <title>Filtering Concepts</title>
+
+      <section>
+        <title>What is a filter ?</title>
+
+        <para>Basicly, it is small piece of code that answers true or false.
+        By example, the ClamAV filter takes as input the mail, and says true,
+        there are no viruses, or false, a virus is detected.ClamAVFilter is a
+        body filter, ie it checks mail content.</para>
+
+        <para>The RBLPlugin is an IP input filter, used to reject senders only
+        from their originating network address.</para>
+      </section>
+
+      <section>
+        <title>Filter instances</title>
+
+        <para>In Jsmtpd, the same filter can be used with different
+        configuration. You can define it in the
+        jsmtpd-plugin-config.xml.</para>
+      </section>
+
+      <section>
+        <title>The IP input filter chain</title>
+
+        <para>As said before, a filter answers true or false. The input filter
+        are connected following a simple chain mode.This chain checking is
+        excuted upon connection of a client, before anything else. A plugin
+        failure will cause the entire chain to be broken, and the connection
+        to be dropped. If the chains ends in succes, the normal SMTP chat can
+        take place.</para>
+      </section>
+
+      <section>
+        <title>The body filter tree</title>
+
+        <para>In Jsmtpd, the filters are connected to each others following a
+        tree model. A given filter (node) can have one true child, one false
+        child. Each child may be a filter, or nothing. The mail is passed
+        throught the tree of filters. The chain declares the mail valid if the
+        last true child of the last node where the mail passed by is empty. It
+        is false if the last false child of the last node where the mail
+        passed is empty. Additionnaly, there are two specials filters that
+        cause the chain to be immediatly broken : ChainReject (immediate
+        failure) and Chain succes (immeditate succes).</para>
+
+        <para>You can define custom chains in that way, by example classifying
+        a mail as spam can be quite difficult, so you can try a first anti
+        spam filter and if it fails a second.</para>
+      </section>
+
+      <section>
+        <title>Additionnaly - ACL</title>
+
+        <para>During the SMTP chat, Jsmtpd will reject ALL the incoming mails,
+        except :</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>If the sender is allowed to send mail throught the server.
+            Allowed users are granted acces by an acces control list plugin
+            (ACL).</para>
+          </listitem>
+
+          <listitem>
+            <para>If the recipient is for local users. As above, the ACL
+            plugin will determine which users are local</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>Remember</title>
+
+        <para>Keep in mind that examining a mail content can consume quite a
+        lot of ressources, whereas IP based filtering costs much less
+        ressources. That's why Jsmtp performs simple IP filtering before
+        processing mails, saving ressources.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Advanced Setup</title>
+
+      <section>
+        <title>Enabling TLS (SSL)</title>
+
+        <section>
+          <title>What is TLS ?</title>
+
+          <para>TLS/SSL is an encryption mecanism over sockets, using signed
+          certifates. It allows a client to chat with Jsmtpd in a secured way.
+          In a basic SMTP support, mails are delivered in plain text. Jsmtpd
+          provides support for the STARTTLS command (RFC 2487), it means that
+          the chat between client and server starts in clear, then the client
+          asks to switch to encrypted layer. The chat goes on over a secured
+          channel.</para>
+        </section>
+
+        <section>
+          <title>Keystore</title>
+
+          <para>Java provides a keystore program to hold your certificates.
+          Jsmtpd uses this mecanism. A keystore is protected by a password.
+          Sun Java's RE includes the keytool program to manage your keystores.
+          The keytool program is available in the binary directory of Sun's
+          JDK, we'll assume that you have this directory on your system
+          path.</para>
+        </section>
+
+        <section>
+          <title>Creating a certificate</title>
+
+          <para>cd to jsmtpd/etc, then type : <programlisting>keytool -genkey -alias jsmtpd -keyalg RSA -keystore keystore</programlisting></para>
+
+          <para>It will generate a file (the keystore), and a RSA key in
+          keystore. Questions asked by the keytool program :<itemizedlist>
+              <listitem>
+                <para>keystore pass : choose one</para>
+              </listitem>
+
+              <listitem>
+                <para>distinguished name/common name (CN): set to the DNS name
+                of your server, by example : smtp.jsmtpd.org</para>
+              </listitem>
+
+              <listitem>
+                <para>organisation unit</para>
+              </listitem>
+
+              <listitem>
+                <para>organisation</para>
+              </listitem>
+
+              <listitem>
+                <para>city</para>
+              </listitem>
+
+              <listitem>
+                <para>state</para>
+              </listitem>
+
+              <listitem>
+                <para>country</para>
+              </listitem>
+
+              <listitem>
+                <para>a password for the key (press enter to use the same as
+                the keystore)</para>
+              </listitem>
+            </itemizedlist></para>
+
+          <para>Your keystore is now ready. Now you have to choose between
+          :<itemizedlist>
+              <listitem>
+                <para>Buying a certificate from a certficate authority (CA),
+                like from Verisgn, Thawte</para>
+              </listitem>
+
+              <listitem>
+                <para>Create a self signed certificate</para>
+              </listitem>
+            </itemizedlist></para>
+
+          <para>You can see what's in a keystore with :<programlisting>keytool -list -keystore keystore -rfc</programlisting></para>
+        </section>
+
+        <section>
+          <title>Self signed Certificate</title>
+
+          <para>cd to jsmtpd/etc: <programlisting>keytool -selfcert -keystore keystore -alias jsmtpd -keyalg RSA</programlisting></para>
+
+          <para>When connecting to a server using a self signed certificate,
+          it'll say that the certificate is not signed with a CA authority.
+          You can export the server's certificate and set it up on the clients
+          :<programlisting>keytool -export -alias jsmtpd -file jsmtpd-server.cer -keystore keystore</programlisting></para>
+
+          <para>It'll generate the jsmtpd-server.cer certificate to import for
+          your clients.</para>
+        </section>
+
+        <section>
+          <title>Configure Jsmtpd</title>
+
+          <para>Locate the element smtpExtensions in
+          etc/jsmtpd-plugin-config.xml, and add something like
+          :<programlisting>&lt;smtpExtension name="tls" class="org.jsmtpd.plugins.smtpExtension.TLSSwitcher"&gt;
+   &lt;propertyset name="KeystoreName" value="keystore"/&gt;
+   &lt;propertyset name="KeystorePassword" value="demodemo"/&gt;
+&lt;/smtpExtension&gt;</programlisting></para>
+
+          <para>The property KeystoreName tells the plugin which keystore to
+          use (must be in classpath, a good place is etc/) The
+          KeystorePassword is your keystore password.</para>
+        </section>
+      </section>
+
+      <section>
+        <title>Enabling SMTP authentication</title>
+
+        <section>
+          <title>Configure user/passwords</title>
+
+          <para>Jsmtpd supportstwo authentication methods (PLAIN/LOGIN) via
+          the !org.jsmtpd.plugins.smtpExtension.BasicSmtpAuth plugin.</para>
+
+          <para>Edit your config file etc/jsmtpd-plugin-config.xml, and locate
+          the smtpExtensions element. Add the following configuration under
+          the element :<programlisting>&lt;smtpExtension name="auth" class="org.jsmtpd.plugins.smtpExtension.BasicSmtpAuth"&gt;
+&lt;/smtpExtension&gt;</programlisting></para>
+        </section>
+
+        <section>
+          <title>Extension</title>
+
+          <para>Now, you need to add users/passwords to this smtpExtension.
+          You can either set login/passwords in clear (bad ;), or encrypted
+          version of the password. In any case, the property is a string
+          containing the user and the password, separated by a coma.
+          Properties :<itemizedlist>
+              <listitem>
+                <para>PlainUser : Adds the user/password in clear text</para>
+              </listitem>
+
+              <listitem>
+                <para>MD5User : Login is in clear, but the password is the
+                base64 encoded version of the md5 hash of your password. Use
+                the tool org.jsmtp.PasswordGenerator to generate such
+                passwords.</para>
+              </listitem>
+            </itemizedlist></para>
+        </section>
+
+        <section>
+          <title>Secured authentication ?</title>
+
+          <para>With the plain/login methods of authentication, passwords are
+          sent in clear. You can tell the plugin to require a secured
+          communication channel (such as a SSL/TLS channel, provided by
+          another SMTP extension of Jsmtpd, !TLSSwitcher. To tell it do so,
+          use the property RequireSecuredChannel, and set it to true.</para>
+        </section>
+
+        <section>
+          <title>Example</title>
+
+          <para>At the end, it should look like :<programlisting>&lt;smtpExtension name="auth" class="org.jsmtpd.plugins.smtpExtension.BasicSmtpAuth"&gt;
+   &lt;propertyset name="MD5User" value="jfp,QtOI+LHbmX+q99q0h/ESkA=="/&gt;
+   &lt;propertyset name="PlainUser" value="dummyUser,DummyPassword"/&gt;
+   &lt;propertyset name="RequireSecuredChannel" value="true"/&gt;
+&lt;/smtpExtension&gt;</programlisting></para>
+        </section>
+      </section>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Typical Use Case</title>
+
+    <section>
+      <title>Antivirus/Antispam : ClamAV/Spamassassin</title>
+
+      <section>
+        <title>Scenario</title>
+
+        <para>In this example, we are going to setup a typical filter chain in
+        Jsmtpd. First thing we want is to check mail for viruses. We want to
+        drop mail containing viruses, while allowing the others to go throught
+        the reste of the chain. Then, for the remaining mails, we want to see
+        if they contain spam, but we don't want any of them to be dropped,
+        just marked spam or not. We are going to use the ClamAV filter to
+        check for viruses, and the spam assassin filter to check out for spam.
+        We will also use the special filter ChainSucces to validate the chain
+        even if the mail is detected as spam.</para>
+      </section>
+
+      <section>
+        <title>Summary</title>
+
+        <para></para>
+
+        <figure>
+          <title></title>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="filterExample2.jpg" />
+            </imageobject>
+          </mediaobject>
+        </figure>
+      </section>
+
+      <section>
+        <title>Filter Setup</title>
+
+        <para>We are going to setup the three filter instances needed for the
+        example :</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>An instance of ClamAV filter, we will refer to it by its
+            logical name (choose one, must be unique) : antivirus</para>
+          </listitem>
+
+          <listitem>
+            <para>An instance of SA filter, we will refer to it by its logical
+            name (choose on, must be unique) : antispam</para>
+          </listitem>
+
+          <listitem>
+            <para>An instance of ChainSucces, we will refer to it by its
+            logical name (choose on, must be unique) : chainvalid</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>ClamAV Setup</title>
+
+        <para>If you look at the plugin documentation of ClamAV filter, you
+        will see that its associated class is
+        "org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter ", and that it takes
+        three parameters to setup the host, the port and the timeout. And the
+        previous drawing and as we explained at the begining, we want to drop
+        mail containing viruses automaticly. So, we will set the FailOnError
+        parameter to true. Note that we could also don't care about this
+        parameter, if we add a ChainFailure plugin to this plugin, or by
+        leaving its false branch empty... But the mail would be silently
+        droped. By setting FailOnError, the plugin will generate a error mail
+        and break the chain to failure, causing the original mail to be
+        droped.</para>
+
+        <para>Edit the etc/jsmtpf-plugin-config.xml file. Locate the element
+        filtersetup. Add the following configuration to the filtersetup
+        element, replacing the values to match your configuration
+        :<programlisting>&lt;filterinit name="antivirus" class="org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter"&gt;
+   &lt;propertyset name="ClamdHost" value="172.16.0.200"/&gt;
+   &lt;propertyset name="ClamdPort" value="3310"/&gt;
+   &lt;propertyset name="connectionTimeout" value="45"/&gt;
+   &lt;propertyset name="FailOnError" value="true"/&gt;
+&lt;filterinit&gt;</programlisting></para>
+
+        <para>Note that from now, this plugin is configured and we will refer
+        to it later by its name parameter : antivirus.</para>
+      </section>
+
+      <section>
+        <title>SpamAssassin Setup</title>
+
+        <para>The SAFilter documentations tells us that the class name to use
+        is "org.jsmtpd.plugins.filters.SA.SAFilter", and the plugin takes
+        three parameters.</para>
+
+        <para>Edit the etc/jsmtpf-plugin-config.xml file. Locate the element
+        filtersetup. Add the following configuration to the filtersetup
+        element, replacing the values to match your configuration
+        :<programlisting>&lt;filterinit name="antispam" class="org.jsmtpd.plugins.filters.SA.SAFilter"&gt;
+   &lt;propertyset name="SpamdHost" value="172.16.0.200"/&gt;
+   &lt;propertyset name="SpamdPort" value="783"/&gt;
+   &lt;propertyset name="SocketTimeout" value="45"/&gt;
+&lt;/filterinit&gt;</programlisting></para>
+
+        <para>Note that from now, this plugin is configured and we will refer
+        to it later by its name parameter : antispam.</para>
+      </section>
+
+      <section>
+        <title>ChainSucces Setup</title>
+
+        <para>Nothing really hard here, as there is nothing to configure,
+        juste get an instance named chainvalid from
+        "org.jsmtpd.plugins.filters.builtin.ChainSucces"</para>
+
+        <para>Edit the etc/jsmtpf-plugin-config.xml file. Locate the element
+        filtersetup. Add the following configuration to the filtersetup
+        element, replacing the values to match your configuration
+        :<programlisting>&lt;filterinit name="chainvalid" class="org.jsmtpd.plugins.filters.builtin.ChainSucces"&gt;
+&lt;/filterinit&gt; </programlisting></para>
+
+        <para>Note that from now, this plugin is configured and we will refer
+        to it later by its name parameter : chainvalid.</para>
+      </section>
+
+      <section>
+        <title>Build up the filter tree</title>
+
+        <para>Now that our filters are loaded, we can use them in the filter
+        tree. All we need to do is to assemble them just like in a
+        construction game.</para>
+
+        <para>Edit the etc/jsmtpf-plugin-config.xml file. Locate the element
+        bodyFilterTree. Your bodyFilterTree should look like :<programlisting>&lt;bodyFilterTree&gt;
+  &lt;filter name="antivirus"&gt;
+   &lt;true&gt;
+    &lt;filter name="antispam"&gt;
+     &lt;true&gt;
+      &lt;filter name="chainvalid"&gt;
+       &lt;true&gt;&lt;/true&gt;
+       &lt;false&gt;&lt;/false&gt;
+      &lt;/filter&gt;
+     &lt;/true&gt;
+     &lt;false&gt;
+      &lt;filter name="chainvalid"&gt;
+       &lt;true&gt;&lt;/true&gt;
+       &lt;false&gt;&lt;/false&gt;
+      &lt;/filter&gt;
+     &lt;/false&gt;
+    &lt;/filter&gt;
+   &lt;/true&gt;
+   &lt;false&gt;
+   &lt;/false&gt;
+  &lt;/filter&gt;
+&lt;/bodyFilterTree&gt;</programlisting></para>
+      </section>
+
+      <section>
+        <title>Let's go</title>
+
+        <para>Just fire up Jsmtpd using startup.sh or startup.bat depending on
+        your platform.</para>
+
+        <para>If you have debug turned on, you should have something like
+        :<programlisting>2005-03-14 20:39:07,580 INFO  Jsmtpd - Jsmtpd 0.2 experimental, Copyright (C) 2005 Jean-Francois Poux - jf.poux at laposte.net
+2005-03-14 20:39:07,596 INFO  Jsmtpd - Jsmtpd comes with ABSOLUTELY NO WARRANTY;
+2005-03-14 20:39:07,596 INFO  Jsmtpd - This is free software, and you are welcome to redistribute it under certain conditions;
+2005-03-14 20:39:07,596 INFO  Jsmtpd - See the LICENCE file for details
+2005-03-14 20:39:07,596 INFO  Jsmtpd - Server startup
+2005-03-14 20:39:08,627 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.dnsServices.DNSJavaResolver, set DnsServers=172.16.0.200
+2005-03-14 20:39:08,627 INFO  Jsmtpd - DNS Service plugin loaded : DNSJava resolver plugin for jsmptd
+2005-03-14 20:39:08,627 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.acls.SimpleACL, set RelayedHosts=127.0.0.1,localhost,172.16.0.20,172.16.0.23
+2005-03-14 20:39:08,643 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.acls.SimpleACL, set ValidUsers=*@localhost,*@mail.taldius.ath.cx
+2005-03-14 20:39:08,643 INFO  Jsmtpd - ACL Service plugin loaded : Simple Acces Control List plugin for jsmtp
+2005-03-14 20:39:08,643 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter, set MailDir=mailboxes/
+2005-03-14 20:39:08,658 INFO  Jsmtpd - Local Delivery Service plugin loaded : UnixMailboxWriter plugin for jsmtpd
+2005-03-14 20:39:08,658 INFO  Jsmtpd - Remote Delivery Service plugin loaded : RemoteSmtpSender plugin fort jsmptd
+2005-03-14 20:39:08,658 DEBUG Jsmtpd -  Trying to load [c]org.jsmtpd.plugins.filters.builtin.ChainSucces as [i]chainvalid
+2005-03-14 20:39:08,658 DEBUG Jsmtpd -  Loaded [c]org.jsmtpd.plugins.filters.builtin.ChainSucces as [i]chainvalid
+2005-03-14 20:39:08,658 DEBUG Jsmtpd -  Trying to load [c]org.jsmtpd.plugins.filters.SA.SAFilter as [i]antispam
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.SA.SAFilter, set SpamdHost=172.16.0.200
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.SA.SAFilter, set SpamdPort=783
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.SA.SAFilter, set SocketTimeout=45
+2005-03-14 20:39:08,674 DEBUG Jsmtpd - Jsmtpd-SA SpamAssassin filter initialized
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -  Loaded [c]org.jsmtpd.plugins.filters.SA.SAFilter as [i]antispam
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -  Trying to load [c]org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter as [i]antivirus
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter, set ClamdHost=172.16.0.200
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter, set ClamdPort=3310
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter, set SocketTimeout=45
+2005-03-14 20:39:08,674 DEBUG Jsmtpd -   [c]:class org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter, set FailOnError=true
+2005-03-14 20:39:08,674 DEBUG Jsmtpd - Jsmtpd-ClamAV antivirus filter initing
+2005-03-14 20:39:09,689 DEBUG Jsmtpd - Jsmtpd-ClamAV antivirus filter initialized
+2005-03-14 20:39:09,689 DEBUG Jsmtpd -  Loaded [c]org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter as [i]antivirus
+2005-03-14 20:39:09,689 INFO  Jsmtpd - Plugin loaded : Chain succes: Filter tree chain succes
+2005-03-14 20:39:09,689 INFO  Jsmtpd - Plugin loaded : Jsmtpd-SA SpamAssassin filter
+2005-03-14 20:39:09,689 INFO  Jsmtpd - Plugin loaded : Jsmtpd-ClamAV antivirus filter
+2005-03-14 20:39:09,689 DEBUG Jsmtpd - [tree]Loading filtree with root node [i]antivirus
+2005-03-14 20:39:09,705 DEBUG Jsmtpd - [tree]adding antispam as true node to node Jsmtpd-ClamAV antivirus filter
+2005-03-14 20:39:09,705 DEBUG Jsmtpd - [tree]adding chainvalid as true node to node Jsmtpd-SA SpamAssassin filter
+2005-03-14 20:39:09,705 DEBUG Jsmtpd - [tree]adding chainvalid as false node to node Jsmtpd-SA SpamAssassin filter
+2005-03-14 20:39:09,861 INFO  Jsmtpd - Listening for connections on port 25
+2005-03-14 20:39:09,893 INFO  Jsmtpd - Delivery service started
+2005-03-14 20:39:09,893 INFO  Jsmtpd - Server running</programlisting></para>
+      </section>
+
+      <section>
+        <title>Files</title>
+
+        <para>Get the <ulink
+        url="jsmtpd-plugin-config.xml">jsmtpd-plugin-config.xml</ulink></para>
+      </section>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Plugin Reference</title>
+
+    <section>
+      <title>Input IP Filters</title>
+
+      <section>
+        <title>Blacklist</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin will check the IP address of a remote client
+          against a list of black listed IP setted up by the admin, in the
+          configuration file. Any match causes the connection to be
+          dropped.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is an input filter, it can only be used within an
+          inputIPFilterChain element.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>True, if the remote host is not known</para>
+            </listitem>
+
+            <listitem>
+              <para>False, if the remote host is black listed.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.inputIPFilters.BlackList</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>BlacklistedIP : String. Add the parameter as a black
+              listed address.</para>
+            </listitem>
+
+            <listitem>
+              <para>BypassLocal : boolean. If set to true, local domains are
+              not checked.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>RBLFilter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>The RBL filter connects to a list of Real Time Black List
+          servers and checks the ip address of a remote host against them. If
+          the host is known, the connection is dropped.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is an input filter, it can only be used within an
+          inputIPFilterChain element.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>True, if the host is not know</para>
+            </listitem>
+
+            <listitem>
+              <para>False, if the host is known.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.inputIPFilters.RBLFilter</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>RBLServer : String. Hostname of a RBL service to
+              query.</para>
+            </listitem>
+
+            <listitem>
+              <para>BypassLocal : Boolean. Local domains skip the filter if
+              set to true.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Notes</title>
+
+          <para>A RBL check is in fact a DNS query, answered by specialized
+          servers. As for any DNS query, this process can be slow. To speed up
+          the process, use the BypassLocal property and use a DNS server that
+          is able to cache requests.</para>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <title>Body Filters</title>
+
+      <section>
+        <title>ClamAV, Clam antivirus filter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is a filter that connects to a clamd (ClamAV)
+          daemon, passes it the content of mail for checking, and read the
+          response. The mail is not altered throught this plugin.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is a body filter, it can only be used with in
+          bodyFilterTree configuration element. It will scan the body of the
+          mail.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>True, if the mail does not contains viruses</para>
+            </listitem>
+
+            <listitem>
+              <para>False, if the mail contains viruses</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">clamdHost</emphasis> : the ip of the
+              server running clamAV daemon</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">clamdPort</emphasis> : the tcp port
+              that the clamAV deamon listens on (ranges 1-65535)</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">connectionTimeout</emphasis> : the
+              socket timeout in seconds, if no response can be obtained within
+              this time, the connection is closed and the plugins returns
+              false</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">failOnError</emphasis> : boolean,
+              default false. If true, a positive virus detection will generate
+              an error email and break the chain in error state (mail will be
+              droped).</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>See Also</title>
+
+          <para>Clam AntiVirus homepage, <ulink
+          url="http://www.clamav.net/">http://www.clamav.net/</ulink></para>
+        </section>
+      </section>
+
+      <section>
+        <title>SA, Spamassassin anti spam filter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is a filter that connects to a spamd
+          (spamassassin) daemon, passes it the content of mail for checking,
+          and read the response. The mail is altered by the spamd
+          daemon.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is a body filter, it can only be used with in
+          bodyFilterTree configuration element. It will scan the body of the
+          mail.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>True, if the mail does not contains spam</para>
+            </listitem>
+
+            <listitem>
+              <para>False, if the mail contains spam</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.filters.SA.SAFilter</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">SpamdHost</emphasis> : the ip of the
+              server running spamd daemon</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">SpamdPort</emphasis> : the tcp port
+              that the spamd deamon listens on (ranges 1-65535)</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">SocketTimeout</emphasis> : the
+              socket timeout in seconds, if no response can be obtained within
+              this time, the connection is closed and the plugins returns
+              false</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">SkipIfSizeMore</emphasis> : spam are
+              usually small sized mails, if a mails exceeds this size, it
+              won't be analyzed by the spamd daemon, saving ressources.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>See Also</title>
+
+          <para>SpamAssassin homepage, <ulink
+          url="http://spamassassin.apache.org/">http://spamassassin.apache.org/</ulink></para>
+        </section>
+      </section>
+
+      <section>
+        <title>Jasen anti spam filter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is a filter that runs a Jasen Engine, passes it
+          the content of mail for checking, and read the response. The mail is
+          not altered.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is a body filter, it can only be used with in
+          bodyFilterTree configuration element. It will scan the body of the
+          mail.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>True, if the mail does not contains spam</para>
+            </listitem>
+
+            <listitem>
+              <para>False, if the mail contains spam</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.filters.Jasen.JasenSpamFilter</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">FailOnError</emphasis>, boolean.
+              Default : false. If set to true, when a spam detection occurs, a
+              message is sent back to sender telling why it rejected the mail,
+              and break the chain in a failure state</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>See Also</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>plugin/filters/Jasen/jasen-config/ directory to configure
+              the Jasen Engine, refer to the documentation of Jasen</para>
+            </listitem>
+
+            <listitem>
+              <para>Jasen homepage <ulink
+              url="http://www.jasen.org/">http://www.jasen.org/</ulink></para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>RcptMatcher Filter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin examines the recipients of a mail against a list
+          that you can configure. The match rule can be match ALL or match
+          ONE.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is a body filter, it can only be used with in
+          bodyFilterTree configuration element.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>True, if the rule is matched</para>
+            </listitem>
+
+            <listitem>
+              <para>False, otherwise</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.filters.builtin.RcptMatcher</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">FailOnError</emphasis>, boolean.
+              Default : false. If set to true, a false response is transformed
+              to a filter tree break in state of failure</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">validateOnSucces</emphasis>,
+              boolean. Default : false. If set to true, a True response is
+              transformed to a filter tree break in state of success</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">orOperator</emphasis>, boolean.
+              Default : false. By default, all recipients must be match. Set
+              tot true to turn to a orOperator instead</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">Rcpt</emphasis>, String. An email
+              address to match</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>RcptRewrite Filter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin can change the recipient of a mail. It is used do
+          define mail aliases, or catch all accounts.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is a body filter, it can only be used with in
+          bodyFilterTree configuration element.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>This filter always returns true.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.filters.builtin.RcptRewrite</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">CatchAll</emphasis>, String. format
+              : Domain adress, mailbox address. Example :
+              *@yourdomain.com,smith@yourdomain.com, will deliver all mail
+              that have not mailboxes on domain yourdomain.com to
+              smith@yourdomain.com. The recipient might be local or remote.
+              You can set this property several times to add multiples
+              catchall.</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">Rewrite</emphasis>, String. format :
+              adress to match,targeted address. Example :
+              john@yourdomain.com,smith@yourdomain.com. The target might be
+              local or remote. You can set this property several times to add
+              multiples rewrites.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>LdapBodyRewriter</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin will check the aliases of your domain(s) against a
+          ldap directory to change recipients to their real accounts.</para>
+        </section>
+
+        <section>
+          <title>Filter Type</title>
+
+          <para>This filter is a body filter, it can only be used with in
+          bodyFilterTree configuration element.</para>
+        </section>
+
+        <section>
+          <title>Responses</title>
+
+          <itemizedlist>
+            <listitem>
+              <para>This filter always returns true.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.filters.ldap.LdapBodyRewriter</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">ldapAdminLogin</emphasis>: Your ldap
+              connection chain, example : cn=admin,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapAdminPassword</emphasis>: your
+              ldap admin password</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUrl</emphasis>: your ldap
+              server, example : ldap://192.168.10.1/</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserProvider</emphasis>: Where
+              are your users ? example : ou=people,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserAliasAttribute</emphasis>:
+              name of multi properties holding the aliases. it depends on your
+              schema. Example : rfc822MailAlias</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserLogin</emphasis>: name of
+              the user attribute holding the real name of user, example uid in
+              a posix schema.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <title>Acces Control List</title>
+
+      <section>
+        <title>SimpleACL, config file based</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is an ACL provider for the Jsmtpd engine, based on
+          config file. It tells the engine who can acces the server.</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.acls.SimpleACL</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">RelayedHosts</emphasis> : A list of
+              IP addresses separated by comma. The server will relay theses
+              hosts. Always keep 127.0.0.1 and localhost, or the error mails
+              will be droped. You can use a netmask (decimal dot format) to
+              specify multiple hosts, by example
+              172.16.0.0/255.255.0.0.</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ValidUsers</emphasis> : A list of
+              users@domain separated by comma. Theses users will be considered
+              as local, and the engine will use the local delivery plugin to
+              send the mail. You can use * as wildcard to mean any user. Keep
+              *@localhost</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>LdapACL, ldap directory based</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is an ACL provider for the Jsmtpd engine, based on
+          queries against a ldap directory server. There are two things this
+          plugin do : get the user names/aliases in the directory to determine
+          if recipients are local, and gather informations of networks to
+          relay. In your directory, you should have a ou (Organisation Unit)
+          for users, and another for networks to be relayed.</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.acls.LdapACL</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">ldapAdminLogin</emphasis> : Your
+              ldap connection chain, example :
+              cn=admin,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapAdminPassword</emphasis> : Your
+              ldap admin password</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUrl</emphasis> : your ldap
+              server, example : ldap://192.168.10.1/</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserProvider</emphasis> : Node
+              where users are, example ou=people,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserAliasAttribute</emphasis> :
+              user mail alias attribute, might be multiple, example
+              rfc822MailAlias</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserLogin</emphasis> : name of
+              attribute holding short username (login). Uid in case of
+              posixAccoutn schema</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserPassword</emphasis> : name
+              of attribute holdinguser password, example : userPassword</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapNetworkProvider</emphasis> :
+              node where networks are stored, example:
+              ou=networks,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapNetworkClass</emphasis> : class
+              of network objects, example : ipNetwork</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis
+              role="bold">ldapNetworkAddressAttribute</emphasis> : name of
+              attribute holdinguser ipv4 address</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapNetworkMaskAttribute</emphasis>
+              :name of attribute holding your ipv4 mask, associated with an
+              address</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <title>DNS Service</title>
+
+      <section>
+        <title>DNSJava resolver</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is an DNS provider for the Jsmtpd Engine. It is
+          based on the DNSJava library.</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.dnsServices.DNSJavaResolver</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">DnsServers</emphasis> : a list of
+              DNS servers to query, separated with comma.</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+
+        <section>
+          <title>See also</title>
+
+          <para>DNSJava homepage, <ulink
+          url="http://www.xbill.org/dnsjava/">http://www.xbill.org/dnsjava/</ulink></para>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <title>DeliveryServices</title>
+
+      <section>
+        <title>Mailbox Writer</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is a delivery service for Jsmtpd. It writes the
+          mails to a mbox file, according to the user's name. The file is
+          locked to ensure proper operations.</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">MailDir</emphasis> : A path on disk
+              where to store the mails. The user running Jsmtpd must have
+              read/write/execute rights to this directory</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>RemoteSmtpSender</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin is a delivery service for Jsmtpd. It connects to a
+          remote smtp server for each rcpt and tries to deliver the
+          mail.</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.deliveryServices.RemoteSmtpSender</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">ConnectionTimeout</emphasis> : The
+              connection will be dropped after this amout of time of
+              inactivity (in seconds)</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <title>SMTP Extensions</title>
+
+      <section>
+        <title>TLS Switcher</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This smtp extension provides support for the starttls command
+          (switch channel to SSL)</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.smtpExtension.TLSSwitcher</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">keystoreName</emphasis> : name of
+              the keystore file to use, has to be in classpath (etc/ by
+              example).</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">keystorePassword</emphasis> : your
+              keystore password</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>Basic SMTP Authentication</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin adds support for PLAN and LOGIN authentication
+          method. User/passwords are stored in the xml config file</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.smtpExtension.BasicSmtpAuth</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">plainUser</emphasis> : add the user
+              password, example : "smith,secret"</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">md5User</emphasis> : add the user
+              password, example : "smith,md5password"</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+
+      <section>
+        <title>LDAP SMTP Authentication</title>
+
+        <section>
+          <title>Description</title>
+
+          <para>This plugin adds support for PLAN and LOGIN authentication
+          method. User/passwords are stored in ldap server.</para>
+        </section>
+
+        <section>
+          <title>Class Name</title>
+
+          <para>org.jsmtpd.plugins.smtpExtension.LdapAuthenticator</para>
+        </section>
+
+        <section>
+          <title>Parameters</title>
+
+          <itemizedlist>
+            <listitem>
+              <para><emphasis role="bold">ldapAdminLogin</emphasis> : ldap
+              admin connection chain, example :
+              cn=admin,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapAdminPassword</emphasis> : your
+              ldap admin password</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUrl</emphasis> : your ldap
+              server, example ldap://192.168.10.1/</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserProvider</emphasis> : Where
+              your users are stored, example ou=people,dc=jsmtpd,dc=org</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserLogin</emphasis> : Attribute
+              of user objects holding login uid</para>
+            </listitem>
+
+            <listitem>
+              <para><emphasis role="bold">ldapUserPassword</emphasis> :
+              Attribute of user objects holding password (md5 or crypt
+              supported)</para>
+            </listitem>
+          </itemizedlist>
+        </section>
+      </section>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>FAQ</title>
+
+    <section>
+      <title>Why can't I check the incoming mails ?</title>
+
+      <para>Jsmtpd's job is to receive and send mails. When it receives local
+      mails, they are stored on disk, or whatever persistant media. To check
+      your mail, you will need another service, likely a POP or IMAP daemon.
+      Jsmtpd might one day embed a small service like theses. For now, you can
+      use any pop3/imap daemon able to work with mbox files. Under win32
+      platforms, I just don't know, I've heard that uw pop would work on
+      it.</para>
+    </section>
+  </chapter>
+</book>

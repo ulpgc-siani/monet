@@ -1,0 +1,15 @@
+@import url("office.api?op=loadthemefile&path=_styles/browse/common.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/set.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/desktop.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/document.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/container.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/coleccion.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/coleccion.section.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/coleccion.schema.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/coleccion.list.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/form.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/form.fields.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/report.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/system.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/task.css");
+@import url("office.api?op=loadthemefile&path=_styles/browse/dashboard.css");

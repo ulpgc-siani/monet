@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="FieldDeclaration" parent="IndexedDeclaration" extensible="true">
+  <description>Declaración abstracta que se utiliza para  modelar un campo de un formulario</description>
+
+  <property name="is-required">
+    <description>Su presencia indica que es obligatorio cumplimentar el campo</description>
+    <hint>Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones</hint>
+  </property>
+
+  <property name="is-extended">
+    <description>Su presencia indica que es un campo pertenece a la parte extendida de un campo sección</description>
+  </property>
+
+  <property name="is-super">
+    <description>Su presencia indica que es un supercampo</description>
+  </property>
+
+  <property name="is-univocal">
+    <description>Su presencia indica que este campo es univoco y por tanto no se incluye en las operaciones de duplicar o crear a partir de un patrón</description>
+  </property>
+  
+  <property name="is-static">
+    <description>Su presencia indica que este campo es no se puede modificar en las operaciones de crear a partir de un patrón. Su valor se obtiene del valor indicado en el patrón.</description>
+  </property>
+
+  <property name="default-value" multiple="true">
+    <description>Es el contenido por defecto de un campo cuando se crea el formulario</description>
+    <attribute name="code" type="string">
+      <description>Código del valor</description>
+      <hint>Es usado para establecer un valor por defecto en los campos tipo select</hint>
+    </attribute>
+    <attribute name="checked" type="string">
+      <description>Chequeo del valor</description>
+      <hint>Es usado para establecer un valor por defecto en los campos tipo check</hint>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del campo. Se utiliza para mostrar a los usuarios el nombre del campo</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="description" multiple="true" key="language">
+    <description>Descripción del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="message" multiple="true">
+    <description>Mensaje de ayuda para explicar al usuario el significado del campo</description>
+    <attribute name="type" type="enumeration">
+      <enumeration>
+        <option>IF_EDITING</option>
+        <option>IF_EMPTY</option>
+        <option>IF_REQUIRED</option>
+      </enumeration>
+    </attribute>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma del mensaje</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+</class>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="FormLockDeclaration" parent="WorklockDeclaration" tag="form-lock">
+  <description>Declaración de un bloqueo con formulario. Estos bloqueos se resuelven cuando el usuario rellena el formulario</description>
+
+  <property name="use" required="true">
+    <description>Configuración del bloqueo. Es necesario indicar el formulario que se usar</description>
+    <attribute name="form" type="key" link="FormDefinition" required="true">
+      <description>Nombre de la definición de formulario que se muestra al usuario</description>
+    </attribute>
+    <attribute name="view" type="key" link="FormViewDeclaration">
+      <description>Nombre de la definición de formulario que se muestra al usuario</description>
+    </attribute>
+  </property>
+  
+</class>

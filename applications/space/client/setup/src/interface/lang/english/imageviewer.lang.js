@@ -1,0 +1,3 @@
+Lang.ImageViewer = {
+  close : "Cerrar"		
+};

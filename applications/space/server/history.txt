@@ -1,0 +1,78 @@
+##########################
+# MONET REVISION HISTORY #
+##########################
+
+16/02/2011
+================================
+configuration.props
+--------------------------------
+- Nueva variable de configuración en la que se debe indicar la contraseña del usuario system
+MONET_SYSTEM_USER_PASSWORD 
+
+18/01/2011
+================================
+WebContent/WEB-INF/app_data/core/database/*
+--------------------------------
+- Refactorizado el nombre de todos los scripts de base de datos
+
+29/04/2010
+================================
+configuration.props
+--------------------------------
+* Modificar la url de la variable
+MONET_APPLICATION_DOCUMENTS_URL = http://[dominio]/dms
+
+* Eliminar variable
+MONET_APPLICATIONS_IMAGES_URL
+MONET_APPLICATIONS_DOCUMENTS_URL
+MONET_APPLICATIONS_DOCUMENTS_SOAP_URL
+
+* Crear variable
+MONET_COMPONENT_DOCUMENTS_MONET_URL = http://localhost/docserver
+MONET_COMPONENT_DOCUMENTS_MONET_SOAP_URL = http://localhost/docserver/ws/docs?wsdl
+
+--------------------------------
+applications/dms/configuration.props
+--------------------------------
+* Nuevo fichero
+
+--------------------------------
+applications/ims/configuration.props
+--------------------------------
+* Nuevo fichero
+
+17/09/2010
+================================
+configuration.props
+--------------------------------
+* Añadir la siguiente variable
+MONET_BUSINESS_MODEL_PACKAGES_PATH = org.monet.businessmodel
+
+03/10/2010
+================================
+web.dist.xml
+--------------------------------
+* Añadir la siguiente variable
+<version>1.1</version>
+
+* Añadir las siguientes entradas
+<filter>
+  <filter-name>UrlRewriteFilter</filter-name>
+  <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>UrlRewriteFilter</filter-name>
+  <url-pattern>/</url-pattern>
+</filter-mapping>
+
+30/12/2010
+================================
+configuration.props
+--------------------------------
+* Eliminar las siguientes variables
+MONET_REFERENCE_FIELDS = code,label,description,highlighted,createdate,producedate,updatedate
+MONET_REFERENCE_FIELDS_DB_MAPPING = code,label,description,highlighted,create_date,produce_date,update_date
+MONET_REFERENCE_FIELDS_DB_ORDERING = asc,asc,asc,desc,desc,desc,desc
+MONET_DOCUMENT_FORMATS = cv, pdf
+MONET_DOCUMENT_FORMATS_TITLES = Documento de currículum, Documento portable
+MONET_DEFAULT_REFERENCE_FIELD = code

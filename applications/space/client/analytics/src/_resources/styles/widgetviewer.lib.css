@@ -1,0 +1,37 @@
+.widgetviewer {
+	height: 105px;
+}
+
+.widgetviewer .widget {
+	width: 150px;
+  position: relative;
+  border: 1px solid white;
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+}
+
+.widgetviewer .widget.active {
+  border-width: 2px;
+}
+
+.widgetviewer .widget .toolbar {
+  background: none repeat scroll 0 0 white;
+  border: 2px solid #AAAAAA;
+  border-radius: 100px 100px 100px 100px;
+  margin-right: -18px;
+  margin-top: -13px;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 22px;
+}
+
+.widgetviewer .widget.predefined .toolbar {
+	display: none;
+}
+
+.widgetviewer .widget .content {
+	display: block;
+}

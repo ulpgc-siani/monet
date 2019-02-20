@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SerialFieldDeclaration" parent="FieldDeclaration" tag="field-serial">
+	
+  <property name="sequence" >
+	<description></description>
+	<attribute name="value" type="Code" required="true">
+      <description>Código de la secuencia que surtirá de valores nuevos a este campo</description>
+    </attribute>
+  </property>
+  
+  <property name="format" >
+	<description></description>
+	<attribute name="value" type="String" required="true">
+      <description>Expresión que indica como se generan nuevos valores para este campo. Será del tipo: "A#S:10#/#Y:2#" siendo una A, seguido de 10 digitos extraidos de la secuencia, seguido de  una barra y el año con dos dígitos.</description>
+    </attribute>
+  </property>
+
+</class>

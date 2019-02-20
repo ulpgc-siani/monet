@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="EntityDefinition" parent="Definition">
+	<description>Una entidad es un objeto de la unidad de negocio que representa estado o contenido</description>
+</class>

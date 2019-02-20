@@ -1,0 +1,179 @@
+@mixin disable-filters()
+  .field.link .dialog .headers .header.filter > a
+    pointer-events: none
+
+  .field.link .dialog .headers .header.filter > table > tbody > tr:nth-child(2), .field.link .dialog .headers .header.filter .selected-options
+    display: none !important
+    cursor: default !important
+
+@include disable-filters()
+
+.field.link .component .input-panel .select
+  @include select-arrow()
+
+.field.link .component .toolbar .edit
+  color: #aaa
+  display: none
+  cursor: pointer
+
+.field.link .component:hover .toolbar .edit
+  display: inline-block
+
+.field.link .embedded-entity
+  display: none
+
+.field.link .embedded-entity.loading
+  background: url('data:image/gif;base64,R0lGODlhEAAQALMMAKqooJGOhp2bk7e1rZ2bkre1rJCPhqqon8PBudDOxXd1bISCef///wAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFAAAMACwAAAAAEAAQAAAET5DJyYyhmAZ7sxQEs1nMsmACGJKmSaVEOLXnK1PuBADepCiMg/DQ+/2GRI8RKOxJfpTCIJNIYArS6aRajWYZCASDa41Ow+Fx2YMWOyfpTAQAIfkEBQAADAAsAAAAABAAEAAABE6QyckEoZgKe7MEQMUxhoEd6FFdQWlOqTq15SlT9VQM3rQsjMKO5/n9hANixgjc9SQ/CgKRUSgw0ynFapVmGYkEg3v1gsPibg8tfk7CnggAIfkEBQAADAAsAAAAABAAEAAABE2QycnOoZjaA/IsRWV1goCBoMiUJTW8A0XMBPZmM4Ug3hQEjN2uZygahDyP0RBMEpmTRCKzWGCkUkq1SsFOFQrG1tr9gsPc3jnco4A9EQAh+QQFAAAMACwAAAAAEAAQAAAETpDJyUqhmFqbJ0LMIA7McWDfF5LmAVApOLUvLFMmlSTdJAiM3a73+wl5HYKSEET2lBSFIhMIYKRSimFriGIZiwWD2/WCw+Jt7xxeU9qZCAAh+QQFAAAMACwAAAAAEAAQAAAETZDJyRCimFqbZ0rVxgwF9n3hSJbeSQ2rCWIkpSjddBzMfee7nQ/XCfJ+OQYAQFksMgQBxumkEKLSCfVpMDCugqyW2w18xZmuwZycdDsRACH5BAUAAAwALAAAAAAQABAAAARNkMnJUqKYWpunUtXGIAj2feFIlt5JrWybkdSydNNQMLaND7pC79YBFnY+HENHMRgyhwPGaQhQotGm00oQMLBSLYPQ9QIASrLAq5x0OxEAIfkEBQAADAAsAAAAABAAEAAABE2QycmUopham+da1cYkCfZ94UiW3kmtbJuRlGF0E4Iwto3rut6tA9wFAjiJjkIgZAYDTLNJgUIpgqyAcTgwCuACJssAdL3gpLmbpLAzEQA7') no-repeat
+  width: 30px
+  height: 30px
+  margin: auto
+
+.field.link .embedded-entity.visible
+  display: block
+
+.field.link .embedded-entity.visible:not(.loading)
+  border: 1px dashed #8D268B
+
+.field.link .embedded-entity .close
+  font-weight: normal
+  float: right
+  padding: 4px
+
+.field.link .embedded-entity .close:hover
+  background-color: #efefef
+
+.field.link .popup
+  overflow: hidden !important
+  padding-right: 0
+  min-width: 375px
+
+.field.link .dialog table
+  table-layout: fixed
+
+.field.link .popup table.headers td
+  width: auto
+
+.field.link .dialog .entries
+  height: $field-link-dialog-entries-height
+  overflow-x: hidden !important
+
+.field.link .dialog .entries table, .field.link .dialog .history table
+  cursor: pointer
+  font-weight: normal
+  margin: 2px 6px 0
+  font-size: 13pt
+
+.field.link .dialog .entries table td, .field.link .dialog .history table td
+  width: 95%
+
+.field.link .dialog .entries .container > table > tbody > tr > td, .field.link .dialog .history .container > table > tbody > tr > td
+  padding: 4px 2px
+
+.field.link .dialog .entries table:hover, .field.link .dialog .history table:hover
+  background: $highlight-color
+  border-radius: 3px
+
+.field.link .popup table.headers
+  background: $field-link-dialog-headers-background-color
+
+.field.link .dialog .headers > tbody > tr > td
+  border-bottom: 1px solid #ddd
+
+.field.link .dialog .headers .header
+  font-size: $field-link-dialog-header-font-size
+  color: #aaa
+  background: none
+  text-transform: none
+  border-radius: 3px
+  padding: 3px
+
+.field.link .dialog .headers .header .header
+  padding: 0
+
+.field.link .dialog .headers .header.filter .label
+  cursor: pointer
+
+.field.link .dialog .headers .header.filter.no-filter .label, .field.link .dialog .headers .header.filter.no-filter .gwt-Label
+  cursor: default
+
+.field.link .dialog .headers .filters
+  font-size: smaller
+
+.field.link .dialog  .filter
+  position: relative
+
+.field.link .dialog  .filter > a
+  position: absolute
+  top: 50%
+  width: 100%
+  height: 50%
+
+.field.link .dialog .header .arrow
+  padding-right: 15px
+  background-image: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIRnC2nKLnT4or00Puy3rx7VQAAOw==), url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIPnI+py+0/hJzz0IruwjsVADs=)
+  background-repeat: no-repeat
+  background-position: center right, center right
+
+.field.link .dialog .header .arrow.up
+  background: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIRnC2nKLnT4or00Puy3rx7VQAAOw==) no-repeat center right
+  float: none
+
+.field.link .dialog .header .arrow.down
+  background: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIPnI+py+0/hJzz0IruwjsVADs=) no-repeat center right
+
+.field.link .dialog .header .selected-options div
+  display: inline-block
+
+.field.link .dialog .filter-options.dialog
+  min-height: 0
+  max-height: none
+  padding: 10px
+
+.field.link .dialog .filter-options.dialog > div
+  color: #000000
+  font-weight: normal
+
+.field.link .dialog .filter-options.dialog .searchBox
+  background-color: $field-link-filter-dialog-search-box-background-color
+  border-radius: 2px
+  font-size: 11pt
+  margin-bottom: 8px
+
+.field.link .dialog .filter-options.dialog li
+  height: auto
+  margin: 0
+  padding: 0
+  display: inline-block
+  border-radius: 3px
+  position: relative
+  cursor: pointer
+  color: #777
+  width: 50%
+  clear: both
+
+.field.link .dialog .filter-options.dialog .msg.empty, .field.link .dialog .filter-options.dialog .scroll-panel
+  height: 65%
+  border-bottom: 1px dotted #DFDFDF
+
+.field.link .filter-options.dialog
+  overflow: hidden !important
+
+.field.link .filter-options .toolbar
+  position: relative
+
+.field.link .filter .no-filter > .gwt-Label
+  color: #aaa
+
+.field.link .dialog .active, .field.link .dialog .entries .active tr:hover, .field.link .dialog .history .active tr:hover
+  background-color: $field-link-active-filter-background-color
+
+.field.link .dialog .entries .container .attribute, .field.link .dialog .history .container .attribute
+  font-size: smaller
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.field.link .dialog .entries .container > .message, .field.link .dialog .history .container > .message
+  font-size: medium
+  font-weight: normal
+  margin: 10px

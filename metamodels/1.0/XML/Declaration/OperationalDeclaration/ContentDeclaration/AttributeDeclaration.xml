@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="AttributeDeclaration" parent="ContentDeclaration" tag="contain">
+  <description>Descripción del atributo de una referencia</description>
+
+  <attribute name="code" type="key" required="true">
+    <description>Código del atributo</description>
+  </attribute>
+  
+  <atribute name="name" type="String" required="true">
+    <description>Nombre del atributo</description>
+  </atribute>
+  
+  <attribute name="type" type="enumeration" required="true">
+    <description>Tipo del atributo</description>
+    <enumeration>
+      <option>text</option>
+      <option>number</option>
+      <option>date</option>
+    </enumeration>
+  </attribute>
+
+</class>
+

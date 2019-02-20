@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ExporterDefinition" parent="Definition" tag="exporter">
+  <description>Definición de un exportador de datos que permite la exportación de datos hacia otro tipo de representación</description>
+
+  <property name="schema" >
+    <description>Estructura de los datos hacia la que se van a exportar los datos</description>
+    <content type="xml"/>
+  </property>
+</class>
+

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="Distribution" parent="AbstractManifest" token="distribution">
+	<description>Define cómo va a ser el despliege del modelo de negocio en un espacio de negocio</description>
+
+	<property token="show" required="true">
+		<description>Permite configurar el espacio de negocio con el mobiliario que estará disponible</description>
+
+		<attribute token="tab:environment" type="key" link="NodeDefinition" multiple="true">
+			<description>Escritorio (singleton) que se desea mostrar</description>
+		</attribute>
+
+		<attribute token="tab:dashboard" type="key" link="DashboardViewProperty" multiple="true">
+			<description>Panel de control (singleton) que se desea mostrar</description>
+		</attribute>
+
+		<property token="tab:roles">
+			<description>Mostrar un enlace a los roles</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+
+		<property token="tab:tasktray">
+			<description>Mostrar un enlace a las tareas del usuario</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+			<attribute token="view" type="enumeration" required="false">
+				<description>Permite indicar qué vista se quiere ver cuando se entra a las tareas</description>
+				<hint>Por defecto, se coge como valor ALIVE</hint>
+				<enumeration>
+					<option token="ALL">
+						<description>Todas</description>
+					</option>
+					<option token="ALIVE">
+						<description>En ejecución</description>
+					</option>
+					<option token="ACTIVE">
+						<description>Activas</description>
+					</option>
+					<option token="PENDING">
+						<description>Pendientes</description>
+					</option>
+					<option token="FINISHED">
+						<description>Finalizadas</description>
+					</option>
+				</enumeration>
+			</attribute>
+		</property>
+
+		<property token="tab:taskboard">
+			<description>Mostrar un enlace a las tareas de la unidad de negocio</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+			<attribute token="view" type="enumeration" required="false">
+				<description>Permite indicar qué vista se quiere ver cuando se entra a las tareas</description>
+				<hint>Por defecto, se coge como valor ACTIVE</hint>
+				<enumeration>
+					<option token="ALL">
+						<description>Todas</description>
+					</option>
+					<option token="ALIVE">
+						<description>En ejecución</description>
+					</option>
+					<option token="ACTIVE">
+						<description>Activas</description>
+					</option>
+					<option token="PENDING">
+						<description>Pendientes</description>
+					</option>
+					<option token="FINISHED">
+						<description>Finalizadas</description>
+					</option>
+				</enumeration>
+			</attribute>
+		</property>
+
+		<property token="tab:news">
+			<description>Mostrar un enlace a los permisos</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+
+		<property token="tab:trash">
+			<description>Mostrar un enlace a la papelera</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+
+	</property>
+
+	<attribute token="timezone" type="enumeration" required="false" default="ATLANTIC_BAR_CANARY">
+		<description></description>
+		<hint>Default value is UTC_PLUS_00_COLON_00</hint>
+		<enumeration>
+			<option token="ATLANTIC_BAR_BERMUDA">
+				<description></description>
+			</option>
+			<option token="CANADA_BAR_ATLANTIC">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_STANLEY">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_SOUTH_GEORGIA">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_AZORES">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_CAPE_VERDE">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_CANARY">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_FAEROE">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_FAROE">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_MADEIRA">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_REYKJAVIK">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_ST_HELENA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BELFAST">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_DUBLIN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_GUERNSEY">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ISLE_OF_MAN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_JERSEY">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_LISBON">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_LONDON">
+				<description></description>
+			</option>
+			<option token="ATLANTIC_BAR_JAN_MAYEN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_AMSTERDAM">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ANDORRA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BELGRADE">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BERLIN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BRATISLAVA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BRUSSELS">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BUDAPEST">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BUSINGEN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_COPENHAGEN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_GIBRALTAR">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_LJUBLJANA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_LUXEMBOURG">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_MADRID">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_MALTA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_MONACO">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_OSLO">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_PARIS">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_PODGORICA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_PRAGUE">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ROME">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_SAN_MARINO">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_SARAJEVO">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_SKOPJE">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_STOCKHOLM">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_TIRANE">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_VADUZ">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_VATICAN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_VIENNA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_WARSAW">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ZAGREB">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ZURICH">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ATHENS">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_BUCHAREST">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_CHISINAU">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_HELSINKI">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ISTANBUL">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_KIEV">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_MARIEHAMN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_NICOSIA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_RIGA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_SIMFEROPOL">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_SOFIA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_TALLINN">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_TIRASPOL">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_UZHGOROD">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_VILNIUS">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_ZAPOROZHYE">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_KALININGRAD">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_MINSK">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_MOSCOW">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_SAMARA">
+				<description></description>
+			</option>
+			<option token="EUROPE_BAR_VOLGOGRAD">
+				<description></description>
+			</option>
+		</enumeration>
+	</attribute>
+
+</class>

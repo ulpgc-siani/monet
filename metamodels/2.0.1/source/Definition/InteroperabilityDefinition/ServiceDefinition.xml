@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ServiceDefinition" parent="InteroperabilityDefinition" tag="service">
+  <description>Declaración que se utiliza para modelar un servicio que puede ofrecer una unidad de negocio</description>
+
+  <property name="request" required="true">
+    <description>Se utiliza para indicar el tipo de documento que se recibe en la petición del servicio</description>
+    <attribute name="document" type="key" link="DocumentDefinition">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="response" required="false">
+    <description>Se utiliza para indicar el tipo de documento con el que se genera la respuesta</description>
+    <attribute name="document" type="key" link="DocumentDefinition">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="execute" required="true">
+    <description>Permite saber la tarea que se debe ejecutar cuando se crea el servicio</description>
+    <attribute name="task" type="key" link="TaskDefinition" required="true">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="implements" multiple="true">
+    <description>Permite definir un transformador de manera que, cuando finalize el servicio, se llamará al método executeETL del comportamiento asociado a este servicio para generar una salida XML que se inyectará al cubo definido por el atributo cube.</description>
+    <attribute name="cube" type="key" link="CubeDefinition" required="true">
+      <description>Nombre de la definición de un cubo</description>
+    </attribute>
+  </property>
+      
+</class>

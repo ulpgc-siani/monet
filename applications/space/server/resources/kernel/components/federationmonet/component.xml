@@ -1,0 +1,7 @@
+<component code="federationmonet" type="federation"
+           class="org.monet.space.kernel.components.monet.federation.ComponentFederationMonet">
+  <labels>
+    <label language="es">Federación de Monet</label>
+    <label language="en">Monet federation</label>
+  </labels>
+</component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ordenTrabajoInspeccionCorrectiva>
+    <id>234234</id>
+    <activo>Plaza Sancho Panza</activo>
+    <fechaInicio>13.05.08 (22:12)</fechaInicio>
+    <observaciones>Hay varios desperfectos en la plaza despues de una fiesta.</observaciones>
+    <fechaFin>14.05.08 (12:04)</fechaFin>
+    <listaIncidencias/>
+</ordenTrabajoInspeccionCorrectiva>

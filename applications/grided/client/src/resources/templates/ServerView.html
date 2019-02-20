@@ -1,0 +1,43 @@
+<div class="toolbar">
+  <a href="" class="button" name="back">Servers</a>
+  <a href="" class="button" name="save">Save</a>
+  <a href="" class="button" name="discard">Discard changes</a>
+</div>
+
+<div class="top">
+  <div class="meta italic">::server::</div>
+  <input type="text" name="name" value="<%= server.name %>"></input>
+</div>
+
+<div class="bottom">
+  <div class="section-left">
+    <div class="section" name="federations">
+      <div class="title">::federations::</div>
+      <div class="section-list">
+        <% if (federations.length > 0) { %>
+        <ul>
+          <% _.each(federations, function(federation) { %>
+            <li><a href="" code="<%= federation.id %>"><%= federation.name %></a></li> <% }); %>
+        </ul>
+        <% }; %> 
+        <% if (federations.length == 0) { %>
+          <p>::no_federations::</p>
+        <% } %>
+      </div>
+    </div>
+    <div class="section" name="spaces"></div>
+  </div>
+  
+  <div class="section-right">
+    <div class="message">::server_no_enabled::</div>
+    <div class="section">
+      <div class="meta">IP</div>
+      <input type="text" name="ip" value="<%= server.ip %>"></input>
+    </div>
+    
+    <div id="tabs">
+      <div id="state-tab" />      
+      <div id="logs-tab" />
+    </div>
+  </div>
+</div>

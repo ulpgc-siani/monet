@@ -1,0 +1,11 @@
+.dialog.searchusers {
+}
+
+.dialog.searchusers input {
+  height: 20px;
+  width: 100%;
+}
+
+.dialog.searchusers .search {
+  margin-left: 5px;
+}

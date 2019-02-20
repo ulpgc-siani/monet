@@ -1,0 +1,178 @@
+<script type="text/javascript" src="javascript/common-js/deployJava.js"></script>
+<script type="text/javascript" src="javascript/miniapplet.js"></script>
+<script type="text/javascript" src="javascript/protocolcheck.js"></script>
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../cotton-translator/cotton-translator-behavior.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="cotton-signatory-behavior.html">
+
+<dom-module id="cotton-signatory-login">
+    <template>
+        <h3 class="title">[[title]]</h3>
+        <div id="message">[[message]]</div>
+        <div id="installMessageElement" hidden>
+            [[installMessagePrefix]]
+            <a on-click="downloadClient" target="_blank">
+                <span>[[downloadAction]]</span>
+                <paper-dialog id="downloadDialog">
+                  <ul>
+                    <li id="linux_deb" on-click="downloadClientOsSelected">Debian</li>
+                    <li id="linux_rpm" on-click="downloadClientOsSelected">Red Hat</li>
+                  </ul>
+                </paper-dialog>                
+            </a>
+            [[installMessageSuffix]]
+        </div>
+        <paper-button id="loginButton" on-click="login" raised disabled>[[loginAction]]</paper-button>
+        <div id="progress" hidden>[[progress]]</div>
+    </template>
+    <style>    
+        :host h3 {
+            margin: 3px 0;
+            padding: 0;
+        }
+
+        :host paper-button {
+            margin: 10px 0;
+            float: right;
+            background: #4285f4;
+            color: #fff;
+        }
+
+        :host paper-button[disabled] {
+            background: #aaa;
+        }
+
+        :host #installMessageElement {
+            margin: 10px 0;
+        }
+
+        :host #progress {
+            color: blue;
+            margin-top: 22px;
+        }
+
+        :host paper-dialog {
+            position: absolute !important;
+            top: 3px;
+            left: 35px !important;
+            background: white;
+            width: 150px;
+            width: 84px;
+        }
+
+        :host a, :host li {
+            color: blue;
+            cursor: pointer;
+        }
+
+        :host a {
+            position: relative;
+        }
+
+        :host ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        :host ul li {
+            margin-bottom: 3px;
+            background: #efefef;
+            padding: 3px 7px;
+        }
+
+        [hidden] {
+            display: none;
+        }
+    </style>
+    <script>
+
+        const CottonSignatoryLoginDictionary = {
+            "es": {
+                title: "Inicio de sesión mediante certificado digital",
+                message: "Se usará la aplicación @firma para iniciar sesión",
+                installMessagePrefix: "La aplicación @firma no se encuentra instalada en su equipo. Haga click ",
+                installMessageSuffix: " para descargar e instalar @firma en su equipo",
+                loginAction: "iniciar sesión",
+                downloadAction: "aquí",
+                retryAction: "He instalado la aplicación, reintentar",
+                progress: "iniciando sesión..."
+            },
+            "en": {
+                title: "Login by using digital certificate",
+                message: "It will use @firma application to login",
+                installMessagePrefix: "@firma application not found in your computer. Click ",
+                installMessageSuffix: " to download and install @firma",
+                loginAction: "log in",
+                downloadAction: "here",
+                retryAction: "@firma detected, retry!",
+                progress: "iniciando sesión..."
+            }
+        };
+
+        CottonSignatoryLogin = Polymer({
+            is: 'cotton-signatory-login',
+            behaviors: [ CottonBehaviors.TranslatorBehavior, CottonBehaviors.SignatoryBehavior ],
+
+            ready : function() {
+                this.translate(CottonSignatoryLoginDictionary);
+                this.initSignatory();
+                this.checkSignatoryAppInstalled();
+            },
+
+            installedSuccessCallback : function() {
+                console.log("Signatory application found!");
+
+                var dictionary = CottonSignatoryLoginDictionary[this.getLanguage()];
+
+                this.hide(this.$.installMessageElement);
+                this.$.loginButton.disabled = false;
+                this.$.loginButton.innerHTML = this.installed != null && this.installed === false ? dictionary.retryAction : dictionary.loginAction;
+            },
+
+            installedFailureCallback : function(code, message, intention) {
+                console.log("Signatory application not found!");
+
+                this.installed = false;
+                this.show(this.$.installMessageElement);
+                this.hide(this.$.progress);
+                this.$.loginButton.disabled = false;
+                this.intention = intention;
+            },
+
+            login : function() {
+                var widget = this;
+
+                widget.fire('beforeLogin');
+
+                this.installed = true;
+                widget.$.loginButton.disabled = true;
+                widget.show(widget.$.progress);
+                widget.hide(this.$.installMessageElement);
+
+                this.signText("sessionId", function(signature, certificate) {
+                    widget.$.loginButton.disabled = false;
+                    widget.hide(widget.$.progress);
+                    widget.fire('login', { signature: signature, certificate: certificate });
+                }, function(errorCode, errorMessage) {
+                    widget.$.loginButton.disabled = false;
+                    widget.hide(widget.$.progress);
+                    widget.fire('loginFailure', { error: errorCode, message : errorMessage });
+                });
+            },
+
+            show : function(element) {
+                element.removeAttribute("hidden");
+            },
+
+            hide : function(element) {
+                element.setAttribute("hidden", "");
+            }
+        });
+
+    </script>
+</dom-module>

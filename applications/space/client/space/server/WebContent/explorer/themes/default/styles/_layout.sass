@@ -1,0 +1,90 @@
+html 
+  height: 100%
+  max-height: 100%
+  padding: 0
+  margin: 0
+  border: 0
+  overflow: hidden
+
+body 
+  height: 100%
+  max-height: 100%
+  overflow: hidden
+  padding: 0
+  margin: 0
+  border: 0
+
+.design-panel.left 
+  position: absolute
+  left: 0
+  top: 0
+  bottom: 19px
+  width: 350px
+  z-index: 4
+  overflow: visible
+
+.design-panel.left.collapsed 
+  width: 55px
+
+.design-panel.left.collapsed > div > div 
+  display: none
+
+.design-panel.left .header 
+  position: absolute
+  top: 0
+  left: 0
+  height: 55px
+  width: 100%
+  padding-top: 5px
+
+.design-panel.left .content 
+  position: absolute
+  top: 60px
+  bottom: 110px
+  width: 100%
+  z-index: 4
+  overflow: auto
+
+.design-panel.left .content > div 
+  margin: 10px
+
+.design-panel.left .footer 
+  position: absolute
+  margin: 0
+  bottom: 0
+  left: 0
+  height: 103px
+  display: block
+  padding: 0
+  width: 100%
+  z-index: 5
+  overflow: visible
+  background: white
+
+.design-panel.main 
+  overflow: auto
+  position: absolute
+  z-index: 3
+  top: 0
+  bottom: 19px
+  left: 350px
+  right: 0
+  padding: 20px 30px
+
+.design-panel.main.expanded 
+  left: 55px
+
+.design-panel.footer 
+  position: absolute
+  margin: 0
+  bottom: 0
+  left: 0
+  display: block
+  width: 100%
+  z-index: 5
+  overflow: hidden
+  background: #999
+  font-size: 8pt
+
+.design-panel.footer div 
+  padding-left: 5px

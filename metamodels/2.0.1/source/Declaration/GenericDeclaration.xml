@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="GenericDeclaration" parent="Declaration" tag="generic">
+  <description>Declaración de una variable genérica</description>
+  
+  <attribute name="name" type="string" required="true">
+    <description>Nombre de la variable</description>
+  </attribute>
+  
+  <attribute name="extends" type="key" link="Definition">
+    <description>Restringe la variable genérica de forma que deba heredar de la definición que se indica</description>
+  </attribute>
+  
+  <attribute name="of-type" type="enumeration">
+    <description>Restringe la variable genérica a un tipo de definición</description>
+    <enumeration>
+      <option>CATALOG</option>
+      <option>COLLECTION</option>
+      <option>CONTAINER</option>
+      <option>DESKTOP</option>
+      <option>DOCUMENT</option>
+      <option>FORM</option>
+      <option>REFERENCE</option>
+      <option>TASK</option>
+      <option>THESAURUS</option>
+    </enumeration>
+  </attribute>
+  
+</class>
+

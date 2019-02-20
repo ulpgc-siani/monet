@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SortDeclaration" parent="Declaration" tag="sort">
+  <description>Se utiliza para indicar que atributos de la referencia de la colección se van a utilizar para ordenar los elementos de la lista</description>
+
+  <attribute name="attribute" type="key" link="AttributeDeclaration" required="true">
+    <description>Nombre del atributo de la referencia</description>
+  </attribute>
+
+  <attribute name="mode" type="enumeration">
+    <description>Indica la ordenación del atributo</description>
+    <hint>Por defecto se ordena de forma ascendente</hint>
+    <enumeration>
+      <option>ASC</option>
+      <option>DESC</option>
+    </enumeration>
+  </attribute>
+  
+</class>

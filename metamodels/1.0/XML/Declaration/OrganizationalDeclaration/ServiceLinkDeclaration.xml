@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ServiceLinkDeclaration" parent="OrganizationalDeclaration" tag="service-link">
+  <description>Se utiliza para describir un tipo de servicio que puede consumir una unidad de negocio</description>
+  <description>Hay que declarar los formatos de los documentos que se pueden intercambiar durante la petición del servicio</description>
+
+  <attribute name="name" type="String" required="true">
+    <description>Nombre del servicio que se desea consumir</description>
+  </attribute>
+  
+	<property name="request" required="true">
+    <description>Formato del documento con el que se inicia la petición del servicio</description>
+    <attribute name="format" type="Code" link="DocumentFormatDeclaration" />
+	</property>
+	<property name="response" required="true" multiple="true">
+    <description>Formato del documento con el que el servicio responde al peticionario</description>
+    <attribute name="format" type="Code" link="DocumentFormatDeclaration" />
+	</property>
+	<property name="reply" multiple="true">
+    <description>Formato del documento con el que el peticionario contesta/replica las repuestas del servicio</description>
+    <attribute name="format" type="Code" link="DocumentFormatDeclaration" />
+	</property>
+
+</class>

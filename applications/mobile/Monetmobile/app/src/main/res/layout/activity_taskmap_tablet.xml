@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <org.monet.space.mobile.widget.SegmentedRadioGroup
+            android:id="@+id/tray_selector"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:orientation="horizontal"
+            android:checkedButton="@+id/radio_button_assigned">
+
+        <RadioButton
+                android:id="@+id/radio_button_assigned"
+                android:minWidth="45dip"
+                android:minHeight="35dip"
+                android:button="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@string/tab_pending"/>
+
+        <RadioButton
+                android:id="@+id/radio_button_finished"
+                android:minWidth="45dip"
+                android:minHeight="35dip"
+                android:button="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@string/tab_finished"/>
+
+        <RadioButton
+                android:id="@+id/radio_button_available"
+                android:minWidth="45dip"
+                android:minHeight="35dip"
+                android:button="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@string/tab_available"/>
+
+    </org.monet.space.mobile.widget.SegmentedRadioGroup>
+
+    <fragment
+            android:id="@+id/my_map_fragment1"
+            android:name="org.monet.space.mobile.fragment.TaskMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tray_selector">
+    </fragment>
+
+    <RelativeLayout
+            android:id="@+id/details_panel"
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="#FFFFFFFF"
+            android:visibility="gone">
+
+        <FrameLayout
+                android:id="@+id/taskdetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignWithParentIfMissing="true">
+        </FrameLayout>
+
+        <ImageButton
+                android:id="@+id/closeDetails"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/close"
+                android:background="@drawable/button_background_white"
+                android:src="@drawable/ic_button_discard"/>
+    </RelativeLayout>
+
+</RelativeLayout>

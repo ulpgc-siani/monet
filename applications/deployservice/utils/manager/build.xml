@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="tomcat-full" name="DeployServiceManager">
+  <property environment="env" />
+  <property name="debuglevel" value="source,lines,vars" />
+  <property name="target" value="1.5" />
+  <property name="source" value="1.5" />
+  <property name="file.war" value="deployservice_manager.war" />
+  <property name="root.war" value="ROOT.war" />
+  <path id="Web App Libraries.libraryclasspath">
+    <pathelement location="WebContent/WEB-INF/lib" />
+    <fileset dir="WebContent/WEB-INF/lib">
+      <include name="**/*.jar" />
+    </fileset>
+    <pathelement location="lib"/>
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  <path id="DeployServerManager.classpath">
+    <pathelement location="WebContent/WEB-INF/classes" />
+    <path refid="Web App Libraries.libraryclasspath" />
+  </path>
+  <target name="init">
+    <mkdir dir="WebContent/WEB-INF/classes" />
+    <copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
+      <fileset dir="src">
+        <exclude name="**/*.launch" />
+        <exclude name="**/*.java" />
+      </fileset>
+    </copy>
+  </target>
+  <target name="clean">
+    <delete dir="WebContent/WEB-INF/classes/org" />
+    <delete dir="build" />
+    <delete dir="dist" />
+  </target>
+  <target depends="clean" name="cleanall" />
+  <target depends="build-subprojects,build-project" name="build" />
+  <target name="build-subprojects" />
+  <target depends="init" name="build-project">
+    <echo message="${ant.project.name}: ${ant.file}" />
+    <javac debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" source="${source}" target="${target}" includeantruntime="false">
+      <src path="src" />
+      <classpath refid="DeployServerManager.classpath" />
+    </javac>
+  </target>
+  <target name="dist" depends="cleanall,build-project">
+    <mkdir dir="dist" />
+    <copy includeemptydirs="false" todir="dist">
+      <fileset dir="WebContent">
+      </fileset>
+    </copy>
+  </target>
+  <target name="build-war" depends="dist">
+    <fileset dir="dist">
+      <include name="**/*" />
+    </fileset>
+    <war destfile="${file.war}" webxml="dist/WEB-INF/web.xml">
+      <zipfileset dir="dist">
+      </zipfileset>
+    </war>
+    <echo>Copying ${file.war}...</echo>
+    <copy file="${file.war}" todir="build" />
+    <delete file="${file.war}" />
+  </target>
+  <target name="tomcat-full" depends="build-war"/>
+
+</project>

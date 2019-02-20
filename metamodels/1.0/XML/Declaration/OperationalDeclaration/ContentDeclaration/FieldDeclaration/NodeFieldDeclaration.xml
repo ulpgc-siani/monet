@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NodeFieldDeclaration" parent="FieldDeclaration" tag="field-node">
+
+  <include name="aggregations">
+    <option class="ContainDeclaration" />
+  </include>
+  
+  <include name="view" required="true">
+    <option class="FieldNodeViewDeclaration" />
+  </include>
+    
+</class>
+

@@ -1,0 +1,51 @@
+object FrmWait: TFrmWait
+  Left = 1233
+  Height = 144
+  Top = 232
+  Width = 414
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  Caption = 'Title'
+  ClientHeight = 144
+  ClientWidth = 414
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.8.2.0'
+  object LblInfo: TLabel
+    Left = 8
+    Height = 40
+    Top = 16
+    Width = 397
+    Anchors = [akTop, akLeft, akRight]
+    AutoSize = False
+    Caption = 'Text'
+    ParentColor = False
+  end
+  object PrbWait: TProgressBar
+    Left = 8
+    Height = 20
+    Top = 60
+    Width = 397
+    Anchors = [akLeft, akRight, akBottom]
+    Style = pbstMarquee
+    TabOrder = 0
+  end
+  object BtnCancel: TButton
+    Left = 330
+    Height = 25
+    Top = 112
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    OnClick = BtnCancelClick
+    TabOrder = 1
+  end
+  object LblSubInfo: TLabel
+    Left = 8
+    Height = 16
+    Top = 88
+    Width = 397
+    AutoSize = False
+    ParentColor = False
+  end
+end

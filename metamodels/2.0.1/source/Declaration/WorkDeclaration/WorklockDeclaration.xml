@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorklockDeclaration" parent="IndexedDeclaration">
+  <description>Declaración que se utiliza para modelar un bloqueo en un workline</description>
+
+  <property name="is-main">
+    <description>Indica si este es el Worklock principal que el usuario debe resolver, en el caso de existir varios.</description>
+    <hint>Si no se indica, el sistema asignará de forma no determinista cual es el Worklock principal</hint>
+  </property>
+  
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del worklock</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+
+  <property name="out" required="true" multiple="true">
+    <attribute name="workstop" type="key" link="WorkstopDeclaration">
+      <description>Salida del worklock</description>
+    </attribute>
+  </property>
+
+</class>

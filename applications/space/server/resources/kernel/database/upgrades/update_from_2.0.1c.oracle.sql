@@ -1,0 +1,3 @@
+TRUNCATE TABLE ts$nodes_revisions;
+ALTER TABLE ts$nodes_revisions ADD (id NUMBER(10,0) NOT NULL);
+ALTER TABLE ts$nodes_revisions ADD CONSTRAINT PRIMARY_2 PRIMARY KEY (ID) ENABLE;

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-serial" type="SerialFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo selección en un formulario</description>
+	
+	<property token="serial" required="true">
+		<description>Esta propiedad se utiliza para indicar el patrón con el que se representa la serie</description>
+		<attribute token="format" type="string" required="true">
+			<description>Expresión regular para definir el formato</description>
+			<hint>Ejemplo: "A%4S/%2Y", devuelve como resultado la letra A seguido de 10 digitos extraidos de la serie, luego una barra y el año con dos dígitos. Un ejemplo sería A0001/11.</hint>
+		</attribute>
+		<attribute token="name" type="string" required="true" specific="true">
+			<description>Nombre de la serie</description>
+		</attribute>
+	</property>
+	
+</property>

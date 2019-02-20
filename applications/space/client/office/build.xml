@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Office Client">
+    <target name="build">
+			<exec executable="php" searchpath="true" dir="ide" vmlauncher="true">
+				<arg value="-f"/>
+      	<arg value="ide.php"/>
+      </exec>
+    </target>
+</project>

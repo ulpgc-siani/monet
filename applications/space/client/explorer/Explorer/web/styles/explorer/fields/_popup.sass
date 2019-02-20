@@ -1,0 +1,95 @@
+.field .popup
+  background: white
+  position: absolute
+  border: 1px solid $field-popup-border-color
+  overflow-y: auto !important
+  list-style: none
+  margin: 1px 0 0
+  z-index: 100
+  border-radius: 2px 2px 3px 3px
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
+
+.field .popup .dialog > tbody > tr > td:first-child
+  padding-left: 10px
+
+.field .popup .dialog > tbody > tr > td:last-child
+  padding-right: 10px
+
+.field .popup .toolbar
+  background-color: white
+  height: 15px
+  position: relative
+  width: auto
+
+.field .popup .toolbar > .close
+  opacity: 0.5
+  color: #000000
+  font-size: 10pt
+  height: 16px
+  cursor: pointer
+  position: absolute
+  right: 5px
+  top: 1px
+  z-index: 1
+
+.field .popup .toolbar > .close:hover
+  opacity: 1
+
+.field .popup .options
+  background-color: white
+
+.field .popup .options .message
+  font-size: 11pt
+  font-weight: normal
+  margin: 10px
+
+.field .popup .option
+  cursor: pointer
+  font-weight: normal
+  margin: 2px 6px 0
+  padding: 4px 12px
+  font-size: $field-popup-option-font-size
+
+.field .popup .selected, .field .popup .option:hover
+  background-color: $highlight-color
+  border-radius: 3px
+
+.field .popup .search-box
+  margin: 0 10px 10px
+
+.field .popup .search-input
+  background-color: white
+  box-sizing: border-box
+  font-size: $field-popup-search-input-font-size
+  padding-left: 7px
+  border-radius: 2px
+  border: 1px solid #B4B4B4
+
+.field .popup .history
+  overflow: hidden !important
+
+.field .popup .history .option
+  font-size: smaller
+  margin-left: 5px
+
+.field .popup .header
+  background-color: $field-popup-header-background-color
+  color: #000000
+  font-size: 7pt
+  padding-left: 5px
+  text-transform: uppercase
+
+.field .popup .loading
+  position: absolute
+  z-index: 30
+  background-color: white
+  padding-left: 5px
+  margin: 0
+  width: 95%
+  height: 25px
+  font-weight: normal
+
+.field .popup .dialog .option
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis

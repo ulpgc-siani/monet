@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="grided">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <dependent-module archiveName="monet.api.space.setupservice.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/monet.api.space.setupservice/monet.api.space.setupservice">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="monet.api.deploy.setupservice.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/monet.api.deploy.setupservice/monet.api.deploy.setupservice">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="grided"/>
+        <property name="java-output-path" value="/grided/bin/classes"/>
+    </wb-module>
+</project-modules>

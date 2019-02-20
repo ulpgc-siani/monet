@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ServiceProviderDefinition" parent="ProviderDefinition" tag="service-provider">
+  <description>Declaración que se utiliza para modelar un proveedor de una unidad de negocio</description>
+    
+  <property name="request" required="true">
+    <description>Se utiliza para indicar el tipo de documento con el que se solicita el servicio al proveedor</description>
+    <attribute name="document" type="key" link="DocumentDefinition" required="true">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="response" required="false">
+    <description>Se utiliza para indicar el tipo de documento con el que se recibe la respuesta del proveedor</description>
+    <attribute name="document" type="key" link="DocumentDefinition" required="true">
+      <description>Nombre de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="implements" multiple="true">
+    <description>Permite definir un transformador de manera que, cuando finalize el servicio, se llamará al método executeETL del comportamiento asociado a este servicio para generar una salida XML que se inyectará al cubo definido por el atributo cube.</description>
+    <attribute name="cube" type="key" link="CubeDefinition" required="true">
+      <description>Nombre de la definición de un cubo</description>
+    </attribute>
+  </property>
+    
+</class>

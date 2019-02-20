@@ -1,0 +1,21 @@
+.search.item {
+  padding: 4px;
+}
+
+.search.item .head {
+  margin-bottom: 2px;
+}
+
+.search.item .title {
+}
+
+.search.item .date {
+  font-size: 11px;
+  color: #666;
+}
+
+.search.item .body {
+  font-size: 11px;
+  font-style: italic;
+  color: #666;
+}

@@ -1,0 +1,465 @@
+/* PRECISION HIDDEN */
+.datepicker .behaviours {
+  display: none;
+}
+
+.datepicker .setprecision {
+  display: none;
+}
+
+.datepicker .setmode {
+  display: none;
+}
+
+/* TOOLBAR HIDDEN */
+.datepicker .toolbar div {
+  display: none;
+}
+
+.datepicker .toolbar.bottom {
+  display: none;
+}
+
+.datepicker .toolbar .border {
+  display: block;
+  border-bottom: 1px solid #aaa;
+}
+
+.datepicker .dialog.minutes, .datepicker .dialog.seconds {
+  top: 1px !important;
+}
+
+.datepicker .dialog li:hover {
+  background: #eee;
+}
+
+/* END TOOLBAR HIDDEN */
+.ext-mac.mozilla .datepicker .date, .ext-mac.mozilla .datepicker .time {
+  height: 277px;
+}
+
+.datepicker .date, .datepicker .time {
+  height: 255px;
+  width: 260px;
+  border-bottom: 1px solid #aaa;
+}
+
+.datepicker .time {
+  width: 131px;
+}
+
+.datepicker .date .toolbar {
+  width: 260px;
+}
+
+.datepicker .time .toolbar {
+  width: 131px;
+}
+
+.safari .datepicker .date .toolbar.bottom, .safari .datepicker .time .toolbar.bottom {
+  margin-top: 109px !important;
+}
+
+.datepicker .time {
+  margin-left: 10px;
+  position: relative;
+}
+
+.datepicker .buttons {
+  position: relative;
+  padding: 0px !important;
+}
+
+.datepicker.relative .dialog.selected td.inactive .buttons {
+  border: 0px !important;
+}
+
+.datepicker .dialog a.button {
+  background: none;
+  border-width: 1px 0px;
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 20px;
+  padding: 0px !important;
+  border-radius: 0px;
+}
+
+.datepicker .button.up {
+  background: white url("../images/datepicker/up.gif") no-repeat center 4px !important;
+  margin-top: -68px;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px dotted #aaa;
+  top: 2px;
+}
+
+.datepicker .dialog.mac a.button.up {
+  top: 0px;
+}
+
+.ext-safari .datepicker .dialog.mac a.button.up {
+  top: 2px;
+}
+
+.datepicker .button.up:hover {
+  background: #D0E0F5 url("../images/datepicker/up.gif") no-repeat center 4px !important;
+}
+
+.datepicker .button.down {
+  background: white url("../images/datepicker/down.gif") no-repeat center 4px !important;
+  border-top: 1px dotted #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+.datepicker .button.down:hover {
+  background: #D0E0F5 url("../images/datepicker/down.gif") no-repeat center 4px !important;
+}
+
+.datepicker.relative .button.up, .datepicker.relative .button.down {
+  display: none !important;
+}
+
+.datepicker .dialog.selected td:hover .button.up, .datepicker .dialog.selected td:hover .button.down {
+  display: block;
+}
+
+.datepicker.relative .daycell .buttons {
+  position: absolute;
+  width: 258px;
+}
+
+.datepicker.relative .monthcell .buttons {
+  position: absolute;
+  width: 200px;
+}
+
+.datepicker.relative.months .monthcell .buttons {
+  position: absolute;
+  width: 258px;
+}
+
+.datepicker .dialog {
+  border: 1px solid #aaa;
+  border-top: 0px;
+  border-bottom: 0px;
+  text-align: left;
+}
+
+.datepicker .dialog li {
+  font-size: 13px;
+  padding: 3px 0px;
+  cursor: pointer;
+}
+
+.datepicker .dialog li:hover {
+  background: #eee;
+}
+
+.datepicker .time .dialog li {
+  text-align: center;
+  padding-left: 0px !important;
+}
+
+.datepicker .dialog li.active {
+  font-size: 15px;
+  background: white;
+  padding: 13px 0px;
+}
+
+.datepicker .dialog.months, .datepicker .dialog.years {
+  background: #eee;
+}
+
+.datepicker .dialog .list li {
+  padding-left: 5px;
+}
+
+.datepicker .dialog.minutes {
+  position: absolute;
+  margin-left: 43px;
+  top: 24px;
+  width: 43px;
+}
+
+.datepicker .dialog.seconds {
+  position: absolute;
+  margin-left: 87px;
+  top: 24px;
+  width: 42px;
+}
+
+.datepicker.seconds .dialog.selected .minutecell {
+  width: 43px;
+}
+
+.datepicker .dialog.hours .list {
+  background: white;
+  display: block;
+  width: 42px;
+}
+
+.datepicker.minutes .dialog.hours .list {
+  width: 65px;
+}
+
+.datepicker .dialog.months .list {
+  background: none repeat scroll 0 0 white;
+  border-left: 1px solid #aaa;
+  display: block;
+  margin-left: 57px;
+  width: 199px;
+}
+
+.datepicker .dialog.years .list {
+  background: none repeat scroll 0 0 white;
+  border-left: 1px solid #aaa;
+  display: block;
+  margin-left: 197px;
+  width: 59px;
+}
+
+.datepicker .dialog.selected {
+  background: white;
+  border: 1px solid #aaa;
+  margin-top: -155px !important;
+  position: relative;
+  width: 260px;
+}
+
+.mozilla .datepicker .dialog.selected.mac {
+  margin-top: -162px !important;
+}
+
+.ie .datepicker .dialog.selected {
+  position: absolute;
+  margin-top: -153px !important;
+}
+
+.datepicker .time .dialog.selected {
+  width: 131px;
+}
+
+.datepicker .dialog.selected td {
+  cursor: pointer;
+  border: 1px solid #aaa;
+}
+
+.datepicker.absolute.months .date .dialog.selected .monthcell {
+  width: 157px;
+}
+
+.safari .datepicker.absolute.months .date .dialog.selected .monthcell {
+  width: 158px;
+}
+
+.safari .datepicker.relative.months .date .dialog.selected .monthcell {
+  width: 141px;
+}
+
+.datepicker .dialog.selected td div {
+  font-size: 15px;
+  text-align: center;
+  padding: 11px;
+}
+
+.datepicker .dialog li.holiday, .datepicker .dialog.holiday td div {
+  color: #cc3300;
+}
+
+/*
+.datepicker .dialog li.invalid, .datepicker .dialog.invalid td div {
+  color: #888;
+}
+*/
+.datepicker .dialog.selected td .weekday {
+  font-size: 10px;
+  color: #999;
+  position: absolute;
+  margin-top: -27px;
+  margin-left: -11px;
+  width: 60px;
+}
+
+.datepicker.minutes .dialog.seconds, .datepicker.minutes .dialog.selected td.secondcell {
+  display: none;
+}
+
+.datepicker.minutes .dialog.hours {
+  width: 64px;
+}
+
+.datepicker.minutes .dialog.minutes {
+  margin-left: 65px;
+  width: 64px;
+}
+
+.datepicker.hours .dialog.minutes, .datepicker.hours .dialog.selected td.minutecell, .datepicker.hours .dialog.seconds, .datepicker.hours .dialog.selected td.secondcell {
+  display: none;
+}
+
+.datepicker.hours .dialog.hours .list {
+  width: auto;
+}
+
+.datepicker.days .time {
+  display: none;
+}
+
+.datepicker.days.relative .dialog.days, .datepicker.days.relative .dialog.months, .datepicker.days.relative .dialog.years {
+  width: 258px;
+}
+
+.datepicker.months .time, .datepicker.months .dialog.days, .datepicker.months .dialog.selected td.daycell {
+  display: none;
+}
+
+.datepicker.months .dialog.months {
+  padding: 0px;
+}
+
+.datepicker.months .dialog.months .list {
+  margin-left: 0px;
+  width: auto;
+  border: 0px;
+}
+
+.datepicker.months .dialog.years .list {
+  margin-left: 187px;
+  width: 70px;
+}
+
+.datepicker.months.relative .dialog.years .list {
+  margin-left: 181px;
+  width: 76px;
+}
+
+.datepicker.months.relative .dialog.months, .datepicker.months.relative .dialog.years {
+  width: 258px;
+}
+
+.datepicker.years .time, .datepicker.years .dialog.days, .datepicker.years .dialog.months, .datepicker.years .dialog.selected td.daycell, .datepicker.years .dialog.selected td.monthcell {
+  display: none;
+}
+
+.datepicker.years .dialog.years {
+  padding: 0px;
+  width: 258px;
+}
+
+.datepicker.years .dialog.years .list {
+  margin-left: 0px;
+  width: auto;
+  border: 0px;
+}
+
+.datepicker.absolute .dialog.days {
+  position: absolute;
+  width: 57px;
+}
+
+.datepicker.absolute .dialog.days .list {
+  border: 0px;
+  margin-left: 0px;
+}
+
+.datepicker.absolute .dialog.months {
+  position: absolute;
+  border: 0px;
+  margin-left: 60px;
+  width: 142px;
+}
+
+.datepicker.absolute .dialog.months .list {
+  border: 0px;
+  margin-left: 0px;
+}
+
+.datepicker.absolute .dialog.years {
+  width: 59px;
+  margin-left: 199px;
+}
+
+.datepicker.absolute .dialog.years .list {
+  margin-left: 0px;
+  border: 0px;
+}
+
+.datepicker.absolute .dialog.hours {
+  background: white;
+}
+
+.datepicker.absolute .dialog.hours .list {
+  border: 0px;
+}
+
+.datepicker.absolute.minutes .dialog.hours .list {
+  width: 65px;
+}
+
+.datepicker.absolute.months .dialog.months {
+  border: 1px solid #aaa;
+  border-top: 0px;
+  border-bottom: 0px;
+  width: 187px;
+  margin-left: 0px;
+}
+
+.datepicker.absolute.months .dialog.years {
+  width: 70px;
+  margin-left: 188px;
+}
+
+.datepicker.absolute.years .dialog.years {
+  width: 258px;
+  margin-left: 0px;
+}
+
+.datepicker.relative .date .dialog.selected td.inactive div {
+  background-color: #eee;
+  border: 2px solid #eee;
+}
+
+.datepicker.relative .date .dialog.selected td.active .day, .datepicker.relative .date .dialog.selected td.active .month, .datepicker.relative .date .dialog.selected td.active .year,
+.datepicker.relative .time .dialog.selected td.active .hour, .datepicker.relative .time .dialog.selected td.active .minute, .datepicker.relative .time .dialog.selected td.active .second {
+  background: white;
+  border: 2px solid white;
+}
+
+.datepicker.relative .date .dialog.selected td div.weekday {
+  background: none;
+  border: 0px;
+}
+
+.datepicker .date .dialog.selected td .day, .datepicker .date .dialog.selected td .month, .datepicker .date .dialog.selected td .year,
+.datepicker .time .dialog.selected td .hour, .datepicker .time .dialog.selected td .minute, .datepicker .time .dialog.selected td .second {
+  background-color: white;
+  border: 2px solid white;
+}
+
+.datepicker .date .dialog.selected td.active .day:hover, .datepicker .date .dialog.selected td.active .month:hover, .datepicker .date .dialog.selected td.active .year:hover,
+.datepicker .time .dialog.selected td .hour:hover, .datepicker .time .dialog.selected td .minute:hover, .datepicker .time .dialog.selected td .second:hover {
+  background: #eee;
+  border: 2px solid #eee;
+}
+
+.datepicker .behaviours {
+  margin-top: 10px;
+}
+
+.datepicker .behaviours .label {
+  border: 0 none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.datepicker .behaviours .setmode, .datepicker .behaviours .setprecision {
+  margin: 5px 0px;
+}
+
+.datepicker .behaviours .setmode label {
+  margin-left: 5px;
+}
+
+.datepicker .behaviours .setprecision label {
+  margin-right: 5px;
+}

@@ -1,0 +1,1 @@
+ALTER TABLE fs$business_units ADD (visible NUMBER(10,0) DEFAULT 1);

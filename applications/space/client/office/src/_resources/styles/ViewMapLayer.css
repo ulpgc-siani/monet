@@ -1,0 +1,23 @@
+.view.map-layer {
+  height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.view.map-layer .toolbar .loading-map {
+  float: left;
+  color: #15429D;
+  display: none;
+}
+.view.map-layer .toolbar .navigator {
+  text-align: right;
+}
+.view.map-layer .toolbar .navigator .air {
+  margin: 0 5px;
+}
+.view.map-layer .map {
+  height: calc(100% - 35px);
+}

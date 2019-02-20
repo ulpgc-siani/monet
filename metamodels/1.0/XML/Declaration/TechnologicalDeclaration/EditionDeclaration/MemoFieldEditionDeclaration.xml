@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="MemoFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+
+  <hint>Restriccion semantica: Las propiedas lowercase y uppercase se anulan la una a la otra. Solo se puede definir una.</hint>
+
+  <property name="length">
+    <description>Longitud del campo</description>
+    <attribute name="max" type="Natural">
+      <description>Máximo número de caracteres que admite el campo</description>
+      <hint>Antes se llamaba value</hint>
+    </attribute>
+    <attribute name="min" type="Natural">
+      <description>Mínimo número de caracteres que admite el campo</description>
+      <hint>Antes no existía</hint>
+    </attribute>
+  </property>
+  
+  <property name="lowercase">
+    <description>Su presencia indica que el texto introducido se registrarán en minúsculas</description>
+    <hint>Antes se llamaba aspect y había que introducir un value</hint>
+  </property>
+  
+  <property name="uppercase">
+    <description>Su presencia indica que el texto introducido se registrarán en mayúsculas</description>
+    <hint>Antes se llamaba aspect y había que introducir un value</hint>
+  </property>
+  
+</class>

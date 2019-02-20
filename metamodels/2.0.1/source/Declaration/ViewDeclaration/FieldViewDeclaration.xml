@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="FieldViewDeclaration" parent="ViewDeclaration">
+  <description>Declaración abstracta de una vista de un campo</description>
+</class>

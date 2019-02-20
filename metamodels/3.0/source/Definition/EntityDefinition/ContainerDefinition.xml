@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="ContainerDefinition" parent="NodeDefinition" token="container" extensible="true">
+	<description>Un contenedor es un tipo de nodo que contiene otros nodos como componentes</description>
+	
+	<property token="contain">
+		<description>Esta propiedad se utiliza para declarar los componentes del contenedor</description>
+		<hint>Cuando se crea el contenedor, automáticamente se crean todos sus componentes</hint>
+		<attribute token="node" type="key" link="NodeDefinition" required="true" multiple="true">
+			<description>Tipo de nodo contenido dentro del contenedor</description>
+		</attribute>
+	</property>
+	
+	<property token="is-prototypable">
+		<description>Esta propiedad se utiliza cuando se desea que el usuario pueda crear plantillas de este tipo de contenedores</description>
+		<hint>Para ello, se muestra al usuario la operación duplicar</hint>
+	</property>
+	
+	<property token="is-georeferenced">
+		<description>Esta propiedad se utiliza cuando se desea que el contenedor contenga información de geolocalización</description>
+		<hint>Para permitirlo, se muestra al usuario un mapa en el que puede geolocalizar el contenedor</hint>
+	</property>
+	
+	<property token="is-environment">
+		<description>Esta propiedad se utiliza para configurar el contenedor como entorno del usuario</description>
+	</property>
+
+	<property token="for">
+		<description>Esta propiedad se utiliza cuando se desea que el uso del nodo está restringido a unos roles concretos</description>
+		<attribute token="role" type="key" link="RoleDefinition" required="true" multiple="true">
+			<description>Tipo de role al que se desea permitir el uso del nodo
+				como nodo de entorno</description>
+		</attribute>
+	</property>
+
+	<property token="view" parent="NodeViewProperty" multiple="true">
+		<description>Esta propiedad se utiliza para declarar una vista al contenedor</description>
+		<property token="show" required="true">
+			<description>Esta propiedad se utiliza para configurar el contenido de la vista</description>			
+			<attribute token="component" type="key" link="NodeViewProperty" multiple="true">
+				<description>Vista (tipo widget) del componente</description>
+			</attribute>			
+			<property token="links:in">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista de los nodos que vinculan al contenedor</description>
+				<attribute token="node" type="key" link="NodeDefinition" multiple="true">
+					<description>Tipo de nodo que se desea mostrar</description>
+				</attribute>
+			</property>			
+			<property token="links:out">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista de los nodos que el contenedor o alguno de sus componentes vinculan</description>
+				<attribute token="node" type="key" link="NodeDefinition" multiple="true">
+					<description>Tipo de nodo que se desea mostrar</description>
+				</attribute>
+			</property>			
+			<property token="tasks">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista de tareas en las que el contenedor participa</description>
+			</property>			
+			<property token="revisions">
+				<description>Esta propiedad se utiliza si se desea mostrar las versiones anteriores</description>
+			</property>			
+			<property token="notes">
+				<description>Esta propiedad se utiliza si se desea mostrar las notas asociadas</description>
+			</property>			
+		</property>
+	</property>	
+	
+</class>

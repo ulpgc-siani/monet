@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ResolveDeclaration" parent="Declaration" tag="resolve">
+  <description>Declaración de una variable genérica</description>
+  
+  <attribute name="generic" type="string" required="true">
+    <description>Nombre de la variable genérica a resolver</description>
+  </attribute>
+  
+  <attribute name="with" type="key" link="Definition" required="true">
+    <description>Definición con la que resolver la variable genérica</description>
+  </attribute>
+    
+</class>
+

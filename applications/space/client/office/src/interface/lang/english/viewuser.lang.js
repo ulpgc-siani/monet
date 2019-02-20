@@ -1,0 +1,20 @@
+Lang.ViewUser = {
+	Home: "home",
+	GotoHome: "go home",
+	CloseSessionFor: "Close session of",
+	User: "User name",
+	ViewNotifications: "Show news",
+	Trash: "trash",
+	Notifications: "news",
+	More: "Show more news",
+	Environments: "Desktops",
+	Dashboards: "Dashboards",
+	Units: "Business units",
+	Current: "(current)",
+	StartSessionWith: "start session in",
+	GotoUnit: "go",
+	Logout: "logout",
+	SendSuggestion: "suggestions",
+	EditProfile: "edit profile",
+	Loading: "loading..."
+};

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration build-all="false">
+
+	<target-webxml build="false" display-name="federationInstall" />
+
+	<target-contextxml build="true" as-resource-link="false"> <!-- En caso de resource link solo especificar el global y name -->
+		<option name="global">jdbc/FederationDatabaseSource</option>
+		<option name="name">jdbc/FederationDatabaseSource</option>
+		<option name="username">root</option>
+		<option name="password">1234</option>
+		<option name="url">jdbc:mysql://localhost/federationInstall</option>
+		<option name="driverClassName">com.mysql.jdbc.Driver</option>
+		<option name="maxActive">1</option>
+		<option name="logAbandoned">true</option>
+		<option name="removeAbandonedTimeout">5</option>
+		<option name="removeAbandoned">true</option>
+		<option name="maxIdle">1</option>
+		<option name="auth">Container</option>
+	</target-contextxml>
+
+	<target-generic build="false" file="federation.dist.config" is-properties-file="true" move-user-data="true">
+		<option name="InactivityTime">1200</option> <!-- seconds -->
+		<option name="MaxRememberTime">10</option>   <!-- days -->
+		<option name="MaxSessions">100</option>
+		<option name="SocketPort">5348</option>
+		<option name="MaxSessionsSocket">100</option>
+		<option name="Database.type">mysql</option>
+		<option name="DatasourceName">jdbc/FederationDatabaseSource</option>
+		<option name="CertFile">rootCA.p7b</option>
+		<option name="SuspendTime">900</option>			<!-- seconds -->
+		<option name="RemoveSuspendTime">7200</option>		<!-- seconds -->
+		<option name="caPassword">1234567</option>
+		<option name="SMTP.Hostname">smtp.gmail.com</option>
+		<option name="SMTP.Port">587</option>
+		<option name="SMTP.User">#novalue#</option>
+		<option name="SMTP.Password">#novalue#</option>
+		<option name="SMTP.UseTLS">true</option>
+		<option name="SMTP.Email.From">#novalue#</option>
+		<option name="SMTP.Email.To">#novalue#</option>
+		<option name="Version">3.0.1</option>
+		<option name="Domain">localhost</option>
+		<option name="Port">8081</option>
+		<option name="Basepath">/monet.federation</option>
+		<option name="Secure">false</option>
+		<option name="Autostart">true</option>
+	</target-generic>
+	
+	<target-generic build="true" file="log4j.federation.dist.config" is-properties-file="true" move-user-data="true">
+		<option name="log4j.appender.LoginServiceFileAppender.file">/log/federation.log</option>
+	</target-generic>
+	
+	<target-generic build="true" file="federation.dist.xml" move-user-data="true">
+		<option name="type">mock</option>
+		<option name="url">#novalue#</option>
+		<option name="user">#novalue#</option>
+		<option name="password">#novalue#</option>
+		<option name="read-only">false</option>
+		<option name="database-type">MYSQL</option>
+	</target-generic>
+	
+	<target-copy-userdata build="true" />	
+	
+	<target-database build="true" folder="accountoffice/database">
+		<option name="database-type">mysql</option>
+		<option name="user">root</option>
+		<option name="password">password</option>
+		<option name="url">jdbc:mysql://localhost/federationInstall</option>
+		<insert-script file="/scripts/fill_database.xml"/>
+	</target-database>
+</configuration>

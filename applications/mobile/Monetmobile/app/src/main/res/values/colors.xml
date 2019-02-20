@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="navigation_menu_text">#FFFFFFFF</color>
+    <color name="navigation_menu_text_sub">#FFCCCCCC</color>
+    <color name="navigation_menu_text_sub_2">#FF999999</color>
+    <color name="no_video_bg">#FF000000</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#0000FF</color>
+    <color name="black">#000000</color>
+</resources>

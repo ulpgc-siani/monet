@@ -1,0 +1,22 @@
+.dialog.createtask {
+  width: 540px;
+  height: 220px;
+}
+
+.dialog.createtask .body {
+  margin: 10px;
+}
+
+.tasktypelistitem {
+  margin-bottom: 6px;
+  padding: 5px;
+}
+
+.tasktypelistitem .head {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.tasktypelistitem .body {
+  font-size: 11px;
+}

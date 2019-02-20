@@ -1,0 +1,210 @@
+html, body, .doc {
+  height: 100%;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: small;
+  margin: 0;
+}
+
+.holder, .theme, .configuration {
+  display: none;
+}
+
+.loading {
+  font-size: 12pt;
+  color: #555;
+}
+
+.inline {
+  display: inline;
+}
+
+.relative {
+  position: relative;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.vertical-overflow {
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+  color: #888;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  padding: 0;
+}
+
+.disabled, .disabled:hover {
+  color: #aaa;
+  cursor: default;
+}
+
+.label {
+  font-size: 15pt;
+  color: #888;
+  cursor: default;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+}
+
+.label.h2 {
+  font-size: 13pt;
+}
+
+.arrow_down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #999;
+}
+
+.baseline {
+  border-bottom: 1px dotted #ddd;
+}
+
+.baseline.discrete {
+  border-color: white;
+}
+
+.air {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  border: 0 none;
+  height: 100%;
+  resize: none;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+input[type=checkbox] {
+  width: auto;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+select {
+  font-family: "Helvetica Neue";
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+input, button, textarea {
+  font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+label, input, button, textarea {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+}
+
+button, input {
+  line-height: normal;
+}
+
+button, input, select, textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.command.button button {
+  background: none repeat scroll 0 0 #4285F4;
+  border-radius: 3px;
+  color: #FFFFFF;
+  padding: 3px 10px;
+  border: 0;
+  font-size: 12pt;
+}
+
+.command.button button:hover {
+  background: none repeat scroll 0 0 #195FCF;
+  border: 0;
+}
+
+.command.button button.disabled, .command.button button.disabled:hover {
+  background: #aaa;
+}
+
+iframe {
+  border: 1px solid #CCCCCC;
+}
+
+.boxed {
+  border-top: 1px solid #ccc/*BOX*/;
+  margin-bottom: 10px;
+}
+
+a, a:visited, a:hover {
+  text-decoration: none;
+  color: #1A6ADB;
+  cursor: pointer;
+}
+
+a.highlighted:hover {
+  font-weight: bold;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+  border: 0;
+  padding: 2px 5px;
+  width: 100%;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+  color: black;
+  padding: 4px 5px;
+}
+
+/* panels */
+.panel.horizontal td {
+  vertical-align: top;
+}
+
+.panel.horizontal > div.label {
+  width: 100%;
+  margin: 0;
+}
+
+.panel.vertical {
+  width: 100%;
+}
+
+*:focus {
+  outline: 0;
+}

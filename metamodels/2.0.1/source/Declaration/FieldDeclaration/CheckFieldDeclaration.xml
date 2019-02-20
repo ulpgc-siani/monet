@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="CheckFieldDeclaration" parent="FieldDeclaration" tag="field-check">
+  <description>Declaración que se utiliza para modelar un campo de comprobación</description>
+  <hint>Los campos de comprobación permiten realizar listas de comprobación a partir de una lista de términos</hint>
+  
+	<property name="import">
+		<description>Se utiliza para indicar el tesauro con el que se rellenará el campo</description>
+		<hint>En lugar de rellenar el campo con un tesauro, se puede declarar directamente una lista de términos</hint>
+		<attribute name="thesaurus" type="key" link="ThesaurusDefinition">
+			<description>Codigo de definición del tesauro que se va a usar</description>
+		</attribute>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma del tesauro</description>
+		</attribute>
+		<attribute name="flatten" type="enumeration">
+			<description>
+        Si se indica flatten, se toman los términos descendientes. En caso de no indicarse el atributo FLATTEN se toman solo los elementos de primer nivel. Un valor de:
+        - ALL: coge todos los términos descendientes. 
+        - LEVEL: coge los términos descendientes hasta la profundidad indicada por el atributo DEPTH.
+        - LEAF: Solo muestra los nodos hoja.
+        - INTERNAL: Solo muestra los nodos no-hoja.
+      </description>
+      <enumeration>
+        <option>ALL</option>
+        <option>LEVEL</option>
+        <option>LEAF</option>
+        <option>INTERNAL</option>
+      </enumeration>
+		</attribute>
+		<attribute name="depth" type="integer">
+			<description>Solo válido cuando se indica flatten con valor LEVEL. Se usa para indicar la profundidad de descendientes que se desea.</description>
+		</attribute>
+		<attribute name="from" type="string" link="TermDeclaration">
+			<description>Indica que se desea cargar sólo los términos hijos a partir del término dado</description>
+		</attribute>
+	</property>
+
+	<property name="allow-code">
+		<description>La presencia de esta propiedad indica que el codigo de
+			los términos tesauro tiene un significado para el usuario</description>
+	</property>
+  
+	<include name="term-index">
+		<option class-name="TermIndexDeclaration" />
+	</include>
+    
+</class>

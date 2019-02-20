@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.monet.editor.dsl
+Bundle-Vendor: Monet
+Bundle-Version: 3.0.0.qualifier
+Bundle-SymbolicName: org.monet.editor.dsl;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;bundle-version="2.4.0";visibility:=reexport,
+ org.eclipse.xtext.generator;bundle-version="2.3.0";resolution:=optional;x-installation:=greedy,
+ org.eclipse.xtend;bundle-version="1.1.0",
+ org.eclipse.xtend.typesystem.emf;bundle-version="1.0.1",
+ org.eclipse.xpand;bundle-version="1.1.0",
+ org.eclipse.xtext.util;bundle-version="2.3.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.emf.mwe2.launch;bundle-version="2.0.0";resolution:=optional;x-installation:=greedy,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.eclipse.xtext.xbase;bundle-version="2.4.0";visibility:=reexport,
+ org.eclipse.xtext.common.types,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.3.0";visibility:=reexport,
+ org.eclipse.xtext.ui.codetemplates;bundle-version="2.0.0",
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.monet.metamodel;bundle-version="3.0.0",
+ org.monet.editor.base;bundle-version="3.0.0",
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Export-Package: org.monet.editor.dsl; uses:="org.eclipse.xtext,  org.eclipse.xtext.xtype,  org.eclipse.xtext.service,  org.eclipse.xtext.common.types,  com.google.inject",
+ org.monet.editor.dsl.formatting;uses:="org.eclipse.xtext.formatting.impl",
+ org.monet.editor.dsl.helper,
+ org.monet.editor.dsl.jvmmodel; uses:="org.eclipse.emf.ecore,  org.monet.editor.dsl.monetModelingLanguage,  org.eclipse.xtext.util,  org.eclipse.xtext.xbase.jvmmodel,  org.eclipse.xtext.common.types",
+ org.monet.editor.dsl.metamodel,
+ org.monet.editor.dsl.monetModelingLanguage; uses:="org.eclipse.xtext.xbase,  org.eclipse.emf.ecore,  org.eclipse.emf.common.util,  org.eclipse.xtext.common.types",
+ org.monet.editor.dsl.monetModelingLanguage.impl; uses:="org.eclipse.xtext.xbase,  org.monet.editor.dsl.monetModelingLanguage,  org.eclipse.emf.ecore,  org.eclipse.emf.common.util,  org.eclipse.xtext.common.types,  org.eclipse.emf.ecore.impl,  org.eclipse.emf.common.notify",
+ org.monet.editor.dsl.monetModelingLanguage.util; uses:="org.eclipse.emf.ecore.util,  org.eclipse.emf.ecore,  org.monet.editor.dsl.monetModelingLanguage,  org.eclipse.emf.common.notify.impl,  org.eclipse.emf.common.notify",
+ org.monet.editor.dsl.parser.antlr;uses:="org.monet.editor.dsl.parser.antlr.internal,org.eclipse.xtext.parser.antlr,org.monet.editor.dsl.services",
+ org.monet.editor.dsl.parser.antlr.internal; uses:="org.eclipse.emf.ecore,  org.antlr.runtime,  org.eclipse.xtext.parser.antlr,  org.monet.editor.dsl.services",
+ org.monet.editor.dsl.serializer; uses:="org.eclipse.xtext,  org.monet.editor.dsl.monetModelingLanguage,  org.eclipse.xtext.serializer.sequencer,  org.eclipse.xtext.serializer.analysis,  org.eclipse.xtext.serializer.diagnostic,  org.eclipse.xtext.common.types,  org.eclipse.xtext.xbase.serializer,  org.eclipse.xtext.xbase,  org.eclipse.emf.ecore,  org.eclipse.xtext.xtype,  org.eclipse.xtext.serializer.acceptor,  org.eclipse.xtext.nodemodel,  org.monet.editor.dsl.services,  com.google.inject",
+ org.monet.editor.dsl.services;uses:="org.eclipse.xtext,org.eclipse.xtext.xbase.services,org.eclipse.xtext.service",
+ org.monet.editor.dsl.validation;uses:="org.eclipse.xtext.xbase.validation",
+ org.monet.editor.dsl.scoping,
+ org.monet.editor.dsl.generator,
+ org.monet.editor.dsl.monetLocalizationLanguage,
+ org.monet.editor.dsl.monetLocalizationLanguage.impl,
+ org.monet.editor.dsl.monetLocalizationLanguage.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.apache.commons.logging,
+ org.apache.log4j

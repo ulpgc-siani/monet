@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DocumentDeclaration" parent="NodeDeclaration" tag="document">
+
+  <property name="implements" required="true">
+    <attribute name="response" type="String"/>
+    <attribute name="request" type="String"/>
+  </property>  
+  
+  <property name="object" >
+    <attribute name="name" type="String"/>
+	  <xml-content />
+  </property>  
+
+  <property name="schema" >
+    <attribute name="filename" type="String">
+      <description>Fichero XML externo que contiene la definición del esquema.</description>
+    </attribute>
+    <xml-content />
+  </property>
+  
+  <include name="signatures" multiple="true">
+    <option class="SignatureDeclaration" />
+  </include>
+  
+  <include name="views" multiple="true">
+    <option class="DocumentViewDeclaration" />
+  </include>  
+  
+  <!-- 
+  <property name="implements" multiple="true">
+    <attribute name="reference" type="Code" link="ReferenceDeclaration">
+      <restriction>ONLY Definition WITH ReferenceDeclaration FROM Model</restriction>    
+    </attribute>
+  </property> 
+   -->
+</class>
+

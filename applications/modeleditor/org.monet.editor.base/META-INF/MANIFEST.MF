@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Editor Base
+Bundle-SymbolicName: org.monet.editor.base
+Bundle-Version: 3.0.0.qualifier
+Bundle-Activator: org.monet.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.monet,
+ org.monet.editor,
+ org.monet.editor.core,
+ org.monet.editor.core.security,
+ org.monet.editor.library,
+ org.monet.editor.util
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.core.resources;bundle-version="3.7.100"
+Bundle-ClassPath: .,
+ lib/commons-codec-1.5.jar

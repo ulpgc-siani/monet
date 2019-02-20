@@ -1,0 +1,150 @@
+.node.container .summary .node {
+  padding: 0px;
+}
+
+.node.container .summary .sections {
+}
+
+.node .summary .toolbar {
+  padding: 5px 0px;
+}
+
+.node.container .summary .sections .section {
+  float: left;
+  *padding-top: 5px;
+  height: 165px;
+  width: 20%;
+  min-width: 178px;
+  width: expression(this.scrollWidth < 179? "178px":"21%");
+  margin: 10px 10px 10px 0px;
+  padding: 10px;
+}
+
+.node.container .summary .sections .section .section {
+  height: 10px;
+  border: 0px;
+  width: 100%;
+  margin: 0px;
+  padding: 5px 0px;
+}
+
+.node.container .summary .sections .section.blue {
+  background: #D0E0F5;
+}
+
+.node.container .summary .sections .section.red {
+  background: #FFCFCF;
+}
+
+.node.container .summary .sections .section.orange {
+  background: #FFE9CF;
+}
+
+.node.container .summary .sections .section.green {
+  background: #D9EEDB;
+}
+
+.node.container .summary .sections .section .title span {
+  font-size: 17px;
+  float: left;
+  margin-left: 5px;
+  margin-top: -5px;
+}
+
+.node.container .summary .sections .section.blue .title {
+  color: #376092;
+}
+
+.node.container .summary .sections .section.red .title {
+  color: #FF0000;
+}
+
+.node.container .summary .sections .section.orange .title {
+  color: #E46C0A;
+}
+
+.node.container .summary .sections .section.green .title {
+  color: #77933C;
+}
+
+.node.container .summary .sections .section .title img.bullet {
+  height: 16px;
+  width: 16px;
+  float: left;
+}
+
+.node.container .summary .sections .section.blue .title img.bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_blue.gif') no-repeat 0 0; 
+}
+
+.node.container .summary .sections .section.red .title img.bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_red.gif') no-repeat 0 0; 
+}
+
+.node.container .summary .sections .section.orange .title img.bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_orange.gif') no-repeat 0 0; 
+}
+
+.node.container .summary .sections .section.green .title img.bullet {
+  background: url('office.api?op=loadthemefile&path=_images/icons/bullet_green.gif') no-repeat 0 0; 
+}
+
+.node.container .summary .section ul {
+  clear: both;
+  margin-left: 20px;
+}
+
+.node.container .summary .section li {
+  float: none;
+  margin: 5px 10px 5px 0px;
+  padding-right: 20px;
+  padding-top: 0px;
+  border: 0px;
+}
+
+.node.container .summary .section li.last {
+  background: none;
+}
+
+.node.container .summary .section li.section {
+  clear: none;
+}
+
+.node.container .summary .views {
+  border-top: 1px dotted #1D4191;
+  clear: both;
+  margin-top: 20px;
+  padding: 10px 5px;
+}
+
+.node.container .summary .views .option {
+  margin-bottom: 6px;
+}
+
+.node.container .summary .info {
+  clear: both;
+  border: 0px;
+  border-top: 1px dotted #666;
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 10px;
+}
+
+.item-container {
+  margin-top: 10px;
+	margin-bottom: 10px;
+	height: 98%; 
+}
+
+.item-container .list-contain {
+  margin-left: 10px; 
+}
+
+.item-container .list-contain li {
+  margin: 2px 0px;
+}
+
+.item-container .list-contain li a {
+  font-size: 13px;
+}

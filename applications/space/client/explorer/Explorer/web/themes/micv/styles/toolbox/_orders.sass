@@ -1,0 +1,71 @@
+@mixin transition($effect...)
+  -webkit-transition: $effect
+  -moz-transition: $effect
+  -ms-transition: $effect
+  -o-transition: $effect
+  transition: $effect
+
+.orders
+  width: 300px
+  display: inline-block
+  position: relative
+  @extend .field
+
+.orders .display
+  font-size: 11pt
+  height: 23px
+  margin-bottom: 18px
+  cursor: pointer
+  background: #c5cdd9 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAJCAYAAADpeqZqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAAmElEQVQYGZWPSQpCQQwF+4srT+ExHNCtXtfzfHBaeARBHKtCR9qFoIHq10leeuhKKSsYwxkG8C0eNEaw17CGEzx/QJ/+iCXrERy8V81DbjU/oAuI6KrO0R1ovoLPUc23MAMj/C75FxsaNF6qmk/B0JeXxCaTCY0eHFTNDfvpiUIW80bfvoH8w8cN74m6aU8aNs223pT/2L4AVhMogNIrOyMAAAAASUVORK5CYII=') no-repeat 97% 55%
+  @include transition(background .55s ease)
+
+.orders .display:hover, .orders .display:focus, .orders .display:active
+  background-color: rgba(197, 205, 217, 0.5)
+
+.orders .popup
+  width: 99.2%
+  height: 100px
+  position: absolute
+  top: 22px
+  z-index: 1
+
+.orders .popup .toolbar
+  background-color: white
+  height: 15px
+  position: relative
+  width: auto
+
+.orders .popup .toolbar  > .close
+  opacity: 0.5
+  color: #000000
+  font-size: 10pt
+  height: 16px
+  cursor: pointer
+  position: absolute
+  right: 5px
+  top: 1px
+  z-index: 1
+
+.orders .popup .toolbar  > .close:hover
+  opacity: 1
+
+.orders .popup .content
+  @extend .dialog
+
+.orders .popup .content > div > div
+  @extend .options
+
+.orders .popup .order
+  @extend .option
+  background-image: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIRnC2nKLnT4or00Puy3rx7VQAAOw==), url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIPnI+py+0/hJzz0IruwjsVADs=)
+  background-repeat: no-repeat
+  background-position: center right, center right
+
+.orders .popup .order.asc
+  background: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIRnC2nKLnT4or00Puy3rx7VQAAOw==) no-repeat center right
+  float: none
+  @extend .selected
+
+.orders .popup .order.desc
+  background: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIPnI+py+0/hJzz0IruwjsVADs=) no-repeat center right
+  @extend .selected

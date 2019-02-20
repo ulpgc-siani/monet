@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property type="PlaceActionProperty" parent="ReferenceableProperty" multiple="true">
+	<description>Declaración del tipo abstracto de acción a realizar en un lugar</description>
+
+	<attribute token="name" type="string" specific="true">
+		<description>Nombre con el que se referencia la declaración en el modelo de negocio</description>
+	</attribute>
+
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta</description>
+	</attribute>
+
+	<property token="require-confirmation">
+		<description>Antes de continuar con el siguiente paso en el workmap, pregunta al usuario si está seguro que desea continuar.</description>
+		<attribute token="message" type="language" required="false">
+			<description>Mensaje personalizado que se le mostrará al usuario</description>
+		</attribute>
+	</property>
+
+</property>

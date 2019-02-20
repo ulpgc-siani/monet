@@ -1,0 +1,290 @@
+Version 0.7
+	changed packaging (no doc/src in release, one jar).
+	changed tiger-javamail to javamail + activation
+	update dnsjava to 2.0.6
+	Removed old libs
+	Refact auth ldap plugin
+	Added ssl socket receiver
+	Ldap auth fix
+	Late rbl checking plugin
+		It's a smtp extension, triggered on data command
+		It performs a check on the connected IP against RBL servers
+		Typical use  with policy block list, it won't block smtp auth like the rbl ip filter
+		(ie zen.spamhaus.org by example)
+	Bug fix with slow clamd
+	Removed Jasen plugin from main project (see http://svn.jsmtpd.org/trunk/jasen-plugin/)
+	Clamd integration in a separate lib (http://www.jsmtpd.org/libclamav).
+
+Version 0.6a
+	Simplified plugin loader code + long type support
+	Changed the way to handle silent smtp extension
+	LMTP dummy plugin (it's a modified smtp sender)
+	Maildir delivery plugin (experimental, tested with solid-pop3d)
+	Generic memory cache
+	Cache in RBL plugin.
+	Bugg fix in dns resolver
+	SPF plugin (not in distribution, on svn repository)
+	Fix in ldap plugins (close cnx + vdomain fix)
+	Moved to commons logging
+	To Test: Removed Sun's Javamail implementation, replaced with https://sourceforge.net/projects/tjmail/ (LGPL)
+		-> Seems to be a modified gnu classpath impl ?
+		-> Jasen plugin broken. Replace tiger-javamail-1.0.jar with javamail+activation.jar if you need it.
+	Added GrowableThreadPool (Jsmtpd will no longer keep so many unused threads). This also needs testing !
+	Refactored DeliveryService to QueueService (just a name change as someone suggested).
+	Linux startup script changed (start foreground, background, attach a remote jvm debug port).
+	
+Version 0.5b (Fafnir, maintenance)
+	Fixes in smtp sender and receiver plugins
+		parse authentication context
+		authentication in smtp sender
+		specific fixes against other servers
+	Fixes in delivery service (retry errors)
+	Added new plugin to automaticly attach signatures to emails, made by Pierre-Alexandre Losson. Documentation pending.
+	
+
+Version 0.5 (Fafnir)
+	Stupid bug fixed in smtp remote protocol
+	Partiel refactoring to use Java 5.0 generics (Upgraded eclipse to 3.1)
+	Re-written the ugly code of UnixMailboxWriter (not yet perfect)
+	Silent smtp extension (not providing helo message) do not show anymore in ehlo chat
+	Fixed startup problem with the new opt parsing
+	SmtpSender adds the last fatal error message to recipient
+	Error reports includes orginal mail attached (using JavaMail to build attachement)
+	Send repport when a recipient is temporary unavailable.
+	PluginLoader now looks for properties seters starting with upercase or lowercase
+	Added a set of plugin to work with ldap :
+		LDAP ACL manager (works with posixAccount, inetMailRouting oclass, maybe others. Experimental)
+		LDAP body rewriter (manages resolution to uid mbox. Experimental)
+		LDAP Authenticator (asks a ldap server for user credentials. Experimental)
+	These 3 plugins shoudl be considered as experimental
+
+	Bugg fixes in LDAP plugins
+	Receiver now traces who was authentified (for future mailing list impl)
+	Added config sample for ldap setup
+	+ minor fixes	
+
+Version 0.4b (Brinsop)
+	
+	Fixed a bugg in command parsing (IO error causing npe)
+	Rewriten a bit of Jasen Plugin
+	Impl a SMTP relay delivery plugin
+	Fixed smtp sender to understain partially non rfc 821 remote servers
+	Fixed dns resolver to handle sub domain mx queries when the main fails.
+	Updated documentation
+	Fixed a DNS resolution bugg (uppercase domain names)
+	
+
+Version 0.4a (Brinsop)
+	
+	First try to implement a TLS support.
+	Updated documentation in docbook format
+	Website opening (http://www.jsmtpd.org/project/)
+	Dev section opening, trac based (http://www.taldius.net.projects/jsmtpd)
+	Moved source control to subversion
+	
+	Added new plugin type : generic smtp extension to manage common smtp extensions.
+	Refactored ProtocolHandler
+	Moved IPChecking form ProtocolHandler to a separate class
+	Added setters to ProtocolHandler to allow it to be manageable externally
+	Extracted interface of ProtocolHandler to gather management methods
+	Added to ProtocolHandler a way to expose and execute smtp extensions plugins
+	Implemented TLSSwitcher plugin as smtp extension
+	Certificate management for TLS based on keystore and std java SSL
+	Added a wiki page for generating certicates
+	Implemented a basic smtp extension plugin to handle authentication
+	PluginLoader now performs recursive method lookups (allowing to configure extended classes).
+	
+	
+Version 0.3c
+	Corrected a catch bugg in delivery handler
+	Fixed bugg in RSMTP plugin causing mail to be stuck in queue if DNS queries fails.
+	Sorting MX to use by dns priority
+	Fixed a bugg in DNSJava resolver.
+	Delivery error mails now shows the domain name of the running server
+	ClamAV connection timeout is settable via XML config file
+	RemoteSMTPsender plugin connection timeout is now settable by XML config file
+	Added parameters to jsmtpd.ini to set number of retries and retry delay per mail
+
+Version 0.3b 16/04/2005
+	Changed delivery service interface and implementation to support batch mail for a given domain
+	Theses plugins now receives a list of recipient to deliver the mail (to the same domain)
+	Delivery handler groups recipient per domain before proceding.
+	This change will improve a lot bandwith and efficiency in delivery.
+	The drawback is now that delivery plugins must tagg the status of each recipient when processed.
+	Cleaned-up log
+	Refactored IResolver interface
+	Delivery service and DNS resolver interface should now be frozen (no more changes, unless a major problem is found)
+	
+	Scheduled : Documentation update, extend protocol to ESMTP (will have to rewrite something in ACL interface and implementation)
+
+Version 0.3a
+	Fixed buggs in DateUtil (local mail formating, another issue)
+	Fixed buggs in ClamAV filter and SAFilter
+	Filter tree now catches runtime exception to prevent a buggy plugin from breaking the filtering process (resulting in loosing mail before)
+	Logs now shows thread type and id
+	Cleaned logs in plugins
+	Changed controler for partial initialisations (eg if you only want to receive mail, or send mails).
+	Changed ACL interface to allow to determine if a mail is really defined(smith@domain.com), or a domain bypass (*@domain.com)
+	Changed code formating to a more clear and compact style
+	Implemented temporary disk usage control
+	Added recipient rewriter plugin :
+		deliver mails to a local or remote catchall box, or remove it silently.
+		rewrite a rcpt to a given other rcpt (local or remote), or drop it silently.
+		This plugin is always true, and does not modify the content.
+
+	Added a safe mode for pre-production purposes :
+		If you want to use Jsmtpd in production environnement, and are not concerned by performance issues, turn this mode on in etc/jsmtpd.ini
+		Any incoming mails will be written to the given path, and will stay there forever (you should purge this directlory sometimes ;)	
+
+Version 0.2d
+	Fixed buggs in smtp sender (mail dropped on temp error)
+	Fixed buggs in delivery handler (added bounce error mails)
+	Fixed buggs in threadpool
+	Fixed buggs in DateUtil (for local mail formating)
+
+
+Version 0.2c
+	Added IPFiltering on connection
+	The protocol handler will wheck at connection if the client
+	is not blacklisted, if so connection is immediatly dropped
+	
+	Added new filter interface : IFilterIP that can filter a given IP
+	Added new input IP Filters : RBLFilter and BlackList
+	
+	BlackList : enter manually in plugin-config.xml the ips to reject
+	via a propertyset : <propertyset name="BlacklistedIP" value="172.16.0.200"></propertyset>
+	
+	RBLFilter : connects to a list of RBL servers an check
+	the ip, adding servers to the plugin is done by a propertyset:
+	<propertyset name="RBLServer" value="sbl-xbl.spamhaus.org"></propertyset>
+	
+	Changed XSD of config file to match these modifations
+	Documentation change is pending.
+	
+	NOTE: Theses filters can slow down a lot connection process.
+
+	added rcpt matcher filter
+
+Version 0.2b
+	Fixed a bugg in the smtp receiver protocol implementation
+		
+	Check addresses format/sizes according to RFC.
+	
+	Check the maximum number of RCPT according to RFC.
+	
+	Fixed the bugg that rejected external error mails.
+
+	Added more javadoc
+	
+	Added netmask support to SimpleACL so it can support multiple
+	host more easily.
+
+	Profiled a little Jsmtpd to identify and correct some performance
+	issues.
+
+Version 0.2a
+	General refactor
+	plugin config via XML File
+	Filter chain is no longer linear, it is applied to a tree
+	TODO: smpt daemon rejects mail from <>, check if normal
+	not normal, but any mail from <> are accepted ?
+
+	Fixed a bugg in smtp sender that caused network error to 
+	drop mail (incorrect temporarydeliveryexception)
+
+Scheduled for next version
+	General clean up/refactor
+		=> move plugins
+		=> change plugin configuration
+	Filter chain will be configured via xml file
+
+Version 0.1c,
+	
+	Changed the date formatter to match rfc spec
+	
+	Fixed a bugg that caused any mails for localhost 
+	to be accepted from any non relayed domain.
+	
+	Changed the build file to allow auto building
+	for nightly builds.
+
+	Added byte array manipulation tool
+	Modified unix mailbox writer to lock mailboxes
+	Fixed buggs in umw (incorrect format, CRLF)
+	Added SpamAssassin filter (exp) 
+		Has to be fixed for correct CR/LF
+	
+
+
+
+Version 0.1b, 07/03/2005
+	
+	Changed the way Email type stores the body mail data.
+	Now stored in binary array, much more faster to read,
+	save, process and send.
+	
+	ProtocolHandler now uses a data stream parser to build
+	the array of data byte (much faster than converting to
+	string, avoids byte to char conversion problems).
+	Email.save/load are also much more faster due to the
+	changed storage.
+
+	Fixed a timeout problem in ClamAVChat
+	
+	Implemented max message size errors
+	
+	Error counter in smtp chat to drop connection after
+	a threshold
+
+	Fixed error Email message to display body correctly
+
+	Todo:
+	Need code to detect bare LF
+	... + many things :)
+
+03/03/2005
+	Fixed a bugg in the remote sender that caused mail
+	to be rejected from qmail servers. (CRLF)
+	Fixed a class cast exception in DNSService
+	Fixed from error in bounce email
+	ClamAV experimental filter
+
+Version 0.1 - Proof of concept
+
+This release is not for production environnements use
+It's intended for testing purposes
+
+
+SMTP receiving service is functionnal :
+	startup, shutdown, client chat ... Etc
+
+
+SMTP Delivery service is partially functionnal : 
+	shutdown may loose mails
+	mailer-daemon error are partially implemented
+	sender is functionnal
+
+UnixMailbox Writer
+	Partially functionnal, does not lock mailboxes
+
+Jasen AntiSpam Filter
+	State : testing
+
+
+DNSService :
+	State : testing
+
+
+TODO :
+	Email type will change in the next release*
+	Fix : null rcpt
+	Fix : error messages have not correct messages
+	Fix : add correct hostname in hello cmd
+	Fix : store email using javamail api - slow convertions actually (getDataAsByte, load & save)
+	cleanup code
+	comments
+	tutorial for plugins
+	document general architecture
+	check for memory issues
+	check for loading issues
+	... +many things

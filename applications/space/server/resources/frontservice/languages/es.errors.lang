@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Errores posibles de Frontservice</comment>
+  <entry key="ERR_UNDEFINED">Error desconocido.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">Ha habido un error en la factoría de acciones.</entry>
+  <entry key="ERR_RENDERS_FACTORY">Ha habido un error en la factoría de renders.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">El usuario no ha iniciado sesión.</entry>
+  <entry key="ERR_INVALID_INPUT_FORMAT">Formato de entrada de datos incorrecto.</entry>
+  <entry key="ERR_INVALID_OUTPUT_FORMAT">Formato de salida de datos incorrecto.</entry>
+  <entry key="ERR_ELEMENT_NOT_FOUND_IN_SERVICE_DEFINITION">No se ha encontrado el elemento en la definición del servicio.</entry>
+  <entry key="ERR_CONTENT_MALFORMED">El contenido no está bien formado.</entry>
+  <entry key="ERR_INCORRECT_PARAMETERS">Parámetros incorrectos en la llamada.</entry>
+  <entry key="ERR_REDIRECT_TO_SETUP">No se ha encontrado la aplicación de administración. No podrá iniciar la unidad de negocio.</entry>
+  <entry key="ERR_INVALID_REQUEST">Solicitud no permitida.</entry>
+</properties>

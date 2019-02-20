@@ -1,0 +1,196 @@
+module org.monet.editor.dsl.GenerateMonetModelingLanguage
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.xtext.generator.*
+import org.eclipse.xtext.ui.generator.*
+
+var modelingGrammarURI = "classpath:/org/monet/editor/dsl/MonetModelingLanguage.xtext"
+var modelingFile.extensions = "mml"
+var resourceGrammarURI = "classpath:/org/monet/editor/dsl/MonetLocalizationLanguage.xtext"
+var resourceFile.extensions = "lang"
+var projectName = "org.monet.editor.dsl"
+var runtimeProject = "../${projectName}"
+
+Workflow {
+    bean = StandaloneSetup {
+        scanClassPath = true
+        registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+        registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+        registerGenModelFile = "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel"
+    }
+
+    component = DirectoryCleaner {
+        directory = "${runtimeProject}/src-gen"
+    }
+
+    component = DirectoryCleaner {
+        directory = "${runtimeProject}.ui/src-gen"
+    }
+
+    component = Generator {
+        pathRtProject = runtimeProject
+        pathUiProject = "${runtimeProject}.ui"
+        pathTestProject = "${runtimeProject}.tests"
+        projectNameRt = projectName
+        projectNameUi = "${projectName}.ui"        
+        language = {
+            uri = resourceGrammarURI
+            fileExtensions = resourceFile.extensions
+
+            // Java API to access grammar elements (required by several other fragments)
+            fragment = grammarAccess.GrammarAccessFragment {}
+
+            // generates Java API for the generated EPackages
+            fragment = ecore.EcoreGeneratorFragment {}
+
+            // the serialization component
+            fragment = serializer.SerializerFragment { }
+            
+            // a custom ResourceFactory for use with EMF
+            fragment = resourceFactory.ResourceFactoryFragment {
+                fileExtensions = resourceFile.extensions
+            }
+
+            // the following fragment generates an Antlr parser 
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+			  options = {
+			  	  classSplitting = true
+                  backtrack = true                 
+              }
+			}
+
+            // java-based API for validation
+            fragment = validation.JavaValidatorFragment { }
+
+            // scoping and exporting API
+            fragment = scoping.ImportNamespacesScopingFragment {
+            	generateStub = false
+            }
+            fragment = exporting.QualifiedNamesFragment {}
+
+			// testing API
+			fragment = junit.Junit4Fragment {}
+
+            // formatter API
+            fragment = formatting.FormatterFragment {}
+
+            // labeling API
+            fragment = labeling.LabelProviderFragment {}
+            
+            // outline API
+            fragment = outline.OutlineTreeProviderFragment {}
+            fragment = outline.QuickOutlineFragment {}
+
+			// java-based API for content assistance 
+			fragment = contentAssist.JavaBasedContentAssistFragment {}
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+			  options = {
+			  	  classSplitting = true
+              }				
+			}
+
+			fragment = builder.BuilderIntegrationFragment {}
+
+            // quickfix API
+            fragment = quickfix.QuickfixProviderFragment {}
+
+            // rename refactoring
+            fragment = refactoring.RefactorElementNameFragment {}
+
+            // provides a compare view
+            fragment = compare.CompareFragment {
+                 fileExtensions = modelingFile.extensions
+            }
+            
+            // Xbase support
+            fragment = types.TypesGeneratorFragment {}
+            fragment = xbase.XbaseGeneratorFragment {}
+
+			// Code generator
+			fragment = generator.GeneratorFragment {
+			}
+			
+            fragment = templates.CodetemplatesGeneratorFragment {}
+
+        }
+        language = {
+            uri = modelingGrammarURI
+            fileExtensions = modelingFile.extensions
+
+            // Java API to access grammar elements (required by several other fragments)
+            fragment = grammarAccess.GrammarAccessFragment {}
+
+            // generates Java API for the generated EPackages
+            fragment = ecore.EcoreGeneratorFragment {}
+
+            // the serialization component
+            fragment = serializer.SerializerFragment { }
+            
+            // a custom ResourceFactory for use with EMF
+            fragment = resourceFactory.ResourceFactoryFragment {
+                fileExtensions = modelingFile.extensions
+            }
+
+            // the following fragment generates an Antlr parser 
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+			  options = {
+			  	  classSplitting = true
+                  backtrack = true
+              }
+			}
+
+            // java-based API for validation
+            fragment = validation.JavaValidatorFragment { }
+
+            // scoping and exporting API
+            fragment = scoping.ImportNamespacesScopingFragment {
+            	generateStub = false
+            }
+            fragment = exporting.QualifiedNamesFragment {}
+
+			// testing API
+			fragment = junit.Junit4Fragment {}
+
+            // formatter API
+            fragment = formatting.FormatterFragment {}
+
+            // labeling API
+            fragment = labeling.LabelProviderFragment {}
+
+            // outline API
+            fragment = outline.OutlineTreeProviderFragment {}
+            fragment = outline.QuickOutlineFragment {}
+
+			// java-based API for content assistance 
+			fragment = contentAssist.JavaBasedContentAssistFragment {}
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+				options = {
+					classSplitting = true
+				}
+			}
+
+			fragment = builder.BuilderIntegrationFragment {}
+
+            // quickfix API
+            fragment = quickfix.QuickfixProviderFragment {}
+
+            // rename refactoring
+            fragment = refactoring.RefactorElementNameFragment {}
+
+            // provides a compare view
+            fragment = compare.CompareFragment {
+                 fileExtensions = modelingFile.extensions
+            }
+            
+            // Xbase support
+            fragment = types.TypesGeneratorFragment {}
+            fragment = xbase.XbaseGeneratorFragment {}
+
+			// Code generator
+			fragment = generator.GeneratorFragment {
+			}
+			
+            fragment = templates.CodetemplatesGeneratorFragment {}
+        }        
+    }
+}

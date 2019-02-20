@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Explorer.iml" filepath="$PROJECT_DIR$/Explorer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_explorer.iml" filepath="$PROJECT_DIR$/_explorer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client.iml" filepath="$PROJECT_DIR$/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client.cosmos.iml" filepath="$PROJECT_DIR$/client.cosmos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client.cosmos.gwt.iml" filepath="$PROJECT_DIR$/client.cosmos.gwt.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,143 @@
+/*
+------------------------------------------------------------------------------------------------
+  body
+------------------------------------------------------------------------------------------------
+*/
+
+body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+  color: #424242;
+  min-width: 760;
+  overflow: scroll;
+}
+
+a {
+  text-decoration: none;	
+}
+
+.italic {
+  font-style: italic;	
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  columns
+------------------------------------------------------------------------------------------------
+*/
+
+.column60 {
+  width: 60%;  
+  float: left;
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  inputs and buttons
+------------------------------------------------------------------------------------------------
+*/
+
+input[type="text"] {
+  height: 25px;
+  font-size: 11pt;
+  padding-left: 5px
+}
+
+input[type='button'], a.button {
+  border: 1px solid #c6c6c6;
+  min-width: 70px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+  color: #424242;
+  background-color: #f0f0f0;
+  text-decoration: none; 
+}
+
+input[type="button"][disabled], a.button.disabled {
+  color: #CFCFCF;  
+}
+
+input[type="button"][disabled]:hover, a.button.disabled:hover {
+ -moz-box-shadow: 0px; 
+ -webkit-box-shadow: 0px; 
+ box-shadow: 0px;	
+}
+
+input[type='button']:hover, a.button:hover {
+ -moz-box-shadow: 0px 0px 5px #cccc; 
+ -webkit-box-shadow: 0px 0px 5px #ccc; 
+ box-shadow: 0px 0px 5px #ccc; 
+}
+
+input.required {
+  background-image: url('../images/grided/required.png');
+  background-repeat: no-repeat;
+  background-position: 99% 50%;
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  toolbar
+------------------------------------------------------------------------------------------------
+*/
+
+.toolbar {
+  margin: 5px 0px 15px 0px; 
+  width: 100%;
+  display: table;
+}
+
+.toolbar input[type='button'], a.button {
+  margin-left: 10px;  
+  min-width: 70px;
+}
+
+.toolbar input[type='button']:first-child, a.button:first-child {
+  margin-left: 0px;  
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  Ext Tabs
+------------------------------------------------------------------------------------------------
+*/
+
+.x-tabs-item-body {
+  padding: 20px;
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  titles
+------------------------------------------------------------------------------------------------
+*/
+
+.title {
+  font-size: 11pt;       
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  table
+------------------------------------------------------------------------------------------------
+*/
+
+table.grided-table tr.selected {
+  background-color: #e9e9e9;
+}
+
+table.grided-table tr td:first-child {
+  width: 22px;
+}
+
+/*
+------------------------------------------------------------------------------------------------
+  sections
+------------------------------------------------------------------------------------------------
+*/
+
+.section-right {
+  padding-left: 10px;	
+}
+
+

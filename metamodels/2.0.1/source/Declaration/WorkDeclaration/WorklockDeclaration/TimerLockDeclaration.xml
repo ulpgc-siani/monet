@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="TimerLockDeclaration" parent="WorklockDeclaration" tag="timer-lock">
+  <description>Declaración de un bloqueo de temporizador. Estos bloqueos se resuelven automáticamente al cabo del tiempo indicado</description>
+
+  <property name="timer" required="true">
+      <description>Configuración del temporizador</description>
+    <attribute name="delay" type="integer" required="true">
+      <description>Duración del temporizador</description>
+    </attribute>
+    <attribute name="extend" type="integer">
+      <description>???</description>
+    </attribute>
+  </property>
+  
+</class>

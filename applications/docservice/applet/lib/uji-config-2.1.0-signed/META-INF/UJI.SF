@@ -1,0 +1,89 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: 9ByqrUPKkrXfCg+x9wM/2TYmX/Y=
+Created-By: 1.6.0_16 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: qkXgOPwchYtBjq46hm93WEl5qyE=
+
+Name: uji.jpg
+SHA1-Digest: yu9gjYvGrLp66EJIk5dzyPxkACE=
+
+Name: i18n_EN_en.properties
+SHA1-Digest: xCVr3xxxgZ7epFyTO8EyvAt8NKI=
+
+Name: ACDNIE001.pem
+SHA1-Digest: aeUJRJoYEMQ2L3TnIri+neesUt4=
+
+Name: ocsp-gva.crt
+SHA1-Digest: j0/9vYxhKU9ObVoAFQN+7UkdSoM=
+
+Name: META-INF/maven/es.uji.security/uji-config/pom.properties
+SHA1-Digest: WF77gpcmiZ2bMkcK2TM1lcgA7yI=
+
+Name: es/uji/security/crypto/config/ConfigManager.class
+SHA1-Digest: C5JxCOrO0Vk+E3j9Q1eW8Ir8m34=
+
+Name: DNIEOCSP.pem
+SHA1-Digest: M+E/SDyEMl0KsDEC0nEU0YY84Cw=
+
+Name: config.xml
+SHA1-Digest: 09+j8qSETHGZcQ7UgDyqF7iVV/0=
+
+Name: ACDNIE002-SHA1.pem
+SHA1-Digest: 2sjRyxqlqx3LuUY8VNR+xiTWdgI=
+
+Name: tsa1_accv.der
+SHA1-Digest: FSRVHV0fbhNMvtWxLGMdTvF4w8w=
+
+Name: test.pem
+SHA1-Digest: pkPRLNn4ROjI7Vf1uFVkLm+SwZ8=
+
+Name: cagva.pem
+SHA1-Digest: EM3wIDLyZjPv99bHkAFhpZ7kmM0=
+
+Name: i18n_GL_es.properties
+SHA1-Digest: b2o6OuwW4H6fxAYByEyyfLrUqkQ=
+
+Name: META-INF/maven/es.uji.security/uji-config/pom.xml
+SHA1-Digest: PDV8RNFzqeqgILBNO9GqIFYhpm8=
+
+Name: accv-ca2.pem
+SHA1-Digest: /KMRj+sy6icRwiUl3TIRSHzdDMU=
+
+Name: testKeyStore
+SHA1-Digest: DSxc/yfZuZLWIyBU0PDchgvq1UM=
+
+Name: i18n.properties
+SHA1-Digest: q0g1TqOM6xye8ZV7CnA177hp7PU=
+
+Name: ujica.pem
+SHA1-Digest: QsLetXyBcyckNJQgTJwlWfYFf1k=
+
+Name: ocsp-gva-old.crt
+SHA1-Digest: xVlL3/SZMPH1nntzPzsZuMpNlpM=
+
+Name: NisuCa.pem
+SHA1-Digest: PcmYvmW1Eas5wO5qjJxSWd1WuHw=
+
+Name: i18n_CA_ca.properties
+SHA1-Digest: gnusxZmib5Q9X5b+qPqz28gDdx8=
+
+Name: fnmt.pem
+SHA1-Digest: 040uTPY6regBHB/tPwqUkW4dJGE=
+
+Name: i18n_ES_es.properties
+SHA1-Digest: pHLBCxaa/5EMXPmqMSyykUNet7s=
+
+Name: ujiCrypto.conf
+SHA1-Digest: 3klQehtUkuRdjTocR1tEdot5h/I=
+
+Name: log4j.properties
+SHA1-Digest: x4iC9qDr3BrO6CvW/XQQKWoOjW8=
+
+Name: data.xml
+SHA1-Digest: wtHz/pu7Nslmah4YonCHoFsAR2o=
+
+Name: rootca.pem
+SHA1-Digest: eHoVF81ghlGywxBzfaDT4fKoWMM=
+
+Name: ACDNIE003-SHA1.pem
+SHA1-Digest: YZs8vUdu5pCYcouG9Me/e/CVU+8=
+

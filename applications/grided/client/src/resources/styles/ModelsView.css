@@ -1,0 +1,41 @@
+
+#models-view {
+  width: 100%;
+}
+
+#models-view .left-section {
+  width: 70%;
+  float: left;
+}
+
+#models-view .right-section {
+  width: 29%;
+  float: left;
+  margin-left: 10px;
+}
+
+
+#models-view .table-border {
+  height: 740px;
+}
+
+#models-view table.grided-table tr td:first-child {
+  width: 5%;  
+}
+
+#models-view table.grided-table {  
+  width: 100%;
+}
+
+#models-view table.grided-table tr td:first-child {
+  width: 5%;
+}
+
+#models-view table.grided-table tr td:last-child {
+  width: 95%;
+}
+
+#models-view .message {
+  text-align: center;
+  margin-top: 200px;
+}

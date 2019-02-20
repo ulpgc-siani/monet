@@ -1,0 +1,16 @@
+<schema>
+   <codigo>C-0015/11-V</codigo>
+   <id-incidencia>I-0018/11</id-incidencia>
+   <tipo-incidencia code="mrwy1na">Corrección</tipo-incidencia>
+   <resultado>true</resultado>
+   <observaciones-resultado></observaciones-resultado>
+   <calculo-coste internal="0.0" metric="">,00</calculo-coste>
+   <calculo-coste-facturable internal="0.0" metric="">,00</calculo-coste-facturable>
+   <coste-consumible internal="0.0" metric="">,00</coste-consumible>
+   <coste-consumible-facturable internal="0.0" metric="">,00</coste-consumible-facturable>
+   <coste-repuesto internal="0.0" metric="">,00</coste-repuesto>
+   <coste-repuesto-facturable internal="0.0" metric="">,00</coste-repuesto-facturable>
+   <coste-esfuerzo internal="0.0" metric="">,00</coste-esfuerzo>
+   <coste-esfuerzo-facturable internal="0.0" metric="">,00</coste-esfuerzo-facturable>
+   <adjuntos-resultado/>
+</schema>

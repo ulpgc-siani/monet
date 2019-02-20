@@ -1,0 +1,1802 @@
+<import>
+  <lugar-actuacion>
+    <codigo>1</codigo>
+    <nombre>EL LASSO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL LASSO</barrio>
+    <direccion>El Lasso (Junto al Bloque nº 27)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>2</codigo>
+    <nombre>PEDRO HIDALGO </nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>PEDRO HIDALGO</barrio>
+    <direccion>Plaza Blas Estupiñán, frente al nº 22</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>3</codigo>
+    <nombre>PEDRO HIDALGO II </nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL BATAN</barrio>
+    <direccion>Plaza Miguel Ángel Blanco junto C/Granada nº3</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>4</codigo>
+    <nombre>PLAZA DE POPA </nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>SAN CRISTOBAL</barrio>
+    <direccion>Paseo Dr. Antonio Luis Sánchez Fleitas, nº 12</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>5</codigo>
+    <nombre>EL BATÁN</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>PEDRO HIDALGO</barrio>
+    <direccion>C/ Salamanca, frente al nº 12</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>6</codigo>
+    <nombre>MANUEL DE FALLA</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LA PATERNA</barrio>
+    <direccion>C/ Manuel de Falla, 116</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>7</codigo>
+    <nombre>SAN FRANCISCO </nombre>
+    <distrito>Centro</distrito>
+    <barrio>SAN FRANCISCO</barrio>
+    <direccion>C/ Gobernador Marín Acuña, 45 (Trasera)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>8</codigo>
+    <nombre>PLAZA DE EMILIO ZOLA </nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>SANTA CATALINA</barrio>
+    <direccion>C/ Emilio Zola, 24</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>9</codigo>
+    <nombre>TRES PALMAS</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>TRES PALMAS</barrio>
+    <direccion>Plaza Guerra del Agua</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>10</codigo>
+    <nombre>EMILIO ARRIETA</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LA PATERNA</barrio>
+    <direccion>C/Emilio Arrieta</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>11</codigo>
+    <nombre>MADERA Y CORCHO </nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>Plaza Juan del Río Ayala</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>12</codigo>
+    <nombre>SANSOFÉ </nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>CUEVA TORRES</barrio>
+    <direccion>C/ Farmacéutico Miguel Padilla, frente al nº 8</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>13</codigo>
+    <nombre>EL POLVORÍN </nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>EL POLVORÍN</barrio>
+    <direccion>C/ Obispo Marquina dentro del C.P. Santiago Ramón y Cajal</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>14</codigo>
+    <nombre>PLAZA ALVARADO Y SAZ</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SCHAMANN</barrio>
+    <direccion>Plaza Alvarado y Saz, frente al nº 5</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>15</codigo>
+    <nombre>PEDRO INFINITO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SCHAMANN</barrio>
+    <direccion>C/ Pedro Infinito, frente al nº 198</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>16</codigo>
+    <nombre>BARRANQUILLO DON ZOILO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>BQLLO. DON ZOILO</barrio>
+    <direccion>C/ Párroco Villar Reina nº 48</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>17</codigo>
+    <nombre>HOYA DE LA PLATA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>HOYA DE LA PLAYA</barrio>
+    <direccion>C/Candelaria de León lateral del nº 8</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>18</codigo>
+    <nombre>HOSTELERÍA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>EL PILAR</barrio>
+    <direccion>Hostelería Carrillos Tacumán</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>19</codigo>
+    <nombre>PARQUE HERMANOS MILLARES</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>Avda. de Escaleritas - C/ Obispo Romo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>20</codigo>
+    <nombre>GUILLERMO SANTANA RIVERO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>FERIA ATLANTICO</barrio>
+    <direccion>Avda. Guillermo Santana Rivero lateral nº 17</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>21</codigo>
+    <nombre>LAS TORRES BAJAS</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS TORRES</barrio>
+    <direccion>Urbanización Las Torres frente al nº 20</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>22</codigo>
+    <nombre>LAS MAJADILLAS</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LAS MAJADILLAS</barrio>
+    <direccion>C/ Dña. Juana Marrero frente al nº 65</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>23</codigo>
+    <nombre>COSTA AYALA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>COSTA AYALA</barrio>
+    <direccion>C/ Mediterráneo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>24</codigo>
+    <nombre>PLAZOLETA DE TENOYA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>TENOYA</barrio>
+    <direccion>Plazoleta de Tenoya</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>25</codigo>
+    <nombre>EL FONDILLO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL FONDILLO</barrio>
+    <direccion>C/ La Meseta, junto al nº 114</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>26</codigo>
+    <nombre>PLAZA DE EUROPA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>JINAMAR</barrio>
+    <direccion>Ramblas de la Concepción, nº 1 - Bloque 17</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>27</codigo>
+    <nombre>PORTUGAL </nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ Portugal, frente nº 30</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>28</codigo>
+    <nombre>VEGA DE SAN JOSÉ</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>VEGA DE SAN JOSÉ</barrio>
+    <direccion>C/ Eufemiano Jurado (Frente al C.P. Cervantes)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>29</codigo>
+    <nombre>PLAZA DE ZÁRATE</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>ZARATE</barrio>
+    <direccion/>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>30</codigo>
+    <nombre>PARQUE DE CASABLANCA I </nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>CASABLANCA I</barrio>
+    <direccion>C/ Anton Dvorak, junto al nº 13</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>31</codigo>
+    <nombre>PLAZA DE MIGUEL ANGEL BLANCO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>SALTO DEL NEGRO</barrio>
+    <direccion>Párroco José C. Quintana Sánchez, frente nº 40</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>32</codigo>
+    <nombre>EL LASSO II</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL LASSO</barrio>
+    <direccion>Bajada de El Lasso, frente al Edificio Azul</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>33</codigo>
+    <nombre>PLAZA TENDERETE</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LA PATERNA</barrio>
+    <direccion>C/ Manuel de Falla, frente nº 62 - Nueva Paterna</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>34</codigo>
+    <nombre>PARQUE GLORIA FUERTES</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CASABLANCA III</barrio>
+    <direccion>C/ Aconcagua (entre Bloques 8 y 10)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>35</codigo>
+    <nombre>LOS TARAHALES I</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LOS TARAHALES</barrio>
+    <direccion>C/ Batalla de Brunete (Plaza Cayo Ramírez Santana)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>36</codigo>
+    <nombre>JARDINES DE CASABLANCA III</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CASABLANCA III</barrio>
+    <direccion>C/ Paraná</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>37</codigo>
+    <nombre>LOMO APOLINARIO</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LOMO APOLINARIO</barrio>
+    <direccion>C/ Pino Apolinario - C/ Rafaela de las Casas</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>38</codigo>
+    <nombre>PLAZA DE LA ESTACIÓN DE GUAGUAS</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion/>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>39</codigo>
+    <nombre>PARQUE SAN TELMO</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion/>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>40</codigo>
+    <nombre>CASABLANCA II</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LUGO</barrio>
+    <direccion>C/ Luis Doreste Silva, junto al nº 22 (Edif. Tenagua)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>41</codigo>
+    <nombre>PARQUE DE LA MÚSICA </nombre>
+    <distrito>Centro</distrito>
+    <barrio>CANALEJAS</barrio>
+    <direccion>Junto a Fuente Luminosa</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>42a</codigo>
+    <nombre>PARQUE ALONSO QUESADA(Pequeños)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CIUDAD JARDIN</barrio>
+    <direccion>C/ León y Castillo trasera nº 284. Lateral Oficinas Municipales</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>42b</codigo>
+    <nombre>PARQUE ALONSO QUESADA(Mayores)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CIUDAD JARDIN</barrio>
+    <direccion>C/ León y Castillo trasera nº 284. Lateral Oficinas Municipales</direccion>
+    <codigo-postal/>
+    <atributos-geograficos>40118</atributos-geograficos>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>43a</codigo>
+    <nombre>PARQUE DORAMAS(Pequeños)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CIUDAD JARDIN</barrio>
+    <direccion>Parque Doramas</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>43b</codigo>
+    <nombre>PARQUE DORAMAS(Mayores)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CIUDAD JARDIN</barrio>
+    <direccion>Parque Doramas</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>43c</codigo>
+    <nombre>PARQUE DORAMAS(Pequeños arriba)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CIUDAD JARDIN</barrio>
+    <direccion>Parque Doramas</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>44</codigo>
+    <nombre>PLAYA DE LAS ALCARAVANERAS</nombre>
+    <distrito>Centro</distrito>
+    <barrio>ALCARAVANERAS</barrio>
+    <direccion>Playa de Las Alcaravaneras</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>45</codigo>
+    <nombre>PLAZA RAFAEL O´SHANAHAN</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LUGO</barrio>
+    <direccion>C/ Paseo de Lugo - Avenida Juan XXIII</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>46</codigo>
+    <nombre>PLAZA ALCALDE MEJIAS POMBO</nombre>
+    <distrito>Centro</distrito>
+    <barrio>ALCARAVANERAS</barrio>
+    <direccion>C/ Leopoldo Matos frente al nº 20</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>47</codigo>
+    <nombre>PLAZA CHURRUCA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ Velarde - Bolivia. Plaza de Churruca</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>48</codigo>
+    <nombre>JUAN DEL RÍO AYALA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>Plaza de Juan del Río Ayala (Madera y Corcho)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>49</codigo>
+    <nombre>PLAYA DE LAS CANTERAS</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>SANTA CATALINA-CANTERAS</barrio>
+    <direccion>C/ Gran Canaria - Paseo de Las Canteras</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>50</codigo>
+    <nombre>PARQUE SANTA CATALINA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>SANTA CATALINA-CANTERAS</barrio>
+    <direccion>C/ Luis Morote, 1</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>51</codigo>
+    <nombre>COMANDANTE RAMON FRANCO</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>SANTA CATALINA-CANTERAS</barrio>
+    <direccion>Plza Comandante Ramón Franco (Tras. Edif. Miller)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>52</codigo>
+    <nombre>URBANIZACIÓN NUEVA ISLETA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>Trasera C/ Don Quijote de la Mancha. Parque reino de Micomicón</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>53</codigo>
+    <nombre>PLAZA FERRET</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Palmar - C/ Majadilla</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>54</codigo>
+    <nombre>NTRA. SRA. DE FÁTIMA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Pedro Apóstol (Las Coloradas)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>55</codigo>
+    <nombre>URB. CINCO CONTINENTES</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>CUEVA TORRES</barrio>
+    <direccion>Frente al Edificio Asia</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>56</codigo>
+    <nombre>Mª ISABEL SANTANA TRUJILLO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>PGNO. CRUZ DE PIEDRA</barrio>
+    <direccion>C/ Joaquín Belón, frente al Bloque 13 - nº 18</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>57</codigo>
+    <nombre>ESCULTOR EDUARDO GREGORIO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS CHUMBERAS</barrio>
+    <direccion>C/ Mariucha, frente al nº 135</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>58</codigo>
+    <nombre>EUSEBIO MIRABAL CABRERA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>PGNO. CRUZ DE PIEDRA</barrio>
+    <direccion>C/ Farmacéutico Pedro Rivero, Bloque nº 9</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>59</codigo>
+    <nombre>CENTRO CÍVICO LA BALLENA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>FERIA DEL ATLANTICO</barrio>
+    <direccion>C/ Diego Betancor Suárez, frente al Bloque 8</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>60</codigo>
+    <nombre>EL PILAR</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>FERIA DEL ATLANTICO</barrio>
+    <direccion>Plaza Barranco de La Ballena</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>61</codigo>
+    <nombre>C/ DONANTE ALTRUISTA</nombre>
+    <distrito/>
+    <barrio>FERIA DEL ATLANTICO</barrio>
+    <direccion>C/ DONANTE ALTRUISTA</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>62</codigo>
+    <nombre>FERIA DEL ATLÁNTICO - 110 VIVIENDAS</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>FERIA DEL ATLANTICO</barrio>
+    <direccion>C/ Alférez Provisional lateral nº 105</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>63</codigo>
+    <nombre>PLAZA DE ARGENTINA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Alonso J. De Sotomayor - C/ Ruiz de Melgarejo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>64</codigo>
+    <nombre>PLAZA DE LA ASCENCIÓN</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS TORRES ALTAS </barrio>
+    <direccion>C/ Laurel frente al nº 9 Plaza de La Ascención</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>65</codigo>
+    <nombre>PARQUE INFANTIL MIGUEL A. DÉNIZ</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS TORRES ALTAS </barrio>
+    <direccion>C/ Mimosa esquina con Madreselva</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>66</codigo>
+    <nombre>PLAZA DE ALMATRICHE ALTO</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>ALMATRICHE ALTO</barrio>
+    <direccion>C/ La Explanada frente al nº 15</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>67</codigo>
+    <nombre>PLAZA DE EL ZARDO</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>EL ZARDO</barrio>
+    <direccion>C/ Tindaya, frente nº 5</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>68</codigo>
+    <nombre>PLAZA DE SAN LORENZO</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>SAN LORENZO</barrio>
+    <direccion>Plaza de San Lorenzo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>69</codigo>
+    <nombre>LA GALERA I</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LA GALERA</barrio>
+    <direccion>C/ Los Avellanos al lado nº39</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>70</codigo>
+    <nombre>LOS GILES</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LADERA ALTA</barrio>
+    <direccion>C/ Enedán, nº 57 (frente C.P. Los Giles)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>71</codigo>
+    <nombre>URB. LADERA ALTA - 70 Viviendas</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LOS GILES</barrio>
+    <direccion>Urbanización Ladera Alta, frente Bloque nº 2</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>72</codigo>
+    <nombre>PLAZA DE DON SIXTO HENRÍQUEZ</nombre>
+    <distrito/>
+    <barrio>LOMO LOS FRAILES</barrio>
+    <direccion>C/ Betania - C/ Jericó</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>73</codigo>
+    <nombre>PLAZA LOMO LOS FRAILES</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LOMO LOS FRAILES</barrio>
+    <direccion>C/ Carmen Laforet frente al nº 25</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>74</codigo>
+    <nombre>PLAZA DE LAS MESAS</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LAS MESAS</barrio>
+    <direccion>C/ Escritor Secundino Delgado, frente nº 60</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>75</codigo>
+    <nombre>CASA AYALA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>CASA AYALA</barrio>
+    <direccion>Lugar Casa Ayala frente al nº 65d</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>76</codigo>
+    <nombre>LOMO BLANCO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>LOMO BLANCO</barrio>
+    <direccion>Calle Norte nº 78</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>77</codigo>
+    <nombre>PLAZA DEL GENERAL SAN MARTÍN</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>TAFIRA BAJA</barrio>
+    <direccion>C/ Tucumán, frente nº 15</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>78</codigo>
+    <nombre>TAFIRA ALTA</nombre>
+    <distrito/>
+    <barrio/>
+    <direccion/>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>79</codigo>
+    <nombre>TAFIRA BAJA</nombre>
+    <distrito/>
+    <barrio/>
+    <direccion/>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>80</codigo>
+    <nombre>MIRADOR DE JINAMAR</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>JINÁMAR</barrio>
+    <direccion>C/ Santa Rita de Casia, frente al Bloque nº 10</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>81</codigo>
+    <nombre>PLAZA DE MARZAGÁN</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>MARZAGÁN</barrio>
+    <direccion>C/ Secundino Suazo, frente nº 13</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>82</codigo>
+    <nombre>P.I. RAMBLAS DE JINÁMAR</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>JINAMAR</barrio>
+    <direccion>Avda. Las Ramblas , junto Bloque nº 9</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>83</codigo>
+    <nombre>POLIGONO DE SAN CRISTOBAL</nombre>
+    <distrito/>
+    <barrio>PGNO.VEGA DE SAN JOSE</barrio>
+    <direccion>C/Córdoba</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>84</codigo>
+    <nombre>PLAZA DE SAN JORGE</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>TAMARACEITE</barrio>
+    <direccion>C/ San Matías, frente al nº 5</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>85</codigo>
+    <nombre>PARQUE DE LA PAZ</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS REHOYAS</barrio>
+    <direccion>C/ Plaza de La Paz - 12 de Marzo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>86a</codigo>
+    <nombre>PARQUE DE LAS REHOYAS (PEQUEÑOS)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS REHOYAS</barrio>
+    <direccion>Ctra. General del Norte</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>86b</codigo>
+    <nombre>PARQUE DE LAS REHOYAS (MAYORES)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS REHOYAS</barrio>
+    <direccion>Ctra. General del Norte</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>87</codigo>
+    <nombre>PLAZA DON BENITO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SCHAMANN</barrio>
+    <direccion>C/ Núñez de Balboa, frente al nº 13</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>88</codigo>
+    <nombre>URBANIZACIÓN CIUDAD DEL CAMPO</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>CIUDAD DEL CAMPO</barrio>
+    <direccion>C/ Lázaro de Ortega frente al nº 25</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>89</codigo>
+    <nombre>PARQUE DE HOYA ANDREA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>HOYA ANDREA</barrio>
+    <direccion>C/ Urano, frente nº 1</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>90</codigo>
+    <nombre>CASTILLO DE LA LUZ</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Juan Rejón</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>91</codigo>
+    <nombre>CASABLANCA II - JARDÍN LUGO</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CIUDAD DEL MAR</barrio>
+    <direccion>C/ Luis Doreste Silva, 54 (Trasera)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>92</codigo>
+    <nombre>CONCEJALÍA DISTRITO III</nombre>
+    <distrito/>
+    <barrio>MILLER BAJO</barrio>
+    <direccion>Calzada Lateral del Norte, 35 (Trasera)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>93a</codigo>
+    <nombre>PLAZA DE LOS BOMBEROS(PEQUEÑOS)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Reina Teguise - C/ Tecén</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>93b</codigo>
+    <nombre>PLAZA DE LOS BOMBEROS (MAYORES)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Reina Teguise - C/ Tecén</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>94</codigo>
+    <nombre>LOMO EL CHINCHE</nombre>
+    <distrito/>
+    <barrio>FERIA DEL ATLANTIACO</barrio>
+    <direccion>Avenida Guillermo Santana Rivero, (dir. El Pilar)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>95</codigo>
+    <nombre>LADERA ALTA - 142 VIVIENDAS</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LADERA ALTA</barrio>
+    <direccion>C/ Juan Afonso Ponce, trasera.Plaza de las 142 Viviendas,fte nº 52</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>96</codigo>
+    <nombre>ALMATRICHE ALTO - 62 VIVIENDAS</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>ALMATRICHE ALTO</barrio>
+    <direccion>Parque de los Nispereros</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>97</codigo>
+    <nombre>SAN NICOLÁS DE BARI</nombre>
+    <distrito>Centro</distrito>
+    <barrio>SAN NICOLÁS</barrio>
+    <direccion>C/ San Nicolás de Bari</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>98</codigo>
+    <nombre>C.P. ADELA SANTANA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>TAFIRA ALTA</barrio>
+    <direccion>C/ Las Magnolias, 12</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>99</codigo>
+    <nombre>BUENAVISTA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>Jardines de Buenavista</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>100</codigo>
+    <nombre>PLAZOLETA DON JOSÉ CASAÑAS</nombre>
+    <distrito>Centro</distrito>
+    <barrio>SAN NICOLÁS</barrio>
+    <direccion>C/ San Nicolás frente al nº 26</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>101</codigo>
+    <nombre>PASEO DE SAN JOSÉ</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>SAN JOSÉ</barrio>
+    <direccion>Paseo de San José frente al nº 98</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>102</codigo>
+    <nombre>EL BATÁN</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL BATÁN</barrio>
+    <direccion>C/ Severo Ochoa esq. C/ George Pire</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>103</codigo>
+    <nombre>LOS HOYOS</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>LOS HOYOS</barrio>
+    <direccion>C/ La Cultura</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>104</codigo>
+    <nombre>TAFIRA ALTA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>TAFIRA ALTA</barrio>
+    <direccion>C/ Rafael Rafaely frente al nº 27</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>105</codigo>
+    <nombre>SIETE PALMAS</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>Avenida Felo Monzón junto CC Siete Palmas</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>106</codigo>
+    <nombre>LOS TARAHALES II</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LOS TARAHALES</barrio>
+    <direccion>C/ Alto de Los Leones</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>107</codigo>
+    <nombre>JUAN REJÓN</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Juan Rejón- C/Veintidos de Mayo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>108</codigo>
+    <nombre>PLAZA DON SIXTO HENRÍQUEZ</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LOMO LOS FRAILES</barrio>
+    <direccion>C/ Betania frente al nº 51</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>109</codigo>
+    <nombre>JUEGOS OLIMPICOS DE MEXICO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Juan Ramón Jiménez - Moratín. Plaza de Los Juegos Olímpicos de México</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>110</codigo>
+    <nombre>LAS MESAS - 90 VIVIENDAS</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LAS MESAS</barrio>
+    <direccion>C/ Dr. Jose Luis Batista Costa, frente al nº 88</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>111a</codigo>
+    <nombre>PARQUE DE SAN TELMO(Pequeños)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion>Parque de San Telmo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>111b</codigo>
+    <nombre>PARQUE DE SAN TELMO(Barco)</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion>Parque de San Telmo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>112</codigo>
+    <nombre>PARQUE REPÚBLICA DOMINICANA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ República Dominicana frente nº 13</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>113</codigo>
+    <nombre>PARQUE DE LAS FILIPINAS</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL LASSO</barrio>
+    <direccion>Avenida de Amurga frente al nº 3, Plaza Santiago Betancor Brito</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>114a</codigo>
+    <nombre>EL CANÓDROMO(PEQUEÑOS)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Obispo Romo semiesquina C/ Sor Simona</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>114b</codigo>
+    <nombre>EL CANÓDROMO(MEDIANOS) </nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Obispo Romo semiesquina C/ Sor Simona</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>114c</codigo>
+    <nombre>EL CANÓDROMO(MAYORES)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Obispo Romo semiesquina C/ Sor Simona</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>115</codigo>
+    <nombre>TRES PALMAS</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>TRES PALMAS</barrio>
+    <direccion>Plaza Guerra del Agua</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>116</codigo>
+    <nombre>C.P. DRAGO</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LA PATERNA</barrio>
+    <direccion>C/ Ataulfo Argenta</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>117</codigo>
+    <nombre>PARQUE LAS TENERIAS</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>VEGA DE SAN JOSÉ</barrio>
+    <direccion>C/ Córdoba</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>118</codigo>
+    <nombre>RAMBLAS DE JINAMAR </nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>JINAMAR</barrio>
+    <direccion>C/ Bodegas del Conde</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>119</codigo>
+    <nombre>PEQUEÑO ARTURO </nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion>Parque de San Telmo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>120</codigo>
+    <nombre>Fco. INGLOT ARTILES</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>ZARATE</barrio>
+    <direccion>C/ Fco. Inglot Artiles </direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>121</codigo>
+    <nombre>PLAZA DE FÁTIMA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>SAN ROQUE</barrio>
+    <direccion>C/ Folías, frente nº 38. Plaza de Fátima. </direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>122</codigo>
+    <nombre>HERMANOS TOLEDO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>LOMO BLANCO</barrio>
+    <direccion>C/ Hermanos Toledo Suárez, frente nº 13 </direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>123</codigo>
+    <nombre>SAMARIA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>PILETAS</barrio>
+    <direccion>Asociación de Vecinos</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>124</codigo>
+    <nombre>PARQUE CENTRAL</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>PARQUE CENTRAL</barrio>
+    <direccion>Parque Central</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>125</codigo>
+    <nombre>PLÁCIDO ARBELO </nombre>
+    <distrito>Centro</distrito>
+    <barrio>LOMO APOLINARIO</barrio>
+    <direccion>C/ Plácido Arbelo, nº 17.( por la calle Lugarejo) </direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>126</codigo>
+    <nombre>PLAZA DEL PUEBLO</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Princesa Guayarmina, esq. C/ Saucillo. Plaza del Pueblo. </direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>127</codigo>
+    <nombre>AVDA. JUAN CARLOS I, EDF CORONA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>Avda. Juan Carlos I, nº 17. Edificio Corona</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>128</codigo>
+    <nombre>AVDA. JUAN CARLOS I Nº 16</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>Avda. Juan Carlos I, nº 16 Edificio Corona</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>129</codigo>
+    <nombre>VIRGEN DEL PILAR I</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS TORRES</barrio>
+    <direccion>C/ Virgen del Pilar nº 37</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>130</codigo>
+    <nombre>VIRGEN DEL PILAR FRENTE II</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS TORRES</barrio>
+    <direccion>C/ Virgen del Pilar nº 16,18</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>131</codigo>
+    <nombre>MIMOSA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS TORRES</barrio>
+    <direccion>C/ Mimosa</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>132</codigo>
+    <nombre>LOS ARAPILES</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS REHOYAS</barrio>
+    <direccion>C/ Virgen de Loreto frente al nº 22</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>133</codigo>
+    <nombre>HOYA ANDREA - MERCADONA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>HOYA ANDREA</barrio>
+    <direccion>Hoya Andrea</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>134</codigo>
+    <nombre>ALAMEDA DE COLÓN</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion>C/ Doctor Domingo Déniz frente al nº 5</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>135a</codigo>
+    <nombre>JUAN PABLO II (Pequeños)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>C/ Hoya del Enamorado</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>135b</codigo>
+    <nombre>JUAN PABLO II (Mayores)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>C/ Hoya del Enamorado</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>136</codigo>
+    <nombre>AYATIMA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>JINAMAR</barrio>
+    <direccion>C/ Ayatima, al lado del nº 159</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>137</codigo>
+    <nombre>SERVENTÍA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>ALMATRICHE ALTO</barrio>
+    <direccion>C/ Serventía frente al nº 310</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>138</codigo>
+    <nombre>LA GALERA II</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LA GALERA</barrio>
+    <direccion>C/ Isabel Mariano Brito (Soprano)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>139</codigo>
+    <nombre>ARCO</nombre>
+    <distrito>Centro</distrito>
+    <barrio>FINCAS UNIDAS</barrio>
+    <direccion>C/ Arco, frente nº 2</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>140</codigo>
+    <nombre>LA SUERTE</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LA SUERTE</barrio>
+    <direccion>C/ San Antolín, nº 3.</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>141</codigo>
+    <nombre>EL CARDÓN</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>URB. DÍAZ CASANOVA</barrio>
+    <direccion>C/ Carretera del Cardón frente nº 87-90</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>142</codigo>
+    <nombre>SAN FRANCISCO DE PAULA I</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio> LA MONTAÑETA</barrio>
+    <direccion>C/ Isla de Montaña Clara, frente nº16</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>143</codigo>
+    <nombre>SAN FRANCISCO DE PAULA II</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>S. FRANCISCO DE PAULA</barrio>
+    <direccion>C/ P4, esquina Calle T3, paralela Hoya del Parrado (torreón)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>144</codigo>
+    <nombre>SAN FRANCISCO DE PAULA III</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>S. FRANCISCO DE PAULA</barrio>
+    <direccion>C/ Miguel Martín Fernandez de la Torre(Arquitecto)- C\ Eduardo Laforet(Arquitecto)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>145</codigo>
+    <nombre>MARIANAO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>SALTO DEL NEGRO</barrio>
+    <direccion>C/ Marianao, frente nº 1</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>146</codigo>
+    <nombre>CUESTA RAMÓN</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>CUESTA RAMÓN</barrio>
+    <direccion>C/ Lomo Cuesta Ramón,nº 8.</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>147</codigo>
+    <nombre>VENEGAS</nombre>
+    <distrito>Centro</distrito>
+    <barrio>CANALEJAS</barrio>
+    <direccion>C/ Venegas, nº 68</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>148</codigo>
+    <nombre>TEATRO PÉREZ GALDÓS</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion>Frente al Teatro Pérez Galdos</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>149</codigo>
+    <nombre>MERCADO CENTRAL</nombre>
+    <distrito>Centro</distrito>
+    <barrio>ALCARAVANERAS</barrio>
+    <direccion>C/ Barcelona frente nº 35, en Mercado Central.</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>150a</codigo>
+    <nombre>PLAZA IGLESIA DE LA LUZ (MAYORES)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Pérez Muñoz, nº 13. Plaza Iglesia de La Luz</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>150b</codigo>
+    <nombre>PLAZA IGLESIA DE LA LUZ (PEQUEÑOS)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>LA ISLETA</barrio>
+    <direccion>C/ Pérez Muñoz, nº 13. Plaza Iglesia de La Luz</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>151</codigo>
+    <nombre>SAN FRANCISCO DE PAULA IV</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio> LA MONTAÑETA</barrio>
+    <direccion>C/ Isla de la Graciosa, frente nº 27</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>152</codigo>
+    <nombre>EL POLVORÍN II</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS REHOYAS</barrio>
+    <direccion>Avd del Polvorín frente al nº 16</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>153a</codigo>
+    <nombre>LA CICER(PEQUEÑOS)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ Numancia, esq. C/ California (Paseo de Las Canteras)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>153b</codigo>
+    <nombre>LA CICER(MAYORES)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ Numancia, esq. C/ California (Paseo de Las Canteras)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>154</codigo>
+    <nombre>LA MINILLA </nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LA MINILLA</barrio>
+    <direccion>C/ Pintor Juan Guillermo , frente nº 1</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>155</codigo>
+    <nombre>CRUZ DE PIEDRA</nombre>
+    <distrito>Centro</distrito>
+    <barrio>MILLER</barrio>
+    <direccion>C/ Cruz de Piedra , frente nº 14. Situado en una plaza</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>156a</codigo>
+    <nombre>PARQUE DE LA BALLENA (mayores)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LA FERIA</barrio>
+    <direccion>Barranco de la Ballena</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>156b</codigo>
+    <nombre>PARQUE LA BALLENA (pequeños)</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LA FERIA </barrio>
+    <direccion>Barranco de la Ballena</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>157</codigo>
+    <nombre>LOS TARAHALES III</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>C/ Harald Flick, frente nº 6</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>158</codigo>
+    <nombre>LOS TARAHALES IV</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SIETE PALMAS</barrio>
+    <direccion>C/ Alférez Provisional,entre nº12-14.</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>159</codigo>
+    <nombre>LA MAYORDOMÍA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>TAMARACEITE</barrio>
+    <direccion>C/ Los Cuarteles. Parque La Mayordomía</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>160</codigo>
+    <nombre>PLAZA DEL PILAR</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>Plaza del Pilar</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>161</codigo>
+    <nombre>ESPÍRITU SANTO</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ S. Bravo de Laguna frente al nº 3. Plaza de la Iglesia del Espíritu Santo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>162a</codigo>
+    <nombre>PARQUE BLANCO (MAYORES)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>SANTA CATALINA - CANTERAS</barrio>
+    <direccion>C/ Simón Bolívar - Avda. Juan Rodríguez Doreste</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>162b</codigo>
+    <nombre>PARQUE BLANCO (PEQUEÑOS)</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>SANTA CATALINA - CANTERAS</barrio>
+    <direccion>C/ Simón Bolívar - Avda. Juan Rodríguez Doreste</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>163</codigo>
+    <nombre>LA CANTONERA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>EL ROMÁN</barrio>
+    <direccion>C/ Casa el Román frente al nº 17. Plaza La Cantonera </direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>164</codigo>
+    <nombre>PLAZA RODRIGUEZ MONROY</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>Avd de escaleritas entre nº 77 y 79.Plaza Rodriguez Monroy</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>165</codigo>
+    <nombre>ACOSTA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SAN LÁZARO</barrio>
+    <direccion>Sin dirección ( al lado del mercadona)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>166</codigo>
+    <nombre>ENRIQUE ROBAINA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>MONTE QUEMADO</barrio>
+    <direccion>Plaza Enrique Robaina</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>167</codigo>
+    <nombre>ISLA DE LA GRACIOSA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>LA MONTAÑETA</barrio>
+    <direccion>C/ Isla de la Graciosa, frente nº 50</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>168</codigo>
+    <nombre>LA HABANA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ Caracas esq. C/ La Habana</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>169</codigo>
+    <nombre>Mª PAZ TEJERA</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>VEGA DE SAN JOSÉ</barrio>
+    <direccion>C/ Eufemiano Jurado entre bloques frente nº 22. Plaza Mª Paz Tejera</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>170</codigo>
+    <nombre>TENOYA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>TENOYA</barrio>
+    <direccion>C/ Zumaque, nº 33</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>171</codigo>
+    <nombre>MERCADILLO VIEJO DE SCHAMANN</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SCHAMANN</barrio>
+    <direccion>C/ Juan Fontán - C/ Doctor Jiménez Neyra</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>172</codigo>
+    <nombre>TAMARANA</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>TAMARACEITE</barrio>
+    <direccion>Avd. Cesar Manrique - C/ Pintor Pepe Dámaso (Junto CC Tamarana)</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>173</codigo>
+    <nombre>GUINCHO</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>EL LASSO</barrio>
+    <direccion>C/ Guincho</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>174</codigo>
+    <nombre>POLÍGONO CRUZ DE PIEDRA</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>LAS REHOYAS</barrio>
+    <direccion>C/ Fco. Pedro Rivero - C/ Doctor Marañon</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>175</codigo>
+    <nombre>JACINTO BENAVENTE</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Valle Inclán nº 12</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>176</codigo>
+    <nombre>BEJEQUE</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>C/ Bejeque delante del bloque</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>177</codigo>
+    <nombre>LOMO APOLINARIO II</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LOMO APOLINARIO</barrio>
+    <direccion>C/Padre Ramón González Guedes nº 22</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>178</codigo>
+    <nombre>ATAULFO ARGENTA</nombre>
+    <distrito>Centro</distrito>
+    <barrio>LA PATERNA</barrio>
+    <direccion>C/ Manuel de Falla frente al nº 116</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>179</codigo>
+    <nombre>PILETAS</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>PILETAS</barrio>
+    <direccion>C/ Samaría frente al nº 22</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>180</codigo>
+    <nombre>TENERÍAS II</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>VEGA DE SAN JOSÉ</barrio>
+    <direccion>C/ Córdoba al lado del Centro de Educación Vial</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>181</codigo>
+    <nombre>SIXTO HENRÍQUEZ II</nombre>
+    <distrito>T - SL</distrito>
+    <barrio>LOMO LOS FRAILES</barrio>
+    <direccion>C/ Betania frente al nº 55</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>182</codigo>
+    <nombre>HNOS.MILLARES II</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>ESCALERITAS</barrio>
+    <direccion>Avda. de Escaleritas - C/ Obispo Romo</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>183</codigo>
+    <nombre>LUIS JORGE RAMÍREZ</nombre>
+    <distrito>Ciudad Alta</distrito>
+    <barrio>SAN LÁZARO</barrio>
+    <direccion>Avd. Pintor Felo Monzón entre nº 19-21</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>184</codigo>
+    <nombre>FRANCISCO GOURIÉ</nombre>
+    <distrito>Centro</distrito>
+    <barrio>TRIANA</barrio>
+    <direccion>C/ Francisco Gourié esquina Munguía</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>185</codigo>
+    <nombre>ZÁRATE</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>ZÁRATE</barrio>
+    <direccion>C/ Francisco Inglott Artiles junto al nº 15</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>186</codigo>
+    <nombre>PLAZA DE CHURRUCA</nombre>
+    <distrito>Puerto - Canteras</distrito>
+    <barrio>GUANARTEME</barrio>
+    <direccion>C/ Velarde - Paseo de las canteras. Plaza Alcalde Wiot Ramírez</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+  <lugar-actuacion>
+    <codigo>187</codigo>
+    <nombre>LOMO VERDEJO II</nombre>
+    <distrito>V-C-T</distrito>
+    <barrio>LOMO BLANCO</barrio>
+    <direccion>C/ Cabo Verde nº 3</direccion>
+    <codigo-postal/>
+    <atributos-geograficos/>
+  </lugar-actuacion>
+</import>

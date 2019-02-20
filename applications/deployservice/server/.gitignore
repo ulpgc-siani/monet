@@ -1,0 +1,8 @@
+/bin/
+/bin-tests/
+/build/
+/dist/
+/*.jar
+/target/
+.directory
+.idea/sonarlint

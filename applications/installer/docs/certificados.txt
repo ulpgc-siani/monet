@@ -1,0 +1,41 @@
+Ojo: Partimos que estamos en el directorio de la federación, para las otras federaciones usamos los mismos datos
+
+Directorio de las claves y certificados del federation: /home/tomcat-public/.federationservice_user
+Directorio de la claves y certificado de los espacios: /home/tomcat-public/.federationservice_user/certificate
+
+
+# PARA EL FEDERATION (en el peor de los casos solo habría que mirarlo una vez cada 10 AÑOS)
+----------------------------------------------------------------------------
+
+# Generamos la clave (solo una vez)
+openssl genrsa -des3 -passout pass:12345678 -out ca-externa.key 4096
+
+# Generamos el certificado (solo una vez cada 10 años)
+openssl req -new -x509 -passin pass:12345678 -days 3650 -key ca-externa.key -out ca-externa.crt -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Grupo de Ingenieria del Software y del Conocimiento/OU=Autoridad\ certificadora/CN=externa\ DEMO/emailAddress=info@openmonet.com/"
+
+# Añadimos el certificado al almacén de certificados del federationservice p7b (también se puede hacer con la aplicación de Nacho)
+openssl crl2pkcs7 -nocrl -certfile ca-externa.crt -out federation.p7b
+
+# Exportamos el certificado
+openssl pkcs12 -export -passin pass:12345678 -passout pass:12345678 -out ca.p12 -inkey ca-externa.key -in ca-externa.crt
+
+
+# PARA LOS ESPACIOS
+----------------------------------------------------------------------------
+# Generamos la clave (solo una vez)
+openssl genrsa -des3 -passout pass:1234 -out businessunit.key 4096
+
+# Generamos el certificado (solo una vez)
+openssl req -new -passin pass:1234 -key businessunit.key -out businessunit.csr -subj '/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Gisc/OU=Grupo de ingenieria del software y el conocimiento/CN=externa/emailAddress=externa.monet@siani.es/'
+
+# Firmamos el certificado (esto se tiene que hacer cada vez que se vaya a caducar el certificado de la unidad de negocio)
+openssl x509 -req -passin pass:12345678 -days 1365 -CA ../ca-externa.crt -CAkey ../ca-externa.key -set_serial 01 -in businessunit.csr -out businessunit.crt
+
+# Exportamos el certificado (esto se tiene que hacer cada vez que se vaya a caducar el certificado de la unidad de negocio)
+openssl pkcs12 -export -passin pass:1234 -passout pass:1234 -out monet.p12 -inkey businessunit.key -in businessunit.crt -certfile ../ca-externa.crt
+
+# PARA MIRAR LA FECHA DE CADUCIDAD DE UN CERTIFICADO
+----------------------------------------------------------------------------
+openssl x509 -in certificate.crt -text -noout
+
+Como los p12 son generados a partir de un crt es mejor mirar siempre la fecha del crt

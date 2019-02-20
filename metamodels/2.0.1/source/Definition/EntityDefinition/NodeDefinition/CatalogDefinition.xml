@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CatalogDefinition" parent="SetDefinition" tag="catalog" extensible="true">
+  <description>Declaración que se utiliza para modelar un catálogo</description>
+ 
+  <include name="parameter" multiple="true">
+    <option class-name="ParameterDeclaration" />
+  </include>
+  
+</class>
+

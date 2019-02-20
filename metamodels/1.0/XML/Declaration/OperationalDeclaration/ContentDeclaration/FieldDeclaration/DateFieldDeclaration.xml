@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DateFieldDeclaration" parent="FieldDeclaration" tag="field-date">
+
+  <include name="edtion">
+    <option class="DateFieldEditionDeclaration" />
+  </include>
+  
+  <example><![CDATA[
+    <field-date code="sending_date" name="sending_date">
+      <label language="es" type="long">Fecha de envio OT</label>
+      <description language="es">Fecha de envio de la orden de trabajo</description>
+    </field-date>      
+  ]]>
+  </example>  
+
+</class>
+

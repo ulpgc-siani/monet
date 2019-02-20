@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorklockDeclaration" parent="ComponentDeclaration" tag="worklock">
+  <description>Declaraci—n que se utiliza para modelar un bloqueo en un workline</description>
+
+  <attribute name="code" type="key">
+    <description>Identificador del worklock</description>
+    <hint>No hay que editar este atributo. Se genera autom‡ticamente</hint>
+  </attribute>
+
+  <attribute name="name" type="string">
+    <description>Nombre del worklock</description>
+  </attribute>
+
+  <attribute name="type" type="enumeration" required="true">
+    <description>Tipo de worklock</description>
+    <enumeration>
+      <option>user-action</option>
+      <option>form</option>
+      <option>service-use</option>
+      <option>wait-task</option>
+      <option>timer</option>
+      <option>auto</option>
+    </enumeration>
+  </attribute>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del workline</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+
+  <property name="from">
+    <description>Define el origen del workline</description>
+    <attribute name="workplace" type="code" link="WorkplaceDeclaration">
+      <description>WorkPlace donde comienza el workline</description>
+    </attribute>
+  </property>
+
+  <include name="workstop" multiple="true">
+    <option class-name="WorkstopDeclaration" />
+  </include>
+
+</class>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SetViewDeclaration" parent="NodeViewDeclaration" tag="view">
+  
+  <property name="show-summary" multiple="true">
+    <description>Se utiliza para indicar qué vistas de la referencia se mostrarán</description>
+    <attribute name="drill-by" type="enumeration" required="true">
+      <description>Nombre de la definición de la referencia</description>
+      <enumeration>
+        <option>DEFINITION</option>
+        <option>ATTRIBUTE</option>
+      </enumeration>
+    </attribute>
+    <attribute name="attribute" type="key" link="AttributeDeclaration">
+      <description>Nombre del atributo de la referencia por el que se agrupa</description>
+    </attribute>
+  </property>
+  
+  <property name="show-list">
+    <description>Se utiliza para indicar qué vistas de la referencia se mostrarán en forma de lista</description>
+    <attribute name="page" type="natural" default="20">
+      <description>Número de elementos por página que se mostrarán</description>
+    </attribute>
+    <attribute name="image" type="key" link="AttributeDeclaration">
+      <description>Atributo de tipo imagen de la referencia que se usará para mostrar los items</description>
+    </attribute>
+    <attribute name="reference-view" type="key" link="ReferenceViewDeclaration" required="true">
+      <description>Vista de la referencia que se mostrará</description>
+    </attribute>
+  </property>
+  
+  <property name="show-grid">
+    <description>Se utiliza para indicar qué vistas de la referencia se mostrarán en forma de grid</description>
+    <attribute name="page" type="natural" default="20">
+      <description>Número de elementos por página que se mostrarán</description>
+    </attribute>
+    <attribute name="image" type="key" link="AttributeDeclaration">
+      <description>Atributo de tipo imagen de la referencia que se usará para mostrar los items</description>
+    </attribute>
+    <attribute name="reference-view" type="key" link="ReferenceViewDeclaration" required="true">
+      <description>Vista de la referencia que se mostrará</description>
+    </attribute>
+  </property>
+  
+  <property name="show-location">
+    <description>Muestra en un mapa todos los puntos geográficos con el nombre indicado que sean descendientes de la colección o catálogo</description>
+    
+    <attribute name="with-name" type="string">
+      <description>Nombre de la localización a mostrar</description>
+    </attribute>
+  </property>
+  
+  <property name="show-layer">
+    <description>Muestra un mpapa con todos los nodos geolocalizados que contenga la colección o catálogo</description>
+  </property>
+  
+  <property name="allow-summary">
+    <description>Se utiliza para indicar que esta vista puede ser mostrada en la vista resumen</description>
+    <hint>Si se utiliza esta propiedad, todos los drill-by de la vista resumen han de ser group en esta vista</hint>
+  </property>
+  
+</class>

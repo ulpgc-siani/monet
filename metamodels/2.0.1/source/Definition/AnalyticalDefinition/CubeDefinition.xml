@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CubeDefinition" parent="AnalyticalDefinition" tag="cube">
+  <description>Declaración que se utiliza para modelar un cubo multidimensional de la unidad de negocio</description>
+
+  <include name="fact">
+    <option class-name="FactDeclaration" />
+  </include>
+  
+  <include name="dimension" multiple="true">
+    <option class-name="DimensionDeclaration" />
+  </include>
+  
+  <include name="indicator" multiple="true">
+    <option class-name="IndicatorDeclaration" />
+  </include>
+  
+  <property name="schema" >
+    <description>Esquema XML que representa la fuente de la cual extraer los hechos del cubo. Permite consolidar datos en el cubo.</description>
+    <content type="xml"/>
+  </property>
+  
+  <property name="external">
+    <description>Su presencia indica que el cubo es remoto</description>
+    <attribute name="provider" type="key" link="CubeProviderDefinition" required="true">
+      <description>Nombre del proveedor de cubos a usar</description>
+    </attribute>
+  </property>
+  
+</class>

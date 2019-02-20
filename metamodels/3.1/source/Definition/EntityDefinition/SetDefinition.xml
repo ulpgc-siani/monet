@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="SetDefinition" parent="NodeDefinition" extensible="true">
+	<description>Un conjunto es un tipo de nodo abstracto que se utiliza para agrupar otros nodos</description>
+
+	<attribute token="index" type="key" link="IndexDefinition">
+		<description>Índice que usa el conjunto para mostrar sus nodos</description>
+	</attribute>
+
+	<property token="view" type="SetViewProperty" parent="NodeViewProperty" multiple="true" required="true" extensible="true">
+		<description>Esta propiedad se utiliza para añadir una vista a la colección/catálogo</description>
+
+		<property token="show" required="true">
+			<description>Esta propiedad se utiliza para configurar el contenido de la vista</description>
+			<property token="index">
+				<description>Esta propiedad se utiliza si se desea mostrar la lista de nodos</description>
+				<attribute token="with-view" type="key" link="IndexViewProperty" required="true">
+					<description>Vista del índice que se usa para renderizar los enlaces</description>
+				</attribute>
+				<attribute token="sort-by" type="key" link="AttributeProperty" required="true">
+					<description>Atributo del índice por el que se desea ordenar</description>
+				</attribute>
+				<attribute token="sort-mode" type="enumeration" default="ASC">
+					<description>Modo de ordenación</description>
+					<enumeration>
+						<option token="ASC">
+							<description>Ascendente</description>
+						</option>
+						<option token="DESC">
+							<description>Descendente</description>
+						</option>
+					</enumeration>
+				</attribute>
+			</property>
+
+			<property token="items">
+				<description>Esta propiedad se utiliza si se desea mostrar la lista de nodos</description>
+			</property>
+
+			<property token="locations">
+				<description>Esta propiedad se utiliza si se desea mostrar el mapa con las geolocalizaciones</description>
+				<attribute token="with-view" type="key" link="IndexViewProperty">
+					<description>Vista del índice que se usa para renderizar los enlaces</description>
+				</attribute>
+				<attribute token="center" type="string">
+					<description>Coordenadas donde se centra el mapa</description>
+				</attribute>
+			</property>
+
+			<property token="report">
+				<description>Esta propiedad se utiliza si se desea mostrar un informe de la colección</description>
+				<attribute token="view" type="key" link="SetViewProperty">
+					<description>Vista a la que está asociada el informe</description>
+				</attribute>
+			</property>
+
+			<property token="owned-prototypes">
+				<description>Esta propiedad se utiliza si se desean mostrar los prototipos propios</description>
+			</property>
+
+			<property token="shared-prototypes">
+				<description>Esta propiedad se utiliza si se desean mostrar los prototipos compartidos por otros nodos del mismo tipo</description>
+			</property>
+		</property>
+
+		<property token="analyze" extensible="true">
+			<description>Esta propiedad se utiliza para añadir herramientas que permitan gestionar la lista de nodos</description>
+
+			<property token="sorting">
+				<description>Esta propiedad se utiliza para permitir que el usuario pueda indicar cómo se ordenan los nodos</description>
+				<attribute token="attribute" type="key" link="AttributeProperty" required="true" multiple="true">
+					<description>Atributo del índice por el que se desea ordenar</description>
+				</attribute>
+			</property>
+
+			<property token="dimension">
+				<description>Esta propiedad se utiliza para permitir que el usuario pueda indicar cómo se agrupan los nodos</description>
+				<attribute token="attribute" type="key" link="AttributeProperty" required="true" multiple="true">
+					<description>Atributo del índice por el que se desea agrupar</description>
+				</attribute>
+			</property>
+		</property>
+
+		<property token="select">
+			<description>Esta propiedad se utiliza para seleccionar los tipos de nodos que se muestran en la lista</description>
+			<attribute token="node" type="key" link="NodeDefinition" required="true" multiple="true">
+				<description>Tipo de nodo que se desea seleccionar</description>
+			</attribute>
+		</property>
+
+		<property token="filter" multiple="true">
+			<description>Esta propiedad se utiliza para selecciones aquellos nodos que tengan un valor en un atributo</description>
+			<attribute token="attribute" type="key" link="AttributeProperty" required="true">
+				<description>Atributo por el que se desea filtrar</description>
+			</attribute>
+			<attribute token="value" type="string" required="true">
+				<description>Valor con el que se compara el atributo</description>
+				<hint>Se puede hacer referencia a un parámetro declarado en un catálogo "parameter(name)"</hint>
+			</attribute>
+		</property>
+	</property>
+</class>

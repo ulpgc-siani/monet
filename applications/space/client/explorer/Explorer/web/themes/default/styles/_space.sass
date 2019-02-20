@@ -1,0 +1,25 @@
+.space .logo
+  float: right
+  max-width: 85%
+  cursor: pointer
+  background: url(../images/logo.png) no-repeat 0 0
+
+#main.reduced .space .logo
+  background: url(../images/logo_reduced.png) no-repeat 0 0
+
+.space .toggleleftpanel
+  background: url(../../../images/toggle-left-panel.png) no-repeat 0 0
+  height: 32px
+  width: 32px
+  margin: 10px
+  display: inline-block
+
+/* collapsed */
+.design-panel.left.collapsed .space
+  display: block !important
+
+.design-panel.left.collapsed .space .logo
+  display: none !important
+
+.design-panel.left.collapsed .space .toggleleftpanel
+  display: inline-block !important

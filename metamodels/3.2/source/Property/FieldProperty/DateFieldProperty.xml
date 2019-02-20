@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-date" type="DateFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo fecha en un formulario</description>
+
+	<attribute token="precision" type="enumeration" default="SECONDS">
+		<description>Esta propiedad se utiliza para indicar la precisión con la que se desea guardar la fecha</description>
+		<enumeration>
+			<option token="YEARS">
+				<description>Años</description>
+			</option>
+			<option token="MONTHS">
+				<description>Meses</description>
+			</option>
+			<option token="DAYS">
+				<description>Días</description>
+			</option>
+			<option token="HOURS">
+				<description>Horas</description>
+			</option>
+			<option token="MINUTES">
+				<description>Minutos</description>
+			</option>
+			<option token="SECONDS">
+				<description>Segundos</description>
+			</option>
+		</enumeration>
+	</attribute>
+	
+	<property token="allow-less-precision">
+		<description>Esta propiedad se usa para indicar si permitimos a los usuarios que introduzcan una fecha con una precisión más flexible, que no tengan que indicar la fecha con la precisión al completo</description>
+	</property>	
+
+	<attribute token="purpose" type="enumeration" default="NEAR_DATE">
+		<description>Esta propiedad se utiliza para indicar el tipo de fecha a introducir, si se trata de una fecha cercana o lejana</description>
+		<enumeration>
+			<option token="NEAR_DATE">
+				<description>Fecha cercana</description>
+			</option>
+			<option token="DISTANT_DATE">
+				<description>Fecha lejana</description>
+			</option>
+		</enumeration>
+	</attribute>
+	
+	<property token="range">
+		<description>Esta propiedad se utiliza para definir el rango de valores que se permite introducir</description>
+		<attribute token="min" type="natural" required="true">
+			<description>Valor mínimo permitido</description>
+		</attribute>
+		<attribute token="max" type="natural" required="true">
+			<description>Valor máximo permitido</description>
+		</attribute>
+	</property>
+
+</property>

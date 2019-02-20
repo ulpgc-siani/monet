@@ -1,0 +1,74 @@
+.dialog.scale.print {
+	display: none;
+}
+
+.dialog.scale .scalebar li {
+  float: left;
+  background: white;
+  padding: 0 1px;
+  border-color: #AAAAAA;
+  border-style: solid;
+  border-radius: 0 0 0 0;
+  border-width: 1px 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 13px;
+  display: block;
+}
+
+.dialog.scale .scalebar.disabled li {
+  color: #eee;
+}
+
+.dialog.scale .scalebar li:hover {
+  background: #f9f9f9;
+}
+
+.dialog.scale .scalebar.disabled li:hover {
+  background: transparent;
+}
+
+.dialog.scale .scalebar li a {
+  cursor: pointer;
+}
+
+.dialog.scale .scalebar li.active {
+  float: left;
+  background: #eee;
+}
+
+.dialog.scale .scalebar li.scale.second,
+.dialog.scale .scalebar li.scale.minute {
+  width: 60px;
+}
+
+.dialog.scale .scalebar li.scale.hour,
+.dialog.scale .scalebar li.scale.day,
+.dialog.scale .scalebar li.scale.month,
+.dialog.scale .scalebar li.scale.year {
+  width: 35px;
+}
+
+.dialog.scale .scalebar.second li.scale.second,
+.dialog.scale .scalebar.minute li.scale.minute,
+.dialog.scale .scalebar.hour li.scale.hour,
+.dialog.scale .scalebar.day li.scale.day,
+.dialog.scale .scalebar.month li.scale.month {
+  border-radius: 4px 0 0 4px;
+  border-width: 1px 0 1px 1px;
+}
+
+.dialog.scale .scalebar li.scale.month {
+  border-radius: 0 0 0 0;
+  border-width: 1px 0;
+}
+
+.dialog.scale .scalebar li.scale.year {
+  border-radius: 0 4px 4px 0;
+  border-width: 1px 1px 1px 0;
+}
+
+.dialog.scale .scalebar.year li.scale.year {
+  border-radius: 4px;
+  border-width: 1px;
+}

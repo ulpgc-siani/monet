@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="WorkStopDeclaration" parent="ContentDeclaration" tag="workstop">
+
+  <attribute name="workplace" type="Code" required="true">
+	<description lang="es">WorkPlace donde está localizado este WorkStop</description>
+    <description lang="en">WorkPlace where is placed this Workstop</description>
+  </attribute>
+
+  <attribute name="name" type="string">
+	<description></description>
+  </attribute>
+  
+  <property name="label" multiple="true">
+    <description>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la etiqueta</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="type" type="enumeration" default="short" >
+      <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+      <enumeration>
+        <option>short</option>
+        <option>long</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="description" multiple="true">
+    <description>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la descripción</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+  
+</class>

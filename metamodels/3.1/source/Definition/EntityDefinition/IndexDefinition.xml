@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="IndexDefinition" parent="EntityDefinition" token="index" extensible="true">
+	<description>Un índice es una lista de enlaces a nodos con atributos descriptivos</description>
+	<hint>Se utiliza para mostrar un conjunto (colección o catálogo)</hint>
+	
+  	<property token="reference">
+	    <include property="AttributeProperty" multiple="true" />
+	</property>
+			
+	<property token="view" type="IndexViewProperty" parent="ViewProperty" multiple="true">
+		<description>Esta propiedad se utiliza para configurar la vista de un índice</description>
+		<property token="is-default">
+			<description>Esta propiedad se utiliza para indicar que es la vista por defecto</description>
+		</property>		
+		<property token="show">
+			<description>Esta propiedad se utiliza para indicar que atributos se van a mostrar en la vista</description>
+			<attribute token="title" type="key" link="AttributeProperty">
+				<description>Atributo que se muestra en la cabecera</description>
+			</attribute>
+			<attribute token="line" type="key" link="AttributeProperty" multiple="true">
+				<description>Atributo que se muestra en la línea</description>
+			</attribute>
+			<attribute token="line-below" type="key" link="AttributeProperty" multiple="true">
+				<description>Atributo que se muestra en la 2ª línea</description>
+			</attribute>
+			<attribute token="highlight" type="key" link="AttributeProperty" multiple="true">
+				<description>Atributo que se muestra destacado</description>
+			</attribute>
+			<attribute token="footer" type="key" link="AttributeProperty" multiple="true">
+				<description>Atributo que se muestra en el footer</description>
+			</attribute>
+			<attribute token="icon" type="key" link="AttributeProperty">
+				<description>Atributo que se muestra como icono</description>
+			</attribute>
+			<attribute token="picture" type="key" link="AttributeProperty">
+				<description>Atributo que se muestra como imagen</description>
+			</attribute>
+		</property>	
+	</property>
+	
+</class>

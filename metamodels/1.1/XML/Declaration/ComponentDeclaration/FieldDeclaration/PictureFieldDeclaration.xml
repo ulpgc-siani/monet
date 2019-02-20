@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="PictureFieldDeclaration" parent="FieldDeclaration" tag="field-picture">
+	<description>Declaración que se utiliza para modelar un campo de imagen</description>
+
+	<property name="size">
+		<description>Se utiliza para definir el tamaño de la imagen</description>
+		<attribute name="width" type="natural" required="true">
+			<description>Ancho de la imagen</description>
+		</attribute>
+		<attribute name="height" type="natural" required="true">
+			<description>Alto de la imagen</description>
+		</attribute>
+	</property>
+
+</class>

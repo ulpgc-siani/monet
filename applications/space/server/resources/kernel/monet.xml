@@ -1,0 +1,59 @@
+<monet version="1.0" codebusinessunit="monet">
+  <labels>
+    <label language="es">Monet</label>
+  </labels>
+
+  <componenttypes>
+    <componenttype code="federation">
+      <labels>
+        <label language="es">Gestión de la federación</label>
+        <label language="en">Federation management</label>
+      </labels>
+    </componenttype>
+    <componenttype code="persistence">
+      <labels>
+        <label language="es">Gestor de persistencia</label>
+        <label language="en">Persistence manager</label>
+      </labels>
+    </componenttype>
+    <componenttype code="security">
+      <labels>
+        <label language="es">Gestor de seguridad</label>
+        <label language="en">Security manager</label>
+      </labels>
+    </componenttype>
+    <componenttype code="documents">
+      <labels>
+        <label language="es">Gestor de documentos</label>
+        <label language="en">Documents manager</label>
+      </labels>
+    </componenttype>
+    <componenttype code="datawarehouse">
+      <labels>
+        <label language="es">Almacenamiento de hechos</label>
+        <label language="en">Fact storage</label>
+      </labels>
+    </componenttype>
+  </componenttypes>
+
+  <applications>
+    <application code="office"/>
+    <application code="explorer"/>
+    <application code="setup"/>
+    <application code="backservice"/>
+    <application code="frontservice"/>
+    <application code="setupservice"/>
+  </applications>
+
+  <components>
+    <component code="federationmonet"/>
+    <component code="persistencemonet"/>
+    <component code="securitymonet"/>
+    <component code="documentsmonet"/>
+    <component code="datawarehousemonet"/>
+  </components>
+
+  <translators>
+  </translators>
+
+</monet>

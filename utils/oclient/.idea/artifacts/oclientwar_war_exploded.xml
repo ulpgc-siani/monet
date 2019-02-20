@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="oclientwar:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/oclientwar_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="oclientwar/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="oclientwar" />
+          <element id="module-output" name="oclient" />
+        </element>
+        <element id="artifact" artifact-name="oclient:jar" />
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="ojdbc14" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

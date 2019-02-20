@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="field-text" type="TextFieldProperty" parent="MultipleableFieldProperty">
+	<description>Esta propiedad se utiliza para incluir un campo texto en un formulario</description>
+
+	<property token="allow-history">
+		<description>DEPRECATED!! Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+		
+	<property token="enable-history">
+		<description>Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+
+	<property token="length">
+		<description>Esta propiedad se utiliza para definir la longitud máxima/mínima del campo</description>
+		<attribute token="max" type="natural">
+			<description>Máximo número de caracteres que admite el campo</description>
+		</attribute>
+		<attribute token="min" type="natural">
+			<description>Mínimo número de caracteres que requiere el campo</description>
+		</attribute>
+	</property>
+	
+	<property token="edition">
+		<description>Esta propiedad se utiliza para indicar cómo se edita el texto</description>
+		<attribute token="mode" type="enumeration" required="true">
+			<enumeration>
+				<option token="UPPERCASE">
+					<description>Todo en mayúsculas</description>
+				</option>
+				<option token="LOWERCASE">
+					<description>Todo en minúsculas</description>
+				</option>
+				<option token="SENTENCE">
+					<description>En mayúsculas sólo la primera letra de cada frase</description>
+				</option>
+				<option token="TITLE">
+					<description>En mayúsculas sólo la primera letra de cada palabra</description>
+				</option>
+			</enumeration>
+		</attribute>
+	</property>
+	
+	<property token="is-email">
+		<description>Indica que este campo solo permite direcciones de correo</description>
+	</property>
+
+	<property token="pattern" type="PatternProperty" multiple="true">
+		<description>Esta propiedad se utiliza para definir el patrón de edición</description>
+		<attribute token="regexp" type="language" required="true">
+			<description>Expresión regular que permite analizar el texto introducido y separarlo en partes</description>
+		</attribute>
+		<property token="meta" multiple="true">
+			<description>Esta propiedad se utiliza para asociar un metadato a una de las partes del texto introducido</description>
+			<attribute token="position" type="natural">
+				<description>Posición del indicador</description>
+			</attribute>
+			<attribute token="indicator" type="string">
+				<description>Nombre del indicador</description>
+			</attribute>
+		</property>
+	</property>
+	
+</property>

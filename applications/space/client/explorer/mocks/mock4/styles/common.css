@@ -1,0 +1,101 @@
+html, body, .doc {
+  height: 100%;
+}
+
+body {
+  background-color: white;
+  color: black;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: small;
+  margin: 0px;
+}
+
+input, button, select, textarea {
+  font-family: Roboto, Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+.holder, .theme, .configuration {
+  display: none;
+}
+
+.application {
+  width: 100%;
+  height: 100%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+  color: #888;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: #1A6ADB;
+}
+
+a.highlighted:hover {
+  font-weight: bold;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+  border: 0;
+  padding: 2px 5px;
+  width: 100%;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+  color: black;
+  padding: 4px 5px;
+}
+
+input, textarea, .uneditable-input, .html-list {
+  margin-left: 0;
+}
+
+input[type=checkbox] {
+  width: auto;
+  margin: 0 10px;
+}
+
+label, input, button, select, textarea {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+button, input {
+  line-height: normal;
+}
+
+button, input, select, textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: middle;
+}
+
+iframe {
+  border: 1px solid #CCCCCC;
+}

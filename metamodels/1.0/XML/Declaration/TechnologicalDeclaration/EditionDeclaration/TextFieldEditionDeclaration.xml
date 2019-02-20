@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="TextFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+  <hint>Restriccion semantica: Las propiedas lowercase y uppercase se anulan la una a la otra. Solo se puede definir una.</hint>
+  
+  <property name="allow-history">
+    <description>La presencia de esta propiedad indica que el campo puede gestionar un historial de los valores introducidos por el usuario</description>
+    <attribute name="datastore" type="String" required="true">
+      <description>Nombre de la tabla en el que se almacenarán los valores. Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</description>
+      <hint>Antes se llamaba datasource</hint>
+    </attribute>
+  </property>
+  
+  <property name="length">
+    <description>Longitud del campo</description>
+    <attribute name="max" type="Natural">
+      <description>Máximo número de caracteres que admite el campo</description>
+      <hint>Antes se llamaba value</hint>
+    </attribute>
+    <attribute name="min" type="Natural">
+      <description>Mínimo número de caracteres que admite el campo</description>
+      <hint>Antes no existía</hint>
+    </attribute>
+  </property>
+  
+  <property name="lowercase">
+    <description>Su presencia indica que el texto introducido se registrarán en minúsculas</description>
+    <hint>Antes se llamaba aspect y había que introducir un value</hint>
+  </property>
+  
+  <property name="uppercase">
+    <description>Su presencia indica que el texto introducido se registrarán en mayúsculas</description>
+    <hint>Antes se llamaba aspect y había que introducir un value</hint>
+  </property>
+
+</class>

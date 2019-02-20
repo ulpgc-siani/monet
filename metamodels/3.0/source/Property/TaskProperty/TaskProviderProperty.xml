@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="provider" type="TaskProviderProperty" parent="ReferenceableProperty">
+	<description></description>
+	
+	<attribute token="role" type="key" link="RoleDefinition" required="true">
+		<description></description>
+	</attribute>
+	
+  <property token="internal">
+    <attribute token="service" type="key" link="ServiceDefinition" required="true">
+      <description></description>
+    </attribute>
+    
+    <property token="request" parent="TaskRequestProperty" multiple="true">
+      <method name="constructor">
+        <parameter name="msg" type="InsourcingRequest" />
+      </method>
+    </property>
+    
+    <property token="response" parent="TaskResponseProperty" multiple="true">
+      <method name="import">
+        <parameter name="msg" type="InsourcingResponse" />
+      </method>
+    </property>
+    
+    <property token="expiration">
+      <method name="onExecute"/>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <property token="rejected">
+      <method name="onExecute"/>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <method name="onInit"/>
+    <method name="onResponse">
+      <parameter name="msg" type="InsourcingResponse" />
+    </method>
+    <method name="onTerminate"/>
+    
+  </property>
+  <property token="external">
+    <property token="request" parent="TaskRequestProperty" multiple="true">
+      <method name="constructor">
+        <parameter name="msg" type="ProviderRequest" />
+      </method>
+    </property>
+    
+    <property token="response" parent="TaskResponseProperty" multiple="true">
+      <method name="import">
+        <parameter name="msg" type="ProviderResponse" />
+      </method>
+    </property>
+    
+    <property token="expiration">
+      <method name="onExecute"/>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <property token="rejected">
+      <method name="onExecute"/>
+      <attribute token="unlock" type="key" link="DoorExitProperty">
+        <description></description>
+      </attribute>
+      <attribute token="goto" type="key" link="PlaceProperty">
+        <description></description>
+      </attribute>
+    </property>
+    
+    <method name="onInit"/>
+    <method name="onResponse">
+      <parameter name="msg" type="ProviderResponse" />
+    </method>
+    <method name="onChatMessageReveived">
+      <parameter name="msg" type="ProviderResponse" />
+    </method>
+    <method name="onTerminate"/>
+  </property>
+</property>

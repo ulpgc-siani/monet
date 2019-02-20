@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="PatternFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+  
+  <include name="Pattern" required="true">
+	<option class="PatternExpressionDeclaration" />
+  </include>
+  
+</class>

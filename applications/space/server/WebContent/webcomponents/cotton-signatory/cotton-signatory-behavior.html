@@ -1,0 +1,176 @@
+<script type="text/javascript" src="javascript/common-js/deployJava.js"></script>
+<script type="text/javascript" src="javascript/miniapplet.js"></script>
+<script type="text/javascript" src="../nanoajax/nanoajax.min.js"></script>
+
+<script>
+
+    var CottonBehaviors = CottonBehaviors || {};
+    //var IS_INSTALLED_INTENTION = "afirma://is-installed";
+    var IS_INSTALLED_INTENTION = "afirma://service?";
+
+    CottonBehaviors.SignatoryBehavior = {
+        algorithm: "SHA1withRSA",
+        installed: null,
+        checkProtocol: true,
+        intention : null,
+
+        properties: {
+            downloadUrl: { type: String },
+            storageUrl: { type: String },
+            retrieveUrl: { type: String }
+        },
+
+        initSignatory: function () {
+            MiniApplet.cargarAppAfirma();
+            MiniApplet.setServlets(this.storageUrl, this.retrieveUrl);
+        },
+
+        checkSignatoryAppInstalled: function (successCallback, failureCallback) {
+            var widget = this;
+
+            if (successCallback == null)
+                successCallback = function() { widget.installedSuccessCallback(); };
+
+            if (failureCallback == null)
+                failureCallback = function(code, message) { widget.installedFailureCallback(code, message); };
+
+            if (widget.installed === true) {
+                successCallback();
+                return;
+            }
+
+            var intentionUrl = this.intention != null ? this.intention.url : IS_INSTALLED_INTENTION;
+            runProtocolChecker(widget, intentionUrl, successCallback, failureCallback);
+        },
+
+        signText: function (base64Text, successCallback, failureCallback) {
+            this.execute(function(widget) {
+                var format = "XAdES";
+                var params = "format=XAdES Detached" +
+                        "\nmode=implicit" +
+                        "\nreferencesDigestMethod=http://www.w3.org/2001/04/xmlenc#sha256";
+
+                MiniApplet.sign(base64Text, widget.algorithm, format, params, successCallback, function(code, message, intention) { widget.checkFailureCallback(code, message, intention, failureCallback); });
+            });
+        },
+
+        signTextWithCertificate: function (base64Text, certificateSerialNumber, successCallback, failureCallback) {
+            this.execute(function(widget) {
+                var format = "CMS/PKCS#7";
+                var params = "format=CMS/PKCS#7" +
+                        "\nmode=implicit";
+
+                if (certificateSerialNumber != null)
+                    params += "\nheadless=true\nfilter=qualified:" + certificateSerialNumber;
+
+                MiniApplet.sign(base64Text, widget.algorithm, format, params, successCallback, function(code, message, intention) { widget.checkFailureCallback(code, message, intention, failureCallback); });
+            });
+        },
+
+        signLocalDocument: function (successCallback, failureCallback) {
+            this.execute(function(widget) {
+                var format = "PAdES";
+                var params = "format=PAdES" +
+                        "\nmode=implicit" +
+                        "\nsignatureSubFilter=ETSI.CAdES.detached" +
+                        "\nreferencesDigestMethod=http://www.w3.org/2001/04/xmlenc#sha256";
+
+                MiniApplet.sign(null, widget.algorithm, format, params, successCallback, function(code, message, intention) { widget.checkFailureCallback(code, message, intention, failureCallback); });
+            });
+        },
+
+        execute : function(method) {
+            var widget = this;
+            this.checkSignatoryAppInstalled(function() { method(widget); });
+        },
+
+        checkFailureCallback : function(code, message, intention, failureCallback) {
+            if (code != null && code == "not_installed") {
+                this.installedFailureCallback(code, message, intention);
+                return;
+            }
+
+            failureCallback(code, message, intention);
+        },
+
+        showDownloadDialog : function(anchor) {
+            document.querySelector("#downloadDialog").open();
+        },
+
+        hideDownloadDialog : function() {
+            document.querySelector("#downloadDialog").close();
+        },
+
+        downloadClient : function(event) {
+            var operatingSystem = getOperatingSystem();
+
+            if (operatingSystem == "linux") {
+                this.showDownloadDialog(event.target);
+                return;
+            }
+
+            this.doDownloadClient(operatingSystem);
+        },
+
+        doDownloadClient : function(os) {
+            window.location.href = this.downloadUrl + "?os=" + os;  
+        },
+
+        downloadClientOsSelected : function(event) {
+            this.hideDownloadDialog();
+            this.doDownloadClient(event.target.id);
+        }
+
+    };
+
+    function runProtocolChecker(widget, intentionUrl, successCallback, failureCallback) {
+
+        if (!checkProtocol(widget, intentionUrl)) {
+            successCallback();
+            return;
+        }
+
+        widget.installed = true;
+
+        window.protocolCheck(intentionUrl, function() {
+            widget.installed = false;
+            if (widget.successTimeout != null)
+                clearTimeout(widget.successTimeout);
+            failureCallback();
+        });
+
+        widget.successTimeout = window.setTimeout(function () {
+            if (widget.installed) successCallback();
+        }, isLinux() ? 5500 : 2500);
+    }
+
+    function checkProtocol(widget, intention) {
+        if (intention != IS_INSTALLED_INTENTION)
+            return true;
+
+        if (!widget.checkProtocol)
+            return false;
+
+        return !isLinux();
+    }
+
+    function isWindows() {
+        return navigator.appVersion.indexOf("Win") !=-1;
+    }
+
+    function isLinux() {
+        return navigator.appVersion.indexOf("Linux") != -1;
+    }
+
+    function isMacOS() {
+        return navigator.appVersion.indexOf("Mac") != -1;
+    }
+
+    function getOperatingSystem() {
+        if (isWindows()) return "windows";
+        if (isLinux()) return "linux";
+        if (isMacOS()) return "macos";
+        return "UnknownOS";
+    }
+
+</script>

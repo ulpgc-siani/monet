@@ -1,0 +1,41 @@
+
+#header-panel {
+  padding-top: 10px;
+  padding-bottom: 10px; 
+  border-bottom: 1px solid #c6c6c6;
+}
+
+#navigation-bar {
+  width: 300px;
+  float: right;
+}
+
+#navigation-bar .nav-item {
+  display: inline;
+  margin-left: 5px;
+  margin-right:5px;
+}
+
+#content-panel {
+  padding: 10px;
+}
+
+#content-panel .top {
+  margin-top: 5px; 
+  margin-bottom: 15px;  
+  height: 100%;
+}
+
+.section-left {
+  width: 20%;
+  float: left;
+  border-right: 1px dotted gray;
+  height: 740px;
+}
+
+.section-right {
+  width: 75%;
+  min-width: 70%;
+  margin-left: 10px;  
+  float: left;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <declare-styleable name="Timeline">
+       <attr name="timelineColor" format="color" />
+       <attr name="timelineStrokeColor" format="color" />
+       <attr name="suggestedPeriodColor" format="color" />
+       <attr name="delayColor" format="color" />
+       <attr name="delayMarkColor" format="color" />
+       <attr name="delayMarkStrokeColor" format="color" />
+       <attr name="separatorColor" format="color" />
+       <attr name="workingPeriodColor" format="color" />
+       <attr name="workingPeriodStrokeColor" format="color" />
+       <attr name="nowMarkNotStartedColor" format="color" />
+       <attr name="nowMarkPendingColor" format="color" />
+       <attr name="nowMarkWaitingColor" format="color" />
+       <attr name="nowMarkAlertColor" format="color" />
+       <attr name="nowMarkStrokeColor" format="color" />
+   </declare-styleable>
+   
+    <declare-styleable name="DrawingSurface">
+				<attr name="paint_color" format="color" />
+				<attr name="background_color" format="color" />
+    </declare-styleable>
+</resources>

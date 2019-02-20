@@ -1,0 +1,14 @@
+Doc Development - Monet Component Encrypt
+
+TODO LIST:
+		- Actualizar el certificater para quitar los deprecate.
+
+DEPENDENCIES:
+			Library													Version						Comment
+			bcmail													jdk16 146
+			bcprov													jdk16 146
+			commons-codec										1.5							
+
+PROJECTS:
+			-	datawarehouse	
+			- federationservice

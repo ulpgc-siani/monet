@@ -1,0 +1,12 @@
+Doc Development - Monet Component Utils
+
+TODO LIST:
+		- 
+
+DEPENDENCIES:
+			Library													Version						Comment
+				guice														3.0							---
+
+PROJECTS:
+			-	olapengine	
+			- bsa

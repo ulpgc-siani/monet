@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="AttributeDeclaration" parent="ContentDeclaration" tag="attribute">
+  <description>Declaración que se utiliza para modelar un atributo de una referencia/cubo</description>
+
+	<attribute name="code" type="key" required="true">
+		<description>Código del atributo</description>
+    <hint>No hay que editar este atributo. Se genera automáticamente</hint>hint>
+	</attribute>
+
+	<attribute name="name" type="string" required="true">
+    <description>Nombre con el que se referencia un atributo en el modelo de negocio</description>
+	</attribute>
+
+	<attribute name="type" type="enumeration" required="true">
+		<description>Tipo del atributo</description>
+		<enumeration>
+			<option>text</option>
+			<option>number</option>
+			<option>date</option>
+      <option>dimension</option>
+		</enumeration>
+	</attribute>
+
+	<attribute name="precision" type="enumeration">
+		<description>Precisión de los atributos tipo fecha. Por defecto tiene precisión de segundos.</description>
+		<hint>Sólo se utiliza en los atributos de tipo fecha.</hint>
+		<enumeration>
+			<option>years</option>
+			<option>months</option>
+			<option>days</option>
+			<option>hours</option>
+			<option>minutes</option>
+			<option>seconds</option>
+		</enumeration>
+	</attribute>
+
+  <attribute name="dimension" type="string">
+    <description>Nombre de la dimensión a la que está vinculado</description>
+    <enumeration>
+      <option>years</option>
+      <option>months</option>
+      <option>days</option>
+      <option>hours</option>
+      <option>minutes</option>
+      <option>seconds</option>
+    </enumeration>
+  </attribute>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del atributo. Se utiliza para mostrar a los usuarios el nombre del atributo</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+		<content type="text" />
+	</property>
+
+</class>
+

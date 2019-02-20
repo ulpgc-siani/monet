@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible erros of manager</comment>
+  <entry key="ERR_INCORRECT_PARAMETERS">You do not have call to compiler with the right paramters.</entry>  
+  <entry key="ERR_USERNAME_OR_PASSWORD_INCORRECT">User name or password are wrong.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">You are not logged.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">It has had an error in the actions factory.</entry>  
+  <entry key="ERR_PRODUCERS_FACTORY">It has had an error in the productors factory.</entry>  
+  <entry key="ERR_VIEWS_FACTORY">It has had an error in the view factory.</entry>  
+  <entry key="ERR_AGENT_TEMPLATES">It has had an error in the templates agent.</entry>  
+  <entry key="ERR_READ_LANGUAGE_FILE">It could not have read the languages file.</entry>  
+  <entry key="ERR_BUSINESS_UNIT_STARTED">The system is stared yet</entry>  
+  <entry key="ERR_BUSINESS_UNIT_COULD_NOT_START">It could not start the system. Chech the definition file</entry>  
+  <entry key="ERR_BUSINESS_UNIT_STOPPED">The system is stopped</entry>  
+  <entry key="ERR_BUSINESS_UNIT_COULD_NOT_STOP">The system could not stopped</entry>  
+  <entry key="ERR_UNKNOWN">Unknown error in the system</entry>  
+</properties>

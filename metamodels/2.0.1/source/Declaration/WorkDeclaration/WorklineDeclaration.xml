@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorklineDeclaration" parent="IndexedDeclaration" tag="workline" extensible="true">
+	<description>Declaración que se utiliza para modelar un workline de un workmap</description>
+
+  <attribute name="weight" type="natural">
+    <description>Peso del workline. A mayor peso más importancia tiene el workline con respecto a otros</description>
+  </attribute>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del workline</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+  
+  <property name="result" multiple="true" key="language">
+		<description>Etiqueta de resultado del workline</description>
+    <hint>Se muestra en el historial de la tarea, una vez se ha completado el workline</hint>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+  
+	<property name="from">
+		<description>Define el origen del workline</description>
+		<attribute name="workplace" type="key" link="WorkplaceDeclaration">
+			<description>WorkPlace donde comienza el workline</description>
+		</attribute>
+	</property>
+
+	<include name="workstop" multiple="true">
+		<option class-name="WorkstopDeclaration" />
+	</include>
+  
+  <include name="worklock" multiple="true">
+		<option class-name="WorklockDeclaration" />
+	</include>
+
+</class>

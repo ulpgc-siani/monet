@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+	
+	<!-- Definiciones base de inserciones  -->
+	<definition-base-insert name="Definition_Role" query="Insert_Role">
+		<param name="name">role</param>
+	</definition-base-insert>
+	
+	<definition-base-insert name="Definition_Unit" query="Insert_Unit">
+		<param name="name">unit</param>
+		<param name="host">localhost</param>
+		<param name="url">http://myurl</param>
+		<param name="secret">role1</param>
+	</definition-base-insert>
+
+	<definition-base-insert name="Definition_User" query="Insert_User">
+		<param name="idUser">user</param>
+		<param name="password" hash="md5">1234</param>
+		<param name="email">user@my.email</param>
+		<param name="lang">es</param>
+		<param name="nickname">User</param>
+		<param name="human">0</param>
+	</definition-base-insert>
+	
+	<definition-base-insert name="Definition_RoleUser" query="Insert_Role_User">
+		<param name="role">role</param>
+		<param name="user">user</param>
+		<param name="startDate" isDate="true">02/02/2001</param>
+		<param name="expiryDate" isDate="true">03/03/2002</param>
+	</definition-base-insert>
+	
+	<definition-base-insert name="Definition_UnitRole" query="Insert_Unit_Role">
+		<param name="unit">unit</param>
+		<param name="role">role</param>
+	</definition-base-insert>
+	
+	<definition-base-insert name="Definition_UserUnit" query="Insert_User_Unit">
+		<param name="user">user</param>
+		<param name="unit">unit</param>
+	</definition-base-insert>
+	<!-- Definiciones base de inserciones  -->
+	
+	
+	
+	<!-- Roles -->
+	<insert extends="Definition_Role">
+		<param name="name">role1</param>
+	</insert>
+	
+	<!-- Unidades -->
+	<insert extends="Definition_Unit">
+		<param name="name">unit1</param>
+		<param name="secret">1234</param>
+	</insert>
+	
+	<!-- Usuarios -->
+	<insert extends="Definition_User">
+		<param name="idUser">fabio</param>
+		<param name="email">fabio@my.email</param>
+		<param name="nickname">Fabio</param>
+	</insert>
+	
+	<!-- Relaciones Usuario roles  -->
+	<insert extends="Definition_RoleUser">
+		<param name="role">role1</param>
+		<param name="user">fabio</param>
+	</insert>
+	
+	<!-- Relaciones Unidad roles  -->
+	<insert extends="Definition_UnitRole">
+		<param name="unit">unit1</param>
+		<param name="role">role1</param>
+	</insert>
+	
+	<!-- Relaciones Usuario unidades  -->
+	<insert extends="Definition_UserUnit">
+		<param name="user">fabio</param>
+		<param name="unit">unit1</param>
+	</insert>
+
+</script>

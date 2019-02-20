@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible messages of the kernel of Monet</comment>
+  <entry key="MSG_REQUIRED_FIELDS">There are empty required fields. Do not forget to fill them.</entry>
+  <entry key="MSG_IMPORTATION">Nodes list obteined from a importation of the date</entry>
+  <entry key="MSG_NEW_MESSAGE_RECEIVED">You have new messages</entry>
+  <entry key="MSG_NEW_MESSAGE_RECEIVED_FROM">You have new messages from</entry>
+  <entry key="MSG_TASK_ASSIGNED">Task assigned to %s by %s.</entry>
+  <entry key="MSG_TASK_UNASSIGNED">Task unassigned of %s by %s.</entry>
+</properties>

@@ -1,0 +1,23 @@
+<div id="model-versions">
+
+  <div class="toolbar">
+    <div class="meta">::versions::</div>
+    <a href="" name="upload">::upload_model_version::</a> <img
+      src="images/grided/collapse-all.png" name="collapse-all" />
+  </div>
+  
+  <div class="section-body">
+    <ul class="item">
+      <% _.each(versions, function(version, index) { %>
+      <li class="collapsed"><img
+        src="images/grided/collapsed-arrow.png" /> <input
+        type="checkbox" code="<%= version.id %>"
+        value="<%= version.label %>"><%= version.label %></input>
+        <div class="block" code="<%= version.id %>">
+          <div class="block-body"></div>
+          <a href="" class="block-action">::upgrade::</a>
+        </div></li>
+    </ul>
+  </div>
+  
+</div>

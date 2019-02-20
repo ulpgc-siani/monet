@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="NodeViewProperty" parent="ViewProperty">
+	<description>Declaración del tipo abstracto de vista de nodo</description>
+
+	<attribute token="label" type="language">
+		<description>Etiqueta de la vista</description>
+	</attribute>
+	
+	<property token="is-default">
+		<description>Esta propiedad se utiliza para indicar la vista por defecto</description>
+	</property>
+
+	<property token="is-visible-when-embedded">
+		<description>Esta propiedad se utiliza para indicar que la vista solo es empotrable en otra vista</description>
+	</property>
+
+	<property token="for">
+		<description>Esta propiedad se utiliza cuando se desea que la vista esté restringida a unos roles concretos</description>
+		<attribute token="role" type="key" link="RoleDefinition" required="true">
+			<description>Tipo de role al que se desea permitir el uso de la vista</description>
+		</attribute>
+	</property>	
+
+</property>

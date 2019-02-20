@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="ProviderDefinition" parent="Definition">
+	<description>Un proveedor es un tipo de agente que obtiene datos de otras unidades de negocio</description>
+	
+	<attribute token="remote-link" type="string" required="true">
+		<description>Nombre del enlace remota al que se conecta el proveedor</description>
+	</attribute>
+	
+</class>

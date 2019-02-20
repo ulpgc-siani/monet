@@ -1,0 +1,35 @@
+.ViewHeader {
+}
+
+.ViewHeader .date {
+  position: relative;
+  right: 35%;
+  top: 30%;
+}
+
+.ViewHeader .user {
+  position: absolute;
+  top: 0;
+  left: 1%;
+
+  height: 100%;
+}
+
+.ViewHeader .user .icon {
+  position: relative;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.ViewHeader .user .text {
+  position: relative;
+  top: 30%;
+}
+
+.ViewHeader .toolbar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  height: 100%;
+}

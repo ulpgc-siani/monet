@@ -1,0 +1,22 @@
+package org.monet.bpi;
+
+import java.util.ArrayList;
+
+import org.monet.bpi.types.Term;
+
+public interface FieldMultiple<T extends Field<?>,V> extends Iterable<V> {
+
+	public T addNew();
+  public T addNew(V newValue);
+  public T insert(int index);
+  public T insert(int index, V newValue);
+  public void remove(int index);
+  public void remove(V newValue);
+  public void removeAll();
+  public V get(int index);
+  public T getAsField(int index);
+  public int getCount();
+  public ArrayList<V> getAll();
+  public ArrayList<T> getAllFields();
+  public ArrayList<Term> getAllAsTerm();
+}

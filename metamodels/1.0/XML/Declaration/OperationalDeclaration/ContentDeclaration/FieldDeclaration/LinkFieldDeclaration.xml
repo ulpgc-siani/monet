@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="LinkFieldDeclaration" parent="FieldDeclaration" tag="field-link">
+
+  <property name="link">
+    <attribute name="node" type="Code" link="NodeDeclaration" required="true">
+      <description>Código del tipo de definición que se puede vincular</description>
+      <restriction>ONLY Definition WITH NodeDeclaration FROM Model</restriction>
+    </attribute>
+    <attribute name="source" type="SetExpresion" required="true">
+      <description>Expresión que devuelve un conjunto de nodos. Ver ejemplo</description>
+    </attribute>
+  </property>
+  
+  <include name="view">
+    <option class="FieldNodeViewDeclaration" />
+  </include>
+
+  <include name="edition">
+    <option class="LinkFieldEditionDeclaration"/>
+  </include>
+
+
+</class>
+

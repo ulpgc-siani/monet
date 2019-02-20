@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="grided">
+	<target name="build">
+		
+		<exec executable="php" os="Windows" searchpath="true" dir="ide" vmlauncher="false">
+			<arg value="-f" />
+			<arg value="ide.php" />
+		</exec>
+
+        <exec executable="sh" os="Linux" dir="ide">
+	        <arg line="../generate-js.sh"  />
+	    </exec>
+		
+		<eclipse.refreshLocal resource="grided" depth="infinite" />
+	</target>
+</project>

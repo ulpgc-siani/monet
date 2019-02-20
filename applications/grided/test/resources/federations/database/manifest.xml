@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<federation-service>
+	<organization name="lpda" url="http://localhost/lpda">	    		
+		<label>Texto Español</label>
+		<logo name="" path=""/>
+	</organization>
+	
+	<authentication>
+		<use-password/>
+	</authentication>
+	
+	<connection class="org.monet.grided.core.serializers.xml.federation.DatabaseConnection" url="http://localhost" user="user1" password="1234">
+	  <setup>	     
+		 <database-type>mysql</database-type>                 
+	  </setup>
+	</connection>
+	
+</federation-service>

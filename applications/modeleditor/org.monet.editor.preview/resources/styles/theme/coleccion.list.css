@@ -1,0 +1,22 @@
+.node.clec.list .header {
+  background: #D0E0F5;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #99BBE8;
+}
+
+.node.clec.list .header .title {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.node.clec.list .header .toolbar .selector ul.options li.option a {
+  padding-left: 12px;
+  border: 1px solid white;
+}
+
+.node.clec.list .header .toolbar .selector ul.options li.option a:hover {
+  border: 1px solid #0D3C98;
+  background-color: #D0E0F5;
+  color: #0D3C98;
+}

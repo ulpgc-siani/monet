@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.monet.org/editor/dsl/MonetLocalizationLanguage" 
+       class = "org.monet.editor.dsl.monetLocalizationLanguage.MonetLocalizationLanguagePackage"
+       genModel = "org/monet/editor/dsl/MonetLocalizationLanguage.genmodel" /> 
+	
+  </extension>
+
+
+
+
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.monet.org/editor/dsl/MonetModelingLanguage" 
+       class = "org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage"
+       genModel = "org/monet/editor/dsl/MonetModelingLanguage.genmodel" /> 
+	
+  </extension>
+
+
+
+
+
+</plugin>

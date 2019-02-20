@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="Model" tag="model">
+  <description>Define todo lo relativo al modelo de negocio</description>
+
+  <attribute name="code" type="code" required="true">
+    <description>Código asociado al modelo</description>
+  </attribute>
+  
+  <attribute name="name" type="string" required="true">
+    <description>Nombre asociado al modelo</description>
+  </attribute>
+    
+  <property name="label" multiple="true" key="language" required="true">
+    <description>Etiqueta de una definición. Se utiliza para mostrar a los usuarios el nombre de un tipo de entidad</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="description" multiple="true" key="language">
+    <description>Descripción de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada de un tipo de entidad</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+  
+  <property name="version">
+    <description>Su presencia indica que sólo puede existir una instancia de este tipo de nodo</description>
+    <attribute name="date" type="integer" required="true" >
+      <description>Fecha de última actualización del modelo</description>
+    </attribute>
+    <attribute name="compilation" type="string" required="true" >
+      <description>Número de compilation</description>
+    </attribute>
+    <attribute name="metamodel" type="string" required="true" >
+      <description>Versión del metamodelo utilizado</description>
+    </attribute>
+  </property>
+  
+  <include name="generic" multiple="true">
+    <option class-name="GenericDeclaration" />
+  </include>
+  
+  <include name="resolve" multiple="true">
+    <option class-name="ResolveDeclaration" />
+  </include>
+
+</class>
+

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="FormDefinition" parent="NodeDefinition" token="form" extensible="true">
+	<description>Un formulario es un tipo de nodo que se utiliza para que
+		el usuario pueda cumplimentar datos</description>
+
+	<property token="is-prototypable">
+		<description>Esta propiedad se utiliza cuando se desea que el usuario pueda crear plantillas de este tipo de formularios</description>
+		<hint>Para ello, se muestra al usuario la operación duplicar</hint>
+	</property>
+
+	<property token="is-georeferenced">
+		<description>Esta propiedad se utiliza cuando se desea que el
+			formulario contenga información de geolocalización</description>
+		<hint>Para ello, se muestra al usuario un mapa en el que puede
+			geolocalizar el formulario</hint>
+	</property>
+
+	<property token="is-extensible">
+		<description>Esta propiedad se utiliza cuando se desea que el formulario sea extensible</description>
+		<hint>Cuando un formulario es extensible, tiene una vista resumida y
+			otra extendida. Aquellos campos que se declaren dentro del formulario con
+			la propiedad "extended" solo se mostrarán en la versión extendida
+		</hint>
+	</property>
+
+	<property token="is-component">
+		<description>Esta propiedad se utiliza cuando este tipo de nodos se
+			crean como componentes de otro nodo, nunca de forma independiente
+		</description>
+	</property>
+
+	<property token="properties" required="false">
+		<description>Esta propiedad se utiliza cuando se desea guardar una referencia al formulario en un índice</description>
+		<hint>Si el formulario es un componente (is-component) de un contenedor se actualiza el enlace del contenedor</hint>
+		<method name="calculate" />
+	</property>
+
+	<property token="mapping" multiple="true">
+		<description>Esta propiedad se utiliza cuando se desea guardar una referencia al formulario en un índice</description>
+		<hint>Si el formulario es un componente (is-component) de un contenedor se actualiza el enlace del contenedor</hint>
+		<attribute token="index" type="key" link="IndexDefinition" required="true">
+			<description>Índice en el que se guarda la referencia</description>
+		</attribute>
+
+		<method name="calculate" />
+	</property>
+
+	<include property="FieldProperty" multiple="true" />
+
+	<property token="rule:form" parent="RuleProperty" multiple="true">
+		<attribute token="add-flag" type="enumeration" multiple="true" required="true">
+			<description>Indica que marcas se activan en este nodo cuando la
+				regla se active</description>
+			<enumeration>
+				<option token="REQUIRED">
+					<description>Marca los campos como requeridos</description>
+				</option>
+				<option token="READ_ONLY">
+					<description>Marca los campos como de solo lectura</description>
+				</option>
+				<option token="INVALID">
+					<description>Marca los campos como invalidos</description>
+				</option>
+				<option token="HIDDEN">
+					<description>Marca los campos como ocultos</description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<property token="to" required="true">
+			<attribute token="field" type="key" link="FieldProperty" multiple="true" required="true">
+				<description>Campos a los que se les aplica las marcas</description>
+			</attribute>
+		</property>
+	</property>
+
+	<property token="view" type="FormViewProperty" parent="NodeViewProperty" multiple="true">
+		<description>Esta propiedad se utiliza para añadir una vista al
+			formulario</description>
+		<property token="show" required="true">
+			<description>Esta propiedad se utiliza para configurar el contenido de la vista</description>
+			<attribute token="layout" type="resource:layout">
+				<description>Nombre del fichero que contiene la plantilla del layout</description>
+				<hint>Este fichero se debe ubicar en el directorio "/layouts" del directorio de recursos</hint>
+			</attribute>
+			<attribute token="field" type="key" link="FieldProperty" multiple="true">
+				<description>Campo que se desea mostrar</description>
+			</attribute>
+			<property token="links:in">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista
+					de los nodos que vinculan al contenedor</description>
+				<attribute token="node" type="key" link="NodeDefinition" multiple="true">
+					<description>Tipo de nodo que se desea mostrar</description>
+				</attribute>
+			</property>
+			<property token="links:out">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista
+					de los nodos que el contenedor o alguno de sus componentes vinculan
+				</description>
+				<attribute token="node" type="key" link="NodeDefinition" multiple="true">
+					<description>Tipo de nodo que se desea mostrar</description>
+				</attribute>
+			</property>
+			<property token="attachments">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista
+					de los nodos añadidos en los campos tipo field-node</description>
+				<property token="field:node" multiple="true">
+					<description>Campo de tipo field-node de los que se mostrarán los adjuntos</description>
+					<attribute token="field" type="key" link="NodeFieldProperty" required="true">
+						<description>Tipo de nodo que se desea mostrar</description>
+					</attribute>
+					<attribute token="exporter" type="key" link="ExporterDefinition" required="true">
+						<description>Exportador que permite rellenar el tipo de nodo si se tratara un nodo de tipo documento</description>
+					</attribute>
+				</property>
+				<attribute token="field:file" type="key" link="FileFieldProperty" multiple="true">
+					<description>Campo de tipo field-file de los que se mostrarán los adjuntos</description>
+				</attribute>
+			</property>
+			<property token="tasks">
+				<description>Esta propiedad se utiliza si se desea mostrar una lista
+					de tareas en las que el contenedor participa</description>
+				<attribute token="task" type="key" link="TaskDefinition" multiple="true">
+					<description>Tipo de tarea que se desea mostrar</description>
+				</attribute>
+			</property>
+			<property token="revisions">
+				<description>Esta propiedad se utiliza si se desea mostrar las
+					versiones anteriores</description>
+			</property>
+			<property token="notes">
+				<description>Esta propiedad se utiliza si se desea mostrar las notas
+					asociadas</description>
+			</property>
+		</property>
+
+	</property>
+
+	<!-- <property token="view" type="FormViewProperty" parent="NodeViewProperty" multiple="true"> <description>Esta propiedad se utiliza para añadir una vista al formulario</description> <property token="show" inline="true" required="true"> <description>Esta propiedad se utiliza para configurar el contenido de la vista</description> <attribute token="field" type="key" link="FieldProperty" multiple="true"> <description>Campo que se desea mostrar</description> </attribute> <attribute token="links-in" type="key" link="NodeDefinition" multiple="true"> <description>Esta propiedad se utiliza si se desea mostrar una lista de los nodos que vinculan al contenedor</description> </attribute> <attribute token="links-out" type="key" link="NodeDefinition" multiple="true"> <description>Esta propiedad se utiliza si se desea mostrar una lista de los nodos que el contenedor o alguno de sus componentes vinculan </description> </attribute> <attribute token="file-attachment" type="key" link="NodeFieldProperty" 
+		multiple="true"> <description>Esta propiedad se utiliza si se desea mostrar una lista de los ficheros añadidos en los campos tipo field-node</description> </attribute> <attribute token="node-attachment" type="key" link="FileFieldProperty" multiple="true"> <description>Esta propiedad se utiliza si se desea mostrar una lista de los nodos añadidos en los campos tipo field-node</description> </attribute> <attribute token="task" type="key" link="TaskDefinition" multiple="true"> <description>Esta propiedad se utiliza si se desea mostrar una lista de tareas en las que el contenedor participa</description> </attribute> <attribute token="revisions"> <description>Esta propiedad se utiliza si se desea mostrar las versiones anteriores</description> </attribute> <attribute token="notes"> <description>Esta propiedad se utiliza si se desea mostrar las notas asociadas</description> </attribute> </property> -->
+
+</class>

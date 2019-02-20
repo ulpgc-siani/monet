@@ -1,0 +1,19 @@
+.node.clec.section .reference .title {
+  font-size: 12px;
+}
+
+.node.clec.section .helperpage {
+  background: white;
+  border: 1px solid #BBB;
+  color: #777;
+  position: absolute;
+  font-size: 9px;
+  margin-left: 7px;
+  margin-top: 7px;
+  padding: 0px 4px;
+}
+
+.node.clec.section .helperpage:hover {
+  border: 1px solid #555;
+  color: #333;
+}

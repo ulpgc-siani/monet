@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DateFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+
+  <property name="selection">
+    <description></description>
+    
+    <attribute name="language" type="enumeration" required="true">
+      <description>Idioma en el que se representa la fecha (nombres de los meses o de los días)</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="format" type="enumeration" default="shortdate">
+      <description>Formatos de fecha predefinidos</description>
+      <enumeration>
+        <option>iso8601long</option>
+        <option>iso8601short</option>
+        <option>shortdate</option>
+        <option>longdate</option>
+        <option>fulldatetime</option>
+        <option>monthday</option>
+        <option>shorttime</option>
+        <option>longtime</option>
+        <option>sortabledatetime</option>
+        <option>universalsortabledatetime</option>
+        <option>yearmonth</option>
+        <option>year</option>
+        <option>custom</option>
+      </enumeration>
+    </attribute>
+    <attribute name="custom" type="string">
+      <description>Formato de fecha expresado según el convenio publicado en http://www.extjs.com/deploy/ext/docs/output/Date.html</description>
+    </attribute>
+  </property>
+  
+</class>

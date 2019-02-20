@@ -1,0 +1,8 @@
+.dialog.rememberpreference {
+  width: 430px;
+  height: 145px;
+}
+
+.dialog.rememberpreference .outfield .outbody .radio label {
+  font-weight: normal;
+}

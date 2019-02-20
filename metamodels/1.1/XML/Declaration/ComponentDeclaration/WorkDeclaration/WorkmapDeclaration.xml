@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorkmapDeclaration" parent="ComponentDeclaration" tag="workmap">
+	<description>Declaración que se utiliza para modelar un workmap</description>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del workmap</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+
+	<property name="description" multiple="true" key="language">
+		<description>Descripción del workmap</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la descripción</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+
+	<include name="workplace" multiple="true">
+		<option class-name="WorkplaceDeclaration" />
+	</include>
+
+	<include name="workline" multiple="true">
+		<option class-name="WorklineDeclaration" />
+	</include>
+
+	<example>
+	</example>
+</class>

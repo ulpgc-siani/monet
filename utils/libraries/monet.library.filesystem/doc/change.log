@@ -1,0 +1,19 @@
+ChangeLog  - Monet Library Filesystem
+
+# 18 - 07 - 2011 Version 0.5
+	-	Reanme component to library 
+	
+# 22 - 06 - 2011 Version 0.4
+	- Added copy files, list files, replace text in file. 
+	 
+# 16 - 06 - 2011 Version 0.3
+	- Added copy InputStream to InputStream
+	
+# 15 - 06 - 2011 Version 0.2
+	- Fixed errors
+	
+# 15 - 06 - 2011 Version 0.1
+	- Added File operations
+	- Added Close streams
+	- Added Read resources as stream
+	- Added zip & unzip support

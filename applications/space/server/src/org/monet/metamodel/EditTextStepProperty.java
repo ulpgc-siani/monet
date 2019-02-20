@@ -1,0 +1,45 @@
+package org.monet.metamodel;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Collection;
+
+/**
+EditTextStepProperty
+
+
+*/
+
+public  class EditTextStepProperty extends StepEditProperty {
+
+	
+	
+	
+
+	public void copy(EditTextStepProperty instance) {
+		this._label = instance._label;
+this._code = instance._code;
+this._name = instance._name;
+
+		this._isRequired = instance._isRequired; 
+this._isReadOnly = instance._isReadOnly; 
+this._isMultiple = instance._isMultiple; 
+
+		
+	}
+
+	public void merge(EditTextStepProperty child) {
+		super.merge(child);
+		
+		
+		
+		
+	}
+
+	public Class<?> getMetamodelClass() {
+		return EditTextStepProperty.class;
+	}
+
+}
+

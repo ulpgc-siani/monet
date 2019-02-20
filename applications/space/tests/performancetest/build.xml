@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="monet">
+    <property name="jmeter-home" location="/opt/jakarta-jmeter-2.3.4"/>
+    <path id="ant.jmeter.classpath">
+      <pathelement location="${jmeter-home}/extras/ant-jmeter-1.0.9.jar" />
+      <pathelement location="${jmeter-home}/extras/ant-trax-1.7.1.jar" />
+    </path>
+
+    <target name="clean">
+        <delete dir="results"/>
+        <delete file="jmeter.log"/>
+        <mkdir dir="results/jtl"/>
+        <mkdir dir="results/html"/>
+    </target>
+
+    <taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" classpathref="ant.jmeter.classpath" />
+    <target name="test" depends="clean">
+      <jmeter
+         jmeterhome="${jmeter-home}"
+         resultlogdir="results/jtl">
+        <testplans dir="jmeter" includes="*.jmx"/>
+      </jmeter>
+    </target>
+    <target name="report" depends="test">
+      <xslt
+         basedir="results/jtl"
+         destdir="results/html"
+         includes="*.jtl"
+         style="${jmeter-home}/extras/jmeter-results-detail-report_21.xsl"/>
+    </target>
+</project>

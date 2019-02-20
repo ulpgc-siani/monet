@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="Distribution" parent="AbstractManifest" token="distribution">
+	<description>Define cómo va a ser el despliege del modelo de negocio en un espacio de negocio</description>
+
+	<property token="show" required="true">
+		<description>Permite configurar el espacio de negocio con el mobiliario que estará disponible</description>
+
+		<attribute token="tab:environment" type="key" link="NodeDefinition" multiple="true">
+			<description>Escritorio (singleton) que se desea mostrar</description>
+		</attribute>
+
+		<attribute token="tab:dashboard" type="key" link="DashboardViewProperty" multiple="true">
+			<description>Panel de control (singleton) que se desea mostrar</description>
+		</attribute>
+
+		<property token="tab:roles">
+			<description>Mostrar un enlace a los roles</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+
+		<property token="tab:tasktray">
+			<description>Mostrar un enlace a las tareas del usuario</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+		
+		<property token="tab:taskboard">
+			<description>Mostrar un enlace a las tareas de la unidad de negocio</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+
+		<property token="tab:news">
+			<description>Mostrar un enlace a los permisos</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+
+		<property token="tab:trash">
+			<description>Mostrar un enlace a la papelera</description>
+			<attribute token="for" type="key" link="RoleDefinition" required="false" multiple="true">
+				<description>Tipo de role al que se desea permitir el uso de esta vista</description>
+			</attribute>
+		</property>
+		
+	</property>
+
+</class>

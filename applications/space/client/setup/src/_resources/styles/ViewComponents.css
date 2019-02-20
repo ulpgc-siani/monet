@@ -1,0 +1,34 @@
+
+#front select {
+  width: 460px;
+}
+
+#front #services-list {
+  margin-top: 10px;  
+  padding: 5px;
+  border: 1px dotted #336699;
+  width: 99%;
+  height: 480px;
+  overflow-y: scroll;
+}
+
+#front #services-list ul li {
+  margin-left: 10px;  
+  padding: 3px;
+}
+
+#front #services-list ul li:hover {
+  margin-left: 10px;  
+  padding: 3px;
+  background-color: #E0EEFA;
+}
+
+
+#front #services-list ul li label {
+  margin-left: 10px; 
+  vertical-align: top;  
+}
+
+#front #services-list ul li input[type="checkbox"] {
+  margin-top: 3px;
+}

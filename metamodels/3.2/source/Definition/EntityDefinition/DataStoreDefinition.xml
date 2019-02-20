@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="DatastoreDefinition" parent="EntityDefinition" token="datastore" extensible="true">
+	<description>Representa el panel de control del sistema de información. En él se podrá tener una visión del estado actual de la organización</description>
+
+	<property token="is-external-fed">
+		<description>Esta propiedad se usa en los casos en los que los datos son proporcionados externamente y no existe una gestión de datos en tiempo real. Por defecto esta propiedad no existe y se supone que es el sistema de información el que alimenta el datastore.</description>
+	</property>
+
+	<property token="dimension" type="DimensionProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<attribute token="label" type="language" required="true">
+			<description>Permite definir una dimensión de análisis de negocio</description>
+		</attribute>
+
+  	    <attribute token="ontology" type="uuid" required="true">
+	      <description>Este atributo declara la ontología de taxonomías que pueden ser tratadas por la dimensión</description>
+	    </attribute>
+
+		<property token="feature" type="FeatureProperty" parent="ReferenceableProperty" required="true" multiple="true">
+			<description>Declaración de una característica que permita describir a la dimensión</description>
+
+			<attribute token="label" type="language" required="true">
+				<description>Etiqueta de la característica</description>
+			</attribute>
+
+			<attribute token="type" type="enumeration" required="true">
+				<description>Tipo del atributo</description>
+				<hint>Los tipos DATE y TIME solo se pueden utilizar en los cubos</hint>
+				<enumeration>
+					<option token="STRING">
+						<description>Texto</description>
+					</option>
+					<option token="TERM">
+						<description>Término de un tesauro</description>
+					</option>
+					<option token="BOOLEAN">
+						<description>Booleano</description>
+					</option>
+					<option token="INTEGER">
+						<description>Entero</description>
+					</option>
+					<option token="REAL">
+						<description>Real</description>
+					</option>
+				</enumeration>
+			</attribute>
+
+			<attribute token="source" type="key" link="SourceDefinition">
+				<description>Fuente de datos al que está vinculado</description>
+				<hint>Sólo tiene sentido en los campos de tipo término</hint>
+			</attribute>
+		</property>
+
+	</property>
+
+	<property token="cube" type="CubeProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<attribute token="label" type="language" required="true">
+			<description>Un cubo es un repositorio de hechos en un esquema multidimensional</description>
+		</attribute>
+
+		<attribute token="resolution" type="enumeration" required="true">
+			<description>Nivel de resolución inicial que se quiere para el panel de control</description>
+			<enumeration>
+				<option token="YEARS"></option>
+				<option token="MONTHS"></option>
+				<option token="DAYS"></option>
+				<option token="HOURS"></option>
+				<option token="MINUTES"></option>
+				<option token="SECONDS"></option>
+			</enumeration>
+		</attribute>
+
+		<attribute token="use" type="key" link="DimensionProperty" multiple="true">
+			<description>Dimensiones que usa el cubo</description>
+		</attribute>
+
+		<property token="metric" type="MetricProperty" parent="ReferenceableProperty" required="true" multiple="true">
+			<attribute token="label" type="language" required="true">
+				<description>Métricas que se registrarán en el cubo</description>
+			</attribute>
+			<attribute token="scale" type="key" link="ScaleProperty">
+				<description>Unidad de medida y escala en que está almacenado el dato</description>
+			</attribute>
+		</property>		
+	</property>
+
+</class>

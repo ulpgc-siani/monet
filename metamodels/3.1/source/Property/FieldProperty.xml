@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="FieldProperty" parent="ReferenceableProperty" multiple="true" extensible="true">
+	<description>Declaracion del tipo abstracto de campo</description>
+	
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta del campo</description>
+		<hint>Se utiliza para mostrar a los usuarios el nombre del campo</hint>
+	</attribute>
+	
+	<attribute token="description" type="language">
+		<description>Descripción del campo</description>
+		<hint>Se utiliza para ofrecer a los usuarios una explicación más detallada del campo</hint>
+	</attribute>
+	
+	<property token="is-required">
+		<description>Esta propiedad se utiliza cuando se desea que hacer obligatorio la cumplimentación del campo</description>
+	</property>
+	
+	<property token="is-readonly">
+		<description>Esta propiedad se utiliza cuando se desea que el campo no sea editable</description>
+	</property>
+
+	<property token="is-extended">
+		<description>Esta propiedad se utiliza cuando se desea que el campo se muestra en la vista extendida de un formulario/sección</description>
+	</property>
+	
+	<property token="is-superfield">
+		<description>Esta propiedad se utiliza cuando se desea que la persistencia del campo se gestione de forma independiente al formulario</description>
+		<hint>Esto permite que el campo pueda ser editado/modificado desde otros nodos</hint>
+	</property>
+	
+	<property token="is-static">
+		<description>Esta propiedad se utiliza cuando se desea que el campo tenga el valor del prototipo a partir del cual fue creado</description>
+		<hint>Este tipo de campos no es editable, su valor se obtiene del valor indicado en el patrón.</hint>
+	</property>
+	
+	<property token="is-univocal">
+		<description>Esta propiedad se utiliza cuando se desea que el campo no pueda tener valores copiados de otros formularios</description>
+		<hint>Este tipo de campos no se copia cuando se duplica el formulario. Además su valor no se obtiene nunca de un patrón</hint>
+	</property>
+	
+	<property token="display" multiple="true">
+		<description>Esta propiedad se utiliza para mostrar un mensaje asociado al campo</description>
+		<attribute token="message" type="language" required="true">
+			<description>Contenido del mensaje</description>
+		</attribute>
+		<attribute token="when" type="enumeration">
+			<description>Estado en el que se muestra el mensaje</description>
+			<enumeration>
+				<option token="EMPTY">
+					<description>Si está vacío</description>
+				</option>
+				<option token="REQUIRED">
+					<description>Si es obligatorio y está vacío</description>
+				</option>
+				<option token="READ_ONLY">
+					<description>Si el campo no es editable</description>
+				</option>
+				<option token="INVALID">
+					<description>Si el valor del campo no es válido</description>
+				</option>
+			</enumeration>
+		</attribute>
+	</property>
+
+</property>

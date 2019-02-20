@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+      <shape>
+          <size android:width="@dimen/edit_picture_width" />
+          <solid android:color="@color/no_video_bg" />
+      </shape>    
+    </item>
+    <item >
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_menu_play_clip" />
+    </item>
+
+</layer-list>

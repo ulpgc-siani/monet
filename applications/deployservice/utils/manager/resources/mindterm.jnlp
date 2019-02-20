@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- *********************************************************************
+File: mindterm.jnlp
+Author: John Urbanek
+Version: 1.1
+
+20070511(1.1) - Updated Mindterm to 3.1.2
+20061227(1.0) - Initial Version
+
+This Java Network Launch Protocol file can be used to launch Mindterm using
+Java Web Start.  This is handy if you would like to use Mindterm as your
+standard SSH client and don't like the necessity of a web page for launching.
+
+TO LAUNCH:
+Download this file, save it to disk.  Double click or execute to launch.
+
+Recent JRE's register the .jnlp extension and Java Web Start will launch
+automagically.  If the .jnlp extension is not registered with Java Web
+Start... you can a) register it yourself, or b) launch from the commandline
+or with a shortcut.
+
+# javaws path/to/mindterm.jnlp
+
+To view the Java Web Start/Java Application Cache just run javaws.
+
+# javaws
+
+CUSTOMIZING:
+Mindterm can be customized to your liking through the use of startup
+arguments.  These arguments are embodied by the <argument> element in JNLP.
+Those of you familiar with launching applets, this is similar to the <param>
+element, but not really... :)
+
+Full list of arguments (URL may change):
+http://www.appgate.com/products/80_MindTerm/50_Running_MindTerm/
+
+JNLP arguments are weird... plain and simple.  It would appear as if they
+cannot have spaces, and I have encountered other odd behavior as well.
+
+Example: Setting the Window Geometry
+
+In an applet it would look like below:
+<param name='geometry' value='132x35' />
+
+In JNLP as an application it looks like below:
+<argument>-geometry</argument>
+<argument>132x35</argument>
+
+Note that the parameter name (geometry) is preceded by a hyphen '-' and
+the actual value we would like to use (132x35) is another argument itself.
+These cannot be combined in a single argument element.  All parameters
+are like this.
+
+***********************************************************************-->
+<jnlp
+  spec="1.0+"
+  codebase="http://www.weavervsworld.com/ssh"
+  href="mindterm.jnlp">
+  <information>
+    <title>MindTerm 3.1.2 SSH</title>
+    <vendor>Appgate</vendor>
+    <homepage href="http://www.appgate.com/mindterm"/>
+    <description>MindTerm Java SSH Client</description>
+    <offline-allowed/>
+  </information>
+  <security>
+      <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="1.4+"/>
+    <jar href="http://localhost:8091/deployservice_manager/applets/mindterm312.weavselfsign.jar"/>
+  </resources>
+  <application-desc main-class="com.mindbright.application.MindTerm">
+   <argument>-protocol</argument>
+   <argument>ssh2</argument>
+   <argument>-alive</argument>
+   <argument>60</argument>
+   <argument>-80x132-enable</argument>
+   <argument>true</argument>
+   <argument>-80x132-toggle</argument>
+   <argument>true</argument>
+   <argument>-bg-color</argument>
+   <argument>black</argument>
+   <argument>-fg-color</argument>
+   <argument>white</argument>
+   <argument>-cursor-color</argument>
+   <argument>i_green</argument>
+   <argument>-geometry</argument>
+   <argument>132x35</argument>
+
+   <argument>-server</argument>
+   <argument>localhost</argument>
+   <argument>-port</argument>
+   <argument>5020</argument>
+   <argument>-username</argument>
+   <argument>root</argument>
+  </application-desc>
+</jnlp> 

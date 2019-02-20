@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="AbstractManifest" extensible="true">
+	<description>Una definición describe una entidad en el modelo de negocio</description>
+
+	<attribute token="name" type="string" required="true" specific="true">
+		<description></description>
+	</attribute>
+  
+	<attribute token="title" type="language">
+		<description>Título del espacio de negocio</description>
+	</attribute>
+
+	<attribute token="subtitle" type="language">
+		<description>Subtitulo del espacio de negocio</description>
+	</attribute>
+
+    <property token="space">
+      <description></description>
+        <attribute token="name" type="string" required="true" specific="true">
+          <description>URL de la instalación de Monet en la que publicar este modelo</description>
+        </attribute>
+    	<attribute token="deploy-uri" type="URI">
+    		<description>URL de la instalación de Monet en la que publicar este modelo</description>
+    	</attribute>
+    </property>
+
+	<attribute token="script" type="key" link="ActivityDefinition" multiple="true">
+		<description>Tarea inicial que se lanzará la primera vez que un usuario entra en el espacio de negocio para su configuración</description>
+	</attribute>
+
+	<property token="default-location">
+		<description></description>
+
+		<attribute token="latitude" type="real" required="true">
+			<description></description>
+		</attribute>
+		<attribute token="longitude" type="real" required="true">
+			<description></description>
+		</attribute>
+	</property>
+
+	<property token="federation">
+		<description></description>
+
+		<attribute token="title" type="language">
+			<description>Título de la organización</description>
+		</attribute>
+		<attribute token="uri" type="URI">
+			<description></description>
+		</attribute>
+		<attribute token="secret" type="string">
+			<description></description>
+		</attribute>
+	</property>
+
+	<property token="publish" multiple="true">
+		<description>Publica servicios / fuentes de datos de la unidad de negocio en una federación</description>
+
+		<property token="federation">
+			<description>Datos de la federación donde publicar los servicios / fuentes de datos</description>
+			<attribute token="setup-uri" type="URI">
+				<description></description>
+			</attribute>
+		</property>
+
+		<attribute token="service" type="key" link="ServiceDefinition" multiple="true">
+			<description>Permite decidir el servicio a publicar</description>
+		</attribute>
+		
+		<attribute token="source" type="key" link="SourceDefinition" multiple="true">
+			<description>Permite decidir la fuente de datos a publicar</description>
+		</attribute>
+	</property>
+
+	<property token="unpublish" multiple="true">
+		<property token="federation">
+			<description>Datos de la federación donde dejar de prestar los servicios</description>
+			<attribute token="name" type="string">
+				<description></description>
+			</attribute>
+			<attribute token="setup-uri" type="URI">
+				<description></description>
+			</attribute>
+		</property>
+	</property>
+
+	<property token="disable">
+		<description>Esta propiedad se utiliza para deshabilitar definiciones en el modelo</description>
+		<attribute token="definition" type="key" link="Definition" multiple="true">
+			<description>Referencia a la definición que se quiere deshabilitar</description>
+		</attribute>
+	</property>
+
+	<property token="assign-role" multiple="true">
+		<description></description>
+
+		<attribute token="user" type="string">
+			<description></description>
+		</attribute>
+		
+		<property token="partner">
+			<description></description>
+	        <attribute token="name" type="string" required="true" specific="true">
+	          <description>Nombre de la unidad de negocio que está ofreciendo ese servicio. El nombre del partner se obtiene del nombre del espacio indicado en el manifiesto</description>
+	        </attribute>
+			<attribute token="service" type="string" required="true" multiple="true">
+				<description>Nombre del servicio que ofrece el proveedor. Ha de incluir el paquete donde se encuentra.</description>
+			</attribute>
+		</property>
+		<attribute token="role" type="key" link="RoleDefinition" required="true" multiple="true">
+			<description></description>
+		</attribute>
+	</property>
+
+</class>

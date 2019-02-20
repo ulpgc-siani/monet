@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-composite" type="CompositeFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo sección en un formulario</description>
+	
+	<property token="is-extensible">
+		<description>Esta propiedad se utiliza cuando se desea indicar que la sección es extensible</description>
+		<hint>Cuando una sección es extensible, tiene una vista resumida y otra extendida. Aquellos campos que se declaren dentro de la sección con la propiedad "extended" solo se mostrarán en la versión extendida</hint>
+	</property>
+
+	<property token="is-conditional">
+		<description>Esta propiedad se utiliza cuando se desea indicar que la sección es condicional</description>
+		<hint>Cuando una sección es condicional. En este campo se guarda un valor booleano, de forma que la sección oculta los campos que contiene cuando el valor es "false", o los muestra cuando el valor es "true"</hint>
+	</property>
+	
+	<include property="FieldProperty" multiple="true" />
+	
+	<property token="view">
+		<description>Esta propiedad se utiliza para configurar la vista de un campo sección</description>
+		
+		<attribute token="mode" type="enumeration" default="EXPANDED">
+			<description>Esta propiedad se utiliza para definir cómo se ve una sección en el caso de que sea múltiple</description>
+			<enumeration>
+				<option token="EXPANDED">
+					<description>Se ven expandidas todas las secciones</description>
+				</option>
+				<option token="COMPACT">
+					<description>Se expande sólo una sección mientras que las otras están comprimidas</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<property token="summary">
+			<description>Esta propiedad se utiliza para definir qué campos se muestran cuando la sección está comprimida</description>
+			<attribute token="field" type="key" link="FieldProperty" multiple="true">
+				<description>Campo que se mostrará en el modo comprimido</description>
+			</attribute>
+		</property>
+		
+		<property token="show">
+			<description>Se utiliza para indicar que campos se muestran cuando la sección esta expandida</description>
+			<attribute token="field" type="key" link="FieldProperty" multiple="true">
+				<description>Campo que se mostrará en el modo extendido</description>
+			</attribute>
+			<attribute token="layout" type="resource:layout">
+				<description>Nombre del fichero que contiene la plantilla del layout para la sección</description>
+				<hint>Este fichero se debe ubicar en el directorio "/layouts" del directorio de recursos</hint>
+			</attribute>
+		</property>
+
+	</property>
+	
+</property>

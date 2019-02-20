@@ -1,0 +1,30 @@
+<schema>
+   <nombre>Parte de trabajo preventivo 01/09/2011 08:47:17</nombre>
+   <fecha internal="2011-09-01 08:47:17.197 BST">01/09/2011 08:47:17</fecha>
+   <no-validado>false</no-validado>
+   <fecha-realizacion internal="2011-09-01 08:46:38.0 BST">01/09/2011 08:46:38</fecha-realizacion>
+   <fecha-firma>01/09/2011 08:47:17</fecha-firma>
+   <codigo>P-0018/11</codigo>
+   <objetos-actuacion>
+      <actuacion>
+         <nombre code="x001">lugar 4</nombre>
+         <observaciones></observaciones>
+         <desratizacion>false</desratizacion>
+         <desinfeccion>false</desinfeccion>
+         <desinsectacion>true</desinsectacion>
+         <operaciones>
+            <checkList>
+               <option is-checked="false" code="o002">Comprobación</option>
+               <option is-checked="false" code="o001">Conservación</option>
+               <option is-checked="true" code="o001.002">Desinfección</option>
+               <option is-checked="true" code="o001.003">Desinsectación</option>
+               <option is-checked="true" code="o001.001">Desratización</option>
+               <option is-checked="false" code="o003">Reparación</option>
+               <option is-checked="false" code="o003.002">Desinfección</option>
+               <option is-checked="false" code="o003.003">Desinsectación</option>
+               <option is-checked="false" code="o003.001">Desratización</option>
+            </checkList>
+         </operaciones>
+      </actuacion>
+   </objetos-actuacion>
+</schema>

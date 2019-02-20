@@ -1,0 +1,54 @@
+Unidad de negocio de nombre "monet" con su federación
+=====================================================
+
+  Federación 1. Nombre: local_federation
+  --------------------------------------
+  openssl genrsa -des3 -out ca-federation-monet.key 4096
+
+  openssl req -new -x509 -days 3650 -key ca-federation-monet.key -out ca-federation-monet.crt -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Grupo de Ingenieria del Software y del Conocimiento/OU=Autoridad\ certificadora/CN=federation|local_federation/emailAddress=mariocaballero@siani.es/"
+
+
+
+  Unidad de negocio 1. Nombre: monet
+  ----------------------------------
+  openssl genrsa -des3 -out businessunit-monet.key 4096
+
+  openssl req -new -key businessunit-monet.key -out businessunit-monet.csr -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Gisc/OU=Grupo de ingenieria del software y el conocimiento/CN=business_unit|monet/emailAddress=mariocaballero@siani.es/"
+
+  openssl x509 -req -days 365 -CA ca-federation-monet.crt -CAkey ca-federation-monet.key -set_serial 01 -in businessunit-monet.csr -out businessunit-monet.crt
+
+  openssl pkcs12 -export -out businessunit-monet.p12 -inkey businessunit-monet.key -in businessunit-monet.crt -certfile ca-federation-monet.crt
+
+
+Unidad de negocio de nombre "monet_interoperability" con su federación
+======================================================================
+
+  Federación 2. Nombre: local_federation_interoperability
+  -------------------------------------------------------
+  openssl genrsa -des3 -out ca-federation-monet-interoperability.key 4096
+
+  openssl req -new -x509 -days 3650 -key ca-federation-monet-interoperability.key -out ca-federation-monet-interoperability.crt -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Grupo de Ingenieria del Software y del Conocimiento/OU=Autoridad\ certificadora/CN=federation|local_federation_interoperability/emailAddress=mariocaballero@siani.es/"
+
+
+
+  Unidad de negocio 2. Nombre: monet_interoperability
+  ---------------------------------------------------
+  openssl genrsa -des3 -out businessunit-monet-interoperability.key 4096
+
+  openssl req -new -key businessunit-monet-interoperability.key -out businessunit-monet-interoperability.csr -subj "/C=ES/ST=Las Palmas de Gran Canaria/L=Tafira/O=Gisc/OU=Grupo de ingenieria del software y el conocimiento/CN=business_unit|monet_interoperability/emailAddress=mariocaballero@siani.es/"
+
+  openssl x509 -req -days 365 -CA ca-federation-monet-interoperability.crt -CAkey ca-federation-monet-interoperability.key -set_serial 01 -in businessunit-monet-interoperability.csr -out businessunit-monet-interoperability.crt
+
+  openssl pkcs12 -export -out businessunit-monet-interoperability.p12 -inkey businessunit-monet-interoperability.key -in businessunit-monet-interoperability.crt -certfile ca-federation-monet-interoperability.crt
+
+
+
+Añadir las federaciones a la lista de autoridades raíces de la federación
+=========================================================================
+openssl crl2pkcs7 -nocrl -certfile ca-federation-monet.crt -certfile ca-federation-monet-interoperability.crt -out [path_to_federation_monet_certificate_authority_list]/rootCA.p7b
+openssl crl2pkcs7 -nocrl -certfile ca-federation-monet.crt -certfile ca-federation-monet-interoperability.crt -out [path_to_federation_monet_interoperability_certificate_authority_list]/rootCA.p7b
+
+
+Extraer clave pública de un certificado
+=======================================
+openssl pkcs12 -in certificado.p12 -clcerts -nokeys -out clave_publica.pem

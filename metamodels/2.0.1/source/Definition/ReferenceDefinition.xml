@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ReferenceDefinition" parent="Definition" tag="reference" extensible="true">
+  <description>TODO</description>
+
+  <property name="add" required="false">
+    <description>Se utiliza para agregar datos de otra referencia</description>
+    <attribute name="reference" type="key" link="ReferenceDefinition" required="true">
+      <description>Referencia que se agrega</description>
+    </attribute>
+    <attribute name="on" type="key" link="AttributeDeclaration">
+      <description>Atributo a partir del cual se unen (join) las referencias</description>
+    </attribute>
+  </property>
+  
+  <include name="attribute" multiple="true" required="true">
+    <option class-name="AttributeDeclaration" />
+  </include>
+
+  <include name="view" multiple="true" required="true">
+    <option class-name="ReferenceViewDeclaration" />
+  </include>
+  
+</class>
+

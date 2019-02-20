@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="NodeFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-node" extensible="true">
+	<description>Declaración que se utiliza para modelar un campo nodo</description>
+
+	<property name="contain">
+		<description>Se utiliza para indicar el nodo que se creará asociado al campo</description>
+		<hint>No puede ser una definición abstracta, ni singleton. Como vista del nodo se usará la vista EMBEDDED por defecto.</hint>
+		<attribute name="node" type="key" link="NodeDefinition" required="true">
+			<description>Nombre de la definición de un nodo</description>
+		</attribute>
+	</property>
+
+	<property name="add" multiple="true">
+		<description>Se utiliza para indicar que tipo de nodos se pueden agregar al campo</description>
+    <hint>No puede ser una definición abstracta, ni singleton. Como vista del nodo se usará la vista EMBEDDED por defecto.</hint>
+		<attribute name="node" type="key" link="NodeDefinition" required="true">
+			<description>Nombre de la definición de un nodo</description>
+		</attribute>
+	</property>
+  
+	<include name="view">
+		<option class-name="NodeFieldViewDeclaration" />
+	</include>
+
+</class>

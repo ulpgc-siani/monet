@@ -1,0 +1,773 @@
+Manifest-Version: 1.0
+Created-By: 0.98
+
+Name: org/apache/log4j/net/DefaultEvaluator.class
+SHA1-Digest: TrlPQtvbUE+PHiNwUPCfrZEoHVg=
+
+Name: org/apache/log4j/helpers/FileWatchdog.class
+SHA1-Digest: h7t8BkPUMoxPmeHiW+0m4zWS0VE=
+
+Name: org/apache/log4j/net/SyslogAppender.class
+SHA1-Digest: sC1J8fmWobAgS6sccrPz6OdqMhY=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$4.class
+SHA1-Digest: grI1k0T+JSJQd7gex1mvEH04oNQ=
+
+Name: org/apache/log4j/chainsaw/LoggingReceiver.class
+SHA1-Digest: cCE7EGu+20fVtTizuqSmUpHJZFY=
+
+Name: org/apache/log4j/NDC$DiagnosticContext.class
+SHA1-Digest: fM44wu7++UeK3WWNFFRqC0Ldz8w=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$14.class
+SHA1-Digest: 683ItUt0J290buLWhCxhyZ7PqpE=
+
+Name: org/apache/log4j/lf5/viewer/configure/ConfigurationManager.class
+SHA1-Digest: f+Mr67z3omtejLdh+pvbOcCJi4Q=
+
+Name: org/apache/log4j/spi/AppenderAttachable.class
+SHA1-Digest: kw1Y87A5WNaCCjo7FkYLqWFEfzA=
+
+Name: org/apache/log4j/spi/ErrorHandler.class
+SHA1-Digest: H+f6batPukvLJS9jb5uKBnE+wGY=
+
+Name: org/apache/log4j/lf5/viewer/LogTableModel.class
+SHA1-Digest: C1ESyKcr2vpTyOmFyHrahUbhx6E=
+
+Name: org/apache/log4j/chainsaw/LoadXMLAction.class
+SHA1-Digest: Ngfmakvd7ULza15LB8z7Cxg5kDk=
+
+Name: org/apache/log4j/spi/Configurator.class
+SHA1-Digest: BISmnEiJ9aaayQM/f3s6zsLIG58=
+
+Name: org/apache/log4j/helpers/DateTimeDateFormat.class
+SHA1-Digest: Bd+9th0PDC8Yi+3fYJ8TjgnShZA=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$21.class
+SHA1-Digest: YWGs3cgVo2GulrgF9sOsqlZv740=
+
+Name: org/apache/log4j/NDC.class
+SHA1-Digest: yLIs+g0FDfmB6AYCQoNhwnWuIOY=
+
+Name: org/apache/log4j/chainsaw/XMLFileHandler.class
+SHA1-Digest: vrrXl0sEzHa3TWVAz8cA760D5OM=
+
+Name: org/apache/log4j/nt/NTEventLogAppender.class
+SHA1-Digest: MuPxSWNfvr94mklUgWDPx8yUXFs=
+
+Name: org/apache/log4j/helpers/CountingQuietWriter.class
+SHA1-Digest: ZagaoFFIk1FmiWVqqRUi1ksp5qE=
+
+Name: org/apache/log4j/chainsaw/LoggingReceiver$Slurper.class
+SHA1-Digest: 4TAXTi/8GND7adGqwJxhLR3OJnY=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5InputDialog$1.class
+SHA1-Digest: /2jUpH9DbwRCQk7PQ3dhohXZS9A=
+
+Name: org/apache/log4j/lf5/util/LogMonitorAdapter.class
+SHA1-Digest: BUgxItG8XNbC3zD/om8RHt0rTb4=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor.
+ class
+SHA1-Digest: AvDkRlB1AJ+fu7UmcJHODQOQ+a8=
+
+Name: org/apache/log4j/lf5/AppenderFinalizer.class
+SHA1-Digest: 88nQtOoarUqRkuL1aOmBd5mh9Co=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$27.class
+SHA1-Digest: OeApBZ1oQX9CKKwQwEb5G/1cbdc=
+
+Name: org/apache/log4j/HTMLLayout.class
+SHA1-Digest: 3qXH7jiYsH2jvpzhz3oPP9doG7I=
+
+Name: org/apache/log4j/chainsaw/MyTableModel$1.class
+SHA1-Digest: n8mPE36lnmNBmSnj3zDUcT990F0=
+
+Name: org/apache/log4j/ProvisionNode.class
+SHA1-Digest: cWPogGK1iSr2ZDjauEB0vEX7I5o=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$32.class
+SHA1-Digest: qRAmQqGqM28DSmSeRKRhPPd7ohE=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 8.class
+SHA1-Digest: OMppVd61InKpIEQcvokol5ihivM=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$12.class
+SHA1-Digest: p1MDoBAGdA8lOglMDgvjM7FoGVU=
+
+Name: org/apache/log4j/spi/NullWriter.class
+SHA1-Digest: u7kfMdV8C9aFv6NxBTNkr/2QonI=
+
+Name: org/apache/log4j/chainsaw/ControlPanel.class
+SHA1-Digest: HVFwmFUDumDnq+4XiJ14lhtOhD4=
+
+Name: org/apache/log4j/helpers/PatternParser$CategoryPatternConverter.
+ class
+SHA1-Digest: LmYi3ULlaHZaRVPcwphYWmTrByI=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryImmediateEd
+ itor.class
+SHA1-Digest: DvPYvPPFXA2+a667ZFWeR2Lsfxw=
+
+Name: org/apache/log4j/helpers/QuietWriter.class
+SHA1-Digest: eSPJElNV4tckYODa2u8usXBU0vg=
+
+Name: org/apache/log4j/AsyncAppender.class
+SHA1-Digest: Uv/VHGeW1Fyqve1AQHwU1FwkayQ=
+
+Name: org/apache/log4j/helpers/PatternParser.class
+SHA1-Digest: jig/THywCeKtfSzL18DBBae9Prs=
+
+Name: org/apache/log4j/helpers/DateLayout.class
+SHA1-Digest: Tnh9VbmASzqa7XYjFUcjiDoLOls=
+
+Name: org/apache/log4j/or/sax/AttributesRenderer.class
+SHA1-Digest: kCbZGjgG8Ule0YKI6sOa9yPg0rc=
+
+Name: org/apache/log4j/chainsaw/Main$1.class
+SHA1-Digest: S8Nocs5m6N/esIPfwnyB1s7xps8=
+
+Name: org/apache/log4j/config/PropertyGetter.class
+SHA1-Digest: tN256Ul/6sxgwtN7lgdGjAj9CaE=
+
+Name: org/apache/log4j/jmx/LoggerDynamicMBean.class
+SHA1-Digest: SNIHs2bdLTiM4f3nzWtwruKuHoQ=
+
+Name: org/apache/log4j/Level.class
+SHA1-Digest: 8FnNvRGS25ojRsh7Y/zJ/eslcaM=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$22.class
+SHA1-Digest: 26iRw/YfkoY6SuvibovyFrOczZw=
+
+Name: org/apache/log4j/SimpleLayout.class
+SHA1-Digest: xFaOZO7ZIULshTmKaBOz8QsgLhM=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$8.class
+SHA1-Digest: 1oBc6bvOXmY97hL5KzG0xlXpgpU=
+
+Name: org/apache/log4j/spi/TriggeringEventEvaluator.class
+SHA1-Digest: eklccMQPOY4odjE8vb5+tQ1AFQA=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5ErrorDialog.class
+SHA1-Digest: 0RwE+y6Lv+B6XsBWuAs8xYjT7c4=
+
+Name: org/apache/log4j/lf5/util/AdapterLogRecord.class
+SHA1-Digest: AkHIiNP+jBlDHauNJxoI+YDXmTc=
+
+Name: org/apache/log4j/helpers/Loader.class
+SHA1-Digest: nc+droVyow/YuUcLKVNYnIF5e1M=
+
+Name: org/apache/log4j/varia/StringMatchFilter.class
+SHA1-Digest: K0df6QdPk0PBiub+YqSBiRLu/C4=
+
+Name: org/apache/log4j/or/DefaultRenderer.class
+SHA1-Digest: 2o9C/Aoc8jrW7ATTgNTowU22530=
+
+Name: org/apache/log4j/helpers/ThreadLocalMap.class
+SHA1-Digest: 7YAW1tR397gIrzuQ5d2BySQjtX4=
+
+Name: org/apache/log4j/Category.class
+SHA1-Digest: M3PE4dk/120yOXQyTDWy/sZGnYQ=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryExplorerTre
+ e$1.class
+SHA1-Digest: GV/xSF8K9wH8mDCJH4MtL/J/QWs=
+
+Name: org/apache/log4j/net/SocketServer.class
+SHA1-Digest: AjI+i9lObswdZThNG+xjnOSpiQc=
+
+Name: org/apache/log4j/net/SMTPAppender.class
+SHA1-Digest: a0jStFWdNRiNuH76sf34aQwawMY=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$7.class
+SHA1-Digest: oNaRJNvjmadZ2A0JcxBe21hUEi8=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 4.class
+SHA1-Digest: sITfiU1s7HcNAVkhMVsbJ4zBHqc=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$2.class
+SHA1-Digest: gQwGzLwJTR8WW3tZZjCHEQTpl+0=
+
+Name: org/apache/log4j/helpers/PatternParser$DatePatternConverter.clas
+ s
+SHA1-Digest: BsQgglKmww+iKe2mpFeMz5iwc9c=
+
+Name: org/apache/log4j/Priority.class
+SHA1-Digest: YV1iZopWl4dl9xVptxSvOAxw8cU=
+
+Name: org/apache/log4j/WriterAppender.class
+SHA1-Digest: 7h1ctaKD66x+KAL9CLRv11Aj280=
+
+Name: org/apache/log4j/chainsaw/Main.class
+SHA1-Digest: cmxpeM50tlyz/VDHfCKJOaMVjgc=
+
+Name: org/apache/log4j/lf5/viewer/FilteredLogTableModel.class
+SHA1-Digest: 4T93gICdjuenJG9jcYBp4NmMVvg=
+
+Name: org/apache/log4j/config/PropertyPrinter.class
+SHA1-Digest: 1bLkOZSw5BbflNr3OinjNxxHqv4=
+
+Name: org/apache/log4j/LogManager.class
+SHA1-Digest: yuyPUvJX5kcjHuk+UBJBYpVpa7U=
+
+Name: org/apache/log4j/lf5/viewer/LF5SwingUtils.class
+SHA1-Digest: 986YJiLK4weLXv7hc8hzZnQrNiE=
+
+Name: org/apache/log4j/helpers/NullEnumeration.class
+SHA1-Digest: WqmqyIz1e6I/5JJ0HRN78xf9/2U=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$19.class
+SHA1-Digest: DtNQ64FMvH8b1cbxhzMPj/0r26s=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5LoadingDialog.class
+SHA1-Digest: cTVeupBKE4b/mD63KdOnfyDUJhw=
+
+Name: org/apache/log4j/helpers/CyclicBuffer.class
+SHA1-Digest: 5hDEiX2zxIQriICU3sNqlX6hDgs=
+
+Name: org/apache/log4j/lf5/viewer/images/channelexplorer_satellite.gif
+SHA1-Digest: iebwlkIP3yHu2dv44NYtCRignA8=
+
+Name: org/apache/log4j/varia/HUP.class
+SHA1-Digest: rPu5dAhgH73nqDG1BydXIYuVbAs=
+
+Name: org/apache/log4j/Hierarchy.class
+SHA1-Digest: C1fTI30kCKj9KE4y2oxRum5w4S8=
+
+Name: org/apache/log4j/lf5/DefaultLF5Configurator.class
+SHA1-Digest: JoSW5+/iQOuFs2z6jp11IxI7VHQ=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$3.class
+SHA1-Digest: wlG6M/r370neIINAoA/ElReGQKo=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 5.class
+SHA1-Digest: dT4By0QsgwQnXRwZI+KlGZfzH18=
+
+Name: org/apache/log4j/spi/DefaultRepositorySelector.class
+SHA1-Digest: nxtOZqquhYRxdXZjHquw+k7WhvY=
+
+Name: org/apache/log4j/lf5/util/Resource.class
+SHA1-Digest: kCScq/8qPyFlqnFxwCjcofUy/KE=
+
+Name: org/apache/log4j/varia/DenyAllFilter.class
+SHA1-Digest: XlFivKBnx0UR3mSexOd2YYopvcM=
+
+Name: org/apache/log4j/helpers/PatternParser$MDCPatternConverter.class
+SHA1-Digest: CUUcxwfRHMaLiusLa+VBHfVrtTw=
+
+Name: org/apache/log4j/spi/OptionHandler.class
+SHA1-Digest: rWIEkscwBnutWC8zE7dKE5MP310=
+
+Name: org/apache/log4j/xml/DOMConfigurator.class
+SHA1-Digest: JLbpWCW+66lQSOuaiRGPQWvLVXc=
+
+Name: org/apache/log4j/lf5/viewer/TrackingAdjustmentListener.class
+SHA1-Digest: YfRkCZW8YjfSj0LsuktNoZYP5OE=
+
+Name: org/apache/log4j/jmx/HierarchyDynamicMBean.class
+SHA1-Digest: gE/UmNqjgmSAOhrUu3IIHqDAgK0=
+
+Name: org/apache/log4j/PropertyConfigurator.class
+SHA1-Digest: n2IOcsjcndJ8yyRCF3oxCS14C6Q=
+
+Name: org/apache/log4j/lf5/viewer/LogTableRowRenderer.class
+SHA1-Digest: 0F7+a1a0LTE+x0xmHcDBFBCVe8I=
+
+Name: org/apache/log4j/DefaultCategoryFactory.class
+SHA1-Digest: R+FUxbSOMvY+WG7tdMtyxyUxsf0=
+
+Name: org/apache/log4j/Dispatcher.class
+SHA1-Digest: acAA7M8UhK3hGK8eNCf18DualC8=
+
+Name: org/apache/log4j/helpers/PatternParser$LiteralPatternConverter.c
+ lass
+SHA1-Digest: /99hTUqfCwQkjr8maUPCl9/5F7o=
+
+Name: org/apache/log4j/varia/LevelMatchFilter.class
+SHA1-Digest: D1rhucN8l1ByJwRewS4jOdEQ4jA=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryPath.class
+SHA1-Digest: C1E+cw0oyITV2JHag7QPS714PvI=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryAbstractCel
+ lEditor.class
+SHA1-Digest: BtXXCVdROWUywzslg/FFbG1kWcw=
+
+Name: org/apache/log4j/jmx/AppenderDynamicMBean.class
+SHA1-Digest: n7/A1ETr3SjSYK0JXQyZy6rkMxE=
+
+Name: org/apache/log4j/PropertyWatchdog.class
+SHA1-Digest: 00VyWPS3gDY++VXrptBH6r2PHoE=
+
+Name: org/apache/log4j/net/JMSSink.class
+SHA1-Digest: 2N9/Oij3QOjp4fSnv+Y/QPgxaZA=
+
+Name: org/apache/log4j/lf5/LogLevel.class
+SHA1-Digest: Y+b6vFKSVDgVRB9ZWPotvAbhyyU=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$LogBrokerMonitorWin
+ dowAdaptor.class
+SHA1-Digest: KFFbtsEc6lb6zvzdjpgxm/COZy8=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryExplorerMod
+ el.class
+SHA1-Digest: jF2rEU8nkJ9I28z3+a98DZhgTrE=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$10.class
+SHA1-Digest: 3ddzGxoGtC9QYlInDGOzoMBdzqQ=
+
+Name: org/apache/log4j/jmx/Agent.class
+SHA1-Digest: 1ZFCqahErlO24tRWVejgCiDm2LM=
+
+Name: org/apache/log4j/lf5/LogLevelFormatException.class
+SHA1-Digest: a8S2+7zUcq4k0W8xJlHequXRAbg=
+
+Name: org/apache/log4j/Appender.class
+SHA1-Digest: EdcQEp47bkDBXOIrpqqcErMXjWw=
+
+Name: org/apache/log4j/chainsaw/MyTableModel.class
+SHA1-Digest: TMXyHR1cBEnGZq5l98R5btSJQi4=
+
+Name: org/apache/log4j/jdbc/JDBCAppender.class
+SHA1-Digest: T+wK9c+B1Gnpa1bjRHIr9qgjMHE=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$28.class
+SHA1-Digest: zTgdiPp0gvLa0p81dFMFHiD/SXE=
+
+Name: org/apache/log4j/spi/VectorWriter.class
+SHA1-Digest: cmueLL11Mqhk9rEAUqb5OdgpJrY=
+
+Name: org/apache/log4j/net/SocketHubAppender$ServerMonitor.class
+SHA1-Digest: I9M9aKchdiYLT1x8C40VfivxJhM=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5ErrorDialog$1.class
+SHA1-Digest: U6MBQM8PLHk+m6FufbFHzi3vSfg=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$11.class
+SHA1-Digest: UoicTB/bH9ruhkf/uafXX4dqnLo=
+
+Name: org/apache/log4j/spi/HierarchyEventListener.class
+SHA1-Digest: xZ6zzN2sLgoEvhD274LYCjWTA1g=
+
+Name: org/apache/log4j/spi/ErrorCode.class
+SHA1-Digest: n/XfIhWgG2S4ozNCuH5CktuXqGY=
+
+Name: org/apache/log4j/net/TelnetAppender.class
+SHA1-Digest: C00tD2kb/4rReCm77sdNoS/L+V4=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5InputDialog$3.class
+SHA1-Digest: /saQ/eZ/qpA3zZ6usT699oijFQQ=
+
+Name: org/apache/log4j/config/PropertyGetter$PropertyCallback.class
+SHA1-Digest: WYW3bVDQmqry/3zfZisOjKi+BDE=
+
+Name: org/apache/log4j/spi/LoggerFactory.class
+SHA1-Digest: CJ75fFfoDKrfucoA3BVYHQd3jlY=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$25.class
+SHA1-Digest: YKiXjbqsSsxUobcq5XJKFisehMk=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$30.class
+SHA1-Digest: sXC48z8DSbbDG7s5mERn3x9bEns=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$5.class
+SHA1-Digest: 9PvntU07171QyQ2ss5Q7WOVlUGo=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$3.class
+SHA1-Digest: qTJmBeqBuQogon/8lWU8Gltsnw0=
+
+Name: org/apache/log4j/spi/RootCategory.class
+SHA1-Digest: cviSdn2gUOsK6JMfaYf0VhVC/MY=
+
+Name: org/apache/log4j/net/TelnetAppender$SocketHandler.class
+SHA1-Digest: gUsoZ+YJLTLxRZn+ARCCYIlQosA=
+
+Name: org/apache/log4j/TTCCLayout.class
+SHA1-Digest: eq3KL6R0EyeCyD1EA7uuChzrv5I=
+
+Name: org/apache/log4j/RollingCalendar.class
+SHA1-Digest: wMDSfrOxcx1PO1vgtAdtigYqvEM=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$24.class
+SHA1-Digest: 1OWJ92gb/aALdNLm6RrkeyoVLlw=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryExplorerTre
+ e.class
+SHA1-Digest: dbAF0b084LZFsy30w9ySmKk9ZMA=
+
+Name: org/apache/log4j/varia/ExternallyRolledFileAppender.class
+SHA1-Digest: ZIEqfbn/r9ZoFl0aod/7G4mJVp8=
+
+Name: org/apache/log4j/MDC.class
+SHA1-Digest: YiQiIVKKJ46JK4n2MTGSP3vFfjc=
+
+Name: org/apache/log4j/helpers/LogLog.class
+SHA1-Digest: i1GLkGGDiOP3D5yG5faPXSa8A7Y=
+
+Name: org/apache/log4j/helpers/RelativeTimeDateFormat.class
+SHA1-Digest: f6j9twgzBjE7e5wyyxH7sR4lCBk=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$2.class
+SHA1-Digest: WPQslM5ERi5Vs3cYq0HGcb43kZY=
+
+Name: org/apache/log4j/ConsoleAppender.class
+SHA1-Digest: 7KoJXonaZ9pOPTzqx6we5Ofn45E=
+
+Name: org/apache/log4j/or/ThreadGroupRenderer.class
+SHA1-Digest: YbfoptLMGx9XybiioWzkX/gM0aY=
+
+Name: org/apache/log4j/lf5/config/defaultconfig.properties
+SHA1-Digest: NvZBJ3Aj1NY4Bijivz9vU+4SCok=
+
+Name: org/apache/log4j/lf5/viewer/LogTable.class
+SHA1-Digest: GBIpWU7Eukv86Vhz4Oa1/b+dks8=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 6.class
+SHA1-Digest: FpYh1S3ziEmzU+cyOEUBTRyj+S8=
+
+Name: org/apache/log4j/AppenderSkeleton.class
+SHA1-Digest: xdVthQ5si+6Jy8em+Q0PVvNi6rc=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$31.class
+SHA1-Digest: ru8sH+BNEyNJXOBSpA8YpQMvDx0=
+
+Name: org/apache/log4j/varia/NullAppender.class
+SHA1-Digest: Vs0C4B5LgiESMGwBy8xLc4UStrk=
+
+Name: org/apache/log4j/DailyRollingFileAppender.class
+SHA1-Digest: V64CyZnIsP/cnJg5VsBkasneAio=
+
+Name: org/apache/log4j/FileAppender.class
+SHA1-Digest: QR6/wXptk165z5BODS8GkT2JVgI=
+
+Name: org/apache/log4j/helpers/Transform.class
+SHA1-Digest: johRaaqm+vcbFxhnxYtRKIezLpY=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$15.class
+SHA1-Digest: MGLtoJms22B6VoD8AHTL+tLiSpo=
+
+Name: org/apache/log4j/helpers/SyslogQuietWriter.class
+SHA1-Digest: PQfhklxZzaJK3skpp0ia+Pt1Lmo=
+
+Name: org/apache/log4j/spi/LocationInfo.class
+SHA1-Digest: bFQDteetJmBqcOLp4Dr7CilJnMM=
+
+Name: org/apache/log4j/config/PropertySetterException.class
+SHA1-Digest: 2lTJy/FGQ+oBDwKTploGRJzzY/k=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5Dialog.class
+SHA1-Digest: FMEdOWWWHl0QA4+Z5dkGePWtFDw=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$1.class
+SHA1-Digest: L+g/StU3tgJwYBL63cRvbgK0gT4=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeRendere
+ r.class
+SHA1-Digest: 8unuGC/bG2o7UV1q7XR7sB620fo=
+
+Name: org/apache/log4j/net/SocketAppender.class
+SHA1-Digest: ilZvSrvIr2yIB//E/3SeC3IRhm8=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$1.class
+SHA1-Digest: sUnNZsmWFv8F70pdsYQxOUda3SY=
+
+Name: org/apache/log4j/Logger.class
+SHA1-Digest: voWDwp3h/T6t0a1dGSvSTQs13+o=
+
+Name: org/apache/log4j/config/PropertySetter.class
+SHA1-Digest: q6qVs4yEtOh9IyzLA/PhMLHO190=
+
+Name: org/apache/log4j/lf5/viewer/LogTableColumn.class
+SHA1-Digest: YhBqGq8tjY2bMpmwVNSMcaLpLUk=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$23.class
+SHA1-Digest: UhQMCwpJnGSYkoA3Fh+wEyWJSc8=
+
+Name: org/apache/log4j/varia/HUPNode.class
+SHA1-Digest: QSve+138ipRi7b788AQNdHuSO+E=
+
+Name: org/apache/log4j/lf5/util/StreamUtils.class
+SHA1-Digest: IJIQqLkvCl+N53DSWG5iSEHRlvo=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$7.class
+SHA1-Digest: ryoasWU2LEE8ef/KljTRkA6VxJk=
+
+Name: org/apache/log4j/RollingFileAppender.class
+SHA1-Digest: 5pt4gpgL8Z9i7hS9vQpf27p72WY=
+
+Name: org/apache/log4j/spi/Filter.class
+SHA1-Digest: Vdal0Dx4FiB4rzD7+PSHTZtEA8U=
+
+Name: org/apache/log4j/CategoryKey.class
+SHA1-Digest: eHhlNUz0IUIMI8zlO114qUom+H4=
+
+Name: org/apache/log4j/spi/RepositorySelector.class
+SHA1-Digest: SceQE96whUdwzGnNBJkDBlh5CZ4=
+
+Name: org/apache/log4j/lf5/viewer/LogTableColumnFormatException.class
+SHA1-Digest: pXh1xhBKgQKE/vaMCZlgPW4tZXk=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$5.class
+SHA1-Digest: 0kFa2yrTVvZCnNwshxXnU+Yhz8k=
+
+Name: org/apache/log4j/lf5/LogRecordFilter.class
+SHA1-Digest: Er3o+utKTqG25+nl98SLwKxOF0M=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/TreeModelAdapter.cl
+ ass
+SHA1-Digest: f/zFqePEJk4d/rvZmTPsjqbvkeE=
+
+Name: org/apache/log4j/net/JMSAppender.class
+SHA1-Digest: mXZ8IQdrcT38iuvwZiGTVbtrCKA=
+
+Name: org/apache/log4j/chainsaw/MyTableModel$Processor.class
+SHA1-Digest: wTJa3ZHcJHBkKCVYYSg/w21aZaE=
+
+Name: org/apache/log4j/lf5/viewer/configure/MRUFileManager.class
+SHA1-Digest: tjru/LzxhHR0mesZs7eg5MY/GoY=
+
+Name: org/apache/log4j/helpers/BoundedFIFO.class
+SHA1-Digest: NVzjooMQhK7/5Em82MoOZDwU9XU=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$26.class
+SHA1-Digest: /Wo00if4ryJ2j/UGy3OY1N6KNXI=
+
+Name: org/apache/log4j/varia/ReloadingPropertyConfigurator.class
+SHA1-Digest: HbtTkBTY4x8Sz5ilaB/4iqazqFA=
+
+Name: org/apache/log4j/xml/XMLWatchdog.class
+SHA1-Digest: MO6mh2X2JdP8ZDqtxhQ0MgXpUws=
+
+Name: org/apache/log4j/jmx/MethodUnion.class
+SHA1-Digest: zsKUCppT0sTV1YS4LV7ao7u4Agg=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5InputDialog.class
+SHA1-Digest: k14/AlvjK3TXEHQ/ugcW/4HA1Bk=
+
+Name: org/apache/log4j/jmx/LayoutDynamicMBean.class
+SHA1-Digest: t82c9yTG7mQ8/XXQduH2hwMAIbw=
+
+Name: org/apache/log4j/helpers/AbsoluteTimeDateFormat.class
+SHA1-Digest: rVl9b7lovnKRQJ1Rf5ujieK4R5U=
+
+Name: org/apache/log4j/or/ObjectRenderer.class
+SHA1-Digest: 5+JDtW5NGpev8F44n31OCoKAjVc=
+
+Name: org/apache/log4j/lf5/PassingLogRecordFilter.class
+SHA1-Digest: dKq04lund1utne7S6Wuo6AJfalA=
+
+Name: org/apache/log4j/helpers/PatternParser$NamedPatternConverter.cla
+ ss
+SHA1-Digest: HDeIr5qgk69MMkKqEPB7f/Eln9E=
+
+Name: org/apache/log4j/chainsaw/DetailPanel.class
+SHA1-Digest: k6wISDzR4HwURHnr/T3VGg7rbk4=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$18.class
+SHA1-Digest: lnuwje5SA67Ya/E4GzvG7e9pBfI=
+
+Name: org/apache/log4j/varia/LevelRangeFilter.class
+SHA1-Digest: xNzlgFarW1swSIKfiuB00eeTI7o=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$20.class
+SHA1-Digest: XYhitzGtMlgYLCHEfOKBbr/cZYQ=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditorR
+ enderer.class
+SHA1-Digest: vzuDsWCBTZem8tdbxnk7MlVIkjA=
+
+Name: org/apache/log4j/jmx/AbstractDynamicMBean.class
+SHA1-Digest: z6ndSOCShCZhtq36XeR35PqML6w=
+
+Name: org/apache/log4j/net/SocketAppender$Connector.class
+SHA1-Digest: x4xhSdSDJu3qVZWpbVW2Yq/0JS0=
+
+Name: org/apache/log4j/spi/ThrowableInformation.class
+SHA1-Digest: WFskzrk++12N6Vewue919e6nmuc=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 1.class
+SHA1-Digest: Y45l47TI8lMujzxtpaoRnJFY2lo=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$17.class
+SHA1-Digest: vMppoZcnFOgl8k2Z0vsZSLPUDjI=
+
+Name: org/apache/log4j/helpers/ISO8601DateFormat.class
+SHA1-Digest: ZHdGQ9QHXTJEeuFlE00+nnIjZXc=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$4.class
+SHA1-Digest: WwkraljELOnA5QrUIy+BAY4svd8=
+
+Name: org/apache/log4j/lf5/viewer/LogFactor5InputDialog$2.class
+SHA1-Digest: f1v2QlRODv7aThOIZgux8r5+OeI=
+
+Name: org/apache/log4j/chainsaw/EventDetails.class
+SHA1-Digest: X5e14j743fJa+5ISEU7i+V4i5j0=
+
+Name: org/apache/log4j/lf5/Log4JLogRecord.class
+SHA1-Digest: 2N5mymoCUaDzVJlOe6XvEfYJlcU=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$13.class
+SHA1-Digest: aRrOWo6SkbjWhxyHMwUgkqVk6FQ=
+
+Name: org/apache/log4j/lf5/util/DateFormatManager.class
+SHA1-Digest: Yac+kK4tqxxjdEhf9jeBa3DU9KU=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNode.class
+SHA1-Digest: SQVEq7Q7jMGyKbyac3Y1mlErwIQ=
+
+Name: org/apache/log4j/spi/LoggingEvent.class
+SHA1-Digest: BqgJj4DKGbEy/yE32+i3WrNuNn4=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 3.class
+SHA1-Digest: aceHPcm23o0PFt42Is8jKREm3t8=
+
+Name: org/apache/log4j/PatternLayout.class
+SHA1-Digest: 61pZxOinrIjqAJQqQ7+xQEUR0qQ=
+
+Name: org/apache/log4j/lf5/util/ResourceUtils.class
+SHA1-Digest: ojnY4H2+8S5Gz9gOzpFrPfxQBF4=
+
+Name: org/apache/log4j/helpers/SyslogWriter.class
+SHA1-Digest: sYSWEolDGUpPnEF3BMQOEwzfgC0=
+
+Name: org/apache/log4j/varia/FallbackErrorHandler.class
+SHA1-Digest: TGouKTheBR/E3uMCN2bpaFeIW5E=
+
+Name: org/apache/log4j/helpers/PatternParser$BasicPatternConverter.cla
+ ss
+SHA1-Digest: aVoyDQkS6IxNuTYXHvQd1OmUG20=
+
+Name: org/apache/log4j/helpers/OnlyOnceErrorHandler.class
+SHA1-Digest: tNlO8+AiwKgmP+OGoa6mkNHxDXo=
+
+Name: org/apache/log4j/Layout.class
+SHA1-Digest: a83G8Kx7bFBWOGc+BzgiifIxiJI=
+
+Name: org/apache/log4j/helpers/OptionConverter.class
+SHA1-Digest: lgg8Y0GFdjonlF6ITXl5yhuSPAc=
+
+Name: org/apache/log4j/lf5/LogRecord.class
+SHA1-Digest: YrPBCVyqs7xf6HKjCqoabFe/vlo=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$9.class
+SHA1-Digest: i1pyqrjF9RGYj7Dw1gPAZMylglg=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$16.class
+SHA1-Digest: uvmshYlYwzJm/MlJYHh0WoILULg=
+
+Name: org/apache/log4j/lf5/viewer/images/lf5_small_icon.gif
+SHA1-Digest: 6XNprQWQaUGTCjUsAShSkfEla28=
+
+Name: org/apache/log4j/or/RendererMap.class
+SHA1-Digest: wt3K0Y9yH7Ws3DCBrTmRN7KDdc4=
+
+Name: org/apache/log4j/lf5/LF5Appender.class
+SHA1-Digest: n4XR/Thmg2JTIYG9KFvnTfoqJnA=
+
+Name: org/apache/log4j/xml/log4j.dtd
+SHA1-Digest: jf/b1fYgDStkAuN2q82PZ1tcdTk=
+
+Name: org/apache/log4j/BasicConfigurator.class
+SHA1-Digest: biDO4ZphkqQ1g4RXFNPdjAoz94k=
+
+Name: org/apache/log4j/net/SocketHubAppender.class
+SHA1-Digest: Xg1GI9A1y+fhh1Utrvd2QfZNS1o=
+
+Name: org/apache/log4j/lf5/viewer/LogTable$LogTableListSelectionListen
+ er.class
+SHA1-Digest: T9J2542mOYIm8Znptt2C7ZR/anU=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 2.class
+SHA1-Digest: C2dPayg5V3r/T40Nt5eegDwWvos=
+
+Name: org/apache/log4j/net/SimpleSocketServer.class
+SHA1-Digest: GUYCbuza2OH2shTqxLxwqmO6PDc=
+
+Name: org/apache/log4j/xml/SAXErrorHandler.class
+SHA1-Digest: 8alfI1HC2rtHRilZLcOSsZl8o8g=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryNodeEditor$
+ 7.class
+SHA1-Digest: wqTgmWnIx7c75SkpM6SvkL4g9C4=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$6.class
+SHA1-Digest: iOskPqUBB+w5kUYc8PLednDiOJE=
+
+Name: org/apache/log4j/helpers/PatternParser$ClassNamePatternConverter
+ .class
+SHA1-Digest: Sv2mVHsbGiKGyH+lD+iQqFIcesc=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryExplorerLog
+ RecordFilter.class
+SHA1-Digest: oSooKoUGK2YOk43eG/8u19q0unM=
+
+Name: org/apache/log4j/spi/LoggerRepository.class
+SHA1-Digest: 8cXyPx1k5/uXmMPiBeWPSfRdkeU=
+
+Name: org/apache/log4j/chainsaw/ExitAction.class
+SHA1-Digest: 0Y3MBKcxcGFqIaOVpzl6jFxmmSc=
+
+Name: org/apache/log4j/chainsaw/ControlPanel$6.class
+SHA1-Digest: 1ECewLXvFGDihtJxWJFZV66VQgQ=
+
+Name: org/apache/log4j/net/SocketNode.class
+SHA1-Digest: ArIoJ881aRwam6luFQ7rxKjPVXQ=
+
+Name: org/apache/log4j/lf5/StartLogFactor5.class
+SHA1-Digest: wqICVgZVD0D4LkSqswPKrZQX2OA=
+
+Name: org/apache/log4j/helpers/PatternParser$LocationPatternConverter.
+ class
+SHA1-Digest: XSvXxmyDwqV8jb3ggaJg3InsD0U=
+
+Name: org/apache/log4j/helpers/AppenderAttachableImpl.class
+SHA1-Digest: a3ufAKogtdJBMXc0NQwBjO1BNAI=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor.class
+SHA1-Digest: vzIY0Er9gQcgM14EwtkuAkDlNaU=
+
+Name: org/apache/log4j/lf5/viewer/LogBrokerMonitor$29.class
+SHA1-Digest: Y9LFsN7UFDI1TjpI6ZqbMXdJf0c=
+
+Name: org/apache/log4j/lf5/viewer/LF5SwingUtils$1.class
+SHA1-Digest: omrZvt+Ao4zLl8TdNFScmoBQa3E=
+
+Name: org/apache/log4j/lf5/viewer/images/channelexplorer_new.gif
+SHA1-Digest: FDAPzVzQ1TzPxi8pXIQsUjjOjiU=
+
+Name: org/apache/log4j/helpers/FormattingInfo.class
+SHA1-Digest: Fj9yruH0IXWtna1JpFX/b1ookk4=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryExplorerMod
+ el$1.class
+SHA1-Digest: LZ2ksZ8TpEWRb7V/okCvS40idPA=
+
+Name: org/apache/log4j/xml/XMLLayout.class
+SHA1-Digest: 8nk81NK2+/AHaJp4TiDWZ3Nk+no=
+
+Name: org/apache/log4j/lf5/util/LogFileParser.class
+SHA1-Digest: Cs4Dqz0kGXSdxhPseXla+QVg5Pc=
+
+Name: org/apache/log4j/lf5/util/LogFileParser$1.class
+SHA1-Digest: iDJkCICdF52KGvd9uQUV3dCg2pw=
+
+Name: org/apache/log4j/lf5/viewer/categoryexplorer/CategoryElement.cla
+ ss
+SHA1-Digest: b9rsPVj7n4wdcPiywqnvb8+I6OE=
+
+Name: org/apache/log4j/helpers/PatternConverter.class
+SHA1-Digest: e5O5Pr8E2GKpOYkuS/S6bEIyAl0=
+
+Name: org/apache/log4j/spi/RendererSupport.class
+SHA1-Digest: pXWjDVMZF7brZKt0yELXpHYXCeQ=
+
+Name: org/apache/log4j/varia/Roller.class
+SHA1-Digest: GKa+79p5V4CVMsniRxCvFU87vIk=
+

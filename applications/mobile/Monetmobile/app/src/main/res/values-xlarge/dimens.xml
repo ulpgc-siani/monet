@@ -1,0 +1,29 @@
+<!--
+  Copyright 2011 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <dimen name="login_form_first_edit_margin_top">32dp</dimen>
+    
+    <dimen name="form_title_text_size">26sp</dimen>
+    <dimen name="form_subtitle_text_size">22sp</dimen>
+    
+    <dimen name="edit_picture_width">720dp</dimen>
+    <dimen name="edit_picture_height">160dp</dimen>
+    
+    <dimen name="step_margin">120dp</dimen>
+    
+    <dimen name="timeline_height">96dp</dimen>
+</resources>

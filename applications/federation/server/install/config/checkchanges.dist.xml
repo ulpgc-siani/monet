@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration check-all="true">
+	<target-file check="false" relative-path="/WebContent/WEB-INF/web.dist.xml"/>
+	<!--<target-file check="false" relative-path="/.classpath.dist"/>-->
+	<target-database check="false" relative-path="/resources/database/"/>
+	<target-userdata check="false" relative-path=""/>
+</configuration>

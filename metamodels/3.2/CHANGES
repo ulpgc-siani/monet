@@ -1,0 +1,3 @@
+- Fixed spelling bug OnChatMessageReveived with OnChatMessageReceived
+- In distribution file, show links have optional roles
+- New thesaurus type from roles

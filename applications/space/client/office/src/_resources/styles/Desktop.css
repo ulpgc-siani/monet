@@ -1,0 +1,525 @@
+body > .x-layout-panel.x-layout-panel-center {
+  padding-top: 2px;
+}
+
+.x-tabs-strip .x-tabs-text, .x-tabs-inner .x-tabs-text {
+  text-overflow: clip !important;
+  font-family: Roboto, Tahoma, Arial, Helvetica, sans-serif !important;
+  font-weight: 300 !important;
+}
+
+.x-toolbar {
+  background: white;
+  border-top: 0px;
+}
+
+.tabs .x-tabs-strip-wrap {
+  overflow-x: visible !important;
+}
+
+.layout .x-layout-panel-hd {
+  background-image: none;
+  background: #EFF7FF;
+  border: 1px dotted #99BBE8;
+  margin: 0px 10px;
+}
+
+.layout .x-layout-panel.x-layout-panel-east .x-layout-panel-body {
+  margin: 0px 10px;
+}
+
+.x-layout-panel-body {
+  overflow: visible !important;
+}
+
+.x-combo-list-item, .ext-strict .x-form-text {
+  font-size: 14px;
+}
+
+#LayoutMain .x-layout-panel.x-layout-panel-east {
+  border-top: 0px;
+}
+
+.layout .x-layout-panel-hd .x-layout-panel-hd-text {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 5px;
+  color: black;
+}
+
+.messagebox {
+  position: absolute;
+  z-index: 400;
+  display: none;
+  opacity: 100;
+  left: 40%;
+}
+
+.messagebox .template.success .title {
+  color: green;
+}
+
+.messagebox .template.error .title {
+  color: red;
+}
+
+.messagebox .template.warning .title {
+  color: orange;
+}
+
+.messagebox.modal {
+  display: block;
+  position: relative;
+  left: 0px;
+}
+
+.messagebox.modal img {
+  background: transparent url("../images/loading.gif") no-repeat;
+  height: 32px;
+  width: 32px;
+  float: left;
+}
+
+.messagebox.modal span {
+  float: left;
+  margin: 5px 10px;
+}
+
+.reportbanner {
+  background-color: #FFC46A;
+  border: 1px solid #F29200;
+  left: 0;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  width: 96%;
+  z-index: 1;
+  display: none;
+  margin: 0 5px 5px 10px;
+}
+
+.loading {
+  position: absolute;
+  z-index: 20001;
+  left: 40%;
+  top: 40%;
+  width: 250px;
+  border: 1px solid #6593cf;
+  padding: 2px;
+  background: #c3daf9;
+  text-align: center;
+  display: none;
+}
+
+.loading .loading-indicator {
+  border: 1px solid #a3bad9;
+  background: white url("../images/layout/loading-bg.gif") repeat-x;
+  color: #003366;
+  font: bold 13px Roboto, tahoma, arial, helvetica;
+  padding: 10px;
+  margin: 0;
+}
+
+.loading .loading-indicator img {
+  width: 16px;
+  height: 16px;
+  float: left;
+}
+
+.fleft {
+  float: left;
+}
+
+.fright {
+  float: right;
+}
+
+.list .empty {
+  margin: 5px;
+  color: #666;
+}
+
+/* frames */
+.history {
+  position: absolute;
+  left: -10000px;
+}
+
+.signature-app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 415px;
+  height: 160px;
+  z-index: 300;
+  border: 0;
+  margin-left: calc(50% - 200px);
+}
+
+/* Layout header */
+.x-layout-panel.x-layout-panel-north {
+  border: 1px solid white;
+}
+
+.layout.header {
+  height: 100%;
+  background: white;
+  clear: both;
+}
+
+.layout.header .leftbox {
+  float: left;
+  padding: 5px 0px;
+}
+
+.layout.header .leftbox div.logo {
+  float: left;
+  margin: 0px 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.layout.header .leftbox div.logo .dialog {
+  position: absolute;
+  display: none;
+  border: 1px solid #ddd;
+  background: white;
+  padding: 5px 10px;
+  width: 110px;
+  border-radius: 5px;
+}
+
+.layout.header .leftbox div.logo .dialog li {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.layout.header .leftbox div.logo .dialog li a {
+  display: block;
+  padding: 4px 6px;
+  background-color: white;
+  border: 1px solid white;
+  color: #0D3C98;
+  border-radius: 3px;
+}
+
+.layout.header .leftbox div.logo .dialog li a:hover {
+  background-color: #EFF7FF;
+  border: 1px solid #99BBE8;
+}
+
+.layout.header .leftbox div.logo a.home {
+  display: block;
+  height: 35px;
+  position: absolute;
+  width: 100%;
+}
+
+.layout.header .leftbox div.logo img {
+  height: 50px;
+  margin-right: 5px;
+}
+
+.layout.header .leftbox div.logo .title {
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  padding: 0px;
+  float: none;
+}
+
+.layout.header .leftbox .title {
+  float: left;
+  color: white;
+  font-size: 16px;
+  padding-top: 9px;
+}
+
+.layout.header .leftbox div.actionloading {
+  display: none;
+  float: left;
+  font-size: 11px;
+  margin-top: 20px;
+  color: #15429D;
+}
+
+.layout.header .rightbox {
+  width: 60%;
+  height: 100%;
+  float: right;
+}
+
+.layout.header .rightbox .block {
+  padding: 10px 2px;
+  margin-right: 10px;
+}
+
+.layout.header .rightbox .date.block {
+  padding-left: 4px;
+}
+
+.layout.header .rightbox .toolbar.header {
+  float: right;
+  margin-right: 10px;
+}
+
+.layout.header .rightbox .toolbar.header ul {
+  padding: 0px;
+}
+
+.layout.header .rightbox .toolbar.header li {
+  display: inline;
+  float: left;
+  padding: 10px 0px;
+  margin: 0px 4px;
+  border-left: 1px solid transparent;
+  text-align: center;
+  background: white;
+}
+
+.layout.header .rightbox .toolbar.header li a, .layout.header .rightbox .block a {
+  color: #0D3C98;
+}
+
+.layout.header .rightbox .toolbar.header li a img {
+  display: none;
+}
+
+/* Layout column left */
+.layout.columnleft {
+}
+
+.layout.columnleft .menu {
+  width: 100%;
+}
+
+.layout.columnleft .menu .title {
+  color: white;
+  background-color: #355FA5;
+  height: 20px;
+  font-weight: bold;
+  padding: 4px 3px 0px;
+}
+
+.layout.columnleft .menu li {
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px solid #99BBE8;
+  vertical-align: middle;
+}
+
+.layout.columnleft .menu li a {
+  display: block;
+  color: #355FA5;
+  height: 20px;
+  padding: 4px 4px 0px;
+}
+
+.layout.columnleft .menu li a.selected {
+  background-color: #e8e8e8;
+  border: solid 1px #666;
+}
+
+.layout.columnleft .menu li a {
+  background: white;
+}
+
+.layout.columnleft .menu li a:hover {
+  color: black;
+  background: #CBE3FE;
+}
+
+/* Layout column right */
+#TabPanelsMainRight .x-tabs-wrap {
+  display: none;
+}
+
+/* Layout main */
+.layout.main {
+  padding: 0px;
+  background: white;
+}
+
+.layout.main .x-layout-panel.x-layout-panel-center .x-layout-panel-body {
+  overflow: hidden !important;
+}
+
+.layout.main .x-layout-panel.x-layout-panel-east .x-layout-panel-body .locked {
+  height: 100%;
+  width: 100%;
+  top: 53px;
+  left: 0;
+  position: absolute;
+  z-index: 1000000;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  background: #ccc;
+}
+
+.layout.main.right .x-tabs-body {
+  border: 0px;
+}
+
+.layout.main.center {
+  overflow: hidden;
+}
+
+.layout.main.center .x-layout-panel-north {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.layout.main.center.header {
+  background: none;
+  border: 0px;
+}
+
+.layout.main.center.header #ToolbarMain .x-toolbar {
+  background: white;
+  border-top: 1px dotted #A9BFD3;
+  border-bottom: 1px dotted #A9BFD3;
+}
+
+.layout.main.center.body .messages div {
+  text-align: center;
+  height: 18px;
+  width: 100%;
+  padding: 3px 0px 0px;
+  display: none;
+  position: absolute;
+  z-index: 20;
+  margin-top: 27px;
+}
+
+.layout.main.center.body .messages .actiondone {
+  background-color: #EEEF95;
+  border-bottom: 1px solid #ccc;
+}
+
+.layout.main.center.footer {
+  background: none;
+  border: 0px;
+}
+
+.layout.main .x-layout-panel.x-layout-panel-east .x-layout-panel-body {
+  overflow: auto !important;
+}
+
+.layout.main.right {
+  height: none !important;
+}
+
+/* Layout right */
+.layout.right .view.helper {
+  margin: 5px;
+}
+
+.layout.right #ViewHelper {
+  overflow-y: auto;
+}
+
+/* Layout footer */
+.x-layout-panel.x-layout-panel-south {
+  border: 0;
+}
+
+.x-layout-panel.x-layout-panel-south .x-layout-panel-body {
+  background: #565656;
+  color: white;
+}
+
+.layout.footer .leftbox {
+  float: left;
+  margin-left: 2px;
+}
+
+.layout.footer .leftbox img {
+  height: 20px;
+}
+
+.layout.footer .rightbox {
+  float: right;
+  margin-right: 25px;
+}
+
+.layout.footer .statusbar {
+  margin: 0px 5px 0px 0px;
+  text-align: left;
+}
+
+.layout.footer .powered {
+  float: left;
+  margin: 8px 2px;
+}
+
+.layout.footer .powered span {
+  font-style: italic;
+  font-family: Roboto, Trebuchet MS;
+  margin: 0px 2px;
+}
+
+.layout.footer #FooterLogosPanel, .layout.footer #Statusbar {
+  float: left;
+  margin: 6px 2px;
+}
+
+/* Common in layouts */
+/* fix problem with tabs in firefox 3.0.8 */
+.x-layout-panel-body.x-tabs-top {
+  position: static;
+}
+
+.x-layout-nested-layout .x-layout-panel-east {
+  border-top: 1px solid #99BBE8;
+}
+
+.x-layout-panel.x-layout-panel-center {
+  border-top: 0px;
+  border-left: 0px;
+}
+
+.x-layout-panel-hd {
+  background-image: url("../images/default/layout/panel-title-light-bg.gif");
+}
+
+.x-layout-split {
+  width: 4px;
+  background-color: #DEECFD;
+  border: 1px solid #99BBE8;
+  border-bottom: 0px;
+  border-right: 0px;
+}
+
+.x-layout-split-h {
+  background-image: url("../images/default/sizer/e-handle.gif");
+  background-position: left center;
+}
+
+/* fix problem with ext calendars in firefox 3 */
+.x-date-middle {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  width: 130px; /* FF3 */
+}
+
+.x-menu .x-date-picker, .x-menu .x-date-picker > table {
+  width: 175px !important;
+}
+
+.ie .x-date-menu {
+  width: auto !important;
+}
+
+.ie .x-form-text {
+  margin-top: 0px;
+}
+
+.dialog.embedded {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 3px;
+  padding: 10px;
+}

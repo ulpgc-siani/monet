@@ -1,0 +1,69 @@
+Deploy doumentation.
+
+	Archivos de configuracion:
+		- federation.config						Configuracion del propio federation.
+		- federation.xml							Configuracion de los servicios de authen.
+		- log4j.federation.config			Configuracion del log.
+		- rootCA.p7b									Almacen de certificados raices.
+
+	Federation.Config
+			> InactivityTime					Tiempo maximo de inactividad de un usuario. 							Medida = Segundos
+			> MaxRememberTime					Tiempo maximo que se guarda una sesion.     							Medida = Dias
+			> MaxSessions							Numero maximo de sesiones de usuario abiertas.
+			> SocketPort							Puerto del socket.
+			> MaxSessionsSocket				Numero maximo de sesiones que se pueden abrir.
+			> DatasourceName					Nombre del datasource.
+			> CertFile								Nombre del archivo que contine los certificados raices.
+			> SuspendTime							Tiempo minimo que pasara una direccion suspendida					Medida = Segundos
+			> RemoveSuspendTime				Tiempo en el cual la suspencion sera eliminada						Medida = Segundos
+			> caPassword							Password del archivo donde se guarda la clave privada y el certificado raiz
+
+	Federation.xml
+
+		Configuration of <authentication> section:
+
+			Example OpenID:
+				<use-open-id />
+
+			Example Certificate:
+				<use-certificate />
+
+			Example Mock Setup:
+				<use-password>
+      				<mock-auth />
+    			</use-password>
+
+			Example Database Setup:
+				<use-password>
+		    		<database-auth read-only="false"/>
+			    </use-password>
+
+			Example LDAP Setup:
+				<use-password>
+					<ldap-auth url="" user="" password="" schema="" read-only="false">
+				    	<parameter name="" as=""/>
+						<parameter name="" as=""/>
+						<parameter name="" as=""/>
+				    </ldap-auth>
+				</use-password>
+
+			Example LDAP Setup (Active Directory):
+        <ldap-auth url="ldap://server.internal.example.com" user="" password="" schema="" read-only="false">
+          <parameter name="app" as="activedirectory"/>
+          <parameter name="domain" as="internal.example.com"/>
+          <parameter name="userdomain" as="internal.example.es"/>
+          <parameter name="security-principal-prefix" as=""/>
+
+        </ldap-auth>
+
+
+            Example Micv Setup:
+        <use-micv>
+          <micv-auth url="http://example.com/access.php" ldap_url="https://ldap.example.com/index.php" error_url="http://www.example.com/node" read-only="false"/>
+        </use-micv>
+
+
+			Example Custom class:
+				<use-password>
+			      	<custom-auth class="" read-only=""/>
+			    </use-password>

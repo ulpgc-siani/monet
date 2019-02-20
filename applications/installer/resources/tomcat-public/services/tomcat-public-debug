@@ -1,0 +1,66 @@
+#!/bin/sh
+# chkconfig: 234 20 80
+# description: Tomcat Server basic start/shutdown script
+# processname: tomcat
+USER_TOMCAT="tomcat-public"
+USER_ID="tomcat-public"
+DIR_TOMCAT="tomcat-public"
+SCRIPT_START="debugging.sh"
+
+export CATALINA_HOME=/opt/$DIR_TOMCAT
+export CATALINA_BASE=/opt/$DIR_TOMCAT
+TOMCAT_HOME=/opt/$DIR_TOMCAT/bin
+START_TOMCAT="su - $USER_TOMCAT /opt/$DIR_TOMCAT/bin/$SCRIPT_START"
+STOP_TOMCAT="su - $USER_TOMCAT /opt/$DIR_TOMCAT/bin/shutdown.sh"
+TOMCAT_ID=`ps -FC java |grep $USER_ID | awk 'BEGIN{FS="[ :]+"}{print $2}'`
+KILL_TOMCAT="kill -9 $TOMCAT_ID"
+start() {
+echo -n "Starting tomcat: "
+
+check=`ps -FC java | grep $USER_TOMCAT | wc -l`
+if [ $check -gt 0 ]; then
+  echo "Tomcat is running yet."
+  exit
+fi
+
+cd $TOMCAT_HOME
+${START_TOMCAT}
+echo "done."
+}
+stop() {
+echo -n "Shutting down tomcat: "
+cd $TOMCAT_HOME
+${STOP_TOMCAT}
+
+check=`ps -FC java | grep $USER_TOMCAT | wc -l`
+while [ $check -gt 0 ]; do
+  echo Tomcat is running yet. Wait 10 seconds...
+  check=`ps -FC java | grep $USER_TOMCAT | wc -l`
+  sleep 10
+done
+
+echo "done."
+}
+jkill() {
+echo -n "Kill tomcat: "
+${KILL_TOMCAT}
+echo "done."
+}
+case "$1" in
+start)
+start
+;;
+stop)
+jkill
+;;
+restart)
+jkill
+start
+;;
+kill)
+jkill
+;;
+*)
+echo "Usage: $0 {start|stop|restart|kill}"
+esac
+exit 0

@@ -1,0 +1,17 @@
+.view.bar.chart .dialogtimelapse {
+	margin: 10px auto;
+	text-align: center;
+	display: block;
+}
+
+.view.bar.chart .dialogtimelapse, .view.bar.chart .canvas, .view.bar.chart .dialogrange {
+	width: 90%;
+}
+
+.view.bar.chart .canvas {
+  margin: 0 auto;
+}
+
+.view.bar.chart .dialogrange {
+  margin: 0 auto 0;
+}

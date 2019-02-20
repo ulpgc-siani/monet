@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ThesaurusDeclaration" parent="EntityDeclaration" tag="thesaurus">
+  <description>Declaración que se utiliza para modelar un tesauro</description>
+
+  <property name="is-public">
+    <description>Su presencia indica que el tesauro se publica para que otros espacios de negocio lo puedan sincronizar</description>
+  </property>
+
+  <property name="use">
+    <description>Se utiliza para indicar que los términos del tesauro se obtienen de una referencia</description>
+    <hint>La referencia debe tener obligatoriamente los atributos code y label</hint>
+    <attribute name="reference" type="code" link="Definition" restriction="ReferenceDeclaration">
+      <description>Código de la definición de una referencia</description>
+    </attribute>
+  </property>
+
+  <include name="term-index">
+    <option class-name="TermIndexDeclaration"/>
+  </include>
+  
+</class>

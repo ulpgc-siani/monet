@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="LinkFieldDeclaration" parent="FieldDeclaration" tag="field-link">
+  <description>Declaración que se utiliza para modelar un campo vínculo</description>
+
+  <property name="link">
+    <description>Se utiliza para indicar qué nodos se pueden vincular en el campo</description>
+    <attribute name="node" type="code" link="Definition" restriction="NodeDeclaration" required="true">
+      <description>Código de la definición de un nodo</description>
+    </attribute>
+    <attribute name="source" type="formula" required="true">
+      <description>Expresión que devuelve un conjunto de nodos</description>
+    </attribute>
+  </property>
+
+  <property name="allow-history">
+    <description>Se utiliza para indicar que el campo puede gestionar un historial de los valores introducidos por el usuario</description>
+    <attribute name="datastore" type="string" required="true">
+      <description>Nombre de la tabla en el que se almacenarán los valores</description>
+      <hint>Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</hint>
+    </attribute>
+  </property>
+
+  <property name="allow-search">
+    <description>Se utiliza para indicar que el campo está indexado y se pueden realizar búsquedas</description>
+  </property>
+
+  <include name="view">
+    <option class-name="LinkFieldViewDeclaration"/>
+  </include>
+
+</class>

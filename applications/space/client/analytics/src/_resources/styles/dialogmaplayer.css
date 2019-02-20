@@ -1,0 +1,47 @@
+.dialog.maplayer li {
+  float: left;
+  background: white;
+  padding: 0 5px;
+  border-color: #AAAAAA;
+  border-style: solid;
+  border-radius: 0 0 0 0;
+  border-width: 1px 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 13px;
+  display: block;
+  height: 17px;
+  border-bottom-right-radius: 2px;
+  border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) -moz-use-text-color;
+  border-image: none;
+  border-style: solid solid solid none;
+  border-top-right-radius: 2px;
+  border-width: 1px 1px 1px 0;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.dialog.maplayer li.first {
+  border-left-width: 1px;
+}
+
+.dialog.maplayer li.last {
+  border-right-width: 1px;
+}
+
+.dialog.maplayer li:hover {
+  background: #ebebeb;
+}
+
+.dialog.maplayer li a {
+  color: #565656;
+  cursor: pointer;
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  padding-top: 1px;
+}
+
+.dialog.maplayer li.active a {
+  font-weight: bold;
+  color: #000000;
+}

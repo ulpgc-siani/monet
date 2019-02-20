@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SetDefinition" parent="NodeDefinition">
+  <description>Declaración que se utiliza para modelar un conjunto de datos</description>
+
+  <property name="use">
+    <description>Se utiliza para indicar qué referencia usa la colección para mostrar sus elementos</description>
+    <attribute name="reference" type="key" link="ReferenceDefinition">
+      <description>Nombre de la definición de una referencia</description>
+    </attribute>
+  </property> 
+    
+  <property name="export">
+    <description>Permite la ejecución de un exportador en este nodo</description>
+    <attribute name="name" type="key" link="ExporterDefinition">
+      <description>Nombre de la definición de una referencia</description>
+    </attribute>
+    <attribute name="type" type="enumeration">
+      <description>Tipo del exportador en caso de ser uno de los predefinidos por el sistema</description>
+      <enumeration>
+        <option>MAP</option>
+        <option>THESAURO</option>
+      </enumeration>
+    </attribute>
+    <attribute name="key" type="key" link="AttributeDeclaration">
+      <description>Nombre del attributo de la referencia que se usará para exportar</description>
+      <hint>Si es de tipo MAP, tendrá que ser un atributo de tipo LOCATION. Si es de tipo THESAURO, tendrá que ser un atributo de tipo TERM.</hint>
+    </attribute>
+  </property>
+  
+  <include name="view" multiple="true">
+    <option class-name="SetViewDeclaration" />
+  </include>
+    
+
+</class>
+

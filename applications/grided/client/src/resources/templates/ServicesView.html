@@ -1,0 +1,9 @@
+<div class="message">::message::</div>
+<select name="service_type">
+  <% _.each(servicesTypes, function(servicesType) { %>
+    <option value="<%= servicesType.code %>"><%= servicesType.name %></option>
+  <% }); %>
+</select>
+<div>
+  <div class="elements-table"></div>
+</div>

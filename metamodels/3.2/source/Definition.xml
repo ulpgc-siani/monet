@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="Definition" extensible="true">
+	<description>Una definición describe una entidad en el modelo de negocio</description>
+
+	<attribute token="code" type="code" required="true" specific="true">
+		<description>Código de la definición</description>
+		<hint>No hay que editar este atributo. Se genera automáticamente</hint>
+	</attribute>
+	
+	<attribute token="name" type="string" required="true" specific="true">
+		<description>Nombre con el que se referencia una definición en el modelo de negocio</description>
+		<hint>El nombre debe ser único dentro del paquete en el que se encuentra la definición</hint>
+	</attribute>
+  
+    <attribute token="parent" type="string" specific="true">
+		<description>Nombre de la definición padre de la que hereda</description>
+	</attribute>
+	
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta de una definición</description>
+		<hint>Se utiliza para mostrar a los usuarios el nombre de un tipo de entidad</hint>
+	</attribute>
+	
+	<attribute token="description" type="language">
+		<description>Descripción de una definición</description>
+		<hint>Se utiliza para ofrecer a los usuarios una explicación más detallada de un tipo de entidad</hint>
+	</attribute>
+	
+	<attribute token="help" type="language">
+		<description>Nombre del fichero de ayuda asociado a la definición</description>
+		<hint>Se utiliza para mostrar una página de ayuda de un tipo de entidad</hint>
+	</attribute>
+	
+	<property token="is-abstract" specific="true">
+		<description>Esta propiedad se utiliza para indicar que la definición es abstracta</description>
+		<hint>Si una definición es abstracta no se pueden crear instancias de esa entidad</hint>
+	</property>
+	
+</class>

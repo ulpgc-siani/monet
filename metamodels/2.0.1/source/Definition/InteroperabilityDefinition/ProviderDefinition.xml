@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ProviderDefinition" parent="InteroperabilityDefinition">
+  <description>Declaración que se utiliza para modelar un proveedor de una unidad de negocio</description>
+
+  <attribute name="remote-link" type="string" required="true">
+    <description>Nombre de la definición remota a la que se conecta este proveedor</description>
+  </attribute>
+</class>

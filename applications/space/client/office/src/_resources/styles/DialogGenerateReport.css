@@ -1,0 +1,50 @@
+.dialog.generatereport {
+  width: 700px;
+  height: 400px;
+}
+
+.dialog.generatereport .outfield .outbody .radio.filter {
+  margin-bottom: 15px;
+}
+
+.dialog.generatereport .filter .dialog {
+  margin: 4px 18px;
+}
+
+.dialog.generatereport .filter .dialog ul {
+  margin-bottom: 8px;
+  padding-left: 12px;
+  list-style-type: disc;
+}
+
+.dialog.generatereport .filter .dialog ul li {
+  margin: 0px;
+}
+
+.dialog.generatereport .filter .dialog ul li span {
+  font-size: 11px;
+  font-weight: normal;
+  margin: 0px;
+}
+
+.dialog.generatereport .filter .dialog ul li .link {
+  margin: 0px 6px;
+}
+
+.dialog.generatereport .filter .dialog .row {
+  clear: both;
+  height: 24px;
+}
+
+.dialog.generatereport .filter .dialog .row .title {
+  float: left;
+  padding: 3px 0px;
+  font-size: 11px;
+  font-weight: normal;
+  margin: 0px;
+}
+
+.dialog.generatereport .filter .dialog .row .selector {
+  float: left;
+  margin-bottom: 5px;
+}

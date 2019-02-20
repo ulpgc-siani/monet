@@ -1,0 +1,11 @@
+.dialog.searchroles {
+}
+
+.dialog.searchroles input {
+  height: 20px;
+  width: 100%;
+}
+
+.dialog.searchroles .search {
+  margin-left: 5px;
+}

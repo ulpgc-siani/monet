@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FieldDeclaration" parent="ContentDeclaration">
+  <description>Descripción del campo de un formulario</description>
+
+  <attribute name="code" type="key" required="true">
+    <description>Identificador único de la declaración del campo</description>
+  </attribute>
+
+  <attribute name="name" type="string">
+    <description>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</description>
+    <hint>Hablar con Mario para valorar cómo se hace en BPI</hint>
+  </attribute>
+
+  <property name="required" >
+    <description>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</description>
+  </property>
+
+  <property name="multiple">
+    <description>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</description>
+  </property>
+
+  <property name="default">
+    <description>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</description>
+    <xml-content />
+  </property>
+  
+  <property name="label">
+    <description>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</description>
+    <attribute name="language" type="enumeration" required="true">
+      <description>Idioma en el que se expresa la etiqueta</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="type" type="enumeration" default="short">
+      <description>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</description>
+      <enumeration>
+        <option>short</option>
+        <option>long</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="description">
+    <description>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la descripción</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <text-content />
+  </property>
+
+  <property name="help">
+    <description>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se ha expresado el fichero de ayuda</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="filename" type="String" >
+      <description>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio "/help/(lang)" del modelo de negocio</description>
+    </attribute>
+  </property>  
+  
+  <include name="display">
+    <option class="DisplayDeclaration" />
+  </include>  
+  
+</class>
+

@@ -1,0 +1,75 @@
+.viewer.helper .page label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.viewer.helper .page .page {
+  margin-top: 5px;
+}
+
+.viewer.helper .page .page .section {
+  margin: 10px 0px 15px;
+}
+
+.viewer.helper .page .page .section .title {
+  margin: 0px !important;
+  font-size: 14px;
+}
+
+.viewer.helper .page .page .section .description {
+  margin-top: 3px;
+}
+
+.node .viewer.helper .page .page .section .title {
+  font-size: 12px;
+}
+
+.viewer.helper .page .page .section ul.options li {
+  margin: 3px 0px 0px;
+}
+
+.viewer.helper .page .page .section ul.options.spaced li {
+  margin-bottom: 12px;
+}
+
+.viewer.helper .page .page .section ul.options li .title {
+  font-weight: normal;
+  border-bottom: 0px;
+  font-size: 12px;
+}
+
+.viewer.helper .page .page .section ul.options li .title.bold {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.viewer.helper .page .page .section ul.options li a.title {
+  display: block;
+  font-size: 12px;
+}
+
+.viewer.helper .page .page .section ul.options li div.title {
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.viewer.helper .page .page ol {
+  list-style-type: decimal;
+  margin: 10px 20px;
+}
+
+.viewer.helper .page .page ol.faqs {
+  list-style-type: decimal;
+}
+
+.viewer.helper .page .page ol.faqs .faq {
+  margin-top: 8px;
+}
+
+.viewer.helper .page .page ol.faqs .faq .question {
+  font-weight: bold;
+}
+
+.viewer.helper .page .page ol.faqs .faq .response {
+  font-weight: normal;
+}

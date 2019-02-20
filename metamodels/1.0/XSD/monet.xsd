@@ -1,0 +1,3080 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.monet.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.monet.org">
+	<xs:complexType name="Definition">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="abstract" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que la definición es abstracta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="singleton" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que la definición representa un tipo de entidad de la que sólo puede existir una instancia</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="environment" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que la definición representa un tipo de entidad que se puede utilizar para configurar el entorno del usuario en el espacio de negocio</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Página de ayuda asociada a la definición. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tag" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta para facilitar la busqueda de definiciones</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence minOccurs="1">
+				<xs:choice>
+					<xs:element name="service" type="ServiceDeclaration"></xs:element>
+					<xs:element name="service-link" type="ServiceLinkDeclaration"></xs:element>
+					<xs:element name="catalog" type="CatalogDeclaration"></xs:element>
+					<xs:element name="collection" type="CollectionDeclaration"></xs:element>
+					<xs:element name="container" type="ContainerDeclaration"></xs:element>
+					<xs:element name="document" type="DocumentDeclaration"></xs:element>
+					<xs:element name="form" type="FormDeclaration"></xs:element>
+					<xs:element name="role" type="RoleDeclaration"></xs:element>
+					<xs:element name="task" type="TaskDeclaration"></xs:element>
+					<xs:element name="thesaurus" type="ThesaurusDeclaration"></xs:element>
+					<xs:element name="reference" type="ReferenceDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la definición</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="parent" type="Code">
+			<xs:annotation>
+				<xs:documentation>Indica la relación de herencia de la definición. Se especifica el código de la definición de la que se heredan los atributos, propiedades y declaraciones</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReferenceDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="contain" type="AttributeDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AttributeDeclaration">
+		<xs:annotation>
+			<xs:documentation>Descripción del atributo de una referencia</xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Código del atributo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" use="required">
+			<xs:annotation>
+				<xs:documentation></xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="text|number|date"></xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ContainDeclaration">
+		<xs:annotation>
+			<xs:documentation>Indica un tipo nodo que puede añadirse a un compuesto (container, collection, field-collections)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+		<xs:attribute name="node" type="Code" use="required">
+			<xs:annotation>
+				<xs:documentation>Código de una definición de nodo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="HaveDeclaration">
+		<xs:annotation>
+			<xs:documentation>Indica un tipo de nodo que forma parte de un contenedor. Cuando se crea el contendedor, automáticamente se crea un nodo de este tipo</xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+		<xs:attribute name="node" type="Code" use="required">
+			<xs:annotation>
+				<xs:documentation>Código de una definición de nodo. Sólo se pueden indicar códigos de definiciones en los que se haya declarado un nodo.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SignatureDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TermDeclaration">
+		<xs:annotation>
+			<xs:documentation>Descripción una palabra en un Termbook</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="term" type="TermDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Código de esta palabra</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="value" type="String" use="required">
+			<xs:annotation>
+				<xs:documentation>La palabra en sí</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="data" type="String">
+			<xs:annotation>
+				<xs:documentation>Datos adicionales que se quieran añadir a la palabra. Estos datos pueden estar etiquetados con XML para facilitar su tratamiento</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TermListDeclaration">
+		<xs:annotation>
+			<xs:documentation>Descripción del atributo de una referencia</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="term" type="TermDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="language" use="required">
+			<xs:annotation>
+				<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ThesaurusUseDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+		<xs:attribute name="thesaurus" type="Code">
+			<xs:annotation>
+				<xs:documentation>Codigo de definición del tesauro que se va a usar</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="WorkLineDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="from" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Define la origen de este WorkLine</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="workplace" type="Code">
+						<xs:annotation>
+							<xs:documentation>WorkPlace desde el que parte esta línea</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="to">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:choice>
+							<xs:element name="workstop" type="WorkStopDeclaration"></xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="code" type="Code">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="weight" type="Natural">
+			<xs:annotation>
+				<xs:documentation>Indica que tipo de WorkPlace se trata.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="WorkMapDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="workplace" type="WorkPlaceDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="workline" type="WorkLineDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WorkPlaceDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="code" type="Code" use="required">
+			<xs:annotation>
+				<xs:documentation>WorkPlace where is placed this Workstop</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type">
+			<xs:annotation>
+				<xs:documentation>Indica que tipo de WorkPlace se trata.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="event|goal|dead-end"></xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="WorkStopDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta descriptiva de una definición. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado sobre un tipo de un entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Descripción explicativa de una definición. Se utiliza para ofrecer a los usuarios una explicación más detallada sobre un tipo de entidad</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="workplace" type="Code" use="required">
+			<xs:annotation>
+				<xs:documentation>WorkPlace where is placed this Workstop</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BooleanFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CheckFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DateFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="DateFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="FileFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LinkFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="link" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="node" type="Code" use="required">
+						<xs:annotation>
+							<xs:documentation>Código del tipo de definición que se puede vincular</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="source" type="SetExpresion" use="required">
+						<xs:annotation>
+							<xs:documentation>Expresión que devuelve un conjunto de nodos. Ver ejemplo</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="view" type="FieldNodeViewDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="LinkFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MemoFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="MemoFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="NodeFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="contain" type="ContainDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="1">
+				<xs:choice>
+					<xs:element name="view" type="FieldNodeViewDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="NumberFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="format" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene el formato en el que se representará las cifras. Se utiliza para aplicar un formato a las cifras.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="text" use="required">
+						<xs:annotation>
+							<xs:documentation>Formato en el que se representan las cifras. Con * se representan una cantidad indeterminada de cifras. Si indicamos un número, ese será el número de cifras que se mostrarán. Ejemplo: para representar un número cualquiera con tres decimales pondríamos &quot;*,3&quot;</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PatternFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="PatternFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PictureFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="PictureFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SectionFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="SectionFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="field-boolean" type="BooleanFieldDeclaration"></xs:element>
+					<xs:element name="field-check" type="CheckFieldDeclaration"></xs:element>
+					<xs:element name="field-date" type="DateFieldDeclaration"></xs:element>
+					<xs:element name="field-file" type="FileFieldDeclaration"></xs:element>
+					<xs:element name="field-link" type="LinkFieldDeclaration"></xs:element>
+					<xs:element name="field-memo" type="MemoFieldDeclaration"></xs:element>
+					<xs:element name="field-node" type="NodeFieldDeclaration"></xs:element>
+					<xs:element name="field-number" type="NumberFieldDeclaration"></xs:element>
+					<xs:element name="field-pattern" type="PatternFieldDeclaration"></xs:element>
+					<xs:element name="field-picture" type="PictureFieldDeclaration"></xs:element>
+					<xs:element name="field-section" type="SectionFieldDeclaration"></xs:element>
+					<xs:element name="field-select" type="SelectFieldDeclaration"></xs:element>
+					<xs:element name="field-serial" type="SerialFieldDeclaration"></xs:element>
+					<xs:element name="field-text" type="TextFieldDeclaration"></xs:element>
+					<xs:element name="field-metatext" type="MetaTextFieldDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SelectFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="termlist" type="TermListDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="uses" type="ThesaurusUseDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="SelectFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SerialFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sequence" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="value" type="Code" use="required">
+						<xs:annotation>
+							<xs:documentation>Código de la secuencia que surtirá de valores nuevos a este campo</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="format" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="value" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Expresión que indica como se generan nuevos valores para este campo. Será del tipo: &quot;A#S:10#/#Y:2#&quot; siendo una A, seguido de 10 digitos extraidos de la secuencia, seguido de  una barra y el año con dos dígitos.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TextFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="TextFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MetaTextFieldDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="part" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Cada una de las partes en las que se divide el texto introducido</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="index" type="Integer">
+						<xs:annotation>
+							<xs:documentation>Identificador de la parte</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="meta" type="String">
+						<xs:annotation>
+							<xs:documentation>Etiqueta que se asigna al metadato</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="required" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es obligatorio cumplimentar el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiple" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que es un campo replicable en el formulario. Cuando un campo es replicable, en el espacio de negocio el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una constante o una expresión con la se inicializa el valor de un campo cuando se crea el formulario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva del campo. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una descripción explicativa del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la descripción</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="help" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Referencia a una página de ayuda del campo. Se utiliza para mostrar una página de ayuda del campo declarado. El contenido debe estar en formato HTML</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se ha expresado el fichero de ayuda</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="filename" type="String">
+						<xs:annotation>
+							<xs:documentation>Fichero HTML que contiene la ayuda. Este fichero se ubica en el directorio &quot;/help/(lang)&quot; del modelo de negocio</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="edition" type="TextFieldEditionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="display" type="DisplayDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="pattern" type="String" use="required">
+			<xs:annotation>
+				<xs:documentation>Expresión regular que permite analizar el texto introducido y separarlo en partes</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración del campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="string">
+			<xs:annotation>
+				<xs:documentation>La presencia de este atributo indica que el contenido del campo es accesible para realizar cálculos u operaciones. Para acceder al campo se utiliza name como índice en la lista de campos de un formulario o una sección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="RoleDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TaskDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="implements" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="service" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Nombre del servicio que implementa esta tarea</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="input" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="node" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Nodo documento que se creará con la entrada recibida desde la petición de servicio. Será la entrada con la que trabajará la tarea.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="output" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="node" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Nodo documento que se enviará a la finalización de la tarea como respuesta de la petición de servicio. Este nodo se ha de crear mediante BPI.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="workmap" type="WorkMapDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ThesaurusDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="termlist" type="TermListDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CatalogDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schema" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="implements" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CollectionDeclaration">
+		<xs:annotation>
+			<xs:documentation>Es una declaración que se utiliza para definir colecciones</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contain" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica qué se pueden incluir en la colección un tipo de nodo concreto. A la colección se podrán agregar muchos nodos de este tipo</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="node" type="Code" use="required">
+						<xs:annotation>
+							<xs:documentation>Código de una definición de nodo. Sólo se pueden indicar códigos de definiciones en los que se haya declarado algún tipo nodo.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="schema" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="implements" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="contain" type="ContainDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="view" type="CollectionViewDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="behavior" type="BehaviorDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="behavior-client" type="ClientBehaviorDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContainerDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schema" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="implements" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="have" type="HaveDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="contain" type="ContainDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="view" type="ContainerViewDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="behavior" type="BehaviorDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="implements" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="response" type="String">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="request" type="String">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="schema" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="implements" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="signature" type="SignatureDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="view" type="DocumentViewDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FormDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="schema" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="implements" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:choice>
+					<xs:element name="field-boolean" type="BooleanFieldDeclaration"></xs:element>
+					<xs:element name="field-check" type="CheckFieldDeclaration"></xs:element>
+					<xs:element name="field-date" type="DateFieldDeclaration"></xs:element>
+					<xs:element name="field-file" type="FileFieldDeclaration"></xs:element>
+					<xs:element name="field-link" type="LinkFieldDeclaration"></xs:element>
+					<xs:element name="field-memo" type="MemoFieldDeclaration"></xs:element>
+					<xs:element name="field-node" type="NodeFieldDeclaration"></xs:element>
+					<xs:element name="field-number" type="NumberFieldDeclaration"></xs:element>
+					<xs:element name="field-pattern" type="PatternFieldDeclaration"></xs:element>
+					<xs:element name="field-picture" type="PictureFieldDeclaration"></xs:element>
+					<xs:element name="field-section" type="SectionFieldDeclaration"></xs:element>
+					<xs:element name="field-select" type="SelectFieldDeclaration"></xs:element>
+					<xs:element name="field-serial" type="SerialFieldDeclaration"></xs:element>
+					<xs:element name="field-text" type="TextFieldDeclaration"></xs:element>
+					<xs:element name="field-metatext" type="MetaTextFieldDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="behavior" type="BehaviorDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="behavior-client" type="ClientBehaviorDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentFormatDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+		<xs:attribute name="name" type="String" use="required">
+			<xs:annotation>
+				<xs:documentation>Nombre del formato del documento</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="xsd" type="file">
+			<xs:annotation>
+				<xs:documentation>Fichero XSD que contiene el formato. Este fichero se ubica en el directorio &quot;/xsd/(lang)&quot; del modelo de negocio</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ServiceDeclaration">
+		<xs:annotation>
+			<xs:documentation>Hay que declarar los formatos de los documentos que se pueden intercambiar durante la provisión del servicio</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="request" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Formato del documento con el que se inicia la petición del servicio</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="format" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="response" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Formato del documento con el que el servicio responde al peticionario</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="format" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="reply" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Formato del documento con el que el peticionario contesta/replica las repuestas del servicio</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="format" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="String" use="required">
+			<xs:annotation>
+				<xs:documentation>Nombre con el que se ofrece el servicio a otras unidades de negocio</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ServiceLinkDeclaration">
+		<xs:annotation>
+			<xs:documentation>Hay que declarar los formatos de los documentos que se pueden intercambiar durante la petición del servicio</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="request" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Formato del documento con el que se inicia la petición del servicio</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="format" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="response" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Formato del documento con el que el servicio responde al peticionario</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="format" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="reply" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Formato del documento con el que el peticionario contesta/replica las repuestas del servicio</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="format" type="Code">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="String" use="required">
+			<xs:annotation>
+				<xs:documentation>Nombre del servicio que se desea consumir</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BehaviorDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClientBehaviorDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DisplayDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="invisible" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que debe ocultarse el campo. Actualmente no admite expresiones, pero en el futuro se permitirá definir expresiones</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="order" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="index" type="Natural">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="message" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mensaje de ayuda para explicar al usuario cómo tiene que editar el campo. No tiene el mismo uso que la propiedad description, ya que este mensaje aparece durante la de edición del campo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message-when-empty" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mensaje de ayuda para explicar al usuario qué debe rellenar en el campo. Sólo se muestra cuando está vacío. En el momento en el que el campo tiene un valor, este mensaje desaparece</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="extended" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Se utiliza para indicar si un campo sólo se debe visualizar en la parte extendida de un campo section</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="selection" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se representa la fecha (nombres de los meses o de los días)</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="format">
+						<xs:annotation>
+							<xs:documentation>Formatos de fecha predefinidos</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="iso8601long|iso8601short|shortdate|longdate|fulldatetime|monthday|shorttime|longtime|sortabledatetime|universalsortabledatetime|yearmonth|year|custom"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="custom" type="string">
+						<xs:annotation>
+							<xs:documentation>Formato de fecha expresado según el convenio publicado en http://www.extjs.com/deploy/ext/docs/output/Date.html</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LinkFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="allow-history" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que el campo puede gestionar un historial de los valores introducidos por el usuario</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="datastore" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Nombre de la tabla en el que se almacenarán los valores. Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="allow-search" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que el campo está indexado y se pueden realizar búsquedas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MemoFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="length" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Longitud del campo</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="max" type="Natural">
+						<xs:annotation>
+							<xs:documentation>Máximo número de caracteres que admite el campo</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="min" type="Natural">
+						<xs:annotation>
+							<xs:documentation>Mínimo número de caracteres que admite el campo</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="lowercase" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que el texto introducido se registrarán en minúsculas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uppercase" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que el texto introducido se registrarán en mayúsculas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PatternExpressionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="indicator" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Etiqueta las capturas realizadas en la expresión regular</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="index" type="Integer" use="required">
+						<xs:annotation>
+							<xs:documentation>Posición de la captura</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="label" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Etiqueta que se le asignará a la captura</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="language" use="required">
+			<xs:annotation>
+				<xs:documentation>Idioma</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="value" type="String" use="required">
+			<xs:annotation>
+				<xs:documentation>Expresión regular que cumplirá el valor que se almacene en este campo</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PatternFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence minOccurs="1">
+				<xs:choice>
+					<xs:element name="pattern" type="PatternExpressionDeclaration"></xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PictureFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="size" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Define la proporciones de la imagen</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="width" type="Natural" use="required">
+						<xs:annotation>
+							<xs:documentation>Ancho de la imagen</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="height" type="Natural" use="required">
+						<xs:annotation>
+							<xs:documentation>Alto de la imagen</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SectionFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extensible" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que la sección es extensible. Cuando una sección es extensible, tiene una vista resumida y otra extendida. Aquellos campos que se declaren dentro de la sección con la propiedad &quot;extended&quot; solo se mostrarán en la versión extendida</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="conditional" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que la sección es condicional. En este campo se guarda un valor booleano, de forma que la sección oculta los campos que contiene cuando el valor es &quot;false&quot;, o los muestra cuando el valor es &quot;true&quot;</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SelectFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="allow-history" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que el campo puede gestionar un historial de los valores introducidos por el usuario</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="datastore" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Nombre de la tabla en el que se almacenarán los valores. Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="allow-search" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que el campo está indexado y se pueden realizar búsquedas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allow-other" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que se pueden añadir texto libre</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showcode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Sirve para mostrar el codigo del item definido dentro de la propiedad data o en el datasource</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TextFieldEditionDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="allow-history" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>La presencia de esta propiedad indica que el campo puede gestionar un historial de los valores introducidos por el usuario</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="datastore" type="String" use="required">
+						<xs:annotation>
+							<xs:documentation>Nombre de la tabla en el que se almacenarán los valores. Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="length" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Longitud del campo</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="max" type="Natural">
+						<xs:annotation>
+							<xs:documentation>Máximo número de caracteres que admite el campo</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="min" type="Natural">
+						<xs:annotation>
+							<xs:documentation>Mínimo número de caracteres que admite el campo</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="lowercase" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que el texto introducido se registrarán en minúsculas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uppercase" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Su presencia indica que el texto introducido se registrarán en mayúsculas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CollectionViewDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contiene una etiqueta descriptiva de la vista. Se utiliza para ofrecer a los usuarios del espacio de negocio un significado de la vista declarado</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="language" use="required">
+						<xs:annotation>
+							<xs:documentation>Idioma en el que se expresa la etiqueta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="es|en|de|fr|it|pt"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Tipo de etiqueta: corta o larga. En función del espacio en la interfaz de usuario, se puede mostrar al usuario una etiqueta corta o larga. En caso de no existir la descripción larga, se toma la descripción corta</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:pattern value="short|long"></xs:pattern>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="uses" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="code" use="required">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="header" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="code" type="key" use="required">
+			<xs:annotation>
+				<xs:documentation>Identificador único de la declaración de vista de la colección</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ContainerViewDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentViewDeclaration">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FieldNodeViewDeclaration">
+		<xs:annotation>
+			<xs:documentation>Indica cómo se visualiza un nodo empotrado en un campo</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="render" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="node" type="Code" use="required">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="view" type="Code" use="required">
+						<xs:annotation>
+							<xs:documentation>Indica qué vista del objeto vinculado se debe usar. En caso de no especificar una vista, se toma la vista por defecto</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Code">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w+(([&apos;.&apos;]\w+)?)*"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String">
+		<xs:restriction base="xs:string"></xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Boolean">
+		<xs:restriction base="xs:boolean"></xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Integer">
+		<xs:restriction base="xs:integer"></xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Natural">
+		<xs:restriction base="xs:positiveInteger"></xs:restriction>
+	</xs:simpleType>
+	<xs:element name="definition" type="Definition"></xs:element>
+</xs:schema>

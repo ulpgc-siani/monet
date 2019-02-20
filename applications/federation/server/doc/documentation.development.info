@@ -1,0 +1,41 @@
+Development doumentation.
+
+TODO LIST:
+	- Cambiar el manejo de mensjaes del socket. Enviar todos los mensajes a acciones. Como xml.
+	- Agregar el library.encrypt para los certificados
+	- Agregar el library.sql para el datarepository
+	- Agregar el library.logger para el log.
+
+DEPENDENCIES:
+			Library													Version						Use												Comment
+			aopalliance											  ?							 	 ?
+			bcmail													jdk16 146				Verification certificate		
+			bcprov													jdk16 146				Verification certificate
+			commons-beanutils									?								 ?
+			commons-codec											1.5							 ?
+			commons-collections								3.2							 ?
+			commons-lang											2.3							 ?
+			commons-logging										1.1.1					Logger
+			ezmorph														1.0.4						 ?
+			google-collect										1.0							 ?
+			guice															2.0						inject dependencies
+			guice-assistedinject							2.0						inject dependencies
+			guice-multibindings								2.0						inject dependencies
+			guice-servlet											2.0						inject dependencies
+			httpclient												4.0						Http operations
+			httpcore													4.0						Http operations
+			jdom															?								 ?
+			json-lib												2.2 jdk15       Json
+			log4j														1.2.15					Logger
+			monet.component.exceptions				1.0						Exceptions
+			monet.component.filesystem        0.2           FileSystem operationa
+			monet.component.templation				1.0						Views
+			mysql-connector-java						5.1.15					Database
+			nekohtml												1.9.14					   ?
+			ojdbc															14						Database
+			openid4java											0.9.6						OpenID integration
+			simple-xml										  2.5.1						Deseri. XML
+			simplecaptcha										1.1.1						Captcha
+			xercesImpl											2.8.1
+			
+			

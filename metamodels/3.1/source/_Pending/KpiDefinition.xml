@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="KpiDefinition" parent="EntityDefinition" token="kpi">
+  <description></description>
+
+  <property token="parameter" type="ParameterProperty" parent="ReferenceableProperty" required="true" multiple="true">
+    <description>Esta propiedad se utiliza para declarar una medida</description>
+
+    <attribute token="historic" type="natural">
+      <description>Indica si se requieren valores historicos y cuantos</description>
+    </attribute>
+
+    <attribute token="indicator" type="key" link="IndicatorProperty">
+      <description></description>
+    </attribute>
+    <attribute token="feature" type="key" link="FeatureProperty">
+      <description></description>
+    </attribute>
+    <attribute token="kpi" type="key" link="KPIDefinition">
+      <description></description>
+    </attribute>
+  </property>
+
+  <attribute token="formula" type="expression:real" required="true">
+    <description>Expresión calcula el valor del KPI</description>
+  </attribute>
+
+</class>

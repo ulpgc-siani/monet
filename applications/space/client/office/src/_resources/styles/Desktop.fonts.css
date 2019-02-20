@@ -1,0 +1,68 @@
+html, body, input, table, td, select, options, textarea {
+  font-family: Roboto, Tahoma, Arial, Helvetica, sans-serif !important;
+  font-size: 14px;
+  font-weight: 300 !important;
+}
+
+h1 {
+  font-size: 18px;
+  padding-bottom: 4px;
+}
+
+h2 {
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 16px;
+  padding-bottom: 3px;
+  margin-top: 5px;
+}
+
+p {
+  line-height: 120%;
+  padding-bottom: 12px;
+}
+
+ul {
+  list-style: none;
+}
+
+.highlighted {
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.command {
+  color: #0d3c98;
+  cursor: pointer;
+}
+
+.command.default {
+  font-weight: bold;
+}
+
+.command:hover {
+  color: #0d3c98;
+}
+
+.behaviour {
+  color: #0d3c98;
+  cursor: pointer;
+}
+
+.behaviour:hover {
+  color: #0d3c98;
+}
+
+.link {
+  color: #0d3c98;
+}
+
+.link:hover {
+  color: #0d3c98;
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="NodeFieldDeclaration" parent="FieldDeclaration" tag="field-node">
+	<description>Declaración que se utiliza para modelar un campo nodo</description>
+
+	<property name="contain" multiple="true">
+		<description>Se utiliza para indicar que tipo de nodos se pueden agregar al campo</description>
+		<attribute name="node" type="code" link="Definition" restriction="NodeDeclaration" required="true">
+			<description>Código de la definición de un nodo</description>
+		</attribute>
+	</property>
+
+	<include name="view" required="true">
+		<option class-name="NodeFieldViewDeclaration" />
+	</include>
+
+</class>
+

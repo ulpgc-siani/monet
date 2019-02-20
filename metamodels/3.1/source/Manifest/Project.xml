@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="Project" parent="AbstractManifest" token="project" extensible="true">
+	<description>Define las características del modelo de negocio</description>
+
+	<attribute token="version" type="string" required="true">
+		<description>Versión del modelo</description>
+	</attribute>
+
+	<attribute token="type" type="enumeration" required="true">
+		<description></description>
+		<enumeration>
+			<option token="BACK">
+				<description>Oficina</description>
+			</option>
+			<option token="FRONT">
+				<description>Oficina de atención al público</description>
+			</option>
+		</enumeration>
+	</attribute>
+
+	<attribute token="author" type="string" required="true">
+		<description>Autor del modelo</description>
+	</attribute>
+
+</class>

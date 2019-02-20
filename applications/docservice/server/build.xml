@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<project basedir="." default="mvm" name="Monet.Execution.App.docservice.Web">
+  <property environment="env"/>
+  <property name="debuglevel" value="source,lines,vars"/>
+  <property name="target" value="1.7"/>
+  <property name="source" value="1.7"/>
+
+  <target name="mvm">
+    <exec executable="mvn">
+      <arg line="clean package"/>
+    </exec>
+
+    <antcall target="deploy-mvm"/>
+  </target>
+
+  <target name="mvm-publish">
+    <antcall target="deploy-mvm"/>
+  </target>
+
+  <target name="deploy-mvm">
+    <input message="Please enter mvm name:" addproperty="mvm.name" defaultvalue="local"/>
+    <input message="Please enter service files server name:" addproperty="service_files.name" defaultvalue="gisc"/>
+
+    <loadfile property="service_files" srcfile="build_resources/service_files.${service_files.name}"/>
+    <property name="service_files" value="${service_files}" />
+
+    <loadfile property="mvm_update" srcfile="build_resources/${mvm.name}.update"/>
+    <property name="mvm.update" value="${mvm_update}" />
+
+    <loadfile property="mvm_restart" srcfile="build_resources/${mvm.name}.restart"/>
+    <property name="mvm.restart" value="${mvm_restart}" />
+
+    <echo>Copying war to files service</echo>
+    <copy file="target/docservice.war" tofile="${service_files}/docservice.war" overwrite="true"/>
+
+    <echo>Update war in MVM</echo>
+    <exec executable="wget">
+      <arg line="--no-check-certificate &quot;${mvm.update}&quot; -O /dev/null"/>
+    </exec>
+    <exec executable="wget">
+      <arg line="--no-check-certificate &quot;${mvm.restart}&quot; -O /dev/null"/>
+    </exec>
+  </target>
+
+</project>

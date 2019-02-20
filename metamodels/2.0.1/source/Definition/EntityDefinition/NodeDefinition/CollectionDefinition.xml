@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CollectionDefinition" parent="SetDefinition" tag="collection" extensible="true">
+  <description>Declaración que se utiliza para modelar una colección</description>
+
+  <property name="add" multiple="true">
+    <description>Se utiliza para indicar que tipo de nodos se pueden agregar a una colección</description>
+    <attribute name="node" type="key" link="NodeDefinition" required="true">
+      <description>Nombre de la definición de un nodo</description>
+    </attribute>
+  </property>
+  
+  <property name="import">
+    <description>Permite la ejecución de un importador en este nodo</description>
+    <attribute name="name" type="key" link="ImporterDefinition">
+      <description>Nombre de la definición de una referencia</description>
+    </attribute>
+  </property>
+ 
+</class>
+

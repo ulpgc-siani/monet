@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DocumentFormatDeclaration" parent="OrganizationalDeclaration" tag="document-format">
+
+		<attribute name="name" type="String" required="true">
+      <description>Nombre del formato del documento</description>
+    </attribute>
+		<attribute name="xsd" type="file">
+      <description>Fichero XSD que contiene el formato. Este fichero se ubica en el directorio "/xsd/(lang)" del modelo de negocio</description>
+    </attribute>
+
+</class>

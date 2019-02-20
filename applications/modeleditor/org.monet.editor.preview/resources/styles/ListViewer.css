@@ -1,0 +1,407 @@
+.listviewer {
+  min-width: 370px;
+}
+
+.listviewer.wizard {
+	min-width: 0px;
+}
+
+.listviewer .wizard {
+	margin: 10px 6px 0 0;
+}
+
+.listviewer .label {
+  border-bottom: 1px dotted #AAAAAA;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+
+.listviewer .content .label, .listviewer.wizard .label {
+	border: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+	
+.listviewer .edition {
+  display: none;
+}
+
+.listviewer.editable .edition {
+  display: block;
+}
+
+.listviewer .toolbar.edition {
+  display: none;
+}
+
+.listviewer.editable .toolbar.edition {
+  display: block;
+}
+
+.listviewer .summary {
+  height: 2px;
+}
+
+.listviewer .summary .filters, .listviewer .summary .count {
+  height: 15px;
+  padding: 5px 0px;
+}
+
+.listviewer .summary .filters {
+  clear: both;
+}
+
+.listviewer .summary .count {
+  float: right;
+}
+
+.listviewer .filters {
+  float: left;
+}
+
+.listviewer .filters li {
+  display: inline;
+  margin-right: 22px;
+}
+
+.listviewer .filters li span {
+  background: #FAEDC3;
+  padding: 0px 2px;
+}
+
+.listviewer .filters .unselect {
+  cursor: pointer;
+  margin-left: -3px;
+  display: inline;
+  width: 16px;
+  height: 16px;
+  background: url('../images/icons/delete-trigger.gif') no-repeat left center;
+  position: absolute;
+  margin-top: -1px;
+}
+
+.listviewer .add.list .selector {
+  margin-top: -1px;
+  float: left;
+  font-size: 14px;
+}
+
+.listviewer .selectall {
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.listviewer .delete {
+  float: left;
+  cursor: pointer;
+  margin-left: 25px;
+  font-size: 14px;
+  margin-top: -1px;
+}
+
+.listviewer.wizard.editable .filter td.edition {
+  display: inline;
+}
+
+.listviewer.wizard .list {
+  display: block;
+}
+
+.listviewer.wizard .list li {
+  padding: 1px 2px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.listviewer.wizard .list li a {
+  display: inline;
+  white-space: nowrap;
+}
+
+.listviewer.wizard .list li .description {
+  color: #444;
+  margin-top: 3px;
+}
+
+.listviewer.wizard .list li.selected a.label {
+  background: #DEE7EE;
+  border: 1px dotted #99BBE8;
+  padding: 1px;
+}
+
+.listviewer.wizard .list.groupby li {
+  margin-top: 5px;
+}
+
+.listviewer.wizard .list.sortby {
+  display: inline-table;
+}
+
+.listviewer.wizard .group.sortby .toolbar {
+  display: inline-table;  
+}
+
+.listviewer.wizard .list.sortby .section {
+  display: inline-table;  
+  border: 1px dotted #99BBE8;
+  padding: 5px 5px 0;
+  padding-right: 22px;
+  width: 80px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.listviewer.wizard .list.sortby .section.readonly li a, .listviewer.wizard .list.sortby .section li.readonly a {
+  color: #666;
+}
+  
+.listviewer.wizard .list.sortby .section.readonly li.selected a {
+  color: #0d3c98;
+}
+
+.listviewer.wizard .list.sortby li.selected a.label {
+  padding-right: 18px;
+}
+
+.listviewer.wizard .list.sortby li.selected.ascendant a.label {
+  background: #DEE7EE url('../images/listviewer/ascendant.gif') no-repeat right center;
+}
+
+.listviewer.wizard .list.sortby li.selected.descendant a.label {
+  background: #DEE7EE url('../images/listviewer/descendant.gif') no-repeat right center;
+}
+
+.listviewer.wizard .list.sortby .options {
+  margin-left: 6px;
+  margin-right: -8px;
+  float: right;
+  position: relative;
+}
+
+.listviewer.wizard .list.groupby .options a, .listviewer.wizard .list.sortby .options a {
+  cursor: pointer;
+  margin-left: 2px;
+  display: inline;
+  width: 16px;
+  height: 16px;
+  background: url('../images/icons/delete-trigger.gif') no-repeat left center;
+  position: absolute;
+  right: -21px;
+  top: -2px;
+}
+
+.ie .listviewer.wizard .list.groupby .options a {
+  top: 1px;
+}
+
+.ie .listviewer.wizard .list.sortby .options a {
+  top: 0px;
+}
+
+.listviewer.wizard .list.sortby .options a {
+  right: -11px;
+}
+
+.listviewer.wizard .group {
+  margin: 10px 10px 20px;
+}
+
+.listviewer.wizard .group label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.listviewer.wizard .filter {
+  height: 20px;
+  clear: both;
+  margin: 0px;
+}
+
+.listviewer.wizard .filter, .listviewer.wizard .list.groupby table {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.listviewer.wizard .filter td.label, .listviewer.wizard .list.groupby table td.label {
+  width: 100px;
+  display: block;
+}
+
+.listviewer.wizard .filter td.content, .listviewer.wizard .list.groupby table td.content {
+  width: 100%;
+}
+
+.listviewer.wizard .filter input.value, .listviewer.wizard .list.groupby .selector {
+  height: 18px;
+  border: 1px solid #99BBE8;
+  width: 100%;
+}
+
+.ie .listviewer.wizard .filter input.value {
+  height: 17px;
+  padding-top: 2px;
+  min-width: 361px;
+}
+
+.listviewer.wizard .filter .empty {
+  position: relative;
+  color: #666;
+  display: block;
+  font-style: italic;
+  margin-left: 5px;
+  margin-top: -18px;
+  z-index: 5;
+}
+
+.listviewer .layer {
+  position: relative;
+  min-height: 100px;
+}
+
+.listviewer .lwloading {
+  text-align: left;
+  vertical-align: middle;
+  background: url('../images/icons/loading.gif') no-repeat left center;
+  padding-left: 20px;
+  padding-top: 12px;
+}
+
+.listviewer .items {
+  margin-top: 5px;
+}
+
+.listviewer .items .noitems {
+  margin: 10px 0 10px 17px;
+  color: #666666;
+}
+
+.listviewer .items .item .invisible0 {
+  display: none;
+}
+  
+.listviewer .items .item {
+  clear: both;
+}
+
+.listviewer .items .item a {
+  cursor: pointer;
+}
+
+.listviewer .items .item input.selector {
+  margin-right: 5px;
+}
+
+.listviewer .items .item .content {
+  display: block;
+  -moz-outline: none;
+  text-decoration: none;
+  background: transparent;
+  border: 1px dotted #99BBE8;
+  padding: 0px;
+  margin-bottom: 5px;
+  float: left;
+  width: 100%;
+}
+
+.listviewer .item.active .content {
+  background: #EAEEF2;
+}
+
+.listviewer.editable .items .item.selected .content {
+  background-color: #FFEDAF;
+}
+
+.listviewer .items .item a.delete {
+  background: url('../images/icons/delete-trigger.gif') no-repeat left center;
+  height: 16px;
+  width: 16px;
+  margin: 5px 0px;
+  position: absolute;
+  margin-left: -23px;
+  margin-top: 4px;
+}
+
+.listviewer .items .item a.content:hover {
+  background: #DCE5F2 !important;
+}
+
+.listviewer.editable .items .item.selected a.content:hover {
+  background: #FFE377 !important;
+}
+
+.listviewer .items .item .label {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.listviewer .items .item .attributes {
+  color: #555;
+  margin-top: 1px;
+  margin-left: 1px;
+}
+
+.listviewer .items .item .attributes div {
+  display: inline;
+}
+
+.listviewer .items .item .icons.attributes {
+	float: right;
+}
+
+.listviewer .items .item .icons.attributes a.attribute.georef {
+	position: absolute;
+	right: 0px;
+	z-index: 1;
+}
+
+.listviewer .items .item .icons.attributes a.attribute.georef.val01,
+.listviewer .items .item .icons.attributes a.attribute.georef.val10 {
+	display: none;
+}
+
+.listviewer .items .item .icons.attributes a.attribute.georef.val00 {
+	background: url('../images/icons/georef_un.png') no-repeat left center;
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+
+.listviewer .items .item .icons.attributes a.attribute.georef.val11 {
+  background: url('../images/icons/georef.png') no-repeat left center;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.listviewer .paging {
+  width: 100%;
+  margin: 10px;
+  text-align: right;
+  display: none;
+}
+
+.listviewer .paging a {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.listviewer .paging a.disabled {
+  color: #666;
+  cursor: default;
+}
+
+.listviewer .items .item .body .message {
+  color: #00A;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.listviewer .items .item .body .date {
+  
+}
+
+.listviewer .items .item .body .icon {
+  float: right;
+  margin: 0;
+}

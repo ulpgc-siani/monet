@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DesktopViewDeclaration" parent="NodeViewDeclaration" tag="view">
+
+  <property name="show" multiple="true">
+    <description>Se utiliza para crear un vínculo a una entidad en el desktop</description>
+    <attribute name="entity" type="key" link="Definition" required="true">
+      <description>Definición de la entidad que se desea mostrar</description>
+    </attribute>
+    <attribute name="view" type="key" link="ViewDeclaration">
+      <description>Vista de la cual extraer el título del vínculo. En caso de no indicarse, el título se obtiene del label de la definición de entidad.</description>
+    </attribute>
+  </property>
+  
+  <property name="show-news">
+    <description>Se utiliza para mostrar las últimas noticias en el desktop</description>
+  </property>
+
+</class>

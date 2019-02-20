@@ -1,0 +1,81 @@
+.command a
+  display: block
+  padding: 3px 5px
+
+.command.icon a
+  height: 100%
+  width: 100%
+
+.command.inline a
+  display: inline-block
+
+.command a:hover
+  background: #efefef
+  border-top: 0
+  cursor: pointer
+
+.command.icon a:hover
+  background: none
+
+.command.composite .command.composite .command a
+  background: none
+
+.command.composite .command.composite .command a:hover
+  background: #efefef
+
+.command a.disabled, .command a.disabled:hover
+  background: none !important
+  cursor: default !important
+
+/* design right */
+
+.command.composite.right-design a, .command.composite.right-design .command.composite a
+  background: transparent url(../../../images/command-composite-menu.png) no-repeat right 4px
+
+.command.composite.right-design a:hover, .command.composite.right-design .command.composite a:hover
+  background-color: #efefef
+
+.command.composite.right-design .command a, .command.composite.right-design .command.composite .command a
+  background: none
+
+.command.composite.right-design .command a:hover, .command.composite.right-design .command.composite .command a:hover
+  background-color: #efefef
+
+.command.composite.right-design a:hover
+  background-color: #efefef
+
+.command.composite.right-design .dialog
+  background: #FFFFFF
+  border-radius: 0 0 10px 0
+  border: 1px solid #DFDFDF
+  border-top-width: 3px
+  padding: 5px 10px
+  margin-top: 4px
+  position: absolute
+  z-index: 10
+  width: 200px
+
+/* design bottom*/
+
+.command.composite.bottom-design a, .command.composite.bottom-design .command.composite a
+  background: transparent url(../../../images/command-composite-toolbar.png) no-repeat right 4px
+  padding-right: 22px
+
+.command.composite.bottom-design a:hover, .command.composite.bottom-design .command.composite a:hover
+  background-color: #efefef
+
+.command.composite.bottom-design .command a, .command.composite.bottom-design .command.composite .command a
+  background: none
+
+.command.composite.bottom-design .command a:hover, .command.composite.bottom-design .command.composite .command a:hover
+  background-color: #efefef
+
+.command.composite.bottom-design .dialog
+  background: #FFFFFF
+  border: 1px solid #DFDFDF
+  border-left-width: 3px
+  position: absolute
+  width: 100%
+
+.command.composite.bottom-design a:hover
+  background-color: #efefef

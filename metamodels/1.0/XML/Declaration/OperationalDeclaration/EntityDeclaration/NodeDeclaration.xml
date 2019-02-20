@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NodeDeclaration" parent="EntityDeclaration">
+
+  <!-- <property name="implements" multiple="true">
+    <attribute name="reference" type="Code" link="ReferenceDeclaration">
+      <restriction>ONLY Definition WITH ReferenceDeclaration FROM Model</restriction>    
+    </attribute>
+  </property>  
+-->
+</class>
+

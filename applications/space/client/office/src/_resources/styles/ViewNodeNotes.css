@@ -1,0 +1,33 @@
+.view.notes .notes {
+  margin: 0;
+  margin-top: 10px;
+}
+
+.view.notes .notes.empty {
+  padding: 10px 0;
+}
+
+.view.notes .note .delete {
+  margin-left: 2px;
+  display: none;
+}
+
+.view.notes .note:hover .delete {
+  display: inline;
+}
+
+.view.notes .dialog .addnote {
+  margin-top: 10px;
+}
+
+.view.notes .note input, .view.notes .dialog input {
+  width: 45%;
+}
+
+.view.notes.readonly .dialog {
+  display: none;
+}
+
+.view.notes.readonly .note:hover .delete {
+  display: none;
+}

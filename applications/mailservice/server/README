@@ -1,0 +1,70 @@
+
+Jsmtpd, http://www.jsmtpd.org
+Copyright (C) 2005  Jean-Francois POUX, jf.poux@laposte.net
+ReplaceSnippetFilter, copyright Pierre-Alexandre LOSSON
+
+sources: http://svn.jsmtpd.org
+trac: http://dev.jstmpd.org
+builds: http://autobuild.jsmtpd.org
+licence: gpl v2 (see gpl.txt)
+
+
+Jsmtpd is a flexible SMTP (email) server, written in java. 
+It's basic features are to send and receive E-mail, following the smtp rfc. 
+It comes with a set of plugins to add advanced functions. 
+The main goal is to make it simple to extend to match specific usages, via plugins.
+Its core is intended to remain small and simple.
+
+Basic plugins provides: 
+	-Config-file ACL (acces control list)
+	-Mailbox delivery (mail is written to a unix mailbox format)
+	-Remote delivery ( send mail to a remote smtp server).
+	-AntiSpam filter, based on the Jasen engine (http://jasen.sourceforge.net/started.php)
+	-ClamAV filter, connects to a clamd daemon to check for viruses
+
+Future plugins will provide :
+	-Unix acl (plugged to a gnu/linux system, not yet implemented)
+	-Database Mailboxes
+	-Database ACL
+	-LDAP ACL
+	
+
+
+First big block of the project is a SMTP receiver service. It's bound
+to a tcp port and listens for clients connections. When a connection 
+occurs, the ACL plugin is invoked to check is the client can send the
+message to/throught the system. The mail is then queued for the delivery
+service.
+
+The second big block is the delivery service. Queued mail are picked
+and are passed throught a filter chain, each part of the chain is
+a filter plugin. A filter can drop, alter or create new mail.
+When a mail has successfully passed the filter chain, the server uses
+again the ACL plugin to determine if the mail is to be localy or remotly
+delivered. Local delivery and remote delivery services are implemented
+as two delivery plugins.
+
+Last plugin of the system is the DNSService, handling domain naming 
+requests, mainly to find mail exchangers.
+
+
+Mini Howto
+
+How do I setup mail aliases ?
+
+	First, ensure that Jsmtpd will no throw the mail away by enabling the destination Recipient in the ACL plugin choosen.
+	Then, add the RcptRewrite filter to your filter tree. Set the couple sourceRecipient,destinationRecipient.
+	All mail for sourceRecipient will be delivered to destinationRecipient instead. You can do aliases over different domains.
+	
+	Example : I'd like the mails for smith@mydomain.com to be delivered at john@otherdomain.org
+	
+	ACL setup : add smith@mydomain.com to your ACL (with SimpleACL plugin, it should be 
+	<propertyset name="ValidUsers" value="*@localhost,*@dummydomain.org,smith@mydomain.com"/>
+	
+	In RcptRewrite plugin :
+	<propertyset name="Rewrite" value="smith@mydomain.com,john@otherdomain.org"/>
+	
+	That's it, Jsmtpd will the determine if it has to handle john@otherdomain.org for local or remote delivering, and process the message.
+
+	
+	

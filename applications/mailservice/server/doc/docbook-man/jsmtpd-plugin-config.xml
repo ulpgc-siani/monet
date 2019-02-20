@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsmtpdsetup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="jsmtpd-plugin-config.xsd">
+	<ACLSetup name="Basic ACL" class="org.jsmtpd.plugins.acls.SimpleACL">
+		<propertyset name="RelayedHosts" value="127.0.0.1,localhost,172.16.0.0/255.255.0.0"/>
+		<propertyset name="ValidUsers" value="*@localhost,*@mail.taldius.ath.cx"/>
+	</ACLSetup>
+	<DNSSetup class="org.jsmtpd.plugins.dnsServices.DNSJavaResolver" name="DNS Java">
+		<propertyset name="DnsServers" value="172.16.0.200"/>
+	</DNSSetup>
+	<LocalDeliveryService name="umw" class="org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter">
+		<propertyset name="MailDir" value="mailboxes/"/>
+	</LocalDeliveryService>
+	<RemoteDeliveryService name="Remote smtp sender" class="org.jsmtpd.plugins.deliveryServices.RemoteSmtpSender">
+	</RemoteDeliveryService>
+
+	<filtersetup>
+		<filterInit name="chainvalid" class="org.jsmtpd.plugins.filters.builtin.ChainSucces">
+		</filterInit> 
+		<filterInit name="antispam" class="org.jsmtpd.plugins.filters.SA.SAFilter">
+			<propertyset name="SpamdHost" value="172.16.0.200"/>
+			<propertyset name="SpamdPort" value="783"/>
+			<propertyset name="SocketTimeout" value="45"/>
+		</filterInit>
+		<filterInit name="antivirus" class="org.jsmtpd.plugins.filters.ClamAV.ClamAVFilter">
+			<propertyset name="ClamdHost" value="172.16.0.200"/>
+			<propertyset name="ClamdPort" value="3310"/>
+			<propertyset name="SocketTimeout" value="45"/>
+			<propertyset name="FailOnError" value="true"/>
+		</filterInit>
+
+		
+	</filtersetup>
+
+	<inputIPFilterChain></inputIPFilterChain>
+
+	<bodyFilterTree>
+		<filter name="antivirus">
+			<true>
+				<filter name="antispam">
+					<true>
+						<filter name="chainvalid">
+							<true></true>
+							<false></false>
+						</filter>
+					</true>
+					<false>
+					<filter name="chainvalid">
+						<true></true>
+						<false></false>
+					</filter>
+					</false>
+				</filter>
+			</true>
+			<false>
+			</false>
+		</filter>
+	</bodyFilterTree>
+
+</jsmtpdsetup>

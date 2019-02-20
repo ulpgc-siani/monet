@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ServiceDeclaration" parent="InteroperabilityDeclaration" tag="service">
+  <description>Declaración que se utiliza para modelar un servicio que puede ofrecer una unidad de negocio</description>
+
+  <property name="request" required="true">
+    <description>Se utiliza para indicar el tipo de documento que se recibe en la petición del servicio</description>
+    <attribute name="document" type="code" link="Definition" restriction="DocumentDeclaration">
+      <description>Código de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="response" required="true" multiple="true">
+    <description>Se utiliza para indicar el tipo de documento con el que se genera la respuesta</description>
+    <attribute name="document" type="code" link="Definition" restriction="DocumentDeclaration">
+      <description>Código de la definición de un documento</description>
+    </attribute>
+  </property>
+</class>

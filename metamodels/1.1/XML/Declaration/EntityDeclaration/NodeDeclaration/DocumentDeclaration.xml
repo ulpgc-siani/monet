@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DocumentDeclaration" parent="NodeDeclaration" tag="document">
+  <description>Declaración que se utiliza para modelar un documento</description>
+
+  <property name="format">
+    <attribute name="xsd" type="file">
+      <description>Nombre del fichero en formato XSD que permite comprobar el formato del documento</description>
+    </attribute>
+  </property>
+  
+  <property name="signature" multiple="true">
+      <description>Role de usuario habilitado para realizar una firma</description>
+    <hint>Pendiente. No soportado todavía</hint>
+    <attribute name="role" type="code" link="Definition" restriction="RoleDeclaration">
+      <description>Código de la definición de un role</description>
+    </attribute>
+  </property>
+  
+  <include name="view" multiple="true">
+    <option class-name="DocumentViewDeclaration" />
+  </include>  
+  
+</class>

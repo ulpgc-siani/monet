@@ -1,0 +1,64 @@
+.view.measureunits {
+	margin-top: 10px;
+	padding: 0 10px;
+}
+
+.view.measureunits ul {
+	margin-left: 10px;
+  margin-top: 5px;
+  overflow-y: auto;
+}
+
+.view.measureunits ul li {
+	margin-bottom: 10px;
+}
+
+.view.measureunits ul li .dialog {
+	background: #efefef;
+	border-radius: 5px;
+	padding: 6px; 
+	margin-top: 2px;
+}
+
+.view.measureunits ul li label {
+	margin-left: 3px;
+}
+
+.view.measureunits ul li table {
+	width: 100%;
+}
+
+.view.measureunits ul li table .title {
+  color: #555;
+  margin-left: 0px;
+}
+
+.view.measureunits ul li table label {
+  margin-left: 5px;
+}
+
+.view.measureunits ul li table input {
+  margin-left: 10px;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.view.measureunits ul li table span {
+	position: relative;
+}
+
+.view.measureunits ul li table span a {
+	background: url("../images/delete.gif") no-repeat 0 0;
+	display: none;
+  height: 18px;
+  margin-right: 4px;
+  margin-top: -2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 16px; 
+}
+
+.view.measureunits ul li table span a:hover {
+	background-position: -17px 0;
+}

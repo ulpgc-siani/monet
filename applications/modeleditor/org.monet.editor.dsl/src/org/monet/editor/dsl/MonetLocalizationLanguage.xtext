@@ -1,0 +1,19 @@
+grammar org.monet.editor.dsl.MonetLocalizationLanguage with org.eclipse.xtext.xbase.Xbase
+
+generate monetLocalizationLanguage "http://www.monet.org/editor/dsl/MonetLocalizationLanguage"
+
+DomainModel:
+	'language' code=LanguageCode '{'
+		features+=StringResource+
+	'}'
+;
+
+LanguageCode:
+	(LOCALE | 'default')
+;
+
+StringResource:
+	name=ID ':' value=STRING ';'	
+;
+
+terminal LOCALE : ('a'..'z')('a'..'z')('-'('A'..'Z')('A'..'Z'))?;

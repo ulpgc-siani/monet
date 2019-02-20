@@ -1,0 +1,78 @@
+.clec.linksin, .clec.linksout {
+  margin: 10px;
+}
+
+.clec .tab {
+  padding: 0px 5px;
+  overflow-x: hidden;
+}
+
+.info.blue {
+}
+
+.info.red {
+  background-color: #FFCFCF;
+  border-color: #E8999C;
+}
+
+.info.orange {
+  background-color: #FFE9CF;
+  border-color: #E8C499;
+}
+
+.info.green {
+  background-color: #D9EEDB;
+  border-color: #99E8AB;
+}
+
+.info.blue .subtitle {
+  color: #376092;
+}
+
+.info.red .subtitle {
+  color: #FF0000;
+}
+
+.info.orange .subtitle {
+  color: #E46C0A;
+}
+
+.info.green .subtitle {
+  color: #77933C;
+}
+
+.reference .type.blue {
+  color: #376092;
+}
+
+.reference .type.red {
+  color: #FF0000;
+}
+
+.reference .type.orange {
+  color: #E46C0A;
+}
+
+.reference .type.green {
+  color: #77933C;
+}
+
+.collection .nodeFields .field, .clec .nodeFields .field {
+  margin: 0 0 10px;
+  padding: 0px;
+}
+
+.collection .nodeFields .field label, .clec .nodeFields .field label {
+  display: none;
+}
+
+.collection .nodeFields .field input, .clec .nodeFields .field input {
+}
+
+.collection .nodeFields .widget .options, .collection .nodeFields .widget.wcomposite .widget .options {
+  margin-top: 7px;
+}
+
+.collection .nodeFields .fboolean .options, .clec .nodeFields .fboolean .options {
+  display: none;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="PatternFieldDeclaration" parent="FieldDeclaration" tag="field-pattern">
+	<description>Declaración que se utiliza para modelar un campo de patron</description>
+
+	<attribute name="pattern" type="string" required="true">
+		<description>Expresión regular que permite analizar el texto introducido y separarlo en partes</description>
+	</attribute>
+
+	<property name="meta" multiple="true">
+		<description>Se utiliza para asociar un metadato a una de las partes del texto introducido</description>
+		<attribute name="index" type="natural">
+			<description>Indice del metadato</description>
+		</attribute>
+		<attribute name="name" type="string">
+			<description>Nombre del metadato</description>
+		</attribute>
+	</property>
+
+
+	<example>
+  <![CDATA[
+    <field-pattern pattern="(#*)–(#*)">
+     <meta index="1" name="prefix"/>
+     <meta index="2" name="number"/>
+    </field-pattern>
+  ]]>
+	</example>
+
+</class>

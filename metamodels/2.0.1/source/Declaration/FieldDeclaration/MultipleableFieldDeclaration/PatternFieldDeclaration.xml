@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="PatternFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-pattern">
+	<description>Declaración que se utiliza para modelar un campo de patron</description>
+
+  <include name="pattern" multiple="true" required="true">
+    <option class-name="PatternDeclaration" />
+  </include>
+  
+</class>

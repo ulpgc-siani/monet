@@ -1,0 +1,18 @@
+<!-- <% var spaces = version.get(ModelVersion.SPACES).toArray(); %>  -->
+<% if (spaces.length > 0) { %>
+  <ul>
+    <% _.each(spaces, function(space, index) { %>
+      <li><input type="checkbox" code="<%= space.id %>" /> 
+        <a href="" code="<%= space.federation.id %>" type="federation"><%=space.federation.name %></a> - <a href="" type="space" code="<%= space.id %>"><%= space.name %></a>
+      </li> 
+    <% }); %>
+  </ul>
+  
+  <% if (model.isLatestVersion(version)) { %>
+    <a href="" class="block-action">::upgrade::</a>
+  <% }; %> 
+<% }; %> 
+
+<% if (spaces.length == 0) { %>
+  <p>::no_spaces::</p>
+<% }; %>

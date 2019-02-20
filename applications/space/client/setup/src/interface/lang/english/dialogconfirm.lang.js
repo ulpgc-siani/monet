@@ -1,0 +1,3 @@
+Lang.Dialog.Confirm = {
+		
+};

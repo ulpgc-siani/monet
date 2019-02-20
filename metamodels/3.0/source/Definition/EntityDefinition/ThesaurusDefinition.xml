@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="ThesaurusDefinition" parent="SourceDefinition" token="thesaurus" extensible="true">
+	<description>Un tesauro es un conjunto de términos y representa el vocabulario de la unidad de negocio</description>
+	<hint>Se utilizan para clasificar la información</hint>
+	
+	<property token="terms">
+		<description>Esta propiedad se utiliza para definir la lista de términos</description>
+		<include property="TermProperty" multiple="true" required="true" />
+	</property>
+	
+  <property token="is-self-generated">
+    <description>Esta propiedad se utiliza cuando se desea que el tesauro se genere a partir de los datos de un índice</description>
+    <hint>Esta propiedad se utiliza para indicar el índice que permite generar el tesauro</hint>
+  </property>
+
+  <property token="self-generated">
+
+	  <attribute token="index" type="key" link="IndexDefinition" required="true">
+	    <description>Índice que se utiliza para generar la fuente de datos</description>
+	  </attribute>
+	
+	  <property token="mapping" required="true">
+	    <description>Permite establecer el mapeo entre los atributos del índice y los valores de cada término</description>
+	
+	    <attribute token="key" type="key" link="AttributeProperty" required="true">
+	      <description>Atributo del índice que se usará como código del término de la fuente de datos</description>
+	    </attribute>
+	
+	    <attribute token="label" type="key" link="AttributeProperty" required="true">
+	      <description>Atributo del índice que se usará como etiqueta del término de la fuente de datos</description>
+	    </attribute>
+      
+	    <attribute token="tag" type="key" link="AttributeProperty">
+	      <description>Atributo del índice que se usará como valor para los metadatos</description>
+	    </attribute>
+	
+	    <attribute token="parent" type="key" link="AttributeProperty">
+	      <description>Atributo del índice que se usará para determinar el identificador del padre y así poder construir una jerarquía</description>
+	    </attribute>
+	  </property>
+  </property>
+  
+</class>

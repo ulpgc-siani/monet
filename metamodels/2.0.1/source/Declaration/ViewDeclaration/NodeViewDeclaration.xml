@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="NodeViewDeclaration" parent="ViewDeclaration">
+  <description>Declaración abstracta de una vista de un nodo
+  </description>
+
+  <attribute name="type" type="enumeration">
+    <description>Tipo de vista</description>
+    <enumeration>
+      <option>TAB</option>
+      <option>EMBEDDED</option>
+    </enumeration>
+  </attribute>
+  
+  <property name="is-default">
+    <description>Su presencia indica que es la vista por defecto</description>
+    <hint>Debe ser de tipo tab</hint>
+  </property>
+  
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta de la vista</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+  
+  <include name="select" multiple="true">
+    <option class-name="SelectDeclaration" />
+  </include>
+  
+  <include name="filter" multiple="true">
+    <option class-name="FilterDeclaration" />
+  </include>
+  
+  <include name="sort" multiple="true">
+    <option class-name="SortDeclaration" />
+  </include>
+  
+  <include name="group" multiple="true">
+    <option class-name="GroupDeclaration" />
+  </include>
+
+  <property name="show-set">
+    <description>Se utiliza para indicar qué vistas de conjuntos de datos del sistema se mostrarán</description>
+    <attribute name="set" type="enumeration" required="true">
+      <description>Indica que conjunto de datos del sistema se muestran asociadas a este nodo</description>
+      <enumeration>
+        <option>LINKS_IN</option>
+        <option>LINKS_OUT</option>
+        <option>TASKS</option>
+        <option>REVISIONS</option>
+        <option>NOTES</option>
+        <option>PROTOTYPES</option>
+      </enumeration>
+    </attribute>
+  </property>
+  
+  <property name="elements-per-page">
+    <description>Se utiliza para indicar el número de elementos por página en una vista</description>
+    <hint>Solo válido en vistas que muestren listados de elementos</hint>
+    <attribute name="value" type="string" required="true">
+      <description>Indica el valor concreto de número de elementos</description>
+    </attribute>
+  </property>
+</class>

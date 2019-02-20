@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ServiceProviderDeclaration" parent="InteroperabilityDeclaration" tag="service-provider">
+  <description>Declaración que se utiliza para modelar un proveedor de una unidad de negocio</description>
+
+  <attribute name="service" type="string" required="true">
+    <description>Nombre del servicio que ofrece el proveedor</description>
+  </attribute>
+  
+  <property name="request" required="true">
+    <description>Se utiliza para indicar el tipo de documento con el que se solicita el servicio al proveedor</description>
+    <attribute name="document" type="code" link="Definition" restriction="DocumentDeclaration">
+      <description>Código de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+  <property name="response" required="true" multiple="true">
+    <description>Se utiliza para indicar el tipo de documento con el que se recibe la respuesta del proveedor</description>
+    <attribute name="document" type="code" link="Definition" restriction="DocumentDeclaration">
+      <description>Código de la definición de un documento</description>
+    </attribute>
+  </property>
+  
+</class>

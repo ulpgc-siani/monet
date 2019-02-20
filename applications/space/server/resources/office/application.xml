@@ -1,0 +1,6 @@
+<application code="office" type="ApplicationOffice" class="org.monet.space.office.ApplicationOffice">
+  <labels>
+    <label language="es">Aplicación de office</label>
+    <label language="en">Office application</label>
+  </labels>
+</application>

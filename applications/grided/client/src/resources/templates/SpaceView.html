@@ -1,0 +1,50 @@
+<div class="toolbar">
+  <a href="" class="button" name="back">Deployment</a>
+  <a href="" class="button" name="save">Save</a>
+  <a href="" class="button" name="discard">Discard changes</a>
+</div>
+
+<div class="top">
+  <div class="meta italic">::space::</div>
+  <input type="text" name="name" value="<%= space.name %>" disabled></input>  
+</div>
+  
+<div class="bottom">
+  <div class="section-left">    
+    <div class="section" name="server"></div>
+    <div class="section" name="federation"></div>
+    <div class="section" name="model"></div>
+    
+    <div class="state">
+      <div>::state::</div>
+      <div class="running_time"></div> 
+      <a href="" class="button" name="start_stop"></a>
+    </div>        
+  </div>
+
+  <div class="section-right">  
+    <div class="section-header">
+      <div class="column60">
+        <div class="row"><div>::label::</div><input type="text" name="label" value="<%= space.label %>"></input></div>
+        <div class="row"><div>::url::</div><input type="text" name="url" value="<%= space.url %>" disabled/></div>
+        <div class="row">
+          <% if (space.datawarehouse) { %> <input type="checkbox" name="datawarehouse" checked >::use_datawarehouse::</input> <% }; %>
+          <% if (! space.datawarehouse) { %> <input type="checkbox" name="datawarehouse">::use_datawarehouse::</input> <% }; %>
+        </div>
+      </div>
+      
+      <div class="upload-dialog">          
+        <div id="upload-space-image-dialog"></div>    
+        <img src="?op=downloadimage&filename=<%= space.logo %>&server_id=<%= space.federation.server.id %>&federation_id=<%= space.federation.id %>&space_id=<%= space.id %>&model_type=1" name="image"></img>                    
+        <div class="toolbar">
+          <a href="" name="change-image">::change::</a>
+        </div>
+      </div>
+    </div>
+        
+    <div id="tabs">  
+      <div id="publish-tab"/>
+      <div id="import-tab"/>      
+    </div>
+  </div>
+</div>     

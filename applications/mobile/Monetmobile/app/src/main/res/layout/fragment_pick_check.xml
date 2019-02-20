@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_width="match_parent"
+ 	android:layout_height="wrap_content"
+ 	android:minHeight="96dp"
+ 	android:padding="8dp">
+   
+  <LinearLayout
+      android:id="@+id/button_bar"
+	 		android:layout_width="match_parent"
+ 			android:layout_height="wrap_content"
+ 			android:layout_alignParentTop="true"
+ 			android:orientation="horizontal">
+ 			
+	  <TextView 
+	      android:layout_width="wrap_content"
+	      android:layout_height="match_parent"
+	      android:paddingTop="15dp"
+	      android:paddingBottom="15dp"
+	      android:textSize="18sp"
+	      android:textColor="#5c5966"
+	      android:text="@string/select"/>
+	  
+	  <Button
+	      android:id="@+id/button_select_all"
+	      android:text="@string/selectAll"
+	      android:layout_width="wrap_content"
+	      android:layout_height="match_parent" 
+	      style="@style/dialogbutton"/>
+	      
+	  <Button
+	      android:id="@+id/button_select_none"
+	      android:text="@string/selectNone"
+	      android:layout_width="wrap_content"
+	      android:layout_height="match_parent" 
+	      style="@style/dialogbutton"/>
+  
+  </LinearLayout>        
+    
+  <ExpandableListView
+      android:id="@android:id/list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/button_bar"
+      android:layout_above="@+id/button_ok"
+      android:transcriptMode="disabled"
+      android:background="@drawable/listview_border"
+      android:groupIndicator="@android:color/transparent">
+  </ExpandableListView>
+  
+  <Button
+      android:id="@+id/button_ok"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:text="@android:string/ok"
+      style="@style/dialogbutton"/>
+
+</RelativeLayout>

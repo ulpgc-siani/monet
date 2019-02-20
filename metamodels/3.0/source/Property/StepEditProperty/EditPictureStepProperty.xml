@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="EditPictureStepProperty" parent="StepEditProperty" token="edit-picture">
+	<description></description>
+	
+	<property token="is-hand-writter">
+		<description>Esta propiedad permitirá realizar escritura manual sobre el campo.</description>	
+	</property>
+	
+	<property token="size">
+		<description>Esta propiedad se utiliza para definir el tamaño de la imagen</description>
+		<attribute token="width" type="natural" required="true">
+			<description>Ancho de la imagen</description>
+		</attribute>
+		<attribute token="height" type="natural" required="true">
+			<description>Alto de la imagen</description>
+		</attribute>
+	</property>
+	
+</property>

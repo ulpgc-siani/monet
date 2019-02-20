@@ -1,0 +1,142 @@
+package org.monet.modelling.ide.builders.stages.sync.gen;
+
+import java.util.Collection;
+
+import org.monet.modelling.kernel.model.*;
+
+#createClassHeader ($metaclass)
+
+#foreach ($attribute in $metaclass.getAttributeList())
+#if ($attribute.getOwner() == $metaclass)
+#createAttribute ($attribute,"metaitem")
+#end 
+#end
+#foreach ($property in $metaclass.getPropertyList())
+#if ($property.getOwner() == $metaclass && $property.isEditable())
+#createProperty ($property)
+#end
+#end
+#foreach ($include in $metaclass.getIncludeList())
+#if ($include.getOwner() == $metaclass)
+#createInclude ($include)
+#end
+#end
+  }
+}
+
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createAttribute $attribute $item)
+#set ($name = $attribute.getName())
+#set ($type = $attribute.getType())
+#set ($link = $attribute.getLink())
+#set ($isView = $attribute.getOwner().getName() == "ViewDeclaration")
+#if ($name == "name" && $type == "string")
+  #if ($isView)
+  	if(${item}.get${syntax.getToken($name,true,false)}() != null)
+  #end
+  this.insertName(${item}.get${syntax.getToken($name,true,false)}(), ${item}.getCode(), ${item}.getClass());
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createProperty $property)
+#set ($name = $property.getName())
+#set ($isMultiple = $property.isMultiple())
+#if ($property.isRequired())
+#set ($required = "")
+#else
+#set ($required = ",required=false")
+#end
+#if ($isMultiple)
+#set ($key = $property.getKey())
+#set ($value = $property.getValue())
+#if ($property.getAttributeList().size() > 0)
+#if ($key == "")
+for(${property.getOwner().getName()}.${syntax.getToken($name,true,false)} item : metaitem.get${syntax.getToken($name,true,false)}List()) {
+#foreach ($attribute in $property.getAttributeList())
+#createAttribute ($attribute,"item")
+#end
+}
+#end
+#else
+
+#if (!$property.isBoolean() && !$property.isAllowable())
+if(metaitem.get$syntax.getToken($name,true,false)() != null) {
+  ${property.getOwner().getName()}.$syntax.getToken($name,true,false) item = metaitem.get$syntax.getToken($name,true,false)();
+#foreach ($attribute in $property.getAttributeList())
+#createAttribute ($attribute,"item")
+#end
+}
+#end
+#end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createInclude $include)
+#set ($name = $include.getName())
+#set ($isMultiple = $include.isMultiple())
+#set($classList = $include.getLinkTree())
+#foreach ($class in $classList)
+  #if ($class.isAbstract() == false)
+    #set ($type = $class.getName())
+    #if ($isMultiple)
+      #set ($typeList = $type + "List")
+      ${syntax.getToken($type,true,false)}SyncDDBB ${syntax.getToken($type,false,false)} = new ${syntax.getToken($type,true,false)}SyncDDBB();
+      ${syntax.getToken($type,false,false)}.setModule(this.getModule());
+      for(${syntax.getToken($type,true,false)} include : metaitem.get${syntax.getToken($type,true,false)}List()) {
+        ${syntax.getToken($type,false,false)}.sync(include);
+      }
+    #else
+      ${syntax.getToken($type,true,false)}SyncDDBB ${syntax.getToken($type,false,false)} = new ${syntax.getToken($type,true,false)}SyncDDBB();
+      ${syntax.getToken($type,false,false)}.setModule(this.getModule());
+      ${syntax.getToken($type,false,false)}.sync(metaitem.get${syntax.getToken($type,true,false)}());
+    #end
+  #end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createClassHeader $metaclass)
+#if($metaclass.getParentName() != "")
+  #set ($parentClass = ${metaclass.getParentName()} + "SyncDDBB")
+#elseif($metaclass.isDefinition())
+  #set ($parentClass = "DefinitionSync")
+#else
+  #set ($parentClass = "DeclarationSync")
+#end
+#set ($rulename = $metaclass.getName() + "SyncDDBB")
+#set ($name = $metaclass.getName())
+public class $rulename extends $parentClass {
+
+#if($metaclass.isDefinition())
+  public void sync(Definition definition) throws Exception {
+  #if($metaclass.getParentName() != "")
+    super.sync(definition);
+  #end
+    $name metaitem = ($name) definition;
+#else
+  public void sync($name metaitem) throws Exception {
+  if(metaitem == null) return;
+  #if($metaclass.getParentName() != "")
+    super.sync(metaitem);
+  #end
+#end
+
+  
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createComment $comment)
+#if ($comment != "")
+// $comment
+#end
+#end 
+
+

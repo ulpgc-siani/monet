@@ -1,0 +1,185 @@
+.trash .listviewer .add.list .selector {
+  display: none !important;
+}
+
+.trash .listviewer .summary, .notificationlist .listviewer .summary {
+  border-top: 1px solid #99BBE8;
+}
+
+.node .trash .listviewer .summary, .node .notificationlist .listviewer .summary {
+  border-top: 0px;
+}
+
+.trash .content, .dashboard .content, .dashboardlist .content, .notificationlist .content {
+  margin: 10px 4px;
+}
+
+.trash .content .content, .dashboard .content .content, .dashboardlist .content .content, .notificationlist .content .content {
+  margin: 0px;
+}
+
+.trash .info .label, .dashboard .info .label, .dashboardlist .info .label, .notificationlist .info .label {
+  margin: 10px 0px;
+}
+
+.trash .listviewer .items .delete, .trash .listviewer .toolbar .add.list {
+  display: none !important;
+}
+
+.trash .listviewer .delete {
+  display: none !important;
+}
+
+.trash .listviewer .items .item .content, .notificationlist .listviewer .items .item .content {
+  width: 99%;
+}
+
+.trash .listviewer .items .item .content {
+  min-height: 65px;
+}
+
+.listviewer .items .item a.content:hover table, .listviewer.editable .items .item.selected a.content:hover table {
+  background: #DCE5F2 !important;
+}
+
+.listviewer .items .item a.content:hover .urgent {
+	display: block;
+}
+
+.listviewer .item .content .header, .listviewer .item .header {
+  padding: 8px 8px 0;
+}
+
+.sourcelist .listviewer .layer, .sourcelist .listviewer .summary, .source .listviewer .layer, .source .listviewer .summary {
+	margin-right: 5px;
+}
+
+.sourcelist .listviewer .item .content .tags, .source .listviewer .item .content .tags {
+	color: #1B6F31;
+	margin-left: 26px;
+}
+
+.sourcelist .listviewer .item .content .tags span.notags, .source .listviewer .item .content .tags span.notags {
+	color: gray; 
+}
+
+.sourcelist .listviewer .item .content .tags span, .source .listviewer .item .content .tags span {
+  float: left;
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.sourcelist .listviewer.wizard .group, .source .listviewer.wizard .group {
+  margin: 0px;
+}
+
+.sourcelist .listviewer.wizard .groupby label, .sourcelist .listviewer.wizard .groupby .label, .source .listviewer.wizard .groupby label, .source .listviewer.wizard .groupby .label {
+	display: none;
+}
+
+.sourcelist .listviewer .term, .source .listviewer .term {
+  padding: 3px;
+}
+
+.sourcelist .listviewer .source .label, .sourcelist .listviewer .term .label, .source .listviewer .source .label, .source .listviewer .term .label {
+  padding-left: 5px;
+  margin-top: 0px;
+  font-size: 14px;
+  padding-top: 2px; 
+  padding-bottom: 2px; 
+}
+
+.sourcelist .listviewer .term .label, .source .listviewer .term .label {
+  padding-left: 21px;
+  color: black;
+}
+
+.source .listviewer .term .label .code {
+  color: #777;
+}
+
+.sourcelist .listviewer .term .label.type0, .source .listviewer .term .label.type0 {
+  background: url("office.api?op=loadthemefile&path=_images/icons/term.gif") no-repeat 0 0;
+}
+
+.sourcelist .listviewer .term .label.type1, .source .listviewer .term .label.type1 {
+  background: url("office.api?op=loadthemefile&path=_images/icons/superterm.gif") no-repeat 0 0;
+}
+
+.sourcelist .listviewer .term .label.type2, .source .listviewer .term .label.type2 {
+  background: url("office.api?op=loadthemefile&path=_images/icons/category.gif") no-repeat 0 0;
+}
+
+.sourcelist .listviewer .term .label.enable_false, .source .listviewer .term .label.enable_false {
+  color: #666;
+}
+
+.sourcelist.wizard, .source.wizard {
+	display: none;
+}
+
+.rolelist .listviewer .label, .rolelist .listviewer .wizard, .rolelist .listviewer .summary {
+	display: none !important;
+}
+
+.rolelist .panel.depth1 .listviewer .wizard {
+	display: block !important;
+}
+
+.rolelist .listviewer .roledefinition .label, .rolelist .listviewer .role .label {
+  margin-top: 0px;
+  padding: 4px;
+}
+
+.rolelist .listviewer .role {
+  padding: 0px;
+}
+
+.rolelist .listviewer .roledefinition .label {
+  color: #0D3C98;
+	display: block !important;
+}
+
+.rolelist .listviewer .role .label {
+  color: #0D3C98;
+}
+
+.rolelist .listviewer .role.grouped .label.grouped {
+  display: block !important;
+}
+
+.rolelist .listviewer .role.grouped .label.grouped .subtitle {
+  display: block;
+  color: #666;
+  font-size: 14px;
+}
+
+.rolelist .listviewer .layer, .rolelist .listviewer .summary, .role .listviewer .layer, .role .listviewer .summary {
+  margin-right: 5px;
+}
+
+.rolelist .listviewer.wizard .group, .role .listviewer.wizard .group {
+  margin: 0px;
+}
+
+.rolelist .listviewer.wizard .groupby label, .rolelist .listviewer.wizard .groupby .label, .role .listviewer.wizard .groupby label, .role .listviewer.wizard .groupby .label {
+  display: none;
+}
+
+.rolelist .listviewer .role .date {
+	display: none;
+	color: black;
+}
+
+.rolelist .listviewer .role.began_false .date,
+.rolelist .listviewer .role.expired_true .date {
+  color: #666;
+}
+
+.rolelist .listviewer .roledefinition div, .rolelist .listviewer .role div {
+  margin: 1px 3px;
+}
+
+.maplocation.editing div {
+	cursor: crosshair;
+}

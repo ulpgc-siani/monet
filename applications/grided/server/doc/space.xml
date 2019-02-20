@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<space>  
+  <organization>Ayuntamiento de Las Palmas de Gran Canaria</organization>
+  <label language="es">Fuentes Ornamentales - Coordinación</label>  
+
+  <!--<add-service-provider label="Proveedor IC" name="proveedor.ejecucion-trabajo-inspeccion-preventivo" url="http://localhost:8090/monet/service/business/servicio.ejecucion-trabajo-inspeccion-preventivo/" />-->
+  <add-service-provider label="Proveedor IC" name="proveedor.ejecucion-trabajo-inspeccion-correctivo" url="http://localhost:8090/monet/service/business/servicio.ejecucion-trabajo-inspeccion-correctivo/" />  
+  <add-service-provider label="Proveedor VC" name="proveedor.ejecucion-trabajo-verificacion-correctivo" url="http://localhost:8090/monet/service/business/servicio.ejecucion-trabajo-verificacion-correctivo/" />  
+  <add-service-provider label="Proveedor AC" name="proveedor.ejecucion-trabajo-actuacion-correctivo" url="http://localhost:8090/monet/service/business/servicio.ejecucion-trabajo-actuacion-correctivo/" />  
+  
+  <service name="servicio.coordinacion-incidencia" />
+  <service name="servicio.coordinacion-trabajo-actuacion-preventivo" />
+  <service name="servicio.registro-planificacion-trabajo-preventivo" />
+
+  <thesaurus name="tesauro.objeto-actuacion" />
+  <thesaurus name="tesauro.tipo-incidencia" />
+  <thesaurus name="tesauro.operacion" />
+    
+  <federation server="localhost" base-path="/federationservice" port="8082" socket-port="5348" secret="1234" key="coordinacion" ssl="false"/>
+</space>  

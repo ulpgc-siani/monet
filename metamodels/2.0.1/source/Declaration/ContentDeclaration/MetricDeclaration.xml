@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="MetricDeclaration" parent="IndexedDeclaration" tag="metric">
+  <description>Declaración que se utiliza para modelar la métrica de un campo de tipo numérico</description>
+
+  <property name="label" multiple="true" key="language" required="true">
+    <description>Etiqueta de la métrica. Se utiliza para mostrar la métrica a los usuarios</description>
+    <attribute name="language" type="language" required="true" >
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+  
+  <property name="is-default">
+    <description>Su presencia indica que es la métrica por defecto</description>
+  </property>
+
+	<property name="equivalence">
+		<description>Indica la equivalencia en unidades con respecto a la métrica por defecto</description>
+		<attribute name="value" type="natural">
+			<description>Indica el número unidades que se necesitan para tener una unidad de la métrica por defecto</description>
+		</attribute>
+	</property>
+  
+</class>
+

@@ -1,0 +1,42 @@
+@import "../../../../styles/explorer/toolbox/search-input"
+
+.search-panel .icon-background
+  border-radius: 3px
+  height: 23px
+  position: absolute
+  width: 31px
+  background-color: #FF9A00
+
+.search-panel .icon, .search-panel:hover .icon
+  left: 7px
+  top: 3px
+
+.search-panel.compact
+  width: 30px
+
+.search-panel input.search-input
+  height: 23px
+  border-radius: 3px
+  padding-left: 25px
+
+.search-panel.compact input.search-input
+  width: 30px
+
+.search-panel.compact input.search-input
+  @include transition(padding-left .55s ease, width .55s ease)
+
+.search-panel .search-input, .search-panel.expanded input.search-input:focus,
+.search-panel input.search-input:active, .search-panel:hover input.search-input
+  padding-left: 35px
+
+.search-panel.expanded .icon-background
+  border-top-right-radius: 0
+  border-bottom-right-radius: 0
+
+.search-panel.compact input.search-input:focus, .search-panel.compact input.search-input:active, .search-panel.compact:hover input.search-input
+  width: 300px
+  padding-left: 35px
+
+@-moz-document url-prefix()
+  .search-panel.compact input.search-input:focus, .search-panel.compact input.search-input:active, .search-panel.compact:hover input.search-input
+    padding-left: 35px

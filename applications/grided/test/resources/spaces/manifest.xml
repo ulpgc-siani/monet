@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<space>  
+  <organization name="space1" url="http://localhost/space1">    
+    <label>Fuentes Ornamentales - Coordinación</label>
+    <logo name="top.image.png" path="images"/>    
+  </organization>
+        
+  <federation name="federation1" server="localhost"/>
+  
+  <datawarehouse>true</datawarehouse>
+</space>  

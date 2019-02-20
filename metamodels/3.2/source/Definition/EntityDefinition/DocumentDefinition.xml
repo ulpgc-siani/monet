@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="DocumentDefinition" parent="NodeDefinition" token="document" extensible="true">
+	<description>Un documento es un tipo nodo que se utiliza permitir la interoperabilidad con otra unidad de negocio</description>
+
+	<attribute token="template" type="resource:template">
+		<description>Nombre del fichero de la plantilla en formato DOCX/ODT/PDF</description>
+		<hint>Este fichero se debe ubicar en el directorio "/templates" del modelo de negocio</hint>
+	</attribute>
+
+	<!-- <attribute token="ontology"> <description>Ontología a la que pertenece el documento</description> <hint>Para que pueda haber interoperabilidad es necesario que dos unidades de negocio compartan la ontología</hint> </attribute> -->
+
+	<property token="is-component">
+		<description>Esta propiedad se utiliza cuando este tipo de nodos se
+			crean como componentes de otro nodo, nunca de forma independiente
+		</description>
+	</property>
+
+	<property token="schema">
+		<description>Esquema XML que representa la estructura del nodo.
+			Permite operar con atributos del nodo</description>
+	</property>
+
+	<property token="signatures">
+		<description>Esta propiedad se utiliza cuando el documento DEBE firmarse para garantizar la seguridad jurídica</description>
+
+		<attribute token="position" type="enumeration">
+			<description>Lugar donde aparecerán las firmas realizadas al documento</description>
+			<enumeration>
+				<option token="BEGINNING">
+					<description>Las firmas aparecerán al principio del documento. Se ha de reservar el espacio desde el principio de página hasta la mitad de la página.</description>
+				</option>
+				<option token="NEW_PAGE_AT_BEGINNING">
+					<description>Las firmas aparecerán en una página adicional al principio del documento</description>
+				</option>
+				<option token="END">
+					<description>Las firmas aparecerán al final del documento. Se ha de reservar el espacio desde mitad de la página hasta el final de la página.</description>
+				</option>
+				<option token="NEW_PAGE_AT_END">
+					<description>Las firmas aparecerán en una página adicional al final del documento</description>
+				</option>
+			</enumeration>
+		</attribute>
+				
+		<property token="signature" multiple="true" parent="ReferenceableProperty">
+			<description>Describe quién y cuando debe realizarse una firma en el documento</description>
+			<attribute token="label" type="language" required="true">
+				<description>Etiqueta de la firma. Se utiliza para mostrar a los usuarios el tipo de firma que va a realizar</description>
+			</attribute>
+			<attribute token="for" type="key" link="RoleDefinition" multiple="true" required="true">
+				<description>Tipo de role habilitado para firmar el documento</description>
+			</attribute>
+			<attribute token="after" type="key" link="SignatureProperty">
+				<description>Precedencia de la firma</description>
+			</attribute>
+			<attribute token="amount" type="natural">
+				<description>Number of signatures of this type</description>
+				<hint>The default value is 1 signature</hint>
+			</attribute>
+		</property>
+	</property>
+
+	<property token="properties" required="false">
+		<description>Esta propiedad se utiliza cuando se desea guardar una referencia al formulario en un índice</description>
+		<hint>Si el formulario es un componente (is-component) de un contenedor se actualiza el enlace del contenedor</hint>
+		<method name="calculate" />
+	</property>
+
+	<property token="mapping" multiple="true">
+		<description>Esta propiedad se utiliza cuando se desea guardar una referencia al formulario en un índice</description>
+		<hint>Si el formulario es un componente (is-component) de un contenedor se actualiza el enlace del contenedor</hint>
+		<attribute token="index" type="key" link="IndexDefinition" required="true">
+			<description>Índice en el que se guarda la referencia</description>
+		</attribute>
+
+		<method name="calculate" />
+	</property>
+
+	<method name="on-sign">
+		<parameter name="userInstance" type="User" />
+	</method>
+
+	<method name="on-signs-complete">
+	</method>
+
+</class>

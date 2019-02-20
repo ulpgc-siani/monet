@@ -1,0 +1,9 @@
+#dialog-new-term {
+ width: 100px;
+ padding: 10px
+}
+
+#dialog-new-term input[type='text'] {
+  width: 300px;
+  margin-bottom: 5px;
+}

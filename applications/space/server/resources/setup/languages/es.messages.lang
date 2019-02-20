@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Mensajes posibles de manager</comment>
+  <entry key="MSG_LOADING">Cargando...</entry>
+  <entry key="MSG_USER_LOGOUT">El usuario ha finalizado su sesión actual...</entry>
+  <entry key="MSG_USER_LOGIN">El usuario ha iniciado sesión correctamente</entry>
+  <entry key="MSG_WELCOME">Bienvenido. Puede acceder a la herramienta mediante un certificado digital instalado</entry>
+  <entry key="MSG_UNKOWN_USERNAME_OR_PASSWORD">El nombre de usuario y/o la contraseña no son correctos</entry>
+  <entry key="MSG_UNKOWN_USERNAME_OR_PASSWORD_RECOMMENDATIONS">Asegúrese de que los ha escritos correctamente. Recuerde que se diferencian mayúsculas de minúsculas.</entry>
+  <entry key="MSG_BUSINESS_UNIT_STARTED">El sistema está iniciado</entry>
+  <entry key="MSG_BUSINESS_UNIT_STARTED_INFO">Si hace click en "Parar", todos los servicios del sistema dejarán de estar disponibles</entry>  
+  <entry key="MSG_BUSINESS_UNIT_STOPPED">El sistema está parado</entry>
+  <entry key="MSG_BUSINESS_UNIT_STOPPED_INFO">Todos los servicios del sistema están deshabilitados</entry>
+  <entry key="MSG_UNKOWN">Se ha producido un error desconocido</entry>
+  <entry key="MSG_MASTERS_DISABLED">El sistema está parado. No se puede acceder a la lista de administradores</entry>
+  <entry key="MSG_ADD_MASTER_FROM_SIGNATURE">Al seleccionar un certificado se realizará una firma de un texto para ser añadido como administrador</entry>
+  <entry key="MSG_ADD_MASTER_FROM_CERTIFICATE">Seleccione un certificado público de su equipo</entry>
+  <entry key="MSG_UPLOAD_DISTRIBUTION">Con este diálogo podrás actualizar la distribución existente en la unidad de negocio</entry>
+  <entry key="MSG_INSTALL_DISTRIBUTION">Con este diálogo podrás instalar una distribución en el espacio de negocio</entry>
+  <entry key="MSG_DOWNLOAD_DISTRIBUTION">Haga click en descargar para obtener la distribución instalada en el servidor</entry>
+  <entry key="MSG_WAITING_RESPONSE">Esperando respuesta...</entry>
+  <entry key="MSG_NOT_COLONIZED">Este espacio nunca ha sido configurado. Podrá acceder con cualquier certificado que elija de los disponibles. Desde ese momento, solo podrá acceder con el certificado elegido o con los certificados de los administradores que haya dado de alta desde esta aplicación.</entry>
+</properties>

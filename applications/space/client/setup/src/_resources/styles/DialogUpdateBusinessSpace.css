@@ -1,0 +1,14 @@
+
+#dlgUpdateBusinessSpace { 	
+  padding: 10px;  
+}
+
+#dlgUpdateBusinessSpace form {
+  margin-bottom: 5px;
+  margin-top: 5px;	
+}
+
+#dlgUpdateBusinessSpace a[name="back-button"] {
+  display: block;
+  margin-bottom: 20px;
+}

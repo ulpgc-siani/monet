@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Errores posibles de Setupservice</comment>
+  <entry key="ERR_UNDEFINED">Error desconocido.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">Error en la factoría de acciones.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">El usuario no ha iniciado sesión.</entry>
+  <entry key="ERR_UPDATE_BUSINESS_SPACE">No se ha podido actualizar el espacio de negocio.</entry>
+  <entry key="ERR_SET_BUSINESS_SPACE_MANIFEST">No se ha podido actualizar la configuración del espacio con la información del manifiesto proporcionado.</entry>
+  <entry key="ERR_UPDATE_BUSINESS_MODEL">No se ha podido actualizar el modelo de negocio.</entry>
+  <entry key="ERR_INVALID_REQUEST">Petición no válida.</entry>
+  <entry key="ERR_REDIRECT">Error al redirigir la petición</entry>
+</properties>

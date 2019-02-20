@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DimensionDeclaration" parent="ContentDeclaration" tag="dimension">
+  <description>Declaración que se utiliza para modelar un dimensión de un cubo</description>
+
+  <attribute name="name" type="string" required="true">
+    <description>Nombre de la dimensión</description>
+  </attribute>
+
+  <include name="attribute" multiple="true" required="true">
+    <option class-name="AttributeDeclaration" />
+  </include>
+
+</class>
+

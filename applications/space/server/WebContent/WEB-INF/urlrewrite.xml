@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+    "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<!--Configuration file for UrlRewriteFilter http://tuckey.org/urlrewrite/-->
+<urlrewrite use-query-string="true">
+  <rule>
+    <from>^/mobile/api/([^\/]*)/([^\/]*)/([^\/]*)/</from>
+    <to type="forward">/servlet/mobile?op=$1&amp;id=$2&amp;extra=$3</to>
+  </rule>
+  <rule>
+    <from>^/mobile/api/([^\/]*)/([^\/]*)/</from>
+    <to type="forward">/servlet/mobile?op=$1&amp;id=$2</to>
+  </rule>
+  <rule>
+    <from>^/mobile/api/([^\/]*)/</from>
+    <to type="forward">/servlet/mobile?op=$1</to>
+  </rule>
+  <rule>
+    <from>^/service/business/([^\/]*)/(.*)</from>
+    <to type="forward">/frontservice?op=business&amp;service-name=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/service/mailbox/([^\/]*)/(.*)</from>
+    <to type="forward">/frontservice?op=mailbox&amp;address=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/service/source/([^\/]*)/(.*)</from>
+    <to type="forward">/frontservice?op=source&amp;source-name=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/service/cube/([^\/]*)/(.*)</from>
+    <to type="forward">/frontservice?op=cube&amp;name-cube=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/service/([^\/]*)/([^\/]*)</from>
+    <to type="forward">/frontservice?op=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/service/?$</from>
+    <to type="forward">/frontservice</to>
+  </rule>
+  <rule>
+    <from>^/analytics/([^/]*)/([^?]*)?(.*)</from>
+    <to type="forward">/servlet/analytics?op=$1&amp;id=$2&amp;$3</to>
+  </rule>
+  <rule>
+    <from>^/analytics/([^?]*)?(.*)</from>
+    <to type="forward">/servlet/analytics?op=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/explorer/api/([^/]*)/([^?]*)?(.*)</from>
+    <to type="forward">/servlet/explorer/api?op=$1&amp;id=$2&amp;$3</to>
+  </rule>
+  <rule>
+    <from>^/explorer/api/([^?]*)?(.*)</from>
+    <to type="forward">/servlet/explorer/api?op=$1&amp;$2</to>
+  </rule>
+  <rule>
+    <from>^/explorer/api/(.*)</from>
+    <to type="forward">/servlet/explorer/api?op=$1</to>
+  </rule>
+  <rule>
+    <from>^/explorer/\?(.*)</from>
+    <to type="forward">/explorer/home?$1</to>
+  </rule>
+  <rule>
+    <from>^/explorer$</from>
+    <to>/explorer/home</to>
+  </rule>
+  <rule>
+    <from>^/explorer/$</from>
+    <to>/explorer/home</to>
+  </rule>
+  <rule>
+    <from>^/$</from>
+    <to type="forward">/servlet/launcher.app</to>
+  </rule>
+</urlrewrite>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="PictureFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+
+  <property name="size">
+    <description>Define la proporciones de la imagen</description>
+    <attribute name="width" type="Natural" required="true">
+      <description>Ancho de la imagen</description>
+    </attribute>
+    <attribute name="height" type="Natural" required="true">
+      <description>Alto de la imagen</description>
+    </attribute>
+  </property>
+  
+</class>

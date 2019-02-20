@@ -1,0 +1,571 @@
+.viewer.helper .editors {
+  background-color: transparent;
+}
+
+.viewer.helper .editors.locked {
+  overflow: hidden;
+}
+
+.viewer.helper .editors .link {
+  color: black;
+}
+
+.viewer.helper .editors .header {
+  margin: 10px;
+}
+
+.viewer.helper .editors .separator {
+  border-top: 1px solid #99BBE8;
+  border-bottom: 1px solid #99BBE8;
+  height: 2px;
+}
+
+.viewer.helper .editors .header .toolbar {
+  margin-top: 5px;
+  border-bottom: 1px dotted #99BBE8;
+  padding-bottom: 6px;
+}
+
+.viewer.helper .editors .header .toolbar.right {
+  float: right;
+  border: 0px;
+  margin-top: -21px;
+  margin-right: 10px;
+}
+
+.viewer.helper .editors .header .toolbar .undo {
+  float: left;
+  height: 16px;
+  width: 16px;
+  background: url("../images/icons/undo.png");
+}
+
+.viewer.helper .editors .header .toolbar .redo {
+  float: left;
+  height: 16px;
+  width: 16px;
+  margin-left: 10px;
+  background: url("../images/icons/redo.png");
+}
+
+.viewer.helper .editors .editor .info {
+  border-bottom: 1px dotted #99BBE8;
+  background: none;
+  border: 0px;
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .info .title {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: inline;
+}
+
+.viewer.helper .editors .editor .info > a {
+  display: inline-block;
+  height: 19px;
+  margin-left: 5px;
+  margin-top: -2px;
+  width: 16px;
+}
+
+.viewer.helper .editors .editor .info .help {
+  background: url("../images/icons/help-trigger.gif") no-repeat scroll 0 0 transparent;
+}
+
+.viewer.helper .editors .editor .info .help:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.viewer.helper .editors .editor .info .description {
+  margin-bottom: 10px;
+}
+
+.viewer.helper .editors .editor .info .ehelp {
+  margin-left: 4px;
+}
+
+.viewer.helper .editors .editor .info .context li {
+  display: inline;
+  margin-right: 5px;
+}
+
+.viewer.helper .editors .editor .toolbar > a {
+  display: inline-block;
+  height: 26px;
+  margin: 5px 10px 7px 0;
+  width: 26px;
+  border: 1px solid #aaa;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.viewer.helper .editors .editor .toolbar div {
+  margin-bottom: 4px;
+}
+
+.viewer.helper .editors .editor .toolbar .view-locations {
+  background: transparent url("../images/icons/locations.png") no-repeat scroll 0 0;
+}
+
+.viewer.helper .editors .editor .toolbar .view-locations.active {
+  background: #ddd url("../images/icons/locations.png") no-repeat scroll 0 0;
+}
+
+.viewer.helper .editors .editor .toolbar .view-table {
+  background: transparent url("../images/icons/table.png") no-repeat scroll 0 0;
+}
+
+.viewer.helper .editors .editor .toolbar .view-table.active {
+  background: #ddd url("../images/icons/table.png") no-repeat scroll 0 0;
+}
+
+.viewer.helper .editors .editor .dialogs {
+  margin-top: 10px;
+}
+
+.viewer.helper .editors .editor .dialog {
+  margin-top: 0;
+}
+
+.viewer.helper .editors .editor .dialog a.button {
+  background: white;
+  border: 1px solid #AAAAAA;
+  color: #000077;
+  cursor: pointer;
+  margin-right: 5px;
+  padding: 2px 10px;
+  height: auto;
+  width: auto;
+}
+
+.viewer.helper .editors .editor.edate .dialog a.button {
+  border: 0px;
+}
+
+.viewer.helper .editors .editor.edate .dialog a.button.up {
+  border-bottom: 1px dotted #AAAAAA;
+  border-top: 1px solid #AAAAAA;
+}
+
+.viewer.helper .editors .editor.edate .dialog a.button.up:hover {
+  background: #D0E0F5 url("../images/datepicker/up.gif") no-repeat center 4px !important;
+}
+
+.viewer.helper .editors .editor.edate .dialog a.button.down {
+  border-bottom: 1px solid #AAAAAA;
+  border-top: 1px dotted #AAAAAA;
+}
+
+.viewer.helper .editors .editor.edate .dialog a.button.down:hover {
+  background: #D0E0F5 url("../images/datepicker/down.gif") no-repeat center 4px !important;
+}
+
+.viewer.helper .editors .editor .dialog a.disabled {
+  color: #444;
+  cursor: default;
+}
+
+.viewer.helper .editors .editor .dialog .x-grid-hd-row td, .viewer.helper .editors .editor .dialog .x-grid-row td {
+  font-size: 14px;
+  font-family: Roboto, Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.viewer.helper .editors .editor .dialog.source, .viewer.helper .editors .editor .dialog.store {
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .dialog.source {
+  display: none;
+}
+
+.viewer.helper .editors .editor .dialog.history {
+  position: relative;
+  left: 0px;
+}
+
+.viewer.helper .editors .editor .dialog .title {
+  border-bottom: 1px dotted #99BBE8;
+  padding-bottom: 3px;
+}
+
+.viewer.helper .editors .editor .dialog .subtitle {
+  padding-bottom: 3px;
+  font-size: 14px;
+}
+
+.viewer.helper .editors .editor .dialog .toolbar {
+  padding: 10px 0px;
+}
+
+.viewer.helper .editors .editor.eboolean .dialog .toolbar {
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .dialog .toolbar input {
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .toolbar {
+  margin-top: 10px;
+}
+
+.viewer.helper .editors .editor .dialogs .toolbar .filter input {
+  width: 98%;
+}
+
+.viewer.helper .editors .editor .dialogs .toolbar .filter {
+  position: relative;
+}
+
+.viewer.helper .editors .editor .dialogs .toolbar .filter .empty {
+  color: #888;
+  font-style: italic;
+  left: 5px;
+  top: 2px;
+  position: absolute;
+}
+
+.viewer.helper .editors .editor .x-resizable-pinned .x-resizable-handle-south {
+  background: url("../images/default/sizer/s-handle-dark.gif");
+  background-position: top;
+}
+
+.viewer.helper .editors .editor .dialogs .grid {
+  overflow-y: auto;
+}
+
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .ytb-sep,
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .ytb-text,
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .x-grid-page-number,
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .x-grid-loading {
+  display: none;
+}
+
+.viewer.helper .editors .editor .dialogs .store .grid, .viewer.helper .editors .editor .dialogs .history .grid {
+  height: 450px;
+  border: 1px solid #99BBE8;
+}
+
+.viewer.helper .editors .editor.number .dialogs .store .grid {
+  border: 0px;
+}
+
+.viewer.helper .editors .editor .dialog.source select {
+  width: 100%;
+}
+
+.viewer.helper .editors .editor .date .toolbar, .viewer.helper .editors .editor .date .toolbar div {
+  margin: 0px;
+}
+
+.viewer.helper .editors .editor.text .preview {
+  margin: 10px 0px;
+  padding: 5px;
+  border: 1px dotted #99BBE8;
+  word-wrap: break-word;
+}
+
+.viewer.helper .editors .editor .dialogs .grid .x-grid-header .x-grid-hd-text {
+  font-weight: normal;
+}
+
+.viewer.helper .editors .editor .dialogs .x-tabs-wrap {
+  background: none;
+  border: 0px;
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .x-layout-panel .x-tabs-top .x-tabs-wrap {
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .x-tabs-strip-wrap {
+  background: none;
+  border: 0px;
+  border-bottom: 1px solid #8DB2E3;
+  padding: 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .x-tabs-strip .x-tabs-inner {
+  width: 70px;
+}
+
+.viewer.helper .editors .editor .dialogs .x-tabs-strip .x-tabs-text {
+  width: 70px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.fileupload form label, .viewer.helper .editors .editor .dialogs .dialog.pictureupload form label {
+  display: block;
+  margin: 10px 0px;
+  border-bottom: 1px dotted #99BBE8;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.fileupload input {
+  margin-bottom: 10px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.fileupload input.label {
+  width: 100%;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .loading {
+  background: url("../images/icons/editor_loading.gif") no-repeat;
+  display: none;
+  left: 50%;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .empty {
+  position: absolute;
+  color: #333;
+  font-style: italic;
+  top: 30px;
+  left: 0px;
+  width: 100%;
+  z-index: 10;
+  display: none;
+}
+
+.viewer.helper .editors .editor .dialogs .store .empty, .viewer.helper .editors .editor .dialogs .history .empty {
+  left: 18px;
+}
+
+.viewer.helper .editors .editor .dialogs .list .empty {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .uploading {
+  color: #333;
+  font-style: italic;
+  margin: 10px 20px;
+  display: none;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .uploading img {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -1px;
+  height: 20px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .uploading img.message {
+  background: transparent url("../images/icons/loading.gif") no-repeat left top;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .uploading img.error {
+  background: transparent url("../images/default/form/exclamation.gif") no-repeat left top;
+}
+
+.viewer.helper .editors .editor a.close {
+  float: right;
+  margin: 5px;
+  cursor: pointer;
+  color: #15428B;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .text.other {
+  margin-top: 5px;
+}
+
+.ie .viewer.helper .editors .editor .dialogs .dialog .text.other {
+  width: 90%;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog .button.accept {
+  margin-top: 5px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog input.search {
+  width: 80%;
+}
+
+.ie .viewer.helper .editors .editor .dialogs .dialog input.search {
+  width: 70%;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list {
+  position: static;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list ul {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  top: 0px;
+  left: 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li {
+  border: 1px solid #B5B8C8;
+  padding: 0px 4px;
+  margin-bottom: 4px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li.drag {
+  z-index: 100;
+  position: absolute;
+  opacity: .50;
+  filter: alpha(opacity=50);
+  width: 100%;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions img {
+  height: 23px;
+  width: 17px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a {
+  position: relative;
+}
+
+.ie .viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a {
+  position: static;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.delete {
+  float: left;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.delete .trigger {
+  display: block;
+  background: transparent url('../images/icons/delete-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.move .trigger {
+  cursor: move;
+  background: transparent url('../images/icons/move-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.move.grabbing .trigger {
+  cursor: move;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload form {
+  margin-bottom: 10px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .imageContainer {
+  position: relative;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .imageContainer.button {
+  margin-top: 10px;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .crop_transparentDiv {
+  background-color: #FFF;
+  filter: alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  position: absolute;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .crop_dottedDiv {
+  position: absolute;
+  border: 1px dotted #7f7f7f;
+  z-index: 10000;
+}
+
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .crop_dottedDiv div {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+}
+
+.viewer.helper .editors .editor .actions {
+  margin-bottom: 0px;
+}
+
+.viewer.helper .editors .editor .edition label, .viewer.helper .editors .editor .actions label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.viewer.helper .editors .editor .emessage {
+  color: #444;
+  background-color: #FFFAC9;
+  margin-bottom: 10px;
+  padding: 5px;
+  display: none;
+}
+
+.viewer.helper .editors .editor .emessage div {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.viewer.helper .editors .editor .description {
+  color: #666;
+}
+
+.viewer.helper .editors .editor.nohistory .emessage .recents {
+  display: none;
+}
+
+.viewer.helper .editors .editor .edition .fmsgs {
+  color: #444;
+  margin: 10px 0px;
+}
+
+.viewer.helper .editors .editor .edition .fmsgs div {
+  margin-bottom: 2px;
+}
+
+.viewer.helper .editors .editor .edition .verrors {
+  color: red;
+  margin: 10px 0px;
+}
+
+.viewer.helper .editors .editor .edition .toolbar {
+  margin: 10px 0px;
+}
+
+.viewer.helper .editors .editor .actions div {
+  margin-bottom: 4px;
+}
+
+.viewer.helper .editors .editor .dialog.date .cday, .viewer.helper .editors .editor .dialog.date .cmonth,
+.viewer.helper .editors .editor .dialog.date .cyear, .viewer.helper .editors .editor .dialog.date .ctime {
+  display: block;
+  width: 100px;
+  height: 258px;
+  border-color: #aaa;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1px;
+  overflow: auto;
+}
+
+.viewer.helper .editors .editor .dialog.date .cday div, .viewer.helper .editors .editor .dialog.date .cmonth div,
+.viewer.helper .editors .editor .dialog.date .cyear div, .viewer.helper .editors .editor .dialog.date .ctime div {
+  cursor: pointer;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.viewer.helper .editors .editor .dialog.date .cday div.active, .viewer.helper .editors .editor .dialog.date .cmonth div.active,
+.viewer.helper .editors .editor .dialog.date .cyear div.active, .viewer.helper .editors .editor .dialog.date .ctime div.active {
+  background: #aaa;
+}
+
+.viewer.helper .editors .editor .dialog.location .map {
+  height: 400px;
+  width: auto;
+  border: 1px solid #aaa;
+}

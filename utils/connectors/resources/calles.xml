@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><schema>
+<codigo>1</codigo>
+<nombre>504 VVDAS. EN JINAMAR</nombre>
+<lugar>VEGUETA-CONO SUR-TAFIRA</lugar>
+<zona>JINÁMAR</zona>
+<direccion>504 VVDAS. EN JINAMAR</direccion>
+<tipovia>LUGAR</tipovia>
+<codigovia>3153</codigovia>
+<ngobiernomax>12</ngobiernomax>
+<ngobiernomin>1</ngobiernomin>
+</schema><schema>
+<codigo>2</codigo>
+<nombre>AARON</nombre>
+<lugar>TAMARACEITE-SAN LORENZO</lugar>
+<zona>LOS GILES</zona>
+<direccion>AARON</direccion>
+<tipovia>CALLE</tipovia>
+<codigovia>2770</codigovia>
+<ngobiernomax>7</ngobiernomax>
+<ngobiernomin>1</ngobiernomin>
+<codigovia>2579</codigovia>
+<ngobiernomax>98</ngobiernomax>
+<ngobiernomin>12</ngobiernomin>
+</schema>

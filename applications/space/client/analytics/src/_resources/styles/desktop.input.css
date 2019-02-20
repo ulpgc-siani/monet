@@ -1,0 +1,71 @@
+input.text {
+	padding: 1px;
+  width: 100%;
+}
+
+input.date {
+	padding: 1px;
+  width: 100%;
+}
+
+textarea {
+  width: 98%;
+}
+
+.dialoguploadfilebox {
+	height:20px;
+	border: 1px solid #999999;
+	background: white;
+	overflow-x: hidden;
+	overflow-y: auto;
+	x-overflow: hidden;
+	y-overflow: auto;
+}
+
+.dialogufbi {
+	height:28px;
+	width:100%;
+}
+
+.filelist {
+	padding-top: 3px;
+	width: 100%;
+}
+
+.filelist tr td.DELFILE {
+	width: 1px;
+}
+
+.filelist tr td.DELFILE a {
+	cursor: pointer;
+	display: block;
+	height: 20px;
+	margin-right: 4px;
+	margin-top: -2px;
+	width: 16px;  
+	background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+
+.filelist tr td.DELFILE a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.filedefault	  	{ width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center;	}
+.filecompressed   { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filedocument     { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.fileedocument    { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filedatabase     { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filewebpage      { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filepresentation { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filespreadsheet  { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.fileimage        { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+
+fieldset {
+  border: solid 1px #D8D9DB;
+  padding: 10px;
+}
+
+fieldset legend {
+  padding: 0px 5px;
+}

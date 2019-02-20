@@ -1,0 +1,96 @@
+.view.node {
+}
+
+.nodefloatinglayer {
+  width: 490px;
+  border: 1px solid #99BBE8;
+  background-color: white;
+}
+
+.nodefloatinglayer .head {
+  clear: both;
+  height: 30px;
+  margin: 5px;
+}
+
+.nodefloatinglayer .head .left {
+  float: left;
+  width: 94%;
+}
+
+.nodefloatinglayer .head .right {
+  float: right;
+}
+
+.nodefloatinglayer .head .close {
+  display: block;
+  height: 16px;
+  width: 16px;
+  background: url(../images/icons/close_small.gif) no-repeat center left;
+}
+
+.nodefloatinglayer .head .close:hover {
+  background: url(../images/icons/close_small_hover.gif) no-repeat center left;
+}
+
+.nodefloatinglayer .head .type {
+  background: none;
+  color: #666;
+  padding: 0px;
+  border: 0px;
+  font-style: normal;
+}
+
+.nodefloatinglayer .description {
+  color: #666;
+  font-style: italic;
+  padding: 10px;
+  background: white;
+  border: 1px solid #99BBE8;
+  border-top: 0px;
+  display: none;
+}
+
+.nodefloatinglayer .description .block {
+}
+
+.nodefloatinglayer .description .title {
+  font-weight: bold;
+  padding: 0px;
+  background: none;
+  border-bottom: 1px dotted;
+}
+
+.nodefloatinglayer .description ul {
+  margin: 4px;
+  margin-left: 20px;
+  list-style: circle;
+}
+
+.nodefloatinglayer .description ul li {
+  margin-top: 2px;
+}
+
+.nodefloatinglayer .messages {
+  padding: 10px;
+}
+
+.nodefloatinglayer .toolbar {
+  border: 0px;
+  padding: 10px;
+  margin-top: 20px;
+  background: #EFF7FF;
+  border-top: 1px dotted #99BBE8;
+}
+
+.nodefloatinglayer .toolbar a {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.nodefloatinglayer .footer {
+  margin-top: 12px;
+  padding: 1px;
+  border-top: 1px solid #99BBE8;
+  display: none;
+}

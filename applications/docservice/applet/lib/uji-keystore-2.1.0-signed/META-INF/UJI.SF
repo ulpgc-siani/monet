@@ -1,0 +1,106 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: 9ByqrUPKkrXfCg+x9wM/2TYmX/Y=
+Created-By: 1.6.0_16 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: ZhuZtnS8BUKpelj8CO2kGK4lqTI=
+
+Name: es/uji/security/keystore/dnie/Dnie.class
+SHA1-Digest: 7bzs0YK1x5Faxq5LGW0NsDrp3dM=
+
+Name: es/uji/security/keystore/pkcs11/test/PKCS11KeyStoreTest.class
+SHA1-Digest: nwTJxAELG8OqYND30FG8GXqWcEw=
+
+Name: es/uji/security/keystore/clauer/ClauerRunTime.class
+SHA1-Digest: Pu3PH7uGTxsVgXRecV48Z1fnTDM=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11Helper.class
+SHA1-Digest: s7CvIxfuE83E3k6kMTcxIPlCGNg=
+
+Name: es/uji/security/keystore/provider/test/ExampleProvider.class
+SHA1-Digest: lhw9NAPhEHYImpfH9V+t0GAOV6E=
+
+Name: es/uji/security/keystore/clauer/test/ClauerTest.class
+SHA1-Digest: H8W32YuxJhKz2A5nYL3RhhN+4Rk=
+
+Name: es/uji/security/keystore/mscapi/MSCAPIPrivateKey.class
+SHA1-Digest: 6eXCWnsiEjh502WU0PwKhlgrhEg=
+
+Name: es/uji/security/keystore/pkcs12/PKCS12KeyStore.class
+SHA1-Digest: nc9nJwEPi1byUBO3DccCYueADUM=
+
+Name: es/uji/security/keystore/mscapi/MSCAPIProvider$1.class
+SHA1-Digest: 2SO5tEULCi36nDut6S1Ia+jM1lw=
+
+Name: es/uji/security/keystore/dnie/test/DNIeTest.class
+SHA1-Digest: MNgS22ThWhVVzHzFbk9HoDG2mkM=
+
+Name: META-INF/maven/es.uji.security/uji-keystore/pom.xml
+SHA1-Digest: 1QbtFhDLQlNHNoXUwrkK/28tTqg=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11HelperException.class
+SHA1-Digest: TyytlyCuSenrlhSrH7J1EdqWgvk=
+
+Name: es/uji/security/keystore/clauer/Clauer.class
+SHA1-Digest: zhO8/x1D+qaBjcgpm6eaz4WVX8w=
+
+Name: es/uji/security/keystore/mozilla/Mozilla.class
+SHA1-Digest: Lj+/r/hrWFMeCU0YF2PARVfwObg=
+
+Name: es/uji/security/keystore/clauer/ClauerKeyStore.class
+SHA1-Digest: kGoC5tCohMbpxtUnB6lYWoToexM=
+
+Name: es/uji/security/keystore/mscapi/MsCapiKeyStore.class
+SHA1-Digest: OXwbT7UHWd4DaZrv+DiivgX3itQ=
+
+Name: org/openoces/opensign/wrappers/microsoftcryptoapi/MicrosoftCrypt
+ oApi.class
+SHA1-Digest: N7frlzxA3N21DqTbgbmw3dhwg4g=
+
+Name: es/uji/security/keystore/mscapi/SHA1withRSA.class
+SHA1-Digest: jZDxje6dGEsgfDr/3Jhzh8OZr7U=
+
+Name: es/uji/security/keystore/provider/test/ExampleProvider$1.class
+SHA1-Digest: uPpj9WZVfnlXlMkz9jxJau6XW3I=
+
+Name: es/uji/security/keystore/KeyStoreManager.class
+SHA1-Digest: NMWHpriI6DkOFor4/IRAeKM7hRc=
+
+Name: es/uji/security/keystore/ImportPrivateKey.class
+SHA1-Digest: +eBuxqsvF56nneAWykVAyIuyFR8=
+
+Name: META-INF/maven/es.uji.security/uji-keystore/pom.properties
+SHA1-Digest: 6fsDWmX6Mr3frWDqE3mWG/T5RsI=
+
+Name: es/uji/security/keystore/mozilla/MozillaKeyStore.class
+SHA1-Digest: GFrfmyR23NYK7iB4YPNi1WSRkAE=
+
+Name: es/uji/security/keystore/mozilla/test/MozillaTest.class
+SHA1-Digest: sCmGOaJGXMcIz3c2RQ20NyC/yok=
+
+Name: es/uji/security/keystore/IKeyStore.class
+SHA1-Digest: 4PCNokZZxqKY7ElUQkF6LjVKI5Y=
+
+Name: es/uji/security/keystore/clauer/test/Clauer.class
+SHA1-Digest: Cm3MaOMg+9NitsVfaomrKMcrx1U=
+
+Name: es/uji/security/keystore/mscapi/SunMsCapiKeyStore.class
+SHA1-Digest: 0hbwx3oWs3ITxr7m31YcjWUkPbk=
+
+Name: es/uji/security/keystore/mscapi/MSCAPIProvider.class
+SHA1-Digest: d26Y1irD8x5sfvg75TmZ6YScxas=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11KeyStore.class
+SHA1-Digest: JgHS+J5jJ0j8VgtiE5EX03sFjtA=
+
+Name: es/uji/security/keystore/clauer/test/ClauerKeyStoreTest.class
+SHA1-Digest: ap8kYkq9daXGYKg5jFyKf3CuWtc=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11HelperException$errorType.
+ class
+SHA1-Digest: usTbH4fj+5TcKA0U74svtszwCKs=
+
+Name: es/uji/security/keystore/clauer/ClauerHandle.class
+SHA1-Digest: nCOD9WonLT5DxwGXatDcTAG6/Q0=
+
+Name: es/uji/security/keystore/X509CertificateHandler.class
+SHA1-Digest: Dn556QQqK/hiQQPvJ634etYKsPI=
+

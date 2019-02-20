@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="GroupDeclaration" parent="Declaration" tag="group">
+  <description>Se utiliza para indicar que atributos de la referencia de la colección se van a utilizar para agrupar los elementos de la lista</description>
+
+  <attribute name="attribute" type="key" link="AttributeDeclaration" required="true">
+    <description>Nombre del atributo de la referencia</description>
+  </attribute>
+  
+  <attribute name="function" type="enumeration">
+    <description>Función que se aplica al atributo para extraer el dato por el que agrupar.</description>
+    <enumeration>
+      <option>MONTH</option>
+      <option>YEAR</option>
+    </enumeration>
+  </attribute>
+  
+</class>

@@ -1,0 +1,110 @@
+.dialog {
+  position: relative;
+  z-index: 1000000;
+}
+
+.dialog .loading {
+  background: url('../images/loading.gif') no-repeat left center;
+  border: 0px;
+  height: 30px;
+  padding: 13px 2px 0px 35px;
+  text-align: left;
+}
+
+.dialog .report {
+  color: #284E8C;
+  display: none;
+  position: relative;
+  left: 0;
+  border: 1px solid #284E8C;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.dialog .status {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  top: 0px;
+  left: 0px;
+}
+
+.dialog .status .title {
+  text-transform: none;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0px 0px 5px;
+  padding: 0px;
+  color: red;
+}
+
+.dialog .status ul {
+  list-style: disc;
+  margin-left: 12px;
+}
+
+.dialog .outfield {
+  margin: 0px 0px 15px;
+}
+
+.dialog .outfield.hidden {
+  display: none;
+}
+
+.dialog .outfield .outtitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.dialog .outfield.required .outtitle span {
+  background: transparent url("../images/icons/red-dot.gif") no-repeat left center;
+  width: 10px;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.dialog .outfield .error {
+  border: 1px solid #EF7777;
+}
+
+.dialog .outfield .outbody input.file {
+  width: 98%;
+}
+
+.dialog .outfield .outbody input.text {
+  width: 98%;
+}
+
+.dialog .outfield .outbody input.wdate {
+  width: 50%;
+}
+
+.dialog .outfield .outbody textarea {
+  width: 98%;
+}
+
+.dialog .outfield .outbody .radio {
+  margin: 0px 0px 10px 5px;
+}
+
+.dialog .outfield .outbody .radio input.radio {
+  margin-left: 10px;
+}
+
+.dialog .outfield .outbody .radio label {
+  display: inline;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+.dialog .outfield .outbody .radio .info {
+  color: #666;
+  margin-top: 1px;
+  margin-left: 17px;
+}
+
+.dialog .option.disabled label {
+  color: #666;
+}

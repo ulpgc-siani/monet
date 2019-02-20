@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NodeFieldViewDeclaration" parent="FieldViewDeclaration" tag="view">
+  <description>Declaración para modelar cómo se visualiza un campo de tipo nodo</description>
+
+  <property name="render" required="true">
+    <description>Se utiliza para indicar que vista del nodo vinculado se mostrará en el campo</description>
+    <attribute name="view" type="code" link="ViewDeclaration" required="true">
+      <description>Código de la vista del nodo vinculado</description>
+    </attribute>
+  </property>
+ 
+</class>

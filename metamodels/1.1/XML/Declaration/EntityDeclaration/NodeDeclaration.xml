@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NodeDeclaration" parent="EntityDeclaration">
+  <description>Declaración abstracta de un nodo. Un nodo es un elemento navegable del sistema de información</description>
+
+  <property name="is-singleton">
+    <description>Su presencia indica que sólo puede existir una instancia de este tipo de nodo</description>
+  </property>
+  
+  <property name="is-component">
+    <description>Su presencia indica que este tipo de nodo sólo se puede crear como componente de otro nodo, nunca de forma aislada</description>
+  </property>
+  
+  <property name="is-read-only">
+    <description>Su presencia indica que el nodo es de sólo lectura</description>
+    <hint>Los nodos de sólo lectura no pueden ser modifcados por el usuario</hint>
+  </property>
+
+  <property name="schema" >
+    <description>Esquema XML que representa la estructura del nodo. Permite operar con atributos del nodo</description>
+    <content type="xml"/>
+  </property>
+  
+  <property name="export" multiple="true">
+    <description>La presencia de esta propiedad indica que se debe exportar el esquema a una referencia</description>
+    <attribute name="reference" type="code" link="Definition" restriction="ReferenceDeclaration">
+      <description>Código de la definición de una referencia</description>
+    </attribute>
+  </property> 
+
+</class>
+

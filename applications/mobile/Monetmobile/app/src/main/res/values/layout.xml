@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="layout" name="activity_splash">@layout/activity_splash_phone</item>
+    <item type="layout" name="activity_task">@layout/activity_task_phone</item>
+    <item type="layout" name="activity_taskmap">@layout/activity_taskmap_phone</item>
+    <item type="layout" name="activity_taskstep">@layout/activity_taskstep_phone</item>
+    <item type="layout" name="fragment_tasklist">@layout/fragment_tasklist_phone</item>
+</resources>

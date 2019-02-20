@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<federation-service>
+	<organization name="federation1" url="http://localhost">	    	
+	  <label>label</label>						
+	</organization>
+	
+	<authentication>
+		<use-password/>
+	</authentication>
+	
+	<connection class="org.monet.grided.core.serializers.xml.federation.MockConnection" url="http://localhost" user="user1" password="1234"></connection>
+	
+</federation-service>

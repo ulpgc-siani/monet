@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ReportDeclaration" parent="AnalyticalDeclaration" tag="report">
+  <description>Declaración que se utiliza para modelar un informe analítico</description>
+
+  <property name="use">
+    <description>Se utiliza para indicar qué cubo se utilizará para generar el informe</description>
+    <attribute name="node" type="code" link="Definition" restriction="CubeDeclaration" required="true">
+      <description>Código de la definición de un cubo</description>
+    </attribute>
+  </property>
+
+  <property name="render">
+    <description>Se utiliza para indicar cómo se generará el informe</description>
+    <attribute name="engine" type="enumeration" required="true">
+      <description>Nombre del motor OLAP</description>
+      <enumeration>
+        <option>Monet</option>
+        <option>Pentaho</option>
+      </enumeration>
+    </attribute>
+    <attribute name="template" type="string" required="true">
+      <description>Plantilla para generar el informe</description>
+    </attribute>
+  </property>
+  
+  <include name="selection" multiple="true">
+    <option class-name="ParameterDeclaration" />
+    <option class-name="DrillDeclaration" />
+    <option class-name="IndicatorDeclaration" />
+  </include>
+    
+</class>

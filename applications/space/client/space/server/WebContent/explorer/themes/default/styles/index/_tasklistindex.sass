@@ -1,0 +1,67 @@
+.task-list .index-widget .items li .type 
+  width: 1px
+
+.task-list .index-widget .items li .type img 
+  margin: 0 5px
+  width: 40px
+  height: 40px
+  float: left
+
+.task-list .index-widget .items li .content 
+  width: 60%
+
+.task-list .index-widget .items li .content .label 
+  font-size: 14pt
+  margin-top: 2px
+  margin-bottom: 4px
+  margin-left: 0
+
+.task-list .index-widget .items li .content .description, .task-list .index-widget .items li .content .owner,
+.task-list .index-widget .items li .content .sender, .task-list .index-widget .items li .content .dates,
+.task-list .index-widget .items li .content .message 
+  color: #555555
+  font-size: 12pt
+  margin-bottom: 1px
+  margin-left: 2px
+
+.task-list .index-widget .items li .content .owner 
+  clear: both
+  height: 20px
+  position: relative
+
+.task-list .index-widget .items li .content .owner div 
+  float: left
+  width: auto
+
+.task-list .index-widget .items li .content .owner a 
+  display: block
+  float: left
+  height: 12px
+  width: 12px
+  margin-top: 5px
+  margin-left: 5px
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAoCAYAAACiu5n/AAAB9klEQVRo3u2YTUsCURSGRYxaRDZliLhoIqJNURt3bQpxE9EiigoiCArCyKw2BUUQEi2iRSh92Af1E/yB9h44wvHmZCNqznEuPMz9YGQez7n3ztxAuVwOeBnXxRf2rvAu2AMDom8IpMGWNuEgyIIrkGFpkj3mvrTGCFtCkK6nXD+sirqyOWwJUeLISHF1whFDmNI8rFU4IlI6Y9TDNYWbtbq3c5eosWgdcBpboi/dbuE+MN9CYSo7vDX1G3N6H2z+JjwFLsU8kFyAMZfCPWCb70+2UNh9pERJ1JClP2HaZYQp1TaM35nrROEAp6B80EQDKb3okCkznSgsHzjZwBxecJCtZMtkk4XvwD0YFn0xUADXfxWmlJz1yCr9BkqgyNIk+8F9hZau0v+0D0eF4Dv45PpzVdSVvWmR9BeLEq9GiqsTjovIljjNR7QKx0VKv4h6sUpa0fdwZdF65DSOir6Cxgjf8tZkGXP6gbdB/0zLF9aIL+wL+8IdsVAF+QvuHOTBGbeD6oRZ9gSsg1EQAja3s/WkvSicIjmHMZJOaRPO0ZGswxgd1ea0CdOcDTmMUXrn/Qh7XHgZrDi8Yq7yuPO5nQeFe3k7WqNzK+6LcfsGTKgSFnN1iU9An/hK7XGWtlUJ1/lqsk1p7cI/pLtBWEpHukWYyqAZ4W8L6Rx3KONRZwAAAABJRU5ErkJggg==") no-repeat scroll right top rgba(0, 0, 0, 0)
+
+.task-list .index-widget .items li .content .message.new 
+  color: blue
+
+.task-list .index-widget .items li .flags 
+  width: 10%
+
+.task-list .index-widget .items li:hover .flags .urgent 
+  display: block
+
+.task-list .index-widget .items li .flags .urgent 
+  float: right
+  display: block
+  height: 28px
+  width: 28px
+  margin-right: -3px
+  margin-top: -5px
+  background: url("../../../images/task-urgent-disabled.png") no-repeat 0 0
+
+.task-list .index-widget .items li .flags .urgent.active 
+  background: url("../../../images/task-urgent.png") no-repeat 0 0
+
+.task-list .index-widget .items li .operations-panel .delete 
+  display: none !important

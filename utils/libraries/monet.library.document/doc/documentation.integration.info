@@ -1,0 +1,8 @@
+Documentation  - Monet Library Document
+
+Libreria de manejo documentos.
+
+Operaciones con pdfs soportadas:
+
+		- Añadir un barcode a un pdf, en una pagina y posicion concreta.
+		- Convertir un pdf en imagenes, todas las paginas en imagenes o un pagina en concreto. 

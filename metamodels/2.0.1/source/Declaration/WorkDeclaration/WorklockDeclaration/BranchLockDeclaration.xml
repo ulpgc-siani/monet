@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="BranchLockDeclaration" parent="WorklockDeclaration" tag="branch-lock">
+  <description>Declaración de un bloqueo para realizar un desvio. Estos bloqueos se resuelven automaticamente por BPI</description>
+  <hint>Antes se llamaban autolock</hint>
+
+  
+</class>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="TaskDeclaration" parent="EntityDeclaration" tag="task">
+
+  <property name="implements">
+	<attribute name="service" type="String" required="true">
+      <description>Nombre del servicio que implementa esta tarea</description>
+    </attribute>
+  </property>
+  
+  <property name="input">
+	<attribute name="node" type="String" required="true">
+      <description>Nodo documento que se creará con la entrada recibida desde la petición de servicio. Será la entrada con la que trabajará la tarea.</description>
+    </attribute>
+  </property>
+  
+  <property name="output">
+	  <attribute name="node" type="String" required="true">
+      <description>Nodo documento que se enviará a la finalización de la tarea como respuesta de la petición de servicio. Este nodo se ha de crear mediante BPI.</description>
+    </attribute>
+  </property>
+  
+  <property name="target">
+    <attribute name="node" type="String" required="true">
+      <description>Nodo con el que trabaja normalmente la tarea.</description>
+    </attribute>
+  </property>
+
+  <include name="workmap">
+    <option class="WorkMapDeclaration" />
+  </include>
+  
+  <include name="view" multiple="true">
+    <option class="ViewTaskDeclaration"/>
+  </include>
+  
+  <include name="behavior">
+    <option class="BehaviorDeclaration" />
+  </include>
+
+</class>
+

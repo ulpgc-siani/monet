@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="NumberFieldDeclaration" parent="FieldDeclaration" tag="field-number">
+	<description>Declaración que se utiliza para modelar un campo numérico</description>
+
+	<property name="format">
+		<description>Formato con el que se representa el número</description>
+		<attribute name="value" type="string" required="true">
+      <description>Expresión regular para definir el formato</description>
+      <hint>Ejemplo: "*,3". Da formato al número añadiendole tres decimales</hint>
+		</attribute>
+		<content type="text" />
+	</property>
+
+</class>
+

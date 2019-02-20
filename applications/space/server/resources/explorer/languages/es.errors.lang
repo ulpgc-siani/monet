@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Errores posibles de office</comment>
+
+  <entry key="business-unit-stopped">La unidad de negocio ha sido parada. Contacte con el administrador del sistema.</entry>
+  <entry key="business-unit-not-installed">No se ha instalado ningún modelo en la unidad de negocio. Contacte con el administrador del sistema.</entry>
+  <entry key="user-not-logged">Usted no ha iniciado sesión.</entry>
+  <entry key="task-edition">No se puede resolver la edición del elemento.</entry>
+  <entry key="task-delegation-place-incorrect">La tarea no se encuentra en una delegación.</entry>
+  <entry key="task-delegation-no-nature">No se ha podido resolver el tipo de delegación.</entry>
+  <entry key="task-line-place-incorrect">La tarea no se encuentra en una línea.</entry>
+  <entry key="task-edition-place-incorrect">La tarea no se encuentra en una edición.</entry>
+  <entry key="task-wait-place-incorrect">La tarea no se encuentra en una espera.</entry>
+  <entry key="node-field-not-found">No se ha encontrado el campo: %s.</entry>
+  <entry key="node-parent-field-not-found">No se ha encontrado el campo padre: %s.</entry>
+  <entry key="task-could-not-create-progress-image">No se ha podido generar la imagen de progreso de la tarea %s.</entry>
+  <entry key="node-document-required">Se necesita que el nodo %s sea de tipo documento %s.</entry>
+  <entry key="preview-not-supported">Vista previa no soportada por el servicio de documentos.</entry>
+  <entry key="preview-node">No se ha podido generar la vista previa.</entry>
+  <entry key="download-not-supported">Descarga no soportada por el servicio de documentos.</entry>
+  <entry key="download-node">No se ha podido descargar el nodo.</entry>
+  <entry key="upload-not-supported">Descarga no soportada por el servicio de documentos.</entry>
+  <entry key="upload-node">No se ha podido descargar el nodo.</entry>
+</properties>

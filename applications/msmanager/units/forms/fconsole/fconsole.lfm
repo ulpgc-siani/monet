@@ -1,0 +1,32 @@
+object FrmConsole: TFrmConsole
+  Left = 1880
+  Height = 340
+  Top = 71
+  Width = 785
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'Console'
+  ClientHeight = 340
+  ClientWidth = 785
+  Position = poMainFormCenter
+  LCLVersion = '0.9.30.4'
+  object MemConsole: TMemo
+    Left = 16
+    Height = 290
+    Top = 8
+    Width = 756
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+  end
+  object BtnClose: TButton
+    Left = 699
+    Height = 26
+    Top = 304
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Close'
+    OnClick = BtnCloseClick
+    TabOrder = 0
+  end
+end

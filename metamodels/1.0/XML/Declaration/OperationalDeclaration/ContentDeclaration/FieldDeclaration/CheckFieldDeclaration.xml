@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CheckFieldDeclaration" parent="FieldDeclaration" tag="field-check">
+  <description lang="es"></description>
+  
+  <example><![CDATA[
+    <field-check>
+      
+    </field-check>
+  ]]>
+  </example>
+  <example><![CDATA[
+    <field-check>
+      
+    </field-check>
+  ]]>
+  </example>
+
+</class>

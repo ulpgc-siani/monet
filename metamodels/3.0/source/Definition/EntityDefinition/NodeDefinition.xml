@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="NodeDefinition" parent="EntityDefinition" extensible="true">
+	<description>Un nodo es una entidad que contiene información
+		relacionada con el espacio de negocio
+	</description>
+
+	<property token="is-singleton">
+		<description>Esta propiedad se utiliza para indicar que sólo puede
+			existir una instancia de este tipo de nodo
+		</description>
+	</property>
+
+	<property token="is-readonly">
+		<description>Esta propiedad se utiliza cuando se desea que los nodos
+			sean de sólo lectura
+		</description>
+		<hint>Los nodos de sólo lectura no pueden ser modificados por el
+			usuario
+		</hint>
+	</property>
+
+	<property token="is-private">
+		<description>Esta propiedad se utiliza cuando se desea que el nodo sea
+			visible sólo para el usuario propietario
+		</description>
+	</property>
+
+	<property token="require-partner-context">
+		<description>Esta propiedad se utiliza para obligar a establecer un contexto para el nodo</description>
+		<hint>El contexto es el mecanismo con el que se limitan los términos disponibles en los campos que usen fuentes de datos. Solo se podrán elegir términos de fuentes de datos del proveedor indicado.</hint>
+	</property>
+
+	<property token="operation" type="OperationProperty" parent="ReferenceableProperty"
+		multiple="true">
+		<description>Esta propiedad se utiliza para añadir una operación a un
+			nodo
+		</description>
+
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta de la operación. Se utiliza para mostrar a los
+				usuarios el nombre de la operación
+			</description>
+		</attribute>
+		<attribute token="description" type="language">
+			<description>Descripción de la operación. Se utiliza para ofrecer a
+				los usuarios una explicación más detallada de la operación
+			</description>
+		</attribute>
+
+		<method name="is-enabled" />
+		<method name="is-visible" />
+		<method name="execute" />
+	</property>
+
+	<property token="rule:node" parent="RuleProperty" multiple="true">
+		<attribute token="add-flag" type="enumeration" multiple="true"
+			required="true">
+			<description>Indica que marcas se activan en este nodo cuando la
+				regla se active
+			</description>
+			<enumeration>
+				<option token="READ_ONLY">
+					<description>Marca el nodo como de solo lectura</description>
+				</option>
+				<option token="INVALID">
+					<description>Marca el nodo como inválido</description>
+				</option>
+			</enumeration>
+		</attribute>
+	</property>
+
+	<property token="rule:view" parent="RuleProperty" multiple="true">
+		<attribute token="add-flag" type="enumeration" multiple="true"
+			required="true">
+			<description>Indica que marcas se activan en este nodo cuando la
+				regla se active
+			</description>
+			<enumeration>
+				<option token="HIDDEN">
+					<description>Marca la(s) vista(s) como oculta(s)</description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<property token="to" required="true">
+			<attribute token="view" type="key" link="NodeViewProperty"
+				multiple="true" required="true">
+				<description>Vistas a las que se les aplica las marcas</description>
+			</attribute>
+		</property>
+	</property>
+
+	<property token="rule:operation" parent="RuleProperty"
+		multiple="true">
+		<attribute token="add-flag" type="enumeration" multiple="true"
+			required="true">
+			<description>Indica que marcas se activan en este nodo cuando la
+				regla se active
+			</description>
+			<enumeration>
+				<option token="HIDDEN">
+					<description>Marca la(s) operación(es) como oculta(s)</description>
+				</option>
+				<option token="DISABLED">
+					<description>Marca la(s) operación(es) como deshabilitada(s)
+					</description>
+				</option>
+			</enumeration>
+		</attribute>
+		<property token="to" required="true">
+			<attribute token="operation" type="key" link="OperationProperty"
+				multiple="true" required="true">
+				<description>Operaciones a las que se les establece las marcas
+				</description>
+			</attribute>
+		</property>
+	</property>
+
+	<property token="display" multiple="true">
+		<description>Esta propiedad se utiliza para mostrar un mensaje
+			asociado al campo
+		</description>
+		<attribute token="message" type="language" required="true">
+			<description>Contenido del mensaje</description>
+		</attribute>
+		<attribute token="when" type="enumeration">
+			<description>Estado en el que se muestra el mensaje</description>
+			<enumeration>
+				<option token="NEW">
+					<description>Si el nodo es nuevo</description>
+				</option>
+				<option token="READ_ONLY">
+					<description>Si el nodo no es editable</description>
+				</option>
+				<option token="INVALID">
+					<description>Si el nodo no es válido</description>
+				</option>
+			</enumeration>
+		</attribute>
+	</property>
+
+	<method name="constructor" />
+	<method name="on-opened" />
+	<method name="on-closed" />
+	<method name="on-save" />
+	<method name="on-saved" />
+	<method name="on-set-context" />
+	<method name="on-removed" />
+
+</class>

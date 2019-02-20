@@ -1,0 +1,1 @@
+INSERT INTO ds$documents_states VALUES(6, 'Overwritten');

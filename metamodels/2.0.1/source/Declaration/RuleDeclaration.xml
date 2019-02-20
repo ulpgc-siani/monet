@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="RuleDeclaration" tag="rule">
+  <description>Declaración abstracta que se utiliza para  modelar una regla de un nodo</description>
+
+  <property name="condition" multiple="true">
+    <description>Condición de la regla</description>
+    
+    <attribute name="field" type="key" link="FieldDeclaration" required="true">
+      <description>Nombre del campo</description>
+    </attribute>
+    
+    <attribute name="check" type="enumeration" required="true">
+      <description>Operador que se utilizará para comprobar el filtro</description>
+      <enumeration>
+        <option>EQ</option>
+        <option>GT</option>
+        <option>GE</option>
+        <option>LT</option>
+        <option>LE</option>
+        <option>NEQ</option>
+        <option>EMPTY</option>
+      </enumeration>
+    </attribute>
+    
+    <attribute name="value" type="string">
+      <description>Valor con el que comparar</description>
+    </attribute>
+    
+  </property>
+
+  <property name="action" multiple="true">
+    <description>Acción de la regla</description>
+    <attribute name="name" type="enumeration" required="true">
+      <description>Nombre de la acción</description>
+      <enumeration>
+        <option>SHOW</option>
+        <option>HIDE</option>
+        <option>LOCK</option>
+        <option>UNLOCK</option>
+        <option>EXPAND</option>
+        <option>COLLAPSE</option>
+      </enumeration>
+    </attribute>
+    <attribute name="field" type="key" link="FieldDeclaration" >
+      <description>Clave del campo</description>
+    </attribute>
+    <attribute name="view" type="key" link="NodeViewDeclaration">
+      <description>Clave de la vista</description>
+    </attribute>
+    <attribute name="operation" type="key" link="OperationDeclaration">
+      <description>Clave de la operación</description>
+    </attribute>
+  </property>
+
+</class>
+

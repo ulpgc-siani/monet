@@ -1,0 +1,11 @@
+<div class="title">::spaces::</div> 
+  <div class="section-list">  
+  <% if (spaces.length > 0) { %>
+    <ul>                 
+      <% _.each(spaces, function(space) { %>
+      <li><a href="" code="<%= space.id %>"><%= space.name %></a></li>
+      <% }); %>
+    </ul>
+  <% }; %>
+  <% if (spaces.length == 0) { %><p>::no_spaces::</p><% } %>
+</div>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="ReferenceViewDeclaration" parent="ViewDeclaration" tag="view">
+  <description>Declaración de una vista de una referencia</description>
+
+  <property name="is-default">
+    <description>Su presencia indica que es la vista por defecto</description>
+    <hint>Debe ser de tipo tab</hint>
+  </property>
+  
+  <property name="show" multiple="true">
+    <description>Se utiliza para indicar que atributos se van a mostrar en la vista</description>
+    <attribute name="attribute" type="key" link="AttributeDeclaration" required="true">
+      <description>Nombre del atributo del campo</description>
+    </attribute>
+    <!--
+    <attribute name="region" type="enumeration" required="true">
+      <enumeration>
+        <option>TITLE</option>
+        <option>LEAD</option>
+        <option>BODY_1</option>
+        <option>BODY_2</option>
+        <option>BODY_3</option>
+        <option>HIGHLIGHT</option>
+        <option>FOOTER</option>
+        <option>ICON</option>
+        <option>PICTURE</option>
+      </enumeration>
+      <description>Región en la que se muestra el atributo</description>
+    </attribute>
+    -->
+  </property>
+  
+	<include name="style" multiple="true">
+		<option class-name="StyleDeclaration" />
+	</include>
+  
+</class>

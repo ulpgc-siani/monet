@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FormDeclaration" parent="NodeDeclaration" tag="form">
+  <description>Declaración que se utiliza para modelar un formulario</description>
+
+  <include name="field" required="true" multiple="true">
+    <option class-name="FieldDeclaration" />
+  </include>
+    
+  <include name="view" multiple="true">
+    <option class-name="FormViewDeclaration" />
+  </include>
+  
+</class>

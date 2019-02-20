@@ -1,0 +1,53 @@
+#MapViewerWizard .title {
+}
+
+#MapViewerWizard .search {
+  border: 1px dotted #AAAAAA;
+  padding: 10px;
+  height: 60px;
+  width: 388px;
+}
+
+#MapViewerWizard .search label {
+  display: block;
+  margin-bottom: 4px;
+  margin-right: 5px;
+}
+
+#MapViewerWizard .search input {
+  width: 300px;
+  float: left;
+  margin: 0;
+  margin-top: 10px;
+}
+
+#MapViewerWizard .search .op.accept {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid #AAAAAA;
+  color: #000077;
+  cursor: pointer;
+  display: block;
+  margin-left: 5px;
+  margin-top: 10px;
+  padding: 2px 10px;
+  white-space: nowrap;
+  float: left;
+}
+
+#MapViewerWizard .toolbar {
+  margin-top: 10px;
+}
+
+#MapViewerWizard .toolbar .op.line {
+  background: none;
+  border: 0;
+  height: auto;
+}
+
+#MapViewerWizard .edition {
+  margin-bottom: 20px;
+}
+
+#MapViewerWizard .navigation {
+  margin-bottom: 20px;
+}

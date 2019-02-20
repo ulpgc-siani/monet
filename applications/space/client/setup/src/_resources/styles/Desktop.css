@@ -1,0 +1,272 @@
+
+/*------------------------------------------------------------
+ Common
+*/
+
+.businessModel-logo {   
+  margin-top: 0px;
+  margin-bottom: 0px; 
+}
+
+iframe {
+  width: 0px;
+  height: 0px;
+}
+
+.meta {
+  margin-right: 10px;
+  color: #696969;  
+}
+
+.message {
+  padding-bottom: 15px;
+}
+
+#loading-bar {  
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #EFF7FF;
+  font-weight: bold;
+  height: 15px;
+}
+
+.box-border {
+  border: 1px dotted #696969;  
+  padding: 3px;
+}
+
+.box {
+  text-align: center;
+  background-color: #EFF7FF; 
+  padding: 20px;   
+}
+
+.left { text-align: left;}
+.right { text-align: right;}
+.center { margin-left: auto; margin-right: auto; }
+.fleft { float: left; }
+.fright { float:right; }
+.bold {font-weight: bold;}
+
+input[type="button"] {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #F5F5F5;
+  border-color: #EEEEEE #DEDEDE #DEDEDE #EEEEEE;
+  border-right: 1px solid #DEDEDE;
+  border-style: solid;
+  border-width: 1px;
+  color: #336699;
+  cursor: pointer;
+  line-height: 130%;
+  margin: 10px 0;
+  padding: 2px 10px;
+  text-decoration: none;
+}
+input:disabled[type="button"]  {
+  color: #898989; 
+}
+input[type="button"] img {
+  border: medium none;
+  height: 16px;
+  margin: 0 3px -3px 0 !important;
+  padding: 0;
+  width: 16px;
+}
+
+input:disabled[type="button"]:hover {
+  color: #898989; 
+  background-color: #F5F5F5;
+  border-color: #EEEEEE #DEDEDE #DEDEDE #EEEEEE;
+  border-right: 1px solid #DEDEDE;
+}
+
+input[type="button"]:hover {
+  background-color: #DFF4FF;
+  border: 1px solid #C2E1EF;
+  color: #336699;
+}
+
+body {
+  font-family:Tahoma,Arial,Helvetica,sans-serif;
+  font-size: 10pt; 
+}
+
+
+/*------------------------------------------------------------
+ Layout
+*/
+
+#frameHistory {
+  position: absolute;
+  left: -100px;
+}
+
+#LayoutTop {}
+#app-logo { float: left;  }
+
+#AppLogo {
+  margin-top: 5px;
+  margin-left:10px;
+  margin-right: 10px; 
+}
+
+#monet-version {
+  width: 20px;
+  position: absolute;
+  left: 38px;
+  top: 4px;
+  font-weight: bold;
+  color: #336699;
+}
+
+#LayoutTop .app-title {
+  margin-left: 60px;
+  width: 600px;
+  font-weight: bold;
+  font-size: 20pt; 
+  color: #336699;   
+}
+
+#LayoutTop #toolbar {
+  float: right;  
+  margin-right: 20px;
+}
+
+#LayoutTop #toolbar #account-menu {
+  width: 150px;
+  text-align: right;
+}
+
+#LayoutTop #toolbar #account-menu span.arrow {
+  border-color: #707070 transparent transparent;
+  border-style: solid dashed dashed;
+  border-width: 3px 3px 0;
+  display: inline-block;
+  width: 2px;
+  padding-bottom: 3px;
+  padding-top: 1px;  
+  margin-left: 5px;
+}
+
+#LayoutTop #toolbar #account-menu .menu-title {
+  cursor: pointer;
+}
+
+#LayoutTop #toolbar #account-menu .menu-body {
+ margin-top: 3px;
+ padding: 5px;
+ border: 1px solid #A8A8A8;
+ position: absolute;
+ text-align: right;
+ z-index: 1;
+ width: 140px;
+ height: 40px;
+ background-color: white;
+ -webkit-box-shadow: 0 0 10px rgb(180,180,180); 
+ -moz-box-shadow: 0 0 10px rgb(180,180,180); 
+ box-shadow: 0 0 10px rgb(180,180,180);  
+}
+
+#LayoutTop #toolbar #account-menu .menu-body ul li {
+ padding: 10px;
+}
+#LayoutTop #toolbar #account-menu .menu-body ul li a {	
+ padding-top: 7px; 
+ padding-bottom: 7px;
+ padding-left: 10px;
+ padding-right: 10px;
+}
+
+#LayoutTop #toolbar #account-menu .menu-body ul li a:hover {
+  background-color: #E0EEFA;
+}
+
+#LayoutBottom #ViewsContainer {
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/*------------------------------------------------------------
+ Tabs
+*/
+
+.tab-content {    
+  height: 760px;
+}
+
+.tab-content .layout {
+  width: 100%;
+}
+
+.tab-content .panel {
+  margin: 5px;
+  padding: 5px;
+  border: 3px solid #EFF7FF;
+  vertical-align: top;
+}
+
+.tab-content .panel.left {
+  height: 560px;
+  width: 27%;
+}
+
+.tab-content .panel.right {
+  height: 560px;
+  text-align: left;
+  position: relative;
+}
+
+/*------------------------------------------------------------
+ toolbar
+*/
+
+#LayoutTop {
+  border-bottom: 2px solid #336699;
+  padding: 10px;
+}
+
+#LayoutBottom {
+  width: 100%;
+  height: 800px;
+  padding: 0px;
+}
+
+#desktop-title-bar {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  background-color: #336699;
+  padding: 5px;
+}
+
+#desktop-title-bar a[class="org-name"] {
+  color: white; 
+  text-decoration: none;
+  margin-left: 15px; 
+  margin-right: 5px;
+}
+
+#desktop-title-bar a[class="unit-name"] {
+  color: white;	
+  text-decoration: none;
+  margin-left: 5px; 
+}
+
+.x-tabs-top .x-tabs-body {
+  border: 0px;
+}
+
+.x-tabs-strip-wrap {
+  background: none;
+}
+
+.x-tabs-wrap, .x-layout-panel .x-tabs-top .x-tabs-wrap {
+  border: 0px;
+  background: none;
+}

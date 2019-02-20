@@ -1,0 +1,107 @@
+.task .state .flag 
+  border-radius: 5px
+  color: #FFFFFF
+  display: inline-block
+  font-size: 11pt
+  margin: 2px 0 5px
+  padding: 1px 12px
+
+.task .state .date 
+  color: #999999
+  font-size: 11pt
+
+.task .state .flag.new, .task .state .flag.pending 
+  background-color: #33942F
+
+.task .state .flag.waiting 
+  background-color: #E37F2E
+
+.task .state .flag.failure 
+  background-color: #CE3535
+
+.task .state .flag.aborted, .task .state .flag.expired, .task .state .flag.finished 
+  background-color: #828282
+
+.task .state .title 
+  font-size: 16pt
+  margin-top: 10px
+
+.task .state .action 
+  margin: 5px 0
+
+/* actions */
+.task .state .action .step 
+  display: none
+  margin-top: 15px
+
+.task .state .action .step.active 
+  display: block
+
+.task .state .action .message 
+  color: #666
+
+.task .state .action li a:hover, .task .state .action li a.active,
+.task .state .action li.disabled a.active, .task .state .action li.disabled a.active:hover 
+  background: #FFF58F
+
+.task .state .action li.disabled a, .task .state .action li.disabled a:hover 
+  color: #BBBBBB
+  background: none
+  cursor: default
+
+
+/* delegation action */
+.task .state .action.delegation .step.setup-role li a 
+  border-radius: 4px 4px 4px 4px
+  display: inline-block
+  margin: 2px 0
+  padding: 2px 6px
+
+.task .state .action.delegation .step.setup-order .toolbar 
+  margin-top: 10px
+
+/* line action */
+.task .state .action.line .timeout 
+  margin-bottom: 10px
+  color: #777
+
+.task .state .action.line .stops li a 
+  border-radius: 4px 4px 4px 4px
+  display: inline-block
+  margin: 2px 0
+  padding: 2px 6px
+
+/* edition action */
+.task .state .action.edition > .entity, .task .state .action.edition > .toolbar 
+  margin-top: 10px
+
+/* wait action */
+.task .state .action.wait .step li a 
+  border-radius: 4px 4px 4px 4px
+  display: inline-block
+  margin: 2px 0
+  padding: 2px 6px
+
+/* history */
+.task .history
+  margin-top: 20px
+  width: 100%
+
+.task .history .html-list .msg.empty
+  display: none !important
+
+.task .history .facts
+  border-top: 1px dotted #999
+
+.task .history .facts li
+  border-bottom: 1px dotted #999
+  padding: 5px 0
+  cursor: default
+
+.task .history .facts li .subtitle
+  font-size: small
+  color: #777
+
+.task .history .facts li .title
+  font-size: 14pt
+  margin-top: 0

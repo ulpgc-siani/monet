@@ -1,0 +1,81 @@
+.view.taxonomies select {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.view.taxonomies .block {
+	padding: 10px;
+}
+
+.view.taxonomies .taxonomiesbox, .view.taxonomies .block.filters > ul {
+  overflow-y: auto;
+}
+
+.view.taxonomies .block.expanded .taxonomiesbox, .view.taxonomies .block.filters.expanded > ul {
+	height: 100%;
+}
+
+.view.taxonomies .block .categories, .view.taxonomies .block.filters > ul, .view.taxonomies .block.filters .nofilters {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.view.taxonomies .block.filters li label {
+	cursor: pointer;
+}
+
+.view.taxonomies .block.filters li .categories {
+  display: none;
+}
+
+.view.taxonomies .block.filters li.opened .categories {
+	display: block;
+}
+
+.view.taxonomies .block.filters li .togglefilter {
+  padding-right: 10px;
+  padding-left: 17px;
+  background: url("../images/closed.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+
+.view.taxonomies .block.filters li.opened .togglefilter {
+  background: url("../images/opened.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+
+.view.taxonomies .block.filters li .selectallfilters {
+  display: none;
+}
+
+.view.taxonomies .block .categories ul li {
+	margin-bottom: 2px;
+}
+
+.view.taxonomies .block .categories ul li a.leaf_false {
+  padding-left: 17px;
+  background: url("../images/closed.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+
+.view.taxonomies .block .categories ul li a.leaf_false.opened {
+  background: url("../images/opened.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+
+.view.taxonomies .block .categories ul li a.leaf_true {
+  color: black;
+} 
+
+.view.taxonomies .block .categories ul ul {
+	margin-left: 15px;
+}
+
+.view.taxonomies .block .taxonomiesbox .option .colorbox {
+  border-radius: 10px;
+  float: right;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.colorsoff .view.taxonomies .block .taxonomiesbox .option .colorbox {
+  opacity: 0.1;
+  filter: alpha(opacity=10); /* For IE8 and earlier */
+}

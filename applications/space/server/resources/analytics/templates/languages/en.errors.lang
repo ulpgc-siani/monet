@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible errors from datawarehouse</comment>
+  <entry key="ERR_UNDEFINED">Unknown error.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">It has had an error in the actions factory.</entry>
+  <entry key="ERR_RENDERS_FACTORY">It has had an error in the renders factory.</entry>  
+  <entry key="ERR_USER_NOT_LOGGED">You are not logged.</entry>
+  <entry key="ERR_INCORRECT_PARAMETERS">There are not enough parameters or the call parameters are not right.</entry>
+  <entry key="ERR_CUBE_NOT_FOUND">Cube not found.</entry>
+  <entry key="ERR_BUSINESSUNIT_STOPPED">The business unit has been stopped. Contact with the system administrator.</entry>  
+  <entry key="ERR_BUSINESSUNIT_NOT_INSTALLED">The business unit has not been charged with any model. Contact with the system administrator.</entry>  
+</properties>

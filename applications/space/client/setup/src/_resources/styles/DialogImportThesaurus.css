@@ -1,0 +1,13 @@
+#dialog-import-thesaurus .dialog-content {
+  padding: 20px;
+}
+
+#dialog-import-thesaurus select {
+  margin-bottom: 40px;
+  width: 350px;
+}
+
+#dialog-import-thesaurus div.message {
+  margin-top: 10px;
+  font-size: 10pt;
+}

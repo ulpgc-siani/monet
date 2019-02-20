@@ -1,0 +1,5 @@
+/bin/
+/build/
+/dist/
+/.classpath
+/WebContent/WEB-INF/classes

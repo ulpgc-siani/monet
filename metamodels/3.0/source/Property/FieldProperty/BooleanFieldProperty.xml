@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-boolean" type="BooleanFieldProperty" parent="FieldProperty">
+	<description>Esta propiedad se utiliza para incluir un campo booleano en un formulario</description>
+	
+	<property token="value">
+		<description>Esta propiedad se utiliza para indicar el valor que muestra el campo</description>
+		<attribute token="when-true" type="language" required="true">
+			<description>Valor cuando está marcado</description>
+		</attribute>
+		<attribute token="when-false" type="language" required="true">
+			<description>Valor cuando está desmarcado</description>
+		</attribute>
+	</property>
+	
+</property>

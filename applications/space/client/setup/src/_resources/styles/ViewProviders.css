@@ -1,0 +1,33 @@
+
+#providers-view #providers-grid-panel {
+  width: 100%;
+  height: 100%;
+  float:left;
+}
+
+#import-data-wizard .dialog-body table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#import-data-wizard .dialog-body table tr td {
+  padding-left: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+#import-data-wizard .dialog-body table tr td input.url  {
+  width: 450px;
+}
+
+#import-data-wizard .dialog-body table tr td input.select {
+  width: 450px;
+}
+
+#providers-message-box .message {
+  color: red;
+}
+#providers-message-box ul li {
+  color: #4F4F4F;
+  margin-left: 10px;
+}

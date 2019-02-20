@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<federation-service>
+	<organization name="lpda" url="http://localhost/lpda">	    
+		<label>Ayuntamiento de Las Palmas</label>				
+		<logo name="" path=""></logo> 
+	</organization>
+	
+	<authentication>
+		<use-password/>
+	</authentication>
+	
+	<connection class="org.monet.grided.core.serializers.xml.federation.LDAPConnection" url="http://localhost" user="user1" password="1234">
+	  <setup>
+        <schema>dc=example,dc=com</schema>
+        <parameter name="telephoneNumber" as="lang"/>
+        <parameter name="mail" as="email"/>
+        <parameter name="uid" as="uid"/>
+        <parameter name="cn" as="cn"/>	  </setup>
+	</connection>
+	
+</federation-service>

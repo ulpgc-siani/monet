@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="monet.docservice.applet" basedir="." default="main">
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib/include" />
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="log4j.dir" value="${classes.dir}/org/apache" />
+	<property name="jar.dir" value="${build.dir}/jar" />
+	<property name="jar.file" value="${jar.dir}/compiled.jar" />
+	<property name="usage.file" value="${jar.dir}/usage.txt" />
+	<property name="seeds.file" value="${jar.dir}/seeds.txt" />
+	<property name="usageDebug.file" value="${jar.dir}/usageDebug.txt" />
+	<property name="seedsDebug.file" value="${jar.dir}/seedsDebug.txt" />
+	<property name="dist.jar.file" value="${jar.dir}/signerApplet.jar" />
+	<property name="debug.jar.file" value="${jar.dir}/signerAppletDebug.jar" />
+	<property name="main-class" value="org.monet.docservice.applet.Signer" />
+	<property name="signed.dir" value="${build.dir}/signed" />
+	<property name="proguard.file" value="lib/proguard.jar" />
+
+	<property name="keystore.file" value="assets/keystore" />
+	<property name="keystore.storepass" value="123456" />
+	<property name="keystore.alias" value="monet" />
+
+	<path id="libs.to.include">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="project.class.path">
+		<path refid="libs.to.include" />
+		<pathelement path="${java.class.path}/" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${classes.dir}" />
+		<javac target="1.5" srcdir="${src.dir}" destdir="${classes.dir}" debug="true"  >
+			<classpath refid="project.class.path" />
+		</javac>
+		<copydir src="${lib.dir}" dest="${classes.dir}">
+		</copydir>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile="${jar.file}" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}" />
+				<attribute name="Codebase" value="*" />
+				<attribute name="Permissions" value="all-permissions" />
+				<attribute name="Application-Name" value="documentsigner" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="obfuscate" depends="obfuscate-dist, obfuscate-debug" />
+
+	<target name="obfuscate-debug" depends="jar">
+		<taskdef resource="proguard/ant/task.properties" classpath="${proguard.file}" />
+
+		<proguard printseeds="${seedsDebug.file}" printusage="${usageDebug.file}" target="1.5">
+			<!-- Specify the input jars, output jars, and library jars. -->
+
+			<injar file="${jar.file}" />
+			<outjar file="${debug.jar.file}" />
+
+			<libraryjar file="${java.home}/lib/rt.jar" />
+			<libraryjar file="${java.home}/lib/jce.jar" />
+			<libraryjar file="${java.home}/lib/jsse.jar" />
+			<libraryjar file="lib/sunpkcs11.jar" />
+
+			<!-- Preserve all public applets. -->
+
+			<keep access="public" extends="java.applet.Applet">
+				<method access="public" />
+			</keep>
+
+			<!-- Preserve all annotations. -->
+
+			<keepattribute name="*Annotation*" />
+
+			<!-- Preserve all native method names and the names of their classes. -->
+
+			<keepclasseswithmembernames>
+				<method access="native" />
+			</keepclasseswithmembernames>
+
+			<!-- Preserve the methods that are required in all enumeration classes. -->
+
+			<keepclassmembers extends="java.lang.Enum">
+				<method access="public static" type="**[]" name="values" parameters="" />
+				<method access="public static" type="**" name="valueOf" parameters="java.lang.String" />
+			</keepclassmembers>
+
+			<!-- Explicitly preserve all serialization members. The Serializable
+           interface is only a marker interface, so it wouldn't save them.
+           You can comment this out if your library doesn't use serialization.
+           If your code contains serializable classes that have to be backward
+           compatible, please refer to the manual. -->
+
+			<keepclassmembers implements="java.io.Serializable">
+				<field access="static final" type="long" name="serialVersionUID" />
+				<field access="static final" type="java.io.ObjectStreamField[]" name="serialPersistentFields" />
+				<method access="private" type="void" name="writeObject" parameters="java.io.ObjectOutputStream" />
+				<method access="private" type="void" name="readObject" parameters="java.io.ObjectInputStream" />
+				<method type="java.lang.Object" name="writeReplace" parameters="" />
+				<method type="java.lang.Object" name="readResolve" parameters="" />
+			</keepclassmembers>
+
+			<keep access="public" extends="java.security.Provider">
+				<method access="public" />
+			</keep>
+
+			<keep access="public" name="org.bouncycastle.jce.provider.CertStoreCollectionSpi">
+				<method access="public" />
+			</keep>
+
+			<keepclassmembers name="org.bouncycastle.jce.provider.BouncyCastleProvider">
+				<field access="public static" type="java.lang.String" />
+			</keepclassmembers>
+
+			<keep access="public" implements="org.apache.log4j.Layout">
+				<method access="public" />
+			</keep>
+
+			<keep access="public" implements="org.apache.log4j.Appender">
+				<method access="public" />
+			</keep>
+
+			<dontnote name="org.apache.log4j.spi.**" />
+			<dontwarn name="org.apache.log4j.net.**, org.apache.log4j.jmx.**" />
+		</proguard>
+	</target>
+
+	<target name="obfuscate-dist" depends="jar">
+		<taskdef resource="proguard/ant/task.properties" classpath="${proguard.file}" />
+
+		<proguard printseeds="${seeds.file}" printusage="${usage.file}" target="1.5">
+			<!-- Specify the input jars, output jars, and library jars. -->
+
+			<injar file="${jar.file}" />
+			<outjar file="${dist.jar.file}" />
+
+			<libraryjar file="${java.home}/lib/rt.jar" />
+			<libraryjar file="${java.home}/lib/jce.jar" />
+			<libraryjar file="${java.home}/lib/jsse.jar" />
+			<libraryjar file="lib/sunpkcs11.jar" />
+
+			<!-- Preserve all public applets. -->
+
+			<keep access="public" extends="java.applet.Applet">
+				<method access="public" />
+			</keep>
+
+			<!-- Preserve all annotations. -->
+
+			<keepattribute name="*Annotation*" />
+
+			<!-- Preserve all native method names and the names of their classes. -->
+
+			<keepclasseswithmembernames>
+				<method access="native" />
+			</keepclasseswithmembernames>
+
+			<!-- Preserve the methods that are required in all enumeration classes. -->
+
+			<keepclassmembers extends="java.lang.Enum">
+				<method access="public static" type="**[]" name="values" parameters="" />
+				<method access="public static" type="**" name="valueOf" parameters="java.lang.String" />
+			</keepclassmembers>
+
+			<!-- Explicitly preserve all serialization members. The Serializable
+	         interface is only a marker interface, so it wouldn't save them.
+	         You can comment this out if your library doesn't use serialization.
+	         If your code contains serializable classes that have to be backward
+	         compatible, please refer to the manual. -->
+
+			<keepclassmembers implements="java.io.Serializable">
+				<field access="static final" type="long" name="serialVersionUID" />
+				<field access="static final" type="java.io.ObjectStreamField[]" name="serialPersistentFields" />
+				<method access="private" type="void" name="writeObject" parameters="java.io.ObjectOutputStream" />
+				<method access="private" type="void" name="readObject" parameters="java.io.ObjectInputStream" />
+				<method type="java.lang.Object" name="writeReplace" parameters="" />
+				<method type="java.lang.Object" name="readResolve" parameters="" />
+			</keepclassmembers>
+
+			<keep access="public" extends="java.security.Provider">
+				<method access="public" />
+			</keep>
+			
+			<keep access="public" name="org.bouncycastle.jce.provider.CertStoreCollectionSpi">
+				<method access="public" />
+			</keep>
+
+			<keepclassmembers name="org.bouncycastle.jce.provider.BouncyCastleProvider">
+				<field access="public static" type="java.lang.String" />
+			</keepclassmembers>
+
+			<assumenosideeffects name="java.lang.Throwable">
+				<method access="public" type="**" name="printStackTrace" parameters="" />
+			</assumenosideeffects>
+
+			<assumenosideeffects name="org.apache.log4j.**">
+				<method />
+			</assumenosideeffects>
+			<dontnote name="org.apache.log4j.spi.**" />
+			<dontwarn name="org.apache.log4j.net.**, org.apache.log4j.jmx.**" />
+		</proguard>
+	</target>
+
+	<target name="sign-jar" depends="obfuscate" >
+		<mkdir dir="${signed.dir}" />
+		<signjar jar="${dist.jar.file}" keystore="${keystore.file}" destDir="${signed.dir}" alias="${keystore.alias}" storepass="${keystore.storepass}" />
+		<signjar jar="${debug.jar.file}" keystore="${keystore.file}" destDir="${signed.dir}" alias="${keystore.alias}" storepass="${keystore.storepass}" />
+	</target>
+
+	<target name="clean-build" depends="clean,sign-jar" />
+
+	<target name="main" depends="clean,sign-jar" />
+
+</project>

@@ -1,0 +1,11 @@
+Helper = new Object;
+Helper.PAGE = "page";
+Helper.EDITORS = "editors";
+Helper.PREVIEW = "preview";
+Helper.OBSERVERS = "observers";
+Helper.REVISIONLIST = "revisionlist";
+Helper.MAP = "map";
+Helper.SOURCE = "source";
+Helper.ROLE = "role";
+Helper.LIST = "list";
+Helper.CHAT = "chat";

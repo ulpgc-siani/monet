@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="10"/>
+    <General>
+      <SessionStorage Value="InIDEConfig"/>
+      <MainUnit Value="0"/>
+      <Title Value="msmanager"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="7"/>
+      <RevisionNr Value="43"/>
+      <BuildNr Value="13"/>
+      <Language Value="040A"/>
+      <StringTable CompanyName="Grupo de Ingenieria del Software y del Conocimiento del SIANI" ProductName="Monet Server Manager"/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="31">
+      <Unit0>
+        <Filename Value="msmanager.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="units/forms/fmain/fmain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="units/controls/ucontrol_main/ucontrol_main.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="units/agents/uagent_main/uagent_main.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="units/forms/fwait/fwait.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmWait"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="units/controls/ucontrol_wait/ucontrol_wait.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="units/lib/utools/utools.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="units/lib/uinfo/uinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="units/forms/fabout/fabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="units/controls/ucontrol_commandthread/ucontrol_commandthread.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="units/agents/uagent_commandthread/uagent_commandthread.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="units/lib/utypes/utypes.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="units/agents/uagent_vm/uagent_vm.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="units/lib/uconstants/uconstants.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="units/forms/fproperties/fproperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="units/forms/fserver/fserver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmServer"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="units/controls/ucontrol_server/ucontrol_server.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="units/agents/uagent_server/uagent_server.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="units/forms/fmessage/fmessage.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="WinDgMessage"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="units/forms/finput/finput.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="WinDgInput"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="units/lib/uassocarray/uassocarray.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="units/forms/fpreferences/fpreferences.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmPreferences"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="units/controls/ucontrol_preferences/ucontrol_preferences.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="units/agents/uagent_preferences/uagent_preferences.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="units/agents/uagent_remoteserver/uagent_remoteserver.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="units/forms/fnewremoteserver/fnewremoteserver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmNewRemoteServer"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="units/lib/usocommand/usocommand.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="units/forms/fnewspace/fnewspace.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmNewSpace"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="units/lib/ulog/ulog.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="units/forms/finformation/finformation.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmInformation"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="units/forms/flogin/flogin.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmLogin"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit30>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="build/msmanager"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="components/lazsolutions/3rdParty/Synapse;components/uniqueinstance;components/zipfile;components/lazsolutions/Units;units/controls/ucontrol_main;units/forms/fmain;units/agents/uagent_main;units/forms/fwait;units/controls/ucontrol_wait;units/lib/utools;units/lib/uinfo;units/forms/fconsole;units/forms/fabout;units/controls/ucontrol_commandthread;units/agents/uagent_commandthread;units/lib/utypes;units/agents/uagent_vm;units/lib/uconstants;units/forms/finformation;units/controls/ucontrol_spaces;units/agents/uagent_spaces;units/forms/fspaces;units/forms/fmessage;units/forms/finput;units/agents/uagent_server;units/controls/ucontrol_server;units/forms/fserver;units/forms/fproperties;units/lib/uassocarray;units/forms/fpreferences;components/lazsolutions/Forms;units/controls/ucontrol_preferences;units/agents/uagent_preferences;units/forms/fnewremoteserver;units/agents/uagent_remoteserver;units/lib/usocommand;units/forms/fnewspace;units/lib/ulog;units/forms/flogin"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <Checks>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <UseExternalDbgSyms Value="True"/>
+      </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <IgnoredMessages idx6018="True" idx5043="True" idx5024="True"/>
+      </CompilerMessages>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="10">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+      <Item4>
+        <Name Value="EInterfaceWarning"/>
+      </Item4>
+      <Item5>
+        <Name Value="Unknown"/>
+      </Item5>
+      <Item6>
+        <Name Value="Exception"/>
+      </Item6>
+      <Item7>
+        <Name Value="RunError(6)"/>
+      </Item7>
+      <Item8>
+        <Name Value="EInOutError"/>
+      </Item8>
+      <Item9>
+        <Name Value="EConvertError"/>
+      </Item9>
+      <Item10>
+        <Name Value="EProcess"/>
+      </Item10>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

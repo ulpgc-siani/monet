@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SelectFieldEditionDeclaration" parent="EditionDeclaration" tag="edition">
+  
+  <hint>Restriccion semantica: para poder definir la propiedad allow-search debemos definir obligatoriamente la propiedad allow-history.<br/>¿Qué hay de los campos data y datasource?</hint>
+  
+  <property name="allow-history">
+    <description>La presencia de esta propiedad indica que el campo puede gestionar un historial de los valores introducidos por el usuario</description>
+    <attribute name="datastore" type="String" required="true">
+      <description>Nombre de la tabla en el que se almacenarán los valores. Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</description>
+      <hint>Antes se llamaba datasource</hint>
+    </attribute>
+  </property>
+  
+  <property name="allow-search">
+    <description>La presencia de esta propiedad indica que el campo está indexado y se pueden realizar búsquedas</description>
+  </property>
+
+  <property name="allow-other">
+    <description>La presencia de esta propiedad indica que se pueden añadir texto libre</description>
+    <hint>Antes se llamaba "other" a secas. El texto de la propiedad (other)otro(/other) no se puede usar porque es sensible al idioma. Podría tener un atributo code para indicar el código de los otros</hint>
+  </property>
+  
+  <property name="showcode">
+    <description>Sirve para mostrar el codigo del item definido dentro de la propiedad data o en el datasource</description>
+    <hint>Antes estaba integrado en datasource</hint>
+  </property>
+  
+</class>

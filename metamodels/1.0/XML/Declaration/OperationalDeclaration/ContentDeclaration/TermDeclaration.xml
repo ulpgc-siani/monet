@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="TermDeclaration" parent="ContentDeclaration" tag="term">
+  <description>Descripción una palabra en un Termbook</description>
+
+  <attribute name="code" type="key" required="true">
+    <description>Código de esta palabra</description>
+  </attribute>
+  <attribute name="value" type="String" required="true">
+    <description>La palabra en sí</description>
+  </attribute>
+  <attribute name="data" type="String">
+    <description>Datos adicionales que se quieran añadir a la palabra. Estos datos pueden estar etiquetados con XML para facilitar su tratamiento</description>
+  </attribute>
+  
+  <include name="term" multiple="true">
+    <option class="TermDeclaration" />
+  </include>
+
+</class>
+

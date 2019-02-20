@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="MultipleableFieldProperty" parent="FieldProperty">
+	<description>Declaración abstracta del tipo campo múltiple</description>
+
+	<property token="is-multiple">
+		<description>Esta propiedad se utiliza para indicar que el campo es multiple</description>
+		<hint>Cuando un campo es replicable, el usuario puede añadir instancias del campo, por ejemplo para introducir varios teléfonos en una ficha de datos personales</hint>
+	</property>
+
+	<property token="boundary">
+		<description>Esta propiedad se utiliza para definir el rango de elementos que se permite añadir</description>
+		<attribute token="min" type="natural" required="true">
+			<description>Número mínimo de elementos permitidos cuando el campo es múltiple</description>
+		</attribute>
+		<attribute token="max" type="natural" required="true">
+			<description>Número máximo de elementos permitidos cuando el campo es múltiple</description>
+		</attribute>
+	</property>	
+
+</property>

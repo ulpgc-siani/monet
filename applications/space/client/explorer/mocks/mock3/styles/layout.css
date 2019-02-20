@@ -1,0 +1,91 @@
+html {
+  height:100%; 
+  max-height:100%; 
+  padding:0;
+  margin:0; 
+  border:0; 
+  overflow: hidden; 
+}
+
+body {
+  height:100%; 
+  max-height:100%; 
+  overflow:hidden; 
+  padding:0; 
+  margin:0; 
+  border:0;
+}
+
+.layout-panel.left {
+  position:absolute; 
+  left:0; 
+  top:0px; 
+  bottom:19px; 
+  width:300px; 
+  z-index:4; 
+  overflow:hidden; 
+  border-right: 1px solid #ccc;
+}
+
+.layout-panel.left .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 10px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.layout-panel.left .content {
+  position:absolute; 
+  top:60px; 
+  bottom:75px; 
+  width:100%; 
+  z-index:4; 
+  overflow:auto; 
+}
+
+.layout-panel.left .content > div {
+  margin: 10px;
+}
+
+.layout-panel.left .footer {
+  position:absolute; 
+  margin:0; 
+  bottom:0; 
+  left:0; 
+  height:70px;
+  display:block;
+  padding: 2px 0px;
+  width:100%; 
+  z-index:5; 
+  overflow:hidden;
+  border-top: 1px dashed #ccc;
+}
+
+.layout-panel.main {
+  overflow:auto; 
+  position:absolute; 
+  z-index:3; 
+  top:0px; 
+  bottom:19px; 
+  left:300px; 
+  right:0;
+  padding: 20px 30px;
+}
+
+.layout-panel.footer {
+  position:absolute; 
+  margin:0; 
+  bottom:0; 
+  left:0; 
+  display:block;
+  padding: 2px 0px;
+  width:100%; 
+  z-index:5; 
+  overflow:hidden;
+  background: #999;
+  font-size: 8pt;  
+}

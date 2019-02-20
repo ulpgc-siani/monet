@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property type="SimpleActionProperty" parent="PlaceActionProperty">
+	<description></description>
+
+  <attribute token="goto" type="key" link="PlaceProperty" required="true">
+    <description>Lugar al que se moverá el flujo de ejecución una vez acabado este lugar</description>
+  </attribute>
+  
+  <attribute token="history" type="language" required="true">
+		<description>Entrada en el historial que se agregará una vez superado el lugar</description>
+	</attribute>
+
+</property>

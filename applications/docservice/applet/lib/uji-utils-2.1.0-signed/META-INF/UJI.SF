@@ -1,0 +1,44 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: 9ByqrUPKkrXfCg+x9wM/2TYmX/Y=
+Created-By: 1.6.0_16 (Sun Microsystems Inc.)
+SHA1-Digest-Manifest: MzQNkz1TvF4wq4XGaB8HJqHqu98=
+
+Name: es/uji/security/util/OS.class
+SHA1-Digest: b0lYIq1v5XCLdc1ZLaR15IvcKCo=
+
+Name: META-INF/maven/es.uji.security/uji-utils/pom.xml
+SHA1-Digest: kIDkPhQzq7/i6X3bV2gUL6aXE3E=
+
+Name: es/uji/security/util/Base64.class
+SHA1-Digest: RxmtoVPgIIWorN2bClg4vPMbg6U=
+
+Name: META-INF/maven/es.uji.security/uji-utils/pom.properties
+SHA1-Digest: wd82qog6nWe+w3aWJJ36LXPvbQU=
+
+Name: es/uji/security/util/net/SocketDataInputStreamReader.class
+SHA1-Digest: 0LOnRp3U/TA9h8Pw/7HIAegufWI=
+
+Name: es/uji/security/util/HexDump.class
+SHA1-Digest: 3tk/cueDP9uho9KglGl7Q6O2d88=
+
+Name: es/uji/security/util/Base64$1.class
+SHA1-Digest: 8CICM6FaqI+4J1qFspoZdu/BOZU=
+
+Name: es/uji/security/util/HexEncoder.class
+SHA1-Digest: J9h99P+jEyuVQ0H3Fkf/pnpJzhQ=
+
+Name: es/uji/security/util/Base64$OutputStream.class
+SHA1-Digest: vxOZUQH73j+XH2Y2tse84mN1W8s=
+
+Name: es/uji/security/util/Base64$InputStream.class
+SHA1-Digest: T7xfHg98UXXLhCzc65XFEaPoiBw=
+
+Name: es/uji/security/util/asn1/DERObjectIdentifier.class
+SHA1-Digest: Wflkbn2QnXA7hOqB37xi8bOy3H4=
+
+Name: es/uji/security/util/RegQuery.class
+SHA1-Digest: m4RK89hDuaVlS38asX3JFY8s7UU=
+
+Name: es/uji/security/util/i18n/LabelManager.class
+SHA1-Digest: UDd4ycc5ZrLQBP0iLP55AlBFscM=
+

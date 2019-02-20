@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CollectionDeclaration" parent="NodeDeclaration" tag="collection">
+  <description>Es una declaración que se utiliza para definir colecciones</description>
+
+  <include name="contain" multiple="true">
+    <option class="ContainDeclaration" />
+  </include>  
+  
+  <include name="views" multiple="true">
+    <option class="CollectionViewDeclaration" />
+  </include>
+  
+  <include name="behavior">
+    <option class="BehaviorDeclaration" />
+  </include>
+
+  <include name="cliente-behavior">
+    <option class="ClientBehaviorDeclaration" />
+  </include>
+  
+  <include name="header">
+    <option class="HeaderDeclaration"/>
+  </include>
+  
+  <property name="uses" multiple="true">
+    <attribute name="reference" type="String" link="ReferenceDeclaration">
+      <description>Nombre del fichero que contiene la referencia que va a usar la colección. IMPORTANTE: Poner el caracter '@' delante del nombre (@name)</description>
+      <restriction>ONLY Definition WITH ReferenceDeclaration FROM Model</restriction> 
+    </attribute>
+  </property> 
+  
+  
+
+</class>
+

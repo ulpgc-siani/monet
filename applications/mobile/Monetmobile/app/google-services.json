@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "995340467700",
+    "project_id": "monetmobile-4c54a"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995340467700:android:3821cf04de33d71d",
+        "android_client_info": {
+          "package_name": "org.monet.space.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaSfV2Wy8gEklm8ujVPTKSA10GtR9hY08"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

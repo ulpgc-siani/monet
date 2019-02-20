@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SelectFieldDeclaration" parent="FieldDeclaration" tag="field-select">	
+	
+  <include name="termlist" multiple="true">
+    <option class="TermListDeclaration"/>
+  </include>
+
+  <include name="uses">
+    <option class="ThesaurusUseDeclaration"/>
+  </include>
+
+  <include name="edition">
+    <option class="SelectFieldEditionDeclaration"/>
+  </include>
+
+  <example>
+    <![CDATA[
+      <field-select code="">
+        <label lang="es" type="long">Tipo de tutoría</label>
+        <description lang="es">Tipo de tutoría académica</description>
+
+         <data showcode="true">
+           <item code="000">Presencial</item>
+           <item code="001">Electrónica</item>
+           <item code="002">De grupo</item>
+         </data>
+        <edition>
+          <allow-other />
+        </edition>
+      </field-select>
+  ]]>
+  </example>
+
+
+</class>
+

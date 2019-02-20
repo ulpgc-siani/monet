@@ -1,0 +1,25 @@
+#console-view span[name="state-text"], span[name="date-text"] {
+  
+}
+
+#console-view .message {
+  margin-bottom: 15px;
+}
+
+#console-view .panel.left input[type="button"] {
+  background: white;
+  border: 1px solid;
+  font-size: 20pt;
+  padding: 15px 50px;
+}
+
+#console-view .panel.left input[type="button"]:hover {
+  background: none repeat scroll 0 0 #EFF7FF;
+}
+
+#console-view .button-box {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 1px dotted #336699;
+}

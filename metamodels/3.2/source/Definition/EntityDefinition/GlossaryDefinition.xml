@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="GlossaryDefinition" parent="SourceDefinition" token="glossary">
+  <description>Un glosario es el mecanismo de Monet que permite obtener información de vocabulario de otra unidad de negocio</description>
+  <hint>Se utilizan para clasificar la información</hint>
+</class>

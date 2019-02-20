@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="MemoFieldDeclaration" parent="FieldDeclaration" tag="field-memo">
+	<description>Declaración que se utiliza para modelar un campo memo</description>
+
+	<property name="length">
+		<description>Se utiliza para definir la longitud máxima/mínima del campo</description>
+		<attribute name="max" type="natural">
+			<description>Máximo número de caracteres que admite el campo</description>
+		</attribute>
+		<attribute name="min" type="natural">
+			<description>Mínimo número de caracteres que admite el campo</description>
+		</attribute>
+	</property>
+
+  <property name="edition">
+    <description>Se utiliza para indicar cómo se guarda el texto: minúsculas, mayúsculas, oración o título</description>
+    <attribute name="mode" type="enumeration" required="true">
+      <enumeration>
+        <option>uppercase</option>
+        <option>lowercase</option>
+        <option>sentence</option>
+        <option>title</option>
+      </enumeration>
+    </attribute>
+  </property>
+
+</class>

@@ -1,0 +1,1 @@
+Service that let's receive and send mails with custom addresses.

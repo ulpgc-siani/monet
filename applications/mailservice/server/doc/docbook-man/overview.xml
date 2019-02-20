@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article>
+  <title>Overview</title>
+
+	<section>
+      <title>Whats' this ?</title>
+
+      <para>Jsmtpd is a compact SMTP daemon (Email server), entirely written
+      in Java. It is basicly able to receive E-mail following the SMTP
+      protocol, described in RFC 821. Each others functionnalities are
+      implemented as plugin modules, allowing the core to remain small and
+      easily understaindable.</para>
+
+      <para>As now, Jsmtpd is able to receive mail, check it's recipients
+      (ACL-SimpleACL plugin), check for viruses (filters-ClamAVFilter,
+      connects to a ClamAV daemon), check for spam using the Java Jasen engine
+      (filters-JasenAntiSpamFilter) or a spamassassin daemon, check senders
+      via RBL plugin or blacklist plugin. Emails can be delivered localy using
+      the mailbox writer (DeliveryServices-UnixMailboxWriter), or to a remote
+      STMP server (DeliveryServices-RemoteSmtpSender). DNSQueries are also
+      provided by a plugin (DNSJava).</para>
+    </section>
+
+    <section>
+      <title>Key Features</title>
+
+      <para>Jsmtpd comes with three services :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>First is the receiver service. Its job is to listen for
+          incoming STMP connection, chat with the client in order to receive
+          E-mails according to ACL plugin.</para>
+        </listitem>
+
+        <listitem>
+          <para>The second service is the mail queue services. It holds the
+          received mails (loaded or writen to disk). Whenever possible, it
+          processes mails to the delivery service.</para>
+        </listitem>
+
+        <listitem>
+          <para>The delivery service is a filter plugin chain ending by a
+          delivery service. A filter is basicly a piece of code that answers
+          yes or not to an incoming email. Mails are then checked agains
+          theses plugins, following a tree model. A the end of the chain, the
+          mail is droped if it does not match the filters, or a delivery
+          plugin is invoked to deliver the mail. For now, only two delivery
+          services can be routed using the ACL plugin : local or remote
+          mail.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Modularity - Simplicity</title>
+
+      <para>Jsmtpd's design is heavily based on plugins. Most functionnalities
+      are implemented as plugins. Plugins interfaces are simple to understaind
+      and implement. With minimal time spent learning Jsmtpd, you can rewrite
+      how Jsmtpd handles :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Dns queries</para>
+        </listitem>
+
+        <listitem>
+          <para>Acces control list (who can do what on the runnning
+          server)</para>
+        </listitem>
+
+        <listitem>
+          <para>Deliveries : you want to put your mail directly into your
+          custom application ? Write a plugin !</para>
+        </listitem>
+
+        <listitem>
+          <para>IP filtering</para>
+        </listitem>
+
+        <listitem>
+          <para>Mail filtering</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Undesirable mail</title>
+
+      <para>Jsmtpd is designed to provide efficient ways to stop unsollicited
+      mail or mail containing viruses. A Jsmtpd deamon can't be set as open
+      relay ( you'll have to write a plugin to do so ;).</para>
+
+      <para>Filtering spam can be done at two levels. Ip based filtering will
+      reject connections from well known spammers or open relais smtp servers
+      (ie misconfigured mail servers used by spammers to relay their mails).
+      Content based filtering allows to check mail containing spam (using
+      Spamassassin or Jasen) or viruses (using Clam Antivirus).</para>
+
+      <para>If you can't find a filter matching your needs, you can easily
+      write your own and plug it in Jsmtpd.</para>
+    </section>
+
+    <section>
+      <title>Targets</title>
+
+      <para>Jsmtpd is intended to remain small, understaindable and (quite)
+      fast. Without using filters plugin, minimal process is applied to the
+      email data, providing best performances. If you need a more powerfull
+      (in terms of functionnalities) email service solution, I recommend you
+      to check out the jakarta James project and their mailet API.</para>
+    </section>
+</article>

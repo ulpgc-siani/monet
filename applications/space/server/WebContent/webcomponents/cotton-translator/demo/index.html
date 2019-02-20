@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>cotton-translator Sample</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../cotton-translator-behavior.html">
+  </head>
+
+  <style>
+    h4 {
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+    div {
+      margin: 0px 10px 20px;
+    }
+  </style>
+
+  <body>
+
+    <h1>Language is propagated in child components</h1>
+    <container-component language="es">
+      <div><sample-component></sample-component></div>
+      <div><sample-component language="en"></sample-component></div>
+    </container-component>
+
+    <h1>Components with its own language</h1>
+    <container-component language="es">
+      <div><sample-component language="en"></sample-component></div>
+      <div><sample-component language="gr"></sample-component></div>
+    </container-component>
+
+    <dom-module id="container-component">
+      <template><content/></template>
+      <script>
+        Polymer({
+          is: "container-component",
+          behaviors: [ CottonBehaviors.TranslatorBehavior ]
+        });
+      </script>
+    </dom-module>
+
+    <dom-module id="sample-component">
+
+      <template>
+        <h4>[[title]]</h4>
+        <div>[[message]]</div>
+      </template>
+
+      <script>
+
+        const SampleDictionary = {
+          es : {
+            title : "Traducciones",
+            message : "Los componentes son traducibles a otros idiomas usando el comportamiento definido en este componente de cotton"
+          },
+          en : {
+            title : "Translations",
+            message : "Translations to other languages are available by using this cotton component"
+          },
+          gr : {
+            title : "?????",
+            message : "---------------------------"
+          }
+        };
+
+        Polymer({
+          is: "sample-component",
+
+          behaviors: [ CottonBehaviors.TranslatorBehavior ],
+
+          ready : function() {
+            this.translate(SampleDictionary);
+          }
+        });
+
+      </script>
+
+    </dom-module>
+  </body>
+</html>

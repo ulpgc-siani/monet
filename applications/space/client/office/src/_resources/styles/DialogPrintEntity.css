@@ -1,0 +1,97 @@
+.dialog.printentity {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.dialog.printentity .header {
+  display: none;
+}
+
+.dialog.printentity.pdf .header {
+  display: block;
+}
+
+.dialog.printentity table {
+  width: 100%;
+}
+
+.dialog.printentity table table {
+  margin-left: 10px;
+}
+
+.dialog.printentity select {
+  width: 160px;
+}
+
+.dialog.printentity input {
+  width: 140px;
+}
+
+.dialog.printentity .disabled {
+  color: #666;
+}
+
+.dialog.printentity .toolbar {
+  border-top: 1px dotted #ddd;
+  padding-top: 10px;
+}
+
+.dialog.printentity .toolbar li {
+  float: right;
+}
+
+.dialog.printentity .toolbar li a {
+  margin-right: 0;
+}
+
+.dialog.printentity .attributes li {
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.dialog.printentity td {
+  padding-right: 10px;
+}
+
+.dialog.printentity td.range.disabled table, .dialog.printentity td.range.disabled select {
+  color: #AAA;
+}
+
+.dialog.printentity td > label, .dialog.printentity td > .label {
+  background: #EFEFEF;
+  display: block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+}
+
+.dialog.printentity td > .label {
+  position: relative;
+}
+
+.dialog.printentity td > .label label {
+  color: black;
+  cursor: pointer;
+}
+
+.dialog.printentity td > .label input {
+  left: 0;
+  margin-left: 2px;
+  margin-top: 1px;
+  position: absolute;
+  width: 20px;
+}
+
+.dialog.printentity td li label {
+  margin-left: 3px;
+}
+
+.dialog.printentity td .no-limit {
+  color: #777777;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.dialog.printentity td input {
+  margin: 0;
+  padding: 1px;
+}

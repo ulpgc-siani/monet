@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ReferenceDeclaration" parent="OperationalDeclaration" tag="reference">
+
+  <include name="attributes" multiple="true" required="true">
+    <option class="AttributeDeclaration" />
+  </include>
+
+</class>
+

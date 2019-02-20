@@ -1,0 +1,25 @@
+.view.eventlog {
+  width: 100%;
+}
+
+#GridOfEventLog{
+  float: left;
+  width: 60%;
+}
+
+#EventDetails{
+  float: left;
+  width: 40%;
+  height: 625px;
+  overflow: auto;
+  padding-top: 5px;
+}
+
+#EventDetails .event .title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#EventDetails .event .value {
+}
+

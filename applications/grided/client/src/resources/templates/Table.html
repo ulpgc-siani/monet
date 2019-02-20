@@ -1,0 +1,31 @@
+<div class="table-border">
+<table class="grided-table" callpadding="0" cellspacing="0">
+  <% if (showHeader) { %>
+    <tr class="header">
+    <% _.each(columns, function(header, index) { %>
+      <th><%= header %></th>    
+    <% }); %>
+    </tr>
+  <% } %>
+  
+  <% if (rows.length == 0) %> <div class="message"><%= empty_message %></div>
+  <% _.each(rows, function(row, index) { %>    
+    <tr id="<%= row.id %>">
+      <% if (checkbox) { %><td><input id="<%= id %>_<%= index %>" type="checkbox" name="checked"/></td><% }; %>
+      <% _.each(columns, function(column, number) { %>         
+        <% if (clickable)%> <td><a name="<%= column %>" href=""><%= row[column] %></a></td>
+        <% if (! clickable) %> <td><span name="<%= column %>"><label for="<%= id %>_<%= index %>"><%= row[column] %></label></span></td>        
+      <% }); %>
+      
+      <% if (action) { %>        
+          <td class="action"><a href=""><%= action.name %></a></td>        
+      <% } %>
+      
+      <% if (conditional) { %>        
+        <% var i = conditional.getIndex(row); %>                        
+        <td class="action"><a href=""><%= conditional.actions[i].name %></a></td>        
+      <% } %>                     
+    </tr>
+  <% }); %>
+</table>
+</div>

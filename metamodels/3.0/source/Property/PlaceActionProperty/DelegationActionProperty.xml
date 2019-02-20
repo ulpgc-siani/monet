@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="delegation" type="DelegationActionProperty" parent="SimpleActionProperty">
+	<description></description>
+
+  <attribute token="provider" type="key" link="TaskProviderProperty" required="true">
+    <description>Proveedor que se encargará de gestionar la delegación</description>
+  </attribute>
+  
+  <attribute token="mode" type="enumeration" default="SELECT">
+    <description>Modo de selección del proveedor en caso de existir más de una instancia</description>
+    <enumeration>
+      <option token="AUTOMATIC">
+        <description>Selección automática en base a una distribución</description>
+      </option>
+      <option token="SELECT">
+        <description>Selección por parte del usuario</description>
+      </option>
+    </enumeration>
+  </attribute>
+
+  <method name="on-select-role">
+    <parameter name="roleChooser" type="RoleChooser" />
+  </method>
+  
+  <method name="on-setup">
+    <parameter name="ds" type="DelegationSetup" />
+  </method>
+  
+  <method name="on-setup-complete">
+    <parameter name="providerLabel" type="String" />
+    <parameter name="suggestedStartDate" type="Date" />
+    <parameter name="suggestedEndDate" type="Date" />
+    <parameter name="observations" type="String" />
+    <parameter name="urgent" type="boolean" />
+  </method>
+
+</property>

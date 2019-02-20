@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+  <server serial="A" name="#server_name#">
+    <container serial="1" name="tomcat-public" mayor-version="1" minor-version="1" user="tomcat-public" group="monet" path="/opt/tomcat-public" user-path="/home" db-create="#db_create#" db-prefix="#db_spaces_prefix#" db-url="#url#" db-user="#db_spaces_username#" db-password="#db_spaces_password#" db-default-user="#db_spaces_username#" db-default-password="#db_spaces_password#" db-default-name="ROOT" docserver-server="mvm" docserver-container="tomcat-local" frontserver-url="https://#deploy-server-ip#/#space#" script-start="/usr/bin/systemctl start tomcat-public" script-start-debug="/usr/bin/systemctl start tomcat-public-debug" script-stop="/usr/bin/systemctl stop tomcat-public" reportservice-url="http://localhost:8081/rs_#space#/servlet/reportservice" db-federation-prefix="#db_federation_prefix#">
+      <!--federation-->
+    </container>
+  </server>
+</servers>

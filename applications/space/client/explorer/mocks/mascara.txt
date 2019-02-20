@@ -1,0 +1,19 @@
+view
+	label: "goaoal"
+	show picture
+		label: "asdfkajsdkfj"
+		placeholder: "asdfjaskdfjaasd"
+	show title
+	show name
+	show section
+		view
+			show
+			mask
+
+	mask
+		XXX A YYYY
+		XXX BBBBBB
+		XXX CCCCCC
+		----------
+		AAAAABBBBB
+

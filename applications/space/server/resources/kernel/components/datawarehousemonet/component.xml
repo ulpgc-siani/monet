@@ -1,0 +1,7 @@
+<component code="datawarehousemonet" type="datawarehouse"
+           class="org.monet.space.kernel.components.monet.ComponentDatawareHouseMonet">
+  <labels>
+    <label language="es">Monet</label>
+    <label language="en">Monet</label>
+  </labels>
+</component>

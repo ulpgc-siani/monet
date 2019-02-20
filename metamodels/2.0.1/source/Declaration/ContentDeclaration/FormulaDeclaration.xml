@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="FormulaDeclaration" parent="Declaration" tag="expression">
+  <description>Declaración que se utiliza para modelar una expressión en una formula</description>
+  
+	<attribute name="type" type="enumeration" required="true">
+		<description>Tipo de datos resultado de la formula</description>
+		<enumeration>
+      <option>REAL</option>
+			<option>INTEGER</option>
+      <option>TEXT</option>
+		</enumeration>
+	</attribute>
+
+  <include name="expression">
+    <option class-name="ExpressionDeclaration" />
+  </include>
+  
+  <include name="operator">
+    <option class-name="OperatorDeclaration" />
+  </include>
+  
+</class>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="RuleProperty">
+	<description>Declaración del tipo abstracto de vista</description>
+
+  <attribute token="code" type="code" required="true" specific="true">
+		<description>Código de la regla</description>
+		<hint>No hay que editar este atributo. Se genera automáticamente</hint>
+	</attribute>
+	
+  <attribute token="when" type="expression:boolean" required="true">
+    <description>Expresión que se evalua para establecer si la regla se activa o no</description>
+  </attribute>
+  
+  <property token="listen">
+    <description>Establece frente a que eventos de cambio de otros
+      objetos del sistema de información se reevalua esta regla
+    </description>
+
+    <property token="parent">
+      <description>Cuando cambia el padre de este nodo</description>
+    </property>
+    <attribute token="sibling" type="key" link="NodeDefinition" multiple="true">
+      <description>Cuando cambia un hermano de este nodo</description>
+      <hint>El padre de este nodo debe ser un nodo de tipo contenedor</hint>
+    </attribute>
+    <attribute token="link" type="key" link="LinkFieldProperty" multiple="true">
+      <description>Cuando cambia el nodo enlazado al campo link indicado</description>
+    </attribute>
+    <attribute token="children" type="key" link="NodeDefinition" multiple="true">
+      <description>Cuando cambia un hermano de este nodo</description>
+      <hint>El padre de este nodo debe ser un nodo de tipo contenedor</hint>
+    </attribute>
+  </property>
+</property>

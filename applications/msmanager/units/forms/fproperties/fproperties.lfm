@@ -1,0 +1,65 @@
+object FrmProperties: TFrmProperties
+  Left = 1519
+  Height = 343
+  Top = 414
+  Width = 449
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
+  Caption = 'Properties'
+  ClientHeight = 343
+  ClientWidth = 449
+  OnCreate = FormCreate
+  Position = poMainFormCenter
+  LCLVersion = '1.8.4.0'
+  object BtnClose: TButton
+    Left = 361
+    Height = 25
+    Top = 303
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Close'
+    OnClick = BtnCloseClick
+    TabOrder = 0
+  end
+  object StrGridProperties: TStringGrid
+    Left = 16
+    Height = 285
+    Top = 8
+    Width = 420
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoEdit = False
+    AutoFillColumns = True
+    ColCount = 2
+    Columns = <    
+      item
+        Title.Caption = 'Name'
+        Width = 219
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Caption = 'Value'
+        Width = 200
+      end>
+    FixedCols = 0
+    Flat = True
+    Options = [goFixedVertLine, goFixedHorzLine, goHorzLine, goRangeSelect, goRowSelect, goSmoothScroll]
+    PopupMenu = PopProperties
+    RowCount = 1
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+    TitleFont.Height = -11
+    ColWidths = (
+      219
+      200
+    )
+  end
+  object PopProperties: TPopupMenu
+    left = 328
+    top = 8
+    object MenuCopyPropertyValue: TMenuItem
+      Caption = 'Copy value'
+      OnClick = MenuCopyPropertyValueClick
+    end
+  end
+end

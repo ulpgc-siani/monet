@@ -1,0 +1,21 @@
+.view {
+  margin-bottom: 10px;
+}
+
+.view label {
+	font-size: 17px;
+	cursor: pointer;
+}
+
+.view .block label {
+  cursor: pointer;
+}
+
+.view label.right {
+  float: right;
+  height: 20px;
+}
+
+.view .clear {
+	clear: both;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FormViewDeclaration" parent="NodeViewDeclaration" tag="view">
+
+  <property name="show" multiple="true">
+    <description>Se utiliza para indicar que campos se van a mostrar en la vista</description>
+    <attribute name="field" type="key" link="FieldDeclaration" required="true">
+	    <description>Nombre del atributo del campo</description>
+    </attribute>
+  </property>
+  
+</class>

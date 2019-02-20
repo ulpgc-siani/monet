@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="TaskDefinition" parent="EntityDefinition" extensible="true">
+	<description>Una tarea es una trabajo colectivo o individual que se desarrolla en la unidad de negocio</description>
+	
+    <attribute token="role" type="key" link="RoleDefinition">
+		<description>Restringe los usuarios que pueden acceder a esta tarea</description>
+	</attribute>
+
+	<property token="is-private">
+		<description>Esta propiedad se utiliza cuando se desea que la tarea sólo sea visible para el usuario propietario</description>
+	</property>
+  
+	<property token="is-background">
+		<description>Esta propiedad se utiliza cuando se desea que la tarea no sea visible para los usuarios. Se considera una tarea de sistema</description>
+	</property>
+
+</class>

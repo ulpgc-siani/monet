@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="BalanceScoreCardSectionDeclaration" parent="ContentDeclaration" tag="section">
+  <description>Declaración que se utiliza para modelar una sección del cuadro de mando</description>
+
+  <attribute name="name" type="string" required="true">
+    <description>Nombre de la sección del cuadro de mando</description>
+  </attribute>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta de la sección. Se utiliza para mostrar a los usuarios el nombre de la sección</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text" />
+  </property>
+
+  <property name="description" multiple="true" key="language">
+    <description>Descripción de la sección. Se utiliza para ofrecer a los usuarios una explicación más detallada de la sección</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text" />
+  </property>
+
+  <property name="use" multiple="true">
+    <description>TODO</description>
+    <attribute name="report" type="code" link="Definition" restriction="ReportDeclaration">
+      <description>TODO</description>
+    </attribute>
+  </property>
+
+  <include name="section" multiple="true">
+    <option class-name="BalanceScoreCardSectionDeclaration" />
+  </include>
+
+</class>
+

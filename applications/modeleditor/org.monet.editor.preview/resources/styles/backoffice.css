@@ -1,0 +1,4187 @@
+.dialog.signnodedocument {
+  width: 480px;
+  height: 300px;
+}
+.dialog.signnodedocument ul {
+  overflow-y: auto;
+  height: 180px;
+}
+.dialog.signnodedocument li {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+.dialog.signnodedocument li:hover {
+  background: #DCE5F2 !important;
+}
+.dialog.signnodedocument li.active {
+  background: #D0E0F5;
+}
+
+.listviewer {
+  min-width: 370px;
+}
+.listviewer .group.add, .listviewer .add.list .selector {
+  display: none !important;
+}
+.listviewer.wizard {
+  min-width: 0px;
+}
+.listviewer .wizard {
+  margin: 10px 6px 0 0;
+}
+.listviewer .label {
+  border-bottom: 1px dotted #AAAAAA;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+.listviewer .content .label, .listviewer.wizard .label {
+  border: 0px;
+  padding: 0px;
+  font-size: 12px;
+}
+  
+.listviewer .edition {
+  display: none;
+}
+.listviewer.editable .edition {
+  display: block;
+}
+.listviewer .toolbar.edition {
+  display: none;
+}
+.listviewer.editable .toolbar.edition {
+  display: block;
+}
+.listviewer .summary {
+  height: 2px;
+}
+.listviewer .summary .filters, .listviewer .summary .count {
+  height: 15px;
+  padding: 5px 0px;
+}
+.listviewer .summary .filters {
+  clear: both;
+}
+.listviewer .summary .count {
+  float: right;
+}
+.listviewer .filters {
+  float: left;
+}
+.listviewer .filters li {
+  display: inline;
+  margin-right: 22px;
+}
+.listviewer .filters li span {
+  background: #FAEDC3;
+  padding: 0px 2px;
+}
+.listviewer .filters .unselect {
+  cursor: pointer;
+  margin-left: -3px;
+  display: inline;
+  width: 16px;
+  height: 16px;
+  background: url('../images/icons/delete-trigger.gif') no-repeat left center;
+  position: absolute;
+  margin-top: -1px;
+}
+.listviewer .add.list .selector {
+  margin-top: -1px;
+  float: left;
+  font-size: 14px;
+}
+.listviewer .selectall {
+  margin-top: 2px;
+  margin-right: 5px;
+}
+.listviewer .delete {
+  float: left;
+  cursor: pointer;
+  
+  font-size: 14px;
+  margin-top: -1px;
+}
+.listviewer.wizard.editable .filter td.edition {
+  display: inline;
+}
+.listviewer.wizard .list {
+  display: block;
+}
+.listviewer.wizard .list li {
+  padding: 1px 2px;
+  margin-bottom: 5px;
+  display: block;
+}
+.listviewer.wizard .list li a {
+  display: inline;
+  white-space: nowrap;
+}
+.listviewer.wizard .list li .description {
+  color: #444;
+  margin-top: 3px;
+}
+.listviewer.wizard .list li.selected a.label {
+  background: #DEE7EE;
+  border: 1px dotted #99BBE8;
+  padding: 1px;
+}
+.listviewer.wizard .list.sortby {
+  display: inline-table;
+}
+.listviewer.wizard .group.sortby .toolbar {
+  display: inline-table;  
+}
+.listviewer.wizard .list.sortby .section {
+  display: inline-table;  
+  border: 1px dotted #99BBE8;
+  padding: 5px 5px 0;
+  padding-right: 22px;
+  width: 80px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.listviewer.wizard .list.sortby .section.readonly li a, .listviewer.wizard .list.sortby .section li.readonly a {
+  color: #666;
+}
+  
+.listviewer.wizard .list.sortby .section.readonly li.selected a {
+  color: #0d3c98;
+}
+.listviewer.wizard .list.sortby li.selected a.label {
+  padding-right: 18px;
+}
+.listviewer.wizard .list.sortby li.selected.ascendant a.label {
+  background: #DEE7EE url('../images/listviewer/ascendant.gif') no-repeat right center;
+}
+.listviewer.wizard .list.sortby li.selected.descendant a.label {
+  background: #DEE7EE url('../images/listviewer/descendant.gif') no-repeat right center;
+}
+.listviewer.wizard .list.sortby .options {
+  margin-left: 6px;
+  margin-right: -8px;
+  float: right;
+  position: relative;
+}
+.listviewer.wizard .list.groupby .options a, .listviewer.wizard .list.sortby .options a {
+  cursor: pointer;
+  margin-left: 2px;
+  display: inline;
+  width: 16px;
+  height: 16px;
+  background: url('../images/icons/delete-trigger.gif') no-repeat left center;
+  position: absolute;
+  right: -21px;
+  top: -2px;
+}
+.ie .listviewer.wizard .list.groupby .options a {
+  top: 1px;
+}
+.ie .listviewer.wizard .list.sortby .options a {
+  top: 0px;
+}
+.listviewer.wizard .list.sortby .options a {
+  right: -11px;
+}
+.listviewer.wizard .group label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+.listviewer.wizard .filter {
+  height: 20px;
+  clear: both;
+  margin: 0px;
+}
+.listviewer.wizard .filter, .listviewer.wizard .list.groupby table {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.listviewer.wizard .filter td.label, .listviewer.wizard .list.groupby table td.label {
+  width: 100px;
+  display: block;
+}
+.ie .listviewer.wizard .filter td.label, .ie .listviewer.wizard .list.groupby table td.label {
+  width: 20%;
+}
+.listviewer.wizard .filter td.content, .listviewer.wizard .list.groupby table td.content {
+  width: 100%;
+}
+.listviewer.wizard .filter input.value, .listviewer.wizard .list.groupby .selector {
+  height: 18px;
+  border: 1px solid #99BBE8;
+  width: 100%;
+}
+.ie .listviewer.wizard .filter input.value {
+  height: 17px;
+  padding-top: 2px;
+  min-width: 361px;
+}
+.listviewer.wizard .filter .empty {
+  position: absolute;
+  color: #666;
+  display: block;
+  font-style: italic;
+  margin-left: 5px;
+  margin-top: -18px;
+  z-index: 5;
+}
+.listviewer .layer {
+  position: relative;
+  min-height: 100px;
+}
+.listviewer .lwloading {
+  text-align: left;
+  vertical-align: middle;
+  background: url('../images/icons/loading.gif') no-repeat left center;
+  padding-left: 20px;
+  padding-top: 12px;
+}
+.listviewer .items {
+  margin-top: 5px;
+}
+.listviewer .items .noitems {
+  margin: 10px 0 10px 17px;
+  color: #666666;
+}
+.listviewer .items .item .invisible0 {
+  display: none;
+}
+  
+.listviewer .items .item {
+  clear: both;
+}
+.listviewer .items .item a {
+  cursor: pointer;
+}
+.listviewer .items .item input.selector {
+  margin-right: 5px;
+}
+.listviewer .items .item .content {
+  display: block;
+  -moz-outline: none;
+  text-decoration: none;
+  background: transparent;
+  border: 1px dotted #99BBE8;
+  padding: 0px;
+  margin-bottom: 5px;
+  float: left;
+  width: 100%;
+}
+.listviewer .item.active .content {
+  background: #EAEEF2;
+}
+.listviewer.editable .items .item.selected .content {
+  background-color: #FFEDAF;
+}
+.listviewer .items .item a.delete {
+  background: url('../images/icons/delete-trigger.gif') no-repeat left center;
+  height: 16px;
+  width: 16px;
+  margin: 5px 0px;
+  position: absolute;
+  margin-left: -23px;
+  margin-top: 4px;
+}
+.listviewer .items .item a.content:hover {
+  background: #DCE5F2 !important;
+}
+.listviewer.editable .items .item.selected a.content:hover {
+  background: #FFE377 !important;
+}
+.listviewer .items .item .label {
+  font-size: 15px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.listviewer .items .item .body {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  color: #666;
+}
+.listviewer .items .item .attributes {
+  color: #555;
+  margin-top: 1px;
+  margin-left: 1px;
+}
+.listviewer .items .item .attributes div {
+  display: inline;
+}
+.listviewer .items .item .icons.attributes {
+  float: right;
+}
+.listviewer .items .item .icons.attributes a.attribute.georef {
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+}
+.listviewer .items .item .icons.attributes a.attribute.georef.val01,
+.listviewer .items .item .icons.attributes a.attribute.georef.val10 {
+  display: none;
+}
+.listviewer .items .item .icons.attributes a.attribute.georef.val00 {
+  background: url('../images/icons/georef_un.png') no-repeat left center;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.listviewer .items .item .icons.attributes a.attribute.georef.val11 {
+  background: url('../images/icons/georef.png') no-repeat left center;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.listviewer .paging {
+  width: 100%;
+  margin: 10px;
+  text-align: right;
+  display: none;
+}
+.listviewer .paging a {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.listviewer .paging a.disabled {
+  color: #666;
+  cursor: default;
+}
+.listviewer .items .item .body .message {
+  color: #00A;
+  font-size: 15px;
+  margin-top: 5px;
+}
+.listviewer .items .item .body .date {
+  
+}
+.listviewer .items .item .body .icon {
+  float: right;
+  margin: 0;
+}
+
+
+
+.infowindow .title a {
+  font-size: 16px;
+}
+.infowindow .extradata {
+  color: #666;
+}
+
+.documentlistviewer .uploading, .documentlistviewer .loading {
+  background: url("../images/icons/loading.gif") no-repeat scroll 5px 9px transparent;
+  color: #000000;
+  display: block;
+  padding: 8px 10px 10px 30px;
+  position: relative;
+  border: 0px;
+  left: 0px; 
+  top: 0px;
+  width: auto;
+  height: 16px;
+  text-align: left;
+}
+.documentlistviewer .header, .documentlistviewer .dialog {
+  font-size: 15px;
+  display: block;
+  margin-top: 10px !important;
+  z-index: 1;
+}
+.documentlistviewer .dialog {
+  border: 1px solid #DDDDDD;
+  border-radius: 5px 5px 5px 5px;
+  padding: 10px !important;
+}
+.documentlistviewer .header select {
+  margin-right: 10px;
+  width: 100%;
+  float: left;
+}
+.documentlistviewer .header select option {
+  color: #777;
+  padding: 1px 5px;
+}
+.documentlistviewer .header select option.document {
+  color: black;
+  padding-left: 15px;
+}
+.documentlistviewer .header a {
+  display: block;
+  height: 16px;
+  width: 16px;
+  font-size: 12px;
+  text-align: center; 
+  padding: 3px 3px 0;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.documentlistviewer .header a.previous {
+  background: url("../images/icons/previous.gif") no-repeat scroll 3px 2px transparent;
+  margin-right: 10px;
+}
+.documentlistviewer .header a.previous.disabled {
+  background-image: url("../images/icons/previous_disabled.gif");
+}
+.documentlistviewer .header a.next {
+  background: url("../images/icons/next.gif") no-repeat scroll 3px 2px transparent;
+  margin-left: 10px;
+}
+.documentlistviewer .header a.next.disabled {
+  background-image: url("../images/icons/next_disabled.gif");
+}
+.documentlistviewer .dialog.node {
+  position: relative;
+}
+.documentlistviewer .dialog input {
+  width: 98%;
+}
+.documentlistviewer .dialog div.file {
+  margin-top: 5px;
+}
+.documentlistviewer .dialog.node div.file {
+  display: none;
+}
+.documentlistviewer .dialog .accept, .documentlistviewer .dialog .cancel {
+  margin-top: 10px;
+  width: 42px;
+  display: inline;
+}
+.documentlistviewer .dialog .uploading, .documentlistviewer .dialog .error {
+  display: none;
+  left: 50%;
+  top: 62px;
+  position: absolute;
+  border: 0px;
+}
+.documentlistviewer .empty {
+  margin-top: 10px;
+}
+.documentlistviewer .container {
+  margin: 14px 0 0;
+}
+
+.dialog.rememberpreference {
+  width: 430px;
+  height: 145px;
+}
+.dialog.rememberpreference .outfield .outbody .radio label {
+  font-weight: normal;
+}
+
+.dialog.alertentity {
+  width: 650px;
+  height: 500px;
+}
+.dialog.alertentity textarea {
+  width: 611px;
+}
+.dialog.alertentity .list {
+  border: 1px solid #ddd;
+  overflow-y: auto;
+  height: 90px;
+}
+.dialog.alertentity .list .items {
+  margin: 5px;
+}
+.dialog.alertentity .dialog.searchusers .list,
+.dialog.alertentity .dialog.searchroles .list {
+  height: 134px;
+  border-top: 0px;
+}
+.dialog.alertentity .list .user {
+  clear: both;
+  height: 15px;
+}
+.dialog.alertentity .list .user .title {
+  font: normal 12px tahoma, verdana, helvetica;
+  float: left;
+  padding: 0px;
+  margin: 0px;
+}
+.dialog.alertentity .list .user a {
+  float: left;
+  margin-left: 5px;
+}
+
+.dialog.searchusers {
+}
+.dialog.searchusers input {
+  height: 20px;
+  width: 100%;
+}
+.dialog.searchusers .search {
+  margin-left: 5px; 
+}
+
+.searchusers {
+}
+.searchusers .list li a {
+  cursor: pointer;
+  border: 1px solid white;
+  display: block;
+  margin-bottom: 2px;
+  text-decoration: none;
+  background: white;
+}
+.searchusers .list li a:hover {
+  text-decoration: none;
+  border:1px solid #c3daf9;
+  background-color:#ddecfe;
+  background-image: url('../images/backgrounds/searchusersitem.gif');
+}
+.searchusers .list li a .title {
+  color: #2d5593;
+  font:bold 12px tahoma, verdana, helvetica;
+  display:block;
+  padding: 2px 2px 0px;
+  margin: 0px;
+}
+.searchusers .list li a .description {
+  color: #666666;
+  font:normal 11px tahoma, verdana, helvetica;
+  padding: 0px 2px 2px 3px;
+}
+
+.dialog.searchroles {
+}
+.dialog.searchroles input {
+  height: 20px;
+  width: 100%;
+}
+.dialog.searchroles .search {
+  margin-left: 5px; 
+}
+
+.searchroles {
+  
+}
+.searchroles .list li a {
+  cursor: pointer;
+  border: 1px solid white;
+  display: block;
+  margin-bottom: 2px;
+  text-decoration: none;
+  background: white;
+}
+.searchroles .list li a:hover {
+  text-decoration: none;
+  border: 1px solid #c3daf9;
+  background-color: #ddecfe;
+  background-image: url('../images/backgrounds/searchrolesitem.gif');
+}
+.searchroles .list li a .title {
+  color: #2d5593;
+  font: bold 12px tahoma, verdana, helvetica;
+  display: block;
+  padding: 2px 2px 0px;
+  margin: 0px;
+}
+.searchroles .list li a .description {
+  color: #666666;
+  font: normal 11px tahoma, verdana, helvetica;
+  padding: 0px 2px 2px 3px;
+}
+
+.nvc {
+  overflow: auto;
+  height: 100%;
+}
+.nvc .panels {
+  clear: both;
+}
+.nvc .panels .panel {
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+.nvc .panels .panel.arrow {
+  padding: 0px;
+  border: 0px;
+}
+.nvc .panels .panel .box {
+  width: 250px;
+  min-width: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.nvc .panels .panel .nav {
+  background: url('../images/icons/right_arrow.png') no-repeat 98% 5px;
+}
+.nvc .panels .panel a.nav:hover {
+  background: #DCE5F2 url('../images/icons/right_arrow.png') no-repeat 98% 5px !important;
+}
+.nvc .panels .panel .active a.nav {
+  background: #EAEEF2 url('../images/icons/right_arrow.png') no-repeat 98% 5px !important;
+}
+.nvc .panels .panel.arrow {
+  display: none;
+}
+.nvc .panels .panel.arrow img {
+  background: url('../images/icons/right_arrow.png') no-repeat right center;
+  height: 32px;
+  width: 15px;
+  position: relative;
+  margin-left: -35px;
+}
+
+.view.user {
+}
+.view.user .text {
+  margin-left: 5px;
+}
+.view.user #Username, .view.user #Notifications {
+  position: relative; 
+}
+.view.user #UsernameLabel {
+  margin-right: 18px;
+}
+.view.user #Username img {
+  background: transparent url("../images/icons/username.gif") no-repeat 0 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-top: -3px;
+  margin-right: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.view.user #Username img:hover {
+  background-position: -16px 0;
+}
+.view.user .panel {
+  overflow: visible; 
+  position: absolute; 
+  top: 20px; 
+  left: -228px; 
+  width: 270px; 
+  background-color: white; 
+  border: 1px solid #99BBE8;
+  display: none;
+  border-radius: 5px;
+  
+  box-shadow: 2px 2px 5px #808080;
+  -webkit-box-shadow: 2px 2px 5px #808080;
+  -moz-box-shadow: 2px 2px 5px #808080;
+}
+.view.user .panel.active {
+  display: block;
+}
+.view.user .panel ul {
+  overflow: hidden;
+}
+.view.user .panel.username {
+  padding: 10px;
+  left: -245px;
+}
+.view.user .panel.username ul.options {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+.view.user .panel.username a.logout {
+  margin: 5px 2px 0px;
+  float: right;
+}
+.view.user .panel.username li.section ul li {
+  border: 1px solid white;
+  cursor: pointer;
+}
+.view.user .panel.username li.section ul li.active_true, .view.user .panel.username li.section ul li.active_true a {
+  cursor: default;
+}
+.view.user .panel.username li.section ul li a {
+  display: block;
+  padding: 4px 6px;
+}
+.view.user .panel.username li.section ul li.active_true a {
+  color: #999;
+}
+.view.user .panel.username li.section ul li.active_false:hover {
+  background-color: #EFF7FF;
+  border: 1px solid #99BBE8;
+}
+.view.user .panel.username .title {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.view.user .panel.notifications ul li {
+  border-bottom: 1px solid #CCCCCC;
+}
+.view.user .panel.notifications ul li.unread {
+  background-color: #F2F2F2;
+}
+.view.user .panel.notifications ul li a {
+  display: block; 
+  padding: 6px;
+  overflow: hidden;
+}
+.view.user .panel.notifications ul li a:hover {
+  background-color: #ddecfe;
+}
+.view.user .panel.notifications .empty {
+  color: #666666;
+  font-style: italic;
+  overflow: visible;
+  padding: 5px;
+}
+.view.user .panel.notifications .icon {
+  display: block; 
+  float: right; 
+  margin: 0px;
+}
+.view.user .panel.notifications .body {
+  color: #000000;
+  display: block;
+  float: left;
+}
+.view.user .panel.notifications .body .message {
+  font-size: 11px; 
+}
+.view.user .panel.notifications .body .date {
+  font-size: 9px; 
+  margin-top: 4px;
+  color: #808080;
+}
+.view.user .panel.notifications .more {
+  background-color: #F8F8F8;
+  text-align: center; 
+  clear: both; 
+  padding: 4px;
+}
+.view.user .panel.notifications .more:hover {
+  background-color: #ddecfe;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+  margin: 0px;
+  padding: 0px;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+td {
+  vertical-align: top;
+}
+fieldset,img {
+  border: 0px;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+  font-style: normal;
+  font-weight: normal;
+}
+ol,ul {
+  list-style: none;
+}
+caption,th {
+  text-align: left;
+}
+q:before,q:after {
+  content: '';
+}
+abbr,acronym {
+  border: 0px;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.dialog {
+  position: relative;
+  z-index: 1000000;
+}
+.dialog .loading {
+  background: url('../images/loading.gif') no-repeat left center;
+  border: 0px;
+  height: 30px;
+  padding: 13px 2px 0px 35px;
+  text-align: left;
+}
+.dialog .report {
+  color: #284E8C;
+  display: none;
+  position: relative;
+  left: 0;
+  border: 1px solid #284E8C;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.dialog .status {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  top: 0px;
+  left: 0px;
+}
+.dialog .status .title {
+  text-transform: none;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0px 0px 5px;
+  padding: 0px;
+  color: red;
+}
+.dialog .status ul {
+  list-style: disc;
+  margin-left: 12px;
+}
+.dialog .outfield {
+  margin: 0px 0px 15px;
+}
+.dialog .outfield.hidden {
+  display: none;
+}
+.dialog .outfield .outtitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.dialog .outfield.required .outtitle span {
+  background: transparent url("../images/icons/red-dot.gif") no-repeat left center;
+  width: 10px;
+  position: absolute;
+  margin-left: 5px;
+}
+.dialog .outfield .error {
+  border: 1px solid #EF7777;
+}
+.dialog .outfield .outbody input.file {
+  width: 98%;
+}
+.dialog .outfield .outbody input.text {
+  width: 98%;
+}
+.dialog .outfield .outbody input.wdate {
+  width: 50%;
+}
+.dialog .outfield .outbody textarea {
+  width: 98%;
+}
+.dialog .outfield .outbody .radio {
+  margin: 0px 0px 10px 5px;
+}
+.dialog .outfield .outbody .radio input.radio {
+  margin-left: 10px;
+}
+.dialog .outfield .outbody .radio label {
+  display: inline;
+  margin-left: 4px;
+  font-weight: bold;
+}
+.dialog .outfield .outbody .radio .info {
+  color: #666;
+  margin-top: 1px;
+  margin-left: 17px;
+}
+.dialog .option.disabled label {
+  color: #666;
+}
+
+html, body, input, table, td, select, options, textarea {
+  font-family: Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+h1 {
+  font-size: 18px;
+  padding-bottom: 4px;
+}
+h2 {
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+h3 {
+  font-size: 16px;
+  padding-bottom: 3px;
+  margin-top: 5px;
+}
+p {
+  line-height: 120%;
+  padding-bottom: 12px;
+}
+ul {
+  list-style: none;
+}
+.highlighted {
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: none;
+}
+.command {
+  color: #0d3c98;
+}
+.command.default {
+  font-weight: bold;
+}
+.command:hover {
+  color: #0d3c98;
+}
+.behaviour {
+  color: #0d3c98;
+}
+.behaviour:hover {
+  color: #0d3c98;
+}
+.link {
+  color: #0d3c98;
+}
+.link:hover {
+  color: #0d3c98;
+}
+
+input.text {
+  padding: 1px;
+  width: 100%;
+}
+input.date {
+  padding: 1px;
+  width: 100%;
+}
+textarea {
+  width: 98%;
+}
+.dialoguploadfilebox {
+  height:20px;
+  border: 1px solid #999999;
+  background: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+  x-overflow: hidden;
+  y-overflow: auto;
+}
+.dialogufbi {
+  height:28px;
+  width:100%;
+}
+.filelist {
+  padding-top: 3px;
+  width: 100%;
+}
+.filelist tr td.DELFILE {
+  width: 1px;
+}
+.filelist tr td.DELFILE a {
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  margin-right: 4px;
+  margin-top: -2px;
+  width: 16px;  
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.filelist tr td.DELFILE a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.filedefault      { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filecompressed   { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filedocument     { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.fileedocument    { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filedatabase     { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filewebpage      { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filepresentation { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filespreadsheet  { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.fileimage        { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+fieldset {
+  border: solid 1px #D8D9DB;
+  padding: 10px;
+}
+fieldset legend {
+  padding: 0px 5px;
+}
+
+.widget {
+  clear: both;
+  position: relative;
+}
+.widget.optional {
+  display: none;
+}
+  
+.widget.optional a.optional {
+  display: block;
+}
+.widget input, .widget textarea, .widget .thumbnail, .wboolean .box, .wcheck .checklist, .wselect .radiolist {
+  margin: 0px;
+  background: #FFFFFF url('../images/backgrounds/text-bg.gif') repeat-x scroll 0px 0px;
+  border: 1px solid #B5B8C8;
+  padding: 0px;
+  width: 98.5%;
+}
+.widget input.highlighted, .widget textarea.highlighted, .widget .thumbnail.highlighted, .wboolean .box.highlighted, .wcheck .checklist.highlighted, .wselect .radiolist.highlighted {
+  background: #EFF7FF;
+  font-weight: normal;
+}
+.wcheck .checklist, .wselect .radiolist {
+  min-height: 21px;
+  overflow-y: auto;
+}
+.wcheck .checklist {
+  height: 100%;
+}
+.widget input, .widget textarea, .wboolean .box, .wcheck .checklist, .wselect .radiolist {
+  padding: 4px 2px 0px 4px;
+}
+.wcheck .checklist, .wselect .radiolist {
+  padding-top: 5px;
+}
+.ie .widget input, .ie .widget textarea, .ie .wboolean .box, .ie .wcheck .checklist, .ie .wselect .radiolist {
+  padding-left: 4px;
+}
+.widget .template {
+  display: none;
+}
+.widget .thumbnail {
+  padding: 2px;
+  max-width: 96px;
+  max-height: 96px;
+  width: auto;
+}
+.widget input, .wboolean .box {
+  height: 20px;
+}
+.widget textarea {
+  height: 100px;
+}
+.widget .options, .widget.wsection .widget .options {
+  float: left;
+  margin-top: 3px;
+  margin-left: -28px;
+  border: 0px;
+  width: 20px;
+  position: relative;
+  background: transparent;
+}
+.ie .widget .options, .ie .widget.wsection .widget .options {
+  position: static;
+}
+.widget.wtext.long .options {
+  margin-left: -23px;
+}
+.widget .options a {
+  height: 20px;
+  width: 17px;
+  color: #666;
+  margin-top: -2px;
+  cursor: pointer;
+  display:block;
+  position: absolute;
+}
+.ie .widget .options a {
+  position: static;
+}
+.widget .options a.active {
+  background-color: #355FA6;
+  color: white;
+}
+.widget .options a.clearvalue {
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.ie .widget .options a.clearvalue {
+  display: block;
+}
+.widget.wpicture .onlinemenu {
+  top: 88px;
+  width: 141px;
+}
+.widget .onlinemenu {
+  background: none repeat scroll 0 0 #EFF7FF;
+  border: 3px solid #99BBE8;
+  padding: 5px 10px;
+  position: absolute;
+  top: 23px;
+  z-index: 10;
+  visibility: visible;
+}
+.readonly .widget .onlinemenu {
+}
+.widget .onlinemenu a {
+  cursor: pointer;
+}
+.widget.locked .options {
+  display: none;
+}
+.widget .options a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.widget.locked .component {
+  background: #EFF7FF;
+}
+.widget .wloading {
+  text-align: center;
+  margin: 10px 0px;
+}
+.widget .wloading span {
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+.x-form-field-wrap .x-form-plus-trigger {
+  background: transparent url('../images/icons/add-trigger.gif') no-repeat
+    scroll 0px 0px;
+}
+.x-form-field-wrap .x-form-plus-trigger.x-form-trigger-over {
+  background-position: -17px 0px;
+}
+.x-form-field-wrap .x-form-plus-trigger.x-form-trigger-click {
+  background-position: -34px 0px;
+}
+.x-trigger-wrap-focus .x-form-plus-trigger {
+  background-position: -51px 0px;
+}
+#uploadDialog .x-dlg-bd { 
+  padding: 4px;
+}
+#uploadDialog .loadingIcon {
+  width: 15px;
+  height: 15px;
+  
+  vertical-align: middle;
+  margin: 3px;
+  border: none;
+}
+  
+img.required {
+  margin: 0px 4px;
+}
+.widget .empty {
+  color: #888;
+  font-style: italic;
+  margin-left: 6px;
+  margin-top: 5px;
+  position: absolute;
+}
+.widget.wcheck .empty {
+  margin-left: 20px;
+  margin-top: -20px;
+}
+.widget .radio.category, .widget .check.category {
+  background: transparent url('../images/icons/term-category.png') no-repeat scroll 0px 0px;
+  padding-left: 19px;
+}
+.widget .radio.ancestorlevel_2 {
+  margin-left: 20px;
+}
+.widget .radio.ancestorlevel_2.category {
+  margin-left: 21px;
+}
+.widget .radio.ancestorlevel_3 {
+  margin-left: 40px;
+}
+.widget .radio.ancestorlevel_3.category {
+  margin-left: 41px;
+}
+.widget .check.category .checker {
+  display: none;
+}
+.widget .radio.ancestorlevel_2, .widget .check.ancestorlevel_2 {
+  margin-left: 20px;
+}
+.widget .radio.ancestorlevel_2.category, .widget .check.ancestorlevel_2.category {
+  margin-left: 21px;
+}
+.widget .radio.ancestorlevel_3, .widget .check.ancestorlevel_3 {
+  margin-left: 40px;
+}
+.widget .radio.ancestorlevel_3.category, .widget .check.ancestorlevel_3.category {
+  margin-left: 41px;
+}
+.widget .radio.ancestorlevel_4, .widget .check.ancestorlevel_4 {
+  margin-left: 60px;
+}
+.widget .radio.ancestorlevel_4.category, .widget .check.ancestorlevel_4.category {
+  margin-left: 61px;
+}
+.widget.wtext {
+  clear: both;
+  height: 25px;
+}
+.widget.wtext.long {
+  height: 105px;
+}
+.widget.wtext .component {
+  float: left;
+}
+.widget.wtext.long .component {
+  overflow: hidden;
+}
+.widget.wfile, .widget.wpicture {
+  clear: both;
+}
+.widget.wfile {
+  height: 25px;
+}
+.widget.wfile input.component, .widget.wpicture input.component {
+  float: left;
+}
+.widget.wpicture .preview {
+  cursor: pointer;
+}
+.widget.wfile .options, .widget.wsection .widget.wfile .options {
+  margin-left: -49px;
+  width: 44px;
+}
+.widget.wpicture .options, .widget.wsection .widget.wpicture .options {
+  margin-top: -2px;
+  margin-left: -20px;
+  width: 44px;
+}
+.widget.wfile .options a.download, .widget.wpicture .options a.download {
+  background: transparent url('../images/icons/download-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wfile .options a.download:hover, .widget.wpicture .options a.download:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.widget.wfile .options a.clearvalue, .widget.wpicture .options a.clearvalue {
+  margin-left: 21px;
+}
+.widget.wpicture .pictureframe {
+  float: left;
+}
+.widget.wsection.expanded {
+  height: 100%;
+}
+.widget.wsection .options.conditional {
+  float: none;
+  margin: 0px;
+}
+.widget.wsection .options.extensible {
+  float: none;
+  margin: 0px;
+  height: 20px;
+}
+.widget.wsection .options.extensible a {
+  width: 200px;
+}
+.widget.wsection .fieldsbox .options input {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.widget.wsection .options {
+  height: 20px;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px solid #E0E0E0;
+}
+.widget.wsection .options img {
+  height: 23px;
+  width: 17px;
+}
+.widget.wsection .options a.active {
+  background-color: #D0E0F5;
+  border: 1px solid #99BBE8;
+  color: #0D3C98;
+  margin-top: -1px;
+  padding-right: 60px;
+}
+.widget.wsection .options a .trigger {
+  float: left;
+}
+.widget.wsection .options a span {
+  float: left;
+  padding: 4px 2px;
+}
+.widget.wsection .options a.expand {
+  margin-left: 2px;
+}
+.widget.wsection .options a.expand .trigger {
+  background: transparent url('../images/icons/expand-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wsection .options a.collapse {
+  margin-left: 2px;
+}
+.widget.wsection .options a.collapse .trigger {
+  background: transparent url('../images/icons/collapse-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wsection .options a.search {
+  margin-left: 80px;
+}
+.widget.wsection .options a.search .trigger {
+  background: transparent url('../images/icons/search-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wsection .options a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.widget.wlink {
+  clear: both;
+  height: 25px;
+}
+.widget.wlink .nodebox {
+  display: none;
+}
+.widget.wlink.expanded {
+  height: 100%;
+}
+.widget.wlink .component {
+  float: left;
+}
+.widget.wlink.expanded .component {
+  border-bottom: 1px dotted #B5B8C8;
+  width: 98.8%;
+}
+.ie .widget.wlink.expanded .component {
+  width: 99%;
+}
+.widget.wlink .options a.hiperlink {
+  background: transparent url('../images/icons/hiperlink-trigger.gif') no-repeat scroll 0px 0px;
+  margin-left: -20px;
+}
+.widget.wlink .options a.hiperlink:hover, .widget.wpicture .options a.hiperlink:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.widget.wlink .nodebox {
+  border: 1px solid #B5B8C8;
+  border-top: 0px;
+  width: 99%;
+}
+.ie .widget.wlink .nodebox {
+  width: 99.2%;
+}
+.widget.wlink .nodebox.focus {
+  border: 3px solid #99BBE8;
+  border-top: 0px;
+}
+.widget.wlink .nodebox .component {
+  border: 1px solid #B5B8C8;
+}
+.widget.wlink .nodebox .options input {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.widget.wlist, .widget.wtable {
+  position: relative;
+}
+.widget.wtable {
+  border: 1px solid #B5B8C8;
+}
+.widget.wlist .more { 
+  clear: both;
+  display: block;
+  width: 35px;
+  margin-top: 4px; 
+}
+.widget.wlist.locked .more {
+  color: #777;
+}
+.widget.wlist ul.draglist, .widget.wtable ul.draglist {
+  position: relative;
+}
+.widget.wlist ul, .widget.wtable ul {
+  z-index: 1;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  top: 0px;
+  left: 0px;
+}
+.widget.wtable ul.list {
+  position: absolute;
+  width: 96%;
+  margin-left: 24px;
+}
+.widget.wlist li {
+  clear: both;
+  padding: 2px 0px;
+}
+.widget.wtable li {
+  clear: both;
+}
+.ie .widget.wlist li, .ie .widget.wtable li {
+  padding: 5px 0px;
+}
+.widget.wtable li.header {
+  background: #eee; 
+}
+.widget.wlist li .elementwidget .widget.wdate .options, .widget.wlist li .elementwidget .widget.wlist .widget.wdate .options,
+.widget.wlist li .elementwidget .widget.wfile .options, .widget.wlist li .elementwidget .widget.wlist .widget.wfile .options,
+.widget.wlist li .elementwidget .widget.wlink .options, .widget.wlist li .elementwidget .widget.wlist .widget.wlink .options, 
+.widget.wlist li .elementwidget .widget.wpattern .options, .widget.wlist li .elementwidget .widget.wlist .widget.wpattern .options, 
+.widget.wlist li .elementwidget .widget.wselect .options, .widget.wlist li .elementwidget .widget.wlist .widget.wselect .options, 
+.widget.wlist li .elementwidget .widget.wtext .options, .widget.wlist li .elementwidget .widget.wlist .widget.wtext .options,
+.widget.wlist li .elementwidget .widget.wthesaurus .options, .widget.wlist li .elementwidget .widget.wlist .widget.wthesaurus .options,
+.widget.wtable li .elementwidget .widget.wdate .options, .widget.wtable li .elementwidget .widget.wtable .widget.wdate .options,
+.widget.wtable li .elementwidget .widget.wfile .options, .widget.wtable li .elementwidget .widget.wtable .widget.wfile .options,
+.widget.wtable li .elementwidget .widget.wlink .options, .widget.wtable li .elementwidget .widget.wtable .widget.wlink .options, 
+.widget.wtable li .elementwidget .widget.wpattern .options, .widget.wtable li .elementwidget .widget.wtable .widget.wpattern .options, 
+.widget.wtable li .elementwidget .widget.wselect .options, .widget.wtable li .elementwidget .widget.wtable .widget.wselect .options, 
+.widget.wtable li .elementwidget .widget.wtext .options, .widget.wtable li .elementwidget .widget.wtable .widget.wtext .options,
+.widget.wtable li .elementwidget .widget.wthesaurus .options, .widget.wtable li .elementwidget .widget.wtable .widget.wthesaurus .options {
+  margin-top: 3px;
+}
+.widget.wlist li .elementwidget .widget.wfile .options, .widget.wlist li .elementwidget .widget.wlist .widget.wfile .options,
+.widget.wtable li .elementwidget .widget.wfile .options, .widget.wtable li .elementwidget .widget.wtable .widget.wfile .options {
+  margin-left: -49px;
+}
+.widget.wlist li .elementwidget .widget.wcheck .options, .widget.wlist li .elementwidget .widget.wlist .widget.wcheck .options,
+.widget.wtable li .elementwidget .widget.wcheck .options, .widget.wtable li .elementwidget .widget.wtable .widget.wcheck .options {
+  
+  margin-left: -6px;
+  width: 1px;
+}
+.widget.wlist li .elementwidget .widget.wpicture .options, .widget.wlist li .elementwidget .widget.wlist .widget.wpicture .options,
+.widget.wtable li .elementwidget .widget.wpicture .options, .widget.wtable li .elementwidget .widget.wtable .widget.wpicture .options {
+  margin-left: -51px;
+}
+.widget.wlist li .elementwidget .widget.wnumber .options, .widget.wlist li .elementwidget .widget.wlist .widget.wnumber .options, 
+.widget.wlist li .elementwidget .widget.wpicture .options, .widget.wlist li .elementwidget .widget.wlist .widget.wpicture .options,
+.widget.wtable li .elementwidget .widget.wnumber .options, .widget.wtable li .elementwidget .widget.wtable .widget.wnumber .options, 
+.widget.wtable li .elementwidget .widget.wpicture .options, .widget.wtable li .elementwidget .widget.wtable .widget.wpicture .options {
+  margin-left: -85px;
+  margin-top: 3px;
+}
+.widget.wlist li .elementwidget .wsection .widget .options, .widget.wlist li .elementwidget .wnode .widget .options,
+.widget.wtable li .elementwidget .wsection .widget .options, .widget.wtable li .elementwidget .wnode .widget .options {
+  margin-left: -28px;
+}
+.widget.wlist li .elementwidget .widget.wboolean .options,
+.widget.wtable li .elementwidget .widget.wboolean .options {
+  margin: 5px 0px 0px;
+}
+.widget.wlist li.drag, .widget.wtable .table li.drag {
+  z-index: 100;
+  position: absolute;
+  opacity: .50;
+  filter: alpha(opacity=50);
+  width: 100%;
+}
+.widget.wlist li .elementoptions, .widget.wtable .table li .elementoptions {
+  float: left;
+  height: 22px;
+  width: 20px;
+  position: relative;
+  background: transparent;
+  margin-right: 5px;
+  padding-top: 2px;
+  border: 1px solid #B5B8C8;
+}
+.ie .widget.wlist li .elementoptions, .ie .widget.wtable .table li .elementoptions {
+  position: static;
+}
+.widget.wlist li .elementoptions a, .widget.wlist li a.delete,
+.widget.wtable li .elementoptions a, .widget.wtable li a.delete {
+  float: left;
+  margin-left: 5px;
+  position: absolute;
+  cursor: pointer;
+  height: 23px;
+  width: 17px;
+  display: block;
+  margin-top: -2px;
+}
+.ie .widget.wlist li .elementoptions a, .ie .widget.wtable li .elementoptions a {
+  position: static;
+}
+.widget.wlist li a.delete, .widget.wtable li a.delete {
+  margin: 2px 6px;
+  z-index: 10;
+  right: 0;
+}
+.widget.wtable .hidelist {
+  float: left;
+}
+.widget.wtable li a.delete {
+  margin-left: -1px;
+  float: left;
+  position: relative;
+}
+.widget.wtable li .elementwidget a.delete {
+  margin: 0px 15px;
+}
+.widget.wlist li a.delete, .widget.wtable li a.delete {
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wlist li .elementoptions a.move, .widget.wtable li .elementoptions a.move {
+  cursor: move;
+  background: transparent url('../images/icons/move-trigger.gif') no-repeat scroll 0px 0px;
+  margin: 0px 0px 0px 3px;
+  padding: 0px;
+}
+.widget.wlist li .elementoptions a.move.grabbing, .widget.wtable li .elementoptions a.move.grabbing {
+  cursor: move;
+}
+.widget.wlist li .elementoptions a:hover, .widget.wtable li .elementoptions a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.widget.wtable .table .element {
+  cursor: pointer;
+  position: relative;
+}
+.widget.wtable .table .element.readonly {
+  cursor: default;
+}
+.widget.wtable .table .element.active.readonly .content {
+  padding-bottom: 10px;
+}
+.widget.wtable .table .header th div, .widget.wtable .table .element .value {
+  padding: 5px;
+}
+  
+.widget.wtable .table .header th, .widget.wtable .table .element table tr td {
+  border-top: 1px dotted #B5B8C8;
+}
+.widget.wtable .table .element table tr td.flag {
+  width: 5px;
+  background: white;
+  border-right: 1px dotted #aaa;
+  color: black;
+}
+.widget.wtable .table .element table tr td.flag.right {
+  border-right: 0px;
+}
+.widget.wtable .table .element table tr td.flag .move, .widget.wtable .table .element table tr td.flag .close {
+  display: block;
+  width: 22px;
+  padding-top: 5px;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 2px;
+}
+.widget.wtable .table .element table tr td.flag .check {
+  margin: 0px;
+  margin-top: 6px;
+  margin-left: 4px;
+  padding: 0px;
+  width: 22px;
+}
+.mozilla .widget.wtable .table .element table tr td.flag .check {
+  margin-top: 3px;
+  margin-left: 2px;
+  width: 24px;
+}
+.widget.wtable .table .element table tr td.flag .move {
+  background: transparent url('../images/icons/move-trigger.gif') no-repeat scroll 4px 0px;
+  cursor: move;
+}
+.widget.wtable .table .element.active table tr td.flag .move {
+  display: none;
+}
+.widget.wtable .table .element table tr td.flag .move:hover {
+  background-position: -13px 0px;
+}
+.widget.wtable .table .element table tr td.flag .close {
+  background: transparent url('../images/icons/collapse_trigger.gif') no-repeat scroll center bottom;
+  margin-top: 4px;
+  position: absolute;
+  width: 100%;
+}
+.widget.wtable .table .element table tr td.flag .close:hover {
+  background-color: #D0E0F5;
+}
+.widget.wtable .table .element.active table tr td.flag {
+  background: #EFF7FF;
+}
+.widget.wtable .table .element.active table tr td.flag a {
+  color: black;
+}
+.widget.wtable .table .header th div {
+  color: #666;
+}
+.widget.wtable .toolbar {
+  border: 0px;
+  margin: 0px;
+}
+.widget.wtable li.readonly table .flag div {
+  width: 22px;
+}
+.widget.wtable .table li.active.readonly table tr td.flag {
+  background: #EFF7FF;
+}
+.widget.wtable li.active.readonly table.box {
+  display: block;
+}
+.widget.wtable li.active.readonly table.box .flag .close {
+  width: 26px;
+}
+.widget.wtable .table li.readonly table tr td td {
+  border: 0px;
+}
+.widget.wcheck.long {
+  height: 105px;
+}
+.widget.wcheck .check {
+  height: 21px;
+}
+.widget.wcheck .check .checker {
+  float: left;
+  margin-right: 3px;
+  width: 17px;
+}
+.widget.wcheck .check label {
+  float: left;
+  margin-top: 2px;
+}
+.widget.wcheck .check img.checker {
+  margin-top: 1px;
+  height: 13px;
+  width: 13px;
+}
+.widget.wcheck .check a.check {
+  color: black;
+}
+.widget.wselect, .widget.wboolean {
+  clear: both;
+}
+.widget.wselect input.component {
+  float: left;
+}
+.widget.wselect .radio {
+  height: 21px;
+}
+.widget.wselect .radio input {
+  float: left;
+  margin-right: 3px;
+  width: 17px;
+}
+.widget.wselect .radio label {
+  float: left;
+  margin-top: 2px;
+}
+.widget.wboolean .capsule {
+  width: 98.5%;
+}
+.widget.wboolean .capsule .checker {
+  width: 13px;
+  height: 25px;
+  position: absolute;
+  border: 0px;
+  padding: 0px;
+  background: none;
+  margin-left: 6px;
+}
+.widget.wboolean .capsule img.checker {
+  margin-top: 6px;
+  height: 13px;
+}
+.widget.wboolean .capsule .component {
+  height: 22px;
+  padding-left: 22px !important;
+  padding-top: 2px;
+}
+.widget.wboolean input.component {
+  float: left;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: 10px;
+  position: relative;
+  width: 13px;
+}
+.ie .widget.wboolean input.component {
+  padding: 0px !important;
+  border: 0px !important;
+  margin-top: 1px;
+}
+.widget.wboolean input.component {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.widget.wboolean .options, .widget.wsection .widget.wboolean .options {
+  float: left;
+  margin-top: 5px;
+  margin-left: 0px;
+  width: 100px;
+  border: 0px;
+}
+.widget.wboolean .message {
+  float: left;
+  font-style: italic;
+  padding-top: 3px;
+}
+.widget.wboolean .options a {
+  color: #000077;
+}
+.widget.wboolean .options a.mark {
+  width: 100px;
+}
+.widget.wnumber {
+  clear: both;
+  height: 25px;
+}
+.widget.wnumber input.component {
+  float: left;
+}
+.widget.wnumber .metrics {
+  border: 0 none;
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  width: 100px;
+}
+.widget.wnumber .increments {
+  display: none;
+}
+.widget.wnumber .options, .widget.wsection .widget.wnumber .options {
+  float: left;
+  margin-top: 3px;
+  margin-left: -28px;
+  border: 0px;
+}
+.widget.wsection .widget.wnumber .options a {
+  display: inline;
+}
+.widget.wsection .widget.wnumber .options a img {
+  float: none;
+}
+.widget.wnumber .options a.add .trigger {
+  height: 16px;
+  background: transparent url('../images/icons/addition-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wnumber .options a.subtract {
+  margin-left: 17px;
+}
+.ie .widget.wnumber .options a.subtract {
+  margin-left: 0px;
+}
+.widget.wnumber .options a.subtract .trigger {
+  height: 16px;
+  background: transparent url('../images/icons/subtraction-trigger.gif') no-repeat scroll 0px 0px;
+}
+.widget.wnumber .options a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.widget.wpicture  {
+  position: relative;
+}
+.widget.wpicture img {
+  cursor: pointer;
+}
+.widget.wthesaurus {
+  clear: both;
+  height: 25px;
+}
+.widget.wthesaurus input.component {
+  float: left;
+}
+.widget.wpattern {
+  clear: both;
+  height: 25px;
+}
+.widget.wpattern input.component {
+  float: left;
+}
+.widget.wdate {
+  clear: both;
+  height: 25px;
+}
+.widget.wdate input.component {
+  float: left;
+}
+.widget.wserial {
+  clear: both;
+  height: 25px;
+}
+.widget.wserial .component {
+  background: #EFF7FF;
+}
+.widget.wsummation ul.summationlist {
+  border-style: none solid dotted;
+  border-width: 0px 1px 1px;
+  border-color: #aaa;
+  padding: 10px 3px;
+  width: 98.5%;
+}
+.widget.wsummation .close {
+  background: white url('../images/icons/collapse_trigger.gif') no-repeat scroll center 0px;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-top: 0px;
+  display: block;
+  text-align: center;
+  padding: 2px 3px 0px;
+  width: 98.5%;
+  display: none;
+}
+.widget.wsummation .close:hover {
+  background-color: #D0E0F5;
+}
+.widget.wsummation .summationitem ul {
+  display: none;
+}
+.widget.wsummation .summationitem table {
+  border-bottom: 1px dotted #ddd;
+  width: 100%;
+}
+.widget.wsummation .summationitem table td {
+  vertical-align: middle;
+}
+.widget.wsummation .summationitem a.label {
+  color: #000077;
+  cursor: pointer;
+}
+.widget.wsummation .summationitem div.label {
+  cursor: default;
+}
+.widget.wsummation .summationitem .label img, .widget.wsummation .summationitem.expanded .summationitem .label img {
+  background: transparent url('../images/icons/summation_collapsed.gif') no-repeat scroll 0px 0px;
+  width: 18px;
+  height: 18px;
+}
+.widget.wsummation .summationitem .label img.none, .widget.wsummation .summationitem.expanded .summationitem .label img.none {
+  background: none;
+}
+.widget.wsummation .summationitem .label:hover img {
+  background-position: -17px 0px;
+}
+.widget.wsummation .summationitem.expanded .label img, .widget.wsummation .summationitem.expanded .summationitem.expanded .label img {
+  background: transparent url('../images/icons/summation_expanded.gif') no-repeat scroll 0px 0px;
+}
+.widget.wsummation .summationitem.expanded .label img.none, .widget.wsummation .summationitem.expanded .summationitem.expanded .label img.none {
+  background: none;
+}
+.widget.wsummation .summationitem table input.label {
+  width: 93%;
+}
+.widget.wsummation .summationitem table .value, .widget.wsummation .summationitem table .widget .component {
+  margin: 0px;
+  text-align: right;
+  width: 125px;
+}
+.widget.wsummation .summationitem table .value.readonly {
+  height: 20px;
+  border: 1px solid #B5B8C8;
+  padding: 4px 2px 0 4px;
+}
+.widget.wsummation .summationitem.highlighted .label, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .label, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted .label {
+  font-weight: normal;
+}
+.widget.wsummation .summationitem.highlighted .summationitem .label, .widget.wsummation .summationitem.highlighted .summationitem .summationitem .label {
+  background: none;
+  border-radius: 0px;
+}
+.widget.wsummation .summationitem.highlighted table .value, .widget.wsummation .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted table .value, .widget.wsummation .summationitem.highlighted .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .value, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .widget .component {
+  background: #EFF7FF;
+}
+.widget.wsummation .summationitem.highlighted table .value.readonly, .widget.wsummation .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem.highlighted table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem.highlighted .summationitem.highlighted table .widget .component {
+  background: #EFF7FF;
+}
+.widget.wsummation .summationitem.highlighted .summationitem table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem .summationitem table .value.readonly, .widget.wsummation .summationitem.highlighted .summationitem .summationitem table .widget .component {
+  background: #FFFADD;
+}
+.widget.wsummation .summationitem.highlighted .summationitem table .value, .widget.wsummation .summationitem.highlighted .summationitem table .widget .component,
+.widget.wsummation .summationitem.highlighted .summationitem .summationitem table .value, .widget.wsummation .summationitem.highlighted .summationitem .summationitem table .widget .component {
+  background: white;
+}
+.widget.wsummation .summationitem.highlighted .summationitem table .value.focus, .widget.wsummation .summationitem.highlighted .summationitem table .widget .component.focus,
+.widget.wsummation .summationitem.highlighted .summationitem .summationitem table .value.focus, .widget.wsummation .summationitem.highlighted .summationitem .summationitem table .widget .component.focus {
+  background: #EFF7FF;
+}
+.widget.wsummation .summationitem table .widget.wselect .component {
+  text-align: left;
+  width: 89%;
+}
+.widget.wsummation .summationitem table .widget.wnumber .options {
+  display: none;
+}
+.widget.wsummation .summationitem table a.value {
+  float: right;
+}
+.widget.wsummation .summationitem table .value.readonly {
+  background: #FFFADD;
+}
+.widget.wsummation .summationitem.subtotal .value {
+  font-weight: bold;
+  background: #FFFADD;
+}
+.widget.wsummation .summationitem.subtotal .value {
+  font-weight: normal;
+}
+.widget.wsummation .summationitem table .more {
+  float: right;
+  margin-bottom: 5px;
+}
+.widget.wsummation .summationitem .summationitem .tabbed {
+  margin-left: 15px;
+}
+.widget.wsummation .summationitem .summationitem .summationitem .tabbed {
+  margin-left: 30px;
+}
+.widget.wsummation .summationitem .summationitem .summationitem .summationitem .tabbed {
+  margin-left: 45px;
+}
+.widget.wsummation .summationitem .wselect img.none {
+  display: block;
+  float: left;
+  width: 16px;
+}
+.widget.wsummation .widget.wselect .options {
+  margin-left: -22px;
+}
+
+.x-tabs-strip .x-tabs-text {
+  text-overflow: clip !important;
+}
+  
+.x-toolbar {
+  background: white;
+  border-top: 0px;
+}
+.tabs .x-tabs-strip-wrap {
+  overflow-x: visible !important;
+}
+.layout .x-layout-panel-hd {
+  background-image: none;
+  background: #EFF7FF;
+  border: 1px dotted #99BBE8;
+  margin: 0px 10px;
+}
+.layout .x-layout-panel.x-layout-panel-east .x-layout-panel-body {
+  margin: 0px 10px;
+}
+.x-layout-panel-body {
+ overflow: visible !important;
+}
+#LayoutMain .x-layout-panel.x-layout-panel-east {
+  border-top: 0px;
+}
+.layout .x-layout-panel-hd .x-layout-panel-hd-text {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 5px;
+  color: black;
+}
+.messagebox {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  left: 40%;
+}
+.messagebox .template.success .title {
+  color: green;
+}
+.messagebox .template.error .title {
+  color: red;
+}
+.messagebox .template.warning .title {
+  color: orange;
+}
+.messagebox.modal {
+  display: block;
+  position: relative;
+  left: 0px;
+}
+.messagebox.modal img {
+  background: transparent url("../images/loading.gif") no-repeat;
+  height: 32px;
+  width: 32px;
+  float: left;
+}
+.messagebox.modal span {
+  float: left;
+  margin: 5px 10px;
+}
+.reportbanner {
+  background-color: #FFC46A;
+  border: 1px solid #F29200;
+  left: 0;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  width: 96%;
+  z-index: 1;
+  display: none;
+  margin: 0 5px 5px 10px;
+}
+.loading {
+  position: absolute;
+  z-index: 20001;
+  left: 40%;
+  top: 40%;
+  width: 250px;
+  border: 1px solid #6593cf;
+  padding: 2px;
+  background: #c3daf9;
+  text-align: center;
+  display: none;
+}
+.loading .loading-indicator {
+  border: 1px solid #a3bad9;
+  background: white url("../images/layout/loading-bg.gif") repeat-x;
+  color: #003366;
+  font: bold 13px tahoma,arial,helvetica;
+  padding: 10px;
+  margin: 0;
+}
+.loading .loading-indicator img {
+  width: 16px;
+  height: 16px;
+  float: left;
+}
+.fleft {
+  float: left;
+}
+.fright {
+  float: right;
+}
+.list .empty {
+  margin: 5px;
+  color: #666;
+}
+ 
+.history {
+  position: absolute;
+  left: -10000px;
+}
+ 
+.x-layout-panel.x-layout-panel-north {
+  border: 1px solid white;
+}
+.layout.header {
+  height: 100%;
+  background: white;
+  clear: both;
+}
+.layout.header .leftbox {
+  float: left;
+  padding: 5px 0px;
+}
+.layout.header .leftbox div.logo {
+  float: left;
+  margin: 0px 10px;
+  cursor: pointer;
+  position: relative;
+}
+.layout.header .leftbox div.logo .dialog {
+  position:absolute;
+  display:none;
+  border: 1px solid #ddd;
+  background: white;
+  padding: 5px 10px;
+  width: 110px;
+  border-radius: 5px;
+}
+.layout.header .leftbox div.logo .dialog li {
+  border: 1px solid white;
+  cursor: pointer;
+}
+.layout.header .leftbox div.logo .dialog li a {
+  display: block;
+  padding: 4px 6px;
+  background-color: white;
+  border: 1px solid white;
+  color: #0D3C98;
+  border-radius: 3px;
+}
+.layout.header .leftbox div.logo .dialog li a:hover {
+  background-color: #EFF7FF;
+  border: 1px solid #99BBE8;
+}
+.layout.header .leftbox div.logo a.home {
+  display: block;
+  height: 35px;
+  position: absolute;
+  width: 100%;
+}
+.layout.header .leftbox div.logo img {
+  height: 50px;
+  margin-right: 5px;
+}
+.layout.header .leftbox div.logo .title {
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  padding: 0px;
+  float: none;
+}
+.layout.header .leftbox .title {
+  float: left;
+  color: white;
+  font-size: 16px;
+  padding-top: 9px;
+}
+.layout.header .leftbox div.actionloading {
+  display: none;
+  float: left;
+  font-size: 11px;
+  margin-top: 20px;
+  color: #15429D;
+}
+.layout.header .rightbox {
+  width: 60%;
+  height: 100%;
+  float: right;
+}
+.layout.header .rightbox .block {
+  padding: 10px 2px;
+  margin-right: 10px;
+}
+.layout.header .rightbox .date.block {
+  padding-left: 4px;
+}
+.layout.header .rightbox .toolbar.header {
+  float: right;
+  margin-right: 10px;
+}
+.layout.header .rightbox .toolbar.header ul {
+  padding: 0px;
+}
+.layout.header .rightbox .toolbar.header li {
+  display: inline;
+  float: left;
+  padding: 10px 0px;
+  margin: 0px 4px;
+  border-left: 1px solid transparent;
+  text-align: center;
+  background: white;
+}
+.layout.header .rightbox .toolbar.header li a, .layout.header .rightbox .block a {
+  color: #0D3C98;
+}
+.layout.header .rightbox .toolbar.header li a img {
+  display: none;
+}
+ 
+.layout.columnleft {
+}
+.layout.columnleft .menu {
+  width: 100%;
+}
+.layout.columnleft .menu .title {
+  color: white;
+  background-color: #355FA5;
+  height: 20px;
+  font-weight: bold;
+  padding: 4px 3px 0px;
+}
+.layout.columnleft .menu li {
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px solid #99BBE8;
+  vertical-align: middle;
+}
+.layout.columnleft .menu li a {
+  display: block;
+  color: #355FA5;
+  height: 20px;
+  padding: 4px 4px 0px;
+}
+.layout.columnleft .menu li a.selected {
+  background-color: #e8e8e8;
+  border: solid 1px #666;
+}
+.layout.columnleft .menu li a {
+  background: white;
+}
+.layout.columnleft .menu li a:hover {
+  color: black;
+  background: #CBE3FE;
+}
+#TabPanelsMainRight .x-tabs-wrap {
+  display: none;
+}
+ 
+.layout.main {
+  padding:0px;
+  background: white;
+}
+.layout.main .x-layout-panel.x-layout-panel-center .x-layout-panel-body {
+  overflow: hidden !important;
+}
+.layout.main .x-layout-panel.x-layout-panel-east .x-layout-panel-body .locked {
+  height: 100%;
+  width: 100%;
+  top: 53px;
+  left: 0;
+  position: absolute;
+  z-index: 1000000;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  background: #ccc;
+}
+.layout.main.right .x-tabs-body {
+  border: 0px;
+}
+.layout.main.center {
+  overflow: hidden;
+}
+.layout.main.center .x-layout-panel-north {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+.layout.main.center.header {
+  background: none;
+  border: 0px;
+}
+.layout.main.center.header #ToolbarMain .x-toolbar {
+  background: white;
+  border-top: 1px dotted #A9BFD3;
+  border-bottom: 1px dotted #A9BFD3;
+}
+.layout.main.center.body .messages div {
+  text-align: center;
+  height: 18px;
+  width: 100%;
+  padding: 3px 0px 0px;
+  display: none;
+  position: absolute;
+  z-index: 20;
+  margin-top: 27px;
+}
+.layout.main.center.body .messages .actiondone {
+  background-color: #EEEF95;
+  border-bottom: 1px solid #ccc;
+}
+.layout.main.center.footer {
+  background: none;
+  border: 0px;
+}
+.layout.main .x-layout-panel.x-layout-panel-east .x-layout-panel-body {
+  overflow: auto !important;
+}
+.layout.main.right {
+  height: none !important;
+}
+ 
+.layout.right .view.helper {
+  margin: 5px;
+}
+.layout.right #ViewHelper {
+  overflow-y: auto;
+}
+ 
+.layout.footer {
+  height: 100%;
+  background: #EFF7FF;
+}
+.layout.footer .leftbox {
+  float: left;
+  margin-left: 2px;
+}
+.layout.footer .leftbox img {
+  height: 20px;
+}
+.layout.footer .rightbox {
+  float: right;
+}
+.layout.footer .statusbar {
+  margin: 0px 5px 0px 0px;
+  text-align: left;
+}
+.layout.footer .powered {
+  margin: 2px 10px;
+}
+.layout.footer .powered span {
+  font-style: italic;
+  font-family: Trebuchet MS;
+  margin: 0px 2px;
+}
+.x-layout-panel-body.x-tabs-top {
+  position: static;
+}
+.x-layout-nested-layout .x-layout-panel-east {
+  border-top: 1px solid #99BBE8;
+}
+.x-layout-panel.x-layout-panel-center {
+  border-top: 0px;
+  border-left: 0px;
+}
+.x-layout-panel-hd {
+  background-image: url("../images/default/layout/panel-title-light-bg.gif");
+}
+.x-layout-split {
+  width: 4px;
+  background-color: #DEECFD;
+  border: 1px solid #99BBE8;
+  border-bottom: 0px;
+  border-right: 0px;
+}
+.x-layout-split-h {
+  background-image: url("../images/default/sizer/e-handle.gif");
+  background-position: left center;
+}
+.x-date-middle {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  width: 130px; 
+}
+.ie .x-date-menu {
+  width: auto !important;
+}
+.ie .x-form-text {
+  margin-top: 0px;
+}
+
+.dialog.searchnodes {
+}
+.dialog.searchnodes .condition {
+  width: 200px;
+  padding: 3px;
+  margin: 0px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+}
+.dialog.searchnodes .search {
+  color: #0D3C98;
+  margin: 0px;
+  padding: 0px 10px;
+}
+.ie .dialog.searchnodes .search {
+  position: absolute;
+}
+.dialog.searchnodes .search.disabled {
+  color: #666;
+}
+
+.view.node {
+}
+.nodefloatinglayer {
+  width: 490px;
+  border: 1px solid #99BBE8;
+  background-color: white;
+}
+.nodefloatinglayer .head {  
+  clear: both;  
+  height: 30px;
+  margin: 5px;
+}
+.nodefloatinglayer .head .left {  
+  float: left;  
+  width: 94%;
+}
+.nodefloatinglayer .head .right {  
+  float: right;
+}
+.nodefloatinglayer .head .close {  
+  display: block;  
+  height: 16px;  
+  width: 16px;  
+  background: url(../images/icons/close_small.gif) no-repeat center left;
+}
+.nodefloatinglayer .head .close:hover {  
+  background: url(../images/icons/close_small_hover.gif) no-repeat center left;
+}
+.nodefloatinglayer .head .type {
+  background: none;
+  color: #666;
+  padding: 0px;
+  border: 0px;
+  font-style: normal;
+}
+.nodefloatinglayer .description {
+  color: #666;
+  font-style: italic;
+  padding: 10px;
+  background: white;
+  border: 1px solid #99BBE8;
+  border-top: 0px;
+  display: none;
+}
+.nodefloatinglayer .description .block {
+}
+.nodefloatinglayer .description .title {
+  font-weight: bold;
+  padding: 0px;
+  background: none;
+  border-bottom: 1px dotted;
+}
+.nodefloatinglayer .description ul {
+  margin: 4px;
+  margin-left: 20px;
+  list-style: circle;
+}
+.nodefloatinglayer .description ul li {
+  margin-top: 2px;
+}
+.nodefloatinglayer .messages {
+  padding: 10px;
+}
+.nodefloatinglayer .toolbar {
+  border: 0px;
+  padding: 10px;
+  margin-top: 20px; 
+  background: #EFF7FF;
+  border-top: 1px dotted #99BBE8;
+}
+.nodefloatinglayer .toolbar a {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.nodefloatinglayer .footer {
+  margin-top: 12px;
+  padding: 1px;
+  border-top: 1px solid #99BBE8;
+  display: none;
+}
+
+.dialog.editnode {
+  width: 600px;
+  height: 400px;
+}
+
+.dialog.editnodedescriptors {
+  width: 535px;
+  height: 320px;
+}
+
+.dialog.addnode {
+  width: 800px;
+  height: 580px;
+}
+.dialog.addnode .body {
+  height: 100%;
+}
+.dialog.addnode .step {
+  padding: 10px;
+}
+.dialog.addnode .step.fromclipboard {
+  padding: 0px;
+}
+.dialog.addnode .step.2.fromclipboard {
+  padding: 10px;
+}
+.dialog.addnode .step .outfield.nodetypelist {
+  margin: 5px 15px;
+  display: none;
+}
+.dialog.addnode .step .outfield.nodetypelist.visible {
+  display: block;
+}
+.dialog.addnode .step .outfield.nodetypelist .ploading {
+  color: #254C8C;
+  margin: 10px 0px;
+}
+.dialog.addnode .step .outfield.nodetypelist .nodetype {
+  color: #254C8C;
+  margin: 10px 0px;
+}
+.dialog.addnode .step .outfield.nodetypelist .nodetype .fields {
+  color: black;
+  list-style-position: inside;
+  list-style-type: square;
+  margin: 0px 10px;
+  height: 350px;
+  overflow: auto;
+}
+.dialog.addnode .step .outfield.nodetypelist .nodetype .fields li {
+  margin: 3px 0px;
+}
+
+.wizard .steps li {
+  background: #EFF7FF;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  padding: 3px 10px;
+  text-align: center;
+  width: 100px;
+  font-size: 13px;
+  color: black;
+}
+.wizard .steps {
+  height: 30px;
+}
+.wizard .display .step {
+  padding: 10px;
+  background: #EFF7FF;
+}
+.wizard .steps li.disabled {
+  background: #eee;
+  color: #aaa;
+}
+.node .wizard .toolbar, .task .wizard .toolbar, .cube .wizard .toolbar {
+  border: 0px;
+  float: right;
+  margin: 10px 0px;
+}
+.node .wizard .toolbar .button.disabled {
+  color: #777;
+}
+.node .wizard .toolbar .button.disabled:hover {
+  background: white;
+}
+
+.dataimporter h1 {
+  background: #99BBE8;
+  padding: 2px;
+  font-size: 13px;
+  font-weight: normal;
+}
+.dataimporter a {
+  color: blue;
+}
+.dataimporter fieldset legend {
+  margin: 0px;
+  padding: 0px;
+}
+.dataimporter textarea {
+  width: 100%;
+}
+.dataimporter .x-btn button {
+  padding: 0px 15px;
+}
+.dataimporter .hidden {
+  display: none;
+}
+.dataimporter .left {
+  float: left;
+}
+.dataimporter .right {
+  float: right;
+}
+.dataimporter .panel {
+  padding: 10px;
+}
+.dataimporter .toolbar input {
+  width: 100px;
+}
+.dataimporter .toolbar input.bigger {
+  width: 140px;
+}
+.dataimporter.clipboard .panel.clipboard {
+  display: block;
+  height: 495px;
+}
+.dataimporter.options .panel.options {
+  display: block;
+}
+.dataimporter.layout .panel.layout {
+  display: block;
+}
+.dataimporter .panel.commands {
+  float: right;
+  margin: 5px 10px;
+}
+.dataimporter .panel.clipboard {
+  height: 495px;
+}
+.dataimporter .panel.clipboard textarea {
+  width: 99%;
+}
+.dataimporter .panel.options.dialog {
+  background: white;
+  border: 1px solid #B5B8C8;
+  margin-left: 10px;
+  margin-top: 188px;
+  position: absolute;
+  z-index: 10;
+}
+.ie .dataimporter .panel.options.dialog {
+  margin-top: 199px;
+}
+.dataimporter .panel.options.dialog .fields {
+  display: none;
+}
+.dataimporter .panel.options.dialog .toolbar {
+  display: block;
+  margin: 10px 0px;
+}
+.dataimporter .panel.options fieldset {
+  margin-bottom: 10px;
+  width: 97%;
+}
+.dataimporter .panel.options .delimiters div {
+  margin: 5px 5px;
+  clear: both;
+  height: 15px;
+  width: 500px;
+}
+.dataimporter .panel.options .delimiters div input {
+  float: left;
+}
+.dataimporter .panel.options .delimiters div span.label input.free {
+  width: 100px;
+}
+.dataimporter .panel.options .delimiters div span input {
+  float: none;
+}
+.dataimporter .panel.options .delimiters div label {
+  margin: -2px 5px;
+  float: left;
+}
+.ie .dataimporter .panel.options .delimiters div label {
+  margin-top: 3px;
+}
+.dataimporter .panel.options .delimiters div .label {
+  margin: -3px 5px;
+  float: left;
+}
+.dataimporter .panel.options .delimiters div span label {
+  margin: 0px;
+  float: none;
+}
+.dataimporter .panel.options .fields .list {
+  list-style-type: decimal;
+  margin: 0px 25px;
+}
+.dataimporter .panel.options .fields .list li {
+  margin: 2px 0px;
+  padding: 0px;
+}
+.dataimporter .panel.options .fields .list a {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.dataimporter .panel.options .toolbar {
+  display: none;
+}
+.dataimporter .panel.layout {
+  margin: 0px;
+  padding: 0px;
+}
+.dataimporter .panel.layout .identation {
+  margin: 10px;
+}
+.dataimporter .panel.layout .data {
+  width: 99%;
+  height: 150px;
+  font-size: 11px;
+  background-image: none;
+}
+.dataimporter .panel.layout .pattern {
+  border: 1px solid #B5B8C8;
+  border-top: 0px;
+  padding: 1px 5px;
+}
+.ie .dataimporter .panel.layout .pattern {
+  margin-top: -1px;
+}
+.dataimporter .panel.layout .pattern .type {
+  display: none;
+  color: #555;
+}
+.dataimporter .panel.layout .pattern.paragraph .type.paragraph {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern.tab .type.tab {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern.dot .type.dot {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern.semicolon .type.semicolon {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern.comma .type.comma {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern.free .type.free {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern.regexp .type.regexp {
+  display: inline;
+}
+.dataimporter .panel.layout .pattern a.options {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.dataimporter .panel.layout .toolbar {
+  float: right;
+  margin: 10px 0px;
+}
+.dataimporter .panel.layout .toolbar .command, .dataimporter .panel.layout .toolbar select {
+  float: left;
+  margin: 0px 2px;
+}
+.dataimporter .panel.layout .toolbar select {
+  width: 245px;
+}
+.dataimporter .panel.layout .toolbar .addsplit {
+  margin: 0px 2px;
+}
+.dataimporter .panel.layout .tabs {
+  clear: both;
+  height: 264px;
+}
+.dataimporter .panel.layout .tabs .tab {
+  margin: 10px 0px;
+}
+.dataimporter .panel.layout .tabs .tab .arrow {
+  width: 15px;  
+}
+.dataimporter .panel.layout .tabs .tab .field {
+  cursor: pointer;
+  width: 100%;
+  padding: 0px;
+}
+.dataimporter .panel.layout .tabs .tab .field.odd {
+  background-color: #ddd;
+}
+.dataimporter .panel.layout .tabs .tab .field.selected {
+  background: white;
+}
+.dataimporter .panel.layout .tabs .tab .field .editor input, .dataimporter .panel.layout .tabs .tab .field .editor textarea {
+  float: left;
+  width: 86%;
+  margin: 2px 0px;
+}
+.dataimporter .panel.layout .tabs .tab .field .editor textarea {
+  height: 100px;
+}
+.dataimporter .panel.layout .tabs .tab .field .editor .command {
+  float: left;
+  color: blue;
+  margin: 3px 8px;
+}
+.dataimporter .panel.layout .tabs .tab .selected .arrow {
+  background: white url(../images/dataimporter/selected.gif) 0 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+}
+.dataimporter .panel.layout .tabs .tab a .trigger {
+  height: 23px;
+  width: 17px;
+}
+.dataimporter .panel.layout .tabs .tab .raise .trigger {
+  background: transparent url(../images/dataimporter/raise-trigger.gif) 0 0;
+}
+.dataimporter .panel.layout .tabs .tab .bury .trigger {
+  background: transparent url(../images/dataimporter/bury-trigger.gif) 0 0;
+}
+.dataimporter .panel.layout .tabs .tab a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.dataimporter .panel.layout .tabs .tab .title {
+  margin: 2px 0px;
+  padding: 0px;
+  font-size: 13px;
+}
+.dataimporter .panel.layout .tabs .tab .command {
+  color: black;
+  cursor: pointer;
+  display: block;
+  margin: 2px 0px;
+}
+.dataimporter .panel.layout .tabs .x-tabs-body {
+  background-color: #ccc;
+  height: 258px;
+}
+
+.dialog.editnodedocument {
+  z-index: 0;
+  border: 1px solid black;
+  position: absolute;
+  margin-top: 25px;
+  border-radius: 8px;
+}
+.dialog.editnodedocument .outtitle {
+  font-size: 14px;
+  margin-bottom: 1px;
+  font-weight: bold;
+}
+.dialog.editnodedocument .outdescription {
+  color: #444;
+}
+.dialog.editnodedocument .outbody {
+  margin: 10px 0px;;
+}
+.dialog.editnodedocument .button {
+  text-align: center;
+  width: 80px;
+}
+.dialog.editnodedocument .button.download.again {
+  width: 120px;
+}
+.dialog.editnodedocument .button.replace {
+  width: 186px;
+}
+.dialog.editnodedocument .step {
+  height: 200px;
+  width: 380px;
+  padding: 20px 40px 20px 20px;
+  background-color: #fef49c; 
+  border-radius: 8px;
+}
+.dialog.editnodedocument .cancel {
+  display: block;
+  margin-top: 5px; 
+}
+
+.dialog.generatereport {
+  width: 700px;
+  height: 400px;
+}
+.dialog.generatereport .outfield .outbody .radio.filter {
+  margin-bottom: 15px;
+}
+.dialog.generatereport .filter .dialog {
+  margin: 4px 18px;
+}
+.dialog.generatereport .filter .dialog ul {
+  margin-bottom: 8px;
+  padding-left: 12px;
+  list-style-type: disc;
+}
+.dialog.generatereport .filter .dialog ul li {
+  margin: 0px;
+}
+.dialog.generatereport .filter .dialog ul li span {
+  font-size: 11px;
+  font-weight: normal;
+  margin: 0px;
+}
+.dialog.generatereport .filter .dialog ul li .link {
+  margin: 0px 6px;
+}
+.dialog.generatereport .filter .dialog .row {
+  clear: both;
+  height: 24px;
+}
+.dialog.generatereport .filter .dialog .row .title {
+  float: left;
+  padding: 3px 0px;
+  font-size: 11px;
+  font-weight: normal;
+  margin: 0px;
+}
+.dialog.generatereport .filter .dialog .row .selector {
+  float: left;
+  margin-bottom: 5px;
+}
+
+.dialog.sharenode {
+  width: 750px;
+  height: 405px;
+}
+.dialog.sharenode .list {
+  border: 1px solid #ddd;
+  overflow-y: auto;
+  width: 340px;
+  height: 244px;
+}
+.dialog.sharenode .list .items {
+  margin: 5px;
+}
+.dialog.sharenode .dialog.searchusers .list {
+  height: 219px;
+  border-top: 0px;
+}
+.dialog.sharenode .list .user {
+  clear: both;
+  height: 15px;
+}
+.dialog.sharenode .list .user .title {
+  font: normal 12px tahoma, verdana, helvetica;
+  float: left;
+  padding: 0px;
+  margin: 0px;
+}
+.dialog.sharenode .list .user a {
+  float: left;
+  margin-left: 5px;
+}
+
+.view.node.details {
+  margin: 0px;
+  padding: 0px;
+}
+.view.node.details .message {
+  margin-left: 5px;
+  padding-top: 2px;
+}
+
+.view.task {
+}
+.view.task .toolbar .command {
+  margin-right: 10px;
+}
+
+.dialog.settaskgoal {
+  width: 500px;
+  height: 200px;
+}
+.dialog.settaskgoal .body {
+  margin: 10px;
+}
+.taskworkplacecomboitem {
+  margin-bottom: 6px;
+  padding: 5px;
+}
+
+.dialog.edittaskcheckpoints {
+  width: 540px;
+  height: 220px;
+}
+.dialog.edittaskcheckpoints .tree {
+  overflow: auto; 
+  height: 300px;
+  width: 250px;
+  border: 1px solid #c3daf9;
+}
+
+.view.cube {
+}
+.view.cube .toolbar .command {
+  margin-right: 10px;
+}
+
+
+
+.view.team {
+}
+
+.viewer.helper {
+  margin: 10px 10px 20px;
+}
+.viewer.helper .block, .viewer.helper .group {
+  margin-bottom: 10px;
+  padding: 0px;
+}
+.viewer.helper .block.add li, .viewer.helper .block.tools li {
+  margin: 4px 10px 4px 0px;
+  display: inline;
+}
+.viewer.helper .dialog {
+  margin-top: 10px;
+}
+.viewer.helper .date .dialog {
+  margin-top: 0px;
+}
+.viewer.helper .thesaurus .container {
+  margin: 2px 0 10px;
+}
+.viewer.helper .thesaurus .container label {
+  margin-left: 5px;
+}
+.viewer.helper .thesaurus .template {
+  display: none;
+}
+.viewer.helper .thesaurus .field.tags.empty table {
+  display: none;
+}
+.viewer.helper .thesaurus .field.tags.empty ul {
+  color: #666;
+  font-style: italic;
+}
+.viewer.helper .thesaurus .field.tags ul li {
+  position: relative;
+}
+.viewer.helper .thesaurus .field.tags ul li input {
+  margin-bottom: 2px;
+}
+.viewer.helper .thesaurus .field.tags ul li input.value {
+  width: 320px;
+}
+.viewer.helper .thesaurus .field.tags a.addtag {
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  width: 80px;
+}
+.viewer.helper .thesaurus .field.tags a.deletetag {
+  position: absolute;
+  height: 19px;
+  width: 18px;
+  right: 0px;
+  top: 0px;
+  margin-top: -1px;
+  margin-right: -6px;
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.viewer.helper .thesaurus .field.tags a.deletetag:hover {
+  background-position: -17px 0px;
+}
+.viewer.helper .title {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.viewer.helper .fields {
+  margin: 10px 0px;
+  border: 1px solid #aaa;
+  padding: 10px;
+}
+.viewer.helper .role .subtitle {
+  font-size: 14px;
+  color: #666; 
+} 
+.viewer.helper .role .fields {
+  border: 0px;
+  padding: 0px;
+}
+.viewer.helper .fields .field {
+  margin-bottom: 10px;
+  clear: both;
+  height: 18px;
+  position: relative;
+}
+.viewer.helper .role .fields .field {
+  height: auto;
+}
+.viewer.helper .role .field.username .options {
+  position: absolute;
+  margin-left: 379px;
+  margin-top: -32px;
+  width: 30px;
+}
+  
+.viewer.helper .role .field.username .options a.clearvalue {
+  display: block;
+  height: 21px;
+  width: 16px;
+  cursor: pointer;
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.viewer.helper .role .field.username .options a.clearvalue:hover {
+  background-position: -17px 0px;
+}
+.viewer.helper .role .datepicker .behaviours {
+  display: none;
+}
+.viewer.helper .fields .field.url {
+  height: 38px;
+}
+.viewer.helper .fields .field label {
+  width: 30%;
+  float: left;
+}
+.viewer.helper .role .fields .field label {
+  float: none;
+  margin-bottom: 4px;
+  display: block;
+  font-size: 13px;
+  width: 100%;
+}
+.viewer.helper .role .fields .field .datepicker label {
+  display: inline;
+  font-size: 12px;
+  margin: 0px;
+}
+.viewer.helper .fields .field label.disabled {
+  color: #aaa; 
+}
+.viewer.helper .fields .field .component label {
+  float: none;
+  margin-left: 5px;
+}
+.viewer.helper .fields .field .component {
+  width: 68%;
+  float: left;
+}
+.viewer.helper .role .fields .field .component {
+  float: none;
+}
+.viewer.helper .role .fields .field.username .component, .viewer.helper .role .fields .field.begindate .component, .viewer.helper .role .fields .field.expiredate .component {
+  margin-bottom: 10px;
+  width: 395px;
+}
+.viewer.helper .role .fields .field.username .grid {
+  width: 400px;
+}
+.viewer.helper .fields .field table {
+  width: 100%;
+}
+.viewer.helper .role .fields .field.username .grid table {
+  width: 1px;
+}
+.viewer.helper .role .fields .field.username .grid .x-grid-split, .viewer.helper .role .fields .field.username .grid .x-grid-header {
+  display: none;
+}
+.viewer.helper .role .fields .field.username .grid .x-grid-hd-text {
+  display: none;
+}
+.viewer.helper .role .fields .field .component.readonly {
+  color: #888;
+}
+.viewer.helper .role .fields .field.username .empty {
+  position: absolute;
+  top: 0;
+  margin-left: 5px;
+  margin-top: 55px;
+  color: #666;
+}
+.viewer.helper .fields .field.enable .component, .viewer.helper .fields .field.superterm .component, .viewer.helper .fields .field.expires .component {
+  width: auto;
+}
+.viewer.helper .fields .field.type .component {
+  width: 137px;
+  height: 50px;
+}
+.viewer.helper .message {
+  color: red;
+  position: absolute;
+  left: 52px;
+}
+.viewer.helper .message.user, .viewer.helper .message.begin, .viewer.helper .message.expire {
+  top: 1px;
+}
+.viewer.helper .message.expire {
+  top: -30px;
+}
+.viewer.helper .message.begin {
+  left: 94px;
+}
+.viewer.helper .message.expire {
+  left: 100px;
+}
+.viewerhelperroleuser {
+  padding: 3px;
+}
+.viewerhelperroleuser .label {
+  font-weight: bold;
+}
+.viewerhelperroleuser .email {
+  color: #666;
+}
+
+.viewer.helper .page label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.viewer.helper .page .page {
+  margin-top: 5px;
+}
+.viewer.helper .page .page .section {
+  margin: 10px 0px 15px;
+}
+.viewer.helper .page .page .section .title {
+  margin: 0px !important;
+  font-size: 14px;
+}
+.viewer.helper .page .page .section .description {
+  margin-top: 3px;
+}
+.node .viewer.helper .page .page .section .title {
+  font-size: 12px;
+}
+.viewer.helper .page .page .section ul.options li {
+  margin: 3px 0px 0px;
+}
+.viewer.helper .page .page .section ul.options.spaced li {
+  margin-bottom: 12px;
+}
+.viewer.helper .page .page .section ul.options li .title {
+  font-weight: normal;
+  border-bottom: 0px;
+  font-size: 12px;
+}
+.viewer.helper .page .page .section ul.options li .title.bold {
+  font-size: 12px;
+  font-weight: bold;
+}
+.viewer.helper .page .page .section ul.options li a.title {
+  display: block;
+  font-size: 12px;
+}
+.viewer.helper .page .page .section ul.options li div.title {
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.viewer.helper .page .page ol {
+  list-style-type: decimal;
+  margin: 10px 20px;
+}
+.viewer.helper .page .page ol.faqs {
+  list-style-type: decimal;
+}
+.viewer.helper .page .page ol.faqs .faq {
+  margin-top: 8px;
+}
+.viewer.helper .page .page ol.faqs .faq .question {
+  font-weight: bold;
+}
+.viewer.helper .page .page ol.faqs .faq .response {
+  font-weight: normal;
+}
+
+
+.datepicker .setprecision {
+  display: none;
+}
+.datepicker .toolbar div {
+  display: none;
+}
+.datepicker .toolbar.bottom {
+  display: none;
+}
+.datepicker .toolbar .border {
+  display: block;
+  border-bottom: 1px solid #aaa;
+}
+.datepicker .dialog.minutes, .datepicker .dialog.seconds {
+  top: 1px !important;
+}
+.datepicker .dialog li:hover {
+  background: #eee;
+}
+.ext-mac.mozilla .datepicker .date, .ext-mac.mozilla .datepicker .time {
+  height: 277px;
+}
+.datepicker .date, .datepicker .time {
+  height: 265px;
+  width: 260px;
+  border-bottom: 1px solid #aaa;
+}
+.datepicker .time {
+  width: 131px;
+}
+.datepicker .date .toolbar {
+  width: 260px;
+}
+.datepicker .time .toolbar {
+  width: 131px;
+}
+.safari .datepicker .date .toolbar.bottom, .safari .datepicker .time .toolbar.bottom {
+  margin-top: 109px !important;
+}
+.datepicker .time {
+  margin-left: 10px;
+  position: relative;
+}
+.datepicker .buttons {
+  position: relative;
+  padding: 0px !important;
+}
+.datepicker.relative .dialog.selected td.inactive .buttons {
+  border: 0px !important;
+}
+.datepicker .dialog a.button {
+  background: none;
+  border-width: 1px 0px;
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 20px;
+  padding: 0px !important;
+  border-radius: 0px;
+}
+.datepicker .button.up {
+  background: white url("../images/datepicker/up.gif") no-repeat center 4px !important;
+  margin-top: -68px;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px dotted #aaa;
+  top: 2px;
+}
+.datepicker .dialog.mac a.button.up {
+  top: 0px;
+}
+.ext-safari .datepicker .dialog.mac a.button.up {
+  top: 2px;
+}
+.datepicker .button.up:hover {
+  background: #D0E0F5 url("../images/datepicker/up.gif") no-repeat center 4px !important;
+}
+.datepicker .button.down {
+  background: white url("../images/datepicker/down.gif") no-repeat center 4px !important;
+  border-top: 1px dotted #aaa;
+  border-bottom: 1px solid #aaa;
+}
+.datepicker .button.down:hover {
+  background: #D0E0F5 url("../images/datepicker/down.gif") no-repeat center 4px !important;
+}
+.datepicker .dialog.selected td:hover .button.up, .datepicker .dialog.selected td:hover .button.down {
+  display: block;
+}
+.datepicker.relative .daycell .buttons {
+  position: absolute;
+  width: 258px;
+}
+.datepicker.relative .monthcell .buttons {
+  position: absolute;
+  width: 200px;
+}
+.datepicker.relative.months .monthcell .buttons {
+  position: absolute;
+  width: 258px;
+}
+.datepicker .dialog {
+  border: 1px solid #aaa;
+  border-top: 0px;
+  border-bottom: 0px;
+  text-align: left;
+}
+.datepicker .dialog li {
+  font-size: 13px;
+  padding: 3px 0px;
+  cursor: pointer;
+}
+.datepicker .dialog li:hover {
+  background: #eee;
+}
+.datepicker .time .dialog li {
+  text-align: center;
+  padding-left: 0px !important;
+}
+.datepicker .dialog li.active {
+  font-size: 15px;
+  background: white;
+  padding: 13px 0px;
+}
+.datepicker .dialog.months, .datepicker .dialog.years {
+  background: #eee;
+} 
+.datepicker .dialog .list li {
+  padding-left: 5px;
+}
+.datepicker .dialog.minutes {
+  position: absolute;
+  margin-left: 43px;
+  top: 24px;
+  width: 43px;
+}
+.datepicker .dialog.seconds {
+  position: absolute;
+  margin-left: 87px;
+  top: 24px;
+  width: 42px;
+}
+.datepicker.seconds .dialog.selected .minutecell {
+  width: 43px;
+}
+.datepicker .dialog.hours .list {
+  background: white;
+  display: block;
+  width: 42px;
+}
+.datepicker.minutes .dialog.hours .list {
+  width: 65px;
+}
+.datepicker .dialog.months .list {
+  background: none repeat scroll 0 0 white;
+  border-left: 1px solid #aaa;
+  display: block;
+  margin-left: 57px;
+  width: 199px;
+}
+.datepicker .dialog.years .list {
+  background: none repeat scroll 0 0 white;
+  border-left: 1px solid #aaa;
+  display: block;
+  margin-left: 198px;
+  width: 59px;
+}
+.datepicker .dialog.selected {
+  background: white;
+  border: 1px solid #aaa;
+  margin-top: -155px !important;
+  position: relative;
+  width: 260px;
+}
+.mozilla .datepicker .dialog.selected.mac {
+  margin-top: -162px !important;
+}
+.ie .datepicker .dialog.selected {
+  position: absolute;
+  margin-top: -153px !important;
+}
+.datepicker .time .dialog.selected {
+  width: 131px;
+}
+.datepicker .dialog.selected td {
+  cursor: pointer;
+  border: 1px solid #aaa;
+}
+.datepicker.absolute.months .date .dialog.selected .monthcell {
+  width: 157px;
+}
+.safari .datepicker.absolute.months .date .dialog.selected .monthcell {
+  width: 158px;
+}
+.safari .datepicker.relative.months .date .dialog.selected .monthcell {
+  width: 141px;
+}
+.datepicker .dialog.selected td div {
+  font-size: 15px;
+  text-align: center;
+  padding: 11px;
+}
+.datepicker .dialog li.holiday, .datepicker .dialog.holiday td div {
+  color: #cc3300;
+}
+.datepicker .dialog.selected td .weekday {
+  font-size: 10px;
+  color: #999;
+  position: absolute;
+  margin-top: -27px;
+  margin-left: -11px;
+  width: 60px;
+}
+.datepicker.minutes .dialog.seconds, .datepicker.minutes .dialog.selected td.secondcell {
+  display: none;
+}
+.datepicker.minutes .dialog.hours {
+  width: 64px;
+}
+.datepicker.minutes .dialog.minutes {
+  margin-left: 65px;
+  width: 64px;
+}
+.datepicker.hours .dialog.minutes, .datepicker.hours .dialog.selected td.minutecell, .datepicker.hours .dialog.seconds, .datepicker.hours .dialog.selected td.secondcell {
+  display: none;
+}
+.datepicker.hours .dialog.hours .list {
+  width: auto;
+}
+.datepicker.days .time {
+  display: none;
+}
+.datepicker.days.relative .dialog.days, .datepicker.days.relative .dialog.months, .datepicker.days.relative .dialog.years {
+  width: 258px;
+}
+.datepicker.months .time, .datepicker.months .dialog.days, .datepicker.months .dialog.selected td.daycell {
+  display: none;
+}
+.datepicker.months .dialog.months {
+  padding: 0px;
+}
+.datepicker.months .dialog.months .list {
+  margin-left: 0px;
+  width: auto;
+  border: 0px;
+}
+.datepicker.months .dialog.years .list {
+  margin-left: 187px;
+  width: 70px;
+}
+.datepicker.months.relative .dialog.years .list {
+  margin-left: 181px;
+  width: 76px;
+}
+.datepicker.months.relative .dialog.months, .datepicker.months.relative .dialog.years {
+  width: 258px;
+}
+.datepicker.years .time, .datepicker.years .dialog.days, .datepicker.years .dialog.months, .datepicker.years .dialog.selected td.daycell, .datepicker.years .dialog.selected td.monthcell {
+  display: none;
+}
+.datepicker.years .dialog.years {
+  padding: 0px;
+  width: 258px;
+}
+.datepicker.years .dialog.years .list {
+  margin-left: 0px;
+  width: auto;
+  border: 0px;
+}
+.datepicker.absolute .dialog.days {
+  position: absolute;
+  width: 57px;
+} 
+.datepicker.absolute .dialog.days .list {
+  border: 0px;
+  margin-left: 0px;
+}
+.datepicker.absolute .dialog.months {
+  position: absolute;
+  border: 0px;
+  margin-left: 60px;
+  width: 142px;
+}
+.datepicker.absolute .dialog.months .list {
+  border: 0px;
+  margin-left: 0px;
+} 
+.datepicker.absolute .dialog.years {
+  width: 59px;
+  margin-left: 199px;
+} 
+.datepicker.absolute .dialog.years .list {
+  margin-left: 0px;
+  border: 0px;
+}
+.datepicker.absolute .dialog.hours {
+  background: white;
+}
+.datepicker.absolute .dialog.hours .list {
+  border: 0px;
+}
+.datepicker.absolute.minutes .dialog.hours .list {
+  width: 65px;
+}
+.datepicker.absolute.months .dialog.months {
+  border: 1px solid #aaa;
+  border-top: 0px;
+  border-bottom: 0px;
+  width: 187px;
+  margin-left: 0px;
+}
+.datepicker.absolute.months .dialog.years {
+  width: 70px;
+  margin-left: 188px;
+}
+.datepicker.absolute.years .dialog.years {
+  width: 258px;
+  margin-left: 0px;
+}
+.datepicker.relative .date .dialog.selected td.inactive div {
+  background-color: #eee;
+  border: 2px solid #eee;
+}
+.datepicker.relative .date .dialog.selected td.active .day, .datepicker.relative .date .dialog.selected td.active .month, .datepicker.relative .date .dialog.selected td.active .year,
+.datepicker.relative .time .dialog.selected td.active .hour, .datepicker.relative .time .dialog.selected td.active .minute, .datepicker.relative .time .dialog.selected td.active .second {
+  background: white;
+  border: 2px solid white;
+}
+.datepicker.relative .date .dialog.selected td div.weekday {
+  background: none;
+  border: 0px;
+}
+.datepicker .date .dialog.selected td .day, .datepicker .date .dialog.selected td .month, .datepicker .date .dialog.selected td .year,
+.datepicker .time .dialog.selected td .hour, .datepicker .time .dialog.selected td .minute, .datepicker .time .dialog.selected td .second {
+  background-color: white;
+  border: 2px solid white;
+}
+.datepicker .date .dialog.selected td.active .day:hover, .datepicker .date .dialog.selected td.active .month:hover, .datepicker .date .dialog.selected td.active .year:hover,
+.datepicker .time .dialog.selected td .hour:hover, .datepicker .time .dialog.selected td .minute:hover, .datepicker .time .dialog.selected td .second:hover {
+  background: #eee;
+  border: 2px solid #eee;
+}
+.datepicker .behaviours {
+  margin-top: 10px;
+}
+.datepicker .behaviours .label {
+  border: 0 none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.datepicker .behaviours .setmode, .datepicker .behaviours .setprecision {
+  margin: 5px 0px;
+}
+.datepicker .behaviours .setmode label {
+  margin-left: 5px;
+}
+.datepicker .behaviours .setprecision label {
+  margin-right: 5px;
+}
+
+.viewer.helper .editors {
+  background-color: transparent;
+}
+.viewer.helper .editors.locked {
+  overflow: hidden;
+}
+.viewer.helper .editors .link {
+  color: black;
+}
+.viewer.helper .editors .header {
+  margin: 10px;
+}
+.viewer.helper .editors .separator {
+  border-top: 1px solid #99BBE8; 
+  border-bottom: 1px solid #99BBE8; 
+  height: 2px;
+}
+.viewer.helper .editors .header .toolbar {
+  margin-top: 5px;
+  border-bottom: 1px dotted #99BBE8;
+  padding-bottom: 6px;
+}
+.viewer.helper .editors .header .toolbar.right {
+  float: right;
+  border: 0px;
+  margin-top: -21px;
+  margin-right: 10px;
+}
+.viewer.helper .editors .header .toolbar .undo {
+  float: left;
+  height: 16px;
+  width: 16px;
+  background: url("../images/icons/undo.png");
+}
+.viewer.helper .editors .header .toolbar .redo {
+  float: left;
+  height: 16px;
+  width: 16px;
+  margin-left: 10px;
+  background: url("../images/icons/redo.png");
+}
+.viewer.helper .editors .editor .info {
+  border-bottom: 1px dotted #99BBE8;
+  background: none;
+  border: 0px;
+  padding: 0px;
+}
+.viewer.helper .editors .editor .info .title {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: inline;
+}
+.viewer.helper .editors .editor .info .help {
+  background: url("../images/icons/help-trigger.gif") no-repeat scroll 0 0 transparent;
+  display: inline;
+  height: 19px;
+  margin-left: 5px;
+  margin-top: -2px;
+  position: absolute;
+  width: 16px;  
+}
+.viewer.helper .editors .editor .info .help:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.viewer.helper .editors .editor .info .description {
+  margin-bottom: 10px;
+}
+.viewer.helper .editors .editor .info .ehelp {
+  margin-left: 4px;
+}
+.viewer.helper .editors .editor .info .context li {
+  display: inline;
+  margin-right: 5px;
+}
+.viewer.helper .editors .editor .toolbar div {
+  margin-bottom: 4px;
+}
+.viewer.helper .editors .editor .dialogs {
+  margin-top: 10px;
+}
+.viewer.helper .editors .editor .dialog a.button {
+  background: white;
+  border: 1px solid #AAAAAA;
+  color: #000077;
+  cursor: pointer;
+  margin-right: 5px;
+  padding: 2px 10px;
+}
+.viewer.helper .editors .editor.edate .dialog a.button {
+  border: 0px;
+}
+.viewer.helper .editors .editor.edate .dialog a.button.up {
+  border-bottom: 1px dotted #AAAAAA;
+  border-top: 1px solid #AAAAAA;
+}
+.viewer.helper .editors .editor.edate .dialog a.button.up:hover {
+  background: #D0E0F5 url("../images/datepicker/up.gif") no-repeat center 4px !important;
+}
+.viewer.helper .editors .editor.edate .dialog a.button.down {
+  border-bottom: 1px solid #AAAAAA;
+  border-top: 1px dotted #AAAAAA;
+}
+.viewer.helper .editors .editor.edate .dialog a.button.down:hover {
+  background: #D0E0F5 url("../images/datepicker/down.gif") no-repeat center 4px !important;
+}
+.viewer.helper .editors .editor .dialog a.disabled {
+  color: #444;
+  cursor: default;
+}
+.viewer.helper .editors .editor .dialog .x-grid-hd-row td, .viewer.helper .editors .editor .dialog .x-grid-row td {
+  font-size: 12px;
+  font-family: Tahoma,Arial,Helvetica,sans-serif;
+}
+.viewer.helper .editors .editor .dialog.history {
+  position: relative;
+  left: 0px;
+}
+.viewer.helper .editors .editor .dialog .title {
+  border-bottom: 1px dotted #99BBE8;
+  padding-bottom: 3px;
+}
+.viewer.helper .editors .editor .dialog .toolbar {
+  padding: 10px 0px;
+}
+.viewer.helper .editors .editor.eboolean .dialog .toolbar {
+  padding: 0px;
+}
+.viewer.helper .editors .editor .dialog .toolbar input {
+  padding: 0px;
+}
+.viewer.helper .editors .editor .dialogs .toolbar {
+  margin-top: 10px;
+}
+.viewer.helper .editors .editor .dialogs .toolbar .filter input {
+  width: 98%;
+}
+.viewer.helper .editors .editor .dialogs .toolbar .filter {
+  position: relative;
+}
+.viewer.helper .editors .editor .dialogs .toolbar .filter .empty {
+  color: #888;
+  font-style: italic;
+  left: 5px;
+  top: 2px;
+  position: absolute;
+}
+.viewer.helper .editors .editor .x-resizable-pinned .x-resizable-handle-south {
+  background:url("../images/default/sizer/s-handle-dark.gif");
+  background-position: top;
+}
+.viewer.helper .editors .editor .dialogs .grid {
+  overflow-y: auto;
+}
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .ytb-sep, 
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .ytb-text, 
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .x-grid-page-number, 
+.viewer.helper .editors .editor .dialogs .grid .x-toolbar .x-grid-loading {
+  display: none;
+}
+.viewer.helper .editors .editor .dialogs .source .grid, .viewer.helper .editors .editor .dialogs .history .grid {
+  height: 228px;
+  border: 1px solid #99BBE8;
+}
+.viewer.helper .editors .editor.number .dialogs .source .grid {
+  border: 0px;
+}
+.viewer.helper .editors .editor .date .toolbar, .viewer.helper .editors .editor .date .toolbar div {
+  margin: 0px;
+}
+.viewer.helper .editors .editor.text .preview {
+  margin: 10px 0px;
+  padding: 5px;
+  border: 1px dotted #99BBE8;
+  word-wrap: break-word;
+}
+.viewer.helper .editors .editor .dialogs .grid .x-grid-header .x-grid-hd-text {
+  font-size:12px;
+  font-weight:normal;
+}
+.viewer.helper .editors .editor .dialogs .x-tabs-wrap {
+  background: none;
+  border: 0px;
+  padding: 0px;
+}
+.viewer.helper .editors .editor .dialogs .x-layout-panel .x-tabs-top .x-tabs-wrap {
+  padding: 0px;
+}
+.viewer.helper .editors .editor .dialogs .x-tabs-strip-wrap {
+  background: none;
+  border: 0px;
+  border-bottom: 1px solid #8DB2E3;
+  padding: 0px;
+}
+.viewer.helper .editors .editor .dialogs .x-tabs-strip .x-tabs-inner{
+  width: 70px;
+}
+.viewer.helper .editors .editor .dialogs .x-tabs-strip .x-tabs-text {
+  width: 70px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.fileupload form label, .viewer.helper .editors .editor .dialogs .dialog.pictureupload form label {
+  display: block;
+  margin: 10px 0px;
+  border-bottom: 1px dotted #99BBE8;
+}
+.viewer.helper .editors .editor .dialogs .dialog.fileupload input {
+  margin-bottom: 10px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.fileupload input.label {
+  width: 100%;
+}
+.viewer.helper .editors .editor .dialogs .dialog .loading {
+  background: url("../images/icons/editor_loading.gif") no-repeat;
+  display: none;
+  left: 50%;
+}
+.viewer.helper .editors .editor .dialogs .dialog .empty {
+  position: absolute;
+  color: #333;
+  font-style: italic;
+  top: 27px;
+  left: 0px;
+  width: 100%;
+  z-index: 10;
+  display: none;
+}
+.viewer.helper .editors .editor .dialogs .source .empty, .viewer.helper .editors .editor .dialogs .history .empty {
+  left: 5px;
+}
+.viewer.helper .editors .editor .dialogs .list .empty {
+  position: relative; 
+  top: 0px;
+  left: 0px;
+}
+.viewer.helper .editors .editor .dialogs .dialog .uploading {
+  color: #333;
+  font-style: italic;
+  margin: 10px 20px;
+  display: none;
+}
+.viewer.helper .editors .editor .dialogs .dialog .uploading img {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -1px;
+  height: 20px;
+}
+.viewer.helper .editors .editor .dialogs .dialog .uploading img.message {
+  background: transparent url("../images/icons/loading.gif") no-repeat left top;
+}
+.viewer.helper .editors .editor .dialogs .dialog .uploading img.error {
+  background: transparent url("../images/default/form/exclamation.gif") no-repeat left top;
+}
+.viewer.helper .editors .editor a.close {
+  float: right;
+  margin: 5px;
+  cursor: pointer;
+  color: #15428B;
+}
+.viewer.helper .editors .editor .dialogs .dialog .text.other {
+  margin-top: 5px;
+}
+.ie .viewer.helper .editors .editor .dialogs .dialog .text.other {
+  width: 90%;
+}
+.viewer.helper .editors .editor .dialogs .dialog .button.accept {
+  margin-top: 5px;
+}
+.viewer.helper .editors .editor .dialogs .dialog input.search {
+  width: 80%;
+}
+.ie .viewer.helper .editors .editor .dialogs .dialog input.search {
+  width: 70%;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list {
+  position: static;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list ul {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  top: 0px;
+  left: 0px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li {
+  border: 1px solid #B5B8C8;
+  padding: 0px 4px;
+  margin-bottom: 4px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li.drag {
+  z-index: 100;
+  position: absolute;
+  opacity: .50;
+  filter: alpha(opacity=50);
+  width: 100%;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions img {
+  height: 23px;
+  width: 17px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a {
+  position: relative;
+}
+.ie .viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a {
+  position: static;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.delete {
+  float: left;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.delete .trigger {
+  display: block;
+  background: transparent url('../images/icons/delete-trigger.gif') no-repeat scroll 0px 0px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.move .trigger {
+  cursor: move;
+  background: transparent url('../images/icons/move-trigger.gif') no-repeat scroll 0px 0px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a.move.grabbing .trigger {
+  cursor: move;
+}
+.viewer.helper .editors .editor .dialogs .dialog.list li .elementoptions a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload form {
+  margin-bottom: 10px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .imageContainer {
+  position: relative;
+}
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .imageContainer.button {
+  margin-top: 10px;
+}
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .crop_transparentDiv {
+  background-color:#FFF;
+  filter:alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;    
+  opacity:0.6;
+  position:absolute;
+}
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .crop_dottedDiv {
+  position:absolute;
+  border:1px dotted #7f7f7f;
+  z-index:10000;
+}
+  
+.viewer.helper .editors .editor .dialogs .dialog.pictureupload .crop_dottedDiv div {
+  filter:alpha(opacity=0);
+  opacity:0;
+  -khtml-opacity: 0;
+  -moz-opacity: 0;    
+  width:100%;
+  height:100%;  
+  background-color:#FFF;
+}
+.viewer.helper .editors .editor .actions {
+  margin-bottom: 0px;
+}
+.viewer.helper .editors .editor .edition label, .viewer.helper .editors .editor .actions label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.viewer.helper .editors .editor .emessage {
+  color: #444;
+  background-color: #FFFAC9;
+  margin-bottom: 10px;
+  padding: 5px;
+  display: none;
+}
+.viewer.helper .editors .editor .emessage div {
+  display: block;
+  margin-bottom: 2px;
+}
+.viewer.helper .editors .editor .description {
+  color: #666;
+}
+.viewer.helper .editors .editor.nohistory .emessage .recents {
+  display: none;
+}
+.viewer.helper .editors .editor .edition .fmsgs {
+  color: #444;
+  margin: 10px 0px;
+}
+.viewer.helper .editors .editor .edition .fmsgs div {
+  margin-bottom: 2px;
+}
+.viewer.helper .editors .editor .edition .verrors {
+  color: red;
+  margin: 10px 0px;
+}
+.viewer.helper .editors .editor .edition .toolbar {
+  margin: 10px 0px;
+}
+.viewer.helper .editors .editor .actions div {
+  margin-bottom: 4px;
+}
+.viewer.helper .editors .editor .dialog.date .cday, .viewer.helper .editors .editor .dialog.date .cmonth, 
+.viewer.helper .editors .editor .dialog.date .cyear, .viewer.helper .editors .editor .dialog.date .ctime {
+  display: block; 
+  width: 100px; 
+  height: 258px; 
+  border-color: #aaa; 
+  border-style: solid; 
+  border-width: 1px; 
+  padding: 1px;
+  overflow: auto;
+}
+.viewer.helper .editors .editor .dialog.date .cday div, .viewer.helper .editors .editor .dialog.date .cmonth div, 
+.viewer.helper .editors .editor .dialog.date .cyear div, .viewer.helper .editors .editor .dialog.date .ctime div {
+  cursor: pointer;
+  margin: 5px 0;
+  text-align: center;
+}
+.viewer.helper .editors .editor .dialog.date .cday div.active, .viewer.helper .editors .editor .dialog.date .cmonth div.active, 
+.viewer.helper .editors .editor .dialog.date .cyear div.active, .viewer.helper .editors .editor .dialog.date .ctime div.active {
+  background: #aaa;
+}
+.viewer.helper .editors .editor .dialog.location .map {
+  height: 300px;
+  width: 100%;
+  border: 1px solid #aaa;
+}
+
+#PreviewThumbnails {
+  overflow: visible;
+  overflow-y: hidden;
+  y-overflow: hidden;
+  max-height: 200px;
+  border: 1px solid #ddd;
+}
+.thumbsView {
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+.thumbItem {
+  float: left;
+  margin: 15px 5px;
+}
+.thumbItem.selected .thumbItemImage img {
+  border: 2px solid Blue;
+}
+.thumbItem .thumbItemImage {
+  display: block;
+  margin: 0 auto;
+  background: url(../images/loading.gif) #FFFFFF no-repeat center center;
+  width: 138px;
+  text-align: right;
+}
+.thumbItem .thumbItemImage,
+.thumbItem .thumbItemImage img {
+  max-width: 138px;
+  max-height: 158px;
+}
+.thumbItem .thumbItemImage img {
+  border: 1px solid #000000;
+  margin-left: 5px; 
+  vertical-align: text-top;
+}
+  
+.pagesLabel {
+  font-size: 15px !important;
+  text-align: center;
+}
+.pagesLabel .dialog {
+  border-radius: 0px;
+  border: 0px;
+  margin: 0px auto;
+  padding: 0px !important;
+}
+.pagesLabel .dialog input {
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  border: 0px;
+  width: 100%;
+  padding: 1px 0;
+  cursor: text;
+  border: 1px solid black;
+  font-size: 15px;
+}
+.pagesLabel .dialog input.active {
+  border: 1px solid #99BBE8;
+  background: #EFF7FF;
+}
+.pagesLabel .dialog .accept {
+  position: absolute;
+  right: 0;
+  margin-right: 29px;
+  margin-top: -27px;
+  font-size: 13px; 
+}
+  
+.pagesLabel .dialog .clear {
+  position: absolute;
+  display: block;
+  height: 18px;
+  width: 16px;
+  right: 0px;
+  margin-top: -29px;
+  margin-right: 4px;
+  cursor: pointer;
+  background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.pagesLabel .dialog .clear:hover {
+  background-position: -17px 0px;
+}
+.pageItem {
+  margin: 0 0 20px 0;
+}
+.pageItem div {
+  margin: 0 auto;
+}
+.pageItem .pageItemImage {
+  display: block;
+  background: url(../images/loading.gif) #FFFFFF no-repeat center center;
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+.pagesView {
+  padding: 0px 5px;
+}
+.pagesView span {
+  color: #000000;
+  padding: 10px 10px 10px 30px;
+  display: block;
+  background: url(../images/icons/loading.gif) transparent no-repeat 5px 9px;
+}
+#PreviewButtons .next {
+  background: url(../images/icons/next.gif);
+}
+#PreviewButtons .previous {
+  background: url(../images/icons/previous.gif);
+}
+#PreviewButtons .zoomIn {
+  background: url(../images/icons/zoom_in.gif);
+}
+#PreviewButtons .zoomOut {
+  background: url(../images/icons/zoom_out.gif);
+}
+#PreviewButtons .page {
+  width: 26px;
+  text-align: center;
+}
+
+.viewer.helper .observers label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.viewer.helper .observers ul {
+  max-height: 150px;
+  overflow: auto;
+}
+.viewer.helper .observers li {
+  clear: both;
+  height: 20px;
+  margin: 5px 0px;
+}
+.viewer.helper .observers li .box {
+  float: left;
+  height: 14px;
+  width: 14px;
+  border: 1px solid black;
+}
+.viewer.helper .observers li .fullname {
+  float: left;
+  margin-left: 5px; 
+}
+
+.viewer.helper .revisionlist .listviewer {
+  height: 225px;
+}
+.viewer.helper .revisionlist .listviewer .layer {
+  overflow: auto;
+  height: 90%;
+}
+.viewer.helper .revisionlist .wizard {
+  display: none;
+}
+.viewer.helper .revisionlist .listviewer .items .item .label {
+  font-size: 12px;
+  margin: 5px;
+}
+.viewer.helper .revisionlist .listviewer .items .item table {
+  width: 99%;
+}
+
+#MapViewerWizard .title {
+  margin: 10px;
+}
+#MapViewerWizard .info, #MapViewerWizard .toolbar, #MapViewerWizard .search {
+  margin: 5px 10px;
+}
+#MapViewerWizard .search {
+  border: 1px dotted #AAAAAA;
+  margin-top: 10px;
+  padding: 10px;
+  height: 44px;
+}
+#MapViewerWizard .search label {
+  display: block;
+  margin-bottom: 4px;
+  margin-right: 5px;
+}
+#MapViewerWizard .search input {
+  width: 80%;
+  float: left;
+}
+#MapViewerWizard .search .op.accept {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid #AAAAAA;
+  color: #000077;
+  cursor: pointer;
+  display: block;
+  margin-left: 5px;
+  margin-right: 10px;
+  padding: 2px 10px;
+  white-space: nowrap;
+  float: left;
+}
+#MapViewerWizard .toolbar {
+  margin-top: 10px;
+}
+#MapViewerWizard .edition {
+  margin-bottom: 20px;
+}
+#MapViewerWizard .navigation {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,5 @@
+/apps/
+config.cfg
+install.log
+result.txt
+config.*.cfg

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="interface/lang/english/|control/|core/kernel/|interface/constructor/|lib/ext/|interface/lang/spanish/|interface/view/|interface/behaviour/|interface/toolbar/spanish/|interface/editor/|interface/toolbar/english/|lib/edi/|lib/|interface/layout/|interface/dialog/|interface/widget/|core/model/|interface/decorator/|interface/|lib/isi/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/control"/>
+	<classpathentry kind="src" path="src/core/kernel"/>
+	<classpathentry kind="src" path="src/core/model"/>
+	<classpathentry excluding="lang/english/|constructor/|lang/spanish/|view/|behaviour/|toolbar/spanish/|editor/|toolbar/english/|layout/|dialog/|widget/|decorator/" kind="src" path="src/interface"/>
+	<classpathentry kind="src" path="src/interface/behaviour"/>
+	<classpathentry kind="src" path="src/interface/constructor"/>
+	<classpathentry kind="src" path="src/interface/decorator"/>
+	<classpathentry kind="src" path="src/interface/dialog"/>
+	<classpathentry kind="src" path="src/interface/editor"/>
+	<classpathentry kind="src" path="src/interface/lang/english"/>
+	<classpathentry kind="src" path="src/interface/lang/spanish"/>
+	<classpathentry kind="src" path="src/interface/layout"/>
+	<classpathentry kind="src" path="src/interface/toolbar/english"/>
+	<classpathentry kind="src" path="src/interface/toolbar/spanish"/>
+	<classpathentry kind="src" path="src/interface/view"/>
+	<classpathentry kind="src" path="src/interface/widget"/>
+	<classpathentry excluding="ext/|edi/|isi/" kind="src" path="src/lib"/>
+	<classpathentry kind="src" path="src/lib/edi"/>
+	<classpathentry kind="src" path="src/lib/ext"/>
+	<classpathentry kind="src" path="src/lib/isi"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

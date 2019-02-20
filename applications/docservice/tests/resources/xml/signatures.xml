@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<signatures>
+	<signature id='MySign1'>
+		<role name='Director'/>
+		<role name='Tecnico'/>
+	</signature>
+	<signature id='MySing2'>
+		<role name='Tecnico'/>
+	</signature>
+</signatures>

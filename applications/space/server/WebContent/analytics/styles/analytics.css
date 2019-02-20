@@ -1,0 +1,1136 @@
+.view {
+  margin-bottom: 10px;
+}
+.view label {
+	font-size: 17px;
+	cursor: pointer;
+}
+.view .block label {
+  cursor: pointer;
+}
+.view label.right {
+  float: right;
+  height: 20px;
+}
+.view .clear {
+	clear: both;
+}
+
+.view.account {
+}
+.view.account .text {
+  margin-left: 5px;
+}
+.view.account span.username {
+  position: absolute; 
+}
+.view.account span.username .usernamelabel {
+  margin-right: 18px;
+}
+.view.account span.username img {
+  background: transparent url("../images/username.gif") no-repeat 0 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-top: -3px;
+  margin-right: -18px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.view.account span.username img:hover {
+  background-position: -16px 0;
+}
+.view.account .panel {
+  overflow: visible; 
+  position: absolute; 
+  top: 20px; 
+  left: -228px; 
+  width: 270px; 
+  background-color: white; 
+  border: 1px solid #99BBE8;
+  display: none;
+  border-radius: 5px;
+  z-index: 1;
+  
+  box-shadow: 2px 2px 5px #808080;
+  -webkit-box-shadow: 2px 2px 5px #808080;
+  -moz-box-shadow: 2px 2px 5px #808080;
+}
+.view.account .panel.active {
+  display: block;
+}
+.view.account .panel ul {
+  overflow: hidden;
+}
+.view.account .panel.username {
+  padding: 10px;
+  left: -245px;
+}
+.view.account .panel ul.environments, .view.account .panel ul.dashboards, .view.account .panel ul.units {
+  overflow-y: auto;
+}
+.view.account .panel ul.units {
+  height: 200px;
+}
+.view.account .panel.username ul.options {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+.view.account .panel.username a.logout {
+  margin: 5px 2px 0px;
+  float: right;
+}
+.view.account .panel.username li.section ul li {
+  border: 1px solid white;
+  cursor: pointer;
+}
+.view.account .panel.username li.section ul li.active_true, .view.account .panel.username li.section ul li.active_true a,
+.view.account .panel.username li.section ul li.disabled {
+  cursor: default;
+}
+.view.account .panel.username li.section ul li a {
+  display: block;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+.view.account .panel.username li.section ul li.active_true a,
+.view.account .panel.username li.section ul li.disabled a {
+  color: #999;
+}
+.view.account .panel.username li.section ul li.active_false:hover {
+  background-color: #EFF7FF;
+  border: 1px solid #99BBE8;
+}
+.view.account .panel.username li.section ul li.disabled:hover {
+  background: none;
+}
+.view.account .panel.username .title {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.view.dashboardinfo {
+}
+.view.dashboardinfo .title {
+	margin-left: 0 !important;
+}
+.view.dashboardinfo .filters {
+	color: #787878;
+	font-size: 15px;
+	width: 50%;
+}
+.view.dashboardinfo .filters li {
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+.view.dashboardinfo.print .filters li {
+  cursor: default;
+}
+.view.dashboardinfo .filters li a {
+	color: #676767;
+	border-radius: 4px;
+	padding: 0 2px;
+  cursor: pointer;
+}
+.view.dashboardinfo .filters li a:hover {
+	color: #afafaf;
+  cursor: pointer;
+}
+.view.dashboardinfo.print .filters li a:hover {
+	color: #676767;
+}
+
+.view.indicators {
+	margin-top: 10px;
+	padding: 0 10px;
+}
+.view.indicators > .folders {
+	margin-left: 10px;
+  margin-top: 5px;
+  overflow-y: auto;
+}
+.view.indicators.expanded > .folders {
+	height: 100%;
+}
+.view.indicators .folders .folders {
+	margin-left: 10px;
+}
+.view.indicators .folder .title {
+  background: url('../images/closed.png') no-repeat 0 1px;
+	padding-left: 15px;
+	cursor: pointer;
+}
+.view.indicators .folder > ul {
+  display: none;
+}
+.view.indicators .folder.opened .title, .view.indicators .folder.opened .folder.opened .title {
+  background: url('../images/opened.png') no-repeat 0 1px;
+}
+.view.indicators .folder.opened .folder.closed .title {
+  background: url('../images/closed.png') no-repeat 0 1px;
+}
+.view.indicators .folder.opened > ul {
+  display: block;
+}
+.view.indicators .folder .indicators {
+  margin: 2px 15px;
+}
+.view.indicators .folder .indicator {
+	margin-bottom: 3px;
+}
+.view.indicators .folder .indicator label {
+	margin-left: 2px;
+  padding: 0 5px 1px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.view.indicators .folder .indicator label:hover {
+	background: #efefef;
+}
+.view.indicators .folder .indicator .colorbox {
+	border-radius: 10px;
+	float: right;
+	height: 16px;
+	width: 16px;
+	display: none;
+	cursor: pointer;
+}
+.colorsoff .view.indicators .folder .indicator .colorbox {
+	opacity: 0.1;
+  filter: alpha(opacity=10); 
+}
+.view.indicators .folder .indicator.disabled label {
+	color: #888;
+	cursor: default;
+}
+.view.indicators .folder .indicator.disabled label:hover {
+  background: none;
+}
+
+.view.measureunits {
+	margin-top: 10px;
+	padding: 0 10px;
+}
+.view.measureunits ul {
+	margin-left: 10px;
+  margin-top: 5px;
+  overflow-y: auto;
+}
+.view.measureunits ul li {
+	margin-bottom: 10px;
+}
+.view.measureunits ul li .dialog {
+	background: #efefef;
+	border-radius: 5px;
+	padding: 6px; 
+	margin-top: 2px;
+}
+.view.measureunits ul li label {
+	margin-left: 3px;
+}
+.view.measureunits ul li table {
+	width: 100%;
+}
+.view.measureunits ul li table .title {
+  color: #555;
+  margin-left: 0px;
+}
+.view.measureunits ul li table label {
+  margin-left: 5px;
+}
+.view.measureunits ul li table input {
+  margin-left: 10px;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+.view.measureunits ul li table span {
+	position: relative;
+}
+.view.measureunits ul li table span a {
+	background: url("../images/delete.gif") no-repeat 0 0;
+	display: none;
+  height: 18px;
+  margin-right: 4px;
+  margin-top: -2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 16px; 
+}
+.view.measureunits ul li table span a:hover {
+	background-position: -17px 0;
+}
+
+.view.taxonomies select {
+  width: 100%;
+  margin-top: 5px;
+}
+.view.taxonomies .block {
+	padding: 10px;
+}
+.view.taxonomies .taxonomiesbox, .view.taxonomies .block.filters > ul {
+  overflow-y: auto;
+}
+.view.taxonomies .block.expanded .taxonomiesbox, .view.taxonomies .block.filters.expanded > ul {
+	height: 100%;
+}
+.view.taxonomies .block .categories, .view.taxonomies .block.filters > ul, .view.taxonomies .block.filters .nofilters {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.view.taxonomies .block.filters li label {
+	cursor: pointer;
+}
+.view.taxonomies .block.filters li .categories {
+  display: none;
+}
+.view.taxonomies .block.filters li.opened .categories {
+	display: block;
+}
+.view.taxonomies .block.filters li .togglefilter {
+  padding-right: 10px;
+  padding-left: 17px;
+  background: url("../images/closed.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+.view.taxonomies .block.filters li.opened .togglefilter {
+  background: url("../images/opened.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+.view.taxonomies .block.filters li .selectallfilters {
+  display: none;
+}
+.view.taxonomies .block .categories ul li {
+	margin-bottom: 2px;
+}
+.view.taxonomies .block .categories ul li a.leaf_false {
+  padding-left: 17px;
+  background: url("../images/closed.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+.view.taxonomies .block .categories ul li a.leaf_false.opened {
+  background: url("../images/opened.png") no-repeat scroll 0 1px rgba(0, 0, 0, 0);
+}
+.view.taxonomies .block .categories ul li a.leaf_true {
+  color: black;
+} 
+.view.taxonomies .block .categories ul ul {
+	margin-left: 15px;
+}
+.view.taxonomies .block .taxonomiesbox .option .colorbox {
+  border-radius: 10px;
+  float: right;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+.colorsoff .view.taxonomies .block .taxonomiesbox .option .colorbox {
+  opacity: 0.1;
+  filter: alpha(opacity=10); 
+}
+
+.view.chart {
+  margin: 0px;
+  position: relative;
+}
+.view.chart .dialog.scale, .view.chart .dialog.zoom {
+	margin-top: -28px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.view.chart .dialog.scale {
+  margin-right: 260px;
+}
+.view.chart .dialog.zoom {
+  margin-right: 465px;
+}
+.view.chart .evolutionloading {
+	display: none;
+}
+.view.chart .evolutionloading, .view.chart .message.selectindicator, .view.chart .message.notenoughselectedindicators, 
+.view.chart .message.toomuchselectedindicators, .view.chart .message.toomuchselectedmetrics, .view.chart .message.comingsoon, 
+.view.chart .message.emptychart {
+  color: #666; 
+  font-size: 17px;
+  margin-top: 76px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 10;  
+}
+.view.chart .message.comingsoon {
+	font-size: 50px;
+}
+.view.chart .canvas {
+  margin-top: 25px;
+  width: 100%;
+  height: 70%;
+  
+}
+.view.chart .canvasmessages {
+	color: #666;
+	font-size: 11px;
+	margin: 10px 20px;
+	top: 0;
+}
+
+.dialog.scale.print {
+	display: none;
+}
+.dialog.scale .scalebar li {
+  float: left;
+  background: white;
+  padding: 0 1px;
+  border-color: #AAAAAA;
+  border-style: solid;
+  border-radius: 0 0 0 0;
+  border-width: 1px 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 13px;
+  display: block;
+}
+.dialog.scale .scalebar.disabled li {
+  color: #eee;
+}
+.dialog.scale .scalebar li:hover {
+  background: #f9f9f9;
+}
+.dialog.scale .scalebar.disabled li:hover {
+  background: transparent;
+}
+.dialog.scale .scalebar li a {
+  cursor: pointer;
+}
+.dialog.scale .scalebar li.active {
+  float: left;
+  background: #eee;
+}
+.dialog.scale .scalebar li.scale.second,
+.dialog.scale .scalebar li.scale.minute {
+  width: 60px;
+}
+.dialog.scale .scalebar li.scale.hour,
+.dialog.scale .scalebar li.scale.day,
+.dialog.scale .scalebar li.scale.month,
+.dialog.scale .scalebar li.scale.year {
+  width: 35px;
+}
+.dialog.scale .scalebar.second li.scale.second,
+.dialog.scale .scalebar.minute li.scale.minute,
+.dialog.scale .scalebar.hour li.scale.hour,
+.dialog.scale .scalebar.day li.scale.day,
+.dialog.scale .scalebar.month li.scale.month {
+  border-radius: 4px 0 0 4px;
+  border-width: 1px 0 1px 1px;
+}
+.dialog.scale .scalebar li.scale.month {
+  border-radius: 0 0 0 0;
+  border-width: 1px 0;
+}
+.dialog.scale .scalebar li.scale.year {
+  border-radius: 0 4px 4px 0;
+  border-width: 1px 1px 1px 0;
+}
+.dialog.scale .scalebar.year li.scale.year {
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.dialog.zoom ul li {
+	background: none repeat scroll 0 0 white;
+	border-color: #AAAAAA;
+	border-radius: 4px 4px 4px 4px;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	float: left;
+	font-size: 11px;
+	margin-right: 4px;
+	padding: 2px 6px;
+	text-align: center;
+}
+.dialog.zoom ul li:hover {
+  background: #f9f9f9;
+}
+.dialog.zoom ul li a {
+  cursor: pointer;
+}
+
+.view.line.chart .dialogtimelapse {
+	margin: 10px auto;
+	text-align: center;
+	display: block;
+}
+.view.line.chart .dialogtimelapse, .view.line.chart .canvas, .view.line.chart .dialogrange {
+	width: 90%;
+}
+.view.line.chart .canvas {
+  margin: 0 auto;
+}
+.view.line.chart .dialogrange {
+  margin: 0 auto 0;
+}
+
+.dialog.timelapse.print {
+  display: none;
+}
+.dialog.timelapse {
+  text-align: center;
+  height: 50px;
+}
+.dialog.timelapse .slider {
+	margin-top: 3px;
+}
+.dialog.timelapse .bounds {
+  color: #444444;
+  top: 0;
+}
+.dialog.timelapse .bounds.min {
+  margin-left: 10px;
+  margin-top: 3px;
+  float: left;
+}
+.dialog.timelapse .bounds.max {
+	right: 0;
+  margin-right: 10px;
+  margin-top: 3px;
+  float: right;
+}
+
+.dialog.range {
+  text-align: center;
+}
+.dialog.range table {
+	width: 100%;
+}
+.dialog.range .title {
+	color: #666;
+  margin-top: 3px;
+  margin-left: 5px;
+  font-size: 13px;
+  float: left;
+}
+.dialog.range span {
+	color: black;
+}
+.dialog.range .layerscale {
+  margin-top: 3px;
+  margin-right: 6px;
+}
+.dialog.range .controls {
+  float: left;
+  margin-top: 1px;
+  margin-right: 6px;
+  width: 100%;
+  height: 16px;
+}
+.dialog.range .controls a {
+	display: block;
+	height: 16px;
+	width: 16px;
+}
+.dialog.range .controls .play a {
+	background: url("../images/play.gif") no-repeat 0 0;
+}
+	
+.dialog.range .controls .pause a {
+  background: url("../images/pause.gif") no-repeat 0 0;
+}
+.dialog.range .slider {
+	margin-top: 3px;
+}
+	
+.dialog.range .scale {
+	float: right;
+}
+.dialog.range .controls .play,
+.dialog.range .controls .pause {
+	border: 0px;
+	border-radius: 0px;
+	float: left;
+  border-radius: 4px;
+}
+.dialog.range .controls li {
+  padding: 0px;
+}
+.dialog.range .controls li.disabled a {
+  color: #999;
+  cursor: default;
+}
+.dialog.range .controls li.play.disabled a {
+  background-image: url("../images/play_disabled.gif");
+}
+
+.view.bar.chart .dialogtimelapse {
+	margin: 10px auto;
+	text-align: center;
+	display: block;
+}
+.view.bar.chart .dialogtimelapse, .view.bar.chart .canvas, .view.bar.chart .dialogrange {
+	width: 90%;
+}
+.view.bar.chart .canvas {
+  margin: 0 auto;
+}
+.view.bar.chart .dialogrange {
+  margin: 0 auto 0;
+}
+
+.view.table.chart.print .datatable {
+  overflow: inherit;
+  margin-top: 30px;
+}
+.view.table.chart.print {
+	page-break-before: always;
+}
+.view.table.chart h1 {
+  display: none;
+}
+.view.table.chart.print h1 {
+	display: block;
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.view.map.chart .dialogtimelapse {
+	margin: 10px auto;
+	text-align: center;
+	display: block;
+}
+.view.map.chart .dialogtimelapse, .view.map.chart .canvas, .view.map.chart .dialogrange {
+	width: 90%;
+}
+.view.map.chart .canvas {
+  margin: 0 auto;
+}
+.view.map.chart .dialogrange {
+  margin: 0 auto 0;
+}
+.view.map.chart .dialoglayer {
+  margin-right: 120px;
+  margin-top: 5px;
+  position: absolute;
+  top: 0;
+}
+
+.dialog.maplayer li {
+  float: left;
+  background: white;
+  padding: 0 5px;
+  border-color: #AAAAAA;
+  border-style: solid;
+  border-radius: 0 0 0 0;
+  border-width: 1px 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 13px;
+  display: block;
+  height: 17px;
+  border-bottom-right-radius: 2px;
+  border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) -moz-use-text-color;
+  border-image: none;
+  border-style: solid solid solid none;
+  border-top-right-radius: 2px;
+  border-width: 1px 1px 1px 0;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+}
+.dialog.maplayer li.first {
+  border-left-width: 1px;
+}
+.dialog.maplayer li.last {
+  border-right-width: 1px;
+}
+.dialog.maplayer li:hover {
+  background: #ebebeb;
+}
+.dialog.maplayer li a {
+  color: #565656;
+  cursor: pointer;
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  padding-top: 1px;
+}
+.dialog.maplayer li.active a {
+  font-weight: bold;
+  color: #000000;
+}
+
+
+
+.view.dashboard {
+	margin: 0px;
+}
+.view.dashboard .helper {
+	background: #EFF7FF;
+	border: 1px dotted #99BBE8;
+	display: block;
+	font-size: 12px;
+	padding: 5px;
+}
+.view.dashboard.embed .helper, .view.dashboard.print .toolbar, 
+.view.dashboard.embed .ui-layout-north, .view.dashboard.print .ui-layout-north, 
+.view.dashboard.print .ui-layout-west {
+	display: none !important;
+}
+.view.dashboard .toolbar {
+	float: right;
+}
+.view.dashboard .toolbar li {
+	float: left;
+	cursor: pointer;
+	margin-left: 3px;
+}
+.view.dashboard .toolbar li:hover img {
+	background-color: #efefef !important;
+}
+.view.dashboard .toolbar li.active img {
+  background-color: #efefef !important;
+}
+.view.dashboard .toolbar .chart img, .view.dashboard .toolbar .print img, .view.dashboard .toolbar .download img {
+	height: 26px;
+	width: 26px;
+}
+.view.dashboard .toolbar .print img {
+	margin-left: 18px;
+}
+.view.dashboard .toolbar .chart.line img {
+	background: url('../images/linechart.png') no-repeat 0 0;
+}
+.view.dashboard .toolbar .chart.bar img {
+  background: url('../images/barchart.png') no-repeat 0 0;
+}
+.view.dashboard .toolbar .chart.table img {
+  background: url('../images/tablechart.png') no-repeat 0 0;
+}
+.view.dashboard .toolbar .chart.bubble img {
+  background: url('../images/bubblechart.png') no-repeat 0 0;
+}
+.view.dashboard .toolbar .chart.map img {
+  background: url('../images/mapchart.png') no-repeat 0 0;
+}
+.view.dashboard .toolbar .print img {
+  background: url('../images/print.png') no-repeat 5px 5px;
+}
+.view.dashboard .toolbar .download img {
+  background: url('../images/download.png') no-repeat 3px 4px;
+}
+.view.dashboard .layer.chart {
+	clear: both;
+}
+.view.dashboard .layer.notLoaded {
+	margin-top: 25px;
+	font-size: 13pt;
+	text-align: center;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+	margin: 0px;
+	padding: 0px;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+td {
+  vertical-align: top;
+}
+fieldset,img {
+	border: 0px;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style: normal;
+	font-weight: normal;
+}
+ol,ul {
+	list-style: none;
+}
+caption,th {
+	text-align: left;
+}
+q:before,q:after {
+	content: '';
+}
+abbr,acronym {
+	border: 0px;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+.dialog {
+  position: relative;
+  z-index: 1000000;
+}
+.dialog .loading {
+  background: url('../images/loading.gif') no-repeat left center;
+  border: 0px;
+  height: 30px;
+  padding: 13px 2px 0px 35px;
+  text-align: left;
+}
+.dialog .report {
+  color: #284E8C;
+  display: none;
+  position: relative;
+  left: 0;
+  border: 1px solid #284E8C;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.dialog .status {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  top: 0px;
+  left: 0px;
+}
+.dialog .status .title {
+  text-transform: none;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0px 0px 5px;
+  padding: 0px;
+  color: red;
+}
+.dialog .status ul {
+  list-style: disc;
+  margin-left: 12px;
+}
+.dialog .outfield {
+  margin: 0px 0px 15px;
+}
+.dialog .outfield.hidden {
+  display: none;
+}
+.dialog .outfield .outtitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.dialog .outfield.required .outtitle span {
+  background: transparent url("../images/icons/red-dot.gif") no-repeat left center;
+  width: 10px;
+  position: absolute;
+  margin-left: 5px;
+}
+.dialog .outfield .error {
+  border: 1px solid #EF7777;
+}
+.dialog .outfield .outbody input.file {
+  width: 98%;
+}
+.dialog .outfield .outbody input.text {
+  width: 98%;
+}
+.dialog .outfield .outbody input.wdate {
+  width: 50%;
+}
+.dialog .outfield .outbody textarea {
+  width: 98%;
+}
+.dialog .outfield .outbody .radio {
+  margin: 0px 0px 10px 5px;
+}
+.dialog .outfield .outbody .radio input.radio {
+  margin-left: 10px;
+}
+.dialog .outfield .outbody .radio label {
+  display: inline;
+  margin-left: 4px;
+  font-weight: bold;
+}
+.dialog .outfield .outbody .radio .info {
+  color: #666;
+  margin-top: 1px;
+  margin-left: 17px;
+}
+.dialog .option.disabled label {
+  color: #666;
+}
+
+html, body, input, table, td, select, options, textarea {
+  font-family: Roboto, Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+}
+h1 {
+  font-size: 18px;
+  padding-bottom: 4px;
+}
+h2 {
+  font-size: 15px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+h3 {
+  font-size: 16px;
+  padding-bottom: 3px;
+  margin-top: 5px;
+}
+p {
+  line-height: 120%;
+  padding-bottom: 12px;
+}
+ul {
+  list-style: none;
+}
+.highlighted {
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: none;
+}
+.command, .behaviour {
+  color: #0d3c98;
+}
+.command.default, .behaviour.default {
+  font-weight: bold;
+}
+.command.button, .behaviour.button {
+  display: block;
+  color: #007;
+  border: 1px solid #aaa;
+  margin-right: 10px;
+  padding: 2px 10px;
+  background: white;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 4px;
+}
+.command.button.right, .behaviour.button.right {
+	margin-left: 10px;
+	margin-right: 0px;
+}
+.command:hover, .behaviour:hover {
+  color: #0d3c98;
+}
+.command.button:hover, .behaviour.button:hover {
+	background: #D0E0F5;
+}
+a {
+  color: #0d3c98;
+  cursor: pointer;
+}
+a:hover {
+  color: #0d3c98;
+  cursor: pointer;
+}
+
+input.text {
+	padding: 1px;
+  width: 100%;
+}
+input.date {
+	padding: 1px;
+  width: 100%;
+}
+textarea {
+  width: 98%;
+}
+.dialoguploadfilebox {
+	height:20px;
+	border: 1px solid #999999;
+	background: white;
+	overflow-x: hidden;
+	overflow-y: auto;
+	x-overflow: hidden;
+	y-overflow: auto;
+}
+.dialogufbi {
+	height:28px;
+	width:100%;
+}
+.filelist {
+	padding-top: 3px;
+	width: 100%;
+}
+.filelist tr td.DELFILE {
+	width: 1px;
+}
+.filelist tr td.DELFILE a {
+	cursor: pointer;
+	display: block;
+	height: 20px;
+	margin-right: 4px;
+	margin-top: -2px;
+	width: 16px;  
+	background: transparent url('../images/icons/clear-trigger.gif') no-repeat scroll 0px 0px;
+}
+.filelist tr td.DELFILE a:hover {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+.filedefault	  	{ width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center;	}
+.filecompressed   { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filedocument     { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.fileedocument    { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filedatabase     { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filewebpage      { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filepresentation { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.filespreadsheet  { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+.fileimage        { width: 19px; background: transparent url("../images/icons/file_document.gif") no-repeat 2px center; }
+fieldset {
+  border: solid 1px #D8D9DB;
+  padding: 10px;
+}
+fieldset legend {
+  padding: 0px 5px;
+}
+
+.def {
+	display: none;
+}
+.widget .widget_hidden {
+  display: none;
+}
+.messagebox {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  left: 40%;
+}
+.messagebox .template.success .title {
+  color: green;
+}
+.messagebox .template.error .title {
+  color: red;
+}
+.messagebox .template.warning .title {
+  color: orange;
+}
+.messagebox.modal {
+  display: block;
+  position: relative;
+  left: 0px;
+}
+.messagebox.modal img {
+  background: transparent url("../images/loading.gif") no-repeat;
+  height: 32px;
+  width: 32px;
+  float: left;
+}
+.messagebox.modal span {
+  float: left;
+  margin: 5px 10px;
+}
+.reportbanner {
+  background-color: #FFC46A;
+  left: 0;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  width: 96%;
+  z-index: 1;
+  display: none;
+  margin: 0 5px 5px 10px;
+}
+.fleft {
+  float: left;
+}
+.fright {
+  float: right;
+}
+.list .empty {
+  margin: 5px;
+  color: #666;
+}
+ 
+.history {
+  position: absolute;
+  left: -10000px;
+}
+.command.onload, .config {
+	display: none;
+}
+a.hoverable:hover {
+  background-position: -17px 0;
+}
+a.disabled {
+	color: #999 !important;
+	cursor: default !important;
+}
+#mainLoading {
+	color: #666;
+	margin: 10px;
+}
+.layout {
+  width: 100%;
+  height: 100%;
+}
+.layout .head {
+  display: block;
+  height: 24px;
+}
+  
+.layout .head .title {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 10px;
+  float: left;
+}
+.layout .ui-layout-north .logo table, .layout .ui-layout-north .loading {
+	float: left;
+}
+.layout .ui-layout-north .loading {
+  color: #777;
+  margin-left: 10px;
+  margin-top: 25px;
+  float: left;
+}
+.layout .ui-layout-north .leftbox div.logo {
+  cursor: pointer;
+  float: left;
+  margin: 0 10px;
+  position: relative;
+}
+.layout .ui-layout-north .leftbox div.logo a.home {
+	display: block;
+  height: 35px;
+  position: absolute;
+  width: 100%;
+}
+.layout .ui-layout-north .leftbox div.logo .title {
+	color: black;
+  float: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0;
+}
+.layout .ui-layout-north .rightbox {
+  float: right;
+  height: 100%;
+  width: 60%;
+}
+.layout .ui-layout-north .rightbox .block {
+  margin-right: 10px;
+  padding: 0 50px;
+}
+.layout .federation.image {
+  height: 50px;
+}
+@media print {
+    * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
+    -ms-filter: none !important; } 
+    p a, p a:visited { color: #444 !important; text-decoration: underline; }
+    p a[href]:after { content: " (" attr(href) ")"; }
+    abbr[title]:after { content: " (" attr(title) ")"; }
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  
+    pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+    thead { display: table-header-group; } 
+    tr, img { page-break-inside: avoid; }
+    @page { margin: 0.5cm; }
+    p, h2, h3 { orphans: 3; widows: 3; }
+    h2, h3{ page-break-after: avoid; }
+    .hide-on-print { display: none !important; }
+    .print-only { display: block !important; }
+}
+

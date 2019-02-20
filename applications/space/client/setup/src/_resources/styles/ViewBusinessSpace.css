@@ -1,0 +1,28 @@
+#ViewBusinessSpace img.top-image {
+  padding: 5px;
+  border: 1px dotted #336699;
+  cursor: pointer;
+}
+
+#ViewBusinessSpace img.top-image:hover {
+  border: 1px solid blue;  
+}
+
+#ViewBusinessSpace div.definition {
+  margin-top: 15px;
+}
+
+#ViewBusinessSpace div.value {
+  padding-top: 3px;
+  margin-left: 10px;
+}
+
+
+#ViewBusinessSpace table tr td.right {
+  margin-left: 5px;
+}
+
+#ViewBusinessSpace select {
+  width: 300px;
+}
+

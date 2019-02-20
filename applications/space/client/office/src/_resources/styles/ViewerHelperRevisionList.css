@@ -1,0 +1,24 @@
+.viewer.helper .revisionlist .listviewer {
+  height: 225px;
+  margin-bottom: 40px;
+}
+
+.viewer.helper .revisionlist .listviewer .layer {
+  overflow: auto;
+  height: 87%;
+  padding: 10px;
+  border: 1px solid #aaa;
+}
+
+.viewer.helper .revisionlist .wizard {
+  display: none;
+}
+
+.viewer.helper .revisionlist .listviewer .items .item .label {
+  font-size: 15px;
+  margin: 5px;
+}
+
+.viewer.helper .revisionlist .listviewer .items .item table {
+  width: 99%;
+}

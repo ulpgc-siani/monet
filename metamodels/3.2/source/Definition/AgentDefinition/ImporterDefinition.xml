@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="ImporterDefinition" parent="AgentDefinition" token="importer">
+	<description>Un importador es un agente que permite incorporar datos externos en el sistema de información a partir de un documento</description>
+	
+	<attribute token="target" type="key" link="DocumentDefinition" required="true">
+		<description>Documento desde el que se importan los datos</description>
+	</attribute>
+	
+	<method name="on-initialize" />
+	<method name="on-import-item" required="true">
+		<parameter name="item" type="../target/document/schema" />
+	</method>
+	
+</class>

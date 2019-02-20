@@ -1,0 +1,127 @@
+.field.composite .component
+  background: white
+
+.field.composite .component .layout-render .vertical-panel > tbody > tr:first-child .field
+  margin-top: 0
+
+.field.composite .component .layout-render .field
+  margin-top: 5px
+
+.field.composite .component .layout-render .horizontal-panel > tbody > tr > td:last-child
+  padding-right: 0
+
+.field.composite .component .layout-render .horizontal-panel > tbody > tr > td
+  padding-right: 6px
+
+.field.composite .component .horizontal-panel .label
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  max-width: 90px
+
+.field.composite .component .condition
+  padding-left: 5px
+
+  input[type="checkbox"]
+    margin: 5px 0
+
+.field.composite .component .show-all
+  margin: 0
+
+.field.composite .component:hover .clear
+  display: none
+
+.field.composite .component .component:hover .clear
+  display: block
+
+.field.composite.multiple .component > .toolbar a.disable-remove-composites
+  opacity: 0.5
+  cursor: default
+
+.field.composite.multiple .component .values .composite-value
+  cursor: pointer
+
+.field.composite.multiple .component .values .scroll-panel
+  max-height: 100px
+
+.field.composite.multiple .component .fields .values .scroll-panel
+  max-height: none
+
+.field.composite.multiple .component > .toolbar
+  position: relative
+
+.field.composite.multiple .component > .toolbar a
+  background: transparent
+  border: none
+  cursor: pointer
+
+.field.composite.multiple .component .values .selected, .field.composite.multiple .component .values .selected td
+  background: #FAEB8C
+
+.field.composite.multiple .component .values .items .layout > tbody > tr > td:first-child
+  padding-right: 25px
+
+.field.composite.multiple .fields .list .scroll-panel, .field.composite.multiple .component .fields .dragdrop-boundary
+  overflow: visible !important
+
+.field.composite.multiple .component .fields .list .content-panel .field
+  padding: 0 0.5px
+
+
+.field.composite.multiple .component .values .gwt-TextBox
+  font-size: inherit
+  height: auto
+
+
+.field.composite.multiple .component .values input:hover
+  background-color: transparent
+
+.field.composite.multiple .component .header.list .items li, .field.composite.multiple .component .header.list .items li > table
+  display: inline
+  margin: 0 15px
+
+
+.field.composite.multiple .component .fields .values .items .layout > tbody > tr > td:first-child
+  padding-right: 10px
+
+
+.field.composite.multiple .component .fields .values .layout .control-operations-panel td:nth-child(2),
+.field.composite.multiple .component .layout > tbody > tr > td
+  padding: 0
+
+.field.composite.multiple .component .values input[type="checkbox"], .field.composite.multiple .component .values .gwt-CheckBox
+  padding: 0
+  max-width: 14px
+  width: 14px
+  margin: 0
+
+.field.composite.multiple .component .header .gwt-CheckBox
+  margin-left: 12px
+
+.field.composite.multiple .component .values .gwt-CheckBox
+  padding: 0 3px
+
+.field.composite.multiple .component .layout .operations-panel .delete
+  right: -6px
+
+.field.composite.multiple .values .content-panel .field > .horizontal-separator
+  display: none
+
+
+.field.composite.table.multiple .values li, .field.composite.table.multiple .values .msg.empty
+  margin-top: 0
+  margin-bottom: 0
+
+
+.field.composite.table.multiple .component .fields .values .items .header-row .layout > tbody > tr > td:first-child
+  min-width: 31px
+
+.field.composite.multiple .values .header-row .control-operations-panel, .field.composite.multiple .values .header-row .operations-panel .delete
+  visibility: hidden
+
+.field.composite.multiple.summary .values .scroll-panel
+  overflow-x: hidden !important
+
+@-moz-document url-prefix()
+  .field.composite
+    margin-top: 3px

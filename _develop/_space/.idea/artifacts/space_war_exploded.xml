@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="space:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/space_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="space" />
+          <element id="module-output" name="federation.client" />
+          <element id="module-output" name="federation.shared" />
+          <element id="module-output" name="mobile" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="monet.api.federation.setupservice" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../applications/space/server/lib/servlet-api.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../applications/space/server/lib/tomcat-dbcp.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../applications/federation/server/WebContent/WEB-INF/lib/monet.library.http-0.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../applications/docservice/server/WebContent/WEB-INF/lib/monet.library.http-0.3.jar" />
+          <element id="library" level="project" name="Maven: org.apache.tika:tika-core:0.4" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="federation.client" />
+          <element id="library" level="project" name="federation.shared" />
+          <element id="library" level="project" name="office" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="space/web/Web" />
+    </root>
+  </artifact>
+</component>

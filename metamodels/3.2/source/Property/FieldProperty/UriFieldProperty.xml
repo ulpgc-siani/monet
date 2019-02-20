@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="field-uri" type="UriFieldProperty" parent="MultipleableFieldProperty">
+	<description>Esta propiedad se utiliza para incluir un campo texto en un formulario</description>
+	
+</property>

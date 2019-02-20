@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="PictureFieldDeclaration" parent="FieldDeclaration" tag="field-picture">
+
+  <hint>???Tiene datasource las imagenes?</hint>
+
+  <include name="edition">
+    <option class="PictureFieldEditionDeclaration"/>
+  </include>
+  
+</class>

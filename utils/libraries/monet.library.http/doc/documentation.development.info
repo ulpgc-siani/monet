@@ -1,0 +1,19 @@
+Doc Development - Monet Component Http
+
+TODO LIST:
+		- Al utilizar la libreria da un classnotfound. Se exportan las librerias
+		pero aun asi falla.
+
+DEPENDENCIES:
+			Library													Version						Comment
+			commons-code											1.4
+			commons-fileupload								1.2.2
+			commons-logging										1.1.1
+			httpclient												4.1.1
+			httpclient-cache									4.1.1
+			javax.servlet											5.1.12
+			monet.component.filesystem				0.4
+
+
+PROJECTS:
+			-	olapengine			

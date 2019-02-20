@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="SerialFieldDeclaration" parent="FieldDeclaration" tag="field-serial">
+	<description>Declaración que se utiliza para modelar un	campo serial</description>
+
+	<property name="generator" required="true">
+    <description>Generador de la serie</description>
+		<attribute name="name" type="string" required="true">
+			<description>Nombre del generador</description>
+		</attribute>
+	</property>
+
+	<property name="format" required="true">
+		<description>Formato con el que se representa la serie</description>
+		<attribute name="pattern" type="string" required="true">
+			<description>Expresión regular para definir el formato</description>
+      <hint>Ejemplo: "A#S:10#/#Y:2#" A, 10 digitos extraidos del generador, seguido de una barra y el año con dos dígitos.</hint>
+		</attribute>
+	</property>
+
+</class>

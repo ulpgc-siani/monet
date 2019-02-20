@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="RoleDefinition" parent="EntityDefinition" token="role">
+	<description>Un rol es una competencia necesaria para realizar un trabajo</description>
+	<hint>Los roles se pueden asignar tanto a trabajadores como a unidades de negocio de la federaciÃ³n</hint>
+	
+	<property token="disable-users">
+	</property>
+
+	<property token="enable-services">
+	  <attribute token="ontology" type="string" required="true" multiple="true">
+		<description></description>
+	  </attribute>
+	</property>
+	
+	<property token="enable-feeders">
+	  <attribute token="ontology" type="string" required="true" multiple="true">
+		<description></description>
+	  </attribute>
+	</property>
+
+	<property token="disable-edition">
+		<description>Deshabilita la edición de los objetos en el sistema de información</description>
+	</property>
+</class>

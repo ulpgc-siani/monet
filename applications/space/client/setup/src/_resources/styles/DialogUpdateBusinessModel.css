@@ -1,0 +1,14 @@
+
+#dlgUpdateBusinessModel { 	
+  padding: 10px;  
+}
+
+#dlgUpdateBusinessModel.Form {
+  margin-bottom: 5px;
+  margin-top: 5px;	
+}
+
+#dlgUpdateBusinessModel a[name="back-button"] {
+  display: block;
+  margin-bottom: 20px;
+}

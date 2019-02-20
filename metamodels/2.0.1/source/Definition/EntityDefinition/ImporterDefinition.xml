@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ImporterDefinition" parent="Definition" tag="importer">
+  <description>Definición de un importador de datos que permite la lectura y proceso de datos externos</description>
+
+  <property name="is-singleton">
+    <description>Su presencia indica que sólo puede existir una instancia de este tipo de nodo</description>
+  </property>
+    
+  <property name="source">
+    <description>Origen estático para el importador. Tiene que ser 'singleton'.</description>
+    <attribute name="file" type="string">
+      <description>Archivo XML dentro del espacio que se usará para importar</description>
+    </attribute>
+    <attribute name="url" type="string">
+      <description>Url desde la que obtener los datos a importar</description>
+    </attribute>
+  </property> 
+  
+  <property name="schema">
+    <description>Estructura de los datos externos sobre los que se va a importar</description>
+    <attribute name="tag" type="string" required="true">
+      <description>Etiqueta Xml que se usará como elemento individual a procesar por el importer dentro de la fuente</description>
+    </attribute>
+    <content type="xml"/>
+  </property>
+</class>
+

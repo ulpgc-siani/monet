@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FieldNodeViewDeclaration" parent="ViewDeclaration" tag="view">
+  <description>Indica cómo se visualiza un nodo empotrado en un campo</description>
+
+  <property name="render" required="true">
+	<attribute name="node" type="Code" required="true">
+	  <description></description>
+	</attribute>
+  
+	<attribute name="view" type="Code" required="true">
+	  <description>Indica qué vista del objeto vinculado se debe usar. En caso de no especificar una vista, se toma la vista por defecto</description>
+	  <restriction>ONLY View FROM NodeDeclaration</restriction>
+	</attribute>
+  </property>
+  
+</class>

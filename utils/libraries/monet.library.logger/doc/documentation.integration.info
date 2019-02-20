@@ -1,0 +1,5 @@
+Documentation  - Monet Component Logger
+
+Componente de log.
+	- Logger
+	- Posibilidad de obtener el stacktrace como texto.

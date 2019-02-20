@@ -1,0 +1,38 @@
+.view.dashboardinfo {
+}
+
+.view.dashboardinfo .title {
+	margin-left: 0 !important;
+}
+
+.view.dashboardinfo .filters {
+	color: #787878;
+	font-size: 15px;
+	width: 50%;
+}
+
+.view.dashboardinfo .filters li {
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+
+.view.dashboardinfo.print .filters li {
+  cursor: default;
+}
+
+.view.dashboardinfo .filters li a {
+	color: #676767;
+	border-radius: 4px;
+	padding: 0 2px;
+  cursor: pointer;
+}
+
+.view.dashboardinfo .filters li a:hover {
+	color: #afafaf;
+  cursor: pointer;
+}
+
+.view.dashboardinfo.print .filters li a:hover {
+	color: #676767;
+}

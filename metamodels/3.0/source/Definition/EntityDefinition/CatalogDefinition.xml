@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="CatalogDefinition" parent="SetDefinition" token="catalog" extensible="true">
+	<description>Un catálogo es un tipo de conjunto que se utiliza para permitir hacer búsquedas de nodos en el espacio de negocio</description>
+
+	<property token="is-component">
+		<description>Esta propiedad se utiliza cuando este tipo de nodos se
+			crean como componentes de otro nodo, nunca de forma independiente
+		</description>
+	</property>
+
+</class>

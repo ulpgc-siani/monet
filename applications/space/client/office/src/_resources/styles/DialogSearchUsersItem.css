@@ -1,0 +1,32 @@
+.searchusers {
+}
+
+.searchusers .list li a {
+  cursor: pointer;
+  border: 1px solid white;
+  display: block;
+  margin-bottom: 2px;
+  text-decoration: none;
+  background: white;
+}
+
+.searchusers .list li a:hover {
+  text-decoration: none;
+  border: 1px solid #c3daf9;
+  background-color: #ddecfe;
+  background-image: url('../images/backgrounds/searchusersitem.gif');
+}
+
+.searchusers .list li a .title {
+  color: #2d5593;
+  font: bold 12px Roboto, tahoma, verdana, helvetica;
+  display: block;
+  padding: 2px 2px 0px;
+  margin: 0px;
+}
+
+.searchusers .list li a .description {
+  color: #666666;
+  font: normal 11px Roboto, tahoma, verdana, helvetica;
+  padding: 0px 2px 2px 3px;
+}

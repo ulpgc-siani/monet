@@ -1,0 +1,380 @@
+package org.monet.kernel.model.definition;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collection;
+
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.ElementMap;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Text;
+
+#createComment ($metaclass.getName())
+#createComment ($metaclass.getDescription())
+#createComment ($metaclass.getHint())
+
+#createClassHeader ($metaclass) {
+#foreach ($attribute in $metaclass.getAttributeList())
+#if ($attribute.getOwner() == $metaclass)
+#createAttributeClass ($attribute)
+#end
+#end
+#foreach ($property in $metaclass.getPropertyList())
+#if ($property.getOwner() == $metaclass)
+#createPropertyClass ($property)
+#end
+#end
+
+#foreach ($attribute in $metaclass.getAttributeList())
+#if ($attribute.getOwner() == $metaclass)
+#createAttribute ($attribute)
+#end 
+#end
+#foreach ($property in $metaclass.getPropertyList())
+#if ($property.getOwner() == $metaclass)
+#createProperty ($property)
+#end
+#end
+#foreach ($include in $metaclass.getIncludeList())
+#if ($include.getOwner() == $metaclass)
+#createInclude ($include)
+#end
+#end
+
+#foreach ($attribute in $metaclass.getAttributeList())
+#if ($attribute.getOwner() == $metaclass)
+#createAttributeMethod ($attribute)
+#end 
+#end
+#foreach ($property in $metaclass.getPropertyList())
+#if ($property.getOwner() == $metaclass)
+#createPropertyMethod ($property)
+#end
+#end
+#foreach ($include in $metaclass.getIncludeList())
+#if ($include.getOwner() == $metaclass)
+#createIncludeMethod ($include)
+#end
+#end
+#foreach ($include in $metaclass.getIncludeList())
+#if ($include.getOwner() == $metaclass)
+#createIncludeListHelper ($include)
+#createIncludeMapHelper ($include)
+#end
+#end
+
+}
+
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createAttributeClass $attribute)
+#set ($type = $attribute.getType())
+#if ($type == "enumeration")
+#set ($name = $attribute.getName())
+#set ($token = $syntax.getToken($name,true,false) + "Enumeration")
+public enum $token { $syntax.getEnumeration($attribute.getValues(",")) }
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createAttribute $attribute)
+#set ($name = $attribute.getName())
+#set ($type = $attribute.getType())
+#if ($type == "enumeration")
+#set ($token = $syntax.getToken($name,true,false) + "Enumeration")
+#else
+#set ($token = $syntax.getAttributeType($type))
+#end
+#if ($attribute.isRequired())
+#set ($required = "")
+#else
+#set ($required = ",required=false")
+#end
+#if ($attribute.hasDefaultValue())
+#set ($default = " = " + $attribute.getDefaultValue())
+#else
+#set ($default = "")
+#end
+protected @Attribute(name="$name"$required) $token $syntax.getToken($name,false,true)${default};
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createAttributeMethod $attribute)
+#set ($name = $attribute.getName())
+#set ($type = $attribute.getType())
+#if ($type == "boolean")
+public boolean $syntax.getToken($name,false,false)() { return $syntax.getToken($name,false,true); }
+#elseif ($type == "enumeration")
+public ${syntax.getToken($name,true,false)}Enumeration $syntax.getTokenMethod($name,"") { return $syntax.getToken($name,false,true); }
+#else
+public $syntax.getAttributeType($type) $syntax.getTokenMethod($name,"") { return $syntax.getToken($name,false,true); }
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createPropertyClass $property)
+#set ($name = $property.getName())
+#set ($isMultiple = $property.isMultiple())
+#set ($content = "")
+@Root(name="$name")
+public static class $syntax.getToken($name, true,false) {
+#foreach ($attribute in $property.getAttributeList())
+#createAttributeClass($attribute)
+#end
+#foreach ($attribute in $property.getAttributeList())
+#createAttribute($attribute)
+#end 
+#set ($content = $property.getContent())
+#if ($content != "")
+protected @Text(data = true) String content;
+#end
+#foreach ($attribute in $property.getAttributeList())
+#createAttributeMethod($attribute)
+#end 
+#if ($content != "")
+public String getContent() { return content; }
+#end
+}
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createProperty $property)
+#set ($name = $property.getName())
+#set ($isMultiple = $property.isMultiple())
+#if ($property.isRequired())
+#set ($required = "")
+#else
+#set ($required = ",required=false")
+#end
+#if ($isMultiple)
+#set ($key = $property.getKey())
+#set ($value = $property.getValue())
+#if ($key == "")
+protected @ElementList(inline=true$required) ArrayList<$syntax.getToken($name,true,false)> ${syntax.getToken($name,false,true)}List = new ArrayList<$syntax.getToken($name,true,false)>();
+#else
+#if ($value == "")
+  protected @ElementMap(entry="$name",key="$key",attribute=true,inline=true$required) Map<String,String> ${syntax.getToken($name,false,true)}Map = new HashMap<String,String>();  
+#else
+  protected @ElementMap(entry="$name",key="$key",value="$value",attribute=true,inline=true$required) Map<String,String> ${syntax.getToken($name,false,true)}Map = new HashMap<String,String>();
+#end
+#end
+#else
+protected @Element(name="$name"$required) $syntax.getToken($name,true,false) $syntax.getToken($name,false,true);
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createPropertyMethod $property)
+#set ($name = $property.getName())
+#set ($pluralName = $name + "s")
+#set ($isMultiple = $property.isMultiple())
+#set ($isBoolean = $property.isBoolean())
+#set ($isAllowable = $property.isAllowable())
+#if ($isBoolean)
+public boolean ${syntax.getToken($name,false,false)}() { return ($syntax.getToken($name,false,true) != null); }
+public $syntax.getToken($name,true,false) $syntax.getTokenMethod($name,"") { return $syntax.getToken($name,false,true); }
+#elseif($isAllowable)
+public boolean ${syntax.getToken($name,false,false)}() { return ($syntax.getToken($name,false,true) != null); }
+public $syntax.getToken($name,true,false) $syntax.getTokenMethod($name,"") { return $syntax.getToken($name,false,true); }
+#else
+#if ($isMultiple)
+#set ($key = $property.getKey())
+#if ($key == "")
+#set ($aux = $name + "List")
+public ArrayList<$syntax.getToken($name,true,false)> $syntax.getTokenMethod($aux,"") { return $syntax.getToken($aux,false,true); }
+#else
+public String $syntax.getTokenMethod($name,"String $key") { if(${syntax.getToken(${name},false,true)}Map.get($key) == null) return ""; return ${syntax.getToken(${name},false,true)}Map.get($key); }
+public Collection<String> $syntax.getTokenMethod($pluralName,"") { return ${syntax.getToken(${name},false,true)}Map.values(); }
+#end
+#else
+public $syntax.getToken($name,true,false) $syntax.getTokenMethod($name,"") { return $syntax.getToken($name,false,true); }
+#end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createInclude $include)
+#set ($name = $include.getName())
+#set ($isMultiple = $include.isMultiple())
+#set($classList = $include.getLinkTree())
+#foreach ($class in $classList)
+#if ($class.isAbstract() == false)
+#set ($type = $class.getName())
+#if ($include.isRequired())
+#set ($required = "")
+#else
+#set ($required = ",required=false")
+#end
+#if ($isMultiple)
+#set ($typeList = $type + "List")
+protected @ElementList(inline=true$required) ArrayList<$syntax.getToken($type,true,false)> $syntax.getToken($typeList,false,true) = new ArrayList<$syntax.getToken($type,true,false)>();
+#else
+protected @Element(name="$name"$required) $syntax.getToken($type,true,false) $syntax.getToken($type,false,true);
+#end
+#end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createIncludeMethod $include)
+#set ($name = $include.getName())
+#set ($isMultiple = $include.isMultiple())
+#set($classList = $include.getLinkTree())
+#foreach ($class in $classList)
+#if ($class.isAbstract() == false)
+#set ($type = $class.getName())
+#if ($isMultiple)
+#set ($typeList = $type + "List")
+public ArrayList<$syntax.getToken($type,true,false)> $syntax.getTokenMethod($typeList,"") { return $syntax.getToken($typeList,false,true); }
+#else
+public $syntax.getToken($type,true,false) $syntax.getTokenMethod($type,"") { return $syntax.getToken($type,false,true); }
+#end
+#end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createIncludeListHelper $include)
+#set ($classList = $include.getLinkTree())
+#set ($optionList = $include.getOptionList())
+#set ($needHelper = $optionList.size() * $classList.size())
+#if ($needHelper > 1)
+#set ($name = $include.getName())
+#set ($classList = $include.getLinkTree())
+#set ($isMultiple = $include.isMultiple())
+#if ($isMultiple)
+  #if ($optionList.size() == 1)
+    #set ($option = $include.getOptionList().get(0))
+    #set ($type = $option.getClassName())
+  #else
+    #set ($type = $include.getClassName())  
+  #end
+  
+  #set ($helperName = $syntax.getToken("${type}List",false,true))
+  #set ($helperClass = $syntax.getToken("${type}List",true,false))
+  #set ($helperType = "ArrayList<$type>")
+  protected $helperType $helperName;
+  protected void create$helperClass() {
+    $helperName = new $helperType();
+  #foreach ($item in $classList)
+    #if ($item.isAbstract() == false)
+      #set ($itemType = $item.getName())
+      #set ($itemName = $syntax.getToken($itemType,false,true))
+      ${helperName}.addAll(${itemName}List);
+    #end
+  #end
+  }
+  public $helperType get$helperClass() {
+    if ($helperName == null) create$helperClass();
+    return $helperName;
+  }
+#else
+  #if ($optionList.size() > 1)
+    #set ($helperName = $name + "Declaration") 
+    #set ($helperClass = $syntax.getToken($name,true,false) + "Declaration") 
+    #set ($helperType = "Declaration") 
+    protected $helperType $helperName;
+    protected $helperType find$helperClass() {
+    #foreach ($item in $classList)
+      #if ($item.isAbstract() == false)
+      #set ($itemType = $item.getName())
+      #set ($itemName = $syntax.getToken($itemType,false,true))
+      if ($itemName != null) return $itemName;
+      #end
+    #end
+    return null;
+    }
+    public $helperType get$helperClass() {
+      if ($helperName == null) $helperName = find$helperClass();
+      return $helperName;  
+    }
+  #end
+#end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createIncludeMapHelper $include)
+#set ($classList = $include.getLinkTree())
+#set ($optionList = $include.getOptionList())
+#set ($needHelper = $optionList.size() * $classList.size())
+#if ($needHelper > 1)
+#set ($isMultiple = $include.isMultiple())
+#if ($isMultiple)
+  #if ($optionList.size() == 1)
+    #set ($option = $include.getOptionList().get(0))
+    #set ($type = $option.getClassName())
+  #else
+    #set ($type = $include.getClassName()) 
+  #end
+  
+  #set ($helperName = $syntax.getToken("${type}Map",false,true))
+  #set ($helperClass = $syntax.getToken("${type}Map",true,false))
+  #set ($helperItem = $syntax.getToken("${type}",true,false))
+  #set ($helperType = "HashMap<String,$type>")
+  #set ($listName = $syntax.getToken("${type}List",false,true))
+  #set ($listClass = $syntax.getToken("${type}List",true,false))
+  protected $helperType $helperName;
+  protected void create$helperClass() {
+    $helperName = new $helperType();
+    if ($listName == null) create$listClass();
+    for ($type item : ${listName}){
+      ${helperName}.put(item.getCode(), item);
+      ${helperName}.put(item.getName(), item);
+    }
+  }
+  public $type get$helperItem(String key) {
+    if ($helperName == null) create$helperClass();
+    return ${helperName}.get(key);
+  }
+#end
+#end
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createClassHeader $metaclass)
+#set ($tag = $metaclass.getTag())
+#if ($tag != "")
+@Root(name="$tag")
+#end
+#if ($metaclass.isAbstract())
+#set ($abstract = "abstract")
+#else
+#set ($abstract = "")
+#end
+#if ($metaclass.getParent()) 
+#set ($extends = "extends $metaclass.getParent().getName()")
+#else
+#set ($extends = "")
+#end 
+#if ($metaclass.isExtensible())
+#set ($name = $metaclass.getName() + "Base") 
+#else
+#set ($name = $metaclass.getName())
+#end
+public $abstract class $name $extends 
+#end
+
+#* ********************************************************************************************************************************************* *#
+
+#macro (createComment $comment)
+#if ($comment != "")
+// $comment
+#end
+#end 
+
+

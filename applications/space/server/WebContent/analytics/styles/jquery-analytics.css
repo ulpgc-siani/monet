@@ -1,0 +1,70 @@
+/* UI */
+
+.ui-widget {
+  font-size: 11px;
+}
+
+.ui-widget-content a {
+  color: #0d3c98;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+  font-size: 11px;
+}
+
+.ui-tabs .ui-tabs-panel {
+  padding: 0px;
+}
+
+.tabs .ui-widget-header {
+  background: none;
+  border-width: 0px 0px 1px 0px;
+}
+
+.tabs.ui-widget-content {
+  border: 0px;
+}
+
+.slider .ui-corner-all, .slider .ui-corner-top, .slider .ui-corner-bottom, .slider .ui-corner-right, .slider .ui-corner-left,
+.slider .ui-corner-br, .slider .ui-corner-bl, .slider .ui-corner-tr, .slider .ui-corner-tl {
+  border-radius: 20px;
+}
+
+.slider .ui-state-default, .slider .ui-widget-content .ui-state-default, .slider .ui-widget-header .ui-state-default {
+  background: url("../images/jquery-ui-1.8.20.custom/ui-bg_glass_75_e6e6e6_1x400_slider.png") repeat-x scroll 50% 50% #2C71EE;
+  border: 1px solid #3977e8;
+}
+
+.slider .ui-state-focus, .slider .ui-state-hover, .slider .ui-widget-content .ui-state-focus,
+.slider .ui-widget-content .ui-state-hover, .slider .ui-widget-header .ui-state-focus, .slider .ui-widget-header .ui-state-hover {
+  border: 1px solid #005bff;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  top: -0.6em;
+}
+
+.ui-slider .ui-slider-handle {
+  height: 1.8em;
+  width: 1.8em;
+}
+
+.ui-layout-pane {
+  border: 0 !important;
+  border-top: 1px solid #bbb !important;
+}
+
+/* LAYOUT */
+
+.ui-layout-pane {
+  border: 0px !important;
+}
+
+.ui-layout-north.header.ui-layout-pane.ui-layout-pane-north {
+  position: static !important;
+}
+
+/* SIMPLE COLOR PICKER */
+.color-picker {
+  margin-left: -120px;
+}

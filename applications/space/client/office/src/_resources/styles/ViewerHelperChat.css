@@ -1,0 +1,66 @@
+.viewer.helper .chat .message {
+  position: relative;
+  left: 0;
+  color: black;
+  margin-bottom: 6px;
+  margin-left: 20px;
+}
+
+.viewer.helper .chat ul {
+  list-style-type: none;
+  border: 1px solid #aaa;
+  padding: 5px 10px;
+}
+
+.viewer.helper .chat ul.items {
+  height: 200px;
+  overflow: auto;
+}
+
+.viewer.helper .chat ul.toolbar {
+  border-top: 0px;
+  padding: 0;
+  position: relative;
+  border-radius: 0 0 5px 5px;
+}
+
+.viewer.helper .chat ul.toolbar textarea {
+  width: 99%;
+  padding: 6px;
+  border: 0;
+  width: calc(100% - 80px);
+  border-radius: 0 0 5px 5px;
+}
+
+.viewer.helper .chat ul.toolbar .sendmessage {
+  margin-right: 3px;
+  margin-top: 3px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.viewer.helper .chat .date {
+  font-size: 10px;
+  color: #777;
+  margin-top: 2px;
+}
+
+.viewer.helper .chat .in .message {
+  color: green;
+}
+
+.viewer.helper .chat .state {
+  background: url("../images/icons/chat_message.gif") no-repeat 0 0;
+  float: left;
+  height: 16px;
+  width: 20px;
+}
+
+.viewer.helper .chat .in .state {
+  background: none !important;
+}
+
+.viewer.helper .chat .state.sent {
+  background: url("../images/icons/chat_message_sent.gif") no-repeat 0 0;
+}

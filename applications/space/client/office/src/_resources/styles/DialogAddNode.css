@@ -1,0 +1,55 @@
+.dialog.addnode {
+  width: 800px;
+  height: 580px;
+}
+
+.dialog.addnode .body {
+  height: 100%;
+}
+
+.dialog.addnode .step {
+  padding: 10px;
+}
+
+.dialog.addnode .step.fromclipboard {
+  padding: 0px;
+}
+
+.dialog.addnode .step
+
+.2
+.fromclipboard {
+  padding: 10px;
+}
+
+.dialog.addnode .step .outfield.nodetypelist {
+  margin: 5px 15px;
+  display: none;
+}
+
+.dialog.addnode .step .outfield.nodetypelist.visible {
+  display: block;
+}
+
+.dialog.addnode .step .outfield.nodetypelist .ploading {
+  color: #254C8C;
+  margin: 10px 0px;
+}
+
+.dialog.addnode .step .outfield.nodetypelist .nodetype {
+  color: #254C8C;
+  margin: 10px 0px;
+}
+
+.dialog.addnode .step .outfield.nodetypelist .nodetype .fields {
+  color: black;
+  list-style-position: inside;
+  list-style-type: square;
+  margin: 0px 10px;
+  height: 350px;
+  overflow: auto;
+}
+
+.dialog.addnode .step .outfield.nodetypelist .nodetype .fields li {
+  margin: 3px 0px;
+}

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="lib-models">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib-models/externa-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib-models/space-coordinacion-monet32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib-models/space-externain-3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib-models/ejecucion_adeje.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib-models/coordinacion_viasyobras.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib-models/coordinacion_viasyobras_pre.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib-models/modelo_micv20.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

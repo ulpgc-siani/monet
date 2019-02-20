@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="EditCheckStepProperty" parent="StepEditProperty" token="edit-check">
+	<description></description>
+	
+    <property token="terms">
+		<description>Esta propiedad se utiliza para definir la lista de términos</description>
+		<include property="TermProperty" multiple="true" required="true" />
+	</property>
+
+	<attribute token="source" type="key" link="SourceDefinition">
+		<description>Fuente de datos que contiene los términos</description>
+		<hint>En lugar de usar una fuente de datos, se puede declarar directamente una lista de términos usando la propiedad terms</hint>
+	</attribute>
+
+	<property token="show">
+		<description>Esta propiedad permite personalizar el modo en que se ven los datos de la fuente de datos</description>
+		<hint>Actualmente solo implementado para las fuentes de datos indicadas mediante la propiedad source</hint>
+
+		<attribute token="flatten" type="enumeration" default="NONE">
+			<description>Se utiliza para mostrar los términos descendientes</description>
+			<enumeration>
+				<option token="NONE">
+					<description>Se toman sólo los términos del primer nivel</description>
+				</option>
+				<option token="ALL">
+					<description>Se toman recursivamente todos los términos descendientes</description>
+				</option>
+				<option token="LEVEL">
+					<description>Se toman recursivamente todos los términos descendientes hasta la profundidad indicada por el atributo "depth"</description>
+				</option>
+				<option token="LEAF">
+					<description>Se toman recursivamente todos los nodos hoja</description>
+				</option>
+				<option token="INTERNAL">
+					<description>Se toman recursivamente todos los nodos no hoja</description>
+				</option>
+			</enumeration>
+		</attribute>
+		
+		<attribute token="depth" type="integer">
+			<description>Profundidad de descendientes que se desea.</description>
+			<hint>Solo válido cuando se indica flatten con valor LEVEL</hint>
+		</attribute>
+		
+		<attribute token="root" type="string" link="TermProperty">
+			<description>Término a partir del cual se cargan los términos hijos</description>
+		</attribute>
+		
+        <property token="filter">
+          <description></description>
+          
+          <attribute token="tag" type="value" link="StepEditProperty" multiple="true" required="true">
+            <description></description>
+          </attribute>
+        </property>
+	</property>
+	
+</property>

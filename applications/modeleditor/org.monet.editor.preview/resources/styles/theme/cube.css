@@ -1,0 +1,54 @@
+.cube .reportitem {
+	padding: 5px;
+}
+
+.cube .cube {
+	padding: 0px;
+	margin: 3px 10px;
+	height: 95%;
+}
+
+.cube .content {
+	height: 100%;
+}
+	
+.cube .listviewer .items {
+	width: 99%;
+}
+
+.cube .listviewer .items .item .reportitem .label {
+	margin-top: 0px;
+}
+
+.cube .listviewer .items .item .reportitem .description {
+  color: #888;
+}
+
+.cube.report iframe {
+  border: 1px dotted #AAAAAA;
+  padding-top: 2px;
+  margin: 5px 3px;
+}
+
+.cube.report .title a.behaviour {
+  padding: 2px 0 2px;
+  border: 1px solid white;
+}
+
+.cube.report .title a.behaviour:hover {
+  background: #FEFFD6;
+  border: 1px solid #AAAAAA;
+}
+
+.cube.report .title .textbox {
+  border: 1px solid #AAAAAA;
+  font-size: 25px;
+  padding: 2px 0 2px;
+  width: 400px;
+  background: #FEFFD6;
+}
+
+.cube.report .title .accept {
+  font-size: 12px;
+  margin-left: 5px;
+}

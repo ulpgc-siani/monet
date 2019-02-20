@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="CatalogViewDeclaration" parent="NodeViewDeclaration" tag="view">
+
+  <property name="show" multiple="true">    
+    <description>Se utiliza para indicar que atributos de la referencia de la colección se van a mostrar en la vista</description>
+    <attribute name="attribute" type="code" link="AttributeDeclaration" required="true">
+      <description>Código del atributo de la referencia</description>
+    </attribute>
+  </property>
+  
+  <property name="sort" multiple="true">
+    <description>Se utiliza para indicar que atributos de la referencia de la colección se van a utilizar para ordenar los elementos de la lista</description>
+    <attribute name="attribute" type="code" link="AttributeDeclaration" required="true">
+      <description>Código del atributo de la referencia</description>
+    </attribute>
+  </property>
+  
+  <property name="group" multiple="true">
+    <description>Se utiliza para indicar que atributos de la referencia de la colección se van a utilizar para agrupar los elementos de la lista</description>
+    <attribute name="attribute" type="code" link="AttributeDeclaration" required="true">
+      <description>Código del atributo de la referencia</description>
+    </attribute>
+  </property>
+  
+  <property name="select" multiple="true">
+    <description>Se utiliza para indicar qué nodos se muestran en la colección</description>
+    <attribute name="node" type="code" link="Definition" restriction="NodeDeclaration" required="true">
+      <description>Código de la definición de un nodo</description>
+    </attribute>
+  </property>
+
+  <property name="filter" multiple="true">
+    <description>Se utiliza para indicar un filtro sobre el valor de un atributo</description>
+    <attribute name="attribute" type="code" link="AttributeDeclaration" required="true">
+      <description>Código del atributo de la referencia</description>
+    </attribute>
+    <attribute name="operator" type="enumeration" required="true">
+      <description>Operador que se utilizará para comprobar el filtro</description>
+      <enumeration>
+        <option>eq</option>
+        <option>gt</option>
+        <option>ge</option>
+        <option>lt</option>
+        <option>le</option>
+        <option>neq</option>
+      </enumeration>
+    </attribute>
+    <attribute name="value" type="string" required="true">
+      <description>Valor con el que se comparará el atributo de la referencia. Se puede hacer referencia a un parámetro declarado en la colección</description>
+    </attribute>
+  </property>  
+
+</class>

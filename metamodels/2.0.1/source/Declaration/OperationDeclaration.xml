@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="OperationDeclaration" parent="IndexedDeclaration" tag="operation">
+  <description>Declaración abstracta que se utiliza para  modelar una operación en un nodo</description>
+  
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta de la operación. Se utiliza para mostrar a los usuarios el nombre de la operación</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+  <property name="description" multiple="true" key="language">
+    <description>Descripción de la operación. Se utiliza para ofrecer a los usuarios una explicación más detallada de la operación</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+
+</class>
+

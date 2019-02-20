@@ -1,0 +1,12 @@
+.reference .body .title {
+  font-size: 24px;
+}
+
+.reference .body .subtitle {
+  font-size: 16px;
+  margin-left: 3px;
+}
+
+.reference .body img.wpicture {
+	border: solid 1px #9FB5D2;
+}

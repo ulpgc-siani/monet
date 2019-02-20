@@ -1,0 +1,30 @@
+.dialog.timelapse.print {
+  display: none;
+}
+
+.dialog.timelapse {
+  text-align: center;
+  height: 50px;
+}
+
+.dialog.timelapse .slider {
+	margin-top: 3px;
+}
+
+.dialog.timelapse .bounds {
+  color: #444444;
+  top: 0;
+}
+
+.dialog.timelapse .bounds.min {
+  margin-left: 10px;
+  margin-top: 3px;
+  float: left;
+}
+
+.dialog.timelapse .bounds.max {
+	right: 0;
+  margin-right: 10px;
+  margin-top: 3px;
+  float: right;
+}

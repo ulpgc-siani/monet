@@ -1,0 +1,13 @@
+ChangeLog  - Monet Library Exceptions
+
+# 18 - 07 - 2011 Version 0.2
+	-	Reanme component to library 
+	
+# 15 - 06 - 2011 Version 0.1
+	- Added ApplicationException
+	- Added BaseException
+	- Added ConfigurationException
+	- Added DatabaseException
+	- Added FilesystemException
+	- Added ParameterNotFoundInQueryException
+	- Added SessionException

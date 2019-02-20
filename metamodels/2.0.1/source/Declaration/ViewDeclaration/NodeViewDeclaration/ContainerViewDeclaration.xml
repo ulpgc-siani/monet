@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ContainerViewDeclaration" parent="NodeViewDeclaration" tag="view">
+
+  <property name="show" multiple="true">
+    <description>Se utiliza para indicar qué vistas de los nodos contenidos se mostrarán</description>
+    <attribute name="node" type="key" link="NodeDefinition" required="true">
+      <description>Nombre de la definición del nodo</description>
+    </attribute>
+    <attribute name="view" type="string" required="true">
+      <description>Nombre de la vista del nodo</description>
+    </attribute>
+  </property>
+    
+</class>

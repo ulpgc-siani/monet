@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="TextFieldDeclaration" parent="FieldDeclaration" tag="field-text">
+	
+  <include name="edition">
+    <option class="TextFieldEditionDeclaration"/>
+  </include>
+
+</class>

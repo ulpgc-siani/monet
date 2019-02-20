@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="SectionFieldViewDeclaration" parent="FieldViewDeclaration" tag="view">
+	<description>Declaración que se utiliza para modelar la vista de un	campo sección</description>
+
+	<attribute name="type" type="enumeration">
+    <description>En modo LIST se ven las secciones seguidas, una detrás de la otra. En modo TABLE se muestra sólo la sección que el usuario elija en un selector.</description>
+		<enumeration>
+      <option>LIST</option>
+			<option>TABLE</option>
+		</enumeration>
+	</attribute>
+
+	<property name="rows">
+		<description>Indica el número de filas que se desea ver en la tabla. En función de este valor, se calcula la altura de la tabla.</description>
+    <attribute name="count" type="natural">
+      <description>Valor del número de filas.</description>
+    </attribute>
+  </property>
+
+	<property name="column" multiple="true">
+		<description>Añade una columna a la tabla</description>
+    <attribute name="field" type="key" link="FieldDeclaration">
+      <description>Indica el campo que se usará como etiqueta de la sección.</description>
+    </attribute>
+    <attribute name="width" type="natural">
+      <description>Tamaño que se quiere para la columna. Se indica a modo de porcentaje siendo el rango de valores posibles entre 1 y 100.</description>
+    </attribute>
+  </property>
+  
+  <property name="show" multiple="true">
+    <description>Se utiliza para indicar que campos se van a mostrar en la vista</description>
+    <attribute name="field" type="key" link="FieldDeclaration" required="true">
+	    <description>Nombre del atributo del campo</description>
+    </attribute>
+  </property>
+  
+</class>

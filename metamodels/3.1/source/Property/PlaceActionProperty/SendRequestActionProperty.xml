@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="send-request" type="SendRequestActionProperty" parent="SimpleActionProperty">
+	<description></description>
+
+  <attribute token="collaborator" type="key" link="TaskCollaboratorProperty">
+    <description>Colaborador al que se le enviará el mensaje</description>
+  </attribute>
+  
+  <attribute token="provider" type="key" link="TaskProviderProperty">
+    <description>Proveedor al que se le enviará el mensaje</description>
+  </attribute>
+  
+  <attribute token="request" type="key" link="TaskRequestProperty" required="true">
+    <description>Mensaje que se enviará</description>
+  </attribute>
+
+</property>

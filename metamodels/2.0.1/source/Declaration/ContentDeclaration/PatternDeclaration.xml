@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="PatternDeclaration" parent="Declaration" tag="pattern">
+  <description>Declaración que se utiliza para modelar el hecho de un cubo</description>
+
+  <attribute name="language" type="language" required="true">
+    <description>Idioma de la etiqueta</description>
+  </attribute>
+  
+  <attribute name="regexp" type="string" required="true">
+    <description>Expresión regular que permite analizar el texto introducido y separarlo en partes</description>
+  </attribute>
+  
+	<property name="meta" multiple="true">
+		<description>Se utiliza para asociar un metadato a una de las partes del texto introducido</description>
+		<attribute name="index" type="natural">
+			<description>Indice del metadato</description>
+		</attribute>
+		<attribute name="indicator" type="string">
+			<description>Nombre del metadato</description>
+		</attribute>
+	</property>
+  
+</class>
+

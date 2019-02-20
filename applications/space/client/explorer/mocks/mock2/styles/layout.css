@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+}
+
+body .design-wrap {
+  height: auto;
+  min-height: 100%;
+}
+
+.design-header {
+  height: 50px;
+  padding: 10px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  background: #eee;
+}
+
+.design-wrap .design-content {
+  padding-bottom: 160px;
+  padding-top: 70px;
+}
+
+.design-wrap .design-content .side {
+  display: block;
+  width: 300px;
+  min-height: 300px;
+  float: left;
+  margin-right: 10px;
+}
+
+.design-wrap .design-content .side {
+  padding: 10px;
+}
+
+.design-footer {
+  position: relative;
+  margin-top: -150px;
+  height: 150px;
+}
+
+.design-clear-fix:after {
+  content: ".";
+  /*display: block;*/
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.design-clear-fix {
+  display: inline-block;
+}
+
+/* Hides from IE-mac \*/
+* html .design-clear-fix {
+  height: 1%;
+}
+
+.design-clear-fix {
+  display: block;
+}
+/* End hide from IE-mac */
+
+.design-header .right {
+  width: 60%;
+}
+
+.design-content .design-main {
+  padding: 0;
+  margin-top: 20px;
+}
+
+.design-content .design-main > table > tr > td {
+  vertical-align: top;
+}
+
+.design-footer .links {
+  padding: 10px;
+}
+
+.color-footer {
+  background-color: #444;
+  color: #fff;
+}
+
+.color-footer-separator {
+  background-color: #777;
+}

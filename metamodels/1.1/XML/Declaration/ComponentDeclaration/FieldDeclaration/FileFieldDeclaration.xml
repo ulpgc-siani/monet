@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="FileFieldDeclaration" parent="FieldDeclaration" tag="field-file">
+  <description>Declaración que se utiliza para modelar un campo tipo fichero</description>
+</class>

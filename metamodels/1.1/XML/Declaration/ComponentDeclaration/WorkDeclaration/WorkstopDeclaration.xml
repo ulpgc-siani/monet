@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorkstopDeclaration" parent="ComponentDeclaration" tag="workstop">
+	<description>Declaración que se utiliza para modelar un	workstop de un workline</description>
+
+  <attribute name="code" type="key">
+    <description>Identificador del workline</description>
+    <hint>No hay que editar este atributo. Se genera automáticamente</hint>
+  </attribute>
+
+  <attribute name="name" type="string">
+    <description>Nombre del workstop</description>
+    <hint>No pueden haber dos workstops con el mismo nombre en un workmap</hint>
+  </attribute>
+
+	<attribute name="workplace" type="code" link="WorkplaceDeclaration" required="true">
+		<description>WorkPlace donde está localizado este workstop</description>
+	</attribute>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del workstop</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+
+</class>

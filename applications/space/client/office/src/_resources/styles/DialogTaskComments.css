@@ -1,0 +1,26 @@
+.dialog.taskcomments {
+  position: absolute;
+  background: none repeat scroll 0 0 #FFFFFF;
+  min-height: 100px;
+  max-height: 200px;
+  width: 500px;
+  overflow: auto;
+  right: 0;
+  border: 1px solid #99BBE8;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 5px #808080;
+  -moz-box-shadow: 2px 2px 5px #808080;
+  box-shadow: 2px 2px 5px #808080;
+  padding: 10px;
+}
+
+.dialog.taskcomments .title {
+  color: #000;
+  font-size: 16px;
+}
+
+.dialog.taskcomments .body {
+  margin-top: 10px;
+  color: #555;
+  margin-top: 5px;
+}

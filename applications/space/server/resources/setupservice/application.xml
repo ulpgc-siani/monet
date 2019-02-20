@@ -1,0 +1,7 @@
+<application code="setupservice" type="ApplicationSetupService"
+             class="org.monet.space.setupservice.ApplicationSetupService">
+  <labels>
+    <label language="es">Aplicación de Setup Service</label>
+    <label language="en">SetupService application</label>
+  </labels>
+</application>

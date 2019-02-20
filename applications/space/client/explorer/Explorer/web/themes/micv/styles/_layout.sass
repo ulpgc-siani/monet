@@ -1,0 +1,200 @@
+@import "../../default/styles/layout"
+
+.design-panel.header 
+  position: absolute
+  left: 0
+  top: 0
+  z-index: 4
+  height: 80px
+  width: 100%
+  overflow: visible
+
+.design-panel.header > table 
+  width: 100%
+  height: 80px
+
+.design-panel.header .header-space 
+  vertical-align: middle
+
+.design-panel.header .header-space .message
+  background-color: #FFFFFF
+  border-radius: 5px
+  bottom: 0
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+  color: #1E3264
+  font-size: 9pt
+  margin-bottom: 25px
+  margin-left: 600px
+  padding: 2px 15px
+  position: absolute
+
+#main.reduced .design-panel.header .header-space .message
+  margin-bottom: 15px
+
+.environment.miikw2g .design-panel.header .header-account
+  width: 218px
+
+.environment.miikw2g .design-panel.header .header-account .search-panel, .environment.miikw2g .design-panel.header .header-account .togglehelper
+  display: none
+
+.design-panel.header .header-account 
+  width: 476px
+  vertical-align: middle
+  padding-right: 30px
+
+.design-panel.header .header-account .search, .design-panel.header .header-account .command-list, .design-panel.header .header-account .togglehelper
+  bottom: 17px
+  position: absolute
+  width: 100%
+  z-index: 2
+
+.design-panel.header .header-account .search
+  margin-left: -135px
+  width: auto
+  z-index: 320
+
+.design-panel.header .header-account .command-list
+  margin-left: 0
+
+.design-panel.header .header-account .togglehelper
+  background: #5A84A3 url(../images/help.png) no-repeat 10px 3px
+  margin-left: 418px
+  border-radius: 3px
+  display: block
+  height: 23px
+  width: 31px
+  z-index: 3
+
+.design-panel.header .header-account .togglehelper:hover
+  background: #7898AF url(../images/help.png) no-repeat 10px 3px
+
+.design-panel.header .header-account .command-list .command
+  background: #5A84A3
+  border-radius: 3px
+  font-size: 12px
+  font-weight: 300
+  margin-left: 5px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-Solicitar
+  background: #5A84A3 url(../images/entidad.png) no-repeat 6px 3px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-Solicitar:hover
+  background: #7898AF url(../images/entidad.png) no-repeat 6px 3px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-GenerarMiCV
+  background: #5A84A3 url(../images/generarcv.png) no-repeat 6px 2px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-GenerarMiCV:hover
+  background: #7898AF url(../images/generarcv.png) no-repeat 6px 2px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-ImportarCVN
+  background: #5A84A3 url(../images/importarcvn.png) no-repeat 6px 2px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-ImportarCVN:hover
+  background: #7898AF url(../images/importarcvn_hover.png) no-repeat 6px 2px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-Sugerencias
+  background: #5A84A3 url(../images/sugerencias.png) no-repeat 5px 6px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-Sugerencias:hover
+  background: #7898AF url(../images/sugerencias.png) no-repeat 5px 6px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-Comprobar
+  background: #5A84A3 url(../images/comprobar.png) no-repeat 6px 2px
+
+.design-panel.header .header-account .command-list .command.executenodecommand-Comprobar:hover
+  background: #7898AF url(../images/comprobar_hover.png) no-repeat 6px 2px
+
+.design-panel.header .header-account .command-list li.command, .design-panel.header .header-account .command-list li.command:last-child
+  margin-bottom: 5px
+
+.design-panel.header .header-account .command-list .command:hover
+  background: #7898AF
+
+.design-panel.header .header-account .command-list .items .command a 
+  padding: 3px 8px 3px 25px
+  height: 100%
+  width: 100%
+  color: white
+
+.design-panel.header .header-account .account .info .toolbar
+  right: -35px
+
+.environment.miikw2g .design-panel.header .header-account .account .info .toolbar
+  right: -16px
+
+.design-panel.header .header-account .command-list .items .command a:hover
+  background: transparent
+
+#main.expanded .design-panel.header
+  transition: height 0.5s
+  height: 80px
+
+#main.reduced .design-panel.header
+  transition: height 0.5s
+  height: 50px
+
+#main.reduced .design-panel.header
+  height: 50px
+
+#main.reduced .design-panel.header > table
+  height: 50px
+
+#main.reduced .design-panel.header table .header-space
+  width: 1%
+
+#main.reduced .design-panel.header table .header-account .search
+  margin-right: 610px
+  width: 30px !important
+
+#main.reduced .design-panel.header table .header-account .command-list
+  width: 605px !important
+
+#main.reduced .design-panel.header table .header-account .togglehelper
+  margin-right: 55px
+
+#main.reduced .design-panel.header table .header-account .search, #main.reduced .design-panel.header table .header-account .togglehelper, #main.reduced .design-panel.header table .header-account .command-list
+  position: absolute
+  right: 0
+  top: 0
+  margin-top: 10px
+
+.design-panel.header .header-account .command-list
+  bottom: 12px
+  margin-left: -100px
+
+.design-panel.main
+  top: 80px
+  left: 0
+
+.design-panel.main .entities.system
+  background: transparent
+  margin-top: 80px
+  position: fixed
+  top: 0
+  width: 95%
+  z-index: 150
+  opacity: 0.9
+
+.design-panel.main .helper-display
+  transition: width 1s ease-out
+  width: 0
+  display: none
+
+.design-panel.main .helper-display.visible
+  width: 30%
+  display: table-cell
+
+#main .design-panel.main .entities.system, #main.expanded .design-panel.main .entities.system
+  margin-top: 80px
+  transition: margin-top 0.5s
+
+#main.reduced .design-panel.main
+  top: 50px
+
+#main.reduced .design-panel.main .entities.system
+  margin-top: 50px
+  transition: margin-top 0.5s
+
+.design-panel.main.windows .entities .items > li, .design-panel.main.windows .entities .items > li a
+  font-weight: 600 !important

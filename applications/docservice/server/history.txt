@@ -1,0 +1,51 @@
+###############################
+# DOC SERVER REVISION HISTORY #
+###############################
+
+18/01/2011
+================================
+WebContent/WEB-INF/app_data/database/*
+--------------------------------
+- Refactorizado el nombre de todos los scripts de base de datos
+
+10/01/2011
+================================
+app.properties
+--------------------------------
+- Ya no se usa el parámetro de configuración de selección del conversor a PDF. Ahora detecta en función de la libreria
+añadida al ClassPath.
+
+- Cambio de la configuración de la base de datos, ahora es posible configurar el Pool de conexiones. Para más información
+acerca de los parámetros de configuración ver http://jolbox.com/bonecp/downloads/site/apidocs/index.html.
+
+19/10/2010
+================================
+app.properties
+--------------------------------
+Añadido parámetro de configuración que selecciona el parser a usar a la hora de interpretar el modelo
+que se pasa al procesador de plantillas.
+
+14/10/2010
+================================
+app.properties
+--------------------------------
+Agregada la configuración de la página de firma, para las firmas de PDF.
+
+23/06/2010
+================================
+app.properties
+--------------------------------
+Añadido parámetro de configuración GeneratePdfA, que controla si se quiere que los documentos procesados
+por el docserver como Pdf se generen teniendo en cuenta esta restricción. 
+
+05/05/2010
+================================
+app_data/database/DocServer_XXX.sql
+--------------------------------
+Añadido un nuevo tipo de operación en la tabla WORK_QUEUE_OPERATIONS
+
+05/05/2010
+================================
+app.properties
+--------------------------------
+Añadido PdfConverterClass, que permite la configuración del convertidor de Pdf a usar.

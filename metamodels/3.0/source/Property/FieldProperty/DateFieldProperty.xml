@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property token="field-date" type="DateFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo fecha en un formulario</description>
+
+	<attribute token="precision" type="enumeration" default="SECONDS">
+		<description>Esta propiedad se utiliza para indicar la precisión con la que se desea guardar la fecha</description>
+		<enumeration>
+			<option token="YEARS">
+				<description>Años</description>
+			</option>
+			<option token="MONTHS">
+				<description>Meses</description>
+			</option>
+			<option token="DAYS">
+				<description>Días</description>
+			</option>
+			<option token="HOURS">
+				<description>Horas</description>
+			</option>
+			<option token="MINUTES">
+				<description>Minutos</description>
+			</option>
+			<option token="SECONDS">
+				<description>Segundos</description>
+			</option>
+		</enumeration>
+	</attribute>
+
+	<attribute token="edition" type="enumeration" default="RANDOM">
+		<description>Esta propiedad se utiliza para indicar el tipo de edición</description>
+		<enumeration>
+			<option token="RANDOM">
+				<description>Acceso directo a cualquier fecha</description>
+			</option>
+			<option token="SEQUENTIAL">
+				<description>Acceso secuencial con respecto a la fecha por defecto</description>
+			</option>
+		</enumeration>
+	</attribute>
+
+</property>

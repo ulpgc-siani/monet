@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Possible errors of FrontserviceErrores posibles de Frontservice</comment>
+  <entry key="ERR_UNDEFINED">Unknown error.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">It has had an error in the actions factory.</entry>
+  <entry key="ERR_RENDERS_FACTORY">It has had an error in the renders factory.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">The user has not logged.</entry>
+  <entry key="ERR_INVALID_INPUT_FORMAT">Incorrect input data format.</entry>
+  <entry key="ERR_INVALID_OUTPUT_FORMAT">Incorrect output data format.</entry>
+  <entry key="ERR_ELEMENT_NOT_FOUND_IN_SERVICE_DEFINITION">It has not found the element in the service definition.</entry>
+  <entry key="ERR_CONTENT_MALFORMED">The content is not well formed.</entry>
+  <entry key="ERR_INCORRECT_PARAMETERS">Wrong parameters in the call.</entry>
+  <entry key="ERR_REDIRECT_TO_SETUP">It has not found the administration application. It will not start the business unit.</entry>
+  <entry key="ERR_INVALID_REQUEST">Request not allowed.</entry>
+</properties>

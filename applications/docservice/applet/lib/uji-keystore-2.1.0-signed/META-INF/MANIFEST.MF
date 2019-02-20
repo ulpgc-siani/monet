@@ -1,0 +1,107 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_16
+Built-By: paul
+Created-By: Apache Maven
+Archiver-Version: Plexus Archiver
+
+Name: es/uji/security/keystore/dnie/Dnie.class
+SHA1-Digest: 4FMSCBPYAzHSCyUlJn/pkHjfV6A=
+
+Name: es/uji/security/keystore/pkcs11/test/PKCS11KeyStoreTest.class
+SHA1-Digest: FQe4d0pdPDcOTsIunrrioWfWSMk=
+
+Name: es/uji/security/keystore/clauer/ClauerRunTime.class
+SHA1-Digest: 0p3b0Jx2oClEvEeZ6elVCUjotF8=
+
+Name: es/uji/security/keystore/clauer/test/ClauerTest.class
+SHA1-Digest: uA7PK7qNeCFC/gpRb3miFdGl8b0=
+
+Name: es/uji/security/keystore/provider/test/ExampleProvider.class
+SHA1-Digest: O2snIbuvfZCcMHWgBvSwrt5RGgY=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11Helper.class
+SHA1-Digest: nYtFfVHwJSP/X13Fe2mmMB9blMk=
+
+Name: es/uji/security/keystore/pkcs12/PKCS12KeyStore.class
+SHA1-Digest: 9Tc3dkSS3DI1Viaf/kn7Ips1kAw=
+
+Name: es/uji/security/keystore/mscapi/MSCAPIPrivateKey.class
+SHA1-Digest: o5hO5dVz7aq4nlIa45IUoKp73oQ=
+
+Name: es/uji/security/keystore/mscapi/MSCAPIProvider$1.class
+SHA1-Digest: c/LuU+CCvyj6BLKtihyQGmeaLDQ=
+
+Name: es/uji/security/keystore/dnie/test/DNIeTest.class
+SHA1-Digest: LyoZbdNhFsOnRfYUp9o+VI6TgDE=
+
+Name: META-INF/maven/es.uji.security/uji-keystore/pom.xml
+SHA1-Digest: XJpz7EreEMupKV39ShAembwkwwM=
+
+Name: es/uji/security/keystore/clauer/Clauer.class
+SHA1-Digest: BbwfBt1lQ7ALnT6/MLjiwq+qswQ=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11HelperException.class
+SHA1-Digest: nBX1kIerLNc/NBLp6HoJmbvJ31M=
+
+Name: es/uji/security/keystore/mozilla/Mozilla.class
+SHA1-Digest: nrslVbNuy5bYMW76a4r/eNB9Vek=
+
+Name: es/uji/security/keystore/clauer/ClauerKeyStore.class
+SHA1-Digest: 1mlpY1VKMZx57dumlDInIWNobFY=
+
+Name: es/uji/security/keystore/mscapi/MsCapiKeyStore.class
+SHA1-Digest: lX2RvPiS/m7au3oG+WrdpphnKDc=
+
+Name: org/openoces/opensign/wrappers/microsoftcryptoapi/MicrosoftCrypt
+ oApi.class
+SHA1-Digest: JlGNMT4xdkb08euQeVhO8X3ayfE=
+
+Name: es/uji/security/keystore/mscapi/SHA1withRSA.class
+SHA1-Digest: PuV0IQf40bkNwo9I67+G+1ZPqa4=
+
+Name: es/uji/security/keystore/provider/test/ExampleProvider$1.class
+SHA1-Digest: pQZSqPwt8HGofQOI/qENq9ZiJZI=
+
+Name: es/uji/security/keystore/KeyStoreManager.class
+SHA1-Digest: OcsdaDAy1KfiW29/CY477KusqGo=
+
+Name: es/uji/security/keystore/ImportPrivateKey.class
+SHA1-Digest: q6P8xk2Qj4RSBiUmHQkVjsK2KVk=
+
+Name: META-INF/maven/es.uji.security/uji-keystore/pom.properties
+SHA1-Digest: ImBgfjx6xLbVqSlI3yBcFvxpIzg=
+
+Name: es/uji/security/keystore/mozilla/MozillaKeyStore.class
+SHA1-Digest: Rgz9fiCUHhVYsPikH0FaRWKZDZw=
+
+Name: es/uji/security/keystore/mozilla/test/MozillaTest.class
+SHA1-Digest: DXk4TCfk9OXmxMZ1v9x8jBidDm0=
+
+Name: es/uji/security/keystore/IKeyStore.class
+SHA1-Digest: 6kgQpm34EWOi6U3bIZayXkJx4D4=
+
+Name: es/uji/security/keystore/clauer/test/Clauer.class
+SHA1-Digest: VPMaXcpVbuEzJ7vpkHPf1RwyGz0=
+
+Name: es/uji/security/keystore/mscapi/SunMsCapiKeyStore.class
+SHA1-Digest: N2kL9OlFEUS8QxbFUELOiX8lZO4=
+
+Name: es/uji/security/keystore/mscapi/MSCAPIProvider.class
+SHA1-Digest: jpy2n9NIUr8n45pnIbDW6nbfG1g=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11KeyStore.class
+SHA1-Digest: jSwthMeCxtW1iRhjXIGHIUKQM30=
+
+Name: es/uji/security/keystore/clauer/test/ClauerKeyStoreTest.class
+SHA1-Digest: X6XwpxnExh1LsbrjlDsUtY25EOA=
+
+Name: es/uji/security/keystore/pkcs11/PKCS11HelperException$errorType.
+ class
+SHA1-Digest: uPL8q1WlUk02UjbfmoQjZli0jJQ=
+
+Name: es/uji/security/keystore/clauer/ClauerHandle.class
+SHA1-Digest: Rjfa/+FZEvA9M+hypPWU0QduOVM=
+
+Name: es/uji/security/keystore/X509CertificateHandler.class
+SHA1-Digest: 94ecF+n4iZB4c61yYzQYuIgOwt4=
+

@@ -1,0 +1,23 @@
+
+Jsmtpd uses theses third party licences:
+
+commons-io
+	Apache Licence: http://www.apache.org/licenses/
+
+commons-logging
+	Apache Licence: http://www.apache.org/licenses/
+	
+dnsjava
+	BSD license
+
+libclamav
+	Apache Licence: http://www.apache.org/licenses/
+
+log4j
+	Apache Licence: http://www.apache.org/licenses/
+
+javamail
+	Sun CDDL: https://glassfish.dev.java.net/public/CDDL%2BGPL.html
+
+activation
+	Sun CDDL: https://glassfish.dev.java.net/public/CDDL%2BGPL.html

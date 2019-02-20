@@ -1,0 +1,44 @@
+ 
+<div class="state-content">
+  <div class="horizontal-panel">
+  <div class="vertical-panel">
+  <div class="section">::performance::</div>
+  <ul>
+    <li><div class="meta">::load::</div><div class="value"><%= state.performance.load %></div></li>
+    <li><div class="meta">::cpu::</div><div class="value"><%= state.performance.cpu %></div></li>
+    <li><div class="meta">::users::</div><div class="value"><%= state.performance.users %></div></li>
+  </ul>
+  </div>
+  
+  <div class="vertical-panel">  
+  <div class="section">::tasks::</div>
+  <ul>
+    <li><div class="meta">::total::</div><div class="value"><%= state.task.total %></div></li>    
+    <li><div class="meta">::execution::</div><div class="value"><%= state.task.execution %></div></li>
+    <li><div class="meta">::sleeped::</div><div class="value"><%= state.task.sleeped %></div></li>
+    <li><div class="meta">::stopped::</div><div class="value"><%= state.task.stopped %></div></li>
+    <li><div class="meta">::zoombies::</div><div class="value"><%= state.task.zoombies %></div></li>
+  </ul>
+  </div>
+  </div>
+  
+  <div class="horizontal-panel">
+  <div class="vertical-panel">
+  <div class="section">::memory::</div>
+  <ul>
+    <li><div class="meta">::total::</div><div class="value"><%= state.memory.total %></div></li>
+    <li><div class="meta">::used::</div><div class="value"><%= state.memory.used %></div></li>
+    <li><div class="meta">::available::</div><div class="value"><%= state.memory.available %></div></li>
+  </ul>
+  </div>
+  
+  <div class="vertical-panel">
+  <div class="section">::swap::</div>
+  <ul>
+    <li><div class="meta">::total::</div><div class="value"><%= state.swap.total %></div></li>
+    <li><div class="meta">::used::</div><div class="value"><%= state.swap.used %></div></li>
+    <li><div class="meta">::available::</div><div class="value"><%= state.swap.available %></div></li>
+  </ul>          
+  </div>
+  </div>
+</div> 

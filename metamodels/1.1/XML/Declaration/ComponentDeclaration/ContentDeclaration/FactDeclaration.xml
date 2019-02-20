@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FactDeclaration" parent="ContentDeclaration" tag="fact">
+  <description>Declaración que se utiliza para modelar el hecho de un cubo</description>
+
+  <include name="attribute" multiple="true" required="true">
+    <option class-name="AttributeDeclaration" />
+  </include>
+
+</class>
+

@@ -1,0 +1,19 @@
+Documentation  - Monet Component Filesystem
+
+Componente de manejo de archivos.
+	- Cerrar archivos de forma eficiente:  StreamHelper
+		- Copiar InputStream a OutputStream. Cierra ambos.
+		- Copiar InputStream a InputStream. Cierra el input de entrada.
+		- Convertir InputStream a String. Cierra el input de entrada.
+  	- Obtener recursos como streams:  Resources
+	- Ficheros: LibraryFile
+		- Obtener el nombre de un archivo sin extensi�n.
+		- Obtener el nombre del directorio de un archivo.
+		- Obtener el nombre de un archivo  con extensi�n a partir de la ruta completa.
+		- Obtener el nombre de un archivo sin extensi�n a partir de la ruta completa.
+		- Obtener la extensi�n de un archivo.
+		- Obtener la lista de archivos de un directorio: recursivamente en todos los directorios o no.
+		- Remplazar texto dentro de un fichero por otro texto.
+	- Zip & Unzip:
+		- Comprimir ficheros
+		- Descomprimir ficheros

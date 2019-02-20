@@ -1,0 +1,35 @@
+ChangeLog  - Monet Library Encrypt
+
+# 19 - 09 - 2011 Version 0.9
+	- Save and Load certificates in p7b file
+	- Save certificate in PEM file
+	- Save X.509 certificate in file
+	- Get public key from Spkac format
+	- Get public key from pkcs10 message
+	- Get cetificate in Base 64 Encoded
+
+# 26 - 08 - 2011 Version 0.6
+	- Created Certificater:
+		- Added generate keypair
+		- Save/load keypair
+		- Generate Certificate V1 and V3
+		- Save pkcs12
+
+# 27 - 07 - 2011 Version 0.5
+	-	Refactor Hasher: 
+			- Removed getMD5 and getSHA1
+			- Added: getMD5asBase64, getMD5asHexa., getSHA1asBase64, getSHA1asHexa. , getMD5asByteArray, getSHA1asByteArray
+
+# 18 - 07 - 2011 Version 0.4
+	-	Reanme component to library 
+	
+# 12 - 07 - 2011 Version 0.3
+	- Renamed hash MD5 method
+	- Added hsh SHA1
+	
+# 15 - 06 - 2011 Version 0.2
+	- Added hash MD5
+	
+# 15 - 06 - 2011 Version 0.1
+	- Added HMAC signer & verify
+	- Added Certificate pcsk7 verification sign & root certificate

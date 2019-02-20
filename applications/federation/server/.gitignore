@@ -1,0 +1,8 @@
+/build/
+/dist/
+/bin/
+/target/
+.directory
+.idea/artifacts
+.idea/inspectionProfiles
+.idea/libraries

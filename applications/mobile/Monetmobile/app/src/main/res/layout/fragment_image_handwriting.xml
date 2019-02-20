@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:drawingsurface="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="96dp"
+    android:padding="8dp"
+    android:background="@color/white">
+	
+    <org.monet.space.mobile.widget.DrawingSurface
+        android:id="@+id/drawingSurface"
+        android:layout_width="@dimen/edit_picture_hand_width"
+        android:layout_height="@dimen/edit_picture_hand_height"
+        android:layout_alignParentTop="true"
+        drawingsurface:paint_color="#FF000000"
+        drawingsurface:background_color="#FFFFFFFF"/>
+
+</RelativeLayout>

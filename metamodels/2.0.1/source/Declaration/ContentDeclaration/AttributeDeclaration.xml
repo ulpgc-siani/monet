@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="AttributeDeclaration" parent="IndexedDeclaration" tag="attribute">
+  <description>Declaración que se utiliza para modelar un atributo de una referencia/cubo</description>
+  
+	<attribute name="type" type="enumeration" required="true">
+		<description>Tipo del atributo</description>
+    <hint>Los tipos DATE y TIME solo se pueden utilizar en los cubos</hint>
+		<enumeration>
+      <option>BOOLEAN</option>
+			<option>TEXT</option>
+			<option>INTEGER</option>
+      <option>REAL</option>
+			<option>DATE</option>
+      <option>DATETIME</option>
+      <option>TIME</option>
+      <option>TERM</option>
+      <option>CHECK</option>
+      <option>DIMENSION</option>
+		</enumeration>
+	</attribute>
+
+	<attribute name="precision" type="enumeration">
+		<description>Precisión de los atributos tipo fecha. Por defecto tiene precisión de segundos.</description>
+		<hint>Sólo se utiliza en los atributos de tipo fecha.</hint>
+		<enumeration>
+			<option>YEARS</option>
+			<option>MONTHS</option>
+			<option>DAYS</option>
+			<option>HOURS</option>
+			<option>MINUTES</option>
+			<option>SECONDS</option>
+		</enumeration>
+	</attribute>
+
+  <attribute name="dimension" type="key" link="DimensionDeclaration">
+    <description>Nombre de la dimensión a la que está vinculado</description>
+  </attribute>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del atributo. Se utiliza para mostrar a los usuarios el nombre del atributo</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+		<content type="text" />
+	</property>
+  
+  <property name="description" multiple="true" key="language">
+    <description>Descripción del campo. Se utiliza para ofrecer a los usuarios una explicación más detallada del campo</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la descripción</description>
+    </attribute>
+    <content type="text"/>
+  </property>
+  
+  <property name="is-identifier">
+    <description>Su presencia indica que el atributo se usa como identificador si está forma parte de una dimensión</description>
+  </property>
+
+</class>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="ViewProperty">
+	<description>Declaración del tipo abstracto de vista</description>
+
+    <attribute token="code" type="code" required="true" specific="true">
+		<description>Nombre del campo</description>
+		<hint>No hay que editar este atributo. Se genera automáticamente</hint>
+	</attribute>
+	
+	<attribute token="name" type="string" specific="true">
+		<description>Nombre con el que se referencia la declaración en el modelo de negocio</description>
+	</attribute>
+
+</property>

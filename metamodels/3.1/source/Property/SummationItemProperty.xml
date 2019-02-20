@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="term" type="SummationItemProperty" multiple="true" extensible="true">
+	<description>Esta propiedad se utiliza para definir un epígrafe de un campo sumatoria</description>
+
+	<attribute token="label" type="language" required="true">
+		<description>Etiqueta del epígrafe</description>
+	</attribute>
+
+	<attribute token="key" type="string" required="true">
+		<description>Identificador del epígrafe</description>
+	</attribute>
+
+	<attribute token="type" type="enumeration" required="true">
+		<description>Tipo de epígrafe</description>
+		<enumeration>
+			<option token="SIMPLE">
+				<description>La estructura es: Texto, Valor</description>
+				<hint>El valor es calculado introducido manualmente</hint>
+			</option>
+			<option token="INVOICE">
+				<description>La estructura es: Texto, Unidades, Precio, Valor</description>
+				<hint>El valor es calculado multiplicando unidades * precio</hint>
+			</option>
+			<option token="ACCOUNT">
+				<description>La estructura es: Texto, Tipo (haber/debe), Valor</description>
+				<hint>El valor es negativo cuando el tipo es "debe"</hint>
+			</option>
+		</enumeration>
+	</attribute>
+
+	<property token="is-multiple">
+		<description>Esta propiedad se utiliza para indicar que se trata de un epígrafe mútiple</description>
+	</property>
+
+	<property token="is-negative">
+		<description>Esta propiedad se utiliza para indicar que el epígrafe contiene valores negativos</description>
+	</property>
+
+	<include property="SummationItemProperty" multiple="true" />
+
+</property>

@@ -1,0 +1,1 @@
+ALTER TABLE ts$users ADD PHOTO CLOB;

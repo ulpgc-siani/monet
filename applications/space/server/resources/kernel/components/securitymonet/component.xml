@@ -1,0 +1,6 @@
+<component code="securitymonet" type="security" class="org.monet.space.kernel.components.monet.ComponentSecurityMonet">
+  <labels>
+    <label language="es">Monet</label>
+    <label language="en">Monet</label>
+  </labels>
+</component>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="DesktopDefinition" parent="NodeDefinition" token="desktop" extensible="true">
+	<description>Un escritorio es un tipo de nodo que se utiliza para crear el entorno de trabajo de un usuario</description>
+
+	<property token="contain">
+		<description>Esta propiedad se utiliza para declarar los componentes del entorno de trabajo</description>
+		<hint>Cuando se crea el entorno de trabajo, automáticamente se crean todos sus componentes</hint>
+		<attribute token="node" type="key" link="NodeDefinition" required="true" multiple="true">
+			<description>Tipo de nodo contenido dentro del contenedor</description>
+		</attribute>
+	</property>
+
+	<property token="for">
+		<description>Esta propiedad se utiliza cuando se desea que el uso del escritorio está restringido a unos roles concretos</description>
+		<attribute token="role" type="key" link="RoleDefinition" required="true" multiple="true">
+			<description>Tipo de role al que se desea permitir el uso del escritorio</description>
+		</attribute>
+	</property>
+
+	<property token="view" parent="NodeViewProperty" multiple="true">
+		<description></description>
+		<property token="show" required="true">
+			<attribute token="link" type="key" link="EntityDefinition" multiple="true">
+				<description>Entidad (singleton) que se desea mostrar</description>
+			</attribute>
+			<attribute token="dashboard" type="key" link="DashboardViewProperty" multiple="true">
+				<description>Dashboard (singleton) que se desea mostrar</description>
+			</attribute>
+		</property>
+	</property>
+
+	<property token="rule:link" parent="RuleProperty" multiple="true">
+		<attribute token="add-flag" type="enumeration" multiple="true" required="true">
+			<description>Indica que marcas se activan en este nodo cuando la regla se active</description>
+			<enumeration>
+				<option token="HIDDEN">
+					<description>Marca el/los vínculo/s como oculto(s)</description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<property token="to" required="true">
+			<attribute token="link" type="key" link="EntityDefinition" multiple="true">
+				<description>Vínculos a los que se les aplica las marcas</description>
+			</attribute>
+		</property>
+	</property>
+
+</class>

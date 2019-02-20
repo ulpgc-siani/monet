@@ -1,0 +1,121 @@
+.dialog {
+  position: relative;
+  margin-top:20px;
+}
+
+.view .dialog  .title {
+  font-size:11pt;
+  font-weight:normal;
+}
+
+.dialog .loading {
+  background: url('../images/loading.gif') no-repeat left center;
+  border: 0px;
+  height: 30px;
+  padding: 13px 2px 0px 35px;
+  text-align: left;
+}
+
+.dialog .report {
+  color: blue;
+  display: block;
+  position: relative;
+  left: 0;
+}
+
+.dialog .report.error {
+  color: red;
+}
+
+.dialog .status {
+  position:absolute; 
+  z-index:400;
+  display: none;
+  opacity: 100;
+  top: 0px;
+  left: 0px;
+}
+
+.dialog .status .title {
+  text-transform: none;
+  font-size: 10pt;
+  font-weight: normal;
+  margin: 0px 0px 5px;
+  padding: 0px;
+  color: red;
+}
+
+.dialog .status ul {
+  list-style: disc;
+  margin-left: 12px;
+}
+
+.dialog .manfield {
+  margin: 0px 0px 15px;
+}
+
+.dialog .manfield.hidden {
+  display: none;
+}
+
+.dialog .manfield .mantitle {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.dialog .manfield.required .mantitle span {
+  background: transparent url("../images/icons/red-dot.gif") no-repeat left center;
+  width: 10px;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.dialog .manfield .manbody input.file {
+  width: 98%;
+}
+
+.dialog .manfield .manbody input.text {
+  width: 98%;
+}
+
+.dialog .manfield .manbody input.wdate {
+  width: 50%;
+}
+
+.dialog .manfield .manbody textarea {
+  width: 98%;
+}
+
+.dialog .manfield .manbody .radio {
+  margin: 0px 0px 5px 5px;
+}
+
+.dialog .manfield .manbody .radio input.radio {
+  margin-left: 10px;
+}
+
+.dialog .manfield .manbody .radio label {
+  display: inline;
+  margin-left: 4px;
+  font-weight: normal;
+}
+
+.dialog .manfield .manbody .radio .info {
+  color: #666;
+  margin-top: 1px;
+  margin-left: 17px;
+}
+
+.dialog .option.disabled label {
+  color: #666;
+}
+
+#x-msg-box .x-dlg-bd .ext-mb-text img {
+  float: left;
+}
+
+#x-msg-box .x-dlg-bd .ext-mb-text div {
+	font: 13px tahoma,arial,helvetica;
+  float: left;
+  margin: -2px 8px 0px;
+}

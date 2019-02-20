@@ -1,0 +1,22 @@
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl start tomcat-public
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl stop tomcat-public
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl restart tomcat-public
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl start tomcat-public-debug
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl stop tomcat-public-debug
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl restart tomcat-public-debug
+
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl start tomcat-local
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl stop tomcat-local
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl restart tomcat-local
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl start tomcat-local-debug
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl stop tomcat-local-debug
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl restart tomcat-local-debug
+
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl start deployservice
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl stop deployservice
+monet-operator ALL= (root) NOPASSWD: /usr/bin/systemctl restart deployservice
+
+monet-operator ALL= (root) NOPASSWD: /etc/init.d/hub
+monet-operator ALL= (root) NOPASSWD: /sbin/reboot
+monet-operator ALL= (root) NOPASSWD: /opt/remove-logs.sh
+monet-operator ALL= (root) NOPASSWD: /sbin/lsof -c java

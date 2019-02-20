@@ -1,0 +1,6 @@
+<application code="setup" type="ApplicationSetup" class="org.monet.space.setup.ApplicationSetup">
+  <labels>
+    <label language="es">Aplicación de administración de la unidad de negocio</label>
+    <label language="en">Business unit administration application</label>
+  </labels>
+</application>

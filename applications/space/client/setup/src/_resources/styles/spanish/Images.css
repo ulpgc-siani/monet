@@ -1,0 +1,19 @@
+/* Layout column left */ 
+.x-layout-collapsed-west {
+   background-image: url('../images/layout/collapse-west-bg.es.gif');
+   background-repeat:no-repeat;
+   background-position:center;
+}
+
+/* Layout column right */ 
+.x-layout-collapsed-east {
+   background-image: url('../images/layout/collapse-east-bg.es.gif');
+   background-repeat:no-repeat;
+   background-position:center;
+}
+
+.dialog.sharenode .x-layout-collapsed-east {
+   background-image: url('../images/dialog/sharenode-collapse-east-bg.es.gif');
+   background-repeat:no-repeat;
+   background-position:center;
+}

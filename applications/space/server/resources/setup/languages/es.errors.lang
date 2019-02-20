@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Errores posibles de manager</comment>
+  <entry key="ERR_INCORRECT_PARAMETERS">No ha llamado al compilador con los parámetros adecuados.</entry>  
+  <entry key="ERR_USERNAME_OR_PASSWORD_INCORRECT">Nombre de usuario o contraseña incorrectos.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">El usuario %s no tiene permisos para acceder.</entry>
+  <entry key="ERR_ACTIONS_FACTORY">Ha habido un error en la factoría de acciones.</entry>  
+  <entry key="ERR_PRODUCERS_FACTORY">Ha habido un error en la factoría de productores.</entry>  
+  <entry key="ERR_VIEWS_FACTORY">Ha habido un error en la factoría de vistas.</entry>  
+  <entry key="ERR_AGENT_TEMPLATES">Ha habido un error en el agente de plantillas.</entry>  
+  <entry key="ERR_READ_LANGUAGE_FILE">No se ha podido leer el fichero de idioma.</entry>  
+  <entry key="ERR_BUSINESS_UNIT_STARTED">El sistema ya está iniciado</entry>  
+  <entry key="ERR_BUSINESS_UNIT_COULD_NOT_START">No se pudo iniciar el sistema. Compruebe el fichero de definición</entry>  
+  <entry key="ERR_BUSINESS_UNIT_STOPPED">El sistema está parado</entry>  
+  <entry key="ERR_BUSINESS_UNIT_COULD_NOT_STOP">El sistema no se pudo parar</entry>  
+  <entry key="ERR_UNKNOWN">Error desconocido en el sistema</entry>  
+</properties>

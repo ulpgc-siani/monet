@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="line" type="LineActionProperty" parent="PlaceActionProperty" extensible="true">
+	<description></description>
+
+  <property token="timeout">
+    <attribute token="after" type="time" required="true">
+      <description></description>
+    </attribute>
+    
+    <attribute token="take" type="key" link="LineStopProperty" required="true">
+      <description>Parada que se cogerá de forma automática si se expira el tiempo</description>
+    </attribute>
+    
+    <method name="on-timeout"/>
+	<method name="on-setup">
+		<parameter name="ws" type="TimeoutSetup" />
+	</method>
+  </property>
+  
+  <property token="stop" type="LineStopProperty" parent="ReferenceableProperty" multiple="true" required="true">
+		<description></description>
+		
+    <attribute token="label" type="language" required="true">
+      <description>Etiqueta</description>
+    </attribute>
+    
+    <attribute token="help" type="language">
+      <description>Nombre del fichero de ayuda asociado a la definición</description>
+      <hint>Se utiliza para mostrar una página de ayuda de un tipo de entidad</hint>
+    </attribute>
+    
+    <attribute token="goto" type="key" link="PlaceProperty" required="true">
+      <description>Lugar al que se moverá el flujo de ejecución una vez acabado este lugar</description>
+    </attribute>
+    
+    <attribute token="history" type="language" required="true">
+      <description>Entrada en el historial que se agregará una vez superado el lugar</description>
+    </attribute>
+    
+    <property token="is-default"/>
+    <property token="is-hidden"/>
+    
+    <method name="on-take"/>
+  </property>
+  
+  <method name="on-solve"/>
+</property>

@@ -1,0 +1,12 @@
+#import-data-result-dialog {
+  width: 600px;
+}
+
+#import-data-result-dialog .error .description {  
+  height: 300px;
+  margin-top: 10px;
+  padding: 3px;
+  overflow-y: scroll;
+  border: 1px solid #bbbbbb;
+  background-color: #fafafa;
+}

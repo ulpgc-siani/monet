@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="3">
+      <Unit0>
+        <Filename Value="https.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="https"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="20" Y="10"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="components/Synapse/ssl_openssl.pas"/>
+        <UnitName Value="ssl_openssl"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="84"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="components/Synapse/ssl_openssl_lib.pas"/>
+        <UnitName Value="ssl_openssl_lib"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="228"/>
+        <CursorPos X="49" Y="257"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit2>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="13" HistoryIndex="12">
+      <Position1>
+        <Filename Value="https.lpr"/>
+        <Caret Line="29" Column="1" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="https.lpr"/>
+        <Caret Line="10" Column="33" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="https.lpr"/>
+        <Caret Line="9" Column="38" TopLine="1"/>
+      </Position3>
+      <Position4>
+        <Filename Value="https.lpr"/>
+        <Caret Line="25" Column="15" TopLine="1"/>
+      </Position4>
+      <Position5>
+        <Filename Value="https.lpr"/>
+        <Caret Line="9" Column="20" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="https.lpr"/>
+        <Caret Line="26" Column="22" TopLine="1"/>
+      </Position6>
+      <Position7>
+        <Filename Value="https.lpr"/>
+        <Caret Line="9" Column="15" TopLine="1"/>
+      </Position7>
+      <Position8>
+        <Filename Value="https.lpr"/>
+        <Caret Line="26" Column="1" TopLine="1"/>
+      </Position8>
+      <Position9>
+        <Filename Value="https.lpr"/>
+        <Caret Line="22" Column="75" TopLine="1"/>
+      </Position9>
+      <Position10>
+        <Filename Value="https.lpr"/>
+        <Caret Line="10" Column="20" TopLine="1"/>
+      </Position10>
+      <Position11>
+        <Filename Value="components/Synapse/ssl_openssl.pas"/>
+        <Caret Line="1" Column="1" TopLine="84"/>
+      </Position11>
+      <Position12>
+        <Filename Value="components/Synapse/ssl_openssl_lib.pas"/>
+        <Caret Line="119" Column="13" TopLine="110"/>
+      </Position12>
+      <Position13>
+        <Filename Value="components/Synapse/ssl_openssl_lib.pas"/>
+        <Caret Line="120" Column="13" TopLine="110"/>
+      </Position13>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

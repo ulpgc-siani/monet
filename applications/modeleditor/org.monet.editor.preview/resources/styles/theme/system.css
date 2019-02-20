@@ -1,0 +1,338 @@
+.trash .listviewer .add.list .selector, .tasklist .listviewer .add.list .selector {
+  display: none !important;
+}
+
+.trash .listviewer .summary, .notificationlist .listviewer .summary {
+  border-top: 1px solid #99BBE8;
+}
+
+.node .trash .listviewer .summary, .node .notificationlist .listviewer .summary {
+  border-top: 0px;
+}
+
+.tasklist .listviewer .summary {
+  height: 1px;
+}
+
+.tasklist .content, .trash .content, .notificationlist .content {
+  margin: 10px 4px;
+}
+
+.tasklist .content .content, .trash .content .content, .notificationlist .content .content {
+  margin: 0px;
+}
+
+.tasklist .info .label, .trash .info .label, .notificationlist .info .label {
+  margin: 10px 0px;
+}
+
+.tasklist .listviewer .items .delete, .tasklist .listviewer .items .selector, .tasklist .listviewer .items td.edition, 
+.tasklist .listviewer .selectall, .trash .listviewer .items .delete, .trash .listviewer .toolbar .add.list {
+  display: none !important;
+}
+
+.trash .listviewer .delete {
+  display: none !important;
+}
+
+.tasklist .listviewer .items .item .content, .trash .listviewer .items .item .content, .notificationlist .listviewer .items .item .content {
+  width: 99%;
+}
+
+.tasklist .listviewer .items .item a.content {
+  padding: 0px;
+}
+
+.tasklist .listviewer .items .item a.content .task.finished, .tasklist .listviewer .items .item a.content .task.aborted {
+  background: #EFF7FF;
+}
+
+.listviewer .items .item a.content:hover table, .listviewer.editable .items .item.selected a.content:hover table {
+  background: #DCE5F2 !important;
+}
+
+.tasklist .task.error {
+  border: 0px;
+  color: #00A;
+}
+
+.tasklist .listviewer .task .flag {
+  width: 24px;
+}
+
+.tasklist .listviewer .task .flag span {
+  height: 68px;
+  display: block;
+}
+
+.tasklist .listviewer .task .content {
+  padding: 0px;
+  border: 0px;
+  height: 66px;
+  margin: 0px;
+}
+
+.tasklist .listviewer .task .content .label {
+  background-color: transparent;
+  background-position: 2px 0px;
+  background-repeat: no-repeat;
+  display: block;
+  font-weight: bold;
+  -moz-outline:none;
+}
+
+.tasklist .listviewer .task.new .content .label {
+  font-weight: normal;
+  padding-top: 3px;
+}
+
+.tasklist .listviewer .task .content .label {
+  font-weight: normal;
+}
+
+.tasklist .listviewer .task.expired .content .label, .tasklist .listviewer .task.aborted .content .label {
+}
+
+.tasklist .listviewer .task.finished .content .label {
+}
+
+.tasklist .listviewer .task.new .content .body {
+  padding-left: 2px;
+  padding-top: 1px;
+  font:normal 11px tahoma, verdana, helvetica;
+  color: #222222;
+}
+
+.tasklist .listviewer .task.new .content .body div {
+  padding-top: 1px;
+}
+
+.tasklist .listviewer .task.new .content .body .expiredate, .tasklist .listviewer .task.new .content .body .createdate {
+	color: #666666;
+}
+
+.listviewer .item .content .header {
+  padding: 8px 8px 0;
+}
+
+.tasklist .listviewer .item .content .label {
+	display: block;
+  padding: 0px 8px 0px !important;
+  margin: 0px !important;
+}
+
+.tasklist .listviewer .item .content .body {
+	font: normal 11px tahoma, verdana, helvetica;
+	color: #222222;
+  padding: 0px 8px 5px;
+}
+
+.tasklist .listviewer .item .content .state, .task .state .flag {
+  color: white;
+  margin-right: 10px;
+  padding: 0 10px;
+  text-align: center;
+  width: 60px;
+  float: left;
+}
+
+.tasklist .listviewer .item .content .state.pending, .tasklist .listviewer .item .content .state.new,
+.task .state .flag.pending, .task .state .flag.new {
+  background-color: #33942F;
+}
+
+.tasklist .listviewer .item .content .state.waiting, .task .state .flag.waiting {
+  background-color: #E37F2E;
+}
+
+.tasklist .listviewer .item .content .state.failure, .task .state .flag.failure {
+  background-color: #CE3535;
+}
+
+.tasklist .listviewer .item .content .state.expired, .tasklist .listviewer .item .content .state.aborted,
+.task .state .flag.expired, .task .state .flag.aborted {
+  background-color: #828282;
+}
+
+.tasklist .listviewer .item .content .state.finished, .task .state .flag.finished {
+  background-color: #828282;
+}
+
+.tasklist .listviewer .item .content .dates {
+  padding-left: 2px;
+  color: #666;
+}
+
+.thesauruslist .listviewer .layer, .thesauruslist .listviewer .summary, .thesaurus .listviewer .layer, .thesaurus .listviewer .summary {
+	margin-right: 5px;
+}
+
+.thesauruslist .listviewer .item .content .tags, .thesaurus .listviewer .item .content .tags {
+	color: #1B6F31;
+	margin-left: 20px;
+}
+
+.thesauruslist .listviewer .item .content .tags span.notags, .thesaurus .listviewer .item .content .tags span.notags {
+	color: gray; 
+}
+
+.thesauruslist .listviewer .item .content .tags span, .thesaurus .listviewer .item .content .tags span {
+  float: left;
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.thesauruslist .listviewer.wizard .group, .thesaurus .listviewer.wizard .group {
+  margin: 0px;
+}
+
+.thesauruslist .listviewer.wizard .groupby label, .thesauruslist .listviewer.wizard .groupby .label, .thesaurus .listviewer.wizard .groupby label, .thesaurus .listviewer.wizard .groupby .label {
+	display: none;
+}
+
+.thesauruslist .listviewer .term, .thesaurus .listviewer .term {
+  padding: 3px;
+}
+
+.thesauruslist .listviewer .thesaurus .label, .thesauruslist .listviewer .term .label, .thesaurus .listviewer .thesaurus .label, .thesaurus .listviewer .term .label {
+  padding-left: 5px;
+  margin-top: 0px;
+  font-size: 12px;
+  padding-top: 2px; 
+  padding-bottom: 2px; 
+}
+
+.thesauruslist .listviewer .term .label, .thesaurus .listviewer .term .label {
+  padding-left: 21px;
+  color: black;
+}
+
+.thesauruslist .listviewer .term .label.type0, .thesaurus .listviewer .term .label.type0 {
+  background: url("../../images/theme/icons/term.gif") no-repeat 0 0;
+}
+
+.thesauruslist .listviewer .term .label.type1, .thesaurus .listviewer .term .label.type1 {
+  background: url("../../images/theme/icons/superterm.gif") no-repeat 0 0;
+}
+
+.thesauruslist .listviewer .term .label.type2, .thesaurus .listviewer .term .label.type2 {
+  background: url("../../images/theme/icons/category.gif") no-repeat 0 0;
+}
+
+.thesauruslist .listviewer .term .label.enable_false, .thesaurus .listviewer .term .label.enable_false {
+  color: #666;
+}
+
+.thesauruslist.wizard, .thesaurus.wizard {
+	display: none;
+}
+
+.rolelist .listviewer .label, .rolelist .listviewer .wizard, .rolelist .listviewer .summary {
+	display: none !important;
+}
+
+.rolelist .listviewer .roledefinition .label, .rolelist .listviewer .role .label {
+  margin-top: 0px;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.rolelist .listviewer .role {
+  padding: 0px;
+}
+
+.rolelist .listviewer .role.instance .label {
+  padding: 1px 4px;
+}
+
+.rolelist .listviewer .roledefinition .label {
+	display: block !important;
+}
+
+.rolelist .listviewer .role.user .label.user {
+  display: block !important;
+}
+
+.rolelist .listviewer .role.instance .label.active {
+  background: #33942F;
+  color: white;
+  width: 35px;
+  margin: 3px;
+}
+
+.rolelist .listviewer .role.instance.began_true.expired_false .label.active,
+.rolelist .listviewer .role.instance.began_true.expires_false .label.active {
+  display: block !important;
+}
+
+.rolelist .listviewer .role.instance .label.pending {
+  background: #E37F2E;
+  color: white;
+  width: 55px;
+  margin: 3px;
+}
+
+.rolelist .listviewer .role.instance.began_false.expired_false .label.pending {
+  display: block !important;
+}
+
+.rolelist .listviewer .role.instance .label.inactive {
+  background: #828282;
+  color: white;
+  width: 55px;
+  margin: 3px;
+}
+
+.rolelist .listviewer .role.instance.expired_true .label.inactive {
+  display: block !important;
+}
+
+.rolelist .listviewer .layer, .rolelist .listviewer .summary, .role .listviewer .layer, .role .listviewer .summary {
+  margin-right: 5px;
+}
+
+.rolelist .listviewer.wizard .group, .role .listviewer.wizard .group {
+  margin: 0px;
+}
+
+.rolelist .listviewer.wizard .groupby label, .rolelist .listviewer.wizard .groupby .label, .role .listviewer.wizard .groupby label, .role .listviewer.wizard .groupby .label {
+  display: none;
+}
+
+.rolelist .listviewer .role .date {
+	display: none;
+	color: black;
+}
+
+.rolelist .listviewer .role.began_false .date,
+.rolelist .listviewer .role.expired_true .date {
+  color: #666;
+}
+
+.rolelist .listviewer .role.instance.began_false .date.pending {
+	display: block;
+}
+
+.rolelist .listviewer .role.instance.began_true.expired_false .date.active {
+  display: block;
+}
+
+.rolelist .listviewer .role.instance.expires_false .date.noexpires {
+  display: block;
+}
+
+.rolelist .listviewer .role.instance.expired_false.expires_true .date.expires {
+  display: block;
+}
+
+.rolelist .listviewer .role.instance.expired_true .date.expired {
+  display: block;
+}
+
+.rolelist .listviewer .roledefinition div, .rolelist .listviewer .role div {
+  margin: 1px 3px;
+}
+
+.maplocation.editing div {
+	cursor: crosshair;
+}

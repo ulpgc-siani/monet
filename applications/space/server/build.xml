@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="beta" name="monet">
+  <property environment="env"/>
+  <property name="debuglevel" value="source,lines,vars"/>
+  <property name="target" value="1.7"/>
+  <property name="source" value="1.7"/>
+
+  <path id="Web App Libraries.libraryclasspath">
+    <pathelement location="WebContent/WEB-INF/lib"/>
+    <fileset dir="WebContent/WEB-INF/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement location="lib"/>
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  <path id="monet.classpath">
+    <pathelement location="WebContent/WEB-INF/classes"/>
+    <pathelement location="WebContent/WEB-INF/user"/>
+    <path refid="Web App Libraries.libraryclasspath"/>
+  </path>
+
+  <path id="Federation.libraryclasspath">
+    <pathelement location="../../federation/server/WebContent/WEB-INF/lib"/>
+    <fileset dir="../../federation/server/WebContent/WEB-INF/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement location="lib"/>
+    <fileset dir="lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  <path id="federation.classpath">
+    <pathelement location="WebContent/WEB-INF/classes"/>
+    <path refid="Federation.libraryclasspath"/>
+  </path>
+
+  <path id="federation_shared.classpath">
+    <pathelement location="../../federation/shared/lib"/>
+    <fileset dir="../../federation/shared/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <path id="Mobile.libraryclasspath">
+    <pathelement location="../../mobile/shared/lib"/>
+    <fileset dir="../../mobile/shared/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  <path id="mobile.classpath">
+    <pathelement location="WebContent/WEB-INF/classes"/>
+    <path refid="Mobile.libraryclasspath"/>
+  </path>
+
+  <path id="Templation.libraryclasspath">
+    <pathelement location="../../../utils/lib.templation/lib"/>
+    <fileset dir="../../../utils/lib.templation/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  <path id="templation.classpath">
+    <pathelement location="bin"/>
+    <path refid="Templation.libraryclasspath"/>
+  </path>
+
+  <path id="FederationSetupApi.libraryclasspath">
+    <pathelement location="../../../utils/apis/monet.api.federation.setupservice/lib"/>
+    <fileset dir="../../../utils/apis/monet.api.federation.setupservice/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+  <path id="federation_setup_api.classpath">
+    <pathelement location="bin"/>
+    <path refid="FederationSetupApi.libraryclasspath"/>
+  </path>
+
+  <target name="init">
+    <mkdir dir="dist/WEB-INF/classes"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="build"/>
+    <delete dir="dist"/>
+    <delete dir="WebContent/WEB-INF/classes"/>
+  </target>
+
+  <target depends="clean" name="cleanall"/>
+
+  <target depends="build-server,build-clients" name="build"/>
+  <target depends="build-server,build-clients-debug" name="build-debug"/>
+
+  <target depends="init" name="build-server">
+    <echo message="${ant.project.name}: ${ant.file}"/>
+    <echo message="Project debug: ${project.debug}"/>
+
+    <javac debug="${project.debug}" debuglevel="${debuglevel}" destdir="dist/WEB-INF/classes" source="${source}"
+           target="${target}" encoding="utf-8" includeantruntime="false">
+      <src path="../../mobile/shared/src/org/monet/mobile"/>
+      <classpath refid="mobile.classpath"/>
+    </javac>
+
+    <javac debug="${project.debug}" debuglevel="${debuglevel}" destdir="dist/WEB-INF/classes" source="${source}"
+           target="${target}" encoding="utf-8" includeantruntime="false">
+      <src path="../../../utils/lib.templation/src/org/monet/templation"/>
+      <classpath refid="templation.classpath"/>
+    </javac>
+
+    <javac debug="${project.debug}" debuglevel="${debuglevel}" destdir="dist/WEB-INF/classes" source="${source}"
+           target="${target}" encoding="utf-8" includeantruntime="false">
+      <src path="../../../utils/apis/monet.api.federation.setupservice/src/org/monet/api/federation/setupservice"/>
+      <classpath refid="federation_setup_api.classpath"/>
+    </javac>
+
+    <javac debug="${project.debug}" debuglevel="${debuglevel}" destdir="dist/WEB-INF/classes" source="${source}"
+           target="${target}" encoding="utf-8" includeantruntime="false">
+      <src path="../../federation/shared/src"/>
+      <classpath refid="federation_shared.classpath"/>
+    </javac>
+
+    <javac debug="${project.debug}" debuglevel="${debuglevel}" destdir="dist/WEB-INF/classes" source="${source}"
+           target="${target}" encoding="utf-8" includeantruntime="false">
+      <src path="../../federation/client/accountservice/src/org/monet"/>
+      <classpath refid="federation.classpath"/>
+      <classpath refid="monet.classpath"/>
+    </javac>
+
+    <javac debug="${project.debug}" debuglevel="${debuglevel}" destdir="dist/WEB-INF/classes" source="${source}"
+           target="${target}" encoding="utf-8" includeantruntime="false">
+      <src path="src"/>
+      <src path="resources/kernel/database/upgrades"/>
+      <classpath refid="monet.classpath"/>
+    </javac>
+
+  </target>
+
+  <target name="build-clients">
+    <ant dir="../client/explorer/Explorer" target="build"/>
+  </target>
+
+  <target name="build-clients-debug">
+    <ant dir="../client/explorer/Explorer" target="build-debug"/>
+  </target>
+  
+  <target name="dist">
+    <antcall target="dist-server"/>
+    <antcall target="dist-clients"/>
+  </target>
+
+  <target name="dist-server">
+    <mkdir dir="dist"/>
+    <copy includeemptydirs="true" todir="dist">
+      <fileset dir="WebContent">
+      </fileset>
+    </copy>
+    <delete file="dist/WEB-INF/lib/servlet-api.jar"/>
+
+    <copy includeemptydirs="true" todir="dist/WEB-INF/user_data">
+      <fileset dir="../user_data">
+      </fileset>
+    </copy>
+
+    <copy includeemptydirs="true" todir="dist/WEB-INF/classes">
+      <fileset dir="resources">
+      </fileset>
+    </copy>
+
+    <exec executable="bash" os="Linux" dir="dist/WEB-INF">
+      <arg line="../../generate-version.sh"/>
+    </exec>
+
+    <exec executable="bash" os="Mac OS X" dir="dist/WEB-INF">
+      <arg line="../../generate-version.sh"/>
+    </exec>
+
+    <touch file="dist/WEB-INF/version.xml"/>
+    <loadfile property="monet-info" srcFile="dist/WEB-INF/version.xml"/>
+    <delete file="dist/WEB-INF/version.xml"/>
+    <replace file="dist/WEB-INF/web.dist.xml" token="#monet-info#" value="${monet-info}"/>
+
+    <delete file="dist/WEB-INF/web.xml"/>
+    <copy file="dist/WEB-INF/web.dist.xml" tofile="dist/WEB-INF/web.xml"/>
+    <replace file="dist/WEB-INF/web.xml" token="#monet#" value="${project.name}"/>
+
+  </target>
+
+  <target name="dist-clients">
+
+    <copy file="../client/explorer/Explorer/war/home.html" tofile="dist/WEB-INF/classes/explorer/templates/home.html" overwrite="true"/>
+    <copy todir="dist/explorer">
+      <fileset dir="../client/explorer/Explorer/war">
+        <exclude name="**/*.html"/>
+        <exclude name="**/WEB-INF"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+  <target name="build-bpistub-jar">
+    <echo>Packagin bpistub.jar</echo>
+    <jar basedir="dist/WEB-INF/classes/" destfile="dist/bpistub.jar" includes="org/monet/kernel/bpi/*"
+         excludes="**/rhino/">
+    </jar>
+  </target>
+
+  <target name="jar">
+    <mkdir dir="dist_monet/org"/>
+    <move includeemptydirs="true" todir="dist_monet/org">
+      <fileset dir="dist/WEB-INF/classes/org">
+      </fileset>
+    </move>
+
+    <manifest file="MANIFEST.MF">
+      <attribute name="Manifest-Version" value="1.0"/>
+      <attribute name="Class-Path" value="."/>
+    </manifest>
+
+    <jar destfile="dist/WEB-INF/lib/monet.jar"
+         basedir="dist_monet"
+         includes="**/*"
+         manifest="MANIFEST.MF"
+        />
+    <delete file="MANIFEST.MF"/>
+    <delete dir="dist_monet"/>
+  </target>
+
+  <target name="generate-war">
+    <antcall target="dist">
+      <param name="project.name" value="monet"/>
+    </antcall>
+
+    <antcall target="jar"/>
+
+    <fileset dir="dist">
+      <include name="**/*"/>
+    </fileset>
+
+    <war destfile="build/monet.war" webxml="dist/WEB-INF/web.xml">
+      <zipfileset dir="dist">
+        <exclude name="**/office/ide/images/*"/>
+        <exclude name="**/office/ide/*"/>
+        <exclude name="**/office/ide"/>
+      </zipfileset>
+    </war>
+  </target>
+
+  <target name="beta" depends="clean" >
+    <antcall target="build-debug">
+      <param name="project.debug" value="true"/>
+    </antcall>
+    <antcall target="generate-war"/>
+  </target>
+
+  <target depends="clean" name="stable">
+    <antcall target="build">
+      <param name="project.debug" value="false"/>
+    </antcall>
+    <antcall target="generate-war"/>
+  </target>
+
+  <!-- MVM -->
+
+  <target depends="clean" name="mvm-only-server">
+    <antcall target="build-server">
+      <param name="project.debug" value="true"/>
+    </antcall>
+
+    <antcall target="generate-war"/>
+    <antcall target="deploy-mvm"/>
+  </target>
+
+  <target depends="clean" name="mvm">
+    <antcall target="build">
+      <param name="project.debug" value="true"/>
+    </antcall>
+
+    <antcall target="generate-war"/>
+    <antcall target="deploy-mvm"/>
+  </target>
+
+  <target name="mvm-publish">
+    <antcall target="deploy-mvm"/>
+  </target>
+
+  <target name="deploy-mvm">
+    <input message="Please enter mvm name:" addproperty="mvm.name" defaultvalue="local"/>
+    <input message="Please enter service files server name:" addproperty="service_files.name" defaultvalue="gisc"/>
+
+    <loadfile property="service_files" srcfile="build_resources/service_files.${service_files.name}"/>
+    <property name="service_files" value="${service_files}" />
+
+    <loadfile property="mvm_update" srcfile="build_resources/${mvm.name}.update"/>
+    <property name="mvm.update" value="${mvm_update}" />
+
+    <loadfile property="mvm_restart" srcfile="build_resources/${mvm.name}.restart"/>
+    <property name="mvm.restart" value="${mvm_restart}" />
+
+    <echo>Copying war to files service</echo>
+    <copy file="build/monet.war" tofile="${service_files}/monet.war" overwrite="true"/>
+
+    <echo>Update war in MVM</echo>
+    <exec executable="wget">
+      <arg line="--no-check-certificate &quot;${mvm.update}&quot; -O /dev/null"/>
+    </exec>
+    <exec executable="wget">
+      <arg line="--no-check-certificate &quot;${mvm.restart}&quot; -O /dev/null"/>
+    </exec>
+  </target>
+
+</project>

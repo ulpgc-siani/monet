@@ -1,0 +1,184 @@
+<html>
+<head>
+  <script type="text/javascript">
+  function getContainers(x) {
+	  ItDepend=document.getElementById('container');
+	  if(!ItDepend){return;}                 
+	  var mitems=new Array();
+	  var vitems=new Array();
+
+	  mitems['Select...']=[''];
+	  vitems['Select...']=[''];
+	  #foreach( $server in $servers.getItems() )
+	    mitems['$server.getProperty("id")'] = [#foreach ($container in $server.getItems()) '$container.getProperty("name")'#if(!$foreach.isLast()),#end #end];  
+	    vitems['$server.getProperty("id")'] = [#foreach ($container in $server.getItems()) '$container.getProperty("id")'#if(!$foreach.isLast()),#end #end];  
+	  #end
+	  
+	  ItDepend.options.length=0;
+	  ItActual=mitems[x.options[x.selectedIndex].value];
+	  VtActual=vitems[x.options[x.selectedIndex].value];
+	  if(!ItActual){return;}
+	  ItDepend.options.length=ItActual.length;
+	  for(var i=0;i<ItActual.length;i++) {
+	    ItDepend.options[i].text=ItActual[i];
+	    ItDepend.options[i].value=VtActual[i];
+	  }
+	}
+
+	function setSpace(x) {
+	  TxtSpace=document.getElementById('space'); if(!TxtSpace){return;}
+	  TxtContainer=document.getElementById('container'); if(!TxtContainer){return;}
+	  
+	  TxtSpace.value = x.title;
+	}
+  </script>
+  <title>Deploy Service Manager</title>
+</head>
+<body>
+
+    <table cellpadding="0" cellspacing="0" width="100%" height="95%">
+      <tr>
+        <td class="TOP">
+          <img class="LOGO" src="images/logo.gif">
+        </td>
+        <td class="TOP">
+          #if ($showterminal == true)
+            <a href="term.jnlp"><img class="LOGO" src="images/term.jpg" title="Open terminal"></a>
+          #end
+        </td>
+        <td class="TOP">          
+          <img class="LOGO" src="images/space.jpg">
+        </td>
+        <td class="TOP">          
+          <a href="index?action=logout"><img class="LOGO" src="images/logout.jpg" title="Logout"></a>
+        </td>
+      </tr>
+       <tr>
+          <td width="100%" height="100%">       
+
+
+
+<br>
+<h2>$configuration_appcaption</h2>
+
+<a href="system_resources.jsp">System resources</a><br/><br/>
+
+<form method="post">
+<table border="0">
+  <tr>
+    <td>Action:</td>
+    <td><input type="radio" name="action" value="get_servers"
+      checked />Get servers<br />
+    
+    <hr>
+      <input type="radio" name="action" value="add_space" />Add space |
+      #if (($servers.getProperty("monet-version-config") == "2") || ($servers.getProperty("monet-version-config") == "3"))
+      <input type="checkbox" name="install-saiku"/>Install Saiku
+      #end
+       
+      <br>Base url: <input type="text" name="base-url" size="55"/>
+      #if (($servers.getProperty("monet-version-config") == "3") || ($servers.getProperty("monet-version-config") == "3.1"))
+      <br>Space Label ES: <input type="text" name="space-label-es" size="55"/>
+      #end
+    <hr>
+    <input type="radio" name="action" value="delete_space" />Delete space<br />
+<!--   <input type="radio" name="action" value="update_container" />Update container*<br />-->
+    <input type="radio" name="action" value="reset_container" />Reset container<br />
+    <input type="radio" name="action" value="reset_space" />Reset space | <input type="checkbox" name="restart-docserver" checked />Restart Tomcat Local container<br />
+    <input type="radio" name="action" value="restart_container" />Restart containers (tomcat-public and tomcat-local) | <input type="checkbox" name="restart-container-debug" />Debug?<br />
+    <input type="radio" name="action" value="update_application" />Update DeployService application<br />    
+    <input type="radio" name="action" value="reset_monet" />Update Monet application in space | <input type="checkbox" name="replace-theme" checked />Replace theme<br />    
+    <input type="radio" name="action" value="reset_monet_container" />Update Monet application in container | <input type="checkbox" name="replace-theme" checked />Replace theme<br />    
+    <input type="radio" name="action" value="reset_docservice" />Update DocService application in space<br />    
+    <input type="radio" name="action" value="reset_docservice_container" />Update DocService application in container<br />
+        
+    #if (($servers.getProperty("monet-version-config") == "2") || ($servers.getProperty("monet-version-config") == "3"))
+    <input type="radio" name="action" value="reset_biengine" />Update BiEngine application in space<br />
+    #end
+        
+    <input type="radio" name="action" value="update_wars" />Download web applications*<br />    
+    </td>
+  </tr>
+<!--     
+  <tr>
+    <td colspan="2"><hr></td>
+  </tr>   
+  <tr>
+    <td>Options for "Add Space"</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>DocServer server name</td>
+    <td><input type="text" name="docserver-server" /></td>
+  </tr>
+  <tr>
+    <td>DocServer container name</td>
+    <td><input type="text" name="docserver-container" /></td>
+  </tr>  
+-->  
+  <tr>
+    <td colspan="2"><hr></td>
+  </tr>
+  <tr>
+    <td>Server:</td>
+    <td><select name="server" id="server" onchange="getContainers(this)">
+      <option value="Select...">Select...</option>
+      #foreach( $server in $servers.getItems() )
+      <option value="$server.getProperty("id")">$server.getProperty("name")
+      - $server.getProperty("id")</option>
+      #end
+    </select></td>
+  </tr>
+  <tr>
+    <td>Container:</td>
+    <td><select name="container" id="container"></select></td>
+<!--  
+    <td><input type="text" name="container" /></td>
+-->    
+  </tr>
+  
+  #if (($servers.getProperty("monet-version-config") != "2")) 
+  <tr>
+    <td>Federation:</td>
+    <td><input type="text" name="federation" id="federation"/></td>
+  </tr>
+  #end  
+  
+  <tr>
+    <td>Space:</td>
+    <td><input type="text" name="space" id="space"/></td>
+  </tr>
+  <tr>
+    <td>Url update*:</td>
+    <td><input type="text" name="update-url" size="55"/></td>    
+  </tr>
+</table>
+
+<br />
+<br />
+<input type="submit" value="Ok" /></form>
+<br>
+<h4>Server information (Deploy version: v$servers.getProperty("deploy-server-version"), Monet version: v$servers.getProperty("monet-version-config"))</h4>
+
+  <ul>
+  #foreach( $server in $servers.getItems() )
+   <li>$server.getProperty("name") 
+     <ul>
+     #foreach ($container in $server.getItems()) 
+       <li title="$container.getProperty("name")">$container.getProperty("name")
+         <ul>
+         #foreach ($space in $container.getItems())
+           <li onclick="setSpace(this)" title="$space.getProperty("id")">$space.getProperty("id")</li>            
+         #end
+         </ul>         
+       </li> 
+     #end
+     </ul>
+   </li>
+  #end
+  </ul>
+
+</td>
+</tr>
+</body>
+</html>

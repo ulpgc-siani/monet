@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_16
+Built-By: paul
+Created-By: Apache Maven
+Archiver-Version: Plexus Archiver
+
+Name: es/uji/security/util/OS.class
+SHA1-Digest: L4m3nkEzrCPqunHp6fI5Xl53eZQ=
+
+Name: META-INF/maven/es.uji.security/uji-utils/pom.xml
+SHA1-Digest: RMrKUpV3lh+oUZJ97CaVAaXjdH4=
+
+Name: es/uji/security/util/Base64.class
+SHA1-Digest: mhxB8WLnLwJnevdmt2M7HdbUYyo=
+
+Name: META-INF/maven/es.uji.security/uji-utils/pom.properties
+SHA1-Digest: 4HpZlOtWk42rFYsUlqwP8fPua1Q=
+
+Name: es/uji/security/util/net/SocketDataInputStreamReader.class
+SHA1-Digest: TCyfwlJW2Ho5D98EelLuOzKotzg=
+
+Name: es/uji/security/util/HexDump.class
+SHA1-Digest: 2k8OUV/iJfeBkQlCzqU0L2dEAZc=
+
+Name: es/uji/security/util/Base64$1.class
+SHA1-Digest: cSAjedqx/S313fNf/coza4OcKOg=
+
+Name: es/uji/security/util/HexEncoder.class
+SHA1-Digest: Ld5pU4c9rFI+/Kk3vXAL7X5qQQ8=
+
+Name: es/uji/security/util/Base64$OutputStream.class
+SHA1-Digest: ACy0tm1t8fp3yj3M9GiHlAXq7VI=
+
+Name: es/uji/security/util/Base64$InputStream.class
+SHA1-Digest: 8unO1s85DZivm1V4y7tHicu42UA=
+
+Name: es/uji/security/util/asn1/DERObjectIdentifier.class
+SHA1-Digest: a0jpfMkFddUOCem2gFH6f20i9jc=
+
+Name: es/uji/security/util/RegQuery.class
+SHA1-Digest: sJ7GyYjmP7mwaBLwwHUauOGhxpk=
+
+Name: es/uji/security/util/i18n/LabelManager.class
+SHA1-Digest: MoIJ11RzIkLYF8y4jAzmQ6eR5kA=
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FilterDeclaration" parent="Declaration" tag="filter" extensible="true">
+  <description>Se utiliza para indicar un filtro sobre el valor de un atributo</description>
+  
+  <attribute name="attribute" type="key" link="AttributeDeclaration" required="true">
+    <description>Nombre del atributo de la referencia</description>
+  </attribute>
+  <attribute name="operator" type="enumeration">
+    <description>Operador que se utilizará para comprobar el filtro</description>
+    <enumeration>
+      <option>EQ</option>
+      <option>GT</option>
+      <option>GE</option>
+      <option>LT</option>
+      <option>LE</option>
+      <option>NEQ</option>
+    </enumeration>
+  </attribute>
+  <attribute name="value" type="string" required="true">
+    <description>Valor con el que se comparará el atributo de la referencia. Se puede hacer referencia a un parámetro declarado en la colección</description>
+  </attribute>
+  
+</class>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="SourceDefinition" parent="EntityDefinition" extensible="true">
+	<description>Una fuente permite definir un lugar donde se encuentra información que formará parte del vocabulario de la unidad de negocio.</description>
+	<hint>
+	  Se utilizan para clasificar la información. 
+	  Toda fuente de monet está compuesta por términos. 
+	  Cada término se define con un código que lo representa unívocamente y una etiqueta descriptiva del término.
+	  Se permite jerarquía en la fuente, por lo que existe la posibilidad de generar árboles de términos y por tanto un término puede contener otros términos. 
+	</hint>
+	
+	<attribute token="ontology" type="uuid" required="true">
+	  <description>Solo se desean las fuentes de datos que se declaren con la misma ontología que la definida con este atributo</description>
+	</attribute>
+	
+</class>

@@ -1,0 +1,197 @@
+<script type="text/javascript" src="javascript/common-js/deployJava.js"></script>
+<script type="text/javascript" src="javascript/protocolcheck.js"></script>
+<script type="text/javascript" src="javascript/miniapplet.js"></script>
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="../paper-card/paper-card.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../neon-animation/neon-animations.html">
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../cotton-translator/cotton-translator-behavior.html">
+<link rel="import" href="cotton-signatory-behavior.html">
+
+<dom-module id="cotton-signatory-signer">
+    <template>
+        <paper-card heading="[[title]]">
+            <div class="card-content">
+                <div id="installMessageElement">
+                    [[installMessagePrefix]]
+                    <a on-click='downloadClient' target="_blank">
+                        <span>[[downloadAction]]</span>
+                        <paper-dialog id="downloadDialog">
+                          <ul>
+                            <li id="linux_deb" on-click="downloadClientOsSelected">Debian</li>
+                            <li id="linux_rpm" on-click="downloadClientOsSelected">Red Hat</li>
+                          </ul>
+                        </paper-dialog>
+                    </a>
+                    [[installMessageSuffix]]
+                </div>
+            </div>
+            <div class="card-actions">
+                <paper-button on-click="handleRetry">[[retryAction]]</paper-button>
+                <paper-button on-click="handleClose">[[closeAction]]</paper-button>
+            </div>
+        </paper-card>
+    </template>
+    <style>
+        :host {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            display: none;
+        }
+
+        :host paper-card {
+            display: block;
+            background: white;
+            width: 400px;
+            margin: 10px auto;
+        }
+
+        :host paper-dialog {
+            position: absolute !important;
+            top: 3px;
+            left: 35px !important;
+            background: white;
+            width: 150px;
+            width: 84px;
+        }
+
+        :host a, :host li {
+            color: blue;
+            cursor: pointer;
+        }
+
+        :host a {
+            position: relative;
+        }
+
+        :host ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        :host ul li {
+            margin-bottom: 3px;
+            background: #efefef;
+            padding: 3px 7px;
+        }
+
+        [hidden] {
+            display: none;
+        }
+    </style>
+    <script>
+
+        const CottonSignatorySignerDictionary = {
+            "es": {
+                installMessagePrefix: "La aplicación @firma no se encuentra instalada en su equipo. Haga click ",
+                installMessageSuffix: " para descargar e instalar @firma en su equipo",
+                downloadAction: "aquí",
+                closeAction: "cerrar",
+                retryAction: "volver a comprobar"
+            },
+            "en": {
+                installMessagePrefix: "@firma application not found in your computer. Click ",
+                installMessageSuffix: " to download and install @firma",
+                downloadAction: "here",        
+                closeAction: "close",
+                retryAction: "check again"
+            }
+        };
+
+        CottonSignatorySigner = Polymer({
+            is: 'cotton-signatory-signer',
+            initialized: false,
+            showing: false,
+
+            behaviors: [ Polymer.NeonAnimationRunnerBehavior, CottonBehaviors.TranslatorBehavior, CottonBehaviors.SignatoryBehavior ],
+
+            listeners: {
+                'neon-animation-finish': '_onAnimationFinish'
+            },
+
+            properties : {
+                animationConfig: {
+                    type: Object,
+                    value: function () {
+                        return {
+                            'entry': [{
+                                name: 'slide-down-animation',
+                                node: this
+                            }],
+                            'exit': [{
+                                name: 'slide-up-animation',
+                                node: this
+                            }]
+                        };
+                    }
+                }
+            },
+
+            init : function() {
+                if (this.initialized)
+                    return;
+
+                this.translate(CottonSignatorySignerDictionary);
+                this.initSignatory();
+
+                this.initialized = true;
+                this.checkProtocol = false;
+            },
+
+            installedSuccessCallback : function() {
+                console.log("Signatory application found!");
+                this.hideInstallDialog();
+            },
+
+            installedFailureCallback : function(code, message, intention) {
+                console.log("Signatory application not found!");
+                this.showInstallDialog();
+                this.intention = intention;
+            },
+
+            _onAnimationFinish: function () {
+                if (!this.showing) {
+                    this.style.display = 'none';
+                    this.setAttribute("hidden", "");
+                }
+            },
+
+            showInstallDialog: function () {
+                this.style.display = 'block';
+                this.removeAttribute("hidden");
+                this.showing = true;
+                this.playAnimation('entry');
+            },
+
+            hideInstallDialog: function () {
+                this.showing = false;
+                this.playAnimation('exit');
+            },
+
+            handleClose : function() {
+                this.hideInstallDialog();
+                this.intention = null;
+            },
+
+            handleRetry : function() {
+                var widget = this;
+                this.hideInstallDialog();
+
+                this.checkSignatoryAppInstalled(function() {
+                    widget.intention.successCallback();
+                }, function(code, message) {
+                    widget.installedFailureCallback(code, message, widget.intention);
+                });
+            }
+
+        });
+
+    </script>
+</dom-module>

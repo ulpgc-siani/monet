@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+
+    <servlet>
+        <servlet-name>mockservice</servlet-name>
+        <servlet-class>server.MockUploadService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mockservice</servlet-name>
+        <url-pattern>/Application/mockservice/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>mockservice/upload</servlet-name>
+        <servlet-class>server.MockUploadService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mockservice/upload</servlet-name>
+        <url-pattern>/Application/mockservice/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>proxy</servlet-name>
+      <servlet-class>server.control.Proxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>proxy</servlet-name>
+      <url-pattern>/monet/explorer/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>proxy</servlet-name>
+      <url-pattern>/monet/explorer/api/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>proxy</servlet-name>
+      <url-pattern>/federation/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,102 @@
+<div id="dlgAddNode" class="dialog addnode">
+  <div class="x-dlg-hd">::Title::</div>
+  <div class="x-dlg-bd">
+    <div id="dlgAddNode.center" class="x-layout-inactive-content body">
+      <div id="dlgAddNode.status" class="status">
+        <div class="template">
+          <div class="x-box-tl">
+            <div class="x-box-tr">
+              <div class="x-box-tc"></div>
+            </div>
+          </div>
+          <div class="x-box-ml">
+            <div class="x-box-mr">
+              <div class="x-box-mc"><h3 class="title"></h3><span class="summary"></span></div>
+            </div>
+          </div>
+          <div class="x-box-bl">
+            <div class="x-box-br">
+              <div class="x-box-bc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step 1 main">
+        <div class="outfield">
+          <div class="outtitle">::AddFrom::</div>
+          <div class="outbody">
+            <div class="radio">
+              <input type="radio" name="dlgAddNode.from" id="dlgAddNode.addblank" value=".branch.fromfile" checked/>
+              <label for="dlgAddNode.addblank"/>::AddBlank::</label>
+              <div id="dlgAddNode.addblanklist" class="outfield nodetypelist">
+                <div class="outtitle" style="font-weight: normal;">::NodeTypeListBlank::</div>
+                <div class="outbody"><input id="dlgAddNode.addblanklistinput"></input></div>
+              </div>
+            </div>
+            <div class="radio">
+              <input type="radio" name="dlgAddNode.from" id="dlgAddNode.addfromfile" value=".branch.fromfile"/>
+              <label for="dlgAddNode.addfromfile"/>::AddFromFile::</label>
+            </div>
+            <div class="radio">
+              <input type="radio" name="dlgAddNode.from" id="dlgAddNode.addfromclipboard" value=".branch.fromclipboard"/>
+              <label for="dlgAddNode.addfromclipboard">::AddFromClipboard::</label>
+
+              <div id="dlgAddNode.addfromclipboardlist" class="outfield nodetypelist">
+                <div class="outtitle" style="font-weight: normal;">::NodeTypeList::</div>
+                <div class="outbody">
+                  <input id="dlgAddNode.addfromclipboardlistinput"></input>
+
+                  <div id="dlgAddNode.loadingnodetype" class="ploading">::LoadingNodeType::</div>
+                  <div id="dlgAddNode.nodetype" class="nodetype">
+                    <div>Lista de campos:</div>
+                    <ul id="dlgAddNode.nodetypefields" class="fields"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step 2 branch fromfile">
+        <div class="outfield">
+          <div class="outtitle">::Options::</div>
+          <div class="outbody">
+            <div class="radio">
+              <input type="radio" name="dlgAddNode.options" id="dlgAddNode.optionpreserveoriginal" value="all"/>
+              <label for="dlgAddNode.optionpreserveoriginal"/>::OptionPreserveOriginal::</label>
+            </div>
+            <div class="radio">
+              <input type="radio" name="dlgAddNode.options" id="dlgAddNode.optionreplace" value="selected"/>
+              <label for="dlgAddNode.optionreplace">::OptionReplace::</label>
+            </div>
+            <div class="radio">
+              <input type="radio" name="dlgAddNode.options" id="dlgAddNode.optionduplicate" value="selected"/>
+              <label for="dlgAddNode.optionduplicate">::OptionDuplicate::</label>
+            </div>
+          </div>
+        </div>
+        <div class="outfield">
+          <div class="outtitle">::Description::</div>
+          <div class="outbody">
+            <textarea rows="3" name="dlgAddNode.description" id="dlgAddNode.description" style="height: 150px;"></textarea>
+          </div>
+        </div>
+        <div class="outfield">
+          <div class="outtitle">::File::</div>
+          <div class="outbody">
+            <div class="dialoguploadfilebox">
+              <table id="dlgAddNode.filelist" class="filelist"></table>
+            </div>
+            <iframe class="dialogufbi" name="dlgAddNode.uploadfileframe" frameborder="0" scrolling="no"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="step 2 3 branch fromclipboard">
+        <div id="dlgAddNode.dataimporter" class="dataimporter"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

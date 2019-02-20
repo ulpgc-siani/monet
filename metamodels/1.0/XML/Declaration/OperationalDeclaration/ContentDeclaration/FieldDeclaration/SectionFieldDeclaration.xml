@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="SectionFieldDeclaration" parent="FieldDeclaration" tag="field-section">
+
+  <include name="edition">
+    <option class="SectionFieldEditionDeclaration"/>
+  </include>
+
+  <include name="fields" multiple="true" required="true">
+    <option class="FieldDeclaration"/>
+  </include>
+  
+</class>
+

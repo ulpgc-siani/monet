@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<property token="field-select" type="SelectFieldProperty" parent="MultipleableFieldProperty" extensible="true">
+	<description>Esta propiedad se utiliza para incluir un campo selección en un formulario</description>
+
+	<property token="terms">
+		<description>Esta propiedad se utiliza para definir la lista de términos</description>
+		<include property="TermProperty" multiple="true" />
+	</property>
+
+	<attribute token="source" type="key" link="SourceDefinition">
+		<description>Fuente de datos que contiene los términos</description>
+		<hint>En lugar de usar una fuente de datos, se puede declarar directamente una lista de términos usando la propiedad terms</hint>
+	</attribute>
+
+	<property token="allow-history">
+		<description>DEPRECATED!! Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+		
+	<property token="enable-history">
+		<description>Esta propiedad se utiliza cuando se desea que el campo puede recordar el histórico de los valores introducidos por el usuario</description>
+		<attribute token="datastore" type="string">
+			<description>Nombre del almacen en el que se registrará el histórico</description>
+			<hint>Se permite que dos campos que se encuentren en formularios diferentes pueden compartir el mismo datastore</hint>
+		</attribute>
+	</property>
+
+	<property token="allow-search">
+		<description>Esta propiedad se utiliza cuando se desea permitir al usuario poder realizar búsquedas</description>
+	</property>
+
+	<property token="allow-other">
+		<description>Esta propiedad se utiliza cuando se desea que el usuario pued añadir texto libre</description>
+	</property>
+
+	<property token="allow-key">
+		<description>Esta propiedad se utiliza cuando se desea mostrar al usuario la clave de los términos</description>
+	</property>
+
+	<property token="select">
+		<description>Esta propiedad permite personalizar el modo en que se ven los datos de la fuente de datos</description>
+		<hint>Actualmente solo implementado para las fuentes de datos indicadas mediante la propiedad source</hint>
+
+		<attribute token="flatten" type="enumeration">
+			<description>
+				Si se indica flatten, se toman los términos descendientes. En caso de no indicarse el atributo FLATTEN se toman solo los elementos de primer nivel.
+			</description>
+			<enumeration>
+				<option token="NONE">
+					<description>Se toman sólo los términos del primer nivel</description>
+				</option>
+				<option token="ALL">
+					<description>Se toman recursivamente todos los términos descendientes</description>
+				</option>
+				<option token="LEVEL">
+					<description>Se toman recursivamente todos los términos descendientes hasta la profundidad indicada por el atributo "depth"</description>
+				</option>
+				<option token="LEAF">
+					<description>Se toman recursivamente todos los nodos hoja</description>
+				</option>
+				<option token="INTERNAL">
+					<description>Se toman recursivamente todos los nodos no hoja</description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<attribute token="depth" type="integer">
+			<description>Profundidad de descendientes que se desea.</description>
+			<hint>Solo válido cuando se indica flatten con valor LEVEL</hint>
+		</attribute>
+
+		<attribute token="context" type="value" link="LinkFieldProperty">
+			<description>Permitirá indicar el nodo del sistema de información que contiene el contexto cliente para el campo. Se usa cuando el campo puede usar más de una fuente de datos ofrecidas por muchos clientes.</description>
+		</attribute>
+
+		<attribute token="root" type="value" link="FieldProperty">
+			<description>Término a partir del cual se cargan los términos hijos</description>
+		</attribute>
+
+		<property token="filter">
+			<description></description>
+
+			<attribute token="tag" type="value" link="FieldProperty" multiple="true">
+				<description></description>
+			</attribute>
+		</property>
+		
+		<property token="is-embedded">
+			<description>Esta propiedad se utiliza cuando se desea que los términos se muestran integrados en el campo</description>
+			<hint>Se recomienda su uso cuando el número de términos es pequeño</hint>
+		</property>
+
+	</property>
+
+</property>

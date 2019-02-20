@@ -1,0 +1,61 @@
+.datatable {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.datatable table {
+  margin: 10px auto;
+}
+
+.datatable tr:hover {
+  background-color: #e7e9f9;
+}
+
+.datatable th {
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F9FAFD 30%, #EEF2F7 60%, #E4E9F4 100%) repeat scroll 0 0 transparent;
+  font-weight: bold;
+  text-align: center;
+  padding: 6px 0 0;
+}
+
+.datatable th.string {
+  padding-left: 10px;
+}
+
+.datatable td, .datatable th.string, .datatable td.string {
+  text-align: left;
+}
+
+.datatable td.number {
+  text-align: right;
+}
+
+.datatable td.html {
+  text-align: center;
+}
+
+.datatable th, .datatable td {
+  border: 1px solid #BBBBBB;
+  vertical-align: middle;
+}
+
+.datatable td {
+  padding: 6px 10px;
+}
+
+.datatable tr.selected {
+  background-color: #D6E9F8;
+}
+
+.datatable .even {
+  background: #FAFAFA;
+}
+
+.datatable .colorbox {
+  display: none;
+  height: 3px;
+  width: 100%;
+  padding: 0;
+  margin: 10px 0 0;
+}

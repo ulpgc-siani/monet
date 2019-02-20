@@ -1,0 +1,154 @@
+<div class="toolbar">
+  <a href="" class="button" name="back">Deployment</a>
+  <a href="" class="button" name="save">Save</a>
+  <a href="" class="button" name="discard">Discard changes</a>
+</div>
+
+<div class="top">
+  <div class="meta italic">::federation::</div>
+  <input type="text" name="name" value="<%= federation.name %>" disabled></input>
+</div>
+
+<div class="bottom">
+  <div class="section-left">    
+    <div class="section" name="servers">
+      <div class="bar"><div class="title">::server::</div></div>      
+      <div class="section-list">
+        <a href="" code="<%= federation.server.id %>" name="server"><%= federation.server.name %></a>                   
+      </div> 
+    </div>
+    
+    <div class="section" name="spaces">
+      <div class="title">::spaces::</div>
+      <div class="section-list">
+        <% if (spaces.length > 0) { %>
+        <ul>
+          <% _.each(spaces, function(space) { %>
+          <li>
+            <a href="" code="<%= space.id %>"><%= space.name %></a>
+          </li> 
+          <% }); %>
+        </ul>
+        <% }; %> 
+        <% if (spaces.length == 0) { %>
+          <p>::no_spaces::</p>
+        <% } %>
+      </div>
+    </div>
+    
+    <div class="state">
+      <div>::state::</div>
+      <div class="running_time"></div> 
+      <a href="" class="button" name="start_stop"></a>
+    </div>
+                   
+  </div>
+
+  <div class="section-right">
+    <div class="section-header">
+      <div class="column60"> 
+        <div class="row"><div>::label::</div><input type="text" name="label" value="<%= federation.label %>"/></div>
+        <div class="row"><div>::url::</div><input type="text" name="url" value="<%= federation.url %>" disabled/></div>
+      </div>
+      
+      <div class="upload-dialog">          
+        <div id="upload-federation-image-dialog"></div>    
+        <img src="?op=downloadimage&filename=<%= federation.image %>&server_id=<%= federation.server.id %>&federation_id=<%= federation.id %>&model_type=0" name="image"></img>                    
+        <div class="toolbar">
+          <a href="" name="change-image">::change::</a>
+        </div>
+      </div>
+    </div>  
+        
+    <div class="section">      
+      <div class="meta">::authentication::</div>      
+        <div class="row">
+          <input type="checkbox" id="check-user-password" value="::user_password::" /> 
+          <label for="check-user-password">::user_password::</label>
+        </div>
+
+        <div class="row">
+          <div class="meta">::source::</div>
+          <select name="source">
+            <option value='database'>Database</option>
+            <option value='ldap'>LDAP</option>
+            <option value='mock'>Mock</option>
+          </select>
+        </div>
+
+        <div id="connection-editor">
+          <div id="database-editor">
+            <div class="row">
+              <div>::url::</div>
+              <input type="text" name="url" value="" />
+            </div>
+            <div class="row">
+              <div>::user::</div>
+              <input type="text" name="user" value="" />
+            </div>
+            <div class="row">
+              <div>::password::</div>
+              <input type="password" name="password" value="" />
+            </div>
+
+            <div class="row">
+              <div>::engine::</div>
+              <select name="engine">
+                <option value='mysql'>Mysql</option>
+                <option value='oracle'>Oracle</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="ldap-editor">
+            <div class="row">
+              <div>::url::</div>
+              <input type="text" name="url" value="" />
+            </div>
+            <div class="row">
+              <div>::schema::</div>
+              <input type="text" name="schema" value="" />
+            </div>
+            <div class="row">
+              <div>::user::</div>
+              <input type="text" name="user" value="" />
+            </div>
+            <div class="row">
+              <div>::password::</div>
+              <input type="password" name="password" value="" />
+            </div>
+
+            <div class="meta level1">::alias::</div>
+            <div class="section">
+              <div class="row">
+                <div>CN</div>
+                <input type="text" name="cn_field" value="" />
+              </div>
+              <div class="row">
+                <div>UID</div>
+                <input type="text" name="uid_field" value="" />
+              </div>
+              <div class="row">
+                <div>Email</div>
+                <input type="text" name="email_field" value="" />
+              </div>
+              <div class="row">
+                <div>Lang</div>
+                <input type="text" name="lang_field" value="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <input type="checkbox" id="check-certificate" value="::certificate::" />
+          <label for="check-certificate">::certificate::</label>
+        </div>
+        
+        <div class="row">
+          <input type="checkbox" id="check-openid" value="::openid::" />
+          <label for="check-openid">::openid::</label>
+        </div>
+      </div>       
+    </div>
+</div>

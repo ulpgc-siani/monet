@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="TermListDeclaration" parent="ContentDeclaration" tag="termlist">
+  <description>Descripción del atributo de una referencia</description>
+
+  <attribute name="language" type="enumeration" required="true">
+    <description>Idioma en el que se expresa la etiqueta</description>
+    <enumeration>
+      <option>es</option>
+      <option>en</option>
+      <option>de</option>
+      <option>fr</option>
+      <option>it</option>
+      <option>pt</option>
+    </enumeration>
+  </attribute>
+  
+  <include name="terms" required="true" multiple="true">
+    <option class="TermDeclaration" />
+  </include>
+
+</class>
+

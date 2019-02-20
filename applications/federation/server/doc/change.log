@@ -1,0 +1,22 @@
+ChangeLog - Federation Service
+
+# 27 - 07 - 2011 Version  0.5
+	- Fixed socket: Added required = false unit description
+	- Changed password MD5 Base64 to MD5 Hexad.
+
+# 15 - 07 - 2011 Version  0.4
+	- Fixed socket
+
+# 22 - 06 - 2011 Version 0.3
+	- Fixed restart tomcat
+	- Fixed client timeout
+	
+# 17 - 06 - 2011 Version 0.2
+	- When getAccess fail return empty string
+	
+# 16 - 06 - 2011 Version 0.1
+	- Added oracle support
+	
+# 15 - 06 - 2011 Version 0.1
+  - Created documentation
+	- Created Changelog

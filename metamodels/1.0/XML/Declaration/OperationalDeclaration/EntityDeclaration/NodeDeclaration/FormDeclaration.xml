@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="FormDeclaration" parent="NodeDeclaration" tag="form">
+
+  <include name="fields" required="true" multiple="true">
+    <option class="FieldDeclaration"  />
+  </include>
+    
+  <include name="behavior">
+    <option class="BehaviorDeclaration" />
+  </include>
+  
+  <include name="client-behavior">
+    <option class="ClientBehaviorDeclaration" />
+  </include>
+  
+  <include name="views" multiple="true">
+    <option class="FormViewDeclaration" />
+  </include>
+  
+  <property name="schema" >
+    <attribute name="filename" type="String">
+      <description>Fichero XML externo que contiene la definición del esquema.</description>
+    </attribute>
+    <xml-content />
+  </property> 
+  
+  <property name="implements" multiple="true">
+    <attribute name="reference" type="String" link="ReferenceDeclaration">
+      <restriction>ONLY Definition WITH ReferenceDeclaration FROM Model</restriction>    
+    </attribute>
+  </property> 
+ 
+
+</class>
+

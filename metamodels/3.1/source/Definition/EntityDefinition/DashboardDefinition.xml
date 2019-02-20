@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<class type="DashboardDefinition" parent="EntityDefinition" token="dashboard" extensible="true">
+	<description>Representa el panel de control del sistema de información. En él se podrá tener una visión del estado actual de la organización</description>
+
+	<property token="for">
+		<description>Esta propiedad se utiliza cuando se desea que el uso del dashboard está restringido a unos roles concretos</description>
+		<attribute token="role" type="key" link="RoleDefinition" required="true" multiple="true">
+			<description>Tipo de role al que se desea permitir el uso del dashboard</description>
+		</attribute>
+	</property>
+
+	<attribute token="use" type="key" link="DatastoreDefinition">
+		<description>Datastore de donde se va a obtener los hechos y las dimensiones</description>
+	</attribute>
+
+	<property token="indicator" type="IndicatorProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<attribute token="label" type="language" required="true">
+			<description>Etiqueta del indicador</description>
+		</attribute>
+
+		<attribute token="range" type="enumeration" required="true">
+			<description></description>
+			<enumeration>
+				<option token="POSITIVE">
+					<description></description>
+				</option>
+				<option token="ALL">
+					<description></description>
+				</option>
+				<option token="NEGATIVE">
+					<description></description>
+				</option>
+			</enumeration>
+		</attribute>
+
+		<property token="level" required="true">
+			<description>Esta propiedad se utiliza para configurar el contenido de la vista</description>
+			<property token="primary">
+				<description>Esta propiedad se utiliza si se desea mostrar el panel de consultas dinámicas</description>
+				<hint>Para el cálculo de indicadores primarios se usan las métricas, osea, los datos primitivos</hint>
+
+				<attribute token="metric" type="key" link="MetricProperty" required="true">
+					<description>Métricas que se usarán para calcular el indicador</description>
+				</attribute>
+
+				<attribute token="operator" type="enumeration" required="true">
+					<description>Operación a realizar con los valores de la métrica</description>
+					<enumeration>
+						<option token="SUM">
+							<description>Se suman las métricas para todos los hechos de la consulta</description>
+						</option>
+						<option token="COUNT">
+							<description>Se suman el número de ocurrencias de las métricas para todos los hechos de la consulta</description>
+						</option>
+						<option token="AVERAGE">
+							<description>Se calcula la media de la métrica para todos los hechos de la consulta</description>
+						</option>
+						<option token="DEVIATION">
+							<description>Se calcula la desviación de la métrica para todos los hechos de la consulta</description>
+						</option>
+						<option token="TIME_INTEGRATION">
+							<description>Se calcula la integral de la métrica para todos los hechos en un intervalo de tiempo</description>
+						</option>
+					</enumeration>
+				</attribute>
+
+				<attribute token="interpolation" type="enumeration">
+					<description>Tipo de interpolación a aplicar a las métricas</description>
+					<enumeration>
+						<option token="LEFT">
+							<description>Se replica el dato anterior</description>
+						</option>
+						<option token="RIGHT">
+							<description>Se replica el dato posterior</description>
+						</option>
+						<option token="NEAREST">
+							<description>Se replica el dato más próximo en el tiempo</description>
+						</option>
+						<option token="LINEAR">
+							<description>Se calcula como el punto medio entre la medida anterior y posterior</description>
+						</option>
+						<option token="NULL">
+							<description>Se calcula como el punto medio entre la medida anterior y posterior</description>
+						</option>
+					</enumeration>
+				</attribute>
+
+			</property>
+			<property token="secondary">
+				<description>Esta propiedad se utiliza si se desea calcular un indicador secundario. En estos casos hay que definir la fórmula con la que se obtiene el dato del indicador.</description>
+				<hint>Para el cálculo de indicadores secundarios se usan otros indicadores</hint>
+				<attribute token="use" type="key" link="IndicatorProperty" multiple="true">
+					<description>Indicadores que se usarán para calcular este indicador de segundo nivel</description>
+				</attribute>
+				<attribute token="formula" type="expression:real" required="true">
+					<description>Expresión que calcula el valor del indicador secundario</description>
+				</attribute>
+			</property>
+		</property>
+
+		<attribute token="measure-unit" type="key" link="MeasureUnitDefinition" required="true">
+			<description>Unidad de medida del indicador</description>
+		</attribute>
+
+		<property token="filter">
+			<description>Esta propiedad se utiliza para limitar las escalas temporales disponibles al usuario.</description>
+			<attribute token="resolution" type="enumeration" required="true" multiple="true">
+				<description>Niveles de resolución disponibles para el indicador</description>
+				<enumeration>
+					<option token="YEARS"></option>
+					<option token="MONTHS"></option>
+					<option token="DAYS"></option>
+					<option token="HOURS"></option>
+					<option token="MINUTES"></option>
+					<option token="SECONDS"></option>
+				</enumeration>
+			</attribute>
+		</property>
+
+	</property>
+
+	<property token="taxonomy" type="TaxonomyProperty" parent="ReferenceableProperty" required="true" multiple="true">
+		<description>Esta propiedad se utiliza para declarar una taxonomía</description>
+
+		<attribute token="label" type="language" required="true">
+			<description>Título de la taxonomía</description>
+		</attribute>
+
+		<attribute token="ontology" type="uuid" required="true">
+			<description>Esta taxonomía sólo podrá ser usada por aquellas dimensiones que se declaren con la misma ontología que la definida con este atributo</description>
+		</attribute>
+
+		<attribute token="feature" type="key" link="FeatureProperty" required="true">
+			<description>Característica de la que se obtienen las categorías</description>
+		</attribute>
+
+		<property token="explicit">
+			<description>Esta propiedad define que la taxonomía es estática y por tanto habrá que definir las categorías de la taxonomía y cómo los componentes se clasifican en cada categoría</description>
+			<include property="CategoryProperty" multiple="true" />
+
+			<attribute token="classifier" type="expression:string" required="true">
+				<description>Algoritmo que determina en qué categoría se incluye un componente</description>
+			</attribute>
+		</property>
+
+		<property token="implicit">
+			<description>Esta propiedad define que la taxonomía es dinámica y las categorías en base a los valores distintos de una característica (feature)</description>
+		</property>
+
+	</property>
+
+	<property token="view" type="DashboardViewProperty" parent="ViewProperty" multiple="true">
+		<property token="show" required="true">
+			<description>Esta propiedad se utiliza para configurar el contenido de la vista</description>
+			<property token="olap">
+				<description>Esta propiedad se utiliza si se desea mostrar el panel de consultas dinámicas</description>
+				<include property="FolderProperty" multiple="true" />
+			</property>
+			<property token="report">
+				<description>Esta propiedad se utiliza si se desea mostrar u</description>
+			</property>
+		</property>
+	</property>
+
+	<!-- Información a incorporar en la vista <attribute token="chart" type="enumeration"> <description>Se usar para determinar cómo se considera que el indicador ha mejorado</description> <enumeration> <option token="BOTTOM"> <description>Se representa desde 0 y no hay valores negativos</description> </option> <option token="BASE"> <description>Se representa desde 0, y hay valores positivos y negativos</description> </option> <option token="TOP"> <description>Se representa desde 0 y no hay valores positivos</description> </option> </enumeration> </attribute> <attribute token="alert" type="enumeration"> <description>Se usar para resaltar los cambios que son negativos para el negocio (rojo)</description> <enumeration> <option token="INCREASE"> <description>Se muestra la alerta cuando incrementa el indicador</description> </option> <option token="DECREASE"> <description>Se muestra la alerta cuando decrementa el indicador</description> </option> </enumeration> </attribute> -->
+
+	<!-- FUTURE VERSIONS FOR REPORT VIEWS (show report) <property token="view" parent="ViewProperty" multiple="true"> <description>Esta propiedad se utiliza para declarar una vista al panel de control</description> <property token="show" required="true"> <description>Esta propiedad se utiliza para configurar el contenido de la vista</description> <attribute token="indicator" type="key" link="IndicatorProperty"> <description>Representa el indicador del cubo a mostrar</description> </attribute> </property> <attribute token="gauge" type="enumeration" required="true"> <description>Tipo de representación gráfica a utilizar</description> <enumeration> <option token="NUMBER"></option> <option token="LINEAR"></option> <option token="RADIAL"></option> </enumeration> </attribute> <attribute token="mode" type="enumeration"> <description>Indica cómo se van a representar los valores del indicador</description> <enumeration> <option token="VERTICAL"></option> <option token="HORIZONTAL"></option> </enumeration> 
+		</attribute> <property token="range"> <description>Permite definir el valor mínimo y máximo</description> <hint>Solo válido para valores de gauge tipo LINEAR y RADIAL</hint> <attribute token="min" type="integer"> <description>Valor mínimo del indicador</description> </attribute> <attribute token="max" type="integer"> <description>Valor máximo del indicador</description> </attribute> </property> <property token="reference"> <description>Define los valores de referencia considerados como normales para el indicador</description> <attribute token="min" type="integer"> <description>Valor mínimo de referencia del indicador</description> </attribute> <attribute token="max" type="integer"> <description>Valor máximo de referencia del indicador</description> </attribute> </property> <property token="region" required="true"> <description>Todas las vistas ocupan un espacio en el dashboard. A este espacio se le denomina region.</description> <hint>El dashboard gráficamente se muestra con una representación 
+		tipo tabla, donde hay 3 filas (TOP, MIDDLE y BOTTOM) y tantas columnas como se quiera.</hint> <attribute token="position" type="enumeration" required="true"> <description>Define los tres tipos de región disponibles.</description> <enumeration> <option token="TOP"></option> <option token="MIDDLE"></option> <option token="BOTTOM"></option> </enumeration> </attribute> <attribute token="size" type="integer"> <description>Se define como el número de columnas que ocupará esta vista en la posición indicada</description> </attribute> </property> </property> -->
+
+</class>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="WorkstopDeclaration" parent="IndexedDeclaration" tag="workstop" extensible="true">
+	<description>Declaración que se utiliza para modelar un	workstop de un workline</description>
+
+	<attribute name="workplace" type="key" link="WorkplaceDeclaration" required="true">
+		<description>WorkPlace donde está localizado este workstop</description>
+	</attribute>
+
+	<property name="label" multiple="true" key="language">
+		<description>Etiqueta del workstop</description>
+		<attribute name="language" type="language" required="true">
+			<description>Idioma de la etiqueta</description>
+		</attribute>
+    <content type="text"/>
+	</property>
+
+</class>

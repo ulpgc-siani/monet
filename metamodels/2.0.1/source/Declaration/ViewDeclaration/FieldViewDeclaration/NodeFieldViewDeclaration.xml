@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="NodeFieldViewDeclaration" parent="FieldViewDeclaration" tag="view">
+	<description>Declaración que se utiliza para modelar la vista de un	campo nodo</description>
+
+	<attribute name="type" type="enumeration">
+    <description>En modo LIST se ven los nodos seguidos, uno detrás del otro. En modo TABLE se muestra sólo el nodo que el usuario elija en un selector.</description>
+		<enumeration>
+      <option>LIST</option>
+			<option>TABLE</option>
+		</enumeration>
+	</attribute>
+
+	<property name="rows">
+		<description>Indica el número de filas que se desea ver en la tabla. En función de este valor, se calcula la altura de la tabla.</description>
+    <attribute name="count" type="natural">
+      <description>Valor del número de filas.</description>
+    </attribute>
+  </property>
+
+</class>

@@ -1,0 +1,12 @@
+Doc Development - Monet Component Logger
+
+TODO LIST:
+		-  Al utilizar la libreria da un classnotfound. Se exportan las librerias
+		pero aun asi falla.
+
+DEPENDENCIES:
+			Library													Version						Comment
+			log4j														1.2.15
+
+PROJECTS:
+			-	olapengine	

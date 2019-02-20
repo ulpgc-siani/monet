@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ContainerDeclaration" parent="NodeDeclaration" tag="container">
+  <description>Declaración que se utiliza para modelar un contenedor</description>
+
+  <property name="have" multiple="true">
+    <description>Se utiliza para indicar que tipo de nodos conforman el contenedor</description>
+    <attribute name="node" type="code" link="Definition" restriction="NodeDeclaration" required="true">
+      <description>Código de la definición de un nodo que se desea agregar a la colección</description>
+    </attribute>
+  </property>
+  
+  <property name="contain" multiple="true">
+    <description>Se utiliza para indicar que tipo de nodos se pueden agregar a una colección</description>
+    <hint>No soportado actualmente</hint>
+    <attribute name="node" type="code" link="Definition" restriction="NodeDeclaration" required="true">
+      <description>Código de la definición de un nodo que se desea agregar a la colección</description>
+    </attribute>
+  </property>  
+  
+  <include name="view" multiple="true">
+    <option class-name="ContainerViewDeclaration" />
+  </include>
+    
+</class>
+

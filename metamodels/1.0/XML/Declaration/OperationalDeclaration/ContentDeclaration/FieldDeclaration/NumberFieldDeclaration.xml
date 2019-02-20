@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="NumberFieldDeclaration" parent="FieldDeclaration" tag="field-number">
+
+  <property name="format">
+    <description>Contiene el formato en el que se representará las cifras. Se utiliza para aplicar un formato a las cifras.</description>
+    <attribute name="language" type="enumeration" required="true" >
+      <description>Idioma en el que se expresa la descripción</description>
+      <enumeration>
+        <option>es</option>
+        <option>en</option>
+        <option>de</option>
+        <option>fr</option>
+        <option>it</option>
+        <option>pt</option>
+      </enumeration>
+    </attribute>
+    <attribute name="value" type="text" required="true" >
+      <description>Formato en el que se representan las cifras. Con * se representan una cantidad indeterminada de cifras. Si indicamos un número, ese será el número de cifras que se mostrarán. Ejemplo: para representar un número cualquiera con tres decimales pondríamos "*,3"</description>
+    </attribute>
+    <text-content />
+  </property>
+
+</class>
+

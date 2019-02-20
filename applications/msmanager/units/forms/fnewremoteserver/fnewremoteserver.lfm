@@ -1,0 +1,247 @@
+object FrmNewRemoteServer: TFrmNewRemoteServer
+  Left = 545
+  Height = 516
+  Top = 643
+  Width = 497
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'New remote server'
+  ClientHeight = 516
+  ClientWidth = 497
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.8.4.0'
+  object LblHost: TLabel
+    Left = 16
+    Height = 16
+    Top = 95
+    Width = 39
+    Caption = 'Host*:'
+    ParentColor = False
+  end
+  object TxtHost: TEdit
+    Left = 224
+    Height = 22
+    Top = 88
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 1
+  end
+  object BtnOk: TButton
+    Left = 311
+    Height = 25
+    Top = 482
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    Default = True
+    OnClick = BtnOkClick
+    TabOrder = 10
+  end
+  object BtnCancel: TButton
+    Left = 400
+    Height = 25
+    Top = 482
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Cancel = True
+    Caption = 'Cancel'
+    OnClick = BtnCancelClick
+    TabOrder = 11
+  end
+  object LblDeployServicePort: TLabel
+    Left = 16
+    Height = 16
+    Top = 223
+    Width = 132
+    Caption = 'Deploy Service Port*:'
+    ParentColor = False
+  end
+  object TxtDeployServicePort: TEdit
+    Left = 224
+    Height = 22
+    Top = 216
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 4
+  end
+  object LblDeployServiceUser: TLabel
+    Left = 16
+    Height = 16
+    Top = 255
+    Width = 134
+    Caption = 'Deploy Service User*:'
+    ParentColor = False
+  end
+  object TxtDeployServiceUser: TEdit
+    Left = 224
+    Height = 22
+    Top = 248
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 5
+  end
+  object LblDeployServicePassword: TLabel
+    Left = 16
+    Height = 16
+    Top = 287
+    Width = 159
+    Caption = 'Deploy Service Password:'
+    ParentColor = False
+  end
+  object TxtDeployServicePassword: TEdit
+    Left = 224
+    Height = 22
+    Top = 280
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    EchoMode = emPassword
+    PasswordChar = '*'
+    TabOrder = 6
+  end
+  object LblName: TLabel
+    Left = 16
+    Height = 16
+    Top = 63
+    Width = 47
+    Caption = 'Name*:'
+    ParentColor = False
+  end
+  object TxtName: TEdit
+    Left = 224
+    Height = 22
+    Top = 56
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 0
+  end
+  object LblDeployServiceDomain: TLabel
+    Left = 16
+    Height = 16
+    Top = 191
+    Width = 155
+    Caption = 'Deploy Service Domain*:'
+    ParentColor = False
+  end
+  object TxtDeployServiceDomain: TEdit
+    Left = 224
+    Height = 22
+    Top = 184
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 3
+  end
+  object LblLoggingHost: TLabel
+    Left = 16
+    Height = 16
+    Top = 319
+    Width = 88
+    Caption = 'Logging Host:'
+    ParentColor = False
+  end
+  object TxtLoggingHost: TEdit
+    Left = 224
+    Height = 22
+    Top = 312
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 7
+  end
+  object LblLoggingPort: TLabel
+    Left = 16
+    Height = 16
+    Top = 351
+    Width = 85
+    Caption = 'Logging Port:'
+    ParentColor = False
+  end
+  object TxtLoggingPort: TEdit
+    Left = 224
+    Height = 22
+    Top = 344
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 8
+  end
+  object LblFieldRequired: TLabel
+    Left = 16
+    Height = 16
+    Top = 424
+    Width = 102
+    Caption = '* Field required.'
+    ParentColor = False
+  end
+  object LblPort: TLabel
+    Left = 16
+    Height = 16
+    Top = 127
+    Width = 36
+    Caption = 'Port*:'
+    ParentColor = False
+  end
+  object TxtPort: TEdit
+    Left = 224
+    Height = 22
+    Top = 120
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 2
+    Text = '80'
+  end
+  object LblUpdateAppsFullUrl: TLabel
+    Left = 16
+    Height = 16
+    Top = 383
+    Width = 175
+    Caption = 'Update applications full url:'
+    ParentColor = False
+  end
+  object TxtUpdateAppsFullUrl: TEdit
+    Left = 224
+    Height = 22
+    Top = 376
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 9
+  end
+  object CmbFileConfig: TComboBox
+    Left = 168
+    Height = 20
+    Top = 10
+    Width = 307
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
+    Style = csDropDownList
+    TabOrder = 12
+  end
+  object LblFileConfig: TLabel
+    Left = 16
+    Height = 16
+    Top = 18
+    Width = 121
+    Caption = 'File configuration*:'
+    ParentColor = False
+  end
+  object CmbDeployType: TComboBox
+    Left = 224
+    Height = 20
+    Top = 152
+    Width = 251
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
+    Items.Strings = (
+      'production'
+      'preproduction'
+      'development'
+    )
+    Style = csDropDownList
+    TabOrder = 13
+  end
+  object LblDeployType: TLabel
+    Left = 16
+    Height = 16
+    Top = 160
+    Width = 85
+    Caption = 'Deploy type*:'
+    ParentColor = False
+  end
+end

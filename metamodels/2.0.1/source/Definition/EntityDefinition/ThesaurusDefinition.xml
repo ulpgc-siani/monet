@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="ThesaurusDefinition" parent="EntityDefinition" tag="thesaurus" extensible="true">
+  <description>Declaración que se utiliza para modelar un tesauro</description>
+
+  <property name="external">
+    <description>Su presencia indica que el tesauro se obtiene de una fuente de datos externa</description>
+    <attribute name="provider" type="key" link="ThesaurusProviderDefinition" required="true">
+      <description>Nombre del proveedor de thesaurus a usar para obtener los datos</description>
+    </attribute>
+  </property>
+ 
+  <property name="use">
+    <description>Se utiliza para indicar la referencia que se usará para exponer el thesauro</description>
+    <attribute name="reference" type="key" link="ReferenceDefinition" required="true">
+      <description>Nombre de la definición de una referencia a exportar</description>
+    </attribute>
+    <attribute name="key" type="key" link="AttributeDeclaration" required="true">
+      <description>Nombre del atributo que se usará como código del término del thesauro</description>
+    </attribute>
+    <attribute name="parent" type="key" link="AttributeDeclaration" required="true">
+      <description>Nombre del atributo que se usará para determinar el identificador del padre</description>
+    </attribute>
+    <attribute name="label" type="key" link="AttributeDeclaration" required="true">
+      <description>Nombre del atributo que se usará como título del término del thesauro</description>
+    </attribute>
+  </property>
+
+  <include name="term-index" multiple="true">
+    <option class-name="TermIndexDeclaration"/>
+  </include>
+  
+</class>

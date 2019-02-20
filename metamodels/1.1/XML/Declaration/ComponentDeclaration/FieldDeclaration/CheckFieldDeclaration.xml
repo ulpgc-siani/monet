@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="CheckFieldDeclaration" parent="FieldDeclaration" tag="field-check">
+  <description>Declaración que se utiliza para modelar un campo de comprobación</description>
+  <hint>Los campos de comprobación permiten realizar listas de comprobación a partir de una lista de términos</hint>
+  
+  <include name="term" multiple="true">
+    <option class-name="TermDeclaration" />
+  </include>
+    
+</class>

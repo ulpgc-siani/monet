@@ -1,0 +1,82 @@
+.view.indicators {
+	margin-top: 10px;
+	padding: 0 10px;
+}
+
+.view.indicators > .folders {
+	margin-left: 10px;
+  margin-top: 5px;
+  overflow-y: auto;
+}
+
+.view.indicators.expanded > .folders {
+	height: 100%;
+}
+
+.view.indicators .folders .folders {
+	margin-left: 10px;
+}
+
+.view.indicators .folder .title {
+  background: url('../images/closed.png') no-repeat 0 1px;
+	padding-left: 15px;
+	cursor: pointer;
+}
+
+.view.indicators .folder > ul {
+  display: none;
+}
+
+.view.indicators .folder.opened .title, .view.indicators .folder.opened .folder.opened .title {
+  background: url('../images/opened.png') no-repeat 0 1px;
+}
+
+.view.indicators .folder.opened .folder.closed .title {
+  background: url('../images/closed.png') no-repeat 0 1px;
+}
+
+.view.indicators .folder.opened > ul {
+  display: block;
+}
+
+.view.indicators .folder .indicators {
+  margin: 2px 15px;
+}
+
+.view.indicators .folder .indicator {
+	margin-bottom: 3px;
+}
+
+.view.indicators .folder .indicator label {
+	margin-left: 2px;
+  padding: 0 5px 1px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.view.indicators .folder .indicator label:hover {
+	background: #efefef;
+}
+
+.view.indicators .folder .indicator .colorbox {
+	border-radius: 10px;
+	float: right;
+	height: 16px;
+	width: 16px;
+	display: none;
+	cursor: pointer;
+}
+
+.colorsoff .view.indicators .folder .indicator .colorbox {
+	opacity: 0.1;
+  filter: alpha(opacity=10); /* For IE8 and earlier */
+}
+
+.view.indicators .folder .indicator.disabled label {
+	color: #888;
+	cursor: default;
+}
+
+.view.indicators .folder .indicator.disabled label:hover {
+  background: none;
+}

@@ -1,0 +1,21 @@
+<li class="measureunit ${id}">
+  <label>${label}</label>
+  <div class="dialog">
+	  <table>
+	    <tr>
+	      <td><label class="title" style="margin-bottom:5px;">::Mode::</label></td>
+	      <td>
+		      <input type="radio" class="mode absolute" name="measureunitmode${id}" id="measureunitabsolute${id}" value="absolute" style="margin-bottom:5px;"><label for="measureunitabsolute${id}">::ModeAbsolute::</label></input>
+		      <input type="radio" class="mode relative" name="measureunitmode${id}" id="measureunitrelative${id}" value="relative" style="margin-bottom:5px;"><label for="measureunitrelative${id}">::ModeRelative::</label></input>
+	      </td>
+	    </tr>
+      <tr>
+        <td><label class="title">::Ranges::</label></td>
+        <td>
+		      <span><input type="text" class="min" value="${minValue}" placeholder="::RangeMinValue::"></input><a href="javascript:void(null)" class="clear min">&nbsp;</a></span>
+		      <span><input type="text" class="max" value="${maxValue}" placeholder="::RangeMaxValue::"></input><a href="javascript:void(null)" class="clear max">&nbsp;</a></span>
+        </td>
+      </tr>
+	  </table>
+  </div>    
+</li>

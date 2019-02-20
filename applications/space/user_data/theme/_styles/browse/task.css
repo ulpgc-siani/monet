@@ -1,0 +1,483 @@
+.task .def {
+  display: none;
+}
+
+.task.finished .info, .task.aborted  .info {
+  background: #EFF7FF;
+}
+
+.task .state .flag {
+  float: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.task .state .flag.pending, .task .state .flag.new {
+  background-color: #33942F;
+}
+
+.task .state .flag.waiting {
+  background-color: #E37F2E;
+}
+
+.task .state .flag.failure {
+  background-color: #CE3535;
+}
+
+.task .state .flag.aborted, .task .state .flag.expired, .task .state .flag.finished {
+  background-color: #828282;
+}
+
+.task .state .date {
+  color: #999999;
+  font-size: 11px;
+}
+
+.task .state .title {
+  font-size: 16px;
+  margin-top: 15px
+}
+
+.task .state .view {
+  margin-bottom: 15px;
+}
+
+.task .state .view .message {
+  font-size: 14px;
+  color: #666;
+}
+
+.task .state .view .hint {
+  color: #666;
+}
+
+.task .state .view > div > ul {
+	list-style: square;
+  margin: 5px 20px;
+  font-size: 14px;
+}
+
+.task .state .view > div > ul li {
+	margin-bottom: 4px;
+}
+
+.task .state span.title {
+  font-weight: bold;
+}
+
+.task .state .locks .title {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.task .state .selectservicelink {
+  margin: 10px 0px;
+}
+
+.task .state .selectservicelink ul {
+  margin: 10px 10px 10px 20px;
+  list-style: lower-alpha;
+}
+
+.task .state .selectservicelink ul li {
+  margin-bottom: 10px;
+}
+
+.task .state .locks .nodeFields li {
+  margin-bottom: 0px;
+}
+
+.task .state .locks .nodeFields {
+  margin: 0px;
+  padding: 0px;
+}
+
+.task .state .lockactions {
+  margin-top: 10px;
+}
+
+.task .state .lockactions .command {
+  display: list-item;
+  list-style: square inside none;
+  margin-bottom: 6px;
+  margin-left: 10px;
+}
+
+.task .content .state {
+  padding: 10px 10px 0px;
+}
+
+.task .routemap {
+  position: relative;
+}
+
+.task .datelist {
+  color: #666;
+  margin: 10px 0px 4px;
+}
+
+.task .datelist li {
+  display: inline;
+}
+
+.task .description {
+  margin-bottom: 20px;
+}
+
+.task .tabs {
+  margin: 10px 0px 20px;
+}
+
+.task .tabs .toolbar .item.opened a {
+  font-weight: bold;
+}
+
+.task .tabs .toolbar .separator span {
+  margin: 0px 5px;
+}
+
+.task .tabs .tab {
+  display: none;
+}
+
+.task .tabs .tab.opened {
+  display: block;
+}
+
+.task .routemap {
+  margin:10px 10px 20px;
+  padding-left:20px;
+  list-style-type: upper-alpha;
+}
+
+.task .routemap .goal {
+  font-weight: bold;
+}
+
+.task .history {
+  left: 0px;
+  position: relative;
+  padding: 0px 10px;
+}
+
+.task .history .historyitems {
+	border-top: 1px dotted #999;
+}
+
+.task .history .historymore{
+  margin-top: 15px;
+}
+
+.task .history .fact {
+  padding: 5px 0px;
+  border-bottom: 1px dotted #999;
+}
+
+.task .history .fact .date {
+  color: #999999;
+  font-size: 11px;
+}
+
+.task .history .fact .workplace.initial{
+  display: block;
+}
+
+.task .history .fact .workplace {
+  font-size: 12px;
+}
+
+.task .history .fact .title {
+  color: black;
+  font-size: 15px;
+  margin-top: 0;
+}
+
+.task .history .fact .title span{
+  font-weight: bold;
+}
+
+.task .history .fact .form {
+  margin: 5px 0px 0px;
+}
+
+.task .history .fact .serviceuse {
+  margin: 5px 0px 0px;
+}
+
+.task .tab {
+  padding: 0px 10px;
+}
+
+.task .team .userlist {
+  list-style: decimal;
+  margin: 10px 20px;
+}
+
+.task .toolbar.navigation {
+  margin: 0px;
+  text-align: left;
+}
+
+.task .toolbar.navigation a {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.tasklist .content {
+  margin: 10px 4px;
+}
+
+.tasklist .content .content {
+  margin: 0px;
+}
+
+.tasklist .task.error {
+  border: 0px;
+  color: #00A;
+}
+
+.tasklist .listviewer .items .delete, .tasklist .listviewer .items .selector, .tasklist .listviewer .items td.edition, 
+.tasklist .listviewer .selectall, .tasklist .listviewer .add.list .selector {
+  display: none !important;
+}
+
+.tasklist .listviewer .items .selector, .tasklist .listviewer .items td.edition, .tasklist .listviewer .selectall {
+  display: block !important;
+}
+
+.tasklist .listviewer .delete {
+  display: none !important;
+}
+
+.tasklist .listviewer .items .item .content {
+  width: 99%;
+}
+
+.tasklist .listviewer .items .item a.content {
+  padding: 0px;
+  min-height: 65px;
+  position: relative;
+}
+
+.tasklist .listviewer .items .item a.content .task.finished, .tasklist .listviewer .items .item a.content .task.aborted {
+  background: #EFF7FF;
+}
+
+.tasklist .item .content .task .header, .task .header {
+  padding: 8px;
+  width: 60%;
+}
+
+.tasklist .item .content .task .wtable .header, .task .wtable .header {
+  width: auto;
+}
+
+.tasklist .task .header .owner, .tasklist .task .header .sender, .tasklist .task .header .senderempty {
+  display: none;
+}
+
+.tasklist .task .header .owner span, .tasklist .task .header .sender span, .tasklist .task .header .senderempty span,
+.task .header .owner span, .task .header .sender span, .task .header .senderempty span {
+  float: left;
+}
+
+.tasklist .task .header .owner .command, .tasklist .task .header .sender .command, .tasklist .task .header .senderempty .command,
+.task .header .owner .command, .task .header .sender .command, .task .header .senderempty .command {
+  background: url("office.api?op=loadthemefile&path=_images/icons/delete-trigger.gif") no-repeat 0 0;
+  float: left;
+  width: 16px;
+  height: 20px;
+  margin-top: -3px;
+  margin-left: 2px;
+}
+
+.tasklist .task .header .owner .command:hover, .tasklist .task .header .sender .command:hover, .tasklist .task .header .senderempty .command:hover,
+.task .header .owner .command:hover, .task .header .sender .command:hover, .task .header .senderempty .command:hover {
+  background-position: -17px 0;
+}
+
+.tasklist .task .header .owner.active, .tasklist .task .header .sender.active, .tasklist .task .header .senderempty.active {
+  display: block;
+  height: 20px;
+}
+
+.tasklist .task .visible_true, .task .visible_true {
+  display: block;
+}
+
+.tasklist .task .visible_false, .task .visible_false {
+  display: none;
+}
+
+.tasklist .task .flags .comments, .task .flags .comments {
+  background: url("office.api?op=loadthemefile&path=_images/icons/comments.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  bottom: 0;
+  height: 20px;
+  margin-bottom: 2px;
+  margin-right: 6px;
+  position: absolute;
+  right: 0;
+  width: 20px;
+}
+
+.tasklist .task .flags .urgent, .task .flags .urgent {
+  background: url("office.api?op=loadthemefile&path=_images/icons/urgent_disabled.png") no-repeat 0 0;
+  height: 28px;
+  width: 28px;
+  margin-top: 2px;
+  float: right;
+  display: none;
+}
+
+.task .header .label, .task .header .label {
+  background-color: transparent;
+  background-position: 2px 0px;
+  background-repeat: no-repeat;
+  display: block;
+  font-weight: bold;
+  -moz-outline:none;
+}
+
+.task.new .header .label {
+  font-weight: normal;
+  padding-top: 3px;
+}
+
+.task .header .label {
+  font-weight: normal;
+}
+
+.task .header .label {
+  display: block;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.task .header .label .type {
+  float: left;
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
+}
+
+.task .header .type.activity {
+  background: url("office.api?op=loadthemefile&path=_images/icons/activity.png") no-repeat 0 0;
+}
+
+.task .header .type.service {
+  background: url("office.api?op=loadthemefile&path=_images/icons/service.png") no-repeat 0 0;
+}
+
+.task .header .type.job {
+  background: url("office.api?op=loadthemefile&path=_images/icons/job.png") no-repeat 0 0;
+}
+
+.task .header .description, .task .header .owner, .task .header .sender, .task .header .dates, .task .header .newmessages {	
+  margin-left: 45px;
+}
+
+.task .header .description, .task .header .owner, .task .header .sender, .task .header .dates {
+  color: #666;
+  margin-bottom: 0px;
+  clear: both;
+}
+
+.task .header .state, .task .flag {
+  color: white;
+  margin: 2px 0;
+  padding: 0 10px;
+  text-align: center;
+  width: 65px;
+}
+
+.task .header .state.pending, .task .header .state.new {
+  background-color: #33942F;
+}
+
+.task.new .header .owner span, .task.new .header .sender span, .task.new .header .senderempty span,
+.task.pending .header .owner span, .task.pending .header .sender span,
+.task.pending .header .senderempty span {
+  color: #33942F;
+}
+
+.task .header .state.waiting { 
+  background-color: #E37F2E;
+}
+
+.task.waiting .header .owner span, .task.waiting .header .sender span, .task.waiting .header .senderempty span {
+  color: #E37F2E;
+}
+
+.task .header .state.failure { 
+  background-color: #CE3535;
+}
+
+.task.failure .header .owner span, .task.failure .header .sender span, .task.failure .header .senderempty span {
+  color: #CE3535;
+}
+
+.task .header .state.expired, .task .header .state.aborted, .task .header .state.finished {
+  background-color: #828282;
+}
+
+.task.expired .header .owner span, .task.aborted .header .owner span, .task.finished .header .owner span {
+  color: #828282;
+}
+
+.task .header .toolbar {
+	display: block;
+}
+
+.task .charts {
+  padding: 8px;
+  vertical-align: middle;
+}
+
+.task .newmessages {
+  display: none;
+  color: green;
+}
+
+.task .newmessages.active {
+  display: block;
+}
+
+.task .flags {
+  width: 10%;
+}
+
+.task .flags .urgent {
+  display: block;
+  background: url("office.api?op=loadthemefile&path=_images/icons/urgent_disabled_grey.png") no-repeat 0 0;
+}
+
+.task .flags .urgent.active {
+  background: url("office.api?op=loadthemefile&path=_images/icons/urgent.png") no-repeat 0 0;
+  display: block;
+}
+
+.orderlist .items .item .label {
+	color: black;
+}
+
+.orderlist .items .item .body {
+	margin-left: 8px;
+}
+
+.orderlist .items .item .body .newmessages {
+  margin-left: 0;
+}
+
+.orderlist .items .item .header.closed_true .label {
+  color: #666;
+}
+
+.orderlist .items .item .body.closed_true div, .orderlist .items .item .body.closed_false .closed {
+  display: none;
+}
+
+.orderlist .items .item .body.closed_true .closed {
+	display: block;
+}

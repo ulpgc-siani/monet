@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>Errores posibles de office</comment>
+  <entry key="ERR_UNDEFINED">Error desconocido.</entry>
+  <entry key="ERR_USER_NOT_LOGGED">Usted no ha iniciado sesión.</entry>
+  <entry key="ERR_INCORRECT_PARAMETERS">Faltan parámetros o los parámetros pasados en la llamada no son correctos.</entry>
+  <entry key="ERR_DOWNLOAD_DOCUMENT">Error al intentar descargar el documento.</entry>
+  <entry key="ERR_DOWNLOAD_NODE">Error al intentar descargar el nodo.</entry>
+  <entry key="ERR_WRONG_FORMAT">Formato de datos incorrecto.</entry>  
+  <entry key="ERR_USERNAME_OR_PASSWORD_INCORRECT">Nombre de usuario o contraseña incorrectos.</entry>
+  <entry key="ERR_LOAD_NODE_FROM_CACHE">No se ha podido cargar el nodo desde cache.</entry>
+  <entry key="ERR_AGENT_TEMPLATES">Ha habido un error en el agente de plantillas.</entry>  
+  <entry key="ERR_TEMPLATE_NOT_FOUND">No se ha encontrado la plantilla con la que visualizar este formulario.</entry>  
+  <entry key="ERR_ACTIONS_FACTORY">Ha habido un error en la factoría de acciones.</entry>  
+  <entry key="ERR_RENDERS_FACTORY">Ha habido un error en la factoría de renderizadores.</entry>  
+  <entry key="ERR_VIEWS_FACTORY">Ha habido un error en la factoría de vistas.</entry>
+  <entry key="ERR_READ_LANGUAGE_FILE">No se ha podido leer el fichero de idioma.</entry>  
+  <entry key="ERR_REDIRECT_TO_SETUP">No se ha encontrado la aplicación de administración. No podrá iniciar la unidad de negocio.</entry>  
+  <entry key="ERR_BUSINESSUNIT_STOPPED">La unidad de negocio ha sido parada. Contacte con el administrador del sistema.</entry>  
+  <entry key="ERR_BUSINESSUNIT_NOT_INSTALLED">No se ha instalado ningún modelo en la unidad de negocio. Contacte con el administrador del sistema.</entry>  
+  <entry key="ERR_SEND_MAIL">No se ha podido enviar el correo a la dirección de destino.</entry>  
+  <entry key="ERR_LOAD_BUSINESS_MODEL_FILE">No se ha podido obtener el fichero del modelo de negocio.</entry>  
+  <entry key="ERR_LOAD_THEME_FILE">No se ha podido obtener el fichero del tema.</entry>  
+  <entry key="ERR_LOAD_BUSINESS_MODEL_DEFINITION">No se ha podido obtener la definición del modelo de negocio.</entry>  
+  <entry key="ERR_LOAD_BUSINESS_UNIT_FILE">No se ha podido obtener el fichero de la unidad de negocio.</entry>  
+  <entry key="ERR_NODES_IN_USE">Los nodos seleccionados están relacionados con otros nodos. No se pueden borrar.</entry>  
+  <entry key="ERR_NODE_IN_USE">El nodo está enlazado con otro nodo. No se puede borrar.</entry>  
+  <entry key="ERR_READ_TASK_PERMISSIONS">No tiene permisos para abrir la tarea.</entry>  
+  <entry key="ERR_WRITE_TASK_PERMISSIONS">No tiene permisos para modificar la tarea.</entry>  
+  <entry key="ERR_READ_CUBE_PERMISSIONS">No tiene permisos para abrir el cubo.</entry>  
+  <entry key="ERR_READ_TEAM_PERMISSIONS">No tiene permisos para abrir el equipo.</entry>  
+  <entry key="ERR_READ_NODE_PERMISSIONS">No tiene permisos para abrir el objeto.</entry>  
+  <entry key="ERR_WRITE_NODE_PERMISSIONS">No tiene permisos para modificar el objeto.</entry>
+  <entry key="ERR_CREATE_DELETE_NODE_PERMISSIONS">No tiene permisos para crear/borrar en el objeto.</entry>
+  <entry key="ERR_PREVIEW_NODE">No se ha podido generar la vista previa del nodo.</entry>  
+  <entry key="ERR_PREVIEW_NOT_SUPPORTED">La vista previa de nodos no está soportada.</entry>  
+  <entry key="ERR_DOWNLOAD_NODE">No se ha podido descargar el nodo.</entry>  
+  <entry key="ERR_DOWNLOAD_NOT_SUPPORTED">La descarga de nodos no está soportada.</entry>  
+  <entry key="ERR_NODE_DEFINITION_INCORRECT">La definición de nodo no es correcta.</entry>  
+  <entry key="ERR_NODE_UPDATE_DOCUMENT">No se ha podido actualizar el documento.</entry>  
+  <entry key="ERR_NOT_DOCUMENT_NEITHER_REPORT">El nodo seleccionado no es un documento ni un informe.</entry>  
+  <entry key="ERR_DOWNLOAD_FILE">No se ha podido descargar el fichero.</entry>  
+  <entry key="ERR_RENDER_NODE">Ha habido un error al intentar mostrar el elemento</entry>  
+  <entry key="ERR_RENDER_HELPER_PAGE">Ha habido un error al intentar mostrar la página de ayuda</entry>  
+  <entry key="ERR_USER_NOT_ENROLED_ON_TASK">El usuario no pertenece al equipo de la tarea.</entry>
+  <entry key="ERR_COULD_NOT_ABORT_TASK">No se ha podido abortar la tarea.</entry>
+  <entry key="ERR_LOAD_SYSTEM_TEMPLATE">No se ha podido cargar la plantilla de sistema.</entry>
+  <entry key="ERR_ALERT_TYPE">El tipo de alerta no es válido</entry>
+  <entry key="ERR_DELETE_CUBE_REPORTS">No se han podido borrar los informes del cubo</entry>
+  <entry key="ERR_CANT_SIGN">No puede firmar el documento</entry>
+  <entry key="ERR_PREVIEW_ATTACHMENT">No se pudo obtener la vista previa del documento</entry>
+  <entry key="ERR_EXECUTE_NODE_COMMAND">No se ha podido realizar la operación</entry>
+  <entry key="ERR_SAVE_TASK_PERMISSIONS">No tiene permisos para modificar la tarea</entry>
+  <entry key="ERR_TASK_EDITION">No se puede resolver la edición del elemento.</entry>
+  <entry key="ERR_LOAD_TASKORDERLIST">No se pudo obtener la lista de encargos.</entry>
+  <entry key="ERR_ROLE_ACTIVE">El role ya está activo.</entry>
+</properties>

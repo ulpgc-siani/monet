@@ -1,0 +1,285 @@
+.task .def {
+  display: none;
+}
+
+.task.finished .info, .task.aborted  .info {
+  background: #EFF7FF;
+}
+
+.task .info .content .dates {
+  color: #666666;
+  margin-top: 2px;
+}
+
+.task .info .flags {
+  width: 24px;
+}
+
+.task .info .flags span,
+.tasks .task .flag span {
+  width: 12px;
+}
+
+.task .info .flags span {
+  background-color: #D0E0F5;
+  height: 12px;
+  display: block;
+  margin: 3px 8px;
+}
+
+.task .info .flags .pending, .task .info .flags .new,
+.tasks .task .flag .pending, .tasks .task .flag .new {
+  background-color: #33942F;
+}
+
+.task .info .flags .waiting,
+.tasks .task .flag .waiting {
+  background-color: #E37F2E;
+}
+
+.task .info .flags .failure,
+.tasks .task .flag .failure {
+  background-color: #CE3535;
+}
+
+.task .info .flags .finished,
+.tasks .task .flag .finished {
+  background-color: #828282;
+}
+
+.task .info .flags .aborted, .task .info .flags .expired,
+.tasks .task .flag .aborted, .tasks .task .flag .expired {
+  background-color: #828282;
+}
+
+/*
+.task.finished .info, .task.aborted .info {
+  border: 1px solid #008F3D;
+  background-color: #C2EFD5;
+}
+ 
+.task .info {
+  border: 1px solid #E46C0A;
+  background-color: #FDEADA;
+}
+*/
+.task .info .title {
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.task .info .subtitle {
+  font-size: 15px;
+}
+
+.task .state .flag {
+  float: none;
+  margin-bottom: 10px;
+}
+
+.task .state .separator {
+  border-top: 1px dotted #999;
+  display: block;
+}
+
+.task .state .date {
+  color: #999999;
+  font-size: 11px;
+}
+
+.task .state .title {
+  font-size: 16px;
+}
+
+.task .state span.title {
+  font-weight: bold;
+}
+
+.task .state .locks .title {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.task .state .outsourcing {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.task .state .outsourcing  .title{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.task .state .serviceLock  .message{
+  font-size: 14px;
+}
+
+.task .state .serviceLock  ul{
+  list-style: circle inside none;
+  padding: 8px;
+}
+
+.task .state .selectservicelink {
+  margin: 10px 0px;
+}
+
+.task .state .selectservicelink ul {
+  margin: 10px 10px 10px 20px;
+  list-style: lower-alpha;
+}
+
+.task .state .selectservicelink ul li {
+  margin-bottom: 10px;
+}
+
+.task .state .message {
+  margin-top: 5px;
+}
+
+.task .state .locks .nodeFields li {
+  margin-bottom: 0px;
+}
+
+.task .state .locks .nodeFields {
+  margin: 0px;
+  padding: 0px;
+}
+
+.task .state .lockactions {
+  margin-top: 10px;
+}
+
+.task .state .lockactions .command {
+  display: list-item;
+  list-style: square inside none;
+  margin-bottom: 6px;
+  margin-left: 10px;
+}
+
+.task .content .state {
+  padding: 10px 10px 5px;
+}
+
+.task .routemap {
+  position: relative;
+}
+
+.task .datelist {
+  color: #666;
+  margin: 10px 0px 4px;
+}
+
+.task .datelist li {
+  display: inline;
+}
+
+.task .description {
+  margin-bottom: 20px;
+}
+
+.task .tabs {
+  margin: 10px 0px 20px;
+}
+
+.task .tabs .toolbar .item.opened a {
+  font-weight: bold;
+}
+
+.task .tabs .toolbar .separator span {
+  margin: 0px 5px;
+}
+
+.task .tabs .tab {
+  display: none;
+}
+
+.task .tabs .tab.opened {
+  display: block;
+}
+
+.task .routemap {
+  margin:10px 10px 20px;
+  padding-left:20px;
+  list-style-type: upper-alpha;
+}
+
+.task .routemap .goal {
+  font-weight: bold;
+}
+
+.task .history {
+  left: 0px;
+  position: relative;
+  padding: 0px 10px;
+}
+
+.task .history .historyitems {
+}
+
+.task .history .historymore{
+  margin-top: 15px;
+}
+
+.task .history .fact {
+  padding: 5px 0px;
+  border-bottom: 1px dotted #999;
+}
+
+.task .history .fact .date {
+  color: #999999;
+  font-size: 11px;
+}
+
+.task .history .fact .workplace.initial{
+  display: block;
+}
+
+.task .history .fact .workplace {
+  font-size: 12px;
+}
+
+.task .history .fact .title {
+  color: black;
+  font-size: 15px;
+}
+
+.task .history .fact .title span{
+  font-weight: bold;
+}
+
+.task .history .fact .form {
+  margin: 5px 0px 0px;
+}
+
+.task .history .fact .serviceuse {
+  margin: 5px 0px 0px;
+}
+
+.task .tab {
+  padding: 0px 10px;
+}
+
+.task .team .userlist {
+  list-style: decimal;
+  margin: 10px 20px;
+}
+
+.task .team .toolbar .unenrol, .task .team.enroled .toolbar .enrol {
+  display: none;
+}
+
+.task .team .toolbar .enrol, .task .team.enroled .toolbar .unenrol {
+  display: block;
+}
+
+.task .toolbar.navigation {
+  margin: 0px;
+  text-align: left;
+}
+
+.task .toolbar.navigation a {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="LinkFieldDeclaration" parent="MultipleableFieldDeclaration" tag="field-link">
+  <description>Declaración que se utiliza para modelar un campo vínculo</description>
+
+  <property name="source">
+    <description>Se utiliza para indicar qué nodos se pueden vincular en el campo</description>
+    <attribute name="set" type="key" link="SetDefinition" required="true">
+      <description>Nombre de la definición de colección o catalogo desde la que se podrá seleccionar el nodo</description>
+    </attribute>
+    <attribute name="filter" type="key" link="NodeDefinition" required="false">
+      <description>Tipo de definición que se podrá seleccionar</description>
+    </attribute>
+  </property>
+
+  <property name="bind" multiple="true">
+    <description>Se usa para dar valores a los parámetros de un catálogo</description>
+    <hint>Solo es permitido en definiciones de tipo catálogo</hint>
+    <attribute name="parameter" type="key" link="ParameterDeclaration" required="true">
+      <description>Nombre del parámetro en el catálogo</description>
+    </attribute>
+    <attribute name="field" type="key" link="FieldDeclaration" required="true">
+      <description>Nombre del campo que define el valor del parámetro</description>
+    </attribute>
+  </property>
+
+  <property name="allow-history">
+    <description>Se utiliza para indicar que el campo puede gestionar un historial de los valores introducidos por el usuario</description>
+    <attribute name="datastore" type="string">
+      <description>Nombre de la tabla en el que se almacenarán los valores</description>
+      <hint>Dos campos que se encuentren incluso en formularios diferentes pueden compartir el mismo datastore</hint>
+    </attribute>
+  </property>
+
+  <property name="allow-search">
+    <description>Se utiliza para indicar que el campo está indexado y se pueden realizar búsquedas</description>
+  </property>
+
+	<property name="allow-other">
+		<description>La presencia de esta propiedad indica que se pueden añadir nuevos nodos</description>
+	</property>
+
+</class>

@@ -1,0 +1,326 @@
+.dataimporter h1 {
+  background: #99BBE8;
+  padding: 2px;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.dataimporter a {
+  color: blue;
+}
+
+.dataimporter fieldset legend {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dataimporter textarea {
+  width: 100%;
+}
+
+.dataimporter .x-btn button {
+  padding: 0px 15px;
+}
+
+.dataimporter .hidden {
+  display: none;
+}
+
+.dataimporter .left {
+  float: left;
+}
+
+.dataimporter .right {
+  float: right;
+}
+
+.dataimporter .panel {
+  padding: 10px;
+}
+
+.dataimporter .toolbar input {
+  width: 100px;
+}
+
+.dataimporter .toolbar input.bigger {
+  width: 140px;
+}
+
+.dataimporter.clipboard .panel.clipboard {
+  display: block;
+  height: 495px;
+}
+
+.dataimporter.options .panel.options {
+  display: block;
+}
+
+.dataimporter.layout .panel.layout {
+  display: block;
+}
+
+.dataimporter .panel.commands {
+  float: right;
+  margin: 5px 10px;
+}
+
+.dataimporter .panel.clipboard {
+  height: 495px;
+}
+
+.dataimporter .panel.clipboard textarea {
+  width: 99%;
+}
+
+.dataimporter .panel.options.dialog {
+  background: white;
+  border: 1px solid #B5B8C8;
+  margin-left: 10px;
+  margin-top: 188px;
+  position: absolute;
+  z-index: 10;
+}
+
+.ie .dataimporter .panel.options.dialog {
+  margin-top: 199px;
+}
+
+.dataimporter .panel.options.dialog .fields {
+  display: none;
+}
+
+.dataimporter .panel.options.dialog .toolbar {
+  display: block;
+  margin: 10px 0px;
+}
+
+.dataimporter .panel.options fieldset {
+  margin-bottom: 10px;
+  width: 97%;
+}
+
+.dataimporter .panel.options .delimiters div {
+  margin: 5px 5px;
+  clear: both;
+  height: 15px;
+  width: 500px;
+}
+
+.dataimporter .panel.options .delimiters div input {
+  float: left;
+}
+
+.dataimporter .panel.options .delimiters div span.label input.free {
+  width: 100px;
+}
+
+.dataimporter .panel.options .delimiters div span input {
+  float: none;
+}
+
+.dataimporter .panel.options .delimiters div label {
+  margin: -2px 5px;
+  float: left;
+}
+
+.ie .dataimporter .panel.options .delimiters div label {
+  margin-top: 3px;
+}
+
+.dataimporter .panel.options .delimiters div .label {
+  margin: -3px 5px;
+  float: left;
+}
+
+.dataimporter .panel.options .delimiters div span label {
+  margin: 0px;
+  float: none;
+}
+
+.dataimporter .panel.options .fields .list {
+  list-style-type: decimal;
+  margin: 0px 25px;
+}
+
+.dataimporter .panel.options .fields .list li {
+  margin: 2px 0px;
+  padding: 0px;
+}
+
+.dataimporter .panel.options .fields .list a {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.dataimporter .panel.options .toolbar {
+  display: none;
+}
+
+.dataimporter .panel.layout {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dataimporter .panel.layout .identation {
+  margin: 10px;
+}
+
+.dataimporter .panel.layout .data {
+  width: 99%;
+  height: 150px;
+  font-size: 11px;
+  background-image: none;
+}
+
+.dataimporter .panel.layout .pattern {
+  border: 1px solid #B5B8C8;
+  border-top: 0px;
+  padding: 1px 5px;
+}
+
+.ie .dataimporter .panel.layout .pattern {
+  margin-top: -1px;
+}
+
+.dataimporter .panel.layout .pattern .type {
+  display: none;
+  color: #555;
+}
+
+.dataimporter .panel.layout .pattern.paragraph .type.paragraph {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern.tab .type.tab {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern.dot .type.dot {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern.semicolon .type.semicolon {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern.comma .type.comma {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern.free .type.free {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern.regexp .type.regexp {
+  display: inline;
+}
+
+.dataimporter .panel.layout .pattern a.options {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.dataimporter .panel.layout .toolbar {
+  float: right;
+  margin: 10px 0px;
+}
+
+.dataimporter .panel.layout .toolbar .command, .dataimporter .panel.layout .toolbar select {
+  float: left;
+  margin: 0px 2px;
+}
+
+.dataimporter .panel.layout .toolbar select {
+  width: 245px;
+}
+
+.dataimporter .panel.layout .toolbar .addsplit {
+  margin: 0px 2px;
+}
+
+.dataimporter .panel.layout .tabs {
+  clear: both;
+  height: 264px;
+}
+
+.dataimporter .panel.layout .tabs .tab {
+  margin: 10px 0px;
+}
+
+.dataimporter .panel.layout .tabs .tab .arrow {
+  width: 15px;
+}
+
+.dataimporter .panel.layout .tabs .tab .field {
+  cursor: pointer;
+  width: 100%;
+  padding: 0px;
+}
+
+.dataimporter .panel.layout .tabs .tab .field.odd {
+  background-color: #ddd;
+}
+
+.dataimporter .panel.layout .tabs .tab .field.selected {
+  background: white;
+}
+
+.dataimporter .panel.layout .tabs .tab .field .editor input, .dataimporter .panel.layout .tabs .tab .field .editor textarea {
+  float: left;
+  width: 86%;
+  margin: 2px 0px;
+}
+
+.dataimporter .panel.layout .tabs .tab .field .editor textarea {
+  height: 100px;
+}
+
+.dataimporter .panel.layout .tabs .tab .field .editor .command {
+  float: left;
+  color: blue;
+  margin: 3px 8px;
+}
+
+.dataimporter .panel.layout .tabs .tab .selected .arrow {
+  background: white url(../images/dataimporter/selected.gif) 0 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+}
+
+.dataimporter .panel.layout .tabs .tab a .trigger {
+  height: 23px;
+  width: 17px;
+}
+
+.dataimporter .panel.layout .tabs .tab .raise .trigger {
+  background: transparent url(../images/dataimporter/raise-trigger.gif) 0 0;
+}
+
+.dataimporter .panel.layout .tabs .tab .bury .trigger {
+  background: transparent url(../images/dataimporter/bury-trigger.gif) 0 0;
+}
+
+.dataimporter .panel.layout .tabs .tab a:hover .trigger {
+  background-position: -17px 0px;
+  cursor: pointer;
+}
+
+.dataimporter .panel.layout .tabs .tab .title {
+  margin: 2px 0px;
+  padding: 0px;
+  font-size: 13px;
+}
+
+.dataimporter .panel.layout .tabs .tab .command {
+  color: black;
+  cursor: pointer;
+  display: block;
+  margin: 2px 0px;
+}
+
+.dataimporter .panel.layout .tabs .x-tabs-body {
+  background-color: #ccc;
+  height: 258px;
+}

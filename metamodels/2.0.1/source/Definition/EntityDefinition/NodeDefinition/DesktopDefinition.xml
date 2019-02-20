@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="DesktopDefinition" parent="NodeDefinition" tag="desktop" extensible="true">
+  <description>Declaración que se utiliza para modelar un escritorio</description>
+
+  <include name="view" multiple="true">
+    <option class-name="DesktopViewDeclaration" />
+  </include>
+  
+</class>
+

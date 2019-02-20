@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Office IDE</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<script>
+	var eFrame = null;
+
+	function Compile(app, obf) {
+		eFrame.src="ide.php?app=" + app + "&obf=" + obf;
+		return false;
+	}
+
+	function Run(app)	{
+		eFrame.src="../../" + app;
+		return false;
+	}
+
+	function Cerrar() {
+		self.location = eFrame.src;
+	}
+
+	window.onload = function() {
+		eFrame = document.getElementById("ViewFrame");
+	};
+</script>
+<style type="text/css">
+	BODY { margin: 0; padding: 0; }
+	INPUT { font-family: Tahoma, Verdana, Arial, serif; font-size: 8pt; height: 20px;}
+	DIV.TITLE { float:left; padding-top: 3px; height: 100%; vertical-align: middle; white-space: nowrap;}
+	DIV.ACTIONS { float: right; text-align: right; height: 100%; width: 100%; }
+	TD.TOP { background-color: #FFFFE0; color: Black; font-family: Tahoma; font-size: 8pt; padding: 3px; border-bottom: 1px solid Black; }
+	TD.TOP IMG { position: relative; top: 2px; }
+	A IMG { border: none; }
+</style>
+</head>
+
+<body>
+	<table cellpadding="0" cellspacing="0" width="100%" height="100%">
+		<tr>
+			<td class="TOP">
+				Barra de compilaci&oacute;n de <strong>Office</strong>
+			</td>
+			<td class="TOP" align="right">
+        <img src="images/browser.gif">
+				<input type="button" value="Compilar" onClick="Compile('office', 0);">&nbsp;
+				<input type="button" value="Ofuscar" onClick="Compile('office', 1);">&nbsp;
+				<input type="button" value="Ejecutar" onClick="Run('index.html');">&nbsp;&nbsp;&nbsp;
+
+				<a href="javascript:Cerrar();"><img src="images/close.gif"></a>&nbsp;&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" width="100%" height="100%">
+				<iframe frameborder="0" id="ViewFrame" width="100%" height="100%">
+					Su navegador no soporta marcos
+				</iframe>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<federation>
+  <organization>
+    <label lang="EN">#label#</label>
+    <label lang="ES">#label#</label>
+    <image src="" />
+  </organization>
+	
+  <authentication>
+    <use-password>
+      #auth_type#
+    </use-password>
+  </authentication>
+  <!--<allow-user-registration />-->
+</federation>

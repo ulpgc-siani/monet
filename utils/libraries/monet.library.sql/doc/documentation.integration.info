@@ -1,0 +1,7 @@
+Documentation  - Monet Component SQL
+
+Componente de sql.
+		- Creacion de queris por medio de sustitucion QueryBuilder.
+		- Soporte NamedParameterStatement
+		- Cierra Connection, NamedParameterStatement, ResultSet
+		

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<class name="IndicatorDeclaration" parent="IndexedDeclaration" tag="indicator">
+  <description>TODO</description>
+
+  <property name="label" multiple="true" key="language">
+    <description>Etiqueta del indicador. Se utiliza para mostrar a los usuarios el nombre del indicador</description>
+    <attribute name="language" type="language" required="true">
+      <description>Idioma de la etiqueta</description>
+    </attribute>
+    <content type="text" />
+  </property>
+
+  <property name="is-hidden">
+    <description>Se utiliza para ocultar el indicador en el informe</description>
+  </property>
+  
+  <property name="data">
+    <description>TODO</description>
+    <attribute name="attribute" type="key" link="AttributeDeclaration" required="true">
+      <description>Atributo del cual se extraen los datos</description>
+    </attribute>
+    <attribute name="operator" type="enumeration" required="true">
+      <description>Operación a realizar con los valores del atributo para extraer el valor a usar</description>
+      <enumeration>
+        <option>SUM</option>
+        <option>AVERAGE</option>
+        <option>COUNT</option>
+        <option>MAX</option>
+        <option>MIN</option>
+      </enumeration>
+    </attribute>
+  </property>
+  
+  <include name="formula">
+    <option class-name="FormulaDeclaration" />
+  </include>
+
+</class>

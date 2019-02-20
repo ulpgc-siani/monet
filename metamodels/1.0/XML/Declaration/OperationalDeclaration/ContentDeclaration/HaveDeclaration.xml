@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+<class name="HaveDeclaration" parent="ContentDeclaration" tag="have">
+  <description>Indica un tipo de nodo que forma parte de un contenedor. Cuando se crea el contendedor, automáticamente se crea un nodo de este tipo</description>
+  
+  <attribute name="node" type="Code" link="NodeDeclaration" required="true">
+    <description>Código de una definición de nodo. Sólo se pueden indicar códigos de definiciones en los que se haya declarado un nodo.</description>
+    <restriction>ONLY Definition WITH NodeDeclaration FROM Model</restriction>
+  </attribute>
+
+</class>
+

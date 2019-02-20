@@ -1,0 +1,42 @@
+@import "icons"
+
+.field.file .component .input-panel:hover .download
+  background: $download
+
+.field.file .popup
+  overflow-y: hidden
+
+.field.file .dialog
+  overflow-y: visible !important
+  min-height: 75px
+  max-height: 75px
+
+  >table > tbody > tr > td
+    vertical-align: middle !important
+    padding: 10px
+
+  table table > tbody > tr:nth-child(1) td
+    padding: 0 10px 10px
+
+  table table > tbody > tr:nth-child(2)
+    border-bottom: 1px dashed #ccc
+
+    .file-operations
+      background-color: #efefef
+
+      tr
+        td
+          padding-left: 5px
+        td:not(:first-child)
+          font-size: smaller
+
+  .error
+    color: red
+    font-weight: bolder
+
+
+.field.multiple.file .component .values .dragdrop-draggable .download
+  background-image: $download
+
+.field.multiple.file .component .values .dragdrop-draggable:hover .download
+  right: 20px

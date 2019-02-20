@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<property type="StepEditProperty" parent="ReferenceableProperty">
+	<description></description>
+	
+    <attribute token="label" type="language" required="true">
+        <description>Etiqueta</description>
+    </attribute>
+  
+    <property token="is-required">
+        <description></description>
+    </property>
+    
+    <property token="is-read-only">
+        <description></description>
+    </property>
+    
+    <property token="is-multiple">
+        <description></description>
+    </property>
+</property>

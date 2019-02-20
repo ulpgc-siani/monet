@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsmtpdsetup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="jsmtpd-plugin-config.xsd">
+
+	<!-- Note : Configuration is case sensitive -->
+	
+	<!-- This is a minimal plugin configuration file
+		It sets up :
+		- DNS
+		- Delivery Services
+		To configure extensions such as SSL, authentication, filters, please refer to the manual at http://www.jsmtpd.org
+		You can also see the examples in etc/examples
+	 -->
+<!-- 	
+	<ACLSetup name="Basic ACL" class="org.jsmtpd.plugins.acls.SimpleACL">
+		<propertyset name="relayedHosts" value="10.0.0.0/255.255.0.0,127.0.0.1"/>
+		<propertyset name="validUsers" value="*@monetproject.com"/>
+	</ACLSetup>
+-->
+
+	<ACLSetup name="Basic ACL" class="org.jsmtpd.plugins.acls.MonetACL">
+		<propertyset name="validUsers" value="*@localhost"/>
+	</ACLSetup>
+
+	
+	<DNSSetup class="org.jsmtpd.plugins.dnsServices.DNSJavaResolver" name="DNS Java">
+		<propertyset name="dnsServers" value="8.8.8.8"/>
+  	</DNSSetup>
+
+  		
+<!--  	<LocalDeliveryService name="umw" class="org.jsmtpd.plugins.deliveryServices.UnixMailboxWriter">
+		<propertyset name="mailDir" value="mailboxes/"/>
+	</LocalDeliveryService>-->
+
+ 	
+ 	<LocalDeliveryService name="Monet MailBox" class="org.jsmtpd.plugins.deliveryServices.MonetMailbox">
+ 	  <propertyset name="url" value="http://localhost:8090/monet/servlet/mailservice"/>
+ 	  <propertyset name="certificateFile" value="/home/rlopez/.monet/monet.p12" />
+ 	  <propertyset name="certificatePassword" value="1234" />
+	</LocalDeliveryService>
+
+	<RemoteDeliveryService name="Monet Remote smtp sender" class="org.jsmtpd.plugins.deliveryServices.MonetRemoteSmtpSender"></RemoteDeliveryService>
+	
+	<smtpExtensions></smtpExtensions>
+	
+	<filtersetup></filtersetup>
+	
+	<inputIPFilterChain> </inputIPFilterChain>
+	
+	<bodyFilterTree></bodyFilterTree>
+
+</jsmtpdsetup>

@@ -1,0 +1,1 @@
+ALTER TABLE `ts$nodes_descriptors` ADD `COLOR` VARCHAR(20);

@@ -1,0 +1,23 @@
+
+/*
+.dialog {
+  background: #EFEFEE;
+  padding: 10px;  
+  text-align: right;
+}
+*/
+
+.dialog .toolbar a {
+  margin-right: 5px;
+  display: inline;
+}
+
+form input[type="file"] {
+  width: 130px;
+}
+
+div[name="filename"] {
+  font-size: 9pt;
+  margin-left: 3px;
+  margin-top: 3px;	
+}

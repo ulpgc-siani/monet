@@ -1,0 +1,3 @@
+Lang.DialogGenerateReportType = {
+  Delete: "Eliminar"
+};
