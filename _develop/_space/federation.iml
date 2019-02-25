@@ -26,9 +26,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="federation.shared" exported="" />
-    <orderEntry type="library" exported="" name="federation" level="project" />
     <orderEntry type="module" module-name="mobile" exported="" />
-    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.axis:axis:1.4" level="project" />
     <orderEntry type="module-library">

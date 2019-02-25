@@ -3,6 +3,7 @@ package org.monet.editor.dsl.jvmmodel.inferers;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +29,6 @@ import org.eclipse.xtext.xbase.compiler.XbaseCompiler;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.monet.editor.dsl.generator.MonetJvmTypesBuilder;
 import org.monet.editor.dsl.helper.TypeRefCache;
@@ -87,12 +87,12 @@ public class SchemaInferer {
     if (_notEquals) {
       EList<SchemaFeature> _properties = schema.getProperties();
       Iterable<SchemaSection> _filter = Iterables.<SchemaSection>filter(_properties, SchemaSection.class);
-      final Procedure1<SchemaSection> _function = new Procedure1<SchemaSection>() {
-        public void apply(final SchemaSection ss) {
+      final Consumer<SchemaSection> _function = new Consumer<SchemaSection>() {
+        public void accept(final SchemaSection ss) {
           SchemaInferer.this.inferSchemaSectionClass(ss, acceptor, schemaClass);
         }
       };
-      IterableExtensions.<SchemaSection>forEach(_filter, _function);
+      _filter.forEach(_function);
     }
     IJvmDeclaredTypeAcceptor.IPostIndexingInitializing<JvmGenericType> _accept = acceptor.<JvmGenericType>accept(schemaClass);
     final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
@@ -256,12 +256,12 @@ public class SchemaInferer {
     _accept.initializeLater(_function);
     EList<SchemaFeature> _features = p.getFeatures();
     Iterable<SchemaSection> _filter = Iterables.<SchemaSection>filter(_features, SchemaSection.class);
-    final Procedure1<SchemaSection> _function_1 = new Procedure1<SchemaSection>() {
-      public void apply(final SchemaSection ss) {
+    final Consumer<SchemaSection> _function_1 = new Consumer<SchemaSection>() {
+      public void accept(final SchemaSection ss) {
         SchemaInferer.this.inferSchemaSectionClass(ss, acceptor, sectionClass);
       }
     };
-    IterableExtensions.<SchemaSection>forEach(_filter, _function_1);
+    _filter.forEach(_function_1);
   }
   
   public void inferMethods(final EList<SchemaFeature> properties, final JvmGenericType scope) {

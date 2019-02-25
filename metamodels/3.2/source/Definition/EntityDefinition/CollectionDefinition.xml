@@ -15,6 +15,15 @@
 		</attribute>
 	</property>
 	
+	<property token="toolbar">
+		<description>Esta propiedad se utiliza para configurar la barra de herramientas de la colección</description>
+		<property token="add-operation">
+			<attribute token="enable" type="key" link="NodeDefinition" required="true" multiple="true">
+				<description>Permite habilitar la operación de añadir de un nodo concreto</description>
+			</attribute>
+		</property>
+	</property>
+
 	<method name="on-item-added">
 		<parameter name="newItem" type="org.monet.bpi.BPINode" />
 	</method>

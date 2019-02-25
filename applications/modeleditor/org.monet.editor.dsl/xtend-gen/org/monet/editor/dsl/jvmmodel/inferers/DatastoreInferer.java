@@ -2,6 +2,7 @@ package org.monet.editor.dsl.jvmmodel.inferers;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericArrayTypeReference;
@@ -13,7 +14,6 @@ import org.eclipse.xtext.common.types.util.TypeReferences;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.monet.editor.dsl.generator.MonetJvmTypesBuilder;
 import org.monet.editor.dsl.helper.JavaHelper;
@@ -54,12 +54,12 @@ public class DatastoreInferer {
   
   public void inferDimensions(final Definition definition, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "dimension");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property dimension) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property dimension) {
         DatastoreInferer.this.inferDimensionClass(definition, dimension, acceptor, prelinkingPhase);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferDimensionClass(final Definition definition, final Property dimension, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
@@ -98,12 +98,12 @@ public class DatastoreInferer {
   
   public void inferCubes(final Definition definition, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "cube");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property cube) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property cube) {
         DatastoreInferer.this.inferCubeClass(definition, cube, acceptor, prelinkingPhase);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferCubeClass(final Definition definition, final Property cube, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
@@ -143,12 +143,12 @@ public class DatastoreInferer {
   
   public void inferComponents(final Definition definition, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "dimension");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property dimension) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property dimension) {
         DatastoreInferer.this.inferComponent(definition, dimension, acceptor, prelinkingPhase);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferComponent(final Definition d, final Property dimension, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
@@ -170,8 +170,8 @@ public class DatastoreInferer {
           DatastoreInferer.this._monetJvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes_1, _resolveDimensionComponentImplType);
         }
         Iterable<Property> _properties = DatastoreInferer.this._mMLExtensions.getProperties(dimension, "feature");
-        final Procedure1<Property> _function = new Procedure1<Property>() {
-          public void apply(final Property p) {
+        final Consumer<Property> _function = new Consumer<Property>() {
+          public void accept(final Property p) {
             final Code featureCode = p.getCode();
             Attribute _attribute = DatastoreInferer.this._mMLExtensions.getAttribute(p, "type");
             final String type = DatastoreInferer.this._mMLExtensions.getValueAsString(_attribute);
@@ -274,7 +274,7 @@ public class DatastoreInferer {
             }
           }
         };
-        IterableExtensions.<Property>forEach(_properties, _function);
+        _properties.forEach(_function);
       }
     };
     _accept.initializeLater(_function);
@@ -317,12 +317,12 @@ public class DatastoreInferer {
   
   public void inferFacts(final Definition definition, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "cube");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property cube) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property cube) {
         DatastoreInferer.this.inferFact(definition, cube, acceptor, prelinkingPhase);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferFact(final Definition e, final Property cube, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
@@ -335,8 +335,8 @@ public class DatastoreInferer {
         JvmTypeReference _resolveCubeFactImplType = DatastoreInferer.this._typeRefCache.resolveCubeFactImplType(e);
         DatastoreInferer.this._monetJvmTypesBuilder.<JvmTypeReference>operator_add(_superTypes, _resolveCubeFactImplType);
         Iterable<Attribute> _attributes = DatastoreInferer.this._mMLExtensions.getAttributes(cube, "use");
-        final Procedure1<Attribute> _function = new Procedure1<Attribute>() {
-          public void apply(final Attribute use) {
+        final Consumer<Attribute> _function = new Consumer<Attribute>() {
+          public void accept(final Attribute use) {
             final Property dimension = DatastoreInferer.this._mMLExtensions.getValueAsProperty(use);
             boolean _notEquals = (!Objects.equal(dimension, null));
             if (_notEquals) {
@@ -382,10 +382,10 @@ public class DatastoreInferer {
             }
           }
         };
-        IterableExtensions.<Attribute>forEach(_attributes, _function);
+        _attributes.forEach(_function);
         Iterable<Property> _properties = DatastoreInferer.this._mMLExtensions.getProperties(cube, "metric");
-        final Procedure1<Property> _function_1 = new Procedure1<Property>() {
-          public void apply(final Property m) {
+        final Consumer<Property> _function_1 = new Consumer<Property>() {
+          public void accept(final Property m) {
             Code _code = m.getCode();
             boolean _notEquals = (!Objects.equal(_code, null));
             if (_notEquals) {
@@ -434,7 +434,7 @@ public class DatastoreInferer {
             }
           }
         };
-        IterableExtensions.<Property>forEach(_properties, _function_1);
+        _properties.forEach(_function_1);
       }
     };
     _accept.initializeLater(_function);

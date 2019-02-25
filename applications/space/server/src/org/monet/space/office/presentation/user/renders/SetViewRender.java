@@ -547,4 +547,19 @@ public abstract class SetViewRender extends NodeViewRender {
 
 	protected abstract String initAddList(HashMap<String, Object> viewMap, SetViewProperty view);
 
+	void addNodes(ArrayList<Ref> refList) {
+		for (Ref enable : refList)
+			for (Definition child : this.dictionary.getAllImplementersOfNodeDefinition(enable.getValue()))
+				addNode(child);
+	}
+
+	void addNode(Definition definition) {
+		if (definition.isDisabled()) return;
+		HashMap<String, Object> nodeMap = new HashMap<String, Object>();
+		nodeMap.put("code", definition.getCode());
+		nodeMap.put("label", definition.getLabelString());
+		nodeMap.put("description", definition.getDescription());
+		this.nodes.put(definition.getCode(), nodeMap);
+	}
+
 }

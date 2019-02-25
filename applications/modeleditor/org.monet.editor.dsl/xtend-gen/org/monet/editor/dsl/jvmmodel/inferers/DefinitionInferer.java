@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmField;
@@ -98,20 +99,20 @@ public class DefinitionInferer extends ModelInferer {
     }
     final ArrayList<Property> childPropertiesWithClasses = new ArrayList<Property>();
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition);
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property p) {
         Iterable<Property> _inferClass = DefinitionInferer.this.propertyInferer.inferClass(definition, p, definitionItem, acceptor, prelinkingPhase);
         Iterables.<Property>addAll(childPropertiesWithClasses, _inferClass);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
     Iterable<Definition> _definitions = this._mMLExtensions.getDefinitions(definition);
-    final Procedure1<Definition> _function_1 = new Procedure1<Definition>() {
-      public void apply(final Definition d) {
+    final Consumer<Definition> _function_1 = new Consumer<Definition>() {
+      public void accept(final Definition d) {
         DefinitionInferer.this.infer(d, acceptor, prelinkingPhase);
       }
     };
-    IterableExtensions.<Definition>forEach(_definitions, _function_1);
+    _definitions.forEach(_function_1);
     Item _child = definitionItem.getChild("schema");
     boolean _notEquals = (!Objects.equal(_child, null));
     if (_notEquals) {
@@ -210,8 +211,8 @@ public class DefinitionInferer extends ModelInferer {
                 boolean _equals = Objects.equal(_definitionType, "dashboard");
                 if (_equals) {
                   Iterable<Property> _properties = DefinitionInferer.this._mMLExtensions.getProperties(definition, "indicator");
-                  final Procedure1<Property> _function = new Procedure1<Property>() {
-                    public void apply(final Property indicator) {
+                  final Consumer<Property> _function = new Consumer<Property>() {
+                    public void accept(final Property indicator) {
                       Property level = DefinitionInferer.this._mMLExtensions.getProperty(indicator, "level");
                       boolean _and = false;
                       boolean _notEquals = (!Objects.equal(level, null));
@@ -233,10 +234,10 @@ public class DefinitionInferer extends ModelInferer {
                       }
                     }
                   };
-                  IterableExtensions.<Property>forEach(_properties, _function);
+                  _properties.forEach(_function);
                   Iterable<Property> _properties_1 = DefinitionInferer.this._mMLExtensions.getProperties(definition, "taxonomy");
-                  final Procedure1<Property> _function_1 = new Procedure1<Property>() {
-                    public void apply(final Property taxonomy) {
+                  final Consumer<Property> _function_1 = new Consumer<Property>() {
+                    public void accept(final Property taxonomy) {
                       boolean _hasProperty = DefinitionInferer.this._mMLExtensions.hasProperty(taxonomy, "explicit");
                       if (_hasProperty) {
                         String _name = taxonomy.getName();
@@ -250,7 +251,7 @@ public class DefinitionInferer extends ModelInferer {
                       }
                     }
                   };
-                  IterableExtensions.<Property>forEach(_properties_1, _function_1);
+                  _properties_1.forEach(_function_1);
                 }
               }
             };
@@ -422,8 +423,8 @@ public class DefinitionInferer extends ModelInferer {
                   ap.append("int hash = name.hashCode();\n ");
                   ap.append("switch(hash) {\n ");
                   Iterable<Property> _properties = DefinitionInferer.this._mMLExtensions.getProperties(definition, "customer", "contestants", "contest", "provider");
-                  final Procedure1<Property> _function = new Procedure1<Property>() {
-                    public void apply(final Property p) {
+                  final Consumer<Property> _function = new Consumer<Property>() {
+                    public void accept(final Property p) {
                       String name = null;
                       String _name = p.getName();
                       boolean _equals = Objects.equal(_name, null);
@@ -438,21 +439,21 @@ public class DefinitionInferer extends ModelInferer {
                       boolean _equals_1 = Objects.equal(_id_1, "provider");
                       if (_equals_1) {
                         Iterable<Property> _properties = DefinitionInferer.this._mMLExtensions.getProperties(p, "internal", "external");
-                        final Procedure1<Property> _function = new Procedure1<Property>() {
-                          public void apply(final Property px) {
+                        final Consumer<Property> _function = new Consumer<Property>() {
+                          public void accept(final Property px) {
                             String _id = px.getId();
                             String _name = p.getName();
                             String _plus = (_id + _name);
                             DefinitionInferer.this.toCaseLine(px, ap, _plus);
                           }
                         };
-                        IterableExtensions.<Property>forEach(_properties, _function);
+                        _properties.forEach(_function);
                       } else {
                         DefinitionInferer.this.toCaseLine(p, ap, name);
                       }
                     }
                   };
-                  IterableExtensions.<Property>forEach(_properties, _function);
+                  _properties.forEach(_function);
                   ap.append("default: return null;\n}");
                 }
               };
@@ -478,8 +479,8 @@ public class DefinitionInferer extends ModelInferer {
         }
         Iterable<Property> _properties = DefinitionInferer.this._mMLExtensions.getProperties(definition);
         Iterables.<Property>addAll(childPropertiesWithClasses, _properties);
-        final Procedure1<Property> _function_5 = new Procedure1<Property>() {
-          public void apply(final Property px) {
+        final Consumer<Property> _function_5 = new Consumer<Property>() {
+          public void accept(final Property px) {
             String _name = px.getName();
             boolean _notEquals = (!Objects.equal(_name, null));
             if (_notEquals) {
@@ -511,7 +512,7 @@ public class DefinitionInferer extends ModelInferer {
             }
           }
         };
-        IterableExtensions.<Property>forEach(childPropertiesWithClasses, _function_5);
+        childPropertiesWithClasses.forEach(_function_5);
       }
     };
     _accept.initializeLater(_function_2);

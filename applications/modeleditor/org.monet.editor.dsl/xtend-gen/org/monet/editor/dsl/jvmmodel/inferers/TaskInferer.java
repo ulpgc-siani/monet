@@ -6,6 +6,7 @@ import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmConstructor;
@@ -79,8 +80,8 @@ public class TaskInferer extends BaseTaskInferer {
   
   public void inferClasses(final Definition taskDefinition, final IJvmDeclaredTypeAcceptor acceptor, final boolean prelinkingPhase) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(taskDefinition);
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property p) {
         String _id = p.getId();
         boolean _matched = false;
         if (!_matched) {
@@ -105,8 +106,8 @@ public class TaskInferer extends BaseTaskInferer {
           if (Objects.equal(_id, "provider")) {
             _matched=true;
             Iterable<Property> _properties = TaskInferer.this._mMLExtensions.getProperties(p);
-            final Procedure1<Property> _function = new Procedure1<Property>() {
-              public void apply(final Property px) {
+            final Consumer<Property> _function = new Consumer<Property>() {
+              public void accept(final Property px) {
                 String _id = px.getId();
                 boolean _matched = false;
                 if (!_matched) {
@@ -123,7 +124,7 @@ public class TaskInferer extends BaseTaskInferer {
                 }
               }
             };
-            IterableExtensions.<Property>forEach(_properties, _function);
+            _properties.forEach(_function);
           }
         }
         if (!_matched) {
@@ -133,7 +134,7 @@ public class TaskInferer extends BaseTaskInferer {
         }
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
     String className = this.classNameInferer.inferTaskLockClass(taskDefinition);
     JvmGenericType _class = this._monetJvmTypesBuilder.toClass(taskDefinition, className);
     IJvmDeclaredTypeAcceptor.IPostIndexingInitializing<JvmGenericType> _accept = acceptor.<JvmGenericType>accept(_class);
@@ -178,8 +179,8 @@ public class TaskInferer extends BaseTaskInferer {
         };
         Iterable<Iterable<Property>> _map = IterableExtensions.<Property, Iterable<Property>>map(_properties, _function_1);
         Iterable<Property> _flatten = Iterables.<Property>concat(_map);
-        final Procedure1<Property> _function_2 = new Procedure1<Property>() {
-          public void apply(final Property exit) {
+        final Consumer<Property> _function_2 = new Consumer<Property>() {
+          public void accept(final Property exit) {
             EObject _eContainer = exit.eContainer();
             EObject _eContainer_1 = _eContainer.eContainer();
             Property place = ((Property) _eContainer_1);
@@ -220,7 +221,7 @@ public class TaskInferer extends BaseTaskInferer {
             }
           }
         };
-        IterableExtensions.<Property>forEach(_flatten, _function_2);
+        _flatten.forEach(_function_2);
         Iterable<Property> _properties_1 = TaskInferer.this._mMLExtensions.getProperties(taskDefinition, "place");
         final Function1<Property, Boolean> _function_3 = new Function1<Property, Boolean>() {
           public Boolean apply(final Property p) {
@@ -229,8 +230,8 @@ public class TaskInferer extends BaseTaskInferer {
           }
         };
         Iterable<Property> _filter = IterableExtensions.<Property>filter(_properties_1, _function_3);
-        final Procedure1<Property> _function_4 = new Procedure1<Property>() {
-          public void apply(final Property place) {
+        final Consumer<Property> _function_4 = new Consumer<Property>() {
+          public void accept(final Property place) {
             final String placeName = place.getName();
             final Code placeCode = place.getCode();
             EList<JvmMember> _members = it.getMembers();
@@ -261,7 +262,7 @@ public class TaskInferer extends BaseTaskInferer {
             TaskInferer.this._monetJvmTypesBuilder.<JvmField>operator_add(_members, _field);
           }
         };
-        IterableExtensions.<Property>forEach(_filter, _function_4);
+        _filter.forEach(_function_4);
       }
     };
     _accept.initializeLater(_function_1);
@@ -295,8 +296,8 @@ public class TaskInferer extends BaseTaskInferer {
         JvmOperation _getter = TaskInferer.this._monetJvmTypesBuilder.toGetter(taskDefinition, "id", idFieldType);
         TaskInferer.this._monetJvmTypesBuilder.<JvmOperation>operator_add(_members_2, _getter);
         Iterable<Property> _properties = TaskInferer.this._mMLExtensions.getProperties(taskDefinition);
-        final Procedure1<Property> _function_1 = new Procedure1<Property>() {
-          public void apply(final Property p) {
+        final Consumer<Property> _function_1 = new Consumer<Property>() {
+          public void accept(final Property p) {
             String _id = p.getId();
             boolean _matched = false;
             if (!_matched) {
@@ -326,7 +327,7 @@ public class TaskInferer extends BaseTaskInferer {
             }
           }
         };
-        IterableExtensions.<Property>forEach(_properties, _function_1);
+        _properties.forEach(_function_1);
       }
     };
     _accept_1.initializeLater(_function_2);
@@ -336,12 +337,12 @@ public class TaskInferer extends BaseTaskInferer {
     Iterable<Method> _methods = this._mMLExtensions.getMethods(p);
     Iterables.<Method>addAll(methodList, _methods);
     Iterable<Property> _properties = this._mMLExtensions.getProperties(p);
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property px) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property px) {
         TaskInferer.this.addAllMethods(px, methodList);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferMethods(final Definition taskDefinition, final JvmGenericType behaviourClazz) {
@@ -409,12 +410,12 @@ public class TaskInferer extends BaseTaskInferer {
     this.inferCreateInstance(taskDefinition, behaviourClazz);
     final ArrayList<Method> propertyMethods = new ArrayList<Method>();
     Iterable<Property> _properties = this._mMLExtensions.getProperties(taskDefinition, "place");
-    final Procedure1<Property> _function_3 = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function_3 = new Consumer<Property>() {
+      public void accept(final Property p) {
         TaskInferer.this.addAllMethods(p, propertyMethods);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function_3);
+    _properties.forEach(_function_3);
     final HashMultimap<String, Pair<String, Integer>> methodMap = XtendHelper.createMultimap();
     final Procedure2<Method, Integer> _function_4 = new Procedure2<Method, Integer>() {
       public void apply(final Method pm, final Integer i) {
@@ -1027,8 +1028,8 @@ public class TaskInferer extends BaseTaskInferer {
               }
             };
             Iterable<Property> _map = IterableExtensions.<Property, Property>map(_filter, _function_1);
-            final Procedure1<Property> _function_2 = new Procedure1<Property>() {
-              public void apply(final Property p) {
+            final Consumer<Property> _function_2 = new Consumer<Property>() {
+              public void accept(final Property p) {
                 EObject _eContainer = p.eContainer();
                 Property place = ((Property) _eContainer);
                 Code _code = place.getCode();
@@ -1056,7 +1057,7 @@ public class TaskInferer extends BaseTaskInferer {
                 }
               }
             };
-            IterableExtensions.<Property>forEach(_map, _function_2);
+            _map.forEach(_function_2);
             x.append("}\n return false;");
           }
         };
@@ -1117,8 +1118,8 @@ public class TaskInferer extends BaseTaskInferer {
               }
             };
             Iterable<Property> _map = IterableExtensions.<Property, Property>map(_filter, _function_1);
-            final Procedure1<Property> _function_2 = new Procedure1<Property>() {
-              public void apply(final Property p) {
+            final Consumer<Property> _function_2 = new Consumer<Property>() {
+              public void accept(final Property p) {
                 EObject _eContainer = p.eContainer();
                 Property place = ((Property) _eContainer);
                 Code _code = place.getCode();
@@ -1146,7 +1147,7 @@ public class TaskInferer extends BaseTaskInferer {
                 }
               }
             };
-            IterableExtensions.<Property>forEach(_map, _function_2);
+            _map.forEach(_function_2);
             x.append("}\n return null;");
           }
         };
@@ -1168,15 +1169,15 @@ public class TaskInferer extends BaseTaskInferer {
       }
     };
     Iterable<Property> _map = IterableExtensions.<Property, Property>map(_filter, _function_27);
-    final Procedure1<Property> _function_28 = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function_28 = new Consumer<Property>() {
+      public void accept(final Property p) {
         EObject _eContainer = p.eContainer();
         Property place = ((Property) _eContainer);
         String placeName = place.getName();
         TaskInferer.this.inferClassificateExpression(placeName, p, behaviourClazz);
       }
     };
-    IterableExtensions.<Property>forEach(_map, _function_28);
+    _map.forEach(_function_28);
     Iterable<Property> _properties_2 = this._mMLExtensions.getProperties(taskDefinition, "place");
     final Function1<Property, Boolean> _function_29 = new Function1<Property, Boolean>() {
       public Boolean apply(final Property p) {
@@ -1190,18 +1191,18 @@ public class TaskInferer extends BaseTaskInferer {
       }
     };
     Iterable<Property> _map_1 = IterableExtensions.<Property, Property>map(_filter_1, _function_30);
-    final Procedure1<Property> _function_31 = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function_31 = new Consumer<Property>() {
+      public void accept(final Property p) {
         EObject _eContainer = p.eContainer();
         Property place = ((Property) _eContainer);
         String placeName = place.getName();
         TaskInferer.this.inferIsBackEnableExpression(placeName, p, behaviourClazz);
       }
     };
-    IterableExtensions.<Property>forEach(_map_1, _function_31);
+    _map_1.forEach(_function_31);
     Iterable<Property> _properties_3 = this._mMLExtensions.getProperties(taskDefinition, "shortcut");
-    final Procedure1<Property> _function_32 = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function_32 = new Consumer<Property>() {
+      public void accept(final Property p) {
         EList<JvmMember> _members = behaviourClazz.getMembers();
         String _name = p.getName();
         String _javaIdentifier = JavaHelper.toJavaIdentifier(_name);
@@ -1268,7 +1269,7 @@ public class TaskInferer extends BaseTaskInferer {
         TaskInferer.this._monetJvmTypesBuilder.<JvmOperation>operator_add(_members_2, _method_2);
       }
     };
-    IterableExtensions.<Property>forEach(_properties_3, _function_32);
+    _properties_3.forEach(_function_32);
   }
   
   private boolean inferCreateInstance(final Definition e, final JvmGenericType behaviourClazz) {

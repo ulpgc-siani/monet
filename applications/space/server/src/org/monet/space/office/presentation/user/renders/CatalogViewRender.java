@@ -1,6 +1,5 @@
 package org.monet.space.office.presentation.user.renders;
 
-import org.monet.metamodel.Definition;
 import org.monet.metamodel.SetDefinition.SetViewProperty;
 import org.monet.metamodel.internal.Ref;
 
@@ -38,14 +37,7 @@ public class CatalogViewRender extends SetViewRender {
 		if (selectList.size() == 0)
 			return;
 
-		for (Ref select : selectList) {
-			Definition definition = this.dictionary.getDefinition(select.getValue());
-			HashMap<String, Object> nodeMap = new HashMap<String, Object>();
-			nodeMap.put("code", definition.getCode());
-			nodeMap.put("label", definition.getLabelString());
-			nodeMap.put("description", definition.getDescription());
-			this.nodes.put(definition.getCode(), nodeMap);
-		}
+		for (Ref select : selectList) addNode(this.dictionary.getDefinition(select.getValue()));
 	}
 
 	@Override

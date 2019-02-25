@@ -8,6 +8,15 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="federation.shared" exported="" />
-    <orderEntry type="library" exported="" name="federation.client" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../applications/federation/client/accountservice/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../applications/federation/client/accountservice/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -1,6 +1,7 @@
 package org.monet.space.office.presentation.user.renders;
 
 import org.monet.metamodel.CollectionDefinition;
+import org.monet.metamodel.CollectionDefinitionBase;
 import org.monet.metamodel.Definition;
 import org.monet.metamodel.NodeViewProperty;
 import org.monet.metamodel.SetDefinition.SetViewProperty;
@@ -46,34 +47,18 @@ public class CollectionViewRender extends SetViewRender {
 	@Override
 	protected void fillNodesMap(SetViewProperty view) {
 		SelectProperty selectDefinition = view.getSelect();
-		ArrayList<Ref> addList = ((CollectionDefinition) this.definition).getAdd().getNode();
+		CollectionDefinition definition = (CollectionDefinition) this.definition;
+		ArrayList<Ref> addList = definition.getAdd().getNode();
 
-		this.nodes = new HashMap<String, HashMap<String, Object>>();
+		this.nodes = new HashMap<>();
 
 		if (selectDefinition != null && selectDefinition.getNode().size() > 0) {
 			ArrayList<Ref> selectList = selectDefinition.getNode();
-			for (Ref select : selectList) {
-				Definition definition = this.dictionary.getDefinition(select.getValue());
-				if (definition.isDisabled())
-					continue;
-				HashMap<String, Object> nodeMap = new HashMap<String, Object>();
-				nodeMap.put("code", definition.getCode());
-				nodeMap.put("label", definition.getLabelString());
-				nodeMap.put("description", definition.getDescription());
-				this.nodes.put(definition.getCode(), nodeMap);
-			}
+			for (Ref select : selectList) addNode(this.dictionary.getDefinition(select.getValue()));
+		} else if (definition.getToolbar() != null && definition.getToolbar().getAddOperation() != null) {
+			addNodes(definition.getToolbar().getAddOperation().getEnable());
 		} else {
-			for (Ref add : addList) {
-				for (Definition definition : this.dictionary.getAllImplementersOfNodeDefinition(add.getValue())) {
-					if (definition.isDisabled())
-						continue;
-					HashMap<String, Object> nodeMap = new HashMap<String, Object>();
-					nodeMap.put("code", definition.getCode());
-					nodeMap.put("label", definition.getLabelString());
-					nodeMap.put("description", definition.getDescription());
-					this.nodes.put(definition.getCode(), nodeMap);
-				}
-			}
+			addNodes(addList);
 		}
 	}
 

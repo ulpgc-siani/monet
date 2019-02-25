@@ -2,6 +2,7 @@ package org.monet.editor.dsl.jvmmodel.inferers;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
@@ -396,12 +397,12 @@ public class FieldInferer {
               }
             };
             Iterable<Property> _filter = IterableExtensions.<Property>filter(_properties, _function_1);
-            final Procedure1<Property> _function_2 = new Procedure1<Property>() {
-              public void apply(final Property px) {
+            final Consumer<Property> _function_2 = new Consumer<Property>() {
+              public void accept(final Property px) {
                 FieldInferer.this.infer(d, px, it);
               }
             };
-            IterableExtensions.<Property>forEach(_filter, _function_2);
+            _filter.forEach(_function_2);
           }
         };
         _accept.initializeLater(_function);
@@ -422,12 +423,12 @@ public class FieldInferer {
           }
         };
         Iterable<Property> _filter = IterableExtensions.<Property>filter(_properties, _function_1);
-        final Procedure1<Property> _function_2 = new Procedure1<Property>() {
-          public void apply(final Property px) {
+        final Consumer<Property> _function_2 = new Consumer<Property>() {
+          public void accept(final Property px) {
             FieldInferer.this.inferTypeClass(d, px, acceptor);
           }
         };
-        IterableExtensions.<Property>forEach(_filter, _function_2);
+        _filter.forEach(_function_2);
       }
     }
   }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationValue;
@@ -194,12 +195,12 @@ public class BehaviourInferer {
             }
           };
           Iterable<Property> _filter = IterableExtensions.<Property>filter(_properties, _function);
-          final Procedure1<Property> _function_1 = new Procedure1<Property>() {
-            public void apply(final Property p) {
+          final Consumer<Property> _function_1 = new Consumer<Property>() {
+            public void accept(final Property p) {
               BehaviourInferer.this.fieldInferer.inferTypeClass(e, p, acceptor);
             }
           };
-          IterableExtensions.<Property>forEach(_filter, _function_1);
+          _filter.forEach(_function_1);
         }
       }
     }
@@ -799,8 +800,8 @@ public class BehaviourInferer {
           boolean _equals_2 = Objects.equal(_definitionType_2, "datastore");
           if (_equals_2) {
             Iterable<Property> _properties_1 = BehaviourInferer.this._mMLExtensions.getProperties(e, "dimension");
-            final Procedure1<Property> _function_1 = new Procedure1<Property>() {
-              public void apply(final Property dimension) {
+            final Consumer<Property> _function_1 = new Consumer<Property>() {
+              public void accept(final Property dimension) {
                 final String dimensionTypeName = BehaviourInferer.this.classNameInferer.inferDimensionName(dimension);
                 final JvmTypeReference dimensionType = BehaviourInferer.this.references.getTypeForName(dimensionTypeName, e);
                 Code _code = dimension.getCode();
@@ -831,10 +832,10 @@ public class BehaviourInferer {
                 }
               }
             };
-            IterableExtensions.<Property>forEach(_properties_1, _function_1);
+            _properties_1.forEach(_function_1);
             Iterable<Property> _properties_2 = BehaviourInferer.this._mMLExtensions.getProperties(e, "cube");
-            final Procedure1<Property> _function_2 = new Procedure1<Property>() {
-              public void apply(final Property cube) {
+            final Consumer<Property> _function_2 = new Consumer<Property>() {
+              public void accept(final Property cube) {
                 final String cubeTypeName = BehaviourInferer.this.classNameInferer.inferCubeName(cube);
                 final JvmTypeReference cubeType = BehaviourInferer.this.references.getTypeForName(cubeTypeName, e);
                 Code _code = cube.getCode();
@@ -864,7 +865,7 @@ public class BehaviourInferer {
                 }
               }
             };
-            IterableExtensions.<Property>forEach(_properties_2, _function_2);
+            _properties_2.forEach(_function_2);
           } else {
             String _definitionType_3 = e.getDefinitionType();
             boolean _equals_3 = Objects.equal(_definitionType_3, "datastore-builder");
@@ -1974,12 +1975,12 @@ public class BehaviourInferer {
   
   private void inferIndexEntryAttributes(final Property property, final JvmGenericType behaviourClazz) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(property);
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property p) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property p) {
         BehaviourInferer.this.inferIndexEntryAttribute(p, behaviourClazz);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   private void inferIndexEntryAttribute(final Property property, final JvmGenericType behaviourClazz) {

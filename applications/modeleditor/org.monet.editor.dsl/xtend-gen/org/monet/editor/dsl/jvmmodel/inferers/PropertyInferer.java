@@ -5,6 +5,7 @@ import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.common.types.JvmConstructor;
@@ -587,13 +588,13 @@ public class PropertyInferer extends ModelInferer {
     }
     final QualifiedName fullyQualifiedName = this._iQualifiedNameProvider.getFullyQualifiedName(p);
     Iterable<Property> _properties = this._mMLExtensions.getProperties(p);
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property px) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property px) {
         Iterable<Property> _inferClass = PropertyInferer.this.inferClass(d, px, propertyItem, acceptor, prelinkingPhase);
         Iterables.<Property>addAll(childPropertiesWithClasses, _inferClass);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
     boolean _and = false;
     String _valueTypeQualifiedName = propertyItem.getValueTypeQualifiedName();
     boolean _notEquals = (!Objects.equal(_valueTypeQualifiedName, null));
@@ -704,8 +705,8 @@ public class PropertyInferer extends ModelInferer {
           }
           Iterable<Property> _properties = PropertyInferer.this._mMLExtensions.getProperties(p);
           Iterables.<Property>addAll(childPropertiesWithClasses, _properties);
-          final Procedure1<Property> _function_1 = new Procedure1<Property>() {
-            public void apply(final Property px) {
+          final Consumer<Property> _function_1 = new Consumer<Property>() {
+            public void accept(final Property px) {
               String _name = px.getName();
               boolean _notEquals = (!Objects.equal(_name, null));
               if (_notEquals) {
@@ -737,7 +738,7 @@ public class PropertyInferer extends ModelInferer {
               }
             }
           };
-          IterableExtensions.<Property>forEach(childPropertiesWithClasses, _function_1);
+          childPropertiesWithClasses.forEach(_function_1);
         }
       };
       _accept.initializeLater(_function_1);

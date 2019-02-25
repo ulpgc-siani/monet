@@ -2,6 +2,7 @@ package org.monet.editor.dsl.jvmmodel.inferers;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
 import org.eclipse.xtext.common.types.JvmGenericType;
@@ -12,7 +13,6 @@ import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.compiler.output.ITreeAppendable;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.monet.editor.dsl.generator.MonetJvmTypesBuilder;
 import org.monet.editor.dsl.helper.TypeRefCache;
@@ -53,8 +53,8 @@ public class DashboardInferer {
   
   public void inferIndicatorsFormula(final Definition definition, final IJvmDeclaredTypeAcceptor acceptor) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "indicator");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property indicator) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property indicator) {
         Property level = DashboardInferer.this._mMLExtensions.getProperty(indicator, "level");
         boolean _and = false;
         boolean _notEquals = (!Objects.equal(level, null));
@@ -71,7 +71,7 @@ public class DashboardInferer {
         }
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferIndicatorFormulaClass(final Definition definition, final String indicatorName, final Property property, final IJvmDeclaredTypeAcceptor acceptor) {
@@ -216,8 +216,8 @@ public class DashboardInferer {
   
   public void inferTaxonomiesClassifier(final Definition definition, final IJvmDeclaredTypeAcceptor acceptor) {
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "taxonomy");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property taxonomy) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property taxonomy) {
         boolean _hasProperty = DashboardInferer.this._mMLExtensions.hasProperty(taxonomy, "explicit");
         if (_hasProperty) {
           Property _property = DashboardInferer.this._mMLExtensions.getProperty(taxonomy, "explicit");
@@ -225,7 +225,7 @@ public class DashboardInferer {
         }
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
   }
   
   public void inferTaxonomyClassifierMethod(final Definition definition, final Property taxonomy, final Property property, final IJvmDeclaredTypeAcceptor acceptor) {

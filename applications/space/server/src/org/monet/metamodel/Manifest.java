@@ -7,7 +7,7 @@ import java.util.Date;
 public abstract class Manifest {
 	
 	public static String getVersion() {
-		return "3.3.2";
+		return "3.3.1";
 	}
 
 	public static Date getDate() {

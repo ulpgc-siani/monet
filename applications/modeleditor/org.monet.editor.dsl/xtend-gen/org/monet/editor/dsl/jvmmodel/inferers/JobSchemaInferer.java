@@ -2,6 +2,7 @@ package org.monet.editor.dsl.jvmmodel.inferers;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
@@ -71,12 +72,12 @@ public class JobSchemaInferer {
     String _inferSchemaBehaviourName = this.classNameInferer.inferSchemaBehaviourName(definition);
     final JvmGenericType schemaClass = this._monetJvmTypesBuilder.toClass(definition, _inferSchemaBehaviourName);
     Iterable<Property> _properties = this._mMLExtensions.getProperties(definition, "step");
-    final Procedure1<Property> _function = new Procedure1<Property>() {
-      public void apply(final Property ss) {
+    final Consumer<Property> _function = new Consumer<Property>() {
+      public void accept(final Property ss) {
         JobSchemaInferer.this.inferStepClass(ss, acceptor, schemaClass);
       }
     };
-    IterableExtensions.<Property>forEach(_properties, _function);
+    _properties.forEach(_function);
     IJvmDeclaredTypeAcceptor.IPostIndexingInitializing<JvmGenericType> _accept = acceptor.<JvmGenericType>accept(schemaClass);
     final Procedure1<JvmGenericType> _function_1 = new Procedure1<JvmGenericType>() {
       public void apply(final JvmGenericType it) {
