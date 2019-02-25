@@ -1,17 +1,16 @@
 package org.monet.space.office.presentation.user.renders;
 
-import org.monet.metamodel.ContainerDefinition;
+import org.monet.metamodel.*;
 import org.monet.metamodel.FormDefinitionBase.FormViewProperty;
 import org.monet.metamodel.IndexDefinitionBase.IndexViewProperty;
-import org.monet.metamodel.NodeDefinitionBase;
-import org.monet.metamodel.NodeViewProperty;
 import org.monet.metamodel.SetDefinition.SetViewProperty;
 import org.monet.metamodel.SetDefinitionBase.SetViewPropertyBase.ShowProperty;
 import org.monet.metamodel.internal.Ref;
-import org.monet.space.kernel.model.*;
-import org.monet.space.office.core.model.Language;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.configuration.Configuration;
+import org.monet.space.kernel.model.Dictionary;
+import org.monet.space.kernel.model.*;
+import org.monet.space.office.core.model.Language;
 import org.monet.templation.CanvasLogger;
 import org.monet.templation.Render;
 
@@ -265,4 +264,12 @@ public abstract class OfficeRender extends Render {
 		return true;
 	}
 
+	ArrayList<Ref> collectionDefinitionAdds(NodeDefinition definition) {
+		if (!(definition instanceof CollectionDefinition)) return new ArrayList<>();
+		CollectionDefinition collectionDefinition = (CollectionDefinition) definition;
+		ArrayList<Ref> node = collectionDefinition.getAdd().getNode();
+		if (collectionDefinition.getToolbar() != null && collectionDefinition.getToolbar().getAddOperation() != null)
+			node = collectionDefinition.getToolbar().getAddOperation().getEnable();
+		return node;
+	}
 }

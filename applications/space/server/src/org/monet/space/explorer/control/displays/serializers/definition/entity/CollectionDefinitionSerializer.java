@@ -6,6 +6,8 @@ import org.monet.metamodel.internal.Ref;
 import org.monet.space.explorer.control.displays.serializers.definition.RefSerializer;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CollectionDefinitionSerializer extends NodeDefinitionSerializer<CollectionDefinition> {
 
@@ -35,13 +37,21 @@ public class CollectionDefinitionSerializer extends NodeDefinitionSerializer<Col
 			return null;
 
 		JsonArray node = new JsonArray();
-		for (Ref addNode : definition.getAdd().getNode())
+		List<Ref> addList = collectionDefinitionAdds(definition);
+		for (Ref addNode : addList)
 			node.add(jsonSerializationContext.serialize(addNode, addNode.getClass()));
 
 		JsonObject addDefinition = new JsonObject();
 		addDefinition.add("node", toListObject(node));
 
 		return addDefinition;
+	}
+
+	private List<Ref> collectionDefinitionAdds(CollectionDefinition definition) {
+		ArrayList<Ref> node = definition.getAdd().getNode();
+		if (definition.getToolbar() != null && definition.getToolbar().getAddOperation() != null)
+			node = definition.getToolbar().getAddOperation().getEnable();
+		return node;
 	}
 
 }

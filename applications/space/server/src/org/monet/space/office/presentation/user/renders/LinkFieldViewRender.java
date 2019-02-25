@@ -3,12 +3,12 @@ package org.monet.space.office.presentation.user.renders;
 import org.monet.metamodel.*;
 import org.monet.metamodel.LinkFieldProperty.SourceProperty.FilterProperty.OperatorEnumeration;
 import org.monet.metamodel.internal.Ref;
-import org.monet.space.kernel.model.*;
+import org.monet.space.kernel.model.Attribute;
+import org.monet.space.kernel.model.Indicator;
+import org.monet.space.kernel.model.Node;
+import org.monet.space.kernel.model.SerializerData;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 import static org.monet.space.kernel.model.DataRequest.OPERATOR_SEPARATOR;
 
@@ -67,17 +67,16 @@ public class LinkFieldViewRender extends FieldViewRender {
 
 			pos = 0;
 			HashMap<String, Object> localMap = new HashMap<String, Object>();
-			if (((CollectionDefinition) sourceDefinition).getAdd() != null) {
-				for (Ref add : ((CollectionDefinition) sourceDefinition).getAdd().getNode()) {
-					for (Definition definition : this.dictionary.getAllImplementersOfNodeDefinition(add.getValue())) {
-						if (definition.isDisabled())
-							continue;
-						String codeNode = definition.getCode();
-						localMap.put("comma", (pos > 0) ? "comma" : "");
-						localMap.put("nodeType", codeNode);
-						nodeTypes += block("field.link$concreteDeclarations$nodeType", localMap);
-						pos++;
-					}
+			List<Ref> addList = collectionDefinitionAdds(sourceDefinition);
+			for (Ref add : addList) {
+				for (Definition definition : this.dictionary.getAllImplementersOfNodeDefinition(add.getValue())) {
+					if (definition.isDisabled())
+						continue;
+					String codeNode = definition.getCode();
+					localMap.put("comma", (pos > 0) ? "comma" : "");
+					localMap.put("nodeType", codeNode);
+					nodeTypes += block("field.link$concreteDeclarations$nodeType", localMap);
+					pos++;
 				}
 			}
 		}

@@ -22,7 +22,7 @@ public class CollectionDefinitionRender extends NodeDefinitionRender {
 
 	protected void initCollection() {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		ArrayList<Ref> addList = this.definition.getAdd().getNode();
+		ArrayList<Ref> addList = collectionDefinitionAdds(this.definition);
 		int pos = 0;
 		String nodes = "";
 

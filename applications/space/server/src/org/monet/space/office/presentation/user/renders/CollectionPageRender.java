@@ -25,7 +25,7 @@ public class CollectionPageRender extends NodePageRender {
 		super.initControlInfo();
 
 		if (allowEdition(node)) {
-			for (Ref add : definition.getAdd().getNode()) {
+			for (Ref add : collectionDefinitionAdds(this.definition)) {
 				String nameNode = add.getValue();
 				if (pos != 0) addList += ";";
 				for (Definition addDefinition : this.dictionary.getAllImplementersOfNodeDefinition(nameNode)) {

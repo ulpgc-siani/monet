@@ -1,7 +1,6 @@
 package org.monet.space.office.presentation.user.renders;
 
 import org.monet.metamodel.CollectionDefinition;
-import org.monet.metamodel.CollectionDefinitionBase;
 import org.monet.metamodel.Definition;
 import org.monet.metamodel.NodeViewProperty;
 import org.monet.metamodel.SetDefinition.SetViewProperty;
@@ -25,12 +24,11 @@ public class CollectionViewRender extends SetViewRender {
 		ArrayList<String> result = new ArrayList<String>();
 
 		if (selectList.size() <= 0) {
-			ArrayList<Ref> addList = ((CollectionDefinition) this.definition).getAdd().getNode();
+			ArrayList<Ref> addList = collectionDefinitionAdds(this.definition);
 
 			for (Ref add : addList) {
 				for (Definition addDefinition : this.dictionary.getAllImplementersOfNodeDefinition(add.getValue())) {
-					if (addDefinition.isDisabled())
-						continue;
+					if (addDefinition.isDisabled()) continue;
 					result.add(addDefinition.getCode());
 				}
 			}
