@@ -547,7 +547,7 @@ public abstract class SetViewRender extends NodeViewRender {
 				refList = view.getSelect().getNode();
 		else if (this.definition instanceof CollectionDefinition)
 			refList = ((CollectionDefinition)this.definition).getAdd().getNode();
-			
+
 		Map<String, Map<String, Object>> result = new HashMap<>();
 		for (Ref select : refList) {
 			Definition definition = this.dictionary.getDefinition(select.getValue());
