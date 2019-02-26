@@ -543,7 +543,7 @@ public abstract class SetViewRender extends NodeViewRender {
 		List<Ref> refList = new ArrayList<>();
 
 		if (view.getSelect() != null) {
-			if (view.getSelect().getNode().size() /> 0)
+			if (view.getSelect().getNode().size() > 0)
 				refList = view.getSelect().getNode();
 		}
 		else if (this.definition instanceof CollectionDefinition)
