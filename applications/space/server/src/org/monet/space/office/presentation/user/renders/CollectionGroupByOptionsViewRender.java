@@ -19,9 +19,6 @@ public class CollectionGroupByOptionsViewRender extends CollectionViewRender {
 	protected String initView(String codeView) {
 		SetViewProperty view = (SetViewProperty) this.definition.getNodeView(codeView);
 		String groupByCode = this.getParameterAsString("groupby");
-
-		this.fillNodesMap(view);
-
 		return this.initGroupByOptions(groupByCode, view);
 	}
 

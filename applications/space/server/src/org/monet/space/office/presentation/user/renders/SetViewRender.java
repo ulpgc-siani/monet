@@ -12,13 +12,10 @@ import org.monet.space.kernel.model.Node;
 import org.monet.space.mobile.model.Language;
 import org.monet.space.office.configuration.Configuration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public abstract class SetViewRender extends NodeViewRender {
 	protected SetDefinition definition;
-	protected HashMap<String, HashMap<String, Object>> nodes;
 
 	private static enum RegionEnumeration {
 		TITLE, PICTURE, ICON, HIGHLIGHT, LINE, LINE_BELOW, FOOTER;
@@ -171,6 +168,7 @@ public abstract class SetViewRender extends NodeViewRender {
 	}
 
 	private String initGroupByListTypeItem(HashMap<String, Object> viewMap, SetViewProperty viewDefinition) {
+		Map<String, Map<String, Object>> nodesMap = nodesMap(viewDefinition);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String groupByListOptions = "";
 		int position;
@@ -178,10 +176,10 @@ public abstract class SetViewRender extends NodeViewRender {
 		position = 0;
 		groupByListOptions = "";
 
-		if (this.nodes.size() <= 1)
+		if (nodesMap.size() <= 1)
 			return "";
 
-		for (HashMap<String, Object> nodeMap : this.nodes.values()) {
+		for (Map<String, Object> nodeMap : nodesMap.values()) {
 			map.put("position", String.valueOf(position));
 			map.put("code", "code");
 			map.put("optionCode", nodeMap.get("code"));
@@ -212,7 +210,7 @@ public abstract class SetViewRender extends NodeViewRender {
 		Language language = Language.getInstance();
 
 		if (viewDefinition.getAnalyze() != null && viewDefinition.getAnalyze().getDimension() != null) {
-			ArrayList<String> nodes = new ArrayList<String>(this.nodes.keySet());
+			ArrayList<String> nodes = new ArrayList<>(nodesMap(viewDefinition).keySet());
 
 			for (Ref group : viewDefinition.getAnalyze().getDimension().getAttribute()) {
 				String nameAttribute = group.getValue();
@@ -247,7 +245,7 @@ public abstract class SetViewRender extends NodeViewRender {
 		AttributeProperty attributeDefinition = indexDefinition.getAttribute(groupByCode);
 		List<String> optionsList;
 
-		optionsList = this.node.getGroupOptions(attributeDefinition.getCode(), new ArrayList<>(this.nodes.keySet()), viewDefinition.getFilterList());
+		optionsList = this.node.getGroupOptions(attributeDefinition.getCode(), new ArrayList<>(nodesMap(viewDefinition).keySet()), viewDefinition.getFilterList());
 		int position = 0;
 		String groupByListOptions = "";
         boolean standAlone = this.getParameter("standalone")!=null?(Boolean)this.getParameter("standalone"):false;
@@ -541,25 +539,45 @@ public abstract class SetViewRender extends NodeViewRender {
 
 	protected abstract ArrayList<String> getViewSelects(SetViewProperty view);
 
-	protected abstract void fillNodesMap(SetViewProperty view);
+	protected Map<String, Map<String, Object>> nodesMap(SetViewProperty view) {
+		if (view.getSelect() == null)
+			return Collections.emptyMap();
+
+		ArrayList<Ref> selectList = view.getSelect().getNode();
+
+		if (selectList.size() == 0)
+			return Collections.emptyMap();
+
+		Map<String, Map<String, Object>> result = new HashMap<>();
+		for (Ref select : selectList) {
+			Definition definition = this.dictionary.getDefinition(select.getValue());
+			result.put(definition.getCode(), nodeMapOf(definition));
+		}
+
+		return result;
+	}
 
 	protected abstract String initMagnets(HashMap<String, Object> viewMap, SetViewProperty view);
 
 	protected abstract String initAddList(HashMap<String, Object> viewMap, SetViewProperty view);
 
-	void addNodes(ArrayList<Ref> refList) {
-		for (Ref enable : refList)
-			for (Definition child : this.dictionary.getAllImplementersOfNodeDefinition(enable.getValue()))
-				addNode(child);
+	Map<String, Map<String, Object>> nodeMapOf(ArrayList<Ref> refList) {
+		Map<String, Map<String, Object>> result = new HashMap<>();
+		for (Ref enable : refList) {
+			for (Definition child : this.dictionary.getAllImplementersOfNodeDefinition(enable.getValue())) {
+				result.put(child.getCode(), nodeMapOf(definition));
+			}
+		}
+		return result;
 	}
 
-	void addNode(Definition definition) {
-		if (definition.isDisabled()) return;
+	HashMap<String, Object> nodeMapOf(Definition definition) {
+		if (definition.isDisabled()) return null;
 		HashMap<String, Object> nodeMap = new HashMap<String, Object>();
 		nodeMap.put("code", definition.getCode());
 		nodeMap.put("label", definition.getLabelString());
 		nodeMap.put("description", definition.getDescription());
-		this.nodes.put(definition.getCode(), nodeMap);
+		return nodeMap;
 	}
 
 }

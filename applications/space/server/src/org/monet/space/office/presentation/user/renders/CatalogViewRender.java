@@ -25,22 +25,6 @@ public class CatalogViewRender extends SetViewRender {
 	}
 
 	@Override
-	protected void fillNodesMap(SetViewProperty viewDefinition) {
-
-		this.nodes = new HashMap<>();
-
-		if (viewDefinition.getSelect() == null)
-			return;
-
-		ArrayList<Ref> selectList = viewDefinition.getSelect().getNode();
-
-		if (selectList.size() == 0)
-			return;
-
-		for (Ref select : selectList) addNode(this.dictionary.getDefinition(select.getValue()));
-	}
-
-	@Override
 	protected String initAddList(HashMap<String, Object> viewMap, SetViewProperty viewDefinition) {
 		return "";
 	}
@@ -70,7 +54,6 @@ public class CatalogViewRender extends SetViewRender {
 			return block("view.undefined", map);
 		}
 
-		this.fillNodesMap(view);
 		this.initMap(map, view);
 		map.put("clec", "clec");
 

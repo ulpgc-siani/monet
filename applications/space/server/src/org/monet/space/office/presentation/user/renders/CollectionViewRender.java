@@ -11,6 +11,7 @@ import org.monet.space.kernel.model.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CollectionViewRender extends SetViewRender {
 
@@ -42,22 +43,24 @@ public class CollectionViewRender extends SetViewRender {
 		return result;
 	}
 
-	@Override
-	protected void fillNodesMap(SetViewProperty view) {
+	protected Map<String, Map<String, Object>> toolbarNodesMap(SetViewProperty view) {
 		SelectProperty selectDefinition = view.getSelect();
 		CollectionDefinition definition = (CollectionDefinition) this.definition;
 		ArrayList<Ref> addList = definition.getAdd().getNode();
 
-		this.nodes = new HashMap<>();
-
 		if (selectDefinition != null && selectDefinition.getNode().size() > 0) {
 			ArrayList<Ref> selectList = selectDefinition.getNode();
-			for (Ref select : selectList) addNode(this.dictionary.getDefinition(select.getValue()));
+			Map<String, Map<String, Object>> result = new HashMap<>();
+			for (Ref select : selectList) {
+				Definition child = this.dictionary.getDefinition(select.getValue());
+				result.put(child.getCode(), nodeMapOf(child));
+			}
+			return result;
 		} else if (definition.getToolbar() != null && definition.getToolbar().getAddOperation() != null) {
-			addNodes(definition.getToolbar().getAddOperation().getEnable());
-		} else {
-			addNodes(addList);
+			return nodeMapOf(definition.getToolbar().getAddOperation().getEnable());
 		}
+
+		return nodeMapOf(addList);
 	}
 
 	@Override
@@ -69,7 +72,7 @@ public class CollectionViewRender extends SetViewRender {
 		if (!allowEdition(node))
 			return operationsValue;
 
-		for (HashMap<String, Object> nodeMap : this.nodes.values()) {
+		for (Map<String, Object> nodeMap : toolbarNodesMap((SetViewProperty) viewDefinition).values()) {
 			HashMap<String, Object> localMap = new HashMap<String, Object>();
 
 			localMap.put("code", nodeMap.get("code"));
@@ -118,7 +121,7 @@ public class CollectionViewRender extends SetViewRender {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String addList = "";
 
-		for (HashMap<String, Object> nodeMap : this.nodes.values()) {
+		for (Map<String, Object> nodeMap : toolbarNodesMap((SetViewProperty) viewDefinition).values()) {
 			map.put("code", nodeMap.get("code"));
 			map.put("label", LibraryString.cleanSpecialChars((String) nodeMap.get("label")));
 			map.put("description", LibraryString.cleanSpecialChars((String) nodeMap.get("description")));
@@ -148,7 +151,7 @@ public class CollectionViewRender extends SetViewRender {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String magnets = "";
 
-		for (String codeNode : this.nodes.keySet()) {
+		for (String codeNode : nodesMap(view).keySet()) {
 			map.put("code", codeNode);
 			magnets += block("magnet", map);
 		}
@@ -176,7 +179,6 @@ public class CollectionViewRender extends SetViewRender {
 			return block("view.undefined", map);
 		}
 
-		this.fillNodesMap(view);
 		this.initMap(map, view);
 		map.put("clec", "clec");
 
