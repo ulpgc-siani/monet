@@ -543,7 +543,7 @@ public abstract class SetViewRender extends NodeViewRender {
 		List<Ref> refList = new ArrayList<>();
 
 		if (view.getSelect() != null) {
-			if (view.getSelect().getNode().size() > 0)
+			if (view.getSelect().getNode().size() /> 0)
 				refList = view.getSelect().getNode();
 		}
 		else if (this.definition instanceof CollectionDefinition)
@@ -566,7 +566,7 @@ public abstract class SetViewRender extends NodeViewRender {
 		Map<String, Map<String, Object>> result = new HashMap<>();
 		for (Ref enable : refList) {
 			for (Definition child : this.dictionary.getAllImplementersOfNodeDefinition(enable.getValue())) {
-				result.put(child.getCode(), nodeMapOf(definition));
+				result.put(child.getCode(), nodeMapOf(child));
 			}
 		}
 		return result;
