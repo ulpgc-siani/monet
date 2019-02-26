@@ -540,16 +540,16 @@ public abstract class SetViewRender extends NodeViewRender {
 	protected abstract ArrayList<String> getViewSelects(SetViewProperty view);
 
 	protected Map<String, Map<String, Object>> nodesMap(SetViewProperty view) {
-		if (view.getSelect() == null)
-			return Collections.emptyMap();
+		List<Ref> refList = new ArrayList<>();
 
-		ArrayList<Ref> selectList = view.getSelect().getNode();
-
-		if (selectList.size() == 0)
-			return Collections.emptyMap();
-
+		if (view.getSelect() != null)
+			if (view.getSelect().getNode().size() > 0)
+				refList = view.getSelect().getNode();
+		else if (this.definition instanceof CollectionDefinition)
+			refList = ((CollectionDefinition)this.definition).getAdd().getNode();
+			
 		Map<String, Map<String, Object>> result = new HashMap<>();
-		for (Ref select : selectList) {
+		for (Ref select : refList) {
 			Definition definition = this.dictionary.getDefinition(select.getValue());
 			result.put(definition.getCode(), nodeMapOf(definition));
 		}

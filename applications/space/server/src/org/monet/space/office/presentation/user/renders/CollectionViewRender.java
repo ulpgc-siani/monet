@@ -121,7 +121,7 @@ public class CollectionViewRender extends SetViewRender {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String addList = "";
 
-		for (Map<String, Object> nodeMap : toolbarNodesMap((SetViewProperty) viewDefinition).values()) {
+		for (Map<String, Object> nodeMap : toolbarNodesMap(viewDefinition).values()) {
 			map.put("code", nodeMap.get("code"));
 			map.put("label", LibraryString.cleanSpecialChars((String) nodeMap.get("label")));
 			map.put("description", LibraryString.cleanSpecialChars((String) nodeMap.get("description")));
