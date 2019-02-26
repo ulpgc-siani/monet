@@ -542,9 +542,10 @@ public abstract class SetViewRender extends NodeViewRender {
 	protected Map<String, Map<String, Object>> nodesMap(SetViewProperty view) {
 		List<Ref> refList = new ArrayList<>();
 
-		if (view.getSelect() != null)
+		if (view.getSelect() != null) {
 			if (view.getSelect().getNode().size() > 0)
 				refList = view.getSelect().getNode();
+		}
 		else if (this.definition instanceof CollectionDefinition)
 			refList = ((CollectionDefinition)this.definition).getAdd().getNode();
 
