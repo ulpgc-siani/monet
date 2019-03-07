@@ -161,6 +161,10 @@ public abstract class TaskImpl extends BPIObject implements Task, BehaviorTask {
     return false;
   }
 
+  public boolean isAborted() {
+    return false;
+  }
+
   public MonetLink toMonetLink() {
     return null;
   }

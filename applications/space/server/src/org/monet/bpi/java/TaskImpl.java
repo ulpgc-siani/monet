@@ -197,6 +197,10 @@ public abstract class TaskImpl implements Task, BehaviorTask {
 		return this.task.isFinished();
 	}
 
+	public boolean isAborted() {
+		return this.task.isFinished();
+	}
+
 	@Override
 	public void onCreate() {
 	}

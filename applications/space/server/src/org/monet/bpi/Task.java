@@ -48,6 +48,8 @@ public interface Task {
 
 	public boolean isFinished();
 
+	public boolean isAborted();
+
 	public MonetLink toMonetLink();
 
 }
