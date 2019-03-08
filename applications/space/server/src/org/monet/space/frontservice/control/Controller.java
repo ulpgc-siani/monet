@@ -118,7 +118,7 @@ public class Controller extends javax.servlet.http.HttpServlet implements javax.
 					return false;
 				}
 
-				if (timestamp == null) {
+				if (timestamp == null || timestamp.isEmpty()) {
 					response.setStatus(403);
 					response.getWriter().println("No timestamp on request");
 					return false;
