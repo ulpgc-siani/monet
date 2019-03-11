@@ -22,6 +22,10 @@ public class DelivererServiceImpl extends DelivererService {
   }
 
   @Override
+  public void deliverJson(URI url, Map<String, Object> params) throws Exception {
+  }
+
+  @Override
   public void deliverToMail(URI from, URI to, String subject, String body, NodeDocument document) {
   }
 

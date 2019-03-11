@@ -1,5 +1,6 @@
 package org.monet.bpi.java;
 
+import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
@@ -57,6 +58,14 @@ public class DelivererServiceImpl extends DelivererService {
 		} finally {
 			StreamHelper.close(documentContent);
 		}
+	}
+
+	@Override
+	public void deliverJson(URI url, Map<String, Object> params) throws Exception {
+		HashMap<String, String> parameters = new HashMap<>();
+		Gson gson = new Gson();
+		for (Map.Entry<String, Object> entry : params.entrySet()) parameters.put(entry.getKey(), gson.toJson(entry.getValue()));
+		deliver(url, parameters);
 	}
 
 	@Override
