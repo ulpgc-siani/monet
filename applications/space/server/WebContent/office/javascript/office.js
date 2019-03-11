@@ -28154,7 +28154,22 @@ CGViewTask.prototype.refresh = function () {
 
 CGViewTask.prototype.atTaskTabFocus = function (DOMTask, DOMTab, DOMView) {
   ViewerSidebar.hide();
+  var DOMTaskTabList = Ext.get(DOMTab).select(".task");
+  if (DOMTaskTabList.elements.length > 0) {
+    var DOMTaskTab = DOMTaskTabList.elements[0];
+    DOMTaskTab.style.display = "block";
+    DOMTaskTab.style.height = "calc(100% - 63px)";
+    this.resizeNodes();
+  }
   if (DOMTask != null) EventManager.notify(EventManager.FOCUS_TASK_VIEW, {"Task": this.Target, "DOMTask": DOMTask});
+};
+
+CGViewTask.prototype.resizeNodes = function() {
+  var nodes = Ext.get(this.DOMLayer).select(".node").elements;
+  for (var i=0; i<nodes.length; i++) {
+    nodes[i].style.height = "100%";
+    nodes[i].style.display = "block";
+  }
 };
 
 CGTeam = function () {
