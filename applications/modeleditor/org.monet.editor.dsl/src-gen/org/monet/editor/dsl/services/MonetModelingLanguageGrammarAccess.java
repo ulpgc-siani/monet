@@ -573,12 +573,13 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		private final Keyword cRuleOperationKeyword_180 = (Keyword)cAlternatives.eContents().get(180);
 		private final Keyword cFieldSerialKeyword_181 = (Keyword)cAlternatives.eContents().get(181);
 		private final Keyword cLocationsKeyword_182 = (Keyword)cAlternatives.eContents().get(182);
-		private final Keyword cStepKeyword_183 = (Keyword)cAlternatives.eContents().get(183);
-		private final Keyword cRequirePartnerContextKeyword_184 = (Keyword)cAlternatives.eContents().get(184);
-		private final Keyword cDelegationKeyword_185 = (Keyword)cAlternatives.eContents().get(185);
-		private final Keyword cCategoryKeyword_186 = (Keyword)cAlternatives.eContents().get(186);
-		private final Keyword cPropertiesKeyword_187 = (Keyword)cAlternatives.eContents().get(187);
-		private final Keyword cCustomerKeyword_188 = (Keyword)cAlternatives.eContents().get(188);
+		private final Keyword cLocationKeyword_183 = (Keyword)cAlternatives.eContents().get(183);
+		private final Keyword cStepKeyword_184 = (Keyword)cAlternatives.eContents().get(184);
+		private final Keyword cRequirePartnerContextKeyword_185 = (Keyword)cAlternatives.eContents().get(185);
+		private final Keyword cDelegationKeyword_186 = (Keyword)cAlternatives.eContents().get(186);
+		private final Keyword cCategoryKeyword_187 = (Keyword)cAlternatives.eContents().get(187);
+		private final Keyword cPropertiesKeyword_188 = (Keyword)cAlternatives.eContents().get(188);
+		private final Keyword cCustomerKeyword_189 = (Keyword)cAlternatives.eContents().get(189);
 		
 		//PropertyTypes:
 		//	"parent" | "field-picture" | "select" | "allow-locations" | "aborted" | "allow-add" | "is-component" | "taxonomy" |
@@ -604,8 +605,8 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		//	"is-oust" | "shortcut" | "provider" | "sorting" | "field:node" | "revisions" | "dimension" | "summary" |
 		//	"tab:tasktray" | "center" | "is-background" | "length" | "is-profile-photo" | "field-check" | "disable-users" |
 		//	"is-collapsible" | "field-file" | "field-select" | "serial" | "is-manual" | "response" | "publish" | "olap" |
-		//	"rule:link" | "rule:operation" | "field-serial" | "locations" | "step" | "require-partner-context" | "delegation" |
-		//	"category" | "properties" | "customer";
+		//	"rule:link" | "rule:operation" | "field-serial" | "locations" | "location" | "step" | "require-partner-context" |
+		//	"delegation" | "category" | "properties" | "customer";
 		public ParserRule getRule() { return rule; }
 
 		//"parent" | "field-picture" | "select" | "allow-locations" | "aborted" | "allow-add" | "is-component" | "taxonomy" |
@@ -631,8 +632,8 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		//"is-oust" | "shortcut" | "provider" | "sorting" | "field:node" | "revisions" | "dimension" | "summary" | "tab:tasktray"
 		//| "center" | "is-background" | "length" | "is-profile-photo" | "field-check" | "disable-users" | "is-collapsible" |
 		//"field-file" | "field-select" | "serial" | "is-manual" | "response" | "publish" | "olap" | "rule:link" |
-		//"rule:operation" | "field-serial" | "locations" | "step" | "require-partner-context" | "delegation" | "category" |
-		//"properties" | "customer"
+		//"rule:operation" | "field-serial" | "locations" | "location" | "step" | "require-partner-context" | "delegation" |
+		//"category" | "properties" | "customer"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"parent"
@@ -1184,23 +1185,26 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		//"locations"
 		public Keyword getLocationsKeyword_182() { return cLocationsKeyword_182; }
 
+		//"location"
+		public Keyword getLocationKeyword_183() { return cLocationKeyword_183; }
+
 		//"step"
-		public Keyword getStepKeyword_183() { return cStepKeyword_183; }
+		public Keyword getStepKeyword_184() { return cStepKeyword_184; }
 
 		//"require-partner-context"
-		public Keyword getRequirePartnerContextKeyword_184() { return cRequirePartnerContextKeyword_184; }
+		public Keyword getRequirePartnerContextKeyword_185() { return cRequirePartnerContextKeyword_185; }
 
 		//"delegation"
-		public Keyword getDelegationKeyword_185() { return cDelegationKeyword_185; }
+		public Keyword getDelegationKeyword_186() { return cDelegationKeyword_186; }
 
 		//"category"
-		public Keyword getCategoryKeyword_186() { return cCategoryKeyword_186; }
+		public Keyword getCategoryKeyword_187() { return cCategoryKeyword_187; }
 
 		//"properties"
-		public Keyword getPropertiesKeyword_187() { return cPropertiesKeyword_187; }
+		public Keyword getPropertiesKeyword_188() { return cPropertiesKeyword_188; }
 
 		//"customer"
-		public Keyword getCustomerKeyword_188() { return cCustomerKeyword_188; }
+		public Keyword getCustomerKeyword_189() { return cCustomerKeyword_189; }
 	}
 
 	public class MethodTypesElements extends AbstractParserRuleElementFinder {
@@ -3286,8 +3290,8 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 	//	"is-oust" | "shortcut" | "provider" | "sorting" | "field:node" | "revisions" | "dimension" | "summary" |
 	//	"tab:tasktray" | "center" | "is-background" | "length" | "is-profile-photo" | "field-check" | "disable-users" |
 	//	"is-collapsible" | "field-file" | "field-select" | "serial" | "is-manual" | "response" | "publish" | "olap" |
-	//	"rule:link" | "rule:operation" | "field-serial" | "locations" | "step" | "require-partner-context" | "delegation" |
-	//	"category" | "properties" | "customer";
+	//	"rule:link" | "rule:operation" | "field-serial" | "locations" | "location" | "step" | "require-partner-context" |
+	//	"delegation" | "category" | "properties" | "customer";
 	public PropertyTypesElements getPropertyTypesAccess() {
 		return pPropertyTypes;
 	}

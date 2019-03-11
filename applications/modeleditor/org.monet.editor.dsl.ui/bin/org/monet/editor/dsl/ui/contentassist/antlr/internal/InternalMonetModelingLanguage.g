@@ -4933,51 +4933,59 @@ rule__PropertyTypes__Alternatives
 )
 
     |(
-{ before(grammarAccess.getPropertyTypesAccess().getStepKeyword_183()); }
+{ before(grammarAccess.getPropertyTypesAccess().getLocationKeyword_183()); }
+
+	'location' 
+
+{ after(grammarAccess.getPropertyTypesAccess().getLocationKeyword_183()); }
+)
+
+    |(
+{ before(grammarAccess.getPropertyTypesAccess().getStepKeyword_184()); }
 
 	'step' 
 
-{ after(grammarAccess.getPropertyTypesAccess().getStepKeyword_183()); }
+{ after(grammarAccess.getPropertyTypesAccess().getStepKeyword_184()); }
 )
 
     |(
-{ before(grammarAccess.getPropertyTypesAccess().getRequirePartnerContextKeyword_184()); }
+{ before(grammarAccess.getPropertyTypesAccess().getRequirePartnerContextKeyword_185()); }
 
 	'require-partner-context' 
 
-{ after(grammarAccess.getPropertyTypesAccess().getRequirePartnerContextKeyword_184()); }
+{ after(grammarAccess.getPropertyTypesAccess().getRequirePartnerContextKeyword_185()); }
 )
 
     |(
-{ before(grammarAccess.getPropertyTypesAccess().getDelegationKeyword_185()); }
+{ before(grammarAccess.getPropertyTypesAccess().getDelegationKeyword_186()); }
 
 	'delegation' 
 
-{ after(grammarAccess.getPropertyTypesAccess().getDelegationKeyword_185()); }
+{ after(grammarAccess.getPropertyTypesAccess().getDelegationKeyword_186()); }
 )
 
     |(
-{ before(grammarAccess.getPropertyTypesAccess().getCategoryKeyword_186()); }
+{ before(grammarAccess.getPropertyTypesAccess().getCategoryKeyword_187()); }
 
 	'category' 
 
-{ after(grammarAccess.getPropertyTypesAccess().getCategoryKeyword_186()); }
+{ after(grammarAccess.getPropertyTypesAccess().getCategoryKeyword_187()); }
 )
 
     |(
-{ before(grammarAccess.getPropertyTypesAccess().getPropertiesKeyword_187()); }
+{ before(grammarAccess.getPropertyTypesAccess().getPropertiesKeyword_188()); }
 
 	'properties' 
 
-{ after(grammarAccess.getPropertyTypesAccess().getPropertiesKeyword_187()); }
+{ after(grammarAccess.getPropertyTypesAccess().getPropertiesKeyword_188()); }
 )
 
     |(
-{ before(grammarAccess.getPropertyTypesAccess().getCustomerKeyword_188()); }
+{ before(grammarAccess.getPropertyTypesAccess().getCustomerKeyword_189()); }
 
 	'customer' 
 
-{ after(grammarAccess.getPropertyTypesAccess().getCustomerKeyword_188()); }
+{ after(grammarAccess.getPropertyTypesAccess().getCustomerKeyword_189()); }
 )
 
 ;

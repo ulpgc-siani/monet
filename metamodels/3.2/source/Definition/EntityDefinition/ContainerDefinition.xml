@@ -60,6 +60,9 @@
 			<property token="notes">
 				<description>Esta propiedad se utiliza si se desea mostrar las notas asociadas</description>
 			</property>			
+			<property token="location">
+				<description>En caso de que el contenedor sea georeferenciado, esta propiedad se utiliza mostrar la posición geográfica del contenedor</description>
+			</property>
 		</property>
 	</property>	
 	

@@ -2039,45 +2039,52 @@ rulePropertyTypes returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     |
+	kw='location' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getLocationKeyword_183()); 
+    }
+
+    |
 	kw='step' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getStepKeyword_183()); 
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getStepKeyword_184()); 
     }
 
     |
 	kw='require-partner-context' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getRequirePartnerContextKeyword_184()); 
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getRequirePartnerContextKeyword_185()); 
     }
 
     |
 	kw='delegation' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getDelegationKeyword_185()); 
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getDelegationKeyword_186()); 
     }
 
     |
 	kw='category' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getCategoryKeyword_186()); 
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getCategoryKeyword_187()); 
     }
 
     |
 	kw='properties' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getPropertiesKeyword_187()); 
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getPropertiesKeyword_188()); 
     }
 
     |
 	kw='customer' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getCustomerKeyword_188()); 
+        newLeafNode(kw, grammarAccess.getPropertyTypesAccess().getCustomerKeyword_189()); 
     }
 )
     ;
