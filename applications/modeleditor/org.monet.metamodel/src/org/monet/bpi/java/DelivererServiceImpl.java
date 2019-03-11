@@ -1,6 +1,7 @@
 package org.monet.bpi.java;
 
 import java.net.URI;
+import java.util.Map;
 
 import org.monet.bpi.DelivererService;
 import org.monet.bpi.NodeDocument;
@@ -14,6 +15,10 @@ public class DelivererServiceImpl extends DelivererService {
 
   @Override
   public void deliver(URI url, NodeDocument document) throws Exception {
+  }
+
+  @Override
+  public void deliver(URI url, Map<String, String> params) throws Exception {
   }
 
   @Override
