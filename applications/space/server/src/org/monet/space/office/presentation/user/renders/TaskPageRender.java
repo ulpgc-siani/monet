@@ -206,7 +206,7 @@ public class TaskPageRender extends OfficeRender {
 					if (viewDefinition.isDefault()) defaultTabCode = viewDefinition.getCode();
 					tabsList += this.initTab(label, viewDefinition.getCode());
 				} else if (showDefinition.getOrders() != null && count > 0) {
-					tabsList += this.initTab("", "orders");
+					tabsList += this.initTab(label, "orders");
 				}
 			}
 		}
