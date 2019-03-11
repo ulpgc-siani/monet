@@ -20,3 +20,4 @@
 /.TaskInferer.java._trace
 /.TaskProviderExternalInferer.java._trace
 /.BehaviourInferer.java._trace
+*.java
