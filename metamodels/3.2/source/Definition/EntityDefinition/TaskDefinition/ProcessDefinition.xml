@@ -42,6 +42,9 @@
 			<attribute token="target" type="key" link="NodeViewProperty">
 				<description>Mostrar el nodo en el que se registra el histórico de ejecución de la tarea</description>
 			</attribute>
+			<property token="orders">
+				<description>Mostrar las órdenes en ejecucion de la tarea. Permite una comunicación directa por chat entre el proveedor y la unidad de negocio</description>
+			</property>
 		</property>
 	</property>
 	

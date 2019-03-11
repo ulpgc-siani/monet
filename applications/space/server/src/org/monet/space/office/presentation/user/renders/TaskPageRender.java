@@ -184,7 +184,6 @@ public class TaskPageRender extends OfficeRender {
 		String defaultTabCode = block("tab.default", map);
 
 		tabsList += this.initTab("", "state");
-		if (count > 0) tabsList += this.initTab("", "orders");
 
 		if (!this.definition.isJob()) {
 			ProcessDefinition definition = ((ProcessDefinition) this.definition);
@@ -206,6 +205,8 @@ public class TaskPageRender extends OfficeRender {
 				} else if (showDefinition.getTarget() != null && this.task.getTarget() != null) {
 					if (viewDefinition.isDefault()) defaultTabCode = viewDefinition.getCode();
 					tabsList += this.initTab(label, viewDefinition.getCode());
+				} else if (showDefinition.getOrders() != null && count > 0) {
+					tabsList += this.initTab("", "orders");
 				}
 			}
 		}
