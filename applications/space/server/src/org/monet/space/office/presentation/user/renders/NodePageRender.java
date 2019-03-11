@@ -235,16 +235,16 @@ public class NodePageRender extends OfficeRender {
 
 		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {
 			ContainerDefinition.ViewProperty.ShowProperty showDefinition = ((ContainerDefinition.ViewProperty) viewDefinition).getShow();
-			if ((showDefinition.getNotes() != null || showDefinition.getTasks() != null) && this.node.isPrototype())
-				return "";
+			if (showDefinition.getLocation() != null && !this.node.isGeoReferenced()) return "";
+			if ((showDefinition.getNotes() != null || showDefinition.getTasks() != null) && this.node.isPrototype()) return "";
 			if (showDefinition.getNotes() != null) return "";
 			if (showDefinition.getTasks() != null && (!this.node.hasLinksFromTasks())) return "";
 		}
 
 		if (viewDefinition instanceof FormViewProperty) {
 			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) viewDefinition).getShow();
-			if ((showDefinition.getNotes() != null || showDefinition.getTasks() != null) && this.node.isPrototype())
-				return "";
+			if (showDefinition.getLocation() != null && !this.node.isGeoReferenced()) return "";
+			if ((showDefinition.getNotes() != null || showDefinition.getTasks() != null) && this.node.isPrototype()) return "";
 			if (showDefinition.getTasks() != null && (!this.node.hasLinksFromTasks())) return "";
 		}
 
@@ -322,7 +322,7 @@ public class NodePageRender extends OfficeRender {
 		for (NodeViewProperty viewDefinition : tabViewDefinitionList)
 			tabsList += this.initTab(viewDefinition);
 
-		if (definition.isGeoreferenced() && idRevision.isEmpty()) {
+		if (definition.isGeoreferenced() && idRevision.isEmpty() && !containsViewWithShowLocation(tabViewDefinitionList)) {
 			tabsList += this.initMapTab();
 			tabsCount++;
 		}
@@ -337,6 +337,12 @@ public class NodePageRender extends OfficeRender {
 		map.put("tabsList", tabsList);
 
 		addMark("tabs", block("tabs", map));
+	}
+
+	protected boolean containsViewWithShowLocation(List<NodeViewProperty> tabViewDefinitionList) {
+		for (NodeViewProperty viewDefinition : tabViewDefinitionList)
+			if (isLocationSystemView(viewDefinition)) return true;
+		return false;
 	}
 
 }

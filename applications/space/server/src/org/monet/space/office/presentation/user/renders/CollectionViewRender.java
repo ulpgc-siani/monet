@@ -172,7 +172,7 @@ public class CollectionViewRender extends SetViewRender {
 		boolean isLocationView = codeView.equals("location");
 		if (isLocationView) {
 			this.initMapWithoutView(map, "location");
-			return this.initLocationView(map);
+			return this.initLocationSystemView(map);
 		} else if (view == null) {
 			map.put("codeView", codeView);
 			map.put("labelDefinition", this.definition.getLabelString());

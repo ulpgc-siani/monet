@@ -142,6 +142,15 @@ public class NodeViewRender extends ViewRender {
 		return block("content.notes", contentMap);
 	}
 
+	protected String initLocationSystemView(HashMap<String, Object> contentMap) {
+		contentMap.put("idNode", this.node.getId());
+		contentMap.put("codeDefinition", this.node.getDefinition().getCode());
+		contentMap.put("codeView", "location");
+		contentMap.put("content", block("content.location", contentMap));
+
+		return block("view", contentMap);
+	}
+
 	private boolean existsLinksInToComponentDefinitions(NodeViewProperty viewDefinition) {
 		ArrayList<Ref> refList = null;
 
@@ -257,6 +266,8 @@ public class NodeViewRender extends ViewRender {
 
 		if (this.isNotesSystemView(viewDefinition))
 			viewMap.put("content", this.initNotesSystemView(viewDefinition, viewMap));
+		if (this.isLocationSystemView(viewDefinition))
+			viewMap.put("content", this.initLocationSystemView(viewMap));
 		else if (this.isLinksInSystemView(viewDefinition))
 			viewMap.put("content", this.initLinksInSystemView(viewDefinition, viewMap));
 		else if (this.isLinksOutSystemView(viewDefinition))
@@ -270,15 +281,6 @@ public class NodeViewRender extends ViewRender {
 			viewMap.put("content", block("content.revisions", viewMap));
 		} else if (this.isPrototypesSystemView(viewDefinition))
 			viewMap.put("content", this.initPrototypesSystemView(viewDefinition, viewMap));
-
-		return block("view", viewMap);
-	}
-
-	protected String initLocationView(HashMap<String, Object> viewMap) {
-		viewMap.put("idNode", this.node.getId());
-		viewMap.put("codeDefinition", this.node.getDefinition().getCode());
-		viewMap.put("codeView", "location");
-		viewMap.put("content", block("content.location", viewMap));
 
 		return block("view", viewMap);
 	}

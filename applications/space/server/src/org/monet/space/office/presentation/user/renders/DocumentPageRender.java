@@ -63,7 +63,7 @@ public class DocumentPageRender extends NodePageRender {
 		if (definition.getSignatures() != null)
 			tabsList += this.initSignsTab();
 
-		if (definition.isGeoreferenced() && idRevision.isEmpty())
+		if (definition.isGeoreferenced() && idRevision.isEmpty() && !containsViewWithShowLocation(definition.getTabViewDefinitionList()))
 			tabsList += this.initMapTab();
 
 		map.put("defaultTab", "default");

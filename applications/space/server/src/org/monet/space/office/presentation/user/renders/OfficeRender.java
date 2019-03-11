@@ -64,7 +64,7 @@ public abstract class OfficeRender extends Render {
 		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {
 			ContainerDefinition.ViewProperty.ShowProperty showDefinition = ((ContainerDefinition.ViewProperty) viewDefinition).getShow();
 			return showDefinition.getLinksIn() != null || showDefinition.getLinksOut() != null ||
-				showDefinition.getNotes() != null || showDefinition.getRevisions() != null || showDefinition.getTasks() != null;
+				showDefinition.getNotes() != null || showDefinition.getRevisions() != null || showDefinition.getTasks() != null || showDefinition.getLocation() != null;
 		}
 
 		if (viewDefinition instanceof SetViewProperty) {
@@ -77,7 +77,7 @@ public abstract class OfficeRender extends Render {
 
 			return showDefinition.getLinksIn() != null || showDefinition.getLinksOut() != null ||
 				showDefinition.getNotes() != null || showDefinition.getRevisions() != null || showDefinition.getTasks() != null ||
-				showDefinition.getAttachments() != null;
+				showDefinition.getAttachments() != null || showDefinition.getLocation() != null;
 		}
 
 		return false;
@@ -93,6 +93,21 @@ public abstract class OfficeRender extends Render {
 		if (viewDefinition instanceof FormViewProperty) {
 			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) viewDefinition).getShow();
 			return showDefinition.getNotes() != null;
+		}
+
+		return false;
+	}
+
+	protected boolean isLocationSystemView(NodeViewProperty viewDefinition) {
+
+		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {
+			ContainerDefinition.ViewProperty.ShowProperty showDefinition = ((ContainerDefinition.ViewProperty) viewDefinition).getShow();
+			return showDefinition.getLocation() != null;
+		}
+
+		if (viewDefinition instanceof FormViewProperty) {
+			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) viewDefinition).getShow();
+			return showDefinition.getLocation() != null;
 		}
 
 		return false;
