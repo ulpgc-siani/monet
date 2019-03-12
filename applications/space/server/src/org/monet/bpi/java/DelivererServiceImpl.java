@@ -51,7 +51,7 @@ public class DelivererServiceImpl extends DelivererService {
 	public void deliver(URI url, Map<String, String> params) throws Exception {
 		InputStream documentContent = null;
 		try {
-			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
+			HashMap<String, ContentBody> parameters = new HashMap<>();
 			for (Map.Entry<String, String> entry : params.entrySet())
 				parameters.put(entry.getKey(), new StringBody(entry.getValue(), ContentType.APPLICATION_JSON));
 			AgentRestfullClient.getInstance().executePost(url.toString(), parameters);
@@ -62,10 +62,13 @@ public class DelivererServiceImpl extends DelivererService {
 
 	@Override
 	public void deliverJson(URI url, Map<String, Object> params) throws Exception {
-		HashMap<String, String> parameters = new HashMap<>();
+		HashMap<String, ContentBody> parameters = new HashMap<>();
 		Gson gson = new Gson();
-		for (Map.Entry<String, Object> entry : params.entrySet()) parameters.put(entry.getKey(), gson.toJson(entry.getValue()));
-		deliver(url, parameters);
+		for (Map.Entry<String, Object> entry : params.entrySet()) {
+			if (entry.getValue() instanceof String) parameters.put(entry.getKey(), new StringBody((String) entry.getValue(), ContentType.APPLICATION_JSON));
+			else parameters.put(entry.getKey(), new InputStreamBody(new ByteArrayInputStream(gson.toJson(entry.getValue()).getBytes()), ContentType.APPLICATION_OCTET_STREAM, "message"));
+		}
+		AgentRestfullClient.getInstance().executePost(url.toString(), parameters);
 	}
 
 	@Override
