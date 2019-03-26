@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="docservice:war">
+    <output-path>$PROJECT_DIR$/applications/docservice/server/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>docservice</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="docservice.war">
+      <element id="artifact" artifact-name="docservice:war exploded" />
+    </root>
+  </artifact>
+</component>

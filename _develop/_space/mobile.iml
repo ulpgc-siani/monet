@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
+    <output url="file://$MODULE_DIR$/../../out/build/mobile-shared/classes" />
+    <output-test url="file://$MODULE_DIR$/../../out/build/mobile-shared/test-classes" />
     <content url="file://$MODULE_DIR$/../../applications/mobile/shared">
       <sourceFolder url="file://$MODULE_DIR$/../../applications/mobile/shared/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../applications/mobile/shared/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mobile" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../../applications/mobile/shared/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../../applications/mobile/shared/lib" recursive="false" />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Maven: org.simpleframework:simple-xml:2.7.1" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: xpp3:xpp3:1.1.3.3" level="project" />
   </component>
 </module>

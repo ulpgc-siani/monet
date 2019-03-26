@@ -29,8 +29,10 @@ public class SwapModel extends Stage {
 		}
 		catch (Exception exception) {
 			this.problems.add(new CantSwapModelError());
-			cleanTemps();
 			throw new RuntimeException("Can't swap models, maybe already in use. Try again later.", exception);
+		}
+		finally {
+			cleanTemps();
 		}
 
 		AgentFilesystem.removeDir(this.tempDirectory);

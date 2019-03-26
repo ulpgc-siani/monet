@@ -164,7 +164,6 @@ public class Language {
 				String language = session.getVariable(USER_LANGUAGE);
 				if (language == null)
 					session.setVariable(USER_LANGUAGE, Language.SPANISH);
-
 			}
 		}
 	}

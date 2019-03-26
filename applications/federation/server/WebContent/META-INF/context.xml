@@ -2,7 +2,7 @@
 <Context>
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" global="jdbc/AccountOfficeServiceDatabaseSource" maxActive="15" maxIdle="2"
             maxWait="30000" name="jdbc/AccountOfficeServiceDatabaseSource" password="" type="javax.sql.DataSource"
-            url="jdbc:mysql://localhost:3306/monet_dev_externa_federation_alpgc?autoReconnect=true" username="root" removeAbandoned="true"
+            url="jdbc:mysql://localhost:3306/monet-federation-3.2?autoReconnect=true" username="root" removeAbandoned="true"
             removeAbandonedTimeout="5" logAbandoned="true" accessToUnderlyingConnectionAllowed="true" validationQuery="SELECT 1"
             validationQueryTimeout="10" validationInterval="10000" testOnBorrow="true" />
 </Context>

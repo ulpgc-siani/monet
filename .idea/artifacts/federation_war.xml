@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="federation:war">
+    <output-path>$PROJECT_DIR$/applications/federation/server/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>federation</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="federation.war">
+      <element id="artifact" artifact-name="federation:war exploded" />
+    </root>
+  </artifact>
+</component>

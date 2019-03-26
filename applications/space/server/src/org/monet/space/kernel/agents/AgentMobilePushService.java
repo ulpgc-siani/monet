@@ -1,12 +1,18 @@
 package org.monet.space.kernel.agents;
 
-import com.google.android.gcm.server.*;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.Message;
 import org.monet.federation.accountservice.accountactions.impl.messagemodel.DeviceList;
 import org.monet.federation.accountservice.client.FederationService;
 import org.monet.mobile.service.PushOperations;
 import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.kernel.configuration.Configuration;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,11 +20,23 @@ import java.util.Map.Entry;
 public class AgentMobilePushService {
 	private static AgentMobilePushService instance;
 
-	private final Sender sender;
-
 	protected AgentMobilePushService() {
-        sender = new Sender(Configuration.getInstance().getMobilePushAPIKey());
+		Configuration configuration = Configuration.getInstance();
 
+		if (configuration.getMobileFCMSettingsFile().isEmpty() || configuration.getMobileFCMProjectId().isEmpty()) return;
+
+		try {
+			FileInputStream serviceAccount = new FileInputStream(configuration.getMobileFCMSettingsFile());
+
+			FirebaseOptions options = new FirebaseOptions.Builder()
+					.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+					.setDatabaseUrl("https://" + configuration.getMobileFCMProjectId() + ".firebaseio.com/")
+					.build();
+
+			FirebaseApp.initializeApp(options);
+		} catch (IOException e) {
+			AgentLogger.getInstance().error(e);
+		}
 	}
 
 	public synchronized static AgentMobilePushService getInstance() {
@@ -28,18 +46,9 @@ public class AgentMobilePushService {
 	}
 
 	public synchronized void pushToAll(PushOperations operation, Map<String, String> parameters) {
-		Message message = this.buildMessage(operation, parameters);
-
 		try {
 			DeviceList deviceList = ComponentFederation.getInstance().getFederationService().getAllMobileDevices();
-
-			for (String userId : deviceList.getUsers()) {
-				List<String> registrationIds = deviceList.getDevices(userId);
-				if (registrationIds.size() == 0)
-					continue;
-				MulticastResult results = sender.send(message, registrationIds, 5);
-				processResult(userId, registrationIds, results);
-			}
+			for (String userId : deviceList.getUsers()) push(userId, operation, parameters);
 		} catch (Exception e) {
 			AgentLogger.getInstance().error(e);
 		}
@@ -47,54 +56,45 @@ public class AgentMobilePushService {
 
 	public synchronized void push(String userId, PushOperations operation, Map<String, String> parameters) {
 		AgentLogger agentLogger = AgentLogger.getInstance();
-		Message message = buildMessage(operation, parameters);
 
 		try {
 			DeviceList deviceList = ComponentFederation.getInstance().getFederationService().getUserMobileDevices(userId);
 
-			List<String> registrationIds = deviceList.getDevices();
-			if (registrationIds.size() == 0)
+			List<String> deviceIds = deviceList.getDevices();
+			if (deviceIds.size() == 0)
 				return;
 
-			MulticastResult results = sender.send(message, registrationIds, 5);
-			processResult(userId, registrationIds, results);
+			for (String deviceId : deviceIds) {
+				String result = FirebaseMessaging.getInstance().send(buildMessage(operation, parameters, deviceId));
+				processResult(userId, deviceId, result);
+			}
+
 		} catch (Exception e) {
 			agentLogger.error(e);
 		}
 	}
 
-	private Message buildMessage(PushOperations operation, Map<String, String> parameters) {
-		Message.Builder messageBuilder = new Message.Builder();
-		messageBuilder.addData("operation", operation.toString());
+	private Message buildMessage(PushOperations operation, Map<String, String> parameters, String deviceId) {
+		Message.Builder messageBuilder = Message.builder();
+		messageBuilder.setToken(deviceId);
+		messageBuilder.putData("operation", operation.toString());
 
 		if (parameters != null) {
 			for (Entry<String, String> entry : parameters.entrySet())
-				messageBuilder.addData(entry.getKey(), entry.getValue());
+				messageBuilder.putData(entry.getKey(), entry.getValue());
 		}
 
 		return messageBuilder.build();
 	}
 
-	private void processResult(String userId, List<String> registrationIds, MulticastResult results) {
+	private void processResult(String result, String userId, String deviceId) {
 		AgentLogger agentLogger = AgentLogger.getInstance();
 		FederationService federationService = ComponentFederation.getInstance().getFederationService();
 
 		try {
-			int index = 0;
-			for (Result result : results.getResults()) {
-				String deviceId = registrationIds.get(index);
-
-				if (result.getMessageId() == null) {
-					if (result.getErrorCodeName().equals(Constants.ERROR_NOT_REGISTERED))
-						federationService.unRegisterMobileDevice(userId, deviceId);
-					agentLogger.error("GCM Push Service: " + result.getErrorCodeName(), null);
-				} else {
-					if (result.getCanonicalRegistrationId() != null) {
-						federationService.unRegisterMobileDevice(userId, deviceId);
-						federationService.registerMobileDevice(userId, result.getCanonicalRegistrationId());
-					}
-				}
-				index++;
+			if (result.equals("messaging/registration-token-not-registered")) {
+				federationService.unRegisterMobileDevice(userId, deviceId);
+				agentLogger.error("GCM Push Service: " + result, null);
 			}
 		} catch (Exception e) {
 			agentLogger.error(e);

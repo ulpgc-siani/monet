@@ -9,7 +9,6 @@
           <element id="module-output" name="federation.shared" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="federation" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.apache.axis:axis:1.4" />
           <element id="library" level="module" name="Maven: com.google.inject:guice:2.0" module-name="federation" />
@@ -60,20 +59,18 @@
           <element id="library" level="project" name="Maven: org.apache.axis:axis-jaxrpc:1.4" />
           <element id="library" level="project" name="Maven: com.sun.xml.ws:webservices-rt:2.0.1" />
           <element id="library" level="project" name="Maven: javax.xml:webservices-api:2.0.1" />
-          <element id="library" level="project" name="Maven: com.ganyo:gcm-server:1.0.2" />
-          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1" />
           <element id="library" level="module" name="Maven: org.apache.httpcomponents:httpclient:4.3.2" module-name="federation" />
           <element id="library" level="module" name="Maven: org.apache.httpcomponents:httpcore:4.3.1" module-name="federation" />
           <element id="library" level="module" name="Maven: org.apache.httpcomponents:httpmime:4.3.2" module-name="federation" />
           <element id="library" level="module" name="Maven: monet:fswatcher:0.4" module-name="federation" />
           <element id="library" level="module" name="Maven: monet:monet.component.exceptions:0" module-name="federation" />
           <element id="library" level="module" name="Maven: monet:monet.component.filesystem:0.2" module-name="federation" />
-          <element id="library" level="module" name="Maven: monet:monet.library.encrypt:1.1" module-name="federation" />
           <element id="library" level="module" name="Maven: monet:monet.library.http:0.3" module-name="federation" />
           <element id="library" level="project" name="Maven: com.jhlabs:filters:2.0.235" />
           <element id="library" level="module" name="Maven: monet:templation:0" module-name="federation" />
           <element id="library" level="module" name="Maven: monet:space-backservice:0" module-name="federation" />
-          <element id="library" level="project" name="federation.shared" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../applications/federation/shared/lib/simple-xml-2.5.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../applications/mobile/shared/lib/simple-xml-2.6.7.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="federation/web/Web" />

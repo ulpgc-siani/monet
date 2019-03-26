@@ -456,14 +456,25 @@ public class ConfigurationImpl implements Configuration {
     }
 
     @Override
-    public String getMobilePushAPIKey() {
-        String apiKey = this.properties.getProperty(Configuration.MOBILE_PUSH_API_KEY);
-        if (apiKey == null) {
-            this.logger.warn("Mobile.PushApi.Key configuration variable not defined. Push notifications disabled!");
+    public String getMobileFCMSettingsFile() {
+        String fileName = this.properties.getProperty(Configuration.MOBILE_FCM_SETTINGS_FILE);
+        if (fileName == null) {
+            this.logger.warn("Mobile.FCM.SettingsFile configuration variable not defined. Push notifications disabled!");
             return "";
         }
 
-        return apiKey;
+        return fileName;
+    }
+
+    @Override
+    public String getMobileFCMProjectId() {
+        String fileName = this.properties.getProperty(Configuration.MOBILE_FCM_PROJECT_ID);
+        if (fileName == null) {
+            this.logger.warn("Mobile.FCM.ProjectId configuration variable not defined. Push notifications disabled!");
+            return "";
+        }
+
+        return fileName;
     }
 
     @Override

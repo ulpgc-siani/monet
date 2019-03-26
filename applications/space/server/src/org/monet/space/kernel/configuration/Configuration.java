@@ -66,7 +66,8 @@ public class Configuration {
 	public static final String EXCLUDE_URL_PATH = "MONET_EXCLUDE_URL_PATH";
 	public static final String ENTERPRISE_LOGIN_URL = "MONET_ENTERPRISE_LOGIN_URL";
 	public static final String IS_PUSH_ENABLED = "MONET_IS_PUSH_ENABLED";
-	public static final String MOBILE_PUSH_API_KEY = "MONET_MOBILE_PUSH_API_KEY";
+	public static final String MOBILE_FCM_SETTINGS_FILENAME = "MONET_MOBILE_FCM_SETTINGS_FILENAME";
+	public static final String MOBILE_FCM_PROJECT_ID = "MONET_MOBILE_FCM_PROJECT_ID";
 	public static final String GOOGLE_API_KEY = "MONET_GOOGLE_API_KEY";
 	public static final String IS_DEBUG_MODE = "MONET_IS_DEBUG_MODE";
 	public static final String DATABASE_QUERY_EXECUTION_TIME_WARNING = "MONET_DATABASE_QUERY_EXECUTION_TIME_WARNING";
@@ -366,8 +367,12 @@ public class Configuration {
 		}
 	}
 
-	public String getMobilePushAPIKey() {
-		return this.getValue(MOBILE_PUSH_API_KEY);
+	public String getMobileFCMSettingsFile() {
+		return this.getValue(MOBILE_FCM_SETTINGS_FILENAME);
+	}
+
+	public String getMobileFCMProjectId() {
+		return this.getValue(MOBILE_FCM_PROJECT_ID);
 	}
 
 	public String getGoogleApiKey() {

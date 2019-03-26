@@ -32,32 +32,6 @@
           </webResources>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <id>add-source</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>../shared/src</source>
-                <source>../../mobile/shared/src</source>
-<!--
-                <source>../../../utils/lib.templation/src</source>
-                <source>../../../utils/libraries/monet.library.filesystem/src</source>
-                <source>../../../utils/libraries/monet.library.exceptions/src</source>
-                <source>../../../utils/libraries/monet.library.encrypt/src</source>
-                <source>../../../utils/libraries/monet.library.http/src</source>-->
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
@@ -96,11 +70,6 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.35</version>
-    </dependency>
-    <dependency>
-      <groupId>org.simpleframework</groupId>
-      <artifactId>simple-xml</artifactId>
-      <version>2.7.1</version>
     </dependency>
     <dependency>
       <groupId>com.sun.xml.rpc</groupId>
@@ -190,9 +159,9 @@
     </dependency>
 
     <dependency>
-      <groupId>com.ganyo</groupId>
-      <artifactId>gcm-server</artifactId>
-      <version>1.0.2</version>
+      <groupId>com.google.firebase</groupId>
+      <artifactId>firebase-admin</artifactId>
+      <version>6.7.0</version>
     </dependency>
 
     <dependency>
@@ -292,6 +261,22 @@
       <version>0</version>
       <systemPath>${project.basedir}/WebContent/WEB-INF/lib/monet.api.space.backservice-3.0.jar</systemPath>
       <scope>system</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>space</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>mobile-shared</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>federation-shared</artifactId>
+      <version>1.0</version>
     </dependency>
 
   </dependencies>
