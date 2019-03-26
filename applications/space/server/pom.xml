@@ -323,6 +323,11 @@
       <artifactId>firebase-admin</artifactId>
       <version>6.7.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-dbcp</artifactId>
+      <version>7.0.12</version>
+    </dependency>
   </dependencies>
 
 </project>
