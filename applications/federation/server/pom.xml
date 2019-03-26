@@ -276,12 +276,6 @@
     </dependency>
     <dependency>
       <groupId>org.siani.monet</groupId>
-      <artifactId>space</artifactId>
-      <version>1.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.siani.monet</groupId>
       <artifactId>mobile-shared</artifactId>
       <version>1.0</version>
     </dependency>
