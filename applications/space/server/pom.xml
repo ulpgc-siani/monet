@@ -14,6 +14,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>siani-maven-releases</id>
+      <name>siani-maven-releases</name>
+      <url>https://artifactory.siani.es/artifactory/libs-release</url>
+    </repository>
+    <repository>
+      <id>siani-maven-snapshot</id>
+      <name>siani-maven-snapshot</name>
+      <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
+    </repository>
+  </repositories>
+
   <build>
     <finalName>${project.artifactId}</finalName>
     <plugins>
