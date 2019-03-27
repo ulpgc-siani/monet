@@ -1,2 +1,3 @@
 .directory
 client/explorer/Explorer/.sass-cache
+server/resources/explorer/templates/home.html
