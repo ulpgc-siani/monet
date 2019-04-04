@@ -106,6 +106,7 @@
     <orderEntry type="library" name="Maven: com.google.auth:google-auth-library-credentials:0.11.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.cloud:google-cloud-storage:1.43.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.cloud:google-cloud-core:1.43.0" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.api:gax:1.30.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java-util:3.6.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.api.grpc:proto-google-common-protos:1.12.0" level="project" />
@@ -235,74 +236,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="space" />
-    <orderEntry type="library" name="Maven: avalon-framework:avalon-framework:4.1.5" level="project" />
-    <orderEntry type="library" name="Maven: backport-util-concurrent:backport-util-concurrent:3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bctsp-jdk15:1.45" level="project" />
-    <orderEntry type="library" name="Maven: com.google.inject.extensions:guice-multibindings:2.0" level="project" />
-    <orderEntry type="library" name="Maven: net.minidev:json-smart:1.1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.jdom:jdom:1.1.3" level="project" />
-    <orderEntry type="library" name="Maven: com.vividsolutions:jts:1.8" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:google-collect:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:gson:2.2.4" level="project" />
-    <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.1" level="project" />
-    <orderEntry type="library" name="Maven: joda-time:joda-time:1.6.2" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:templation:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:oracle-sdoapi:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:oracle-sdoutl:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:sumus:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.5" level="project" />
-    <orderEntry type="library" name="Maven: org.scribe:scribe:1.1.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.velocity:velocity-tools:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:federation-setup:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:itrules-standalone:0.7" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:jacksum:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:fswatcher:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:encrypt:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:backservice:3.0" level="project" />
-    <orderEntry type="module" module-name="federation-client" />
-    <orderEntry type="library" name="Maven: org.siani.monet:servlet-api:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:xml-apis:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:cotton-signatory:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:json-simple:1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.3.0" level="project" />
-    <orderEntry type="library" name="Maven: com.mchange:c3p0:0.9.5.2" level="project" />
-    <orderEntry type="library" name="Maven: com.mchange:mchange-commons-java:0.2.11" level="project" />
-    <orderEntry type="library" name="Maven: com.zaxxer:HikariCP-java6:2.3.13" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:ojdbc14:10.2.0.4.0" level="project" />
-    <orderEntry type="library" name="Maven: com.drewnoakes:metadata-extractor:2.11.0" level="project" />
-    <orderEntry type="library" name="Maven: com.adobe.xmp:xmpcore:5.1.3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.jcs:jcs:1.3" level="project" />
-    <orderEntry type="library" name="Maven: concurrent:concurrent:1.0" level="project" />
-    <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.0.6" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcmail-jdk14:1.38" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk14:1.38" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bctsp-jdk14:1.38" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:fop:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:xmlgraphics-commons:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-svg-dom:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-anim:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-css:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-dom:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-parser:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-util:1.7" level="project" />
-    <orderEntry type="library" name="Maven: xml-apis:xml-apis-ext:1.3.04" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-bridge:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-script:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-js:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-xml:1.7" level="project" />
-    <orderEntry type="library" name="Maven: xalan:xalan:2.6.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-awt-util:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-gvt:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-transcoder:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-svggen:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-extension:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:batik-ext:1.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.avalon.framework:avalon-framework-api:4.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.avalon.framework:avalon-framework-impl:4.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:jai-codec:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:jai-core:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tika:tika-core:0.4" level="project" />
     <orderEntry type="module" module-name="mobile-shared" />
     <orderEntry type="library" name="Maven: org.simpleframework:simple-xml:2.6.7" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
