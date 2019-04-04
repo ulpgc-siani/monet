@@ -39,7 +39,7 @@ public class AgentWorkQueue extends TimerTask {
 
 	private AgentWorkQueue() {
 		this.configuration = Configuration.getInstance();
-		this.producer = (ProducerWorkQueue) ProducersFactory.getInstance().get(Producers.WORKQUEUE);
+		this.producer = ProducersFactory.getInstance().get(Producers.WORKQUEUE);
 	}
 
 	public synchronized void init() {
@@ -81,6 +81,7 @@ public class AgentWorkQueue extends TimerTask {
 			MessageQueueRetryWork messageQueueWork = new MessageQueueRetryWork();
 			messageQueueWork.execute(null);
 		} catch (Exception e) {
+			AgentLogger.getInstance().error(e);
 		}
 	}
 
