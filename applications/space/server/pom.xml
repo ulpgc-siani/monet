@@ -69,6 +69,33 @@
         </executions>
       </plugin>
 
+      <plugin>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>ant-magic</id>
+                  <phase>prepare-package</phase>
+                  <goals>
+                    <goal>run</goal>
+                  </goals>
+                  <configuration>
+                    <tasks>
+                      <property name="compile_classpath"
+                                refid="maven.compile.classpath"/>
+                      <property name="outputDir"
+                                value="${project.build.outputDirectory}"/>
+                      <property name="sourceDir"
+                                value="${project.build.sourceDirectory}"/>
+                      <ant antfile="${basedir}/../client/explorer/Explorer/build.xml"
+                           target="publish" dir="${basedir}/../client/explorer/Explorer"/>
+                    </tasks>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+
+
+
     </plugins>
   </build>
 
