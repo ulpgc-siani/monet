@@ -1,4 +1,4 @@
-package org.monet.fileupload;
+package org.monet.space.applications.upload;
 
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
