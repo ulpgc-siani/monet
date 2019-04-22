@@ -9,8 +9,6 @@ import org.monet.space.kernel.utils.MimeTypes;
 import org.monet.space.kernel.utils.StreamHelper;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +17,7 @@ import java.io.FileOutputStream;
 public class ActionDoUploadTaskFile extends AuthenticatedAction {
 
 	@Override
-	public void onExecute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public void onExecute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		File messageFile = null;
 		FileInputStream inputStream = null, imageStream = null;
 		MimeTypes mimeTypes = MimeTypes.getInstance();

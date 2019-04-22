@@ -16,7 +16,7 @@ import java.io.IOException;
 public class ActionDoDownloadGlossary extends AuthenticatedAction {
 
 	@Override
-	public void onExecute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public void onExecute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		DownloadGlossaryRequest request = this.getRequest(httpRequest, DownloadGlossaryRequest.class);
 
 		SourceLayer sourceLayer = ComponentPersistence.getInstance().getSourceLayer();

@@ -17,6 +17,11 @@ public abstract class TypedAction<T extends Request, U extends Result> extends A
 
 	@Override
 	public U execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+		return execute(new org.monet.http.HttpRequest(httpRequest), new org.monet.http.HttpResponse(httpResponse));
+	}
+
+	@Override
+	public U execute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		T request = getRequest(httpRequest, this.requestClass);
 		return onExecute(request);
 	}

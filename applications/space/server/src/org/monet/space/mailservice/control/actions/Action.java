@@ -22,6 +22,10 @@
 
 package org.monet.space.mailservice.control.actions;
 
+import org.monet.http.HttpRequest;
+import org.monet.http.HttpResponse;
+import org.monet.http.Request;
+import org.monet.http.Response;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
 import org.monet.space.kernel.model.User;
@@ -31,8 +35,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 public abstract class Action {
-	protected HttpServletRequest request;
-	protected HttpServletResponse response;
+	protected Request request;
+	protected Response response;
 	protected HashMap<String, Object> parameters;
 	protected AgentSession agentSession;
 	protected AgentLogger agentException;
@@ -57,11 +61,19 @@ public abstract class Action {
 	}
 
 	public void setRequest(HttpServletRequest request) {
+		setRequest(new HttpRequest(request));
+	}
+
+	public void setRequest(Request request) {
 		this.request = request;
-		this.idSession = request.getSession().getId();
+		this.idSession = request.getSessionId();
 	}
 
 	public void setResponse(HttpServletResponse response) {
+		setResponse(new HttpResponse(response));
+	}
+
+	public void setResponse(Response response) {
 		this.response = response;
 	}
 

@@ -1,9 +1,9 @@
 package org.monet.space.kernel.components.layers;
 
+import org.monet.http.Request;
 import org.monet.space.kernel.model.*;
 import org.scribe.model.Token;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
@@ -13,7 +13,7 @@ public interface FederationLayer extends Layer {
 		String getSessionId();
 		String getCallbackUrl();
 		String getLogoUrl();
-		HttpServletRequest getRequest();
+		Request getRequest();
 	}
 
 	String getAuthorizationUrl();

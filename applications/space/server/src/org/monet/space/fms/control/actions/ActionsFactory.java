@@ -22,6 +22,10 @@
 
 package org.monet.space.fms.control.actions;
 
+import org.monet.http.HttpRequest;
+import org.monet.http.HttpResponse;
+import org.monet.http.Request;
+import org.monet.http.Response;
 import org.monet.space.fms.control.constants.Actions;
 import org.monet.space.fms.core.constants.ErrorCode;
 import org.monet.space.kernel.exceptions.SystemException;
@@ -55,6 +59,10 @@ public class ActionsFactory {
 	}
 
 	public Action get(String sType, HttpServletRequest oRequest, HttpServletResponse oResponse) {
+		return get(sType, new HttpRequest(oRequest), new HttpResponse(oResponse));
+	}
+
+	public Action get(String sType, Request oRequest, Response oResponse) {
 		Class<?> cAction;
 		Action oAction = null;
 

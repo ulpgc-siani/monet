@@ -129,6 +129,4 @@ public class ActionUpdateModel extends Action {
 		}
 	}
 
-	;
-
 }

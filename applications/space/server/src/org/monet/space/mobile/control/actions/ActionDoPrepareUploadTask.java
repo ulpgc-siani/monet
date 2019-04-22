@@ -15,7 +15,7 @@ import java.io.File;
 public class ActionDoPrepareUploadTask extends AuthenticatedAction {
 
 	@Override
-	public void onExecute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public void onExecute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 
 		TaskLayer taskLayer = ComponentPersistence.getInstance().getTaskLayer();
 		File messageFile = null;

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ActionDoDownloadTaskPacked extends AuthenticatedAction {
 
 	@Override
-	public void onExecute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public void onExecute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		DownloadTaskPackedRequest request = this.getRequest(httpRequest, DownloadTaskPackedRequest.class);
 		Account userAccount = this.getAccount();
 

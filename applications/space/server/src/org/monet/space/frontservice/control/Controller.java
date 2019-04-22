@@ -22,6 +22,8 @@
 
 package org.monet.space.frontservice.control;
 
+import org.monet.http.HttpRequest;
+import org.monet.http.Request;
 import org.monet.space.applications.library.LibraryRequest;
 import org.monet.space.applications.library.LibraryResponse;
 import org.monet.space.frontservice.ApplicationFrontService;
@@ -168,8 +170,8 @@ public class Controller extends javax.servlet.http.HttpServlet implements javax.
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
-				return request;
+			public Request getRequest() {
+				return new HttpRequest(request);
 			}
 		};
 	}

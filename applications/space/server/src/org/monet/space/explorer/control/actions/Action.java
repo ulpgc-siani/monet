@@ -23,6 +23,7 @@
 package org.monet.space.explorer.control.actions;
 
 import com.google.inject.Inject;
+import org.monet.http.Request;
 import org.monet.space.explorer.ApplicationExplorer;
 import org.monet.space.explorer.configuration.Configuration;
 import org.monet.space.explorer.control.dialogs.Dialog;
@@ -34,7 +35,6 @@ import org.monet.space.kernel.components.layers.FederationLayer;
 import org.monet.space.kernel.model.Account;
 import org.monet.space.kernel.model.Session;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public abstract class Action<Dlg extends Dialog, Dsp extends Display> {
@@ -120,8 +120,8 @@ public abstract class Action<Dlg extends Dialog, Dsp extends Display> {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
-				return ((HttpDialog)dialog).getRequest();
+			public Request getRequest() {
+				return new org.monet.http.HttpRequest(((HttpDialog)dialog).getRequest());
 			}
 		});
 	}

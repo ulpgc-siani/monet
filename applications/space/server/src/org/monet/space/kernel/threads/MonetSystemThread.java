@@ -1,5 +1,6 @@
 package org.monet.space.kernel.threads;
 
+import org.monet.http.Request;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
 import org.monet.space.kernel.components.ComponentFederation;
@@ -8,7 +9,6 @@ import org.monet.space.kernel.constants.ApplicationInterface;
 import org.monet.space.kernel.constants.Database;
 import org.monet.space.kernel.model.Context;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 public class MonetSystemThread {
@@ -58,7 +58,7 @@ public class MonetSystemThread {
 					}
 
 					@Override
-					public HttpServletRequest getRequest() {
+					public Request getRequest() {
 						return null;
 					}
 				});

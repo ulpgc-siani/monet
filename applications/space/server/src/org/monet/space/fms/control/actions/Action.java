@@ -25,7 +25,8 @@ package org.monet.space.fms.control.actions;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.monet.fileupload.FileUploadWrapper;
+import org.monet.http.*;
 import org.monet.space.fms.ApplicationFms;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
@@ -42,8 +43,8 @@ import java.util.List;
 
 public abstract class Action {
 	protected String codeLanguage;
-	protected HttpServletRequest request;
-	protected HttpServletResponse response;
+	protected Request request;
+	protected Response response;
 	protected ComponentFederation oComponentAccountsManager;
 	protected AgentSession oAgentSession;
 	protected AgentLogger oAgentException;
@@ -74,7 +75,7 @@ public abstract class Action {
 		return ComponentFederation.getInstance().getLayer(new FederationLayer.Configuration() {
 			@Override
 			public String getSessionId() {
-				return request.getSession().getId();
+				return request.getSessionId();
 			}
 
 			@Override
@@ -88,7 +89,7 @@ public abstract class Action {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
+			public Request getRequest() {
 				return request;
 			}
 		});
@@ -99,18 +100,25 @@ public abstract class Action {
 	}
 
 	public Boolean setRequest(HttpServletRequest oRequest) {
+		return setRequest(new HttpRequest(oRequest));
+	}
+
+	public Boolean setRequest(Request oRequest) {
 		this.request = oRequest;
-		this.idSession = oRequest.getSession().getId();
+		this.idSession = oRequest.getSessionId();
 		return true;
 	}
 
 	public Boolean setResponse(HttpServletResponse oResponse) {
+		return setResponse(new HttpResponse(oResponse));
+	}
+
+	public Boolean setResponse(Response oResponse) {
 		this.response = oResponse;
 		return true;
 	}
 
 	public Boolean initialize() {
-
 		this.response.setContentType("text/html;charset=UTF-8");
 		this.initLanguage();
 
@@ -120,8 +128,17 @@ public abstract class Action {
 	public abstract String execute();
 
 	protected HashMap<String, List<FileItem>> getPostParameterMap(HttpServletRequest request) throws FileUploadException {
+		return getPostParameterMap(new HttpRequest(request));
+	}
+
+	protected HashMap<String, List<FileItem>> getPostParameterMap(Request request) throws FileUploadException {
 		HashMap<String, List<FileItem>> result = new HashMap<>();
-		ServletFileUpload uploadHandler = new ServletFileUpload(new DiskFileItemFactory());
+
+		//OLD IMPLEMENTATION (without using request/response interfaces)
+		//ServletFileUpload uploadHandler = new ServletFileUpload(new DiskFileItemFactory());
+		
+		FileUploadWrapper uploadHandler = new FileUploadWrapper(new DiskFileItemFactory());
+
 		List<FileItem> fileList = uploadHandler.parseRequest(request);
 
 		for (FileItem fileItem : fileList) {

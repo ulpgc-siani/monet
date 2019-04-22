@@ -22,6 +22,7 @@
 
 package org.monet.space.office.control.actions;
 
+import org.monet.http.Request;
 import org.monet.metamodel.DocumentDefinitionBase.SignaturesProperty.SignatureProperty;
 import org.monet.metamodel.IndexDefinition;
 import org.monet.metamodel.NodeDefinition;
@@ -115,8 +116,8 @@ public abstract class Action {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
-				return request;
+			public Request getRequest() {
+				return new org.monet.http.HttpRequest(request);
 			}
 		});
 	}

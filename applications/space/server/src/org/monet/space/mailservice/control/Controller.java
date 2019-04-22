@@ -24,6 +24,7 @@
 
 package org.monet.space.mailservice.control;
 
+import org.monet.http.Request;
 import org.monet.space.applications.library.LibraryRequest;
 import org.monet.space.applications.library.LibraryResponse;
 import org.monet.space.kernel.agents.AgentLogger;
@@ -158,8 +159,8 @@ public class Controller extends javax.servlet.http.HttpServlet implements javax.
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
-				return request;
+			public Request getRequest() {
+				return new org.monet.http.HttpRequest(request);
 			}
 		};
 	}

@@ -6,6 +6,8 @@ import org.monet.federation.accountservice.accountactions.impl.messagemodel.Sock
 import org.monet.federation.accountservice.accountactions.impl.messagemodel.SocketMessageModel.SimpleElement;
 import org.monet.federation.accountservice.accountactions.impl.messagemodel.SocketMessageModel.UnitInfo;
 import org.monet.federation.accountservice.client.utils.Utils;
+import org.monet.http.HttpRequest;
+import org.monet.http.Request;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -122,6 +124,10 @@ public class FederationService {
 	}
 
 	public boolean isLogged(String accessToken, HttpServletRequest request) throws Exception {
+		return isLogged(accessToken, new HttpRequest(request));
+	}
+
+	public boolean isLogged(String accessToken, Request request) throws Exception {
 		this.init();
 
 		SocketMessageModel socketMessage = createHeaderMessage(REQUEST_ISLOGGED);
@@ -133,6 +139,10 @@ public class FederationService {
 	}
 
 	public boolean logout(String accessToken, HttpServletRequest request) throws Exception {
+		return logout(accessToken, new HttpRequest(request));
+	}
+
+	public boolean logout(String accessToken, Request request) throws Exception {
 		this.init();
 
 		SocketMessageModel socketMessage = createHeaderMessage(REQUEST_LOGOUT);
@@ -156,6 +166,10 @@ public class FederationService {
 	}
 
 	public boolean existsAccount(String accessToken, HttpServletRequest request) throws Exception {
+		return existsAccount(accessToken, new HttpRequest(request));
+	}
+
+	public boolean existsAccount(String accessToken, Request request) throws Exception {
 		this.init();
 
 		SocketMessageModel socketMessage = createHeaderMessage(EXISTS_ACCOUNT);
@@ -167,6 +181,10 @@ public class FederationService {
 	}
 
 	public FederationAccount getAccount(String accessToken, HttpServletRequest request) throws Exception {
+		return getAccount(accessToken, new HttpRequest(request));
+	}
+
+	public FederationAccount getAccount(String accessToken, Request request) throws Exception {
 		this.init();
 
 		SocketMessageModel socketMessage = createHeaderMessage(REQUEST_ACCOUNT);
@@ -367,6 +385,10 @@ public class FederationService {
 	}
 
 	private String calculateVerifier(HttpServletRequest request) {
+		return calculateVerifier(new HttpRequest(request));
+	}
+
+	private String calculateVerifier(Request request) {
 		String remoteAddr = Utils.getAddr(request);
 		String remoteUA = request.getHeader("User-Agent").toLowerCase();
 		String verifier = remoteAddr + remoteUA;

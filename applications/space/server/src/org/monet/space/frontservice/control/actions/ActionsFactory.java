@@ -22,6 +22,7 @@
 
 package org.monet.space.frontservice.control.actions;
 
+import org.monet.http.*;
 import org.monet.space.frontservice.control.constants.Actions;
 import org.monet.space.frontservice.core.constants.ErrorCode;
 import org.monet.space.kernel.exceptions.SystemException;
@@ -59,6 +60,10 @@ public class ActionsFactory {
 	}
 
 	public Action get(String type, HttpServletRequest request, HttpServletResponse response, HashMap<String, Object> parameters) {
+		return get(type, new HttpRequest(request), new HttpResponse(response), parameters);
+	}
+
+	public Action get(String type, Request request, Response response, HashMap<String, Object> parameters) {
 		Class<?> clazz;
 		Action action = null;
 

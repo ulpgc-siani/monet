@@ -39,6 +39,10 @@ public class LibraryRequest extends org.monet.space.applications.library.Library
 	public static final String OAUTH_VERIFIER = "oauth_verifier";
 
 	public static Map<String, String> extractAuthElements(HttpServletRequest httpRequest) {
+		return extractAuthElements(new org.monet.http.HttpRequest(httpRequest));
+	}
+
+	public static Map<String, String> extractAuthElements(org.monet.http.Request httpRequest) {
 		StringBuilder authorizationHeader = new StringBuilder(httpRequest.getHeader("authorization").substring(6));
 
 		Map<String, String> elements = new HashMap<String, String>();

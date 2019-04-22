@@ -23,6 +23,7 @@
 package org.monet.space.explorer.control;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.monet.http.Request;
 import org.monet.space.applications.library.LibraryRequest;
 import org.monet.space.explorer.ApplicationExplorer;
 import org.monet.space.explorer.configuration.Configuration;
@@ -186,8 +187,8 @@ public class Controller extends javax.servlet.http.HttpServlet implements javax.
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
-				return request;
+			public Request getRequest() {
+				return new org.monet.http.HttpRequest(request);
 			}
 		});
 	}

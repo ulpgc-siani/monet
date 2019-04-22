@@ -1,6 +1,7 @@
 package org.monet.space.kernel.agents;
 
 import org.monet.metamodel.SourceDefinition;
+import org.monet.http.Request;
 import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.kernel.components.ComponentPersistence;
 import org.monet.space.kernel.components.layers.FederationLayer;
@@ -13,7 +14,6 @@ import org.monet.space.kernel.model.Context;
 import org.monet.space.kernel.model.Source;
 import org.monet.space.kernel.model.SourceList;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -84,7 +84,7 @@ public class AgentSourceUpgrade extends TimerTask {
 	            }
 
 	            @Override
-	            public HttpServletRequest getRequest() {
+	            public Request getRequest() {
 		            return null;
 	            }
             }).loginAsSystem();

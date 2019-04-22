@@ -17,15 +17,13 @@ import org.monet.space.kernel.model.Task;
 import org.monet.space.kernel.utils.MessageHelper;
 import org.monet.space.kernel.utils.StreamHelper;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 
 public class ActionDoUploadTaskPacked extends AuthenticatedAction {
 
 	@Override
-	public void onExecute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public void onExecute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		TaskLayer taskLayer = ComponentPersistence.getInstance().getTaskLayer();
 		Task task = null;
 

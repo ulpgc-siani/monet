@@ -8,8 +8,6 @@ import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.mobile.library.LibraryRequest;
 import org.scribe.model.Token;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public class ActionDoRegister extends AuthenticatedTypedAction<RegisterRequest, AckResult> {
@@ -19,7 +17,7 @@ public class ActionDoRegister extends AuthenticatedTypedAction<RegisterRequest, 
 	}
 
 	@Override
-	public AckResult execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public AckResult execute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		federationLayer = ComponentFederation.getInstance().getLayer(createConfiguration(httpRequest));
 		Map<String, String> authElements = LibraryRequest.extractAuthElements(httpRequest);
 

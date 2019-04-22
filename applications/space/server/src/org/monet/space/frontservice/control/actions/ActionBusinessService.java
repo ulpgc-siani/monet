@@ -24,6 +24,7 @@ package org.monet.space.frontservice.control.actions;
 
 import org.monet.metamodel.TaskDefinition;
 import org.monet.metamodel.internal.Ref;
+import org.monet.http.Request;
 import org.monet.space.frontservice.control.constants.Parameter;
 import org.monet.space.frontservice.ApplicationFrontService;
 import org.monet.space.frontservice.core.constants.ErrorCode;
@@ -46,7 +47,6 @@ import org.monet.space.kernel.machines.ttm.model.MailBox.Type;
 import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.threads.MonetSystemThread;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
 import java.util.Date;
 
@@ -179,7 +179,7 @@ public class ActionBusinessService extends Action {
 		return ComponentFederation.getInstance().getLayer(new FederationLayer.Configuration() {
 			@Override
 			public String getSessionId() {
-				return request.getSession().getId();
+				return request.getSessionId();
 			}
 
 			@Override
@@ -193,7 +193,7 @@ public class ActionBusinessService extends Action {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
+			public Request getRequest() {
 				return request;
 			}
 		});

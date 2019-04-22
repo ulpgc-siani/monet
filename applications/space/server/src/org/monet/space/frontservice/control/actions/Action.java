@@ -22,19 +22,19 @@
 
 package org.monet.space.frontservice.control.actions;
 
+import org.monet.http.Request;
+import org.monet.http.Response;
 import org.monet.space.frontservice.presentation.user.renders.RendersFactory;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
 import org.monet.space.kernel.model.User;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.net.URLDecoder;
 import java.util.HashMap;
 
 public abstract class Action {
-	protected HttpServletRequest request;
-	protected HttpServletResponse response;
+	protected Request request;
+	protected Response response;
 	protected HashMap<String, Object> parameters;
 	protected AgentSession agentSession;
 	protected AgentLogger agentException;
@@ -60,13 +60,13 @@ public abstract class Action {
 		this.sender = senderUser.getInfo().getFullname();
 	}
 
-	public Boolean setRequest(HttpServletRequest request) {
+	public Boolean setRequest(Request request) {
 		this.request = request;
-		this.idSession = request.getSession().getId();
+		this.idSession = request.getSessionId();
 		return true;
 	}
 
-	public Boolean setResponse(HttpServletResponse response) {
+	public Boolean setResponse(Response response) {
 		this.response = response;
 		return true;
 	}

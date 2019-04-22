@@ -4,12 +4,31 @@
   <groupId>org.siani.monet</groupId>
   <artifactId>space</artifactId>
   <version>1.0</version>
-  <packaging>war</packaging>
+
   <properties>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <profiles>
+    <profile>
+      <id>business unit war</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <packaging.type>war</packaging.type>
+      </properties>
+    </profile>
+    <profile>
+      <id>business unit jar</id>
+      <properties>
+        <packaging.type>jar</packaging.type>
+      </properties>
+    </profile>
+  </profiles>
+
   <repositories>
     <repository>
       <id>siani-maven-releases</id>
@@ -365,6 +384,11 @@
       <groupId>org.tuckey</groupId>
       <artifactId>urlrewritefilter</artifactId>
       <version>3.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>core-shared</artifactId>
+      <version>1.0</version>
     </dependency>
   </dependencies>
 </project>

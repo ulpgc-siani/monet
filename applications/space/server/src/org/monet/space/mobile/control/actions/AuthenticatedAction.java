@@ -38,6 +38,11 @@ public abstract class AuthenticatedAction extends Action<Void> {
 
 	@Override
 	public Void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+		return execute(new org.monet.http.HttpRequest(httpRequest), new org.monet.http.HttpResponse(httpResponse));
+	}
+
+	@Override
+	public Void execute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		this.federationLayer = ComponentFederation.getInstance().getLayer(createConfiguration(httpRequest));
 		Map<String, String> authElements = LibraryRequest.extractAuthElements(httpRequest);
 
@@ -50,5 +55,5 @@ public abstract class AuthenticatedAction extends Action<Void> {
 		return null;
 	}
 
-	public abstract void onExecute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception;
+	public abstract void onExecute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception;
 }

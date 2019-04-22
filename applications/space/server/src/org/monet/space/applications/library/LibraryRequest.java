@@ -30,6 +30,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.content.InputStreamBody;
+import org.monet.http.HttpRequest;
+import org.monet.http.Request;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.constants.Strings;
@@ -211,8 +213,12 @@ public class LibraryRequest {
 		return TimeZone.getTimeZone("GMT" + timeZoneValue);
 	}
 
-    public static String getRequestURL(HttpServletRequest request) {
-        String result = request.getRequestURL().toString();
+	public static String getRequestURL(HttpServletRequest request) {
+		return getRequestURL(new HttpRequest(request));
+	}
+
+    public static String getRequestURL(Request request) {
+        String result = request.getRequestURL();
 
         String forwardedProto = request.getHeader("X-Forwarded-Proto");
         if (forwardedProto != null && forwardedProto.equals("https"))
@@ -221,7 +227,11 @@ public class LibraryRequest {
         return result;
     }
 
-    public static String getBaseUrl(HttpServletRequest request) {
+	public static String getBaseUrl(HttpServletRequest request) {
+		return getBaseUrl(new HttpRequest(request));
+	}
+
+    public static String getBaseUrl(Request request) {
         String requestUrl = LibraryRequest.getRequestURL(request);
         URI requestUri = null;
 

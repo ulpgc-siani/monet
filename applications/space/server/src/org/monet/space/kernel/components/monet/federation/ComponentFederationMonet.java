@@ -25,6 +25,7 @@ package org.monet.space.kernel.components.monet.federation;
 import org.monet.api.federation.setupservice.impl.model.FederationSocketInfo;
 import org.monet.federation.accountservice.accountactions.impl.messagemodel.FederationInfo;
 import org.monet.federation.accountservice.client.FederationService;
+import org.monet.http.Request;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.kernel.components.layers.FederationLayer;
@@ -41,7 +42,6 @@ import org.monet.space.kernel.model.AccountServiceProviderImpl;
 import org.monet.space.kernel.model.BusinessUnit;
 import org.monet.space.kernel.model.Federation;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.UUID;
@@ -174,7 +174,7 @@ public class ComponentFederationMonet extends ComponentFederation {
 	        }
 
 	        @Override
-	        public HttpServletRequest getRequest() {
+	        public Request getRequest() {
 		        return null;
 	        }
         });

@@ -28,6 +28,7 @@ import org.monet.space.analytics.constants.Parameter;
 import org.monet.space.analytics.model.Kernel;
 import org.monet.space.analytics.model.Language;
 import org.monet.space.analytics.serializers.CategoriesSerializer;
+import org.monet.http.Request;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
 import org.monet.space.kernel.components.ComponentFederation;
@@ -132,8 +133,8 @@ public abstract class Action {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
-				return request;
+			public Request getRequest() {
+				return new org.monet.http.HttpRequest(request);
 			}
 		});
 	}

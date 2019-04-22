@@ -1,5 +1,6 @@
 package org.monet.space.kernel.agents;
 
+import org.monet.http.Request;
 import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.kernel.components.layers.FederationLayer;
 import org.monet.space.kernel.constants.ApplicationInterface;
@@ -7,7 +8,6 @@ import org.monet.space.kernel.constants.Database;
 import org.monet.space.kernel.model.BusinessUnit;
 import org.monet.space.kernel.model.Context;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.TimerTask;
 import java.util.UUID;
 
@@ -68,7 +68,7 @@ public class AgentLauncher extends TimerTask {
 					}
 
 					@Override
-					public HttpServletRequest getRequest() {
+					public Request getRequest() {
 						return null;
 					}
 				}).loginAsSystem();

@@ -12,8 +12,6 @@ import org.monet.space.kernel.model.Account;
 import org.monet.space.kernel.model.Profile;
 import org.scribe.model.Token;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public abstract class AuthenticatedTypedAction<T extends Request, U extends Result> extends TypedAction<T, U> {
@@ -43,7 +41,7 @@ public abstract class AuthenticatedTypedAction<T extends Request, U extends Resu
 	}
 
 	@Override
-	public U execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception {
+	public U execute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception {
 		this.federationLayer = ComponentFederation.getInstance().getLayer(createConfiguration(httpRequest));
 		Map<String, String> authElements = LibraryRequest.extractAuthElements(httpRequest);
 

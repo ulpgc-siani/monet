@@ -2,6 +2,8 @@ package org.monet.space.mobile.control.actions;
 
 import org.monet.mobile.service.Response;
 import org.monet.mobile.service.Result;
+import org.monet.http.HttpRequest;
+import org.monet.http.HttpResponse;
 import org.monet.space.frontservice.configuration.Configuration;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.components.layers.FederationLayer;
@@ -41,9 +43,17 @@ public abstract class Action<U> {
 		return api;
 	}
 
-	public abstract U execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception;
+	public U execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws Exception{
+		return execute(new HttpRequest(httpRequest), new HttpResponse(httpResponse));
+	}
+
+	public abstract U execute(org.monet.http.Request httpRequest, org.monet.http.Response httpResponse) throws Exception;
 
 	protected <T> T getRequest(HttpServletRequest httpRequest, Class<T> requestClass) throws Exception, IOException {
+		return getRequest(new HttpRequest(httpRequest), requestClass);
+	}
+
+	protected <T> T getRequest(org.monet.http.Request httpRequest, Class<T> requestClass) throws Exception, IOException {
 		T request = null;
 		Serializer serializer = new Persister();
 		String requestData = httpRequest.getParameter("request");
@@ -60,6 +70,10 @@ public abstract class Action<U> {
 	}
 
 	protected File getRequestContentAsFile(HttpServletRequest httpRequest, boolean createIfNull) throws IOException {
+		return getRequestContentAsFile(new org.monet.http.HttpRequest(httpRequest), createIfNull);
+	}
+
+	protected File getRequestContentAsFile(org.monet.http.Request httpRequest, boolean createIfNull) throws IOException {
 		boolean existsFile = true;
 
 		httpRequest.getInputStream().read(new byte[0]);
@@ -96,6 +110,10 @@ public abstract class Action<U> {
 	}
 
 	protected void writeResponse(HttpServletResponse httpResponse, Result result) throws Exception {
+		writeResponse(new org.monet.http.HttpResponse(httpResponse), result);
+	}
+
+	protected void writeResponse(org.monet.http.Response httpResponse, Result result) throws Exception {
 		GZIPOutputStream outputStream = null;
 		try {
 			httpResponse.setHeader("Content-Encoding", "gzip");
@@ -115,6 +133,10 @@ public abstract class Action<U> {
 	}
 
 	protected void writeResponse(HttpServletResponse httpResponse, String contentType, InputStream inputStream, String filename) throws Exception {
+		writeResponse(new org.monet.http.HttpResponse(httpResponse), contentType, inputStream, filename);
+	}
+
+	protected void writeResponse(org.monet.http.Response httpResponse, String contentType, InputStream inputStream, String filename) throws Exception {
 		OutputStream outputStream = httpResponse.getOutputStream();
 
 		httpResponse.setContentType(contentType != null ? contentType : "application/octet-stream");
@@ -130,11 +152,11 @@ public abstract class Action<U> {
 		}
 	}
 
-	protected FederationLayer.Configuration createConfiguration(final HttpServletRequest httpRequest) {
+	protected FederationLayer.Configuration createConfiguration(final org.monet.http.Request httpRequest) {
 		return new FederationLayer.Configuration() {
 			@Override
 			public String getSessionId() {
-				return httpRequest.getSession().getId();
+				return httpRequest.getSessionId();
 			}
 
 			@Override
@@ -148,7 +170,7 @@ public abstract class Action<U> {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
+			public org.monet.http.Request getRequest() {
 				return httpRequest;
 			}
 		};

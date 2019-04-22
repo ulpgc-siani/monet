@@ -1,5 +1,6 @@
 package org.monet.space.kernel.agents;
 
+import org.monet.http.Request;
 import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.kernel.components.ComponentPersistence;
 import org.monet.space.kernel.components.layers.EventLayer;
@@ -12,7 +13,6 @@ import org.monet.space.kernel.model.Context;
 import org.monet.space.kernel.model.Event;
 import org.monet.space.kernel.model.EventList;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -112,7 +112,7 @@ public class AgentEvents extends TimerTask {
 			}
 
 			@Override
-			public HttpServletRequest getRequest() {
+			public Request getRequest() {
 				return null;
 			}
 		}).loginAsSystem();
