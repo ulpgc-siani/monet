@@ -54,7 +54,26 @@ public class HttpRequest implements Request {
     }
 
     @Override
+    public int getContentLength() {
+        return this.request.getContentLength();
+    }
+
+    @Override
+    public String getContentType() {
+        return this.request.getContentType();
+    }
+
+    @Override
+    public String getCharacterEncoding() {
+        return this.request.getCharacterEncoding();
+    }
+
+    @Override
     public String getRemoteAddr() {
         return this.request.getRemoteAddr();
+    }
+
+    public HttpServletRequest raw(){
+        return this.request;
     }
 }

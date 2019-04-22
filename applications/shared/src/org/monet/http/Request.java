@@ -22,4 +22,10 @@ public interface Request {
     String getRemoteAddr();
 
     InputStream getInputStream() throws IOException;
+
+    int getContentLength();
+
+    String getContentType();
+
+    String getCharacterEncoding();
 }
