@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>org.siani.monet</groupId>
   <artifactId>space</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
-
   <properties>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
   <repositories>
     <repository>
       <id>siani-maven-releases</id>
@@ -26,7 +22,6 @@
       <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
     </repository>
   </repositories>
-
   <build>
     <finalName>${project.artifactId}</finalName>
     <plugins>
@@ -34,8 +29,17 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.6</version>
         <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
           <webResources>
+            <resource>
+              <directory>WebContent</directory>
+              <targetPath></targetPath>
+              <filtering>true</filtering>
+              <excludes>
+                <exclude>**/web.dist.xml</exclude>
+                <exclude>**/web.xml</exclude>
+              </excludes>
+            </resource>
+
             <resource>
               <directory>resources</directory>
               <targetPath>WEB-INF/classes</targetPath>
@@ -47,7 +51,6 @@
           </webResources>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -68,37 +71,45 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
-              <artifactId>maven-antrun-plugin</artifactId>
-              <executions>
-                <execution>
-                  <id>ant-magic</id>
-                  <phase>prepare-package</phase>
-                  <goals>
-                    <goal>run</goal>
-                  </goals>
-                  <configuration>
-                    <tasks>
-                      <property name="compile_classpath"
-                                refid="maven.compile.classpath"/>
-                      <property name="outputDir"
-                                value="${project.build.outputDirectory}"/>
-                      <property name="sourceDir"
-                                value="${project.build.sourceDirectory}"/>
-                      <ant antfile="${basedir}/../client/explorer/Explorer/build.xml"
-                           target="publish" dir="${basedir}/../client/explorer/Explorer"/>
-                    </tasks>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>ant-magic</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <property name="compile_classpath" refid="maven.compile.classpath"/>
+                <property name="outputDir" value="${project.build.outputDirectory}"/>
+                <property name="sourceDir" value="${project.build.sourceDirectory}"/>
+                <ant antfile="${basedir}/../client/explorer/Explorer/build.xml" target="publish" dir="${basedir}/../client/explorer/Explorer"/>
 
+                <exec executable="bash" os="Linux" dir="${basedir}">
+                  <arg line="generate-version.sh"/>
+                </exec>
 
+                <exec executable="bash" os="Mac OS X" dir="${basedir}">
+                  <arg line="generate-version.sh"/>
+                </exec>
 
+                <touch file="${basedir}/target/space/WEB-INF/version.xml"/>
+                <loadfile property="monet-info" srcFile="${basedir}/target/space/WEB-INF/version.xml"/>
+                <delete file="${basedir}/target/space/WEB-INF/version.xml"/>
+                <copy file="${basedir}/WebContent/WEB-INF/web.dist.xml" todir="${basedir}/target/space/WEB-INF"/>
+                <replace file="${basedir}/target/space/WEB-INF/web.dist.xml" token="#monet-info#" value="${monet-info}"/>
+
+                <copy file="${basedir}/WebContent/WEB-INF/web.dist.xml" tofile="${basedir}/target/space/WEB-INF/web.xml"/>
+                <replace file="${basedir}/target/space/WEB-INF/web.xml" token="#monet-info#" value="${monet-info}"/>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-
   <dependencies>
     <dependency>
       <groupId>aopalliance</groupId>
@@ -131,9 +142,9 @@
       <version>1.45</version>
     </dependency>
     <!--<dependency>-->
-      <!--<groupId>com.google.inject</groupId>-->
-      <!--<artifactId>guice</artifactId>-->
-      <!--<version>2.0</version>-->
+    <!--<groupId>com.google.inject</groupId>-->
+    <!--<artifactId>guice</artifactId>-->
+    <!--<version>2.0</version>-->
     <!--</dependency>-->
     <dependency>
       <groupId>com.google.inject.extensions</groupId>
@@ -356,5 +367,4 @@
       <version>3.2.0</version>
     </dependency>
   </dependencies>
-
 </project>
