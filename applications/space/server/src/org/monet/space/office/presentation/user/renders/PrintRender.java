@@ -5,6 +5,8 @@ import java.util.Date;
 public abstract class PrintRender extends OfficeRender {
 	private Range range;
 
+	protected static final int WordLengthOffset = 10;
+
 	public PrintRender() {
 		super();
 	}
@@ -27,6 +29,20 @@ public abstract class PrintRender extends OfficeRender {
 
 	protected int maxColumnPercentageWith(int countColumns) {
 		return 100/countColumns;
+	}
+
+	int getWordLength(String label) {
+		if (label == null)
+			return 0;
+
+		String[] labelArray = label.split(" ");
+		int result = 0;
+		for (int i=0; i<labelArray.length; i++) {
+			if (labelArray[i].length() > result)
+				result = labelArray[i].length();
+		}
+
+		return result + WordLengthOffset;
 	}
 
 }
