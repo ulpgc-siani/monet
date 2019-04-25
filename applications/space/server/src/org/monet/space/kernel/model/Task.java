@@ -326,7 +326,7 @@ public class Task<T extends TaskDefinition> extends Entity<T> implements ISecura
 	public String getInternalState() {
 		onLoad(this, Task.PROPERTIES);
 		PlaceProperty placeProperty = this.process.getCurrentPlace();
-		Object internalState = placeProperty.getPlaceActionProperty() != null ? placeProperty.getPlaceActionProperty().getLabel() : "";
+		Object internalState = placeProperty != null && placeProperty.getPlaceActionProperty() != null ? placeProperty.getPlaceActionProperty().getLabel() : "";
 		return Language.getInstance().getModelResource(internalState);
 	}
 
