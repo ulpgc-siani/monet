@@ -11,7 +11,7 @@ public class ActionRun extends Action {
 	@Override
 	public String execute() {
 		Kernel kernel = Kernel.getInstance();
-		kernel.run();
+		kernel.run(null);
 		return MessageCode.RUNNING;
 	}
 

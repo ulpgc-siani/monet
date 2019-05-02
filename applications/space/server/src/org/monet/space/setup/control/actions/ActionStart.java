@@ -72,7 +72,7 @@ public class ActionStart extends Action {
 		try {
 			if (!BusinessUnit.isRunning()) {
 				setBusinessUnitComponents();
-				Kernel.getInstance().run();
+				Kernel.getInstance().run(null);
 			}
 		} catch (BaseException exception) {
 			AgentLogger.getInstance().error(exception);

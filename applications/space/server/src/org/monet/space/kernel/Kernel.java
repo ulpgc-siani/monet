@@ -30,6 +30,8 @@ import org.monet.space.kernel.agents.*;
 import org.monet.space.kernel.applications.Application;
 import org.monet.space.kernel.components.*;
 import org.monet.space.kernel.configuration.Configuration;
+import org.monet.space.kernel.configuration.ConfigurationLoader;
+import org.monet.space.kernel.configuration.ConfigurationMap;
 import org.monet.space.kernel.constants.Common;
 import org.monet.space.kernel.constants.Database;
 import org.monet.space.kernel.constants.ErrorCode;
@@ -207,7 +209,7 @@ public class Kernel {
 		return BusinessUnit.getRunningDate();
 	}
 
-	public Boolean run() {
+	public Boolean run(ConfigurationMap map) {
 		String content = "";
 		BusinessUnit businessUnit;
 
@@ -217,6 +219,7 @@ public class Kernel {
 			this.agentLogger.error("Could not read monet.xml file!", e);
 		}
 
+		ConfigurationLoader.load(map);
 		this.loadComponentsInfo();
 		this.unserializeFromXML(content);
 		this.initializeDatabase();

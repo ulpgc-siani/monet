@@ -33,7 +33,8 @@ import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.agents.AgentSession;
 import org.monet.space.kernel.agents.AgentWorkQueue;
 import org.monet.space.kernel.components.*;
-import org.monet.space.kernel.configuration.Configuration;
+import org.monet.space.kernel.configuration.ConfigurationLoader;
+import org.monet.space.kernel.configuration.ConfigurationMap;
 import org.monet.space.kernel.model.Context;
 
 import javax.servlet.ServletContextEvent;
@@ -55,11 +56,11 @@ public final class ListenerContext implements ServletContextListener {
 	}
 
 	private void initializeFilesystemWatcher() {
-		File oFile = new File(Configuration.getConfigurationFile());
+		File oFile = new File(ConfigurationLoader.userHomeConfigurationFile());
 
 		this.listener = new IFileSystemEventListener() {
 			public void onChange(FileSystemEvent event) {
-				Configuration.getInstance().reload();
+				ConfigurationLoader.load(ConfigurationMap.fromUserHome());
 			}
 		};
 
@@ -78,7 +79,7 @@ public final class ListenerContext implements ServletContextListener {
 		oContext.setFrameworkName(oEvent.getServletContext().getServletContextName());
 		oContext.setFrameworkDir(oEvent.getServletContext().getRealPath("/"));
 		this.initializeFilesystemWatcher();
-		Kernel.getInstance().run();
+		Kernel.getInstance().run(ConfigurationMap.fromUserHome());
 	}
 
 	@SuppressWarnings("rawtypes")
