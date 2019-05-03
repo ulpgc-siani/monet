@@ -307,7 +307,7 @@ body.print .nodeFields .field.readonly .widget .component:hover {
 }
 
 .nodeFields .field .info, .nodeFields .field .pattern, .nodeFields .field .increments, .node.form .field .range, .node.form .field .unit, .node.form .def {
-  display: none;
+  display: none !important;
 }
 
 .nodeFields .field.mediumSize {
