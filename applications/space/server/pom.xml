@@ -33,7 +33,7 @@
             <resource>
               <directory>WebContent</directory>
               <targetPath></targetPath>
-              <filtering>true</filtering>
+              <filtering>false</filtering>
               <excludes>
                 <exclude>**/web.dist.xml</exclude>
                 <exclude>**/web.xml</exclude>
@@ -71,6 +71,7 @@
           </execution>
         </executions>
       </plugin>
+<!--
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
@@ -108,6 +109,7 @@
           </execution>
         </executions>
       </plugin>
+-->
     </plugins>
   </build>
   <dependencies>
