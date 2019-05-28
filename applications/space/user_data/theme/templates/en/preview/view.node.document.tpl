@@ -12,7 +12,7 @@
 
 @content
 <div class="command onload">previewnode(::id::,::idLayer::)</div>
-<div id="::idLayer::" style="color:\#15429E;margin-top:20px;overflow:auto;height:100%;">Loading preview.Please, wait...</div>
+<div id="::idLayer::" style="color:\#15429E;margin-top:20px;">Loading preview.Please, wait...</div>
 
 @content.signs
 <div class="command onload">rendersignaturelist(::id::,::id::_signlist,::id::_signlist_options)</div>

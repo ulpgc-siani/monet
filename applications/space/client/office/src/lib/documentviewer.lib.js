@@ -320,13 +320,14 @@ DocumentViewer.prototype = {
 
 		if (!metadata.hasPendingOperations) {
 			var numberOfPages = metadata.numberOfPages;
+			var numberOfPagesToRender = numberOfPages <= DocumentViewerMaxPages ? numberOfPages : DocumentViewerMaxPages;
 			var sUrlSeparator = this.sBaseUrl.indexOf("?") ? "&" : "?";
 			var sUrl = this.sBaseUrl + sUrlSeparator + "id=" + this.sDocumentId;
 
 			this.extThumbContainer = Ext.get(this.thumbsContainer).insertHtml("beforeEnd", DocumentViewerTemplates.THUMBS_VIEW, true);
 			this.extPageContainer = Ext.get(this.pagesContainer);
 
-			for (var i = 1; i <= DocumentViewerMaxPages; i++) {
+			for (var i = 1; i <= numberOfPagesToRender; i++) {
 				var ePageControl = this.extPageContainer.insertHtml("beforeEnd", DocumentViewerTemplates.PAGE_ITEM, true);
 				var oPageViewer = new PageViewer(ePageControl, metadata.pages[i], sUrl);
 
