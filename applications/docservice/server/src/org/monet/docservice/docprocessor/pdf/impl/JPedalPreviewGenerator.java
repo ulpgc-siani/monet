@@ -1,12 +1,7 @@
 package org.monet.docservice.docprocessor.pdf.impl;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.UUID;
-
-import javax.imageio.ImageIO;
-
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import org.jpedal.PdfDecoder;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
@@ -16,15 +11,20 @@ import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.model.PreviewType;
 import org.monet.docservice.docprocessor.pdf.PreviewGenerator;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.UUID;
 
 public class JPedalPreviewGenerator implements PreviewGenerator {
   
   private Logger logger;
   private Configuration configuration;
   private Provider<Repository> repositoryProvider;
-    
+
+  private static final int MaxPages = 30;
+
   @Inject
   public JPedalPreviewGenerator(Configuration configuration, Logger logger, Provider<Repository> repositoryProvider) {
     this.logger = logger;
@@ -37,6 +37,10 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
   }
   
   public void generatePreview(String pdfPath, String documentId) {
+    generatePreview(pdfPath, documentId, false);
+  }
+
+  public void generatePreview(String pdfPath, String documentId, boolean checkCountPages) {
     logger.debug("generatePreview(%s, %s)", pdfPath, documentId);
     
     Repository repository = this.repositoryProvider.get();
@@ -47,6 +51,7 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
     try {
       pdf.openPdfFile(pdfPath);
       int pages = pdf.getPageCount();
+      if (checkCountPages && pages > MaxPages) return;
        
       for(int i=1;i<=pages;i++) {       
         pdf.setPageParameters(1.2F, i);
