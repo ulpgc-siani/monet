@@ -2,6 +2,7 @@ var SELECTED = "selected";
 var LOADED = "THUMB_LOADED";
 var PAGE = "PAGE";
 var TIME = "TIME";
+var COUNT = "COUNT";
 var CLEAR = "CLEAR";
 var ACCEPT = "ACCEPT";
 var PAGE_ITEM_DIV = ".pageItemImage";
@@ -21,15 +22,19 @@ var DocumentViewerTemplates = {
 var DocumentViewerLang = {
 	es: {
 		DocumentInProgress: "<span>El documento se está procesando, tiempo estimado para terminar ::TIME:: segundos.</span>",
+		MorePages: "<div style='margin:0 auto;width:calc(100% - 20px);text-align:center;font-size:12pt;background:#ff6601;color:white;padding:5px 10px;border-radius:4px;'>El documento tiene ::COUNT:: páginas. Descargue el documento para ver las páginas restantes.</div>",
 		Accept: "aceptar",
 		Clear: "borrar"
 	},
 	en: {
 		DocumentInProgress: "<span>Document generation is in progress, estimated time to finish is ::TIME:: seconds.</span>",
+		MorePages: "<div style='margin:0 auto;width:calc(100% - 20px);text-align:center;font-size:12pt;background:#ff6601;color:white;padding:5px 10px;border-radius:4px;'>Document has ::COUNT:: pages. Download document to see all pages.</div>",
 		Accept: "accept",
 		Clear: "delete"
 	}
 };
+
+var DocumentViewerMaxPages = 15;
 
 var ThumbViewer = function (eThumb, item, sBaseUrl) {
 	this.item = item;
@@ -321,7 +326,7 @@ DocumentViewer.prototype = {
 			this.extThumbContainer = Ext.get(this.thumbsContainer).insertHtml("beforeEnd", DocumentViewerTemplates.THUMBS_VIEW, true);
 			this.extPageContainer = Ext.get(this.pagesContainer);
 
-			for (var i = 1; i <= numberOfPages; i++) {
+			for (var i = 1; i <= DocumentViewerMaxPages; i++) {
 				var ePageControl = this.extPageContainer.insertHtml("beforeEnd", DocumentViewerTemplates.PAGE_ITEM, true);
 				var oPageViewer = new PageViewer(ePageControl, metadata.pages[i], sUrl);
 
@@ -379,6 +384,8 @@ DocumentViewer.prototype = {
 					ePagesLabel.dom.style.display = "none";
 			}
 
+			this.renderMorePagesMessage(numberOfPages, extPagesContainer);
+
 		} else {
 			extPagesContainer.insertHtml("beforeEnd",
 				DocumentViewerLang[this.sLang].DocumentInProgress
@@ -387,6 +394,11 @@ DocumentViewer.prototype = {
 			setTimeout(this.load.bind(this), metadata.estimatedTimeToFinish / 2 * 1000);
 		}
 
+	},
+
+	renderMorePagesMessage : function(numberOfPages, extPagesContainer) {
+		if (numberOfPages <= DocumentViewerMaxPages) return;
+		extPagesContainer.insertHtml("beforeEnd", DocumentViewerLang[this.sLang].MorePages.replace(TEMPLATE_SEPARATOR + COUNT + TEMPLATE_SEPARATOR, numberOfPages));
 	},
 
 	renameLabel: function (event) {

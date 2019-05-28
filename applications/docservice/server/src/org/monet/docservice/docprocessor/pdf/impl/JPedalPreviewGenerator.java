@@ -23,7 +23,7 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
   private Configuration configuration;
   private Provider<Repository> repositoryProvider;
 
-  private static final int MaxPages = 30;
+  private static final int MaxPages = 15;
 
   @Inject
   public JPedalPreviewGenerator(Configuration configuration, Logger logger, Provider<Repository> repositoryProvider) {
@@ -37,10 +37,6 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
   }
   
   public void generatePreview(String pdfPath, String documentId) {
-    generatePreview(pdfPath, documentId, false);
-  }
-
-  public void generatePreview(String pdfPath, String documentId, boolean checkCountPages) {
     logger.debug("generatePreview(%s, %s)", pdfPath, documentId);
     
     Repository repository = this.repositoryProvider.get();
@@ -51,8 +47,8 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
     try {
       pdf.openPdfFile(pdfPath);
       int pages = pdf.getPageCount();
-      if (checkCountPages && pages > MaxPages) return;
-       
+      if (pages > MaxPages) pages = MaxPages;
+
       for(int i=1;i<=pages;i++) {       
         pdf.setPageParameters(1.2F, i);
         BufferedImage buff = pdf.getPageAsImage(i);

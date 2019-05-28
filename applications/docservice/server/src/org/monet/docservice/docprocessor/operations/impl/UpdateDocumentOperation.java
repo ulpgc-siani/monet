@@ -120,7 +120,7 @@ public class UpdateDocumentOperation implements Operation {
 				else
 					sPdfTempFile = tempFile.getAbsolutePath();
 
-				previewGenerator.generatePreview(sPdfTempFile, target.getDocumentId(), true);
+				previewGenerator.generatePreview(sPdfTempFile, target.getDocumentId());
 			}
 
 		} catch (Exception e) {

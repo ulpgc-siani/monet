@@ -8,9 +8,10 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/WebContent/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
+          <root url="file://$MODULE_DIR$/WebContent" relative="/" />
           <root url="file://$MODULE_DIR$/resources" relative="WEB-INF/classes" />
           <root url="file://$MODULE_DIR$/../user_data" relative="WEB-INF/user_data" />
-          <root url="file://$MODULE_DIR$/WebContent" relative="/" />
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
       </configuration>
     </facet>
