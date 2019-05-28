@@ -2485,7 +2485,7 @@ var DocumentViewerLang = {
 	}
 };
 
-var DocumentViewerMaxPages = 1;
+var DocumentViewerMaxPages = 15;
 
 var ThumbViewer = function (eThumb, item, sBaseUrl) {
 	this.item = item;
