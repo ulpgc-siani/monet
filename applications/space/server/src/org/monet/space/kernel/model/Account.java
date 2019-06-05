@@ -69,6 +69,10 @@ public class Account extends BaseObject {
 		this.codeBusinessUnit = codeBusinessUnit;
 	}
 
+	public String getCurrentRole() {
+		return this.currentRole;
+	}
+
 	public void setCurrentRole(String role) {
 		this.currentRole = role;
 	}
@@ -129,7 +133,7 @@ public class Account extends BaseObject {
 		}
 
 		if (!environmentNodes.containsKey(this.currentRole))
-			return null;
+			return environmentNodes.values().size() > 0 ? environmentNodes.values().iterator().next().get(0) : null;
 
 		return environmentNodes.get(this.currentRole).get(0);
 	}
@@ -146,7 +150,7 @@ public class Account extends BaseObject {
 		}
 
 		if (!dashboards.containsKey(this.currentRole))
-			return null;
+			return dashboards.values().size() > 0 ? dashboards.values().iterator().next().get(0) : null;
 
 		return dashboards.get(this.currentRole).get(0);
 	}
@@ -203,10 +207,12 @@ public class Account extends BaseObject {
 			this.disablePartialLoading();
 
 		Task task = this.getInitializerTask();
+		Node rootNode = this.getRootNode();
+		Dashboard rootDashboard = this.getRootDashboard();
 
 		result.put("initializertask", task != null ? task.toJson() : null);
-		result.put("rootnode", this.getRootNode().toJson());
-		result.put("rootdashboard", this.getRootDashboard().toJson());
+		result.put("rootnode", rootNode != null ? rootNode.toJson() : "");
+		result.put("rootdashboard", rootDashboard != null ? rootDashboard.toJson() : "");
 		result.put("roles", this.getEnvironmentNodesByRole().keySet());
 		if (partialLoading)
 			this.enablePartialLoading();
@@ -261,7 +267,7 @@ public class Account extends BaseObject {
 				JSONObject environment = new JSONObject();
 				environment.put("id", id);
 				environment.put("label", node.getLabel());
-				environment.put("active", id == rootNode.getId());
+				environment.put("active", rootNode != null && id.equals(rootNode.getId()));
 				environment.put("disabled", node.getDefinition().isDisabled());
 				environments.add(environment);
 
@@ -286,7 +292,7 @@ public class Account extends BaseObject {
 				JSONObject serialized = new JSONObject();
 				serialized.put("id", id);
 				serialized.put("label", dashboard.getLabel());
-				serialized.put("active", id == rootDashboard.getId());
+				serialized.put("active", rootDashboard != null && id.equals(rootDashboard.getId()));
 				serialized.put("disabled", dashboard.getDefinition().isDisabled());
 				dashboards.add(serialized);
 

@@ -198,7 +198,7 @@ public class ProducerFederation extends Producer {
 				dashboardsByRole.get(role).add(dashboard);
 			}
 
-			if (dashboardsByRole.size() > 0) account.setCurrentRole(dashboardsByRole.keySet().iterator().next());
+			if (dashboardsByRole.size() > 0 && (account.getCurrentRole() == null || account.getCurrentRole().isEmpty())) account.setCurrentRole(dashboardsByRole.keySet().iterator().next());
 
 			account.setDashboardsByRole(dashboardsByRole);
 		} catch (Exception oException) {
