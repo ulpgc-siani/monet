@@ -34,8 +34,8 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
       // avoid callings to onchange before initialization
       DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
       DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
     }
 
   };
@@ -924,14 +924,16 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     Process.execute();
   };
 
-  DOMNode.atGetFieldValue = function (code) {
-    var DOMField = this.getField(code);
-    return DOMField.getValue();
+  DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (DOMTarget == null) DOMTarget = this.getField(code);
+    return DOMTarget.getValue();
   };
 
-  DOMNode.atGetFieldValueCode = function (code) {
-    var DOMField = this.getField(code);
-    return DOMField.getValueCode();
+  DOMNode.atGetFieldValueCode = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (DOMTarget == null) DOMTarget = this.getField(code);
+    return DOMTarget.getValueCode();
   };
 
 };
