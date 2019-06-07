@@ -926,13 +926,13 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
 
   DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
-    if (DOMTarget == null) DOMTarget = this.getField(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
     return DOMTarget.getValue();
   };
 
   DOMNode.atGetFieldValueCode = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
-    if (DOMTarget == null) DOMTarget = this.getField(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
     return DOMTarget.getValueCode();
   };
 

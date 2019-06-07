@@ -44050,14 +44050,14 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
 
   DOMField.atGetFieldValue = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
-    if (DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
     if (DOMTarget == null && this.getFieldValue) return this.getFieldValue(code);
     return DOMTarget.getValue();
   };
 
   DOMField.atGetFieldValueCode = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
-    if (DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
     if (DOMTarget == null && this.getFieldValueCode) return this.getFieldValueCode(code);
     return DOMTarget.getValueCode();
   };
@@ -46326,13 +46326,13 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
 
   DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
-    if (DOMTarget == null) DOMTarget = this.getField(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
     return DOMTarget.getValue();
   };
 
   DOMNode.atGetFieldValueCode = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
-    if (DOMTarget == null) DOMTarget = this.getField(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
     return DOMTarget.getValueCode();
   };
 
