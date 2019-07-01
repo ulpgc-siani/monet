@@ -432,6 +432,8 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		for (Node currentNode : nodeList) {
 			if (childNodes.contains(currentNode.getId()))
 				continue;
+			if (currentNode.isLinked())
+				continue;
 			orphanNodes.add(currentNode.getId());
 		}
 
