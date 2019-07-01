@@ -825,7 +825,8 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (node.getDefinition().isSingleton())
 			return;
 
-		producerNode.remove(node);
+		if (node != null)
+			producerNode.remove(node);
 
 		try {
 			componentDocuments.removeDocument(id);
