@@ -432,8 +432,8 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		for (Node currentNode : nodeList) {
 			if (childNodes.contains(currentNode.getId()))
 				continue;
-			if (currentNode.isLinked())
-				continue;
+//			if (currentNode.isLinked())
+//				continue;
 			orphanNodes.add(currentNode.getId());
 		}
 
@@ -827,8 +827,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (node.getDefinition().isSingleton())
 			return;
 
-		if (node != null)
-			producerNode.remove(node);
+		producerNode.remove(node);
 
 		try {
 			componentDocuments.removeDocument(id);
