@@ -217,6 +217,7 @@ public abstract class Database {
 		public static final String LINK_ADD = "LINK_ADD";
 		public static final String LINK_SAVE = "LINK_SAVE";
 		public static final String LINK_DELETE = "LINK_DELETE";
+		public static final String LINK_CLEAR = "LINK_CLEAR";
 
 		public static final String ATTACHMENT_ADD = "ATTACHMENT_ADD";
 		public static final String ATTACHMENT_DELETE = "ATTACHMENT_DELETE";

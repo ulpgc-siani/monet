@@ -821,13 +821,8 @@ public class ProducerNode extends Producer {
 	}
 
 	private void loadLinkedTasks(Node node) {
-		ProducerTaskList producerTaskList;
-		TaskList taskList;
-
-		producerTaskList = (ProducerTaskList) this.producersFactory.get(Producers.TASKLIST);
-
-		taskList = producerTaskList.loadLinkedWithNode(node.getId());
-
+		ProducerTaskList producerTaskList = this.producersFactory.get(Producers.TASKLIST);
+		TaskList taskList = producerTaskList.loadLinkedWithNode(node.getId());
 		node.setLinkedTasks(taskList);
 	}
 
@@ -2359,6 +2354,17 @@ public class ProducerNode extends Producer {
 		}
 
 		return count > 0;
+	}
+
+	public Boolean clearLinks(Node node) {
+		HashMap<String, Object> parameters = new HashMap<>();
+		Node mainNode = node.getMainNode();
+
+		parameters.put(Database.QueryFields.ID, mainNode.getId());
+		parameters.put(Database.QueryFields.TYPE, LinkType.NODE);
+		this.agentDatabase.executeRepositoryUpdateQuery(Database.Queries.LINK_CLEAR, parameters);
+
+		return true;
 	}
 
 	public Node lightLoad(String id, String code) {

@@ -23,9 +23,8 @@ import org.monet.space.kernel.components.layers.SourceLayer;
 import org.monet.space.kernel.constants.*;
 import org.monet.space.kernel.exceptions.DataException;
 import org.monet.space.kernel.exceptions.SessionException;
-import org.monet.space.kernel.library.LibraryArray;
-import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.Dictionary;
+import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.map.GeometryHelper;
 import org.monet.space.kernel.model.map.Location;
 import org.monet.space.kernel.model.map.LocationList;
@@ -411,7 +410,8 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		Collection<NodeFieldProperty> nodeFieldDefinitions;
 		AttributeList attributeList;
 		NodeList nodeList;
-		HashSet<String> childNodes = new HashSet<>(), orphanNodes = new HashSet<>();
+		HashSet<String> childNodes = new HashSet<>();
+		List<Node> orphanNodes = new ArrayList<>();
 
 		nodeFieldDefinitions = declaration.getNodeFieldPropertyList();
 		if (nodeFieldDefinitions.size() == 0)
@@ -432,13 +432,15 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		for (Node currentNode : nodeList) {
 			if (childNodes.contains(currentNode.getId()))
 				continue;
-//			if (currentNode.isLinked())
-//				continue;
-			orphanNodes.add(currentNode.getId());
+			orphanNodes.add(currentNode);
 		}
 
-		if (orphanNodes.size() > 0)
-			this.deleteAndRemoveNodesFromTrash(LibraryArray.implode(orphanNodes, Strings.COMMA));
+		this.deleteAndRemoveNodesFromTrash(orphanNodes);
+	}
+
+	private void clearLinks(Node node) {
+		ProducerNode producerNode = this.producersFactory.get(Producers.NODE);
+		producerNode.clearLinks(node);
 	}
 
 	private void saveNodeDocument(Node node, Boolean async) {
@@ -839,13 +841,14 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 	}
 
 	@Override
-	public void deleteAndRemoveNodesFromTrash(String data) {
+	public void deleteAndRemoveNodesFromTrash(List<Node> nodes) {
 		if (!this.isStarted()) {
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 		}
 
-		for (String node : data.split(Strings.COMMA)) {
-			this.deleteAndRemoveNodeFromTrash(node);
+		for (Node node : nodes) {
+			clearLinks(node);
+			deleteAndRemoveNodeFromTrash(node.getId());
 		}
 	}
 

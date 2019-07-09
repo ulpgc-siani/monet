@@ -33,7 +33,7 @@ public interface NodeLayer extends Layer {
 
 	void deleteAndRemoveNodeFromTrash(String id);
 
-	void deleteAndRemoveNodesFromTrash(String data);
+	void deleteAndRemoveNodesFromTrash(List<Node> nodes);
 
 	void emptyTrash();
 

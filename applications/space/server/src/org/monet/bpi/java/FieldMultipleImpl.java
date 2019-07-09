@@ -103,7 +103,6 @@ public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T
 		if (index > -1) {
 			FieldImpl<V> field = (FieldImpl<V>) this.fields.get(index);
 			attribute.getAttributeList().delete(field.attribute.getId());
-			removeLinkTo(field.attribute.getId());
 			this.fields.remove(index);
 		}
 		refreshOrder();
@@ -115,7 +114,6 @@ public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T
 		if (index > -1) {
 			FieldImpl<V> field = (FieldImpl<V>) this.fields.get(index);
 			attribute.getAttributeList().delete(field.attribute.getId());
-			removeLinkTo(field.attribute.getId());
 			this.fields.remove(index);
 		}
 		refreshOrder();
@@ -127,20 +125,8 @@ public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T
 		for (T field : this.fields) {
 			FieldImpl<V> fieldImpl = (FieldImpl<V>) field;
 			attributeList.delete(fieldImpl.attribute.getId());
-			removeLinkTo(fieldImpl.attribute.getId());
 		}
 		this.fields.clear();
-	}
-
-	private void removeLinkTo(String id) {
-//		if (this.definition instanceof LinkFieldProperty)
-//			removeLink();
-//		else if (this.definition instanceof NodeFieldProperty)
-//			removeLink();
-	}
-
-	private void removeLink() {
-//		ddddd
 	}
 
 	void refreshOrder() {
