@@ -146,8 +146,13 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 				break;
 		}
 
-		if (_goto != null)
+		if (_goto != null) {
 			this.gotoPlace(_goto.getValue(), null);
+
+			MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());
+			event.addParameter(MonetEvent.PARAMETER_PLACE, _goto.getValue());
+			this.agentNotifier.notify(event);
+		}
 
 		this.resumeAsync();
 	}
