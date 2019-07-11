@@ -146,13 +146,8 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 				break;
 		}
 
-		if (_goto != null) {
+		if (_goto != null)
 			this.gotoPlace(_goto.getValue(), null);
-
-			MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());
-			event.addParameter(MonetEvent.PARAMETER_PLACE, _goto.getValue());
-			this.agentNotifier.notify(event);
-		}
 
 		this.resumeAsync();
 	}
@@ -475,6 +470,10 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		}
 
 		this.gotoPlace(actionProperty.getGoto().getValue(), actionProperty.getHistory());
+
+		MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());
+		event.addParameter(MonetEvent.PARAMETER_PLACE, actionProperty.getGoto().getValue());
+		this.agentNotifier.notify(event);
 	}
 
 	private void doSendResponseAction(SendResponseActionProperty actionProperty) {
