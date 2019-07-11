@@ -480,6 +480,10 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
         this.customer.send(actionProperty.getResponse().getValue());
 
 		this.gotoPlace(actionProperty.getGoto().getValue(), actionProperty.getHistory());
+
+		MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());
+		event.addParameter(MonetEvent.PARAMETER_PLACE, actionProperty.getGoto().getValue());
+		this.agentNotifier.notify(event);
 	}
 
 	private void doEnrollAction(EnrollActionProperty actionProperty) {
