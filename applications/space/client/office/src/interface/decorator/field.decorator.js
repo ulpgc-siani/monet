@@ -6,6 +6,7 @@ CGDecoratorField.prototype = new CGDecorator;
 CGDecoratorField.prototype.execute = function (DOMField) {
 
   DOMField.CurrentWidget = null;
+  DOMField.onValueChangeListeners = [];
   this.addCommonMethods(DOMField);
 
   DOMField.addWidgetBehaviours = function () {

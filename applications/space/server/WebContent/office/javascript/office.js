@@ -36767,7 +36767,13 @@ CGWidget.prototype.setTarget = function (Target) {
   this.createOptions();
   this.setMessageWhenEmpty(this.Target.getMessageWhenEmpty());
   this.validate();
+  this.addListeners();
   //this.updateData();
+};
+
+CGWidget.prototype.addListeners = function() {
+  var fields = this.Target.getStoreFiltersFields();
+  for (var i=0; i<fields.length; i++) fields[i].onValueChangeListeners.push(this.doClearValue.bind(this));
 };
 
 CGWidget.prototype.getViewMode = function () {
@@ -36846,6 +36852,7 @@ CGWidget.prototype.getData = function () {
 };
 
 CGWidget.prototype.updateData = function () {
+  for (var i=0; i<this.Target.onValueChangeListeners.length; i++) this.Target.onValueChangeListeners[i]();
   if (this.onChange) this.onChange();
 };
 
@@ -37003,6 +37010,10 @@ CGWidget.prototype.setObserver = function (Observer, iPos) {
 
 CGWidget.prototype.clearValue = function (oEvent) {
   this.focus();
+  this.doClearValue();
+};
+
+CGWidget.prototype.doClearValue = function () {
   this.extValue.dom.value = "";
   this.hideClearValue();
   this.validate();
@@ -38576,6 +38587,7 @@ CGWidgetLink.prototype.setTarget = function (Target) {
   this.createOnlineMenu();
   this.setMessageWhenEmpty(this.Target.getMessageWhenEmpty());
   this.setItem(this.extValue.dom.name, this.extValue.dom.value);
+  this.addListeners();
   //this.updateData();
 };
 
@@ -43735,6 +43747,24 @@ CGDecoratorFieldLink.prototype.execute = function (DOMField) {
     return this.getDataLink().Filters;
   };
 
+  DOMField.getStoreFiltersFields = function () {
+    var result = [];
+    var filters = this.getStoreFilters();
+
+    for (var key in filters) {
+      if (isFunction(filters[key])) continue;
+      var filter = filters[key];
+
+      if (filter.indexOf("_field:") != -1) {
+        var field = filter.replace("_field:", "");
+        if (field.indexOf("__") != -1) field = field.substring(0, field.indexOf("__"));
+        result.push(DOMField.getField(field));
+      }
+    }
+
+    return result;
+  };
+
   DOMField.getStoreFiltersValues = function () {
 	  var result = new Object();
 	  var filters = this.getStoreFilters();
@@ -44018,12 +44048,13 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
       DOMField.onGotoField = this.gotoField.bind(this);
       DOMField.onLoadDefaultValue = this.atFieldLoadDefaultValue.bind(this);
       DOMField.onAddDefaultValue = this.atFieldAddDefaultValue.bind(this);
+      DOMField.getField = this.atGetField.bind(this, DOMField);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
       DOMField.init();
       // avoid callings to onchange before initialization
 //      DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
 //      DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
     }
   };
 
@@ -44046,6 +44077,13 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
       DOMField.onRefresh = null;
       DOMField.destroy();
     }
+  };
+
+  DOMField.atGetField = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getField) return this.getField(code);
+    return DOMTarget;
   };
 
   DOMField.atGetFieldValue = function (DOMFieldSender, code) {
@@ -44139,6 +44177,12 @@ CGDecoratorFieldSelect.prototype.execute = function (DOMField) {
     return this.getSourceStore().From;
   };
 
+  DOMField.getStoreFromField = function () {
+    var value = this.getStoreFrom();
+    if (value.indexOf("_field:") === -1) return null;
+    return DOMField.getField(value.replace("_field:", ""));
+  };
+
   DOMField.getStoreFromValue = function () {
     var value = this.getStoreFrom();
 
@@ -44150,6 +44194,24 @@ CGDecoratorFieldSelect.prototype.execute = function (DOMField) {
 
   DOMField.getStoreFilters = function () {
     return this.getSourceStore().Filters;
+  };
+
+  DOMField.getStoreFiltersFields = function () {
+    var result = [];
+    var filters = this.getStoreFilters();
+
+    for (var key in filters) {
+      if (isFunction(filters[key])) continue;
+      var filter = filters[key];
+
+      if (filter.indexOf("_field:") != -1) {
+        var field = filter.replace("_field:", "");
+        if (field.indexOf("__") != -1) field = field.substring(0, field.indexOf("__"));
+        result.push(DOMField.getField(field));
+      }
+    }
+
+    return result;
   };
 
   DOMField.getStoreFiltersValues = function () {
@@ -44392,6 +44454,7 @@ CGDecoratorField.prototype = new CGDecorator;
 CGDecoratorField.prototype.execute = function (DOMField) {
 
   DOMField.CurrentWidget = null;
+  DOMField.onValueChangeListeners = [];
   this.addCommonMethods(DOMField);
 
   DOMField.addWidgetBehaviours = function () {
@@ -45430,12 +45493,13 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
       DOMField.onGotoField = this.gotoField.bind(this);
       DOMField.onLoadDefaultValue = this.atFieldLoadDefaultValue.bind(this);
       DOMField.onAddDefaultValue = this.atFieldAddDefaultValue.bind(this);
+      DOMField.getField = this.atGetField.bind(this, DOMField);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
       DOMField.init();
       // avoid callings to onchange before initialization
       DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
       DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
     }
 
   };
@@ -46324,10 +46388,15 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     Process.execute();
   };
 
-  DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
+  DOMNode.atGetField = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
     if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
-    return DOMTarget.getValue();
+    return DOMTarget;
+  };
+
+  DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
+    var DOMTarget = DOMNode.atGetField(DOMFieldSender, code);
+    return DOMTarget != null ? DOMTarget.getValue() : null;
   };
 
   DOMNode.atGetFieldValueCode = function (DOMFieldSender, code) {

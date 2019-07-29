@@ -481,7 +481,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 	private void notifyPlaceArrival(PlaceProperty place) {
 		notifyPlaceArrival(place.getCode());
 	}
-	
+
 	private void notifyPlaceArrival(String key) {
 		PlaceProperty placeDefinition = this.model.getDefinition().getPlace(key);
 		MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());

@@ -30,12 +30,13 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
       DOMField.onGotoField = this.gotoField.bind(this);
       DOMField.onLoadDefaultValue = this.atFieldLoadDefaultValue.bind(this);
       DOMField.onAddDefaultValue = this.atFieldAddDefaultValue.bind(this);
+      DOMField.getField = this.atGetField.bind(this, DOMField);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
       DOMField.init();
       // avoid callings to onchange before initialization
       DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
       DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
     }
 
   };
@@ -924,10 +925,15 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     Process.execute();
   };
 
-  DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
+  DOMNode.atGetField = function (DOMFieldSender, code) {
     var DOMTarget = DOMFieldSender.getBrother(code);
     if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
-    return DOMTarget.getValue();
+    return DOMTarget;
+  };
+
+  DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
+    var DOMTarget = DOMNode.atGetField(DOMFieldSender, code);
+    return DOMTarget != null ? DOMTarget.getValue() : null;
   };
 
   DOMNode.atGetFieldValueCode = function (DOMFieldSender, code) {
