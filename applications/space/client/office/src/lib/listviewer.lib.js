@@ -908,7 +908,7 @@ CGListViewer.prototype.updateItems = function (bClearItems) {
     extItem.dom.Id = Item.id;
     extItem.dom.addClassName(Item.id);
 
-    Event.observe(extContent.dom, "click", CGListViewer.prototype.atItemContentClick.bind(this, extItem.dom, extContent.dom));
+    Event.observe(extContent.dom, "click", CGListViewer.prototype.atItemContentClick.bind(this, extItem.dom, extContent.dom, i, this.data.nrows));
     Event.observe(extSelector.dom, "click", CGListViewer.prototype.atItemSelectorClick.bind(this, extItem.dom, extSelector.dom));
     Event.observe(extDelete.dom, "click", CGListViewer.prototype.atItemDeleteClick.bind(this, extItem.dom, extDelete.dom));
 
@@ -1516,7 +1516,7 @@ CGListViewer.prototype.atPagingLastClick = function (DOMPagingItem) {
   this.lastPage();
 };
 
-CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, EventLaunched) {
+CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, index, nrows, EventLaunched) {
 
   if (this.DOMActiveItem != null) this.DOMActiveItem.removeClassName(CLASS_ACTIVE);
 
@@ -1525,7 +1525,7 @@ CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, Event
 
   if (this.Options.Templates.ShowItemCommand != null && !this.background) {
     var CommandTemplate = new Template(this.Options.Templates.ShowItemCommand);
-    CommandListener.dispatchCommand(CommandTemplate.evaluate({"id": DOMItem.Id}));
+    CommandListener.dispatchCommand(CommandTemplate.evaluate({"id": DOMItem.Id,"index":index,"count":nrows}));
     return false;
   }
 

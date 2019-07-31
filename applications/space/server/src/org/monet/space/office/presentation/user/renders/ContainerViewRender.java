@@ -64,15 +64,8 @@ public class ContainerViewRender extends NodeViewRender {
 			if (result != null) return result;
 		}
 
-		boolean isLocationView = codeView.equals("location");
-		if (isLocationView) {
-			this.initMapWithoutView(map, "location");
-			return this.initLocationSystemView(map);
-		} else if (viewDefinition == null) {
-			map.put("codeView", codeView);
-			map.put("labelDefinition", this.definition.getLabelString());
-			return block("view.undefined", map);
-		}
+		String result = initViewFromCode(codeView, viewDefinition, map);
+		if (result != null) return result;
 
 		this.initMap(map, viewDefinition);
 

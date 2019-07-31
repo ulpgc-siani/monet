@@ -62,6 +62,7 @@ public class ActionsFactory {
 		this.register(Actions.LOAD_NODE_ITEMS, ActionLoadNodeItems.class);
 		this.register(Actions.LOAD_NODE_LOCATION, ActionLoadNodeLocation.class);
 		this.register(Actions.LOAD_NODE_ATTRIBUTE, ActionLoadNodeAttribute.class);
+		this.register(Actions.LOAD_ANCESTOR_CHILD_ID, ActionLoadAncestorChildId.class);
 		this.register(Actions.LOAD_LOCATION_LAYER, ActionLoadLocationLayer.class);
 		this.register(Actions.LOAD_SET_ITEMS, ActionLoadSetItems.class);
 		this.register(Actions.LOAD_LINK_NODE_ITEMS, ActionLoadLinkNodeItems.class);

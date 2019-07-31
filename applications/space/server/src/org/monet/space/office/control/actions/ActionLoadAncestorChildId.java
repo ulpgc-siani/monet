@@ -22,60 +22,59 @@
 
 package org.monet.space.office.control.actions;
 
-import org.monet.space.office.core.model.Language;
+import net.minidev.json.JSONObject;
+import org.monet.metamodel.SetDefinition;
 import org.monet.space.applications.library.LibraryRequest;
-import org.monet.space.office.presentation.user.renders.OfficeRender;
 import org.monet.space.kernel.components.ComponentPersistence;
 import org.monet.space.kernel.components.layers.NodeLayer;
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.exceptions.DataException;
+import org.monet.space.kernel.exceptions.NodeAccessException;
+import org.monet.space.kernel.model.Dictionary;
 import org.monet.space.kernel.model.Node;
+import org.monet.space.kernel.model.NodeDataRequest;
 import org.monet.space.office.control.constants.Actions;
 import org.monet.space.office.control.constants.Parameter;
 import org.monet.space.office.core.constants.ErrorCode;
 
-public class ActionLoadNode extends Action {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+public class ActionLoadAncestorChildId extends PrintAction {
 	private NodeLayer nodeLayer;
 
-	public ActionLoadNode() {
+	public ActionLoadAncestorChildId() {
 		super();
 		this.nodeLayer = ComponentPersistence.getInstance().getNodeLayer();
 	}
 
 	public String execute() {
-		String id = (String) this.request.getAttribute(Parameter.ID);
-		String template = (String) LibraryRequest.getParameter(Parameter.MODE, this.request);
-		String index = this.request.getParameter(Parameter.INDEX);
-		String count = this.request.getParameter(Parameter.COUNT);
-		Node node;
+		final String idAncestor = LibraryRequest.getParameter(Parameter.ANCESTOR, this.request);
+		final String codeView = LibraryRequest.getParameter(Parameter.VIEW, this.request);
+		final Integer index = Integer.valueOf(LibraryRequest.getParameter(Parameter.INDEX, this.request));
+		final Node node;
 
-		if (!this.getFederationLayer().isLogged()) {
+		if (!this.getFederationLayer().isLogged())
 			return ErrorCode.USER_NOT_LOGGED;
-		}
 
-		if (id == null) {
-			id = (String) LibraryRequest.getParameter(Parameter.ID, this.request);
-		}
-		if (id == null) {
-			throw new DataException(ErrorCode.INCORRECT_PARAMETERS, Actions.LOAD_NODE);
-		}
+		if (idAncestor == null)
+			throw new DataException(ErrorCode.INCORRECT_PARAMETERS, Actions.EXPORT_NODE);
 
-		if (template == null) {
-			id = (String) this.request.getAttribute(Parameter.ID);
-		} else template = template.replace(Strings.AMPERSAND_HTML, Strings.AMPERSAND);
+		node = this.nodeLayer.loadNode(idAncestor);
 
-		node = this.nodeLayer.loadNode(id);
+		if (!this.componentSecurity.canRead(node, this.getAccount()))
+			throw new NodeAccessException(org.monet.space.kernel.constants.ErrorCode.READ_NODE_PERMISSIONS, idAncestor);
 
-		if (!this.componentSecurity.canRead(node, this.getAccount())) {
-			return ErrorCode.READ_NODE_PERMISSIONS + Strings.COLON + Strings.SPACE + Language.getInstance().getErrorMessage(ErrorCode.READ_NODE_PERMISSIONS);
-		}
+		NodeDataRequest dataRequest = createNodeDataRequest(null, node.getDefinition().getCode());
+		dataRequest.setCodeReference(Dictionary.getInstance().getIndexDefinition(((SetDefinition)node.getDefinition()).getIndex().getValue()).getCode());
+		dataRequest.setCodeView(codeView);
+		dataRequest.setStartPos(index);
+		dataRequest.setLimit(1);
 
-		OfficeRender render = this.rendersFactory.get(node, template, this.getRenderLink(), getAccount());
-		if (index != null && !index.isEmpty() && !index.equalsIgnoreCase("undefined")) render.setParameter("index", index);
-		if (count != null && !count.isEmpty() && !count.equalsIgnoreCase("undefined")) render.setParameter("count", count);
-		node.setContent(render.getOutput());
-
-		return node.toJson().toJSONString();
+		List<Node> map = new ArrayList<>(this.nodeLayer.requestNodeListItems(idAncestor, dataRequest).values());
+		return map.size() > 0 ? map.get(0).getId() : "-1";
 	}
 
 }

@@ -190,6 +190,21 @@ public abstract class OfficeRender extends Render {
 		return showDefinition.getSharedPrototypes() != null;
 	}
 
+	protected boolean isRecentTaskSystemView(NodeViewProperty viewDefinition) {
+
+		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {
+			ContainerDefinition.ViewProperty.ShowProperty showDefinition = ((ContainerDefinition.ViewProperty) viewDefinition).getShow();
+			return showDefinition.getRecentTask() != null;
+		}
+
+		if (viewDefinition instanceof FormViewProperty) {
+			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) viewDefinition).getShow();
+			return showDefinition.getRecentTask() != null;
+		}
+
+		return false;
+	}
+
 	protected boolean isTasksSystemView(NodeViewProperty viewDefinition) {
 
 		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {

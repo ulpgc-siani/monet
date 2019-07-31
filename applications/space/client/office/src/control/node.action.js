@@ -60,7 +60,9 @@ CGActionShowNode.prototype = new CGActionShowBase;
 CGActionShowNode.constructor = CGActionShowNode;
 CommandFactory.register(CGActionShowNode, {
 	Id: 0,
-	Mode: 1
+	Mode: 1,
+	Index: 2,
+	Count: 3
 }, true);
 
 CGActionShowNode.prototype.getDOMElement = function () {
@@ -114,7 +116,7 @@ CGActionShowNode.prototype.step_2 = function () {
 };
 
 CGActionShowNode.prototype.step_3 = function () {
-	Kernel.loadNode(this, this.Id, this.Mode);
+	Kernel.loadNode(this, this.Id, this.Mode, this.Index, this.Count);
 };
 
 CGActionShowNode.prototype.step_4 = function () {
@@ -178,6 +180,81 @@ CGActionShowNode.prototype.step_5 = function () {
 	Process.DOMViewActiveTab = this.DOMViewActiveTab;
 	Process.execute();
 	this.terminate();
+};
+
+// ----------------------------------------------------------------------
+// Action show set item
+// ----------------------------------------------------------------------
+function CGActionShowSetItem() {
+	this.base = CGActionShowBase;
+	this.base(1);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionShowSetItem.prototype = new CGActionShowBase;
+CGActionShowSetItem.constructor = CGActionShowSetItem;
+CommandFactory.register(CGActionShowSetItem, {
+	Set: 0,
+	Item: 1,
+	Mode: 2,
+	Index: 3,
+	Count: 4
+}, true);
+
+CGActionShowSetItem.prototype.step_1 = function () {
+	var state = State.SetsContext[this.Set];
+	if (state == null) state = {};
+	var view = this.findView();
+	state.view = view != null ? view.getDOM().getActiveTab() : null;
+	State.SetsContext[this.Set] = state;
+	CommandDispatcher.dispatch("shownode(" + this.Item + "," + this.Mode + "," + this.Index + "," + this.Count + ")");
+};
+
+CGActionShowSetItem.prototype.findView = function () {
+	var result = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.Set);
+	if (result != null) return result;
+	var views = Desktop.Main.Center.Body.getViews(VIEW_NODE,VIEW_NODE_TYPE_NODE,this.Set);
+	return views.length > 0 ? views[0] : null;
+};
+
+// ----------------------------------------------------------------------
+// Action show node child
+// ----------------------------------------------------------------------
+function CGActionShowNodeChild() {
+	this.base = CGActionShowBase;
+	this.base(3);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionShowNodeChild.prototype = new CGActionShowBase;
+CGActionShowNodeChild.constructor = CGActionShowNodeChild;
+CommandFactory.register(CGActionShowNodeChild, {
+	Ancestor: 0,
+	Mode: 1,
+	Index: 2,
+	Count: 3
+}, true);
+
+CGActionShowNodeChild.prototype.step_1 = function () {
+	var view = State.SetsContext[this.Ancestor].view;
+	var filters = State.getListViewerFilters(this.Ancestor + view);
+	Kernel.loadAncestorChildId(this, this.Ancestor, view, this.Index, filters);
+};
+
+CGActionShowNodeChild.prototype.step_2 = function () {
+	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
+
+	var ActionShowNode = new CGActionShowNode();
+	ActionShowNode.Id = this.data;
+	ActionShowNode.Mode = this.Mode;
+	ActionShowNode.Index = this.Index;
+	ActionShowNode.Count = this.Count;
+	ActionShowNode.ReturnProcess = this;
+	ActionShowNode.execute();
+};
+
+CGActionShowNodeChild.prototype.step_3 = function () {
+	Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().activateTab(this.activeTab);
 };
 
 // ----------------------------------------------------------------------
@@ -3615,24 +3692,8 @@ CGActionPrintNode.prototype.step_3 = function () {
     this.saveDialogResult();
 
     this.CodeView = this.getCodeView();
-    this.ListState = State.getListViewerState(this.IdNode + this.CodeView);
+    this.Filters = State.getListViewerFilters(this.IdNode + this.CodeView);
     this.Attributes = this.getAttributes();
-
-    if (this.ListState != null) {
-        Filters["query"] = this.ListState.Filter;
-        Filters["sortsby"] = "";
-        Filters["groupsby"] = "";
-        for (var i = 0; i < this.ListState.Sorts.length; i++)
-            Filters["sortsby"] += this.ListState.Sorts[i].Code + MONET_FILTER_SEPARATOR + this.ListState.Sorts[i].Mode + MONET_FILTERS_SEPARATOR;
-        for (var i = 0; i < this.ListState.Groups.length; i++)
-            Filters["groupsby"] += this.ListState.Groups[i].Code + MONET_FILTER_SEPARATOR + this.ListState.Groups[i].Value + MONET_FILTERS_SEPARATOR;
-
-        if (Filters["sortsby"].length > 0)
-            Filters["sortsby"] = Filters["sortsby"].substring(0, Filters["sortsby"].length - MONET_FILTERS_SEPARATOR.length);
-        if (Filters["groupsby"].length > 0)
-            Filters["groupsby"] = Filters["groupsby"].substring(0, Filters["groupsby"].length - MONET_FILTERS_SEPARATOR.length);
-    }
-    this.Filters = Filters;
 
     Kernel.printNodeTimeConsumption(this, this.IdNode, this.Mode, this.CodeView, this.Filters, this.Attributes, CGActionPrintNode.DateAttribute, CGActionPrintNode.FromDate, CGActionPrintNode.ToDate, Account.getInstanceId());
 };

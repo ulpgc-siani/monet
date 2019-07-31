@@ -33,7 +33,7 @@ configuration.toolbar.operationSet.push({type:"TOOL", visible: ::visible::, labe
 configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, label: "::label::", parameters: {id:"::id::", code:"::code::", name:"::name::"}});
 
 @operation.editable
-configuration.toolbar.operationSet.push({type:"EDIT", label: "Editando...", parameters: {id:"::idNode::",mode:"preview.html?mode=page::from|&from=*::",css:"editing"}});
+configuration.toolbar.operationSet.push({type:"EDIT", label: "Editando...", parameters: {id:"::idNode::",mode:"preview.html?mode=page::from|&from=*::",css:"editing",index:"::index::",count:"::count::"}});
 
 @operation.download
 configuration.toolbar.operationSet.push({type:"DOWNLOAD", label: "Descargar", parameters: {id:"::idNode::"}});
@@ -69,7 +69,10 @@ configuration.toolbar.operationSet.push({type:"COPY", label: "Duplicar", paramet
   <tr>
     <td class="content">
       <div class="breadcrumbs"><a class="command" href="showhome()">Inicio</a>::breadcrumbs::&nbsp;-&nbsp;::breadcrumbsRevisions::</div>
-      <div class="title"><span class="descriptor" title='::label::'>::shortLabel::</span></div>
+      <div class="title">
+        <span class="descriptor" title='::label::'>::shortLabel::</span>
+        <div style="float:right">::render(view.node.ancestor)::</div>
+      </div>
       ::revision::
       <div class="toolbar"></div>
     </td>

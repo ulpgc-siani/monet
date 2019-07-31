@@ -45,7 +45,7 @@ AppTemplate.ViewerHelperToolbarNavigation='<a class="command #{code}" href="#{co
 AppTemplate.ViewerHelperToolbarAdd='<a class="command button #{code}" href="addnode(blank,#{code},null,null,#{parent})">#{label}</a>';
 AppTemplate.ViewerHelperToolbarCopy='<a class="command button #{code}" href="copynode(#{id},#{mode},#{parent})">::Copy::</a>';
 AppTemplate.ViewerHelperToolbarDownload='<a class="command button #{code}" href="downloadnode(#{id})">#{label}</a>';
-AppTemplate.ViewerHelperToolbarEdit='<a class="command button #{css} #{code}" href="shownode(#{id},#{mode})">#{label}</a>';
+AppTemplate.ViewerHelperToolbarEdit='<a class="command button #{css} #{code}" href="shownode(#{id},#{mode},#{index},#{count})">#{label}</a>';
 AppTemplate.ViewerHelperToolbarPrint='<a class="command button #{code}" href="printnode(#{id},#{format},#{view})">#{label}</a>';
 AppTemplate.ViewerHelperToolbarTool='<a class="command button #{code}" href="executenodecommand(#{id},#{name})" style="display:#{display};">#{label}</a>';
 AppTemplate.ViewerHelperToolbarCustom='<a class="command button #{css} #{code}" href="#{command}" style="display:#{display};">#{label}</a>';
@@ -1372,38 +1372,39 @@ TSigner.prototype.GetCertificateSerialization = function (CertificateCN) {
 
 //--------------------------------------------------------------------
 
-State = new Object();
+State = {};
 State.View = null;
 State.discardNode = false;
 State.LastView = null;
-State.LastObject = new Object();
+State.LastObject = {};
 State.LastObject.Id = null;
 State.LastObject.Mode = null;
-State.aSelectedNodesReferences = new Array();
-State.aSelectedTrashNodesReferences = new Array();
-State.aMarkedNodesReferences = new Array();
+State.aSelectedNodesReferences = [];
+State.aSelectedTrashNodesReferences = [];
+State.aMarkedNodesReferences = [];
 State.NodeReferenceMarkType = null;
 State.Searching = false;
-State.LastSearch = new Object();
+State.LastSearch = {};
 State.logout = false;
-State.aRefreshingTasks = new Array();
-State.LastCommand = new Object();
-State.ListViewerStates = new Object();
+State.aRefreshingTasks = [];
+State.LastCommand = {};
+State.ListViewerStates = {};
 State.CurrentView = null;
 State.isShowingPrototype = false;
 State.RoleDefinitionList = null;
 State.PartnerList = null;
-State.NodesStates = new Object();
+State.SetsContext = {};
+State.NodesStates = {};
 State.ActiveFurniture = null;
 State.MainNodes = {};
 
 State.getSelectedNodesReferences = function (IdNode) {
-  if (!State.aSelectedNodesReferences[IdNode]) return new Array();
+  if (!State.aSelectedNodesReferences[IdNode]) return [];
   return State.aSelectedNodesReferences[IdNode];
 };
 
 State.addNodeReferenceToSelection = function (IdNode, IdNodeReference) {
-  if (!State.aSelectedNodesReferences[IdNode]) State.aSelectedNodesReferences[IdNode] = new Array();
+  if (!State.aSelectedNodesReferences[IdNode]) State.aSelectedNodesReferences[IdNode] = [];
   State.aSelectedNodesReferences[IdNode][IdNodeReference] = IdNodeReference;
 };
 
@@ -1420,7 +1421,7 @@ State.addNodesReferencesToSelection = function (IdNode, aNodesReferences) {
 };
 
 State.deleteSelectedNodesReferences = function (IdNode) {
-  State.aSelectedNodesReferences[IdNode] = new Array();
+  State.aSelectedNodesReferences[IdNode] = [];
 };
 
 State.getSelectedTrashNodesReferences = function (IdNode) {
@@ -1443,7 +1444,7 @@ State.addNodesReferencesToTrashSelection = function (aNodesReferences) {
 };
 
 State.deleteSelectedNodesReferencesFromTrash = function () {
-  State.aSelectedTrashNodesReferences = new Array();
+  State.aSelectedTrashNodesReferences = [];
 };
 
 State.registerListViewerState = function (Id, NewState) {
@@ -1452,6 +1453,27 @@ State.registerListViewerState = function (Id, NewState) {
 
 State.getListViewerState = function (Id) {
   return State.ListViewerStates[Id];
+};
+
+State.getListViewerFilters = function (Id) {
+  var state = State.ListViewerStates[Id];
+  if (state == null) return null;
+
+  var result = {};
+  result["query"] = state.Filter;
+  result["sortsby"] = "";
+  result["groupsby"] = "";
+  for (var i = 0; i < state.Sorts.length; i++)
+    result["sortsby"] += state.Sorts[i].Code + MONET_FILTER_SEPARATOR + state.Sorts[i].Mode + MONET_FILTERS_SEPARATOR;
+  for (var i = 0; i < state.Groups.length; i++)
+    result["groupsby"] += state.Groups[i].Code + MONET_FILTER_SEPARATOR + state.Groups[i].Value + MONET_FILTERS_SEPARATOR;
+
+  if (result["sortsby"].length > 0)
+    result["sortsby"] = result["sortsby"].substring(0, result["sortsby"].length - MONET_FILTERS_SEPARATOR.length);
+  if (result["groupsby"].length > 0)
+    result["groupsby"] = result["groupsby"].substring(0, result["groupsby"].length - MONET_FILTERS_SEPARATOR.length);
+
+  return result;
 };
 
 Helper = new Object;
@@ -8546,7 +8568,7 @@ CGListViewer.prototype.updateItems = function (bClearItems) {
     extItem.dom.Id = Item.id;
     extItem.dom.addClassName(Item.id);
 
-    Event.observe(extContent.dom, "click", CGListViewer.prototype.atItemContentClick.bind(this, extItem.dom, extContent.dom));
+    Event.observe(extContent.dom, "click", CGListViewer.prototype.atItemContentClick.bind(this, extItem.dom, extContent.dom, i, this.data.nrows));
     Event.observe(extSelector.dom, "click", CGListViewer.prototype.atItemSelectorClick.bind(this, extItem.dom, extSelector.dom));
     Event.observe(extDelete.dom, "click", CGListViewer.prototype.atItemDeleteClick.bind(this, extItem.dom, extDelete.dom));
 
@@ -9154,7 +9176,7 @@ CGListViewer.prototype.atPagingLastClick = function (DOMPagingItem) {
   this.lastPage();
 };
 
-CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, EventLaunched) {
+CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, index, nrows, EventLaunched) {
 
   if (this.DOMActiveItem != null) this.DOMActiveItem.removeClassName(CLASS_ACTIVE);
 
@@ -9163,7 +9185,7 @@ CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, Event
 
   if (this.Options.Templates.ShowItemCommand != null && !this.background) {
     var CommandTemplate = new Template(this.Options.Templates.ShowItemCommand);
-    CommandListener.dispatchCommand(CommandTemplate.evaluate({"id": DOMItem.Id}));
+    CommandListener.dispatchCommand(CommandTemplate.evaluate({"id": DOMItem.Id,"index":index,"count":nrows}));
     return false;
   }
 
@@ -11951,7 +11973,9 @@ CGActionShowNode.prototype = new CGActionShowBase;
 CGActionShowNode.constructor = CGActionShowNode;
 CommandFactory.register(CGActionShowNode, {
 	Id: 0,
-	Mode: 1
+	Mode: 1,
+	Index: 2,
+	Count: 3
 }, true);
 
 CGActionShowNode.prototype.getDOMElement = function () {
@@ -12005,7 +12029,7 @@ CGActionShowNode.prototype.step_2 = function () {
 };
 
 CGActionShowNode.prototype.step_3 = function () {
-	Kernel.loadNode(this, this.Id, this.Mode);
+	Kernel.loadNode(this, this.Id, this.Mode, this.Index, this.Count);
 };
 
 CGActionShowNode.prototype.step_4 = function () {
@@ -12069,6 +12093,81 @@ CGActionShowNode.prototype.step_5 = function () {
 	Process.DOMViewActiveTab = this.DOMViewActiveTab;
 	Process.execute();
 	this.terminate();
+};
+
+// ----------------------------------------------------------------------
+// Action show set item
+// ----------------------------------------------------------------------
+function CGActionShowSetItem() {
+	this.base = CGActionShowBase;
+	this.base(1);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionShowSetItem.prototype = new CGActionShowBase;
+CGActionShowSetItem.constructor = CGActionShowSetItem;
+CommandFactory.register(CGActionShowSetItem, {
+	Set: 0,
+	Item: 1,
+	Mode: 2,
+	Index: 3,
+	Count: 4
+}, true);
+
+CGActionShowSetItem.prototype.step_1 = function () {
+	var state = State.SetsContext[this.Set];
+	if (state == null) state = {};
+	var view = this.findView();
+	state.view = view != null ? view.getDOM().getActiveTab() : null;
+	State.SetsContext[this.Set] = state;
+	CommandDispatcher.dispatch("shownode(" + this.Item + "," + this.Mode + "," + this.Index + "," + this.Count + ")");
+};
+
+CGActionShowSetItem.prototype.findView = function () {
+	var result = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.Set);
+	if (result != null) return result;
+	var views = Desktop.Main.Center.Body.getViews(VIEW_NODE,VIEW_NODE_TYPE_NODE,this.Set);
+	return views.length > 0 ? views[0] : null;
+};
+
+// ----------------------------------------------------------------------
+// Action show node child
+// ----------------------------------------------------------------------
+function CGActionShowNodeChild() {
+	this.base = CGActionShowBase;
+	this.base(3);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionShowNodeChild.prototype = new CGActionShowBase;
+CGActionShowNodeChild.constructor = CGActionShowNodeChild;
+CommandFactory.register(CGActionShowNodeChild, {
+	Ancestor: 0,
+	Mode: 1,
+	Index: 2,
+	Count: 3
+}, true);
+
+CGActionShowNodeChild.prototype.step_1 = function () {
+	var view = State.SetsContext[this.Ancestor].view;
+	var filters = State.getListViewerFilters(this.Ancestor + view);
+	Kernel.loadAncestorChildId(this, this.Ancestor, view, this.Index, filters);
+};
+
+CGActionShowNodeChild.prototype.step_2 = function () {
+	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
+
+	var ActionShowNode = new CGActionShowNode();
+	ActionShowNode.Id = this.data;
+	ActionShowNode.Mode = this.Mode;
+	ActionShowNode.Index = this.Index;
+	ActionShowNode.Count = this.Count;
+	ActionShowNode.ReturnProcess = this;
+	ActionShowNode.execute();
+};
+
+CGActionShowNodeChild.prototype.step_3 = function () {
+	Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().activateTab(this.activeTab);
 };
 
 // ----------------------------------------------------------------------
@@ -15493,24 +15592,8 @@ CGActionPrintNode.prototype.step_3 = function () {
     this.saveDialogResult();
 
     this.CodeView = this.getCodeView();
-    this.ListState = State.getListViewerState(this.IdNode + this.CodeView);
+    this.Filters = State.getListViewerFilters(this.IdNode + this.CodeView);
     this.Attributes = this.getAttributes();
-
-    if (this.ListState != null) {
-        Filters["query"] = this.ListState.Filter;
-        Filters["sortsby"] = "";
-        Filters["groupsby"] = "";
-        for (var i = 0; i < this.ListState.Sorts.length; i++)
-            Filters["sortsby"] += this.ListState.Sorts[i].Code + MONET_FILTER_SEPARATOR + this.ListState.Sorts[i].Mode + MONET_FILTERS_SEPARATOR;
-        for (var i = 0; i < this.ListState.Groups.length; i++)
-            Filters["groupsby"] += this.ListState.Groups[i].Code + MONET_FILTER_SEPARATOR + this.ListState.Groups[i].Value + MONET_FILTERS_SEPARATOR;
-
-        if (Filters["sortsby"].length > 0)
-            Filters["sortsby"] = Filters["sortsby"].substring(0, Filters["sortsby"].length - MONET_FILTERS_SEPARATOR.length);
-        if (Filters["groupsby"].length > 0)
-            Filters["groupsby"] = Filters["groupsby"].substring(0, Filters["groupsby"].length - MONET_FILTERS_SEPARATOR.length);
-    }
-    this.Filters = Filters;
 
     Kernel.printNodeTimeConsumption(this, this.IdNode, this.Mode, this.CodeView, this.Filters, this.Attributes, CGActionPrintNode.DateAttribute, CGActionPrintNode.FromDate, CGActionPrintNode.ToDate, Account.getInstanceId());
 };
@@ -24244,8 +24327,8 @@ Kernel.logout = function (Action, sInstanceId) {
   Kernel.Stub.request(Action, "logout", {i: sInstanceId});
 };
 
-Kernel.loadNode = function (Action, Id, Mode) {
-  Kernel.Stub.request(Action, "loadnode", {id: Id, mode: escape(Mode)});
+Kernel.loadNode = function (Action, Id, Mode, Index, Count) {
+  Kernel.Stub.request(Action, "loadnode", {id: Id, mode: escape(Mode), index: Index, count: Count});
 };
 
 Kernel.loadMainNode = function (Action, Id) {
@@ -24491,6 +24574,18 @@ Kernel.getPrintLink = function (op, IdNode, Template, CodeView, Filters, Attribu
     if (InstanceId != null) sParameters += "&i=" + InstanceId;
 
     return Context.Config.Api + writeServerRequest(Kernel.mode, sParameters);
+};
+
+Kernel.loadAncestorChildId = function (Action, IdAncestor, CodeView, Index, Filters) {
+  var aParameters = {ancestor: IdAncestor, index: Index, view: CodeView};
+
+  for (var CodeFilter in Filters) {
+    if (isFunction(Filters[CodeFilter])) continue;
+    var Filter = Filters[CodeFilter];
+    aParameters[CodeFilter] = escape(utf8Encode(Filter));
+  }
+
+  Kernel.Stub.request(Action, "loadancestorchildid", aParameters);
 };
 
 Kernel.getDownloadPrintedNodeLink = function (IdNode, Template) {
@@ -28056,7 +28151,7 @@ CGViewNode.prototype.refresh = function () {
   var sContent = this.Target.getContent();
 
   if (!this.Target) return;
-  if (sContent != null && sContent != "") {
+  if (sContent != null && sContent !== "") {
     this.Target.setContent("");
 
     extLayer = Ext.get(this.DOMLayer);
@@ -28080,7 +28175,7 @@ CGViewNode.prototype.refresh = function () {
     Constructor.onSelectNodeReference = CGViewNode.prototype.atSelectNodeReference.bind(this);
     Constructor.init(this.DOMLayer);
 
-    if (sContent != null && sContent != "")
+    if (sContent != null && sContent !== "")
       CommandListener.capture(this.DOMLayer);
 
     BehaviourDispatcher.apply(BehaviourViewNode, this.DOMLayer);
@@ -42765,7 +42860,7 @@ CGDecorator.prototype.addCommonMethods = function (DOMElement) {
 	DOMElement.refreshPanelItem = function (extTabPanelItem) {
 		var extElement = extTabPanelItem.bodyEl.down(this.cssElementStyle);
 
-		if (document.activeElement && document.activeElement != document.body) {
+		if (document.activeElement && document.activeElement !== document.body) {
 			try {
 				document.activeElement.blur();
 			}
@@ -42782,8 +42877,8 @@ CGDecorator.prototype.addCommonMethods = function (DOMElement) {
 
 			var Process = null;
 
-			if (this.cssElementStyle == CSS_TASK) Process = new CGProcessLoadEmbeddedTask();
-			else if (this.cssElementStyle == CSS_NODE) Process = new CGProcessLoadEmbeddedNode();
+			if (this.cssElementStyle === CSS_TASK) Process = new CGProcessLoadEmbeddedTask();
+			else if (this.cssElementStyle === CSS_NODE) Process = new CGProcessLoadEmbeddedNode();
 
 			if (Process != null) {
 				Process.DOMItem = extElement.dom;
@@ -45509,11 +45604,18 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
 
     this.initToolbar(".header .content .toolbar");
     this.initTabs(CSS_NODE);
+    this.initAncestorView();
 
     var aExtCollections = extNode.select(CSS_COLLECTION);
     aExtCollections.each(function (aExtCollection) {
       aExtCollection.dom.init(Editors);
     }, this);
+  };
+
+  DOMNode.initAncestorView = function() {
+    var extNode = Ext.get(this);
+    var extView = extNode.down(".ancestor-view");
+    if (extView == null) return;
   };
 
   DOMNode.destroyFields = function (aDOMFields) {

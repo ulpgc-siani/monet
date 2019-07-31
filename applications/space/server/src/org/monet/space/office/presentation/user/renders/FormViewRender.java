@@ -94,15 +94,8 @@ public class FormViewRender extends NodeViewRender {
 			if (result != null) return result;
 		}
 
-		boolean isLocationView = codeView.equals("location");
-		if (isLocationView) {
-			this.initMapWithoutView(map, "location");
-			return this.initLocationSystemView(map);
-		} else if (view == null) {
-			map.put("codeView", codeView);
-			map.put("labelDefinition", this.definition.getLabelString());
-			return block("view.undefined", map);
-		}
+		String result = initViewFromCode(codeView, view, map);
+		if (result != null) return result;
 
 		this.initMap(map, view);
 

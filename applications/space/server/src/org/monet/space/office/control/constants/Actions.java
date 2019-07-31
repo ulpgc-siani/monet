@@ -47,6 +47,7 @@ public class Actions {
 	public static final String LOAD_LINK_NODE_ITEMS_LOCATIONS_COUNT = "loadlinknodeitemslocationscount";
 	public static final String LOAD_NODE_REFERENCE = "loadnodereference";
 	public static final String LOAD_NODE_ATTRIBUTE = "loadnodeattribute";
+	public static final String LOAD_ANCESTOR_CHILD_ID = "loadancestorchildid";
 	public static final String LOAD_NODE_NOTES = "loadnodenotes";
 	public static final String SAVE_ACCOUNT = "saveaccount";
 	public static final String SAVE_NODE = "savenode";

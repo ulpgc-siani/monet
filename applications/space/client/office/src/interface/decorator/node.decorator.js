@@ -46,11 +46,18 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
 
     this.initToolbar(".header .content .toolbar");
     this.initTabs(CSS_NODE);
+    this.initAncestorView();
 
     var aExtCollections = extNode.select(CSS_COLLECTION);
     aExtCollections.each(function (aExtCollection) {
       aExtCollection.dom.init(Editors);
     }, this);
+  };
+
+  DOMNode.initAncestorView = function() {
+    var extNode = Ext.get(this);
+    var extView = extNode.down(".ancestor-view");
+    if (extView == null) return;
   };
 
   DOMNode.destroyFields = function (aDOMFields) {
