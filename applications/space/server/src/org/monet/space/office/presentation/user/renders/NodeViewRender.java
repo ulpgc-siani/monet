@@ -247,7 +247,7 @@ public class NodeViewRender extends ViewRender {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		TaskList taskList = this.node.getLinkedTasks();
 
-		contentMap.put("type", "tasks");
+		contentMap.put("type", "recenttask");
 
 		if (taskList.getCount() <= 0)
 			return block("content.recenttask$empty", map);
