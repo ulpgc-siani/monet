@@ -15,4 +15,6 @@ public abstract class MonetLink {
     return null;
   }
   
+  public void withView(String view) {
+  }
 }
