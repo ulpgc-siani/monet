@@ -13,6 +13,17 @@ CGNodeConstructor.prototype.initNodes = function (extObject) {
   }, this);
 };
 
+CGNodeConstructor.prototype.initTasks = function (extObject) {
+  var DecoratorTask = new CGDecoratorTask();
+
+  if (extObject.hasClass(CLASS_TASK)) DecoratorTask.execute(extObject.dom);
+
+  var aExtTasks = extObject.select(CSS_TASK);
+  aExtTasks.each(function (extTask) {
+    DecoratorTask.execute(extTask.dom);
+  }, this);
+};
+
 CGNodeConstructor.prototype.initSections = function (extObject) {
   var DecoratorSection = new CGDecoratorSection();
 
@@ -194,6 +205,7 @@ CGNodeConstructor.prototype.init = function (DOMObject) {
   this.IdObject = extObject.dom.id;
 
   this.initNodes(extObject);
+  this.initTasks(extObject);
   this.initSections(extObject);
   this.initCollections(extObject);
   this.initNodesReferences(extObject);

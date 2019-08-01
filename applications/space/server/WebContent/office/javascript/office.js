@@ -4326,7 +4326,7 @@ CGActionUpdateView.prototype.step_1 = function () {
   for (var i = 0; i < aViews.length; i++) {
     var DOMView = aViews[i].getDOM();
     var ControlInfo = DOMView.getControlInfo();
-    var bUpdated = DOMView.update(this.data);
+    var bUpdated = DOMView.update(this.data) || (this.data == null && Desktop.Main.Center.Body.isContainerView(aViews[i]));
 
     if (!bUpdated) {
       if (this.type == "node") {
@@ -5408,8 +5408,8 @@ CGActionShowBase.prototype.getContainerView = function (Type, Object) {
   return View;
 };
 
-CGActionShowBase.prototype.getView = function (Type, Object) {
-  var DOMElement = null, View, ViewContainer, Mode;
+CGActionShowBase.prototype.getView = function (Type, Object, DOMElement) {
+  var View, ViewContainer, Mode;
 
   if (this.DOMItem != null) DOMElement = this.getDOMElement();
 
@@ -5431,6 +5431,12 @@ CGActionShowBase.prototype.getView = function (Type, Object) {
   View.setMode(Mode);
   View.setType(Type);
 
+  return View;
+};
+
+CGActionShowBase.prototype.createView = function (Type, Object, DOMElement) {
+  var View = Desktop.createView(DOMElement, Object, null, this.Mode, false);
+  View.setMode(this.Mode);
   return View;
 };
 
@@ -14258,6 +14264,39 @@ CGActionDeleteNodeNote.prototype.step_2 = function () {
 	this.terminate();
 };
 
+//----------------------------------------------------------------------
+// Render Node Notes
+//----------------------------------------------------------------------
+function CGActionRenderRecentTask() {
+	this.base = CGActionShowBase;
+	this.base(1);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionRenderRecentTask.prototype = new CGActionShowBase;
+CGActionRenderRecentTask.constructor = CGActionRenderRecentTask;
+CommandFactory.register(CGActionRenderRecentTask, {
+	Id: 0,
+	IdTask: 1,
+	Mode: 2,
+	IdDOMViewerLayer: 3
+}, false);
+
+CGActionRenderRecentTask.prototype.step_1 = function () {
+	var DOMElement = Ext.get(this.IdDOMViewerLayer).dom;
+	var Task = new CGTask();
+	Task.setId(this.IdTask);
+
+	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement);
+	var Process = new CGProcessShowTask();
+	Process.Id = this.IdTask;
+	Process.Mode = ViewTask.getMode();
+	Process.ViewTask = ViewTask;
+	Process.execute();
+
+	this.terminate();
+};
+
 // ----------------------------------------------------------------------
 // Copy node
 // ----------------------------------------------------------------------
@@ -17740,18 +17779,18 @@ CGProcessRefreshTask.prototype.step_1 = function () {
 		return;
 	}
 
-	ViewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, Task.getId());
-	if (!ViewTask) {
+	if (this.View == null) this.View = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, Task.getId());
+	if (!this.View) {
 		this.terminate();
 		return;
 	}
 
-	if ((!this.DOMViewActiveTab) && (ViewTask) && (ViewTask.getDOM) && (ViewTask.getDOM().getActiveTab)) this.DOMViewActiveTab = ViewTask.getDOM().getActiveTab();
+	if ((!this.DOMViewActiveTab) && (this.View) && (this.View.getDOM) && (this.View.getDOM().getActiveTab)) this.DOMViewActiveTab = this.View.getDOM().getActiveTab();
 
 	Process = new CGProcessShowTask();
 	Process.Id = this.Id;
-	Process.Mode = ViewTask.getMode();
-	Process.ViewTask = ViewTask;
+	Process.Mode = this.View.getMode();
+	Process.ViewTask = this.View;
 	Process.ActivateTask = false;
 	Process.ReturnProcess = this;
 	Process.execute();
@@ -17790,22 +17829,29 @@ CGProcessRefreshTaskState.prototype.step_1 = function () {
 		return;
 	}
 
-	var viewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, task.getId());
+	this.refreshView(Desktop.Main.Center.Body.getContainerView(VIEW_TASK, task.getId()), true);
+
+	var aViews = Desktop.Main.Center.Body.getViews(VIEW_TASK, VIEW_TASK_TYPE_TASK, task.getId());
+	for (var i=0; i<aViews.length; i++) this.refreshView(aViews[i], false);
+
+	this.terminate();
+};
+
+CGProcessRefreshTaskState.prototype.refreshView = function(viewTask, checkStateTab) {
 	if (!viewTask) {
 		this.terminate();
 		return;
 	}
 
-	if (!viewTask.getDOM().isStateTabActive()) {
+	if (checkStateTab && !viewTask.getDOM().isStateTabActive()) {
 		this.terminate();
 		return;
 	}
 
 	var process = new CGProcessRefreshTask();
 	process.Id = this.taskId;
+	process.View = viewTask;
 	process.execute();
-
-	this.terminate();
 };
 
 //----------------------------------------------------------------------
@@ -46814,6 +46860,17 @@ CGNodeConstructor.prototype.initNodes = function (extObject) {
   }, this);
 };
 
+CGNodeConstructor.prototype.initTasks = function (extObject) {
+  var DecoratorTask = new CGDecoratorTask();
+
+  if (extObject.hasClass(CLASS_TASK)) DecoratorTask.execute(extObject.dom);
+
+  var aExtTasks = extObject.select(CSS_TASK);
+  aExtTasks.each(function (extTask) {
+    DecoratorTask.execute(extTask.dom);
+  }, this);
+};
+
 CGNodeConstructor.prototype.initSections = function (extObject) {
   var DecoratorSection = new CGDecoratorSection();
 
@@ -46995,6 +47052,7 @@ CGNodeConstructor.prototype.init = function (DOMObject) {
   this.IdObject = extObject.dom.id;
 
   this.initNodes(extObject);
+  this.initTasks(extObject);
   this.initSections(extObject);
   this.initCollections(extObject);
   this.initNodesReferences(extObject);

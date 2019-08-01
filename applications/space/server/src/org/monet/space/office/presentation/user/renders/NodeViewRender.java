@@ -244,19 +244,16 @@ public class NodeViewRender extends ViewRender {
 	}
 
 	protected String initRecentTaskSystemView(NodeViewProperty view, HashMap<String, Object> contentMap) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
 		TaskList taskList = this.node.getLinkedTasks();
 
 		contentMap.put("type", "recenttask");
 
 		if (taskList.getCount() <= 0)
-			return block("content.recenttask$empty", map);
+			return block("content.recenttask$empty", contentMap);
 
-		OfficeRender render = this.rendersFactory.get(taskList.get(0), this.template, this.renderLink, account);
-		render.setParameter("view", "state");
-		map.put("render(view.recenttask)", render.getOutput());
+		contentMap.put("idTask", taskList.get(0).getId());
 
-		return block("content.recenttask", map);
+		return block("content.recenttask", contentMap);
 	}
 
 	protected String initTasksSystemView(NodeViewProperty view, HashMap<String, Object> contentMap) {

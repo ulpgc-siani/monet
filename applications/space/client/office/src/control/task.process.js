@@ -249,18 +249,18 @@ CGProcessRefreshTask.prototype.step_1 = function () {
 		return;
 	}
 
-	ViewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, Task.getId());
-	if (!ViewTask) {
+	if (this.View == null) this.View = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, Task.getId());
+	if (!this.View) {
 		this.terminate();
 		return;
 	}
 
-	if ((!this.DOMViewActiveTab) && (ViewTask) && (ViewTask.getDOM) && (ViewTask.getDOM().getActiveTab)) this.DOMViewActiveTab = ViewTask.getDOM().getActiveTab();
+	if ((!this.DOMViewActiveTab) && (this.View) && (this.View.getDOM) && (this.View.getDOM().getActiveTab)) this.DOMViewActiveTab = this.View.getDOM().getActiveTab();
 
 	Process = new CGProcessShowTask();
 	Process.Id = this.Id;
-	Process.Mode = ViewTask.getMode();
-	Process.ViewTask = ViewTask;
+	Process.Mode = this.View.getMode();
+	Process.ViewTask = this.View;
 	Process.ActivateTask = false;
 	Process.ReturnProcess = this;
 	Process.execute();
@@ -299,22 +299,29 @@ CGProcessRefreshTaskState.prototype.step_1 = function () {
 		return;
 	}
 
-	var viewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, task.getId());
+	this.refreshView(Desktop.Main.Center.Body.getContainerView(VIEW_TASK, task.getId()), true);
+
+	var aViews = Desktop.Main.Center.Body.getViews(VIEW_TASK, VIEW_TASK_TYPE_TASK, task.getId());
+	for (var i=0; i<aViews.length; i++) this.refreshView(aViews[i], false);
+
+	this.terminate();
+};
+
+CGProcessRefreshTaskState.prototype.refreshView = function(viewTask, checkStateTab) {
 	if (!viewTask) {
 		this.terminate();
 		return;
 	}
 
-	if (!viewTask.getDOM().isStateTabActive()) {
+	if (checkStateTab && !viewTask.getDOM().isStateTabActive()) {
 		this.terminate();
 		return;
 	}
 
 	var process = new CGProcessRefreshTask();
 	process.Id = this.taskId;
+	process.View = viewTask;
 	process.execute();
-
-	this.terminate();
 };
 
 //----------------------------------------------------------------------

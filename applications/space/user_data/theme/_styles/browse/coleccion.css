@@ -66,6 +66,10 @@
   display: none;
 }
 
+.collection .task .nodeFields .field label, .clec .task .nodeFields .field label {
+  display: block;
+}
+
 .collection .nodeFields .field input, .clec .nodeFields .field input {
 }
 

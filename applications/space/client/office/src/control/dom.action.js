@@ -155,7 +155,7 @@ CGActionUpdateView.prototype.step_1 = function () {
   for (var i = 0; i < aViews.length; i++) {
     var DOMView = aViews[i].getDOM();
     var ControlInfo = DOMView.getControlInfo();
-    var bUpdated = DOMView.update(this.data);
+    var bUpdated = DOMView.update(this.data) || (this.data == null && Desktop.Main.Center.Body.isContainerView(aViews[i]));
 
     if (!bUpdated) {
       if (this.type == "node") {

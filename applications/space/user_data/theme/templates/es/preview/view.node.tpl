@@ -134,10 +134,18 @@ configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, labe
 </div>
 
 @content.recenttask
-::render(view.recenttask)::
+<div class="command onload">renderrecenttask(::idNode::,::idTask::,preview.html?view=state,recenttaskviewer_::idNode::_::idTask::_::codeView::)</div>
+<div class="toolbar">
+    <table>
+        <tr>
+            <td><a class="command button" href="refreshtask(::idTask::)">Actualizar</a></td>
+        </tr>
+    </table>
+</div>
+<div id="recenttaskviewer_::idNode::_::idTask::_::codeView::"></div>
 
 @content.recenttask$empty
-<div class="node summary"><div class="message" style="clear:both;">Este elemento no es usado por ninguna tarea</div></div>
+<div style="margin-top:15px" class="node summary"><div class="message" style="clear:both;">Este elemento no es usado por ninguna tarea</div></div>
 
 @content.tasks
 ::render(view.tasklist)::

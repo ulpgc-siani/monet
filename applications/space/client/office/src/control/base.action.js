@@ -36,8 +36,8 @@ CGActionShowBase.prototype.getContainerView = function (Type, Object) {
   return View;
 };
 
-CGActionShowBase.prototype.getView = function (Type, Object) {
-  var DOMElement = null, View, ViewContainer, Mode;
+CGActionShowBase.prototype.getView = function (Type, Object, DOMElement) {
+  var View, ViewContainer, Mode;
 
   if (this.DOMItem != null) DOMElement = this.getDOMElement();
 
@@ -59,5 +59,11 @@ CGActionShowBase.prototype.getView = function (Type, Object) {
   View.setMode(Mode);
   View.setType(Type);
 
+  return View;
+};
+
+CGActionShowBase.prototype.createView = function (Type, Object, DOMElement) {
+  var View = Desktop.createView(DOMElement, Object, null, this.Mode, false);
+  View.setMode(this.Mode);
   return View;
 };

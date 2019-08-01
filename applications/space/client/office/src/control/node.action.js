@@ -2345,6 +2345,39 @@ CGActionDeleteNodeNote.prototype.step_2 = function () {
 	this.terminate();
 };
 
+//----------------------------------------------------------------------
+// Render Node Notes
+//----------------------------------------------------------------------
+function CGActionRenderRecentTask() {
+	this.base = CGActionShowBase;
+	this.base(1);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionRenderRecentTask.prototype = new CGActionShowBase;
+CGActionRenderRecentTask.constructor = CGActionRenderRecentTask;
+CommandFactory.register(CGActionRenderRecentTask, {
+	Id: 0,
+	IdTask: 1,
+	Mode: 2,
+	IdDOMViewerLayer: 3
+}, false);
+
+CGActionRenderRecentTask.prototype.step_1 = function () {
+	var DOMElement = Ext.get(this.IdDOMViewerLayer).dom;
+	var Task = new CGTask();
+	Task.setId(this.IdTask);
+
+	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement);
+	var Process = new CGProcessShowTask();
+	Process.Id = this.IdTask;
+	Process.Mode = ViewTask.getMode();
+	Process.ViewTask = ViewTask;
+	Process.execute();
+
+	this.terminate();
+};
+
 // ----------------------------------------------------------------------
 // Copy node
 // ----------------------------------------------------------------------
