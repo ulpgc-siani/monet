@@ -8,16 +8,16 @@
 </div>
 
 @view.ancestor$previous.enabled
-<a class="command label" href="shownodechild(::idNode::,preview.html?mode=page,::previous::,::count::)"><img src='::themeSource::&path=_images/icons/previous_24.gif' alt="anterior" title="anterior"/></a>
+<a class="command label" href="shownodechild(::idNode::,preview.html?mode=page,::previous::,::count::)"><img src='::themeSource::&path=_images/icons/previous.png' alt="anterior" title="anterior"/></a>
 
 @view.ancestor$previous.disabled
-<img src='::themeSource::&path=_images/icons/previous_disabled_24.gif' alt="anterior" title="anterior"/>
+<img style='filter:grayscale(100%);-webkit-filter:grayscale(100%);' src='::themeSource::&path=_images/icons/previous.png' alt="anterior" title="anterior"/>
 
 @view.ancestor$next.enabled
-<a class="command label" href="shownodechild(::idNode::,preview.html?mode=page,::next::,::count::)"><img src='::themeSource::&path=_images/icons/next_24.gif' alt="siguiente" title="siguiente"/></a>
+<a class="command label" href="shownodechild(::idNode::,preview.html?mode=page,::next::,::count::)"><img src='::themeSource::&path=_images/icons/next.png' alt="siguiente" title="siguiente"/></a>
 
 @view.ancestor$next.disabled
-<img src='::themeSource::&path=_images/icons/next_disabled_24.gif' alt="siguiente" title="siguiente"/>
+<img style='filter:grayscale(100%);-webkit-filter:grayscale(100%);' src='::themeSource::&path=_images/icons/next.png' alt="siguiente" title="siguiente"/>
 
 @toolbar
 <div class="def configuration">
