@@ -31,8 +31,9 @@ public class MonetLinkImpl extends MonetLink {
 		return this.link.getView();
 	}
 
-	public void withView(String view) {
+	public MonetLink withView(String view) {
 		this.link.withView(view);
+		return this;
 	}
 
 	@Override

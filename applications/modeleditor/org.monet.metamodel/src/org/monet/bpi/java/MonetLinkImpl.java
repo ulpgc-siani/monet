@@ -16,9 +16,6 @@ public class MonetLinkImpl extends MonetLink {
 		return false;
 	}
 
-	public void withView(String view) {
-	}
-
 	@Override
 	public String toString() {
 		return null;
