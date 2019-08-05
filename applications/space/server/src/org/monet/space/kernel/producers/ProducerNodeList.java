@@ -518,7 +518,7 @@ public class ProducerNodeList extends ProducerList {
 		if (query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW) || query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS) || query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS_COUNT)) {
 			String parentSubquery = "";
 
-			if (!Dictionary.getInstance().isCatalogDefinition(dataRequest.getCodeDomainNode())) {
+			if (!dataRequest.getCodeDomainNode().isEmpty() && !Dictionary.getInstance().isCatalogDefinition(dataRequest.getCodeDomainNode())) {
 				if (query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW)) {
 					parentSubquery = this.agentDatabase.getRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW_PARENT_SUBQUERY);
 					parentSubquery = parentSubquery.replace("::idparent::", nodeId);
