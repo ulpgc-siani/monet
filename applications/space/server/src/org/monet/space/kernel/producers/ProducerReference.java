@@ -595,52 +595,9 @@ public class ProducerReference extends Producer {
 		subQueries.put(Database.QueryFields.CODE_NODES, filterNodesQuery);
 	}
 
-	private void addFiltersToQuery(String codeReference, Map<String, String> subQueries, List<FilterProperty> filtersDefinition, boolean queryUsingView) {
-		IndexDefinition referenceDefinition = Dictionary.getInstance().getIndexDefinition(codeReference);
-		String parameters = "";
-		StringBuilder queryParametersBuilder = new StringBuilder();
-
-		for (FilterProperty filter : filtersDefinition) {
-			AttributeProperty attributeDefinition = referenceDefinition.getAttribute(filter.getAttribute().getValue());
-			String query = null;
-			String filterValue = filter.getValue();
-
-			switch (attributeDefinition.getType()) {
-				case BOOLEAN:
-					filterValue = filterValue.equalsIgnoreCase("true") ? "1" : filterValue.equalsIgnoreCase("false") ? "0" : filterValue;
-				case STRING:
-				case CATEGORY:
-					query = Database.Queries.NODE_LIST_LOAD_ITEMS_PARAMETER;
-					break;
-				case DATE:
-				case PICTURE:
-				case TERM:
-				case LINK:
-				case INTEGER:
-				case REAL:
-					query = Database.Queries.NODE_LIST_LOAD_ITEMS_PARAMETER_WITH_EXTRA_DATA;
-					break;
-				case CHECK:
-					break;
-			}
-
-			QueryBuilder queryBuilder = new QueryBuilder(this.agentDatabase.getRepositoryQuery(query));
-			queryBuilder.insertSubQuery(Database.QueryFields.OR, queryParametersBuilder.length() <= 0 ? "" : " OR ");
-			queryBuilder.insertSubQuery(Database.QueryFields.REFERENCE_TABLE, !queryUsingView ? this.getReferenceTableName(referenceDefinition.getCode()) + "." : "");
-			queryBuilder.insertSubQuery(Database.QueryFields.NAME, attributeDefinition.getCode());
-			queryBuilder.insertSubQuery(Database.QueryFields.DATA, filterValue.replace("'", "''"));
-
-			queryParametersBuilder.append(Strings.SPACE);
-			queryParametersBuilder.append(queryBuilder.build());
-		}
-
-		if (queryParametersBuilder.length() > 0) {
-			QueryBuilder queryBuilder = new QueryBuilder(this.agentDatabase.getRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_PARAMETERS));
-			queryBuilder.insertSubQuery(Database.QueryFields.PARAMETERS, queryParametersBuilder.toString());
-			parameters = queryBuilder.build();
-		}
-
-		subQueries.put(Database.QueryFields.PARAMETERS, parameters);
+	private void addFiltersToQuery(String nodeId, String codeReference, Map<String, String> subQueries, List<FilterProperty> filtersDefinition, boolean queryUsingView) {
+		NodeDataRequest nodeDataRequest = defaultDataRequest(codeReference);
+		((ProducerNodeList)producersFactory.get(Producers.NODELIST)).addFiltersToQuery(codeReference, subQueries, filtersDefinition, nodeId, nodeDataRequest.getParameters(), queryUsingView);
 	}
 
 	public String getReferenceTableName(String code) {
@@ -796,7 +753,7 @@ public class ProducerReference extends Producer {
 		if (ownerId == null) subQueries.put(Database.QueryFields.REFERENCE_TABLE, tableName);
 		else subQueries.put(Database.QueryFields.ID_NODE, ownerId);
 		addFilterNodesToQuery(ownerId, filterNodes, tableName, subQueries);
-		addFiltersToQuery(codeReference, subQueries, filtersDefinition, ownerId != null);
+		addFiltersToQuery(ownerId, codeReference, subQueries, filtersDefinition, ownerId != null);
 
 		try {
 			String query = ownerId != null ? Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_FOR_OWNER : Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES;
@@ -830,7 +787,7 @@ public class ProducerReference extends Producer {
 		if (ownerId == null) subQueries.put(Database.QueryFields.REFERENCE_TABLE, tableName);
 		else subQueries.put(Database.QueryFields.ID_NODE, ownerId);
 		addFilterNodesToQuery(ownerId, filterNodes, tableName, subQueries);
-		addFiltersToQuery(codeReference, subQueries, filterAttributes, ownerId != null);
+		addFiltersToQuery(ownerId, codeReference, subQueries, filterAttributes, ownerId != null);
 
 		try {
 			String query = ownerId != null ? Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_COUNT_FOR_OWNER : Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_COUNT;
