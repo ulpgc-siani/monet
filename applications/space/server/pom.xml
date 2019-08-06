@@ -41,6 +41,15 @@
       <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
     </repository>
   </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>siani-maven</id>
+      <name>siani-maven</name>
+      <url>https://artifactory.siani.es/artifactory/libs-release-local</url>
+    </repository>
+  </distributionManagement>
+
   <build>
     <finalName>${project.artifactId}</finalName>
     <plugins>
@@ -387,7 +396,7 @@
     </dependency>
     <dependency>
       <groupId>org.siani.monet</groupId>
-      <artifactId>core-shared</artifactId>
+      <artifactId>tomcat-shared</artifactId>
       <version>1.0</version>
     </dependency>
   </dependencies>
