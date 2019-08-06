@@ -15,7 +15,7 @@
     </properties>
 
     <build>
-        <directory>../../out/build/mobile-shared</directory>
+        <directory>../../out/build/core-shared</directory>
     </build>
     
     <repositories>
