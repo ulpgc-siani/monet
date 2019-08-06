@@ -45,8 +45,8 @@ Kernel.logout = function (Action, sInstanceId) {
   Kernel.Stub.request(Action, "logout", {i: sInstanceId});
 };
 
-Kernel.loadNode = function (Action, Id, Mode) {
-  Kernel.Stub.request(Action, "loadnode", {id: Id, mode: escape(Mode)});
+Kernel.loadNode = function (Action, Id, Mode, Index, Count) {
+  Kernel.Stub.request(Action, "loadnode", {id: Id, mode: escape(Mode), index: Index, count: Count});
 };
 
 Kernel.loadMainNode = function (Action, Id) {
@@ -292,6 +292,18 @@ Kernel.getPrintLink = function (op, IdNode, Template, CodeView, Filters, Attribu
     if (InstanceId != null) sParameters += "&i=" + InstanceId;
 
     return Context.Config.Api + writeServerRequest(Kernel.mode, sParameters);
+};
+
+Kernel.loadAncestorChildId = function (Action, IdAncestor, CodeView, Index, Filters) {
+  var aParameters = {ancestor: IdAncestor, index: Index, view: CodeView};
+
+  for (var CodeFilter in Filters) {
+    if (isFunction(Filters[CodeFilter])) continue;
+    var Filter = Filters[CodeFilter];
+    aParameters[CodeFilter] = escape(utf8Encode(Filter));
+  }
+
+  Kernel.Stub.request(Action, "loadancestorchildid", aParameters);
 };
 
 Kernel.getDownloadPrintedNodeLink = function (IdNode, Template) {

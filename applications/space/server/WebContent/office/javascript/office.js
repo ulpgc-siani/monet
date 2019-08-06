@@ -45,7 +45,7 @@ AppTemplate.ViewerHelperToolbarNavigation='<a class="command #{code}" href="#{co
 AppTemplate.ViewerHelperToolbarAdd='<a class="command button #{code}" href="addnode(blank,#{code},null,null,#{parent})">#{label}</a>';
 AppTemplate.ViewerHelperToolbarCopy='<a class="command button #{code}" href="copynode(#{id},#{mode},#{parent})">::Copy::</a>';
 AppTemplate.ViewerHelperToolbarDownload='<a class="command button #{code}" href="downloadnode(#{id})">#{label}</a>';
-AppTemplate.ViewerHelperToolbarEdit='<a class="command button #{css} #{code}" href="shownode(#{id},#{mode})">#{label}</a>';
+AppTemplate.ViewerHelperToolbarEdit='<a class="command button #{css} #{code}" href="shownode(#{id},#{mode},#{index},#{count})">#{label}</a>';
 AppTemplate.ViewerHelperToolbarPrint='<a class="command button #{code}" href="printnode(#{id},#{format},#{view})">#{label}</a>';
 AppTemplate.ViewerHelperToolbarTool='<a class="command button #{code}" href="executenodecommand(#{id},#{name})" style="display:#{display};">#{label}</a>';
 AppTemplate.ViewerHelperToolbarCustom='<a class="command button #{css} #{code}" href="#{command}" style="display:#{display};">#{label}</a>';
@@ -1372,38 +1372,39 @@ TSigner.prototype.GetCertificateSerialization = function (CertificateCN) {
 
 //--------------------------------------------------------------------
 
-State = new Object();
+State = {};
 State.View = null;
 State.discardNode = false;
 State.LastView = null;
-State.LastObject = new Object();
+State.LastObject = {};
 State.LastObject.Id = null;
 State.LastObject.Mode = null;
-State.aSelectedNodesReferences = new Array();
-State.aSelectedTrashNodesReferences = new Array();
-State.aMarkedNodesReferences = new Array();
+State.aSelectedNodesReferences = [];
+State.aSelectedTrashNodesReferences = [];
+State.aMarkedNodesReferences = [];
 State.NodeReferenceMarkType = null;
 State.Searching = false;
-State.LastSearch = new Object();
+State.LastSearch = {};
 State.logout = false;
-State.aRefreshingTasks = new Array();
-State.LastCommand = new Object();
-State.ListViewerStates = new Object();
+State.aRefreshingTasks = [];
+State.LastCommand = {};
+State.ListViewerStates = {};
 State.CurrentView = null;
 State.isShowingPrototype = false;
 State.RoleDefinitionList = null;
 State.PartnerList = null;
-State.NodesStates = new Object();
+State.SetsContext = {};
+State.NodesStates = {};
 State.ActiveFurniture = null;
 State.MainNodes = {};
 
 State.getSelectedNodesReferences = function (IdNode) {
-  if (!State.aSelectedNodesReferences[IdNode]) return new Array();
+  if (!State.aSelectedNodesReferences[IdNode]) return [];
   return State.aSelectedNodesReferences[IdNode];
 };
 
 State.addNodeReferenceToSelection = function (IdNode, IdNodeReference) {
-  if (!State.aSelectedNodesReferences[IdNode]) State.aSelectedNodesReferences[IdNode] = new Array();
+  if (!State.aSelectedNodesReferences[IdNode]) State.aSelectedNodesReferences[IdNode] = [];
   State.aSelectedNodesReferences[IdNode][IdNodeReference] = IdNodeReference;
 };
 
@@ -1420,7 +1421,7 @@ State.addNodesReferencesToSelection = function (IdNode, aNodesReferences) {
 };
 
 State.deleteSelectedNodesReferences = function (IdNode) {
-  State.aSelectedNodesReferences[IdNode] = new Array();
+  State.aSelectedNodesReferences[IdNode] = [];
 };
 
 State.getSelectedTrashNodesReferences = function (IdNode) {
@@ -1443,7 +1444,7 @@ State.addNodesReferencesToTrashSelection = function (aNodesReferences) {
 };
 
 State.deleteSelectedNodesReferencesFromTrash = function () {
-  State.aSelectedTrashNodesReferences = new Array();
+  State.aSelectedTrashNodesReferences = [];
 };
 
 State.registerListViewerState = function (Id, NewState) {
@@ -1452,6 +1453,27 @@ State.registerListViewerState = function (Id, NewState) {
 
 State.getListViewerState = function (Id) {
   return State.ListViewerStates[Id];
+};
+
+State.getListViewerFilters = function (Id) {
+  var state = State.ListViewerStates[Id];
+  if (state == null) return null;
+
+  var result = {};
+  result["query"] = state.Filter;
+  result["sortsby"] = "";
+  result["groupsby"] = "";
+  for (var i = 0; i < state.Sorts.length; i++)
+    result["sortsby"] += state.Sorts[i].Code + MONET_FILTER_SEPARATOR + state.Sorts[i].Mode + MONET_FILTERS_SEPARATOR;
+  for (var i = 0; i < state.Groups.length; i++)
+    result["groupsby"] += state.Groups[i].Code + MONET_FILTER_SEPARATOR + state.Groups[i].Value + MONET_FILTERS_SEPARATOR;
+
+  if (result["sortsby"].length > 0)
+    result["sortsby"] = result["sortsby"].substring(0, result["sortsby"].length - MONET_FILTERS_SEPARATOR.length);
+  if (result["groupsby"].length > 0)
+    result["groupsby"] = result["groupsby"].substring(0, result["groupsby"].length - MONET_FILTERS_SEPARATOR.length);
+
+  return result;
 };
 
 Helper = new Object;
@@ -2453,6 +2475,7 @@ var SELECTED = "selected";
 var LOADED = "THUMB_LOADED";
 var PAGE = "PAGE";
 var TIME = "TIME";
+var COUNT = "COUNT";
 var CLEAR = "CLEAR";
 var ACCEPT = "ACCEPT";
 var PAGE_ITEM_DIV = ".pageItemImage";
@@ -2472,15 +2495,19 @@ var DocumentViewerTemplates = {
 var DocumentViewerLang = {
 	es: {
 		DocumentInProgress: "<span>El documento se está procesando, tiempo estimado para terminar ::TIME:: segundos.</span>",
+		MorePages: "<div style='margin:0 auto;width:calc(100% - 20px);text-align:center;font-size:12pt;background:#ff6601;color:white;padding:5px 10px;border-radius:4px;'>El documento tiene ::COUNT:: páginas. Descargue el documento para ver las páginas restantes.</div>",
 		Accept: "aceptar",
 		Clear: "borrar"
 	},
 	en: {
 		DocumentInProgress: "<span>Document generation is in progress, estimated time to finish is ::TIME:: seconds.</span>",
+		MorePages: "<div style='margin:0 auto;width:calc(100% - 20px);text-align:center;font-size:12pt;background:#ff6601;color:white;padding:5px 10px;border-radius:4px;'>Document has ::COUNT:: pages. Download document to see all pages.</div>",
 		Accept: "accept",
 		Clear: "delete"
 	}
 };
+
+var DocumentViewerMaxPages = 15;
 
 var ThumbViewer = function (eThumb, item, sBaseUrl) {
 	this.item = item;
@@ -2766,13 +2793,14 @@ DocumentViewer.prototype = {
 
 		if (!metadata.hasPendingOperations) {
 			var numberOfPages = metadata.numberOfPages;
+			var numberOfPagesToRender = numberOfPages <= DocumentViewerMaxPages ? numberOfPages : DocumentViewerMaxPages;
 			var sUrlSeparator = this.sBaseUrl.indexOf("?") ? "&" : "?";
 			var sUrl = this.sBaseUrl + sUrlSeparator + "id=" + this.sDocumentId;
 
 			this.extThumbContainer = Ext.get(this.thumbsContainer).insertHtml("beforeEnd", DocumentViewerTemplates.THUMBS_VIEW, true);
 			this.extPageContainer = Ext.get(this.pagesContainer);
 
-			for (var i = 1; i <= numberOfPages; i++) {
+			for (var i = 1; i <= numberOfPagesToRender; i++) {
 				var ePageControl = this.extPageContainer.insertHtml("beforeEnd", DocumentViewerTemplates.PAGE_ITEM, true);
 				var oPageViewer = new PageViewer(ePageControl, metadata.pages[i], sUrl);
 
@@ -2830,6 +2858,8 @@ DocumentViewer.prototype = {
 					ePagesLabel.dom.style.display = "none";
 			}
 
+			this.renderMorePagesMessage(numberOfPages, extPagesContainer);
+
 		} else {
 			extPagesContainer.insertHtml("beforeEnd",
 				DocumentViewerLang[this.sLang].DocumentInProgress
@@ -2838,6 +2868,11 @@ DocumentViewer.prototype = {
 			setTimeout(this.load.bind(this), metadata.estimatedTimeToFinish / 2 * 1000);
 		}
 
+	},
+
+	renderMorePagesMessage : function(numberOfPages, extPagesContainer) {
+		if (numberOfPages <= DocumentViewerMaxPages) return;
+		extPagesContainer.insertHtml("beforeEnd", DocumentViewerLang[this.sLang].MorePages.replace(TEMPLATE_SEPARATOR + COUNT + TEMPLATE_SEPARATOR, numberOfPages));
 	},
 
 	renameLabel: function (event) {
@@ -3993,7 +4028,7 @@ PushListener.nodeFieldFocused = function (Sender) {
 };
 
 PushListener.nodeFieldCompositeChanged = function (Sender) {
-  PushListener.resetObserverFields(Sender.DOMNode, Sender.DOMField.getCode());
+  PushListener.resetObserverFields(Sender.DOMNode, Sender.DOMField);
 };
 
 PushListener.nodeFieldChanged = function (Sender) {
@@ -4004,17 +4039,21 @@ PushListener.nodeFieldChanged = function (Sender) {
   Process.Data = Sender.DOMField.getContent();
   Process.execute();
 
-  PushListener.resetObserverFields(Sender.DOMNode, Sender.DOMField.getCode());
+  PushListener.resetObserverFields(Sender.DOMNode, Sender.DOMField);
 };
 
-PushListener.resetObserverFields = function (DOMElement, fieldCode) {
-  var DOMFields = DOMElement.getFields();
-  for (var i = 0; i < DOMFields.length; i++) {
-    var DOMField = DOMFields[i];
-    if (DOMField.isObserver(fieldCode))
-      DOMField.reset();
-    if (DOMField.isComposite())
-      PushListener.resetObserverFields(DOMField, fieldCode);
+PushListener.resetObserverFields = function (DOMElement, DOMSender) {
+  var DOMChildren = DOMElement.getFields();
+  var fieldCode = DOMSender.getCode();
+  for (var i = 0; i < DOMChildren.length; i++) {
+    var DOMChild = DOMChildren[i];
+    var DOMBrother = DOMChild.getBrother(fieldCode);
+    var childBrotherId = DOMBrother ? DOMBrother.id : null;
+    var sameParent = childBrotherId !== DOMChild.id && childBrotherId === DOMSender.id && DOMElement.isComposite();
+    if (sameParent && DOMChild.isObserver(fieldCode))
+      DOMChild.reset();
+    if (DOMChild.isComposite())
+      PushListener.resetObserverFields(DOMChild, DOMSender);
   }
 };
 
@@ -4287,7 +4326,7 @@ CGActionUpdateView.prototype.step_1 = function () {
   for (var i = 0; i < aViews.length; i++) {
     var DOMView = aViews[i].getDOM();
     var ControlInfo = DOMView.getControlInfo();
-    var bUpdated = DOMView.update(this.data);
+    var bUpdated = DOMView.update(this.data) || (this.data == null && Desktop.Main.Center.Body.isContainerView(aViews[i]));
 
     if (!bUpdated) {
       if (this.type == "node") {
@@ -5369,8 +5408,8 @@ CGActionShowBase.prototype.getContainerView = function (Type, Object) {
   return View;
 };
 
-CGActionShowBase.prototype.getView = function (Type, Object) {
-  var DOMElement = null, View, ViewContainer, Mode;
+CGActionShowBase.prototype.getView = function (Type, Object, DOMElement) {
+  var View, ViewContainer, Mode;
 
   if (this.DOMItem != null) DOMElement = this.getDOMElement();
 
@@ -5392,6 +5431,12 @@ CGActionShowBase.prototype.getView = function (Type, Object) {
   View.setMode(Mode);
   View.setType(Type);
 
+  return View;
+};
+
+CGActionShowBase.prototype.createView = function (Type, Object, DOMElement) {
+  var View = Desktop.createView(DOMElement, Object, null, this.Mode, false);
+  View.setMode(this.Mode);
   return View;
 };
 
@@ -8529,7 +8574,7 @@ CGListViewer.prototype.updateItems = function (bClearItems) {
     extItem.dom.Id = Item.id;
     extItem.dom.addClassName(Item.id);
 
-    Event.observe(extContent.dom, "click", CGListViewer.prototype.atItemContentClick.bind(this, extItem.dom, extContent.dom));
+    Event.observe(extContent.dom, "click", CGListViewer.prototype.atItemContentClick.bind(this, extItem.dom, extContent.dom, i, this.data.nrows));
     Event.observe(extSelector.dom, "click", CGListViewer.prototype.atItemSelectorClick.bind(this, extItem.dom, extSelector.dom));
     Event.observe(extDelete.dom, "click", CGListViewer.prototype.atItemDeleteClick.bind(this, extItem.dom, extDelete.dom));
 
@@ -9137,7 +9182,7 @@ CGListViewer.prototype.atPagingLastClick = function (DOMPagingItem) {
   this.lastPage();
 };
 
-CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, EventLaunched) {
+CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, index, nrows, EventLaunched) {
 
   if (this.DOMActiveItem != null) this.DOMActiveItem.removeClassName(CLASS_ACTIVE);
 
@@ -9146,7 +9191,7 @@ CGListViewer.prototype.atItemContentClick = function (DOMItem, DOMContent, Event
 
   if (this.Options.Templates.ShowItemCommand != null && !this.background) {
     var CommandTemplate = new Template(this.Options.Templates.ShowItemCommand);
-    CommandListener.dispatchCommand(CommandTemplate.evaluate({"id": DOMItem.Id}));
+    CommandListener.dispatchCommand(CommandTemplate.evaluate({"id": DOMItem.Id,"index":index,"count":nrows}));
     return false;
   }
 
@@ -11934,7 +11979,9 @@ CGActionShowNode.prototype = new CGActionShowBase;
 CGActionShowNode.constructor = CGActionShowNode;
 CommandFactory.register(CGActionShowNode, {
 	Id: 0,
-	Mode: 1
+	Mode: 1,
+	Index: 2,
+	Count: 3
 }, true);
 
 CGActionShowNode.prototype.getDOMElement = function () {
@@ -11988,7 +12035,7 @@ CGActionShowNode.prototype.step_2 = function () {
 };
 
 CGActionShowNode.prototype.step_3 = function () {
-	Kernel.loadNode(this, this.Id, this.Mode);
+	Kernel.loadNode(this, this.Id, this.Mode, this.Index, this.Count);
 };
 
 CGActionShowNode.prototype.step_4 = function () {
@@ -12052,6 +12099,81 @@ CGActionShowNode.prototype.step_5 = function () {
 	Process.DOMViewActiveTab = this.DOMViewActiveTab;
 	Process.execute();
 	this.terminate();
+};
+
+// ----------------------------------------------------------------------
+// Action show set item
+// ----------------------------------------------------------------------
+function CGActionShowSetItem() {
+	this.base = CGActionShowBase;
+	this.base(1);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionShowSetItem.prototype = new CGActionShowBase;
+CGActionShowSetItem.constructor = CGActionShowSetItem;
+CommandFactory.register(CGActionShowSetItem, {
+	Set: 0,
+	Item: 1,
+	Mode: 2,
+	Index: 3,
+	Count: 4
+}, true);
+
+CGActionShowSetItem.prototype.step_1 = function () {
+	var state = State.SetsContext[this.Set];
+	if (state == null) state = {};
+	var view = this.findView();
+	state.view = view != null ? view.getDOM().getActiveTab() : null;
+	State.SetsContext[this.Set] = state;
+	CommandDispatcher.dispatch("shownode(" + this.Item + "," + this.Mode + "," + this.Index + "," + this.Count + ")");
+};
+
+CGActionShowSetItem.prototype.findView = function () {
+	var result = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.Set);
+	if (result != null) return result;
+	var views = Desktop.Main.Center.Body.getViews(VIEW_NODE,VIEW_NODE_TYPE_NODE,this.Set);
+	return views.length > 0 ? views[0] : null;
+};
+
+// ----------------------------------------------------------------------
+// Action show node child
+// ----------------------------------------------------------------------
+function CGActionShowNodeChild() {
+	this.base = CGActionShowBase;
+	this.base(3);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionShowNodeChild.prototype = new CGActionShowBase;
+CGActionShowNodeChild.constructor = CGActionShowNodeChild;
+CommandFactory.register(CGActionShowNodeChild, {
+	Ancestor: 0,
+	Mode: 1,
+	Index: 2,
+	Count: 3
+}, true);
+
+CGActionShowNodeChild.prototype.step_1 = function () {
+	var view = State.SetsContext[this.Ancestor].view;
+	var filters = State.getListViewerFilters(this.Ancestor + view);
+	Kernel.loadAncestorChildId(this, this.Ancestor, view, this.Index, filters);
+};
+
+CGActionShowNodeChild.prototype.step_2 = function () {
+	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
+
+	var ActionShowNode = new CGActionShowNode();
+	ActionShowNode.Id = this.data;
+	ActionShowNode.Mode = this.Mode;
+	ActionShowNode.Index = this.Index;
+	ActionShowNode.Count = this.Count;
+	ActionShowNode.ReturnProcess = this;
+	ActionShowNode.execute();
+};
+
+CGActionShowNodeChild.prototype.step_3 = function () {
+	Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().activateTab(this.activeTab);
 };
 
 // ----------------------------------------------------------------------
@@ -14142,6 +14264,39 @@ CGActionDeleteNodeNote.prototype.step_2 = function () {
 	this.terminate();
 };
 
+//----------------------------------------------------------------------
+// Render Node Notes
+//----------------------------------------------------------------------
+function CGActionRenderRecentTask() {
+	this.base = CGActionShowBase;
+	this.base(1);
+	this.AvailableProcessClass = CGProcessCleanDirty;
+};
+
+CGActionRenderRecentTask.prototype = new CGActionShowBase;
+CGActionRenderRecentTask.constructor = CGActionRenderRecentTask;
+CommandFactory.register(CGActionRenderRecentTask, {
+	Id: 0,
+	IdTask: 1,
+	Mode: 2,
+	IdDOMViewerLayer: 3
+}, false);
+
+CGActionRenderRecentTask.prototype.step_1 = function () {
+	var DOMElement = Ext.get(this.IdDOMViewerLayer).dom;
+	var Task = new CGTask();
+	Task.setId(this.IdTask);
+
+	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement);
+	var Process = new CGProcessShowTask();
+	Process.Id = this.IdTask;
+	Process.Mode = ViewTask.getMode();
+	Process.ViewTask = ViewTask;
+	Process.execute();
+
+	this.terminate();
+};
+
 // ----------------------------------------------------------------------
 // Copy node
 // ----------------------------------------------------------------------
@@ -15476,24 +15631,8 @@ CGActionPrintNode.prototype.step_3 = function () {
     this.saveDialogResult();
 
     this.CodeView = this.getCodeView();
-    this.ListState = State.getListViewerState(this.IdNode + this.CodeView);
+    this.Filters = State.getListViewerFilters(this.IdNode + this.CodeView);
     this.Attributes = this.getAttributes();
-
-    if (this.ListState != null) {
-        Filters["query"] = this.ListState.Filter;
-        Filters["sortsby"] = "";
-        Filters["groupsby"] = "";
-        for (var i = 0; i < this.ListState.Sorts.length; i++)
-            Filters["sortsby"] += this.ListState.Sorts[i].Code + MONET_FILTER_SEPARATOR + this.ListState.Sorts[i].Mode + MONET_FILTERS_SEPARATOR;
-        for (var i = 0; i < this.ListState.Groups.length; i++)
-            Filters["groupsby"] += this.ListState.Groups[i].Code + MONET_FILTER_SEPARATOR + this.ListState.Groups[i].Value + MONET_FILTERS_SEPARATOR;
-
-        if (Filters["sortsby"].length > 0)
-            Filters["sortsby"] = Filters["sortsby"].substring(0, Filters["sortsby"].length - MONET_FILTERS_SEPARATOR.length);
-        if (Filters["groupsby"].length > 0)
-            Filters["groupsby"] = Filters["groupsby"].substring(0, Filters["groupsby"].length - MONET_FILTERS_SEPARATOR.length);
-    }
-    this.Filters = Filters;
 
     Kernel.printNodeTimeConsumption(this, this.IdNode, this.Mode, this.CodeView, this.Filters, this.Attributes, CGActionPrintNode.DateAttribute, CGActionPrintNode.FromDate, CGActionPrintNode.ToDate, Account.getInstanceId());
 };
@@ -17640,18 +17779,18 @@ CGProcessRefreshTask.prototype.step_1 = function () {
 		return;
 	}
 
-	ViewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, Task.getId());
-	if (!ViewTask) {
+	if (this.View == null) this.View = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, Task.getId());
+	if (!this.View) {
 		this.terminate();
 		return;
 	}
 
-	if ((!this.DOMViewActiveTab) && (ViewTask) && (ViewTask.getDOM) && (ViewTask.getDOM().getActiveTab)) this.DOMViewActiveTab = ViewTask.getDOM().getActiveTab();
+	if ((!this.DOMViewActiveTab) && (this.View) && (this.View.getDOM) && (this.View.getDOM().getActiveTab)) this.DOMViewActiveTab = this.View.getDOM().getActiveTab();
 
 	Process = new CGProcessShowTask();
 	Process.Id = this.Id;
-	Process.Mode = ViewTask.getMode();
-	Process.ViewTask = ViewTask;
+	Process.Mode = this.View.getMode();
+	Process.ViewTask = this.View;
 	Process.ActivateTask = false;
 	Process.ReturnProcess = this;
 	Process.execute();
@@ -17690,22 +17829,29 @@ CGProcessRefreshTaskState.prototype.step_1 = function () {
 		return;
 	}
 
-	var viewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, task.getId());
+	this.refreshView(Desktop.Main.Center.Body.getContainerView(VIEW_TASK, task.getId()), true);
+
+	var aViews = Desktop.Main.Center.Body.getViews(VIEW_TASK, VIEW_TASK_TYPE_TASK, task.getId());
+	for (var i=0; i<aViews.length; i++) this.refreshView(aViews[i], false);
+
+	this.terminate();
+};
+
+CGProcessRefreshTaskState.prototype.refreshView = function(viewTask, checkStateTab) {
 	if (!viewTask) {
 		this.terminate();
 		return;
 	}
 
-	if (!viewTask.getDOM().isStateTabActive()) {
+	if (checkStateTab && !viewTask.getDOM().isStateTabActive()) {
 		this.terminate();
 		return;
 	}
 
 	var process = new CGProcessRefreshTask();
 	process.Id = this.taskId;
+	process.View = viewTask;
 	process.execute();
-
-	this.terminate();
 };
 
 //----------------------------------------------------------------------
@@ -24227,8 +24373,8 @@ Kernel.logout = function (Action, sInstanceId) {
   Kernel.Stub.request(Action, "logout", {i: sInstanceId});
 };
 
-Kernel.loadNode = function (Action, Id, Mode) {
-  Kernel.Stub.request(Action, "loadnode", {id: Id, mode: escape(Mode)});
+Kernel.loadNode = function (Action, Id, Mode, Index, Count) {
+  Kernel.Stub.request(Action, "loadnode", {id: Id, mode: escape(Mode), index: Index, count: Count});
 };
 
 Kernel.loadMainNode = function (Action, Id) {
@@ -24474,6 +24620,18 @@ Kernel.getPrintLink = function (op, IdNode, Template, CodeView, Filters, Attribu
     if (InstanceId != null) sParameters += "&i=" + InstanceId;
 
     return Context.Config.Api + writeServerRequest(Kernel.mode, sParameters);
+};
+
+Kernel.loadAncestorChildId = function (Action, IdAncestor, CodeView, Index, Filters) {
+  var aParameters = {ancestor: IdAncestor, index: Index, view: CodeView};
+
+  for (var CodeFilter in Filters) {
+    if (isFunction(Filters[CodeFilter])) continue;
+    var Filter = Filters[CodeFilter];
+    aParameters[CodeFilter] = escape(utf8Encode(Filter));
+  }
+
+  Kernel.Stub.request(Action, "loadancestorchildid", aParameters);
 };
 
 Kernel.getDownloadPrintedNodeLink = function (IdNode, Template) {
@@ -28039,7 +28197,7 @@ CGViewNode.prototype.refresh = function () {
   var sContent = this.Target.getContent();
 
   if (!this.Target) return;
-  if (sContent != null && sContent != "") {
+  if (sContent != null && sContent !== "") {
     this.Target.setContent("");
 
     extLayer = Ext.get(this.DOMLayer);
@@ -28063,7 +28221,7 @@ CGViewNode.prototype.refresh = function () {
     Constructor.onSelectNodeReference = CGViewNode.prototype.atSelectNodeReference.bind(this);
     Constructor.init(this.DOMLayer);
 
-    if (sContent != null && sContent != "")
+    if (sContent != null && sContent !== "")
       CommandListener.capture(this.DOMLayer);
 
     BehaviourDispatcher.apply(BehaviourViewNode, this.DOMLayer);
@@ -36750,7 +36908,13 @@ CGWidget.prototype.setTarget = function (Target) {
   this.createOptions();
   this.setMessageWhenEmpty(this.Target.getMessageWhenEmpty());
   this.validate();
+  this.addListeners();
   //this.updateData();
+};
+
+CGWidget.prototype.addListeners = function() {
+  var fields = this.Target.getStoreFiltersFields();
+  for (var i=0; i<fields.length; i++) fields[i].onValueChangeListeners.push(this.doClearValue.bind(this));
 };
 
 CGWidget.prototype.getViewMode = function () {
@@ -36829,6 +36993,7 @@ CGWidget.prototype.getData = function () {
 };
 
 CGWidget.prototype.updateData = function () {
+  for (var i=0; i<this.Target.onValueChangeListeners.length; i++) this.Target.onValueChangeListeners[i]();
   if (this.onChange) this.onChange();
 };
 
@@ -36986,6 +37151,10 @@ CGWidget.prototype.setObserver = function (Observer, iPos) {
 
 CGWidget.prototype.clearValue = function (oEvent) {
   this.focus();
+  this.doClearValue();
+};
+
+CGWidget.prototype.doClearValue = function () {
   this.extValue.dom.value = "";
   this.hideClearValue();
   this.validate();
@@ -38559,6 +38728,7 @@ CGWidgetLink.prototype.setTarget = function (Target) {
   this.createOnlineMenu();
   this.setMessageWhenEmpty(this.Target.getMessageWhenEmpty());
   this.setItem(this.extValue.dom.name, this.extValue.dom.value);
+  this.addListeners();
   //this.updateData();
 };
 
@@ -42736,7 +42906,7 @@ CGDecorator.prototype.addCommonMethods = function (DOMElement) {
 	DOMElement.refreshPanelItem = function (extTabPanelItem) {
 		var extElement = extTabPanelItem.bodyEl.down(this.cssElementStyle);
 
-		if (document.activeElement && document.activeElement != document.body) {
+		if (document.activeElement && document.activeElement !== document.body) {
 			try {
 				document.activeElement.blur();
 			}
@@ -42753,8 +42923,8 @@ CGDecorator.prototype.addCommonMethods = function (DOMElement) {
 
 			var Process = null;
 
-			if (this.cssElementStyle == CSS_TASK) Process = new CGProcessLoadEmbeddedTask();
-			else if (this.cssElementStyle == CSS_NODE) Process = new CGProcessLoadEmbeddedNode();
+			if (this.cssElementStyle === CSS_TASK) Process = new CGProcessLoadEmbeddedTask();
+			else if (this.cssElementStyle === CSS_NODE) Process = new CGProcessLoadEmbeddedNode();
 
 			if (Process != null) {
 				Process.DOMItem = extElement.dom;
@@ -43718,6 +43888,24 @@ CGDecoratorFieldLink.prototype.execute = function (DOMField) {
     return this.getDataLink().Filters;
   };
 
+  DOMField.getStoreFiltersFields = function () {
+    var result = [];
+    var filters = this.getStoreFilters();
+
+    for (var key in filters) {
+      if (isFunction(filters[key])) continue;
+      var filter = filters[key];
+
+      if (filter.indexOf("_field:") != -1) {
+        var field = filter.replace("_field:", "");
+        if (field.indexOf("__") != -1) field = field.substring(0, field.indexOf("__"));
+        result.push(DOMField.getField(field));
+      }
+    }
+
+    return result;
+  };
+
   DOMField.getStoreFiltersValues = function () {
 	  var result = new Object();
 	  var filters = this.getStoreFilters();
@@ -44001,12 +44189,13 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
       DOMField.onGotoField = this.gotoField.bind(this);
       DOMField.onLoadDefaultValue = this.atFieldLoadDefaultValue.bind(this);
       DOMField.onAddDefaultValue = this.atFieldAddDefaultValue.bind(this);
+      DOMField.getField = this.atGetField.bind(this, DOMField);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
       DOMField.init();
       // avoid callings to onchange before initialization
 //      DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
 //      DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
     }
   };
 
@@ -44031,16 +44220,25 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
     }
   };
 
+  DOMField.atGetField = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getField) return this.getField(code);
+    return DOMTarget;
+  };
+
   DOMField.atGetFieldValue = function (DOMFieldSender, code) {
-    var DOMField = this.findField(code, DOMFieldSender);
-    if (DOMField == null && this.getFieldValue) return this.getFieldValue(code);
-    return DOMField.getValue();
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getFieldValue) return this.getFieldValue(code);
+    return DOMTarget.getValue();
   };
 
   DOMField.atGetFieldValueCode = function (DOMFieldSender, code) {
-    var DOMField = this.findField(code, DOMFieldSender);
-    if (DOMField == null && this.getFieldValueCode) return this.getFieldValueCode(code);
-    return DOMField.getValueCode();
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getFieldValueCode) return this.getFieldValueCode(code);
+    return DOMTarget.getValueCode();
   };
 
   DOMField.findField = function(code, DOMFieldSender) {
@@ -44120,6 +44318,12 @@ CGDecoratorFieldSelect.prototype.execute = function (DOMField) {
     return this.getSourceStore().From;
   };
 
+  DOMField.getStoreFromField = function () {
+    var value = this.getStoreFrom();
+    if (value.indexOf("_field:") === -1) return null;
+    return DOMField.getField(value.replace("_field:", ""));
+  };
+
   DOMField.getStoreFromValue = function () {
     var value = this.getStoreFrom();
 
@@ -44131,6 +44335,24 @@ CGDecoratorFieldSelect.prototype.execute = function (DOMField) {
 
   DOMField.getStoreFilters = function () {
     return this.getSourceStore().Filters;
+  };
+
+  DOMField.getStoreFiltersFields = function () {
+    var result = [];
+    var filters = this.getStoreFilters();
+
+    for (var key in filters) {
+      if (isFunction(filters[key])) continue;
+      var filter = filters[key];
+
+      if (filter.indexOf("_field:") != -1) {
+        var field = filter.replace("_field:", "");
+        if (field.indexOf("__") != -1) field = field.substring(0, field.indexOf("__"));
+        result.push(DOMField.getField(field));
+      }
+    }
+
+    return result;
   };
 
   DOMField.getStoreFiltersValues = function () {
@@ -44373,6 +44595,7 @@ CGDecoratorField.prototype = new CGDecorator;
 CGDecoratorField.prototype.execute = function (DOMField) {
 
   DOMField.CurrentWidget = null;
+  DOMField.onValueChangeListeners = [];
   this.addCommonMethods(DOMField);
 
   DOMField.addWidgetBehaviours = function () {
@@ -45116,7 +45339,7 @@ CGDecoratorField.prototype.execute = function (DOMField) {
   DOMField.atWidgetChange = function (DOMField) {
     var Widget = WidgetManager.get(this.IdWidget);
     if ((DOMField) && (this.onChange)) this.onChange(DOMField);
-    else if (Widget != null) this.updateData(Widget.getData().toXml(), true);
+    else if (Widget != null && Widget.getData() != null) this.updateData(Widget.getData().toXml(), true);
   };
 
   DOMField.atWidgetRefresh = function (DOMField) {
@@ -45411,12 +45634,13 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
       DOMField.onGotoField = this.gotoField.bind(this);
       DOMField.onLoadDefaultValue = this.atFieldLoadDefaultValue.bind(this);
       DOMField.onAddDefaultValue = this.atFieldAddDefaultValue.bind(this);
+      DOMField.getField = this.atGetField.bind(this, DOMField);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
       DOMField.init();
       // avoid callings to onchange before initialization
       DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
       DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this);
     }
 
   };
@@ -45426,11 +45650,18 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
 
     this.initToolbar(".header .content .toolbar");
     this.initTabs(CSS_NODE);
+    this.initAncestorView();
 
     var aExtCollections = extNode.select(CSS_COLLECTION);
     aExtCollections.each(function (aExtCollection) {
       aExtCollection.dom.init(Editors);
     }, this);
+  };
+
+  DOMNode.initAncestorView = function() {
+    var extNode = Ext.get(this);
+    var extView = extNode.down(".ancestor-view");
+    if (extView == null) return;
   };
 
   DOMNode.destroyFields = function (aDOMFields) {
@@ -46305,14 +46536,21 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     Process.execute();
   };
 
-  DOMNode.atGetFieldValue = function (code) {
-    var DOMField = this.getField(code);
-    return DOMField.getValue();
+  DOMNode.atGetField = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
+    return DOMTarget;
   };
 
-  DOMNode.atGetFieldValueCode = function (code) {
-    var DOMField = this.getField(code);
-    return DOMField.getValueCode();
+  DOMNode.atGetFieldValue = function (DOMFieldSender, code) {
+    var DOMTarget = DOMNode.atGetField(DOMFieldSender, code);
+    return DOMTarget != null ? DOMTarget.getValue() : null;
+  };
+
+  DOMNode.atGetFieldValueCode = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.getField(code);
+    return DOMTarget.getValueCode();
   };
 
 };
@@ -46622,6 +46860,17 @@ CGNodeConstructor.prototype.initNodes = function (extObject) {
   }, this);
 };
 
+CGNodeConstructor.prototype.initTasks = function (extObject) {
+  var DecoratorTask = new CGDecoratorTask();
+
+  if (extObject.hasClass(CLASS_TASK)) DecoratorTask.execute(extObject.dom);
+
+  var aExtTasks = extObject.select(CSS_TASK);
+  aExtTasks.each(function (extTask) {
+    DecoratorTask.execute(extTask.dom);
+  }, this);
+};
+
 CGNodeConstructor.prototype.initSections = function (extObject) {
   var DecoratorSection = new CGDecoratorSection();
 
@@ -46803,6 +47052,7 @@ CGNodeConstructor.prototype.init = function (DOMObject) {
   this.IdObject = extObject.dom.id;
 
   this.initNodes(extObject);
+  this.initTasks(extObject);
   this.initSections(extObject);
   this.initCollections(extObject);
   this.initNodesReferences(extObject);

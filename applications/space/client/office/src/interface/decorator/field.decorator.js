@@ -6,6 +6,7 @@ CGDecoratorField.prototype = new CGDecorator;
 CGDecoratorField.prototype.execute = function (DOMField) {
 
   DOMField.CurrentWidget = null;
+  DOMField.onValueChangeListeners = [];
   this.addCommonMethods(DOMField);
 
   DOMField.addWidgetBehaviours = function () {
@@ -749,7 +750,7 @@ CGDecoratorField.prototype.execute = function (DOMField) {
   DOMField.atWidgetChange = function (DOMField) {
     var Widget = WidgetManager.get(this.IdWidget);
     if ((DOMField) && (this.onChange)) this.onChange(DOMField);
-    else if (Widget != null) this.updateData(Widget.getData().toXml(), true);
+    else if (Widget != null && Widget.getData() != null) this.updateData(Widget.getData().toXml(), true);
   };
 
   DOMField.atWidgetRefresh = function (DOMField) {

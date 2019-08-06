@@ -327,7 +327,13 @@ CGWidget.prototype.setTarget = function (Target) {
   this.createOptions();
   this.setMessageWhenEmpty(this.Target.getMessageWhenEmpty());
   this.validate();
+  this.addListeners();
   //this.updateData();
+};
+
+CGWidget.prototype.addListeners = function() {
+  var fields = this.Target.getStoreFiltersFields();
+  for (var i=0; i<fields.length; i++) fields[i].onValueChangeListeners.push(this.doClearValue.bind(this));
 };
 
 CGWidget.prototype.getViewMode = function () {
@@ -406,6 +412,7 @@ CGWidget.prototype.getData = function () {
 };
 
 CGWidget.prototype.updateData = function () {
+  for (var i=0; i<this.Target.onValueChangeListeners.length; i++) this.Target.onValueChangeListeners[i]();
   if (this.onChange) this.onChange();
 };
 
@@ -563,6 +570,10 @@ CGWidget.prototype.setObserver = function (Observer, iPos) {
 
 CGWidget.prototype.clearValue = function (oEvent) {
   this.focus();
+  this.doClearValue();
+};
+
+CGWidget.prototype.doClearValue = function () {
   this.extValue.dom.value = "";
   this.hideClearValue();
   this.validate();

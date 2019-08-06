@@ -72,6 +72,8 @@ public class DocumentViewRender extends NodeViewRender {
 		if (isLocationView) {
 			this.initMapWithoutView(map, "location");
 			return this.initLocationSystemView(map);
+		} else if (codeView.equalsIgnoreCase("ancestor")) {
+			return this.initAncestorView(map);
 		} else if (isFormView) {
 			this.initMapWithoutView(map, "form");
 			return this.initDocumentInForm(map);

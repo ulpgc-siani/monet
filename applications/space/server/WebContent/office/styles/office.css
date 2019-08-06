@@ -1681,6 +1681,11 @@ img.required {
 .widget.wtable li .elementwidget .wcomposite .widget .options, .widget.wtable li .elementwidget .wnode .widget .options {
   margin-left: -28px;
 }
+.widget.wlist li .elementwidget .widget.wfile .options, .widget.wlist li .elementwidget .widget.wlist .widget.wfile .options,
+.widget.wtable li .elementwidget .widget.wfile .options, .widget.wtable li .elementwidget .widget.wtable .widget.wfile .options {
+  position: absolute;
+  right: 0;
+}
 .widget.wlist li .elementwidget .widget.wboolean .options,
 .widget.wtable li .elementwidget .widget.wboolean .options {
   margin: 5px 0px 0px;

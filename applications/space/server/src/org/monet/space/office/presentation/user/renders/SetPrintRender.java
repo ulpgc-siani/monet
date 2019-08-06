@@ -399,20 +399,6 @@ public class SetPrintRender extends NodePrintRender {
 		return result;
 	}
 
-	private int getWordLength(String label) {
-		if (label == null)
-			return 0;
-
-		String[] labelArray = label.split(" ");
-		int result = 0;
-		for (int i=0; i<labelArray.length; i++) {
-			if (labelArray[i].length() > result)
-				result = labelArray[i].length();
-		}
-
-		return result;
-	}
-
 	private int fixColumnsWithShortOrLongData(IndexDefinition referenceDefinition, HashMap<String, Integer> dataSizes, ArrayList<Ref> showList, Language language, int totalSize, DataRequest dataRequest) {
 		Set<String> attributesToShow = this.getAttributesToShow(dataRequest);
 
@@ -426,7 +412,7 @@ public class SetPrintRender extends NodePrintRender {
 		for (String attributeKey : attributesToShow) {
 			AttributeProperty attributeDefinition = getAttributeDefinition(referenceDefinition, attributeKey);
 			String code = attributeDefinition.getCode();
-			int wordLength = this.getWordLength(language.getModelResource(attributeDefinition.getLabel()));
+			int wordLength = this.getWordLength(language.getModelResource(attributeDefinition.getLabel())) + 10;
 			int dataSize = dataSizes.containsKey(code)?dataSizes.get(code):0;
 
 			if (dataSize > 0 && wordLength > dataSize) {

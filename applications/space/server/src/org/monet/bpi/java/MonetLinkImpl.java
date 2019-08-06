@@ -27,6 +27,15 @@ public class MonetLinkImpl extends MonetLink {
 		return this.link.isEditMode();
 	}
 
+	public String getView() {
+		return this.link.getView();
+	}
+
+	public MonetLink withView(String view) {
+		this.link.withView(view);
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return this.link.toString();

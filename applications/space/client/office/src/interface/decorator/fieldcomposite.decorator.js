@@ -85,12 +85,13 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
       DOMField.onGotoField = this.gotoField.bind(this);
       DOMField.onLoadDefaultValue = this.atFieldLoadDefaultValue.bind(this);
       DOMField.onAddDefaultValue = this.atFieldAddDefaultValue.bind(this);
+      DOMField.getField = this.atGetField.bind(this, DOMField);
+      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
+      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
       DOMField.init();
       // avoid callings to onchange before initialization
 //      DOMField.onBeforeChange = this.atFieldBeforeChange.bind(this);
 //      DOMField.onChange = this.atFieldChange.bind(this);
-      DOMField.getFieldValue = this.atGetFieldValue.bind(this, DOMField);
-      DOMField.getFieldValueCode = this.atGetFieldValueCode.bind(this, DOMField);
     }
   };
 
@@ -115,16 +116,25 @@ CGDecoratorFieldComposite.prototype.execute = function (DOMField) {
     }
   };
 
+  DOMField.atGetField = function (DOMFieldSender, code) {
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getField) return this.getField(code);
+    return DOMTarget;
+  };
+
   DOMField.atGetFieldValue = function (DOMFieldSender, code) {
-    var DOMField = this.findField(code, DOMFieldSender);
-    if (DOMField == null && this.getFieldValue) return this.getFieldValue(code);
-    return DOMField.getValue();
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getFieldValue) return this.getFieldValue(code);
+    return DOMTarget.getValue();
   };
 
   DOMField.atGetFieldValueCode = function (DOMFieldSender, code) {
-    var DOMField = this.findField(code, DOMFieldSender);
-    if (DOMField == null && this.getFieldValueCode) return this.getFieldValueCode(code);
-    return DOMField.getValueCode();
+    var DOMTarget = DOMFieldSender.getBrother(code);
+    if (!DOMTarget || DOMTarget == null) DOMTarget = this.findField(code, DOMFieldSender);
+    if (DOMTarget == null && this.getFieldValueCode) return this.getFieldValueCode(code);
+    return DOMTarget.getValueCode();
   };
 
   DOMField.findField = function(code, DOMFieldSender) {

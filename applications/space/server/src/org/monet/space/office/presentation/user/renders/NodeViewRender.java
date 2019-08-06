@@ -10,6 +10,7 @@ import org.monet.metamodel.SetDefinition.SetViewProperty;
 import org.monet.metamodel.SetDefinitionBase.SetViewPropertyBase.ShowProperty;
 import org.monet.metamodel.internal.Ref;
 import org.monet.space.kernel.model.*;
+import org.monet.space.office.configuration.Configuration;
 import org.monet.space.office.core.model.Language;
 
 import java.util.ArrayList;
@@ -151,6 +152,24 @@ public class NodeViewRender extends ViewRender {
 		return block("view", contentMap);
 	}
 
+	protected String initAncestorView(HashMap<String, Object> contentMap) {
+		if (!node.isSet()) return "";
+		String index = (String) getParameter("index");
+		if (index == null) return "";
+		int previous = Integer.parseInt((String) getParameter("index")) - 1;
+		int next = Integer.parseInt((String) getParameter("index")) + 1;
+		int count = Integer.parseInt((String) getParameter("count"));
+		Configuration configuration = Configuration.getInstance();
+		contentMap.put("idNode", node.getId());
+		contentMap.put("previous", previous);
+		contentMap.put("next", next);
+		contentMap.put("count", count);
+		contentMap.put("themeSource", configuration.getApiUrl() + "?op=loadthemefile");
+		contentMap.put("previousBlock", block("view.ancestor$previous." + (previous >= 0 ? "enabled" : "disabled"), contentMap));
+		contentMap.put("nextBlock", block("view.ancestor$next." + (next < count ? "enabled" : "disabled"), contentMap));
+		return block("view.ancestor", contentMap);
+	}
+
 	private boolean existsLinksInToComponentDefinitions(NodeViewProperty viewDefinition) {
 		ArrayList<Ref> refList = null;
 
@@ -224,6 +243,19 @@ public class NodeViewRender extends ViewRender {
 		return block("content.attachments", contentMap);
 	}
 
+	protected String initRecentTaskSystemView(NodeViewProperty view, HashMap<String, Object> contentMap) {
+		TaskList taskList = this.node.getLinkedTasks();
+
+		contentMap.put("type", "recenttask");
+
+		if (taskList.getCount() <= 0)
+			return block("content.recenttask$empty", contentMap);
+
+		contentMap.put("idTask", taskList.get(0).getId());
+
+		return block("content.recenttask", contentMap);
+	}
+
 	protected String initTasksSystemView(NodeViewProperty view, HashMap<String, Object> contentMap) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		TaskList taskList = this.node.getLinkedTasks();
@@ -257,6 +289,20 @@ public class NodeViewRender extends ViewRender {
 		return block("content.prototypes", contentMap);
 	}
 
+	protected String initViewFromCode(String codeView, ViewProperty view, HashMap<String, Object> map) {
+		if (codeView.equals("location")) {
+			this.initMapWithoutView(map, "location");
+			return this.initLocationSystemView(map);
+		} else if (codeView.equals("ancestor")) {
+			return this.initAncestorView(map);
+		} else if (view == null) {
+			map.put("codeView", codeView);
+			map.put("labelDefinition", node.getDefinition().getLabelString());
+			return block("view.undefined", map);
+		}
+		return null;
+	}
+
 	protected String initSystemView(HashMap<String, Object> viewMap, NodeViewProperty viewDefinition) {
 
 		viewMap.put("clec", "clec");
@@ -274,6 +320,8 @@ public class NodeViewRender extends ViewRender {
 			viewMap.put("content", this.initLinksOutSystemView(viewDefinition, viewMap));
 		else if (this.isAttachmentsSystemView(viewDefinition))
 			viewMap.put("content", this.initAttachmentsSystemView(viewDefinition, viewMap));
+		else if (this.isRecentTaskSystemView(viewDefinition))
+			viewMap.put("content", this.initRecentTaskSystemView(viewDefinition, viewMap));
 		else if (this.isTasksSystemView(viewDefinition))
 			viewMap.put("content", this.initTasksSystemView(viewDefinition, viewMap));
 		else if (this.isRevisionsSystemView(viewDefinition)) {

@@ -29,7 +29,7 @@ import java.util.Map.Entry;
 
 public class AgentRestfullClient {
 
-	private static final int Timeout = 1000 * 120;
+	private static final int Timeout = 1000 * 240;
 	private static AgentRestfullClient instance;
 
 	public synchronized static AgentRestfullClient getInstance() {

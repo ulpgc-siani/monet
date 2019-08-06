@@ -10,7 +10,7 @@ public class ConsoleServiceImpl extends ConsoleService {
 
 	@Override
 	protected void printlnImpl(Object object) {
-		System.out.println(String.valueOf(object));
+		System.out.println(object);
 	}
 
 	@Override

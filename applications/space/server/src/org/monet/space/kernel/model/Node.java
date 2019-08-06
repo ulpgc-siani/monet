@@ -50,8 +50,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import org.monet.space.kernel.model.Dictionary;
-
 public class Node<T extends NodeDefinition> extends Entity<T> implements ISecurable, Serializable {
 
 	private static final long serialVersionUID = -1095996627571572741L;
@@ -435,14 +433,12 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 	}
 
 	public List<String> getGroupOptions(String codeAttribute, List<String> filterNodes, List<FilterProperty> filterAttributesDefinition) {
-		Dictionary dictionary = Dictionary.getInstance();
-		NodeDefinition definition = this.getDefinition();
 		String ownerId = null;
 
 		if ((filterNodes != null) && (filterNodes.size() == 1) && (filterNodes.get(0).equals("")))
 			filterNodes = null;
 
-		if (this.isCollection())
+		if (this.isCollection() || this.isCatalog())
 			ownerId = this.id;
 
 		return this.getNodeLink().loadReferenceAttributeValues(ownerId, this.getGroupOptionsReferenceCode(), codeAttribute, filterNodes, filterAttributesDefinition);

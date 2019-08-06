@@ -45,6 +45,8 @@ public class ActionLoadNode extends Action {
 	public String execute() {
 		String id = (String) this.request.getAttribute(Parameter.ID);
 		String template = (String) LibraryRequest.getParameter(Parameter.MODE, this.request);
+		String index = this.request.getParameter(Parameter.INDEX);
+		String count = this.request.getParameter(Parameter.COUNT);
 		Node node;
 
 		if (!this.getFederationLayer().isLogged()) {
@@ -69,6 +71,8 @@ public class ActionLoadNode extends Action {
 		}
 
 		OfficeRender render = this.rendersFactory.get(node, template, this.getRenderLink(), getAccount());
+		if (index != null && !index.isEmpty() && !index.equalsIgnoreCase("undefined")) render.setParameter("index", index);
+		if (count != null && !count.isEmpty() && !count.equalsIgnoreCase("undefined")) render.setParameter("count", count);
 		node.setContent(render.getOutput());
 
 		return node.toJson().toJSONString();

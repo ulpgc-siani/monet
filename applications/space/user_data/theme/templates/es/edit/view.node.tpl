@@ -95,7 +95,7 @@ configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, labe
   Options.DataSource.Remote = true;
   Options.Templates = new Object();
   Options.Templates.Item = "&lt;div class='label' title='\#\{label\}'&gt;\#\{label_short\}&lt;/div&gt;&lt;div class='body'&gt;&lt;div title='\#\{description\}'&gt;\#\{description_short\}&lt;/div&gt;&lt;div class='typelabel'&gt;\#\{type_label\}&lt;/div&gt;&lt;/div&gt;";
-  Options.Templates.ShowItemCommand = "shownode(\#\{id\},preview.html?mode=page)";
+  Options.Templates.ShowItemCommand = "shownode(\#\{id\},preview.html?mode=page,\#\{index\},\#\{count\})";
   Options.Templates.NoItems = "&lt;div class='noitems'&gt;No existen relaciones&lt;/div&gt;";
   Options.Templates.CountItems = "\#\{count\} relaciones";
 </div>  
@@ -110,7 +110,7 @@ configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, labe
   Options.DataSource.Remote = true;
   Options.Templates = new Object();
   Options.Templates.Item = "&lt;div class='label' title='\#\{label\}'&gt;\#\{label_short\}&lt;/div&gt;&lt;div class='body'&gt;&lt;div title='\#\{description\}'&gt;\#\{description_short\}&lt;/div&gt;&lt;div class='typelabel'&gt;\#\{type_label\}&lt;/div&gt;&lt;/div&gt;";
-  Options.Templates.ShowItemCommand = "shownode(\#\{id\},preview.html?mode=page)";
+  Options.Templates.ShowItemCommand = "shownode(\#\{id\},preview.html?mode=page,\#\{index\},\#\{count\})";
   Options.Templates.NoItems = "&lt;div class='noitems'&gt;No existen relaciones&lt;/div&gt;";
   Options.Templates.CountItems = "\#\{count\} relaciones";
 </div>
@@ -141,6 +141,20 @@ configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, labe
   options.Editable = true;
 </div>
 
+@content.recenttask
+<div class="command onload">renderrecenttask(::idNode::,::idTask::,preview.html?view=state,recenttaskviewer_::idNode::_::idTask::_::codeView::)</div>
+<div class="toolbar">
+  <table>
+    <tr>
+      <td><a class="command button" href="refreshtask(::idTask::)">Actualizar</a></td>
+    </tr>
+  </table>
+</div>
+<div id="recenttaskviewer_::idNode::_::idTask::_::codeView::"></div>
+
+@content.recenttask$empty
+<div style="margin-top:15px" class="node summary"><div class="message" style="clear:both;">Este elemento no es usado por ninguna tarea</div></div>
+
 @content.tasks
 ::render(view.tasklist)::
 
@@ -159,7 +173,7 @@ configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, labe
   Options.DataSource.Remote = true;
   Options.Templates = new Object();
   Options.Templates.Item = "&lt;div class='label' title='\#\{label\}'&gt;\#\{label_short\}&lt;/div&gt;&lt;div class='body'&gt;&lt;div title='\#\{description\}'&gt;\#\{description_short\}&lt;/div&gt;&lt;div class='createdate'&gt;Creado el \#\{create_date\}&lt;/div&gt;&lt;/div&gt;";
-  Options.Templates.ShowItemCommand = "shownode(\#\{id\},edit.html?mode=page)";
+  Options.Templates.ShowItemCommand = "shownode(\#\{id\},edit.html?mode=page,\#\{index\},\#\{count\})";
   Options.Templates.NoItems = "&lt;div class='noitems'&gt;No existen elementos&lt;/div&gt;";
   Options.Templates.CountItems = "\#\{count\} elementos";
   Options.AddList = new Object();

@@ -313,9 +313,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 	private boolean step() {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 
-		MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());
-		event.addParameter(MonetEvent.PARAMETER_PLACE, placeProperty.getCode());
-		this.agentNotifier.notify(event);
+		notifyPlaceArrival(placeProperty);
 
 		if (placeProperty.getDelegationActionProperty() != null) {
 			doDelegationAction(placeProperty, placeProperty.getDelegationActionProperty());
@@ -470,12 +468,25 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		}
 
 		this.gotoPlace(actionProperty.getGoto().getValue(), actionProperty.getHistory());
+		notifyPlaceArrival(actionProperty.getGoto().getValue());
 	}
 
 	private void doSendResponseAction(SendResponseActionProperty actionProperty) {
         this.customer.send(actionProperty.getResponse().getValue());
 
 		this.gotoPlace(actionProperty.getGoto().getValue(), actionProperty.getHistory());
+		notifyPlaceArrival(actionProperty.getGoto().getValue());
+	}
+
+	private void notifyPlaceArrival(PlaceProperty place) {
+		notifyPlaceArrival(place.getCode());
+	}
+
+	private void notifyPlaceArrival(String key) {
+		PlaceProperty placeDefinition = this.model.getDefinition().getPlace(key);
+		MonetEvent event = new MonetEvent(MonetEvent.TASK_PLACE_ARRIVAL, null, this.model.getId());
+		event.addParameter(MonetEvent.PARAMETER_PLACE, placeDefinition.getCode());
+		this.agentNotifier.notify(event);
 	}
 
 	private void doEnrollAction(EnrollActionProperty actionProperty) {

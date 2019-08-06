@@ -1955,6 +1955,11 @@ UPDATE ts$links SET delete_date=@deletedate WHERE id_source=@idsource AND type_s
 DELETE FROM ts$links WHERE id_source=@idsource AND type_source=@typesource AND (id_source_component=@idsourcecomponent OR id_source_component IS NULL)
 ]]>
   </entry>
+  <entry key="LINK_CLEAR">
+    <![CDATA[
+DELETE FROM ts$links WHERE (id_source=@id AND type_source=@type) OR (id_target=@id AND type_target=@type)
+]]>
+  </entry>
 
   <!-- ATTACHMENT -->
   <entry key="ATTACHMENT_ADD">

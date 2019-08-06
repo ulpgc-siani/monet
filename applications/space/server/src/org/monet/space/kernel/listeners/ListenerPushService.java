@@ -174,6 +174,7 @@ public class ListenerPushService extends Listener {
 		String BLUR_NODE = "blurnode";
 		String SHOW_TASK = "showtask";
 		String SHOW_NODE = "shownode";
+		String SHOW_NODE_VIEW = "shownodeview";
 		String UPDATE_NODE_STATE = "updatenodestate";
 		String UPDATE_TASK_STATE = "updatetaskstate";
 		String UPDATE_TASK_OWNER = "updatetaskowner";

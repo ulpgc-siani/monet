@@ -808,7 +808,7 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 		ProducerFederation producerFederation = this.producersFactory.get(Producers.FEDERATION);
 		ProducerRole producerRole = this.producersFactory.get(Producers.ROLE);
 		Account account = producerFederation.load(id);
-		List<Node> environmentNodes = account.getEnvironmentNodes();
+		HashMap<String, ArrayList<Node>> environmentNodes = account.getEnvironmentNodesByRole();
 		List<Dashboard> dashboards = account.getDashboards();
 		Map<String, ArrayList<Node>> environmentNodesByRole = account.getEnvironmentNodesByRole();
 		Map<String, ArrayList<Dashboard>> dashboardsByRole = account.getDashboardsByRole();
@@ -845,24 +845,30 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 
 	}
 
-	private boolean containsEnvironmentNode(NodeDefinition environmentDefinition, List<Node> environmentNodes) {
+	private boolean containsEnvironmentNode(NodeDefinition environmentDefinition, HashMap<String, ArrayList<Node>> environmentNodes, String role) {
 
 		if (environmentNodes == null)
 			return false;
 
-		for (Node node : environmentNodes)
-			if (node.getDefinition().getCode().equals(environmentDefinition.getCode()))
-				return true;
+		for (Map.Entry<String, ArrayList<Node>> entry : environmentNodes.entrySet())
+			if (entry.getKey().equals(role)) {
+				for (Node node : entry.getValue()) {
+					if (node.getDefinition().getCode().equals(environmentDefinition.getCode())) {
+						return true;
+					}
+				}
+			}
 
 		return false;
 	}
 
-	private void addEnvironmentNodesToAccount(UserInfo info, boolean isFront, Map<String, List<NodeDefinition>> environmentDefinitions, Account account, List<Node> environmentNodes, String role, RoleDefinition roleDefinition) {
+	private void addEnvironmentNodesToAccount(UserInfo info, boolean isFront, Map<String, List<NodeDefinition>> environmentDefinitions, Account account, HashMap<String, ArrayList<Node>> environmentNodes, String role, RoleDefinition roleDefinition) {
 		List<NodeDefinition> environmentDefinitionList = environmentDefinitions.get(roleDefinition.getCode());
 		for (NodeDefinition environmentDefinition : environmentDefinitionList) {
-			if (this.containsEnvironmentNode(environmentDefinition, environmentNodes))
+			if (this.containsEnvironmentNode(environmentDefinition, environmentNodes, role))
 				continue;
-			environmentNodes.add(this.addEnvironmentNodeToAccount(environmentDefinition, account, info, isFront, role));
+			if (!environmentNodes.containsKey(role)) environmentNodes.put(role, new ArrayList<Node>());
+			environmentNodes.get(role).add(this.addEnvironmentNodeToAccount(environmentDefinition, account, info, isFront, role));
 		}
 	}
 

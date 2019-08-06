@@ -258,7 +258,7 @@ CGDecorator.prototype.addCommonMethods = function (DOMElement) {
 	DOMElement.refreshPanelItem = function (extTabPanelItem) {
 		var extElement = extTabPanelItem.bodyEl.down(this.cssElementStyle);
 
-		if (document.activeElement && document.activeElement != document.body) {
+		if (document.activeElement && document.activeElement !== document.body) {
 			try {
 				document.activeElement.blur();
 			}
@@ -275,8 +275,8 @@ CGDecorator.prototype.addCommonMethods = function (DOMElement) {
 
 			var Process = null;
 
-			if (this.cssElementStyle == CSS_TASK) Process = new CGProcessLoadEmbeddedTask();
-			else if (this.cssElementStyle == CSS_NODE) Process = new CGProcessLoadEmbeddedNode();
+			if (this.cssElementStyle === CSS_TASK) Process = new CGProcessLoadEmbeddedTask();
+			else if (this.cssElementStyle === CSS_NODE) Process = new CGProcessLoadEmbeddedNode();
 
 			if (Process != null) {
 				Process.DOMItem = extElement.dom;

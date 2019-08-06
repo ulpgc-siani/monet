@@ -15,7 +15,7 @@
 <div id="::idLayer::" class="wizarddocument" style="margin-top:10px;color:\#15429E;"></div>
 
 <div class="command onload">previewnode(::id::,::idLayer::_preview)</div>
-<div id="::idLayer::_preview" style="color:\#15429E;margin-top:20px;">Loading preview. Please, wait...</div>
+<div id="::idLayer::_preview" style="color:\#15429E;margin-top:20px;overflow:auto;height:100%;">Loading preview. Please, wait...</div>
 
 @content.form
 <a class="command" href="shownode(::id::)" alt="::label::" style="float\:left;"><img style="border\:1px solid \#666;" src="::previewImageSource::" title="::label::"/></a>

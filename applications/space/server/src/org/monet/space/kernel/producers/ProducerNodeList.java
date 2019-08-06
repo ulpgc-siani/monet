@@ -251,7 +251,27 @@ public class ProducerNodeList extends ProducerList {
 		}
 	}
 
-	private void addFiltersToQuery(NodeDataRequest dataRequest, Map<String, Object> parameters, Map<String, String> queryParams, String nodeId, boolean queryUsingView) {
+	public void addFiltersToQuery(String codeReference, Map<String, String> queryParams, List<FilterProperty> filtersDefinition, String nodeId, Map<String, String> additionalParameters, boolean queryUsingView) {
+		IndexDefinition referenceDefinition = Dictionary.getInstance().getIndexDefinition(codeReference);
+		StringBuilder queryFiltersBuilder = new StringBuilder();
+
+		for (FilterProperty filterDefinition : filtersDefinition) {
+			String[] result = SetViewProperty.AnalyzeProperty.getValues(filterDefinition, getFilterParameters(nodeId, additionalParameters));
+			AttributeProperty attributeDefinition = referenceDefinition.getAttribute(filterDefinition.getAttribute().getValue());
+			for (String value : result) addFilterToQuery(attributeDefinition, queryFiltersBuilder, codeReference, value, queryUsingView);
+		}
+
+		String filters = "";
+		if (queryFiltersBuilder.length() > 0) {
+			QueryBuilder queryBuilder = new QueryBuilder(this.agentDatabase.getRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_PARAMETERS));
+			queryBuilder.insertSubQuery(Database.QueryFields.PARAMETERS, queryFiltersBuilder.toString());
+			filters = queryBuilder.build();
+		}
+
+		queryParams.put(Database.QueryFields.PARAMETERS, filters);
+	}
+
+	public void addFiltersToQuery(NodeDataRequest dataRequest, Map<String, Object> parameters, Map<String, String> queryParams, String nodeId, boolean queryUsingView) {
 		String codeDomainNode = dataRequest.getCodeDomainNode();
 
 		if (codeDomainNode == null) {
@@ -265,24 +285,8 @@ public class ProducerNodeList extends ProducerList {
 			return;
 		}
 
-		StringBuilder queryFiltersBuilder = new StringBuilder();
 		String codeReference = dataRequest.getCodeReference();
-		IndexDefinition referenceDefinition = Dictionary.getInstance().getIndexDefinition(codeReference);
-
-		for (FilterProperty filterDefinition : view.getFilterList()) {
-			String[] result = SetViewProperty.AnalyzeProperty.getValues(filterDefinition, getFilterParameters(nodeId, dataRequest));
-			AttributeProperty attributeDefinition = referenceDefinition.getAttribute(filterDefinition.getAttribute().getValue());
-			for (String value : result) addFilterToQuery(attributeDefinition, queryFiltersBuilder, codeReference, value, queryUsingView);
-		}
-
-		String filters = "";
-		if (queryFiltersBuilder.length() > 0) {
-			QueryBuilder queryBuilder = new QueryBuilder(this.agentDatabase.getRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_PARAMETERS));
-			queryBuilder.insertSubQuery(Database.QueryFields.PARAMETERS, queryFiltersBuilder.toString());
-			filters = queryBuilder.build();
-		}
-
-		queryParams.put(Database.QueryFields.PARAMETERS, filters);
+		addFiltersToQuery(codeReference, queryParams, view.getFilterList(), nodeId, dataRequest.getParameters(), queryUsingView);
 	}
 
 	private void addFilterToQuery(AttributeProperty attributeDefinition, StringBuilder query, String codeReference, String value, boolean queryUsingView) {
@@ -373,11 +377,13 @@ public class ProducerNodeList extends ProducerList {
 	}
 
 	private Map<String, String> getFilterParameters(String nodeId, NodeDataRequest dataRequest) {
+		return getFilterParameters(nodeId, dataRequest.getParameters());
+	}
+
+	private Map<String, String> getFilterParameters(String nodeId, Map<String, String> additionalParameters) {
 		Node node = producerNode.loadAttributes(nodeId);
 		Map<String, String> filterParameters = new NodeSetWrapper(node).getFilterParameters();
-
-		filterParameters.putAll(dataRequest.getParameters());
-
+		filterParameters.putAll(additionalParameters);
 		return filterParameters;
 	}
 
@@ -518,7 +524,7 @@ public class ProducerNodeList extends ProducerList {
 		if (query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW) || query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS) || query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS_COUNT)) {
 			String parentSubquery = "";
 
-			if (!Dictionary.getInstance().isCatalogDefinition(dataRequest.getCodeDomainNode())) {
+			if (!dataRequest.getCodeDomainNode().isEmpty() && !Dictionary.getInstance().isCatalogDefinition(dataRequest.getCodeDomainNode())) {
 				if (query.equals(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW)) {
 					parentSubquery = this.agentDatabase.getRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW_PARENT_SUBQUERY);
 					parentSubquery = parentSubquery.replace("::idparent::", nodeId);

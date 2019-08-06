@@ -64,7 +64,8 @@ public abstract class OfficeRender extends Render {
 		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {
 			ContainerDefinition.ViewProperty.ShowProperty showDefinition = ((ContainerDefinition.ViewProperty) viewDefinition).getShow();
 			return showDefinition.getLinksIn() != null || showDefinition.getLinksOut() != null ||
-				showDefinition.getNotes() != null || showDefinition.getRevisions() != null || showDefinition.getTasks() != null || showDefinition.getLocation() != null;
+				   showDefinition.getNotes() != null || showDefinition.getRevisions() != null ||
+				   showDefinition.getTasks() != null || showDefinition.getLocation() != null || showDefinition.getRecentTask() != null;
 		}
 
 		if (viewDefinition instanceof SetViewProperty) {
@@ -77,7 +78,7 @@ public abstract class OfficeRender extends Render {
 
 			return showDefinition.getLinksIn() != null || showDefinition.getLinksOut() != null ||
 				showDefinition.getNotes() != null || showDefinition.getRevisions() != null || showDefinition.getTasks() != null ||
-				showDefinition.getAttachments() != null || showDefinition.getLocation() != null;
+				showDefinition.getAttachments() != null || showDefinition.getLocation() != null || showDefinition.getRecentTask() != null;
 		}
 
 		return false;
@@ -188,6 +189,21 @@ public abstract class OfficeRender extends Render {
 		ShowProperty showDefinition = setDefinition.getShow();
 
 		return showDefinition.getSharedPrototypes() != null;
+	}
+
+	protected boolean isRecentTaskSystemView(NodeViewProperty viewDefinition) {
+
+		if (viewDefinition instanceof ContainerDefinition.ViewProperty) {
+			ContainerDefinition.ViewProperty.ShowProperty showDefinition = ((ContainerDefinition.ViewProperty) viewDefinition).getShow();
+			return showDefinition.getRecentTask() != null;
+		}
+
+		if (viewDefinition instanceof FormViewProperty) {
+			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) viewDefinition).getShow();
+			return showDefinition.getRecentTask() != null;
+		}
+
+		return false;
 	}
 
 	protected boolean isTasksSystemView(NodeViewProperty viewDefinition) {

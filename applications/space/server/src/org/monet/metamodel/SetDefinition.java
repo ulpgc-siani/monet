@@ -26,4 +26,5 @@ public abstract class SetDefinition extends SetDefinitionBase {
 			}
 		}
 	}
+
 }

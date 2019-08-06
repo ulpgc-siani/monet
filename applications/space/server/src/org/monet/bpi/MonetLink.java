@@ -17,4 +17,12 @@ public abstract class MonetLink {
 		return new MonetLinkImpl(Type.Task, taskId, label, false);
 	}
 
+	public String getView() {
+		return null;
+	}
+
+	public MonetLink withView(String view) {
+		return this;
+	}
+
 }

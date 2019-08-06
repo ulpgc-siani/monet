@@ -65,6 +65,12 @@ CGDecoratorFieldSelect.prototype.execute = function (DOMField) {
     return this.getSourceStore().From;
   };
 
+  DOMField.getStoreFromField = function () {
+    var value = this.getStoreFrom();
+    if (value.indexOf("_field:") === -1) return null;
+    return DOMField.getField(value.replace("_field:", ""));
+  };
+
   DOMField.getStoreFromValue = function () {
     var value = this.getStoreFrom();
 
@@ -76,6 +82,24 @@ CGDecoratorFieldSelect.prototype.execute = function (DOMField) {
 
   DOMField.getStoreFilters = function () {
     return this.getSourceStore().Filters;
+  };
+
+  DOMField.getStoreFiltersFields = function () {
+    var result = [];
+    var filters = this.getStoreFilters();
+
+    for (var key in filters) {
+      if (isFunction(filters[key])) continue;
+      var filter = filters[key];
+
+      if (filter.indexOf("_field:") != -1) {
+        var field = filter.replace("_field:", "");
+        if (field.indexOf("__") != -1) field = field.substring(0, field.indexOf("__"));
+        result.push(DOMField.getField(field));
+      }
+    }
+
+    return result;
   };
 
   DOMField.getStoreFiltersValues = function () {

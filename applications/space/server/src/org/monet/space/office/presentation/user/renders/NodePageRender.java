@@ -79,6 +79,7 @@ public class NodePageRender extends OfficeRender {
 
 		this.initPrototyped(map);
 		this.initBreadCrumbs(map);
+		this.initAncestorView(map);
 
 		if (!idRevision.isEmpty()) {
 			String revisionBlock = "revision";
@@ -151,6 +152,21 @@ public class NodePageRender extends OfficeRender {
 		headerMap.put("breadcrumbsRevisions", breadCrumbsRevisions);
 	}
 
+	protected void initAncestorView(HashMap<String, Object> headerMap) {
+		String ancestorView = "";
+		NodeList ancestors = node.getAncestors();
+
+		if (ancestors.getCount() > 0) {
+			Node ancestor = ancestors.get().getLast();
+			OfficeRender render = this.rendersFactory.get(ancestor, this.template, this.renderLink, account);
+			render.setParameters(this.getParameters());
+			render.setParameter("view", "ancestor");
+			ancestorView = render.getOutput();
+		}
+
+		headerMap.put("render(view.node.ancestor)", ancestorView);
+	}
+
 	protected boolean hasAncestorLocked() {
 		Node parent = this.node.getParent();
 		boolean locked = false;
@@ -201,6 +217,8 @@ public class NodePageRender extends OfficeRender {
 		if (!node.isDesktop() && !node.isCatalog() && !node.isLocked() && canEditWithRole()) {
 			map.put("idNode", this.node.getId());
 			map.put("from", this.getParameterAsString("from"));
+			map.put("index", this.getParameterAsString("index"));
+			map.put("count", this.getParameterAsString("count"));
 			operations += block("operation.editable", map);
 			map.clear();
 		}

@@ -36,6 +36,8 @@ public class Parameter {
 	public static final String ID_USER = "iduser";
 	public static final String ID_INSTANCE = "idinstance";
 	public static final String ID_FIELD = "idfield";
+	public static final String INDEX = "index";
+	public static final String COUNT = "count";
 	public static final String DATA_SOURCE_TEMPLATE = "dstemplate";
 	public static final String DOMAIN = "domain";
 	public static final String CODE = "code";
@@ -105,6 +107,7 @@ public class Parameter {
 	public static final String SORTS_BY = "sortsby";
 	public static final String GROUPS_BY = "groupsby";
 	public static final String REFERENCE = "reference";
+	public static final String ANCESTOR = "ancestor";
 	public static final String TEMPLATE = "template";
 	public static final String TIMESTAMP = "timestamp";
 	public static final String SOURCE = "source";

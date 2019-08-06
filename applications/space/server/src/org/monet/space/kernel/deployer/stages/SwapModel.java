@@ -38,8 +38,8 @@ public class SwapModel extends Stage {
 		AgentFilesystem.removeDir(this.tempDirectory);
 
 		BusinessUnit businessUnit = BusinessUnit.getInstance();
-		businessUnit.setDistribution(BusinessUnit.reloadDistribution());
 		businessUnit.setBusinessModel(BusinessModel.reload());
+		businessUnit.setDistribution(BusinessUnit.reloadDistribution());
 		Dictionary.getInstance().reset(businessUnit.getDistribution(), businessUnit.getBusinessModel().getProject());
 	}
 

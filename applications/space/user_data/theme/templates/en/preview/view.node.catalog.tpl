@@ -1,6 +1,24 @@
 @content
 ::view::
 
+@view.ancestor
+<div class="ancestor-view">
+  ::previousBlock::
+  ::nextBlock::
+</div>
+
+@view.ancestor$previous.enabled
+<a class="command label" href="shownodechild(::idNode::,preview.html?mode=page,::previous::,::count::)"><img src='::themeSource::&path=_images/icons/previous.png' alt="previous" title="previous"/></a>
+
+@view.ancestor$previous.disabled
+<img style='filter:grayscale(100%);-webkit-filter:grayscale(100%);' src='::themeSource::&path=_images/icons/previous.png' alt="previous" title="previous"/>
+
+@view.ancestor$next.enabled
+<a class="command label" href="shownodechild(::idNode::,preview.html?mode=page,::next::,::count::)"><img src='::themeSource::&path=_images/icons/next.png' alt="next" title="next"/></a>
+
+@view.ancestor$next.disabled
+<img style='filter:grayscale(100%);-webkit-filter:grayscale(100%);' src='::themeSource::&path=_images/icons/next.png' alt="next" title="next"/>
+
 @toolbar
 <div class="def configuration">
   var configuration = new Object();
@@ -26,7 +44,7 @@
   Options.DataSource.Remote = true;
   Options.Templates = new Object();
   Options.Templates.Item = "::indexTemplate::";
-  Options.Templates.ShowItemCommand = "shownode(\#\{id\},preview.html?mode=page)";
+  Options.Templates.ShowItemCommand = "showsetitem(::id::,\#\{id\},preview.html?mode=page,\#\{index\},\#\{count\})";
   Options.Templates.NoItems = "&lt;div class='noitems'&gt;There are not ::labelReference::&lt;/div&gt;";
   Options.Templates.CountItems = "\#\{count\} ::labelReference::";
   Options.SortByList = new Object();

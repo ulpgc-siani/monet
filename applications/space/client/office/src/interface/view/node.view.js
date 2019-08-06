@@ -41,7 +41,7 @@ CGViewNode.prototype.refresh = function () {
   var sContent = this.Target.getContent();
 
   if (!this.Target) return;
-  if (sContent != null && sContent != "") {
+  if (sContent != null && sContent !== "") {
     this.Target.setContent("");
 
     extLayer = Ext.get(this.DOMLayer);
@@ -65,7 +65,7 @@ CGViewNode.prototype.refresh = function () {
     Constructor.onSelectNodeReference = CGViewNode.prototype.atSelectNodeReference.bind(this);
     Constructor.init(this.DOMLayer);
 
-    if (sContent != null && sContent != "")
+    if (sContent != null && sContent !== "")
       CommandListener.capture(this.DOMLayer);
 
     BehaviourDispatcher.apply(BehaviourViewNode, this.DOMLayer);

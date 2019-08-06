@@ -6,10 +6,10 @@ import org.monet.bpi.MonetLink;
 import org.monet.bpi.User;
 import org.monet.bpi.types.File;
 import org.monet.space.kernel.agents.AgentUserClient;
-import org.monet.space.kernel.model.Account;
-import org.monet.space.kernel.model.ClientOperation;
-import org.monet.space.kernel.model.Context;
-import org.monet.space.kernel.model.Session;
+import org.monet.space.kernel.components.ComponentDatawareHouse;
+import org.monet.space.kernel.components.ComponentPersistence;
+import org.monet.space.kernel.components.layers.NodeLayer;
+import org.monet.space.kernel.model.*;
 
 import static org.monet.space.kernel.listeners.ListenerPushService.PushClientMessages;
 
@@ -22,7 +22,7 @@ public class ClientServiceImpl extends ClientService {
 	@Override
 	protected void redirectUserToImpl(MonetLink monetLink) {
 		MonetLinkImpl link = ((MonetLinkImpl) monetLink);
-		String operation = null;
+		String operation;
 
 		JSONObject data = new JSONObject();
 		data.put("Id", link.getId());
@@ -41,8 +41,24 @@ public class ClientServiceImpl extends ClientService {
 				return;
 		}
 
-		if (operation != null)
-			AgentUserClient.getInstance().sendOperationToUser(Thread.currentThread().getId(), new ClientOperation(operation, data));
+		AgentUserClient.getInstance().sendOperationToUser(Thread.currentThread().getId(), new ClientOperation(operation, data));
+		if (operation.equals(PushClientMessages.SHOW_NODE)) showNodeView(link);
+	}
+
+	private void showNodeView(MonetLinkImpl link) {
+		String view = link.getView();
+
+		if (view == null || view.isEmpty()) return;
+
+		NodeLayer nodeLayer = ComponentPersistence.getInstance().getNodeLayer();
+		Node node = nodeLayer.loadNode(link.getId());
+
+		JSONObject data = new JSONObject();
+		data.put("IdMainNode", link.getId());
+		data.put("Id", link.getId());
+		data.put("IdView", node.getDefinition().getNodeView(view).getCode());
+
+		AgentUserClient.getInstance().sendOperationToUser(Thread.currentThread().getId(), new ClientOperation(PushClientMessages.SHOW_NODE_VIEW, data));
 	}
 
 	@Override

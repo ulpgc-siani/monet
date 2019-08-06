@@ -153,6 +153,7 @@ CGWidgetLink.prototype.setTarget = function (Target) {
   this.createOnlineMenu();
   this.setMessageWhenEmpty(this.Target.getMessageWhenEmpty());
   this.setItem(this.extValue.dom.name, this.extValue.dom.value);
+  this.addListeners();
   //this.updateData();
 };
 

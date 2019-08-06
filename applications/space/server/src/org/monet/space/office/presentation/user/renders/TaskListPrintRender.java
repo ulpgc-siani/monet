@@ -272,20 +272,6 @@ public class TaskListPrintRender extends PrintRender {
 		return result;
 	}
 
-	private int getWordLength(String label) {
-		if (label == null)
-			return 0;
-
-		String[] labelArray = label.split(" ");
-		int result = 0;
-		for (String aLabelArray : labelArray) {
-			if (aLabelArray.length() > result)
-				result = aLabelArray.length();
-		}
-
-		return result;
-	}
-
 	private int fixColumnsWithShortOrLongData(HashMap<String, Integer> dataSizes, int totalSize) {
 		totalSize = fixShortDataColumns(dataSizes, totalSize);
 		totalSize = fixLongDataColumns(dataSizes, totalSize);
