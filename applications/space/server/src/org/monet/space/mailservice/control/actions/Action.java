@@ -26,6 +26,7 @@ import org.monet.http.HttpRequest;
 import org.monet.http.HttpResponse;
 import org.monet.http.Request;
 import org.monet.http.Response;
+import org.monet.space.applications.ServiceAction;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
 import org.monet.space.kernel.model.User;
@@ -34,7 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
-public abstract class Action {
+public abstract class Action implements ServiceAction {
 	protected Request request;
 	protected Response response;
 	protected HashMap<String, Object> parameters;
