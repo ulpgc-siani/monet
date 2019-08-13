@@ -23,10 +23,12 @@
 package org.monet.space.kernel.configuration;
 
 import org.monet.space.kernel.agents.AgentFilesystem;
+import org.monet.space.kernel.constants.SiteFiles;
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.model.Context;
 import org.monet.space.kernel.utils.Resources;
 
+import java.io.InputStream;
 import java.util.Map;
 
 public class Configuration {
@@ -353,6 +355,14 @@ public class Configuration {
 
     public String getDatabaseDir() {
         return Resources.getFullPath("/kernel/database");
+    }
+
+    public InputStream getDatabaseQueries(String type) {
+        return Resources.getAsStream(getDatabaseQueriesFilename(type));
+    }
+
+    public String getDatabaseQueriesFilename(String type) {
+        return "/kernel/database" + Strings.BAR45 + type + SiteFiles.Suffix.QUERIES;
     }
 
     public String getUpgradesScriptsDir() {

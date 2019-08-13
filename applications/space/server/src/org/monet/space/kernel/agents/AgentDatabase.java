@@ -132,7 +132,6 @@ public abstract class AgentDatabase {
 	}
 
 	public boolean initialize(String dataSourceName) {
-		String repositoryQueriesFilename = this.configuration.getDatabaseDir() + Strings.BAR45 + TYPE + SiteFiles.Suffix.QUERIES;
 		InputStream repositoryQueriesInputStream = null;
 		javax.naming.Context context;
 		javax.naming.Context envContext;
@@ -140,16 +139,16 @@ public abstract class AgentDatabase {
 		this.queryRepository = new Properties();
 		try {
 			context = new InitialContext();
-			repositoryQueriesInputStream = new FileInputStream(new File(repositoryQueriesFilename));
+			repositoryQueriesInputStream = this.configuration.getDatabaseQueries(TYPE);
 
 			this.queryRepository.loadFromXML(repositoryQueriesInputStream);
 
 			envContext = (javax.naming.Context) context.lookup("java:comp/env");
 			this.dataSource = (DataSource) envContext.lookup(dataSourceName);
 		} catch (NamingException e) {
-			throw new FilesystemException(ErrorCode.FILESYSTEM_READ_FILE, repositoryQueriesFilename, e);
+			throw new FilesystemException(ErrorCode.FILESYSTEM_READ_FILE, configuration.getDatabaseQueriesFilename(TYPE), e);
 		} catch (IOException e) {
-			throw new FilesystemException(ErrorCode.FILESYSTEM_READ_FILE, repositoryQueriesFilename, e);
+			throw new FilesystemException(ErrorCode.FILESYSTEM_READ_FILE, configuration.getDatabaseQueriesFilename(TYPE), e);
 		} finally {
 			StreamHelper.close(repositoryQueriesInputStream);
 		}
