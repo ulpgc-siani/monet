@@ -15,11 +15,11 @@ public class DatabaseConfiguration {
     private static DatabaseConfiguration instance;
     private Map<String, String> map;
 
-    private static final String JDBC_TYPE = "JDBC.TYPE";
-    private static final String JDBC_DATASOURCE = "JDBC.DATASOURCE";
-    private static final String DATABASE_URL = "DATABASE_URL";
-    private static final String DATABASE_USER = "DATABASE_USER";
-    private static final String DATABASE_PASSWORD = "DATABASE_PASSWORD";
+    private static final String JDBC_TYPE = "Jdbc.Type";
+    private static final String JDBC_DATASOURCE = "Jdbc.DataSource";
+    private static final String DATABASE_URL = "Jdbc.Url";
+    private static final String DATABASE_USER = "Jdbc.User";
+    private static final String DATABASE_PASSWORD = "Jdbc.Password";
 
     public static DatabaseConfiguration getInstance() {
         return instance;
