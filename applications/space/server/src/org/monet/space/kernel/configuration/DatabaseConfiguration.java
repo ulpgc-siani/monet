@@ -1,5 +1,11 @@
 package org.monet.space.kernel.configuration;
 
+import org.monet.space.kernel.agents.AgentFilesystem;
+import org.monet.space.kernel.agents.AgentLogger;
+import org.monet.space.kernel.exceptions.SystemException;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -9,11 +15,11 @@ public class DatabaseConfiguration {
     private static DatabaseConfiguration instance;
     private Map<String, String> map;
 
-    public static final String JDBC_TYPE = "Jdbc.Type";
-    public static final String JDBC_DATASOURCE = "Jdbc.DataSource";
-    public static final String DATABASE_URL = "DATABASE_URL";
-    public static final String DATABASE_USER = "DATABSE_USER";
-    public static final String DATABASE_PASSWORD = "DATABSE_PASSWORD";
+    private static final String JDBC_TYPE = "JDBC.TYPE";
+    private static final String JDBC_DATASOURCE = "JDBC.DATASOURCE";
+    private static final String DATABASE_URL = "DATABASE_URL";
+    private static final String DATABASE_USER = "DATABASE_USER";
+    private static final String DATABASE_PASSWORD = "DATABASE_PASSWORD";
 
     public static DatabaseConfiguration getInstance() {
         return instance;
@@ -77,5 +83,26 @@ public class DatabaseConfiguration {
 
     public enum DatabaseType {
         MYSQL, ORACLE
+    }
+
+    public static DatabaseConfiguration fromXml(String sFilename) {
+        InputStream isConfigFileContent;
+
+        if (!AgentFilesystem.existFile(sFilename)) {
+            throw new SystemException("Database configuration file not found", sFilename);
+        }
+
+        isConfigFileContent = AgentFilesystem.getInputStream(sFilename);
+
+        Properties properties = new Properties();
+        try {
+            properties.loadFromXML(isConfigFileContent);
+            isConfigFileContent.close();
+            return new DatabaseConfiguration(properties);
+
+        } catch (IOException exception) {
+            AgentLogger.getInstance().error(new Exception("Exception in 'DatabaseConfiguration' (" + sFilename + ") : " + exception.getMessage(), exception));
+        }
+        return null;
     }
 }
