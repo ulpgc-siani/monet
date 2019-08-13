@@ -4,6 +4,7 @@ import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 import oracle.jdbc.pool.OracleConnectionPoolDataSource;
 import org.monet.space.kernel.agents.AgentLogger;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.ConnectionPoolDataSource;
@@ -13,6 +14,9 @@ public class DatabaseLoader {
 
     public static void load(DatabaseConfiguration database) {
         try {
+            System.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
+            System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming");
+
             InitialContext initialContext = new InitialContext();
             initialContext.createSubcontext("java:");
             initialContext.createSubcontext("java:comp");

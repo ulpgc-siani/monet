@@ -208,6 +208,7 @@ public class Kernel {
 	}
 
 	public Boolean run(ConfigurationMap map, DatabaseConfiguration database) {
+		if (map != null) ConfigurationLoader.load(map);
 		DatabaseLoader.load(database);
 		return run(map);
 	}
