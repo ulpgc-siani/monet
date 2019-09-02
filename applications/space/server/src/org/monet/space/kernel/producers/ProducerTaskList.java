@@ -477,6 +477,8 @@ public class ProducerTaskList extends Producer {
 			if (situation.equals("pending")) queryName = Database.Queries.TASK_LIST_LOAD_SUBQUERY_SITUATION_PENDING;
 			if (situation.equals("finished")) queryName = Database.Queries.TASK_LIST_LOAD_SUBQUERY_SITUATION_FINISHED;
 
+			if (queryName == null) return null;
+
 			return this.agentDatabase.getRepositoryQuery(queryName);
 		}
 		return null;
