@@ -546,7 +546,7 @@ public class ProducerTaskList extends Producer {
 			queryParameters += Strings.COMMA;
 		}
 		if (queryParameters.length() > 0) queryParameters = queryParameters.substring(0, queryParameters.length() - 1);
-		else queryParameters = "createdate " + this.agentDatabase.getOrderMode(Common.OrderMode.ASCENDANT);
+		else queryParameters = "create_date " + this.agentDatabase.getOrderMode(Common.OrderMode.ASCENDANT);
 
 		queryParams.put(Database.QueryFields.SORTS_BY, queryParameters);
 	}

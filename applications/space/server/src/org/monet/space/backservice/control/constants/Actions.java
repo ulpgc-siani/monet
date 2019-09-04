@@ -80,7 +80,7 @@ public class Actions {
 	public static final String CONSOLIDATE_NODE = "consolidatenode";
 	public static final String DELETE_NODE_FLAG = "deletenodeflag";
 	public static final String DELETE_NODE_NOTE = "deletenodenote";
-	public static final String DELETE_TASK_FLAG = "createtaskflag";
+	public static final String DELETE_TASK_FLAG = "deletetaskflag";
 	public static final String DELETE_TASK_SHORTCUT = "deletetaskshortcut";
 	public static final String GET_NODE_FLAGS = "getnodeflags";
 	public static final String GET_NODE_LOCATION = "getnodelocation";

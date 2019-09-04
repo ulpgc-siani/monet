@@ -26,6 +26,7 @@ import net.minidev.json.JSONObject;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.monet.bpi.types.Date;
 import org.monet.metamodel.*;
 import org.monet.metamodel.ProjectBase.TypeEnumeration;
 import org.monet.metamodel.RuleProperty.ListenProperty;
@@ -1251,8 +1252,10 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 		Reference reference = this.getReference();
 		if (reference != null) {
 			DateFormat dateFormat = new SimpleDateFormat("yyyyy-MM-dd HH:mm:ss.S z");
-			serializer.attribute("", "createDate", dateFormat.format(reference.getCreateDate().getValue()));
-			serializer.attribute("", "updateDate", dateFormat.format(reference.getUpdateDate().getValue()));
+			Date createDate = reference.getCreateDate();
+			if (createDate != null) serializer.attribute("", "createDate", dateFormat.format(createDate.getValue()));
+			Date updateDate = reference.getUpdateDate();
+			if (updateDate != null) serializer.attribute("", "updateDate", dateFormat.format(updateDate.getValue()));
 			if (reference.getDeleteDate() != null) serializer.attribute("", "deleteDate", dateFormat.format(reference.getDeleteDate().getValue()));
 			serializer.attribute("", "isHighlighted", String.valueOf(reference.isHighlighted()));
 			serializer.attribute("", "isPrototype", String.valueOf(reference.isPrototype()));
