@@ -48,6 +48,11 @@
         </dependency>
         <dependency>
             <groupId>org.siani.monet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.siani.monet</groupId>
             <artifactId>core-shared</artifactId>
             <version>1.0</version>
         </dependency>
