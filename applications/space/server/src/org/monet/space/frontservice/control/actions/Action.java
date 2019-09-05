@@ -24,6 +24,7 @@ package org.monet.space.frontservice.control.actions;
 
 import org.monet.http.Request;
 import org.monet.http.Response;
+import org.monet.space.applications.ServiceAction;
 import org.monet.space.frontservice.presentation.user.renders.RendersFactory;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentSession;
@@ -32,7 +33,7 @@ import org.monet.space.kernel.model.User;
 import java.net.URLDecoder;
 import java.util.HashMap;
 
-public abstract class Action {
+public abstract class Action implements ServiceAction {
 	protected Request request;
 	protected Response response;
 	protected HashMap<String, Object> parameters;
@@ -60,20 +61,20 @@ public abstract class Action {
 		this.sender = senderUser.getInfo().getFullname();
 	}
 
-	public Boolean setRequest(Request request) {
+	public void setRequest(Request request) {
 		this.request = request;
 		this.idSession = request.getSessionId();
-		return true;
+		//return true;
 	}
 
-	public Boolean setResponse(Response response) {
+	public void setResponse(Response response) {
 		this.response = response;
-		return true;
+		//return true;
 	}
 
-	public Boolean setParameters(HashMap<String, Object> parameters) {
+	public void setParameters(HashMap<String, Object> parameters) {
 		this.parameters = parameters;
-		return true;
+		//return true;
 	}
 
 	public Boolean initialize() {
