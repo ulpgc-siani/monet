@@ -29,7 +29,7 @@ public class SpaceSetupServiceClient {
     try {
       if(!apiUrl.endsWith("/"))
         apiUrl += "/";
-      apiUrl += "servlet/setupservice";
+      apiUrl += "servlet/setupservice?op=updatemodel";
       
       modelFileInputStream = modelFile.getContents();
       ArrayList<Entry<String, ContentBody>> parameters = new ArrayList<Entry<String, ContentBody>>();
