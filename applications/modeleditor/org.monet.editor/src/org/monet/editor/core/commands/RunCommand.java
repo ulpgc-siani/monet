@@ -38,6 +38,7 @@ public class RunCommand implements IJobCommand {
 		
 		final IProject project = manifest.getProject();
 		String deployUri = null;
+		String deployPath = null;
 		
 		if (ProjectHelper.hasError(project, true)) {
       EclipseHelper.showErrorMessage("Can't debug project with errors.");
@@ -64,6 +65,7 @@ public class RunCommand implements IJobCommand {
       console.println("Package built at '%s'", packageFile.getFullPath().toString());
       
       deployUri = distributionModel.getDeployUri();
+      deployPath = distributionModel.getDeployPath();
       
       if(deployUri == null) {
         console.println("Not found a deploy-uri at setup definition. Debug finish here.");
@@ -75,7 +77,8 @@ public class RunCommand implements IJobCommand {
         } else {
           console.println("Uploading distribution package to '%s'", deployUri);
           console.println("|--------- Progress ---------|");
-          SpaceSetupServiceClient.publish(deployUri, 
+          SpaceSetupServiceClient.publish(deployUri,
+        		  						  deployPath,
                                           packageFile, 
                                           keyStoreFilename, 
                                           ProjectHelper.getProjectKeyStorePassword(project),

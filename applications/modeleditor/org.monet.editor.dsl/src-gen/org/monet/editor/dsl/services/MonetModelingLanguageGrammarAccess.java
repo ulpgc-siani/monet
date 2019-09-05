@@ -1496,97 +1496,98 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		private final Keyword cMaxKeyword_38 = (Keyword)cAlternatives.eContents().get(38);
 		private final Keyword cUriKeyword_39 = (Keyword)cAlternatives.eContents().get(39);
 		private final Keyword cPictureKeyword_40 = (Keyword)cAlternatives.eContents().get(40);
-		private final Keyword cHelpKeyword_41 = (Keyword)cAlternatives.eContents().get(41);
-		private final Keyword cComponentKeyword_42 = (Keyword)cAlternatives.eContents().get(42);
-		private final Keyword cDepthKeyword_43 = (Keyword)cAlternatives.eContents().get(43);
-		private final Keyword cMetricKeyword_44 = (Keyword)cAlternatives.eContents().get(44);
-		private final Keyword cWidthKeyword_45 = (Keyword)cAlternatives.eContents().get(45);
-		private final Keyword cMeasureUnitKeyword_46 = (Keyword)cAlternatives.eContents().get(46);
-		private final Keyword cOperationKeyword_47 = (Keyword)cAlternatives.eContents().get(47);
-		private final Keyword cIndicatorKeyword_48 = (Keyword)cAlternatives.eContents().get(48);
-		private final Keyword cTabDashboardKeyword_49 = (Keyword)cAlternatives.eContents().get(49);
-		private final Keyword cUseKeyword_50 = (Keyword)cAlternatives.eContents().get(50);
-		private final Keyword cPrecisionKeyword_51 = (Keyword)cAlternatives.eContents().get(51);
-		private final Keyword cSourceKeyword_52 = (Keyword)cAlternatives.eContents().get(52);
-		private final Keyword cOperatorKeyword_53 = (Keyword)cAlternatives.eContents().get(53);
-		private final Keyword cModeKeyword_54 = (Keyword)cAlternatives.eContents().get(54);
-		private final Keyword cFlattenKeyword_55 = (Keyword)cAlternatives.eContents().get(55);
-		private final Keyword cViewKeyword_56 = (Keyword)cAlternatives.eContents().get(56);
-		private final Keyword cAddFlagKeyword_57 = (Keyword)cAlternatives.eContents().get(57);
-		private final Keyword cLimitKeyword_58 = (Keyword)cAlternatives.eContents().get(58);
-		private final Keyword cTagKeyword_59 = (Keyword)cAlternatives.eContents().get(59);
-		private final Keyword cOntologyKeyword_60 = (Keyword)cAlternatives.eContents().get(60);
-		private final Keyword cLongitudeKeyword_61 = (Keyword)cAlternatives.eContents().get(61);
-		private final Keyword cUseAmountKeyword_62 = (Keyword)cAlternatives.eContents().get(62);
-		private final Keyword cUnlockKeyword_63 = (Keyword)cAlternatives.eContents().get(63);
-		private final Keyword cAuthorKeyword_64 = (Keyword)cAlternatives.eContents().get(64);
-		private final Keyword cFormatKeyword_65 = (Keyword)cAlternatives.eContents().get(65);
-		private final Keyword cCollectionKeyword_66 = (Keyword)cAlternatives.eContents().get(66);
-		private final Keyword cHistoryKeyword_67 = (Keyword)cAlternatives.eContents().get(67);
-		private final Keyword cFieldFileKeyword_68 = (Keyword)cAlternatives.eContents().get(68);
-		private final Keyword cTakeKeyword_69 = (Keyword)cAlternatives.eContents().get(69);
-		private final Keyword cTaskKeyword_70 = (Keyword)cAlternatives.eContents().get(70);
-		private final Keyword cSortByKeyword_71 = (Keyword)cAlternatives.eContents().get(71);
-		private final Keyword cNameKeyword_72 = (Keyword)cAlternatives.eContents().get(72);
-		private final Keyword cPositionKeyword_73 = (Keyword)cAlternatives.eContents().get(73);
-		private final Keyword cJobKeyword_74 = (Keyword)cAlternatives.eContents().get(74);
-		private final Keyword cRequestKeyword_75 = (Keyword)cAlternatives.eContents().get(75);
-		private final Keyword cCodeKeyword_76 = (Keyword)cAlternatives.eContents().get(76);
-		private final Keyword cPurposeKeyword_77 = (Keyword)cAlternatives.eContents().get(77);
-		private final Keyword cFooterKeyword_78 = (Keyword)cAlternatives.eContents().get(78);
-		private final Keyword cTimezoneKeyword_79 = (Keyword)cAlternatives.eContents().get(79);
-		private final Keyword cLineKeyword_80 = (Keyword)cAlternatives.eContents().get(80);
-		private final Keyword cLinkKeyword_81 = (Keyword)cAlternatives.eContents().get(81);
-		private final Keyword cForKeyword_82 = (Keyword)cAlternatives.eContents().get(82);
-		private final Keyword cShowKeyword_83 = (Keyword)cAlternatives.eContents().get(83);
-		private final Keyword cEditionKeyword_84 = (Keyword)cAlternatives.eContents().get(84);
-		private final Keyword cDescriptionKeyword_85 = (Keyword)cAlternatives.eContents().get(85);
-		private final Keyword cScaleKeyword_86 = (Keyword)cAlternatives.eContents().get(86);
-		private final Keyword cTitleKeyword_87 = (Keyword)cAlternatives.eContents().get(87);
-		private final Keyword cHighlightKeyword_88 = (Keyword)cAlternatives.eContents().get(88);
-		private final Keyword cSetupUriKeyword_89 = (Keyword)cAlternatives.eContents().get(89);
-		private final Keyword cShortcutKeyword_90 = (Keyword)cAlternatives.eContents().get(90);
-		private final Keyword cProviderKeyword_91 = (Keyword)cAlternatives.eContents().get(91);
-		private final Keyword cRootKeyword_92 = (Keyword)cAlternatives.eContents().get(92);
-		private final Keyword cDesignKeyword_93 = (Keyword)cAlternatives.eContents().get(93);
-		private final Keyword cDefinitionKeyword_94 = (Keyword)cAlternatives.eContents().get(94);
-		private final Keyword cFactorKeyword_95 = (Keyword)cAlternatives.eContents().get(95);
-		private final Keyword cValueKeyword_96 = (Keyword)cAlternatives.eContents().get(96);
-		private final Keyword cLayoutExtendedKeyword_97 = (Keyword)cAlternatives.eContents().get(97);
-		private final Keyword cUseYKeyword_98 = (Keyword)cAlternatives.eContents().get(98);
-		private final Keyword cAmountKeyword_99 = (Keyword)cAlternatives.eContents().get(99);
-		private final Keyword cUseXKeyword_100 = (Keyword)cAlternatives.eContents().get(100);
-		private final Keyword cCenterKeyword_101 = (Keyword)cAlternatives.eContents().get(101);
-		private final Keyword cZoomKeyword_102 = (Keyword)cAlternatives.eContents().get(102);
-		private final Keyword cLabelKeyword_103 = (Keyword)cAlternatives.eContents().get(103);
-		private final Keyword cWithViewKeyword_104 = (Keyword)cAlternatives.eContents().get(104);
-		private final Keyword cMessageKeyword_105 = (Keyword)cAlternatives.eContents().get(105);
-		private final Keyword cTargetKeyword_106 = (Keyword)cAlternatives.eContents().get(106);
-		private final Keyword cLayoutKeyword_107 = (Keyword)cAlternatives.eContents().get(107);
-		private final Keyword cInterpolationKeyword_108 = (Keyword)cAlternatives.eContents().get(108);
-		private final Keyword cSiblingKeyword_109 = (Keyword)cAlternatives.eContents().get(109);
-		private final Keyword cFormKeyword_110 = (Keyword)cAlternatives.eContents().get(110);
-		private final Keyword cSortModeKeyword_111 = (Keyword)cAlternatives.eContents().get(111);
-		private final Keyword cServiceKeyword_112 = (Keyword)cAlternatives.eContents().get(112);
-		private final Keyword cResponseKeyword_113 = (Keyword)cAlternatives.eContents().get(113);
-		private final Keyword cMarkerIconKeyword_114 = (Keyword)cAlternatives.eContents().get(114);
-		private final Keyword cFormulaKeyword_115 = (Keyword)cAlternatives.eContents().get(115);
-		private final Keyword cDeployUriKeyword_116 = (Keyword)cAlternatives.eContents().get(116);
-		private final Keyword cUserKeyword_117 = (Keyword)cAlternatives.eContents().get(117);
+		private final Keyword cDeployPathKeyword_41 = (Keyword)cAlternatives.eContents().get(41);
+		private final Keyword cHelpKeyword_42 = (Keyword)cAlternatives.eContents().get(42);
+		private final Keyword cComponentKeyword_43 = (Keyword)cAlternatives.eContents().get(43);
+		private final Keyword cDepthKeyword_44 = (Keyword)cAlternatives.eContents().get(44);
+		private final Keyword cMetricKeyword_45 = (Keyword)cAlternatives.eContents().get(45);
+		private final Keyword cWidthKeyword_46 = (Keyword)cAlternatives.eContents().get(46);
+		private final Keyword cMeasureUnitKeyword_47 = (Keyword)cAlternatives.eContents().get(47);
+		private final Keyword cOperationKeyword_48 = (Keyword)cAlternatives.eContents().get(48);
+		private final Keyword cIndicatorKeyword_49 = (Keyword)cAlternatives.eContents().get(49);
+		private final Keyword cTabDashboardKeyword_50 = (Keyword)cAlternatives.eContents().get(50);
+		private final Keyword cUseKeyword_51 = (Keyword)cAlternatives.eContents().get(51);
+		private final Keyword cPrecisionKeyword_52 = (Keyword)cAlternatives.eContents().get(52);
+		private final Keyword cSourceKeyword_53 = (Keyword)cAlternatives.eContents().get(53);
+		private final Keyword cOperatorKeyword_54 = (Keyword)cAlternatives.eContents().get(54);
+		private final Keyword cModeKeyword_55 = (Keyword)cAlternatives.eContents().get(55);
+		private final Keyword cFlattenKeyword_56 = (Keyword)cAlternatives.eContents().get(56);
+		private final Keyword cViewKeyword_57 = (Keyword)cAlternatives.eContents().get(57);
+		private final Keyword cAddFlagKeyword_58 = (Keyword)cAlternatives.eContents().get(58);
+		private final Keyword cLimitKeyword_59 = (Keyword)cAlternatives.eContents().get(59);
+		private final Keyword cTagKeyword_60 = (Keyword)cAlternatives.eContents().get(60);
+		private final Keyword cOntologyKeyword_61 = (Keyword)cAlternatives.eContents().get(61);
+		private final Keyword cLongitudeKeyword_62 = (Keyword)cAlternatives.eContents().get(62);
+		private final Keyword cUseAmountKeyword_63 = (Keyword)cAlternatives.eContents().get(63);
+		private final Keyword cUnlockKeyword_64 = (Keyword)cAlternatives.eContents().get(64);
+		private final Keyword cAuthorKeyword_65 = (Keyword)cAlternatives.eContents().get(65);
+		private final Keyword cFormatKeyword_66 = (Keyword)cAlternatives.eContents().get(66);
+		private final Keyword cCollectionKeyword_67 = (Keyword)cAlternatives.eContents().get(67);
+		private final Keyword cHistoryKeyword_68 = (Keyword)cAlternatives.eContents().get(68);
+		private final Keyword cFieldFileKeyword_69 = (Keyword)cAlternatives.eContents().get(69);
+		private final Keyword cTakeKeyword_70 = (Keyword)cAlternatives.eContents().get(70);
+		private final Keyword cTaskKeyword_71 = (Keyword)cAlternatives.eContents().get(71);
+		private final Keyword cSortByKeyword_72 = (Keyword)cAlternatives.eContents().get(72);
+		private final Keyword cNameKeyword_73 = (Keyword)cAlternatives.eContents().get(73);
+		private final Keyword cPositionKeyword_74 = (Keyword)cAlternatives.eContents().get(74);
+		private final Keyword cJobKeyword_75 = (Keyword)cAlternatives.eContents().get(75);
+		private final Keyword cRequestKeyword_76 = (Keyword)cAlternatives.eContents().get(76);
+		private final Keyword cCodeKeyword_77 = (Keyword)cAlternatives.eContents().get(77);
+		private final Keyword cPurposeKeyword_78 = (Keyword)cAlternatives.eContents().get(78);
+		private final Keyword cFooterKeyword_79 = (Keyword)cAlternatives.eContents().get(79);
+		private final Keyword cTimezoneKeyword_80 = (Keyword)cAlternatives.eContents().get(80);
+		private final Keyword cLineKeyword_81 = (Keyword)cAlternatives.eContents().get(81);
+		private final Keyword cLinkKeyword_82 = (Keyword)cAlternatives.eContents().get(82);
+		private final Keyword cForKeyword_83 = (Keyword)cAlternatives.eContents().get(83);
+		private final Keyword cShowKeyword_84 = (Keyword)cAlternatives.eContents().get(84);
+		private final Keyword cEditionKeyword_85 = (Keyword)cAlternatives.eContents().get(85);
+		private final Keyword cDescriptionKeyword_86 = (Keyword)cAlternatives.eContents().get(86);
+		private final Keyword cScaleKeyword_87 = (Keyword)cAlternatives.eContents().get(87);
+		private final Keyword cTitleKeyword_88 = (Keyword)cAlternatives.eContents().get(88);
+		private final Keyword cHighlightKeyword_89 = (Keyword)cAlternatives.eContents().get(89);
+		private final Keyword cSetupUriKeyword_90 = (Keyword)cAlternatives.eContents().get(90);
+		private final Keyword cShortcutKeyword_91 = (Keyword)cAlternatives.eContents().get(91);
+		private final Keyword cProviderKeyword_92 = (Keyword)cAlternatives.eContents().get(92);
+		private final Keyword cRootKeyword_93 = (Keyword)cAlternatives.eContents().get(93);
+		private final Keyword cDesignKeyword_94 = (Keyword)cAlternatives.eContents().get(94);
+		private final Keyword cDefinitionKeyword_95 = (Keyword)cAlternatives.eContents().get(95);
+		private final Keyword cFactorKeyword_96 = (Keyword)cAlternatives.eContents().get(96);
+		private final Keyword cValueKeyword_97 = (Keyword)cAlternatives.eContents().get(97);
+		private final Keyword cLayoutExtendedKeyword_98 = (Keyword)cAlternatives.eContents().get(98);
+		private final Keyword cUseYKeyword_99 = (Keyword)cAlternatives.eContents().get(99);
+		private final Keyword cAmountKeyword_100 = (Keyword)cAlternatives.eContents().get(100);
+		private final Keyword cUseXKeyword_101 = (Keyword)cAlternatives.eContents().get(101);
+		private final Keyword cCenterKeyword_102 = (Keyword)cAlternatives.eContents().get(102);
+		private final Keyword cZoomKeyword_103 = (Keyword)cAlternatives.eContents().get(103);
+		private final Keyword cLabelKeyword_104 = (Keyword)cAlternatives.eContents().get(104);
+		private final Keyword cWithViewKeyword_105 = (Keyword)cAlternatives.eContents().get(105);
+		private final Keyword cMessageKeyword_106 = (Keyword)cAlternatives.eContents().get(106);
+		private final Keyword cTargetKeyword_107 = (Keyword)cAlternatives.eContents().get(107);
+		private final Keyword cLayoutKeyword_108 = (Keyword)cAlternatives.eContents().get(108);
+		private final Keyword cInterpolationKeyword_109 = (Keyword)cAlternatives.eContents().get(109);
+		private final Keyword cSiblingKeyword_110 = (Keyword)cAlternatives.eContents().get(110);
+		private final Keyword cFormKeyword_111 = (Keyword)cAlternatives.eContents().get(111);
+		private final Keyword cSortModeKeyword_112 = (Keyword)cAlternatives.eContents().get(112);
+		private final Keyword cServiceKeyword_113 = (Keyword)cAlternatives.eContents().get(113);
+		private final Keyword cResponseKeyword_114 = (Keyword)cAlternatives.eContents().get(114);
+		private final Keyword cMarkerIconKeyword_115 = (Keyword)cAlternatives.eContents().get(115);
+		private final Keyword cFormulaKeyword_116 = (Keyword)cAlternatives.eContents().get(116);
+		private final Keyword cDeployUriKeyword_117 = (Keyword)cAlternatives.eContents().get(117);
+		private final Keyword cUserKeyword_118 = (Keyword)cAlternatives.eContents().get(118);
 		
 		//AttributeTypes:
 		//	"parent" | "datastore" | "type" | "when" | "resolution" | "collaborator" | "tab:environment" | "shortcut-view" |
 		//	"children" | "enable" | "context" | "classifier" | "line-below" | "dashboard" | "height" | "index" | "version" |
 		//	"script" | "node" | "show-text" | "field" | "subtitle" | "template" | "regexp" | "role" | "latitude" | "icon" |
 		//	"range" | "secret" | "layer" | "default" | "exporter" | "min" | "goto" | "feature" | "attribute" | "after" | "key" |
-		//	"max" | "uri" | "picture" | "help" | "component" | "depth" | "metric" | "width" | "measure-unit" | "operation" |
-		//	"indicator" | "tab:dashboard" | "use" | "precision" | "source" | "operator" | "mode" | "flatten" | "view" | "add-flag"
-		//	| "limit" | "tag" | "ontology" | "longitude" | "use:amount" | "unlock" | "author" | "format" | "collection" |
-		//	"history" | "field:file" | "take" | "task" | "sort-by" | "name" | "position" | "job" | "request" | "code" | "purpose"
-		//	| "footer" | "timezone" | "line" | "link" | "for" | "show" | "edition" | "description" | "scale" | "title" |
-		//	"highlight" | "setup-uri" | "shortcut" | "provider" | "root" | "design" | "definition" | "factor" | "value" |
-		//	"layout:extended" | "use:y" | "amount" | "use:x" | "center" | "zoom" | "label" | "with-view" | "message" | "target" |
-		//	"layout" | "interpolation" | "sibling" | "form" | "sort-mode" | "service" | "response" | "marker-icon" | "formula" |
+		//	"max" | "uri" | "picture" | "deploy-path" | "help" | "component" | "depth" | "metric" | "width" | "measure-unit" |
+		//	"operation" | "indicator" | "tab:dashboard" | "use" | "precision" | "source" | "operator" | "mode" | "flatten" |
+		//	"view" | "add-flag" | "limit" | "tag" | "ontology" | "longitude" | "use:amount" | "unlock" | "author" | "format" |
+		//	"collection" | "history" | "field:file" | "take" | "task" | "sort-by" | "name" | "position" | "job" | "request" |
+		//	"code" | "purpose" | "footer" | "timezone" | "line" | "link" | "for" | "show" | "edition" | "description" | "scale" |
+		//	"title" | "highlight" | "setup-uri" | "shortcut" | "provider" | "root" | "design" | "definition" | "factor" | "value"
+		//	| "layout:extended" | "use:y" | "amount" | "use:x" | "center" | "zoom" | "label" | "with-view" | "message" | "target"
+		//	| "layout" | "interpolation" | "sibling" | "form" | "sort-mode" | "service" | "response" | "marker-icon" | "formula" |
 		//	"deploy-uri" | "user";
 		public ParserRule getRule() { return rule; }
 
@@ -1594,15 +1595,15 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		//"children" | "enable" | "context" | "classifier" | "line-below" | "dashboard" | "height" | "index" | "version" |
 		//"script" | "node" | "show-text" | "field" | "subtitle" | "template" | "regexp" | "role" | "latitude" | "icon" | "range"
 		//| "secret" | "layer" | "default" | "exporter" | "min" | "goto" | "feature" | "attribute" | "after" | "key" | "max" |
-		//"uri" | "picture" | "help" | "component" | "depth" | "metric" | "width" | "measure-unit" | "operation" | "indicator" |
-		//"tab:dashboard" | "use" | "precision" | "source" | "operator" | "mode" | "flatten" | "view" | "add-flag" | "limit" |
-		//"tag" | "ontology" | "longitude" | "use:amount" | "unlock" | "author" | "format" | "collection" | "history" |
-		//"field:file" | "take" | "task" | "sort-by" | "name" | "position" | "job" | "request" | "code" | "purpose" | "footer" |
-		//"timezone" | "line" | "link" | "for" | "show" | "edition" | "description" | "scale" | "title" | "highlight" |
-		//"setup-uri" | "shortcut" | "provider" | "root" | "design" | "definition" | "factor" | "value" | "layout:extended" |
-		//"use:y" | "amount" | "use:x" | "center" | "zoom" | "label" | "with-view" | "message" | "target" | "layout" |
-		//"interpolation" | "sibling" | "form" | "sort-mode" | "service" | "response" | "marker-icon" | "formula" | "deploy-uri"
-		//| "user"
+		//"uri" | "picture" | "deploy-path" | "help" | "component" | "depth" | "metric" | "width" | "measure-unit" | "operation"
+		//| "indicator" | "tab:dashboard" | "use" | "precision" | "source" | "operator" | "mode" | "flatten" | "view" |
+		//"add-flag" | "limit" | "tag" | "ontology" | "longitude" | "use:amount" | "unlock" | "author" | "format" | "collection"
+		//| "history" | "field:file" | "take" | "task" | "sort-by" | "name" | "position" | "job" | "request" | "code" | "purpose"
+		//| "footer" | "timezone" | "line" | "link" | "for" | "show" | "edition" | "description" | "scale" | "title" |
+		//"highlight" | "setup-uri" | "shortcut" | "provider" | "root" | "design" | "definition" | "factor" | "value" |
+		//"layout:extended" | "use:y" | "amount" | "use:x" | "center" | "zoom" | "label" | "with-view" | "message" | "target" |
+		//"layout" | "interpolation" | "sibling" | "form" | "sort-mode" | "service" | "response" | "marker-icon" | "formula" |
+		//"deploy-uri" | "user"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"parent"
@@ -1728,236 +1729,239 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 		//"picture"
 		public Keyword getPictureKeyword_40() { return cPictureKeyword_40; }
 
+		//"deploy-path"
+		public Keyword getDeployPathKeyword_41() { return cDeployPathKeyword_41; }
+
 		//"help"
-		public Keyword getHelpKeyword_41() { return cHelpKeyword_41; }
+		public Keyword getHelpKeyword_42() { return cHelpKeyword_42; }
 
 		//"component"
-		public Keyword getComponentKeyword_42() { return cComponentKeyword_42; }
+		public Keyword getComponentKeyword_43() { return cComponentKeyword_43; }
 
 		//"depth"
-		public Keyword getDepthKeyword_43() { return cDepthKeyword_43; }
+		public Keyword getDepthKeyword_44() { return cDepthKeyword_44; }
 
 		//"metric"
-		public Keyword getMetricKeyword_44() { return cMetricKeyword_44; }
+		public Keyword getMetricKeyword_45() { return cMetricKeyword_45; }
 
 		//"width"
-		public Keyword getWidthKeyword_45() { return cWidthKeyword_45; }
+		public Keyword getWidthKeyword_46() { return cWidthKeyword_46; }
 
 		//"measure-unit"
-		public Keyword getMeasureUnitKeyword_46() { return cMeasureUnitKeyword_46; }
+		public Keyword getMeasureUnitKeyword_47() { return cMeasureUnitKeyword_47; }
 
 		//"operation"
-		public Keyword getOperationKeyword_47() { return cOperationKeyword_47; }
+		public Keyword getOperationKeyword_48() { return cOperationKeyword_48; }
 
 		//"indicator"
-		public Keyword getIndicatorKeyword_48() { return cIndicatorKeyword_48; }
+		public Keyword getIndicatorKeyword_49() { return cIndicatorKeyword_49; }
 
 		//"tab:dashboard"
-		public Keyword getTabDashboardKeyword_49() { return cTabDashboardKeyword_49; }
+		public Keyword getTabDashboardKeyword_50() { return cTabDashboardKeyword_50; }
 
 		//"use"
-		public Keyword getUseKeyword_50() { return cUseKeyword_50; }
+		public Keyword getUseKeyword_51() { return cUseKeyword_51; }
 
 		//"precision"
-		public Keyword getPrecisionKeyword_51() { return cPrecisionKeyword_51; }
+		public Keyword getPrecisionKeyword_52() { return cPrecisionKeyword_52; }
 
 		//"source"
-		public Keyword getSourceKeyword_52() { return cSourceKeyword_52; }
+		public Keyword getSourceKeyword_53() { return cSourceKeyword_53; }
 
 		//"operator"
-		public Keyword getOperatorKeyword_53() { return cOperatorKeyword_53; }
+		public Keyword getOperatorKeyword_54() { return cOperatorKeyword_54; }
 
 		//"mode"
-		public Keyword getModeKeyword_54() { return cModeKeyword_54; }
+		public Keyword getModeKeyword_55() { return cModeKeyword_55; }
 
 		//"flatten"
-		public Keyword getFlattenKeyword_55() { return cFlattenKeyword_55; }
+		public Keyword getFlattenKeyword_56() { return cFlattenKeyword_56; }
 
 		//"view"
-		public Keyword getViewKeyword_56() { return cViewKeyword_56; }
+		public Keyword getViewKeyword_57() { return cViewKeyword_57; }
 
 		//"add-flag"
-		public Keyword getAddFlagKeyword_57() { return cAddFlagKeyword_57; }
+		public Keyword getAddFlagKeyword_58() { return cAddFlagKeyword_58; }
 
 		//"limit"
-		public Keyword getLimitKeyword_58() { return cLimitKeyword_58; }
+		public Keyword getLimitKeyword_59() { return cLimitKeyword_59; }
 
 		//"tag"
-		public Keyword getTagKeyword_59() { return cTagKeyword_59; }
+		public Keyword getTagKeyword_60() { return cTagKeyword_60; }
 
 		//"ontology"
-		public Keyword getOntologyKeyword_60() { return cOntologyKeyword_60; }
+		public Keyword getOntologyKeyword_61() { return cOntologyKeyword_61; }
 
 		//"longitude"
-		public Keyword getLongitudeKeyword_61() { return cLongitudeKeyword_61; }
+		public Keyword getLongitudeKeyword_62() { return cLongitudeKeyword_62; }
 
 		//"use:amount"
-		public Keyword getUseAmountKeyword_62() { return cUseAmountKeyword_62; }
+		public Keyword getUseAmountKeyword_63() { return cUseAmountKeyword_63; }
 
 		//"unlock"
-		public Keyword getUnlockKeyword_63() { return cUnlockKeyword_63; }
+		public Keyword getUnlockKeyword_64() { return cUnlockKeyword_64; }
 
 		//"author"
-		public Keyword getAuthorKeyword_64() { return cAuthorKeyword_64; }
+		public Keyword getAuthorKeyword_65() { return cAuthorKeyword_65; }
 
 		//"format"
-		public Keyword getFormatKeyword_65() { return cFormatKeyword_65; }
+		public Keyword getFormatKeyword_66() { return cFormatKeyword_66; }
 
 		//"collection"
-		public Keyword getCollectionKeyword_66() { return cCollectionKeyword_66; }
+		public Keyword getCollectionKeyword_67() { return cCollectionKeyword_67; }
 
 		//"history"
-		public Keyword getHistoryKeyword_67() { return cHistoryKeyword_67; }
+		public Keyword getHistoryKeyword_68() { return cHistoryKeyword_68; }
 
 		//"field:file"
-		public Keyword getFieldFileKeyword_68() { return cFieldFileKeyword_68; }
+		public Keyword getFieldFileKeyword_69() { return cFieldFileKeyword_69; }
 
 		//"take"
-		public Keyword getTakeKeyword_69() { return cTakeKeyword_69; }
+		public Keyword getTakeKeyword_70() { return cTakeKeyword_70; }
 
 		//"task"
-		public Keyword getTaskKeyword_70() { return cTaskKeyword_70; }
+		public Keyword getTaskKeyword_71() { return cTaskKeyword_71; }
 
 		//"sort-by"
-		public Keyword getSortByKeyword_71() { return cSortByKeyword_71; }
+		public Keyword getSortByKeyword_72() { return cSortByKeyword_72; }
 
 		//"name"
-		public Keyword getNameKeyword_72() { return cNameKeyword_72; }
+		public Keyword getNameKeyword_73() { return cNameKeyword_73; }
 
 		//"position"
-		public Keyword getPositionKeyword_73() { return cPositionKeyword_73; }
+		public Keyword getPositionKeyword_74() { return cPositionKeyword_74; }
 
 		//"job"
-		public Keyword getJobKeyword_74() { return cJobKeyword_74; }
+		public Keyword getJobKeyword_75() { return cJobKeyword_75; }
 
 		//"request"
-		public Keyword getRequestKeyword_75() { return cRequestKeyword_75; }
+		public Keyword getRequestKeyword_76() { return cRequestKeyword_76; }
 
 		//"code"
-		public Keyword getCodeKeyword_76() { return cCodeKeyword_76; }
+		public Keyword getCodeKeyword_77() { return cCodeKeyword_77; }
 
 		//"purpose"
-		public Keyword getPurposeKeyword_77() { return cPurposeKeyword_77; }
+		public Keyword getPurposeKeyword_78() { return cPurposeKeyword_78; }
 
 		//"footer"
-		public Keyword getFooterKeyword_78() { return cFooterKeyword_78; }
+		public Keyword getFooterKeyword_79() { return cFooterKeyword_79; }
 
 		//"timezone"
-		public Keyword getTimezoneKeyword_79() { return cTimezoneKeyword_79; }
+		public Keyword getTimezoneKeyword_80() { return cTimezoneKeyword_80; }
 
 		//"line"
-		public Keyword getLineKeyword_80() { return cLineKeyword_80; }
+		public Keyword getLineKeyword_81() { return cLineKeyword_81; }
 
 		//"link"
-		public Keyword getLinkKeyword_81() { return cLinkKeyword_81; }
+		public Keyword getLinkKeyword_82() { return cLinkKeyword_82; }
 
 		//"for"
-		public Keyword getForKeyword_82() { return cForKeyword_82; }
+		public Keyword getForKeyword_83() { return cForKeyword_83; }
 
 		//"show"
-		public Keyword getShowKeyword_83() { return cShowKeyword_83; }
+		public Keyword getShowKeyword_84() { return cShowKeyword_84; }
 
 		//"edition"
-		public Keyword getEditionKeyword_84() { return cEditionKeyword_84; }
+		public Keyword getEditionKeyword_85() { return cEditionKeyword_85; }
 
 		//"description"
-		public Keyword getDescriptionKeyword_85() { return cDescriptionKeyword_85; }
+		public Keyword getDescriptionKeyword_86() { return cDescriptionKeyword_86; }
 
 		//"scale"
-		public Keyword getScaleKeyword_86() { return cScaleKeyword_86; }
+		public Keyword getScaleKeyword_87() { return cScaleKeyword_87; }
 
 		//"title"
-		public Keyword getTitleKeyword_87() { return cTitleKeyword_87; }
+		public Keyword getTitleKeyword_88() { return cTitleKeyword_88; }
 
 		//"highlight"
-		public Keyword getHighlightKeyword_88() { return cHighlightKeyword_88; }
+		public Keyword getHighlightKeyword_89() { return cHighlightKeyword_89; }
 
 		//"setup-uri"
-		public Keyword getSetupUriKeyword_89() { return cSetupUriKeyword_89; }
+		public Keyword getSetupUriKeyword_90() { return cSetupUriKeyword_90; }
 
 		//"shortcut"
-		public Keyword getShortcutKeyword_90() { return cShortcutKeyword_90; }
+		public Keyword getShortcutKeyword_91() { return cShortcutKeyword_91; }
 
 		//"provider"
-		public Keyword getProviderKeyword_91() { return cProviderKeyword_91; }
+		public Keyword getProviderKeyword_92() { return cProviderKeyword_92; }
 
 		//"root"
-		public Keyword getRootKeyword_92() { return cRootKeyword_92; }
+		public Keyword getRootKeyword_93() { return cRootKeyword_93; }
 
 		//"design"
-		public Keyword getDesignKeyword_93() { return cDesignKeyword_93; }
+		public Keyword getDesignKeyword_94() { return cDesignKeyword_94; }
 
 		//"definition"
-		public Keyword getDefinitionKeyword_94() { return cDefinitionKeyword_94; }
+		public Keyword getDefinitionKeyword_95() { return cDefinitionKeyword_95; }
 
 		//"factor"
-		public Keyword getFactorKeyword_95() { return cFactorKeyword_95; }
+		public Keyword getFactorKeyword_96() { return cFactorKeyword_96; }
 
 		//"value"
-		public Keyword getValueKeyword_96() { return cValueKeyword_96; }
+		public Keyword getValueKeyword_97() { return cValueKeyword_97; }
 
 		//"layout:extended"
-		public Keyword getLayoutExtendedKeyword_97() { return cLayoutExtendedKeyword_97; }
+		public Keyword getLayoutExtendedKeyword_98() { return cLayoutExtendedKeyword_98; }
 
 		//"use:y"
-		public Keyword getUseYKeyword_98() { return cUseYKeyword_98; }
+		public Keyword getUseYKeyword_99() { return cUseYKeyword_99; }
 
 		//"amount"
-		public Keyword getAmountKeyword_99() { return cAmountKeyword_99; }
+		public Keyword getAmountKeyword_100() { return cAmountKeyword_100; }
 
 		//"use:x"
-		public Keyword getUseXKeyword_100() { return cUseXKeyword_100; }
+		public Keyword getUseXKeyword_101() { return cUseXKeyword_101; }
 
 		//"center"
-		public Keyword getCenterKeyword_101() { return cCenterKeyword_101; }
+		public Keyword getCenterKeyword_102() { return cCenterKeyword_102; }
 
 		//"zoom"
-		public Keyword getZoomKeyword_102() { return cZoomKeyword_102; }
+		public Keyword getZoomKeyword_103() { return cZoomKeyword_103; }
 
 		//"label"
-		public Keyword getLabelKeyword_103() { return cLabelKeyword_103; }
+		public Keyword getLabelKeyword_104() { return cLabelKeyword_104; }
 
 		//"with-view"
-		public Keyword getWithViewKeyword_104() { return cWithViewKeyword_104; }
+		public Keyword getWithViewKeyword_105() { return cWithViewKeyword_105; }
 
 		//"message"
-		public Keyword getMessageKeyword_105() { return cMessageKeyword_105; }
+		public Keyword getMessageKeyword_106() { return cMessageKeyword_106; }
 
 		//"target"
-		public Keyword getTargetKeyword_106() { return cTargetKeyword_106; }
+		public Keyword getTargetKeyword_107() { return cTargetKeyword_107; }
 
 		//"layout"
-		public Keyword getLayoutKeyword_107() { return cLayoutKeyword_107; }
+		public Keyword getLayoutKeyword_108() { return cLayoutKeyword_108; }
 
 		//"interpolation"
-		public Keyword getInterpolationKeyword_108() { return cInterpolationKeyword_108; }
+		public Keyword getInterpolationKeyword_109() { return cInterpolationKeyword_109; }
 
 		//"sibling"
-		public Keyword getSiblingKeyword_109() { return cSiblingKeyword_109; }
+		public Keyword getSiblingKeyword_110() { return cSiblingKeyword_110; }
 
 		//"form"
-		public Keyword getFormKeyword_110() { return cFormKeyword_110; }
+		public Keyword getFormKeyword_111() { return cFormKeyword_111; }
 
 		//"sort-mode"
-		public Keyword getSortModeKeyword_111() { return cSortModeKeyword_111; }
+		public Keyword getSortModeKeyword_112() { return cSortModeKeyword_112; }
 
 		//"service"
-		public Keyword getServiceKeyword_112() { return cServiceKeyword_112; }
+		public Keyword getServiceKeyword_113() { return cServiceKeyword_113; }
 
 		//"response"
-		public Keyword getResponseKeyword_113() { return cResponseKeyword_113; }
+		public Keyword getResponseKeyword_114() { return cResponseKeyword_114; }
 
 		//"marker-icon"
-		public Keyword getMarkerIconKeyword_114() { return cMarkerIconKeyword_114; }
+		public Keyword getMarkerIconKeyword_115() { return cMarkerIconKeyword_115; }
 
 		//"formula"
-		public Keyword getFormulaKeyword_115() { return cFormulaKeyword_115; }
+		public Keyword getFormulaKeyword_116() { return cFormulaKeyword_116; }
 
 		//"deploy-uri"
-		public Keyword getDeployUriKeyword_116() { return cDeployUriKeyword_116; }
+		public Keyword getDeployUriKeyword_117() { return cDeployUriKeyword_117; }
 
 		//"user"
-		public Keyword getUserKeyword_117() { return cUserKeyword_117; }
+		public Keyword getUserKeyword_118() { return cUserKeyword_118; }
 	}
 
 	public class DefinitionElements extends AbstractParserRuleElementFinder {
@@ -3330,14 +3334,14 @@ public class MonetModelingLanguageGrammarAccess extends AbstractGrammarElementFi
 	//	"children" | "enable" | "context" | "classifier" | "line-below" | "dashboard" | "height" | "index" | "version" |
 	//	"script" | "node" | "show-text" | "field" | "subtitle" | "template" | "regexp" | "role" | "latitude" | "icon" |
 	//	"range" | "secret" | "layer" | "default" | "exporter" | "min" | "goto" | "feature" | "attribute" | "after" | "key" |
-	//	"max" | "uri" | "picture" | "help" | "component" | "depth" | "metric" | "width" | "measure-unit" | "operation" |
-	//	"indicator" | "tab:dashboard" | "use" | "precision" | "source" | "operator" | "mode" | "flatten" | "view" | "add-flag"
-	//	| "limit" | "tag" | "ontology" | "longitude" | "use:amount" | "unlock" | "author" | "format" | "collection" |
-	//	"history" | "field:file" | "take" | "task" | "sort-by" | "name" | "position" | "job" | "request" | "code" | "purpose"
-	//	| "footer" | "timezone" | "line" | "link" | "for" | "show" | "edition" | "description" | "scale" | "title" |
-	//	"highlight" | "setup-uri" | "shortcut" | "provider" | "root" | "design" | "definition" | "factor" | "value" |
-	//	"layout:extended" | "use:y" | "amount" | "use:x" | "center" | "zoom" | "label" | "with-view" | "message" | "target" |
-	//	"layout" | "interpolation" | "sibling" | "form" | "sort-mode" | "service" | "response" | "marker-icon" | "formula" |
+	//	"max" | "uri" | "picture" | "deploy-path" | "help" | "component" | "depth" | "metric" | "width" | "measure-unit" |
+	//	"operation" | "indicator" | "tab:dashboard" | "use" | "precision" | "source" | "operator" | "mode" | "flatten" |
+	//	"view" | "add-flag" | "limit" | "tag" | "ontology" | "longitude" | "use:amount" | "unlock" | "author" | "format" |
+	//	"collection" | "history" | "field:file" | "take" | "task" | "sort-by" | "name" | "position" | "job" | "request" |
+	//	"code" | "purpose" | "footer" | "timezone" | "line" | "link" | "for" | "show" | "edition" | "description" | "scale" |
+	//	"title" | "highlight" | "setup-uri" | "shortcut" | "provider" | "root" | "design" | "definition" | "factor" | "value"
+	//	| "layout:extended" | "use:y" | "amount" | "use:x" | "center" | "zoom" | "label" | "with-view" | "message" | "target"
+	//	| "layout" | "interpolation" | "sibling" | "form" | "sort-mode" | "service" | "response" | "marker-icon" | "formula" |
 	//	"deploy-uri" | "user";
 	public AttributeTypesElements getAttributeTypesAccess() {
 		return pAttributeTypes;

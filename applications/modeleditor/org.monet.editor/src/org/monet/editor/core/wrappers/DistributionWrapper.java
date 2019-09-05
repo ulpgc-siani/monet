@@ -46,6 +46,25 @@ public class DistributionWrapper {
     return null;
   }
 
+  public String getDeployPath() {
+    for (ManifestFeature p : this.distributionModel.getFeatures()) {
+      if (p instanceof Property && ((Property) p).getId().equals("space")) {
+        for (PropertyFeature feature : ((Property) p).getFeatures()) {
+          if (feature instanceof Attribute) {
+            Attribute attribute = ((Attribute) feature);
+            if (attribute.getId().equals("deploy-path")) {
+              if (attribute.getValue() instanceof StringLiteral) {
+                return ((StringLiteral) attribute.getValue()).getValue();
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return null;
+  }
+
   public String getLabel() {
     for (ManifestFeature feature : this.distributionModel.getFeatures()) {
       if (feature instanceof Attribute) {
