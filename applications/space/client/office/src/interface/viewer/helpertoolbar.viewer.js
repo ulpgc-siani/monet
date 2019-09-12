@@ -178,12 +178,21 @@ CGViewerToolbar.prototype.refresh = function () {
   CommandListener.capture(this.extLayer);
 };
 
-CGViewerToolbar.prototype.showBackTaskCommand = function (IdTask) {
+CGViewerToolbar.prototype.showBackTaskCommand = function (IdTask, TargetNode, TargetView) {
   var extCommand = this.extLayer.select(".command.backtask").first();
   if (extCommand) {
     extCommand.dom.style.display = "block";
-    extCommand.dom.href = getMonetLinkAction("ml://task." + IdTask);
+    extCommand.dom.onclick = CGViewerToolbar.prototype.doShowBackTaskCommand.bind(this, IdTask, TargetNode, TargetView);//href = getMonetLinkAction(TargetNode != null ? "ml://node." + TargetNode + "." + TargetView : "ml://task." + IdTask);
   }
+};
+
+CGViewerToolbar.prototype.doShowBackTaskCommand = function(IdTask, TargetNode, TargetView) {
+  var action = TargetNode != null ? new CGActionShowNode() : new CGActionShowTask();
+  // getMonetLinkAction(TargetNode != null ? "ml://node." + TargetNode + "." + TargetView : "ml://task." + IdTask);
+  action.Id = TargetNode != null ? TargetNode : IdTask;
+  action.execute();
+  if (TargetView == null) return;
+  window.setTimeout(function() { Desktop.Main.Center.Body.getContainerView(VIEW_NODE, TargetNode).getDOM().activateTab(TargetView); }, 1000);
 };
 
 CGViewerToolbar.prototype.refreshBackTaskCommand = function () {
@@ -201,7 +210,7 @@ CGViewerToolbar.prototype.refreshBackTaskCommand = function () {
       this.hideBackTaskCommand();
       State.TaskNode = null;
     } else
-      this.showBackTaskCommand(State.TaskNode.IdTask);
+      this.showBackTaskCommand(State.TaskNode.IdTask, State.TaskNode.TargetNode, State.TaskNode.TargetView);
   } else
     this.hideBackTaskCommand();
 };

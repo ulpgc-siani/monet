@@ -22,7 +22,7 @@ CGActionShowBase.prototype.getContainerView = function (Type, Object) {
   var View = Desktop.Main.Center.Body.getContainerView(Type, Object.getId());
   var IdTab = null;
 
-  if (View != null) {
+  if (View != null && !View.NodeDependant) {
     Desktop.Main.Center.Body.deleteView(Type, View.getId());
     IdTab = Desktop.Main.Center.Body.getTabId(Type, Object.getId());
   }
@@ -62,8 +62,8 @@ CGActionShowBase.prototype.getView = function (Type, Object, DOMElement) {
   return View;
 };
 
-CGActionShowBase.prototype.createView = function (Type, Object, DOMElement) {
-  var View = Desktop.createView(DOMElement, Object, null, this.Mode, false);
+CGActionShowBase.prototype.createView = function (Type, Object, DOMElement, ContainerView) {
+  var View = Desktop.createView(DOMElement, Object, ContainerView, this.Mode, false);
   View.setMode(this.Mode);
   return View;
 };

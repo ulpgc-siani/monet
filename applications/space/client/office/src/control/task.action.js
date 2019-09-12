@@ -25,7 +25,7 @@ CGActionShowTask.prototype.step_1 = function () {
   State.TaskNode = null;
 
   ViewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, this.Id);
-  if (ViewTask != null) {
+  if (ViewTask != null && ViewTask.getDOM() != null) {
     this.DOMViewActiveTab = ViewTask.getDOM().getActiveTab();
     if ((this.Mode == null) || (ViewTask.getMode() == this.Mode)) {
       var Process = new CGProcessActivateTask();
@@ -218,6 +218,14 @@ CGActionShowTaskNode.prototype = new CGAction;
 CGActionShowTaskNode.constructor = CGActionShowTaskNode;
 CommandFactory.register(CGActionShowTaskNode, { Id: 0 }, false);
 
+CGActionShowTaskNode.prototype.isRecentTaskViewOfNode = function () {
+  return this.DOMItem != null && this.DOMItem.up(".recenttask") != null;
+};
+
+CGActionShowTaskNode.prototype.getRecentTaskViewInfo = function () {
+  return this.DOMItem.up(".recenttask").getControlInfo();
+};
+
 CGActionShowTaskNode.prototype.step_1 = function () {
   var Task = TasksCache.getCurrent();
 
@@ -229,6 +237,11 @@ CGActionShowTaskNode.prototype.step_1 = function () {
   var Process = new CGProcessShowTaskNode();
   Process.IdTask = Task.getId();
   Process.IdNode = this.Id;
+  if (this.isRecentTaskViewOfNode()) {
+    var info = this.getRecentTaskViewInfo();
+    Process.TargetNode = info.IdNode;
+    Process.TargetView = info.CodeView;
+  }
   Process.execute();
 
   this.terminate();

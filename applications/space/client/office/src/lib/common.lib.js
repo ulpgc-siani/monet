@@ -313,13 +313,15 @@ function getMonetLinkAction(sMonetLink) {
     var aResult = Expression.exec(sMonetLink);
 
     var type = aResult[1];
-    var entityId = aResult[2].split("\\.")[0];
+    var entityId = aResult[2].split(".")[0];
     var editMode = aResult.length == 3;
     var viewId = aResult[2].indexOf(".")!=-1?aResult[2].substring(aResult[2].lastIndexOf(".") + 1):null;
 
     if (type == "node") {
-      if (editMode) return "shownode(" + entityId + ",edit.html?mode=page)";
-      else return "shownode(" + entityId + ")";
+      var command = "shownode(" + entityId;
+      // if (viewId != null) command += "," + viewId;
+      if (editMode) command += ",edit.html?mode=page";
+      return command + ")";
     }
     else if (type == "task") {
       if (viewId != null) return "showtaskview(" + entityId + "," + viewId + ")";
