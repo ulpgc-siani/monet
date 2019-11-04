@@ -1206,7 +1206,16 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		if (this.isFinished())
 			throw new RuntimeException("Invalid operation: Task is finished.");
 
+		PlaceProperty placeProperty = this.model.getPlaceProperty();
+		boolean resetEdition = false;
+		if (placeProperty.getEditionActionProperty() != null) resetEdition = true;
+
 		this.gotoPlace(placeName, historyText);
+
+		if (resetEdition) {
+			this.model.setEditionFormId(null);
+			this.save();
+		}
 	}
 
 	public synchronized ProviderBehavior getCurrentProvider() {
