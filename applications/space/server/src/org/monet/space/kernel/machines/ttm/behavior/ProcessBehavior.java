@@ -769,8 +769,8 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 
 		this.addFormFactToHistory(actionProperty, form);
 
-		this.persistenceService.deleteNodeAndRemoveFromTrash(form.getId());
 		this.model.setEditionFormId(null);
+		this.persistenceService.deleteNodeAndRemoveFromTrash(form.getId());
 
 		this.unlock(new Lock(placeProperty.getCode(), placeProperty.getCode()));
 
