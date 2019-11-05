@@ -1213,7 +1213,9 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		this.gotoPlace(placeName, historyText);
 
 		if (resetEdition) {
+			String lockName = placeProperty.getCode() + "$" + placeProperty.getCode();
 			this.model.setEditionFormId(null);
+			this.model.getLockStates().remove(lockName);
 			this.save();
 		}
 	}
