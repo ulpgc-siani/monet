@@ -1207,13 +1207,13 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 			throw new RuntimeException("Invalid operation: Task is finished.");
 
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
+		String lockName = placeProperty.getCode() + "$" + placeProperty.getCode();
 		boolean resetEdition = false;
 		if (placeProperty.getEditionActionProperty() != null) resetEdition = true;
 
 		this.gotoPlace(placeName, historyText);
 
 		if (resetEdition) {
-			String lockName = placeProperty.getCode() + "$" + placeProperty.getCode();
 			this.model.setEditionFormId(null);
 			this.model.getLockStates().remove(lockName);
 			this.save();
