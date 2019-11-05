@@ -189,7 +189,7 @@ public class PersistenceServiceMonet implements PersistenceService {
 	@Override
 	public Node createForm(String taskId, String definitionName) {
 		Task task = this.taskLayer.loadTask(taskId);
-		return this.nodeLayer.addNode(definitionName, task.getTarget());
+		return this.nodeLayer.addNode(definitionName, (Node)null);
 	}
 
 	@Override
