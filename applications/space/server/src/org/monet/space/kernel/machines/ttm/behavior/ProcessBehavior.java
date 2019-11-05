@@ -1215,7 +1215,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 
 		if (resetEdition) {
 			this.model.setEditionFormId(null);
-			this.model.getLockStates().remove(lockName);
+			this.model.getLockStates().clear();
 			this.save();
 		}
 	}
