@@ -1611,7 +1611,7 @@ img.required {
 .widget.wlist.locked .more {
   color: #777;
 }
-.widget.wcomposite.locked .more {
+.widget.wtable.locked .more {
   color: #777;
 }
 .widget.wlist ul.draglist, .widget.wtable ul.draglist {
