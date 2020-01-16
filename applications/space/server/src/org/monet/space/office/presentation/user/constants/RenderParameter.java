@@ -10,4 +10,5 @@ public abstract class RenderParameter {
 	public static final String READONLY = "readonly";
 	public static final String ID = "id";
 	public static final String VIEW = "view";
+	public static final String MODE = "mode";
 }
