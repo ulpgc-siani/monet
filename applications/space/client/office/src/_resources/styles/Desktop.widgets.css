@@ -487,6 +487,10 @@ img.required {
   color: #777;
 }
 
+.widget.wcomposite.locked .more {
+  color: #777;
+}
+
 .widget.wlist ul.draglist, .widget.wtable ul.draglist {
   position: relative;
 }

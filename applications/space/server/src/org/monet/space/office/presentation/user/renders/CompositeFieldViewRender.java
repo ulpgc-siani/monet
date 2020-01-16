@@ -89,12 +89,13 @@ public class CompositeFieldViewRender extends FieldViewRender {
 			LayoutDefinition layoutDefinition = this.dictionary.getLayoutDefinition(showDefinition.getLayout());
 
 			OfficeRender render = this.rendersFactory.get(layoutDefinition, this.template, this.renderLink, account);
+			render.setParameters(this.getParameters());
 			render.setParameter(RenderParameter.ATTRIBUTE, attribute);
 			render.setParameter(RenderParameter.FORM, this.field.getNode());
 			render.setParameter(RenderParameter.ID, id);
 			render.setParameter(RenderParameter.IS_ROOT, "false");
 			render.setParameter(RenderParameter.IS_TEMPLATE, isTemplate);
-			render.setParameter(RenderParameter.MODE, this.getParameterAsString(RenderParameter.MODE));
+			render.setParameter(RenderParameter.VIEW, "preview");
 
 			return render.getOutput();
 		}
