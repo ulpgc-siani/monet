@@ -487,8 +487,10 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             }
 
             File defaultValues = new File(LocalStorage.getTaskSourceStore(this.getContext(), String.valueOf(taskId)), ".default");
-            if (defaultValues.exists())
+            if (defaultValues.exists()){
+                LocalStorage.copyMonetSchemaFile(defaultValues, this.getContext(), String.valueOf(taskId));
                 defaultValues.renameTo(LocalStorage.getTaskResultSchemaFile(this.getContext(), String.valueOf(taskId)));
+            }
 
             repository.addAttachmentsToTask(taskId, attachments);
             return true;
@@ -502,6 +504,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
                 taskFile.resultFile.delete();
         }
     }
+
+
 
     private void deleteTaskFromLocal(long idTask) {
         LocalStorage.deleteTask(getContext(), idTask);

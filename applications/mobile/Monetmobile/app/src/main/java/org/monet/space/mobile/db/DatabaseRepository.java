@@ -97,6 +97,8 @@ public class DatabaseRepository extends SQLiteOpenHelper implements Repository, 
 
     private void setTasksFilter(StringBuilder where, ArrayList<String> whereArgs, long sourceId, String filter) {
         if (sourceId != -1) {
+            if (where.length() > 0)
+                where.append(" AND ");
             where.append("source_id = ?");
             whereArgs.add(String.valueOf(sourceId));
         }
@@ -207,7 +209,7 @@ public class DatabaseRepository extends SQLiteOpenHelper implements Repository, 
         qb.setTables(sqlTables);
         this.setTasksWithLocationsFilter(where, whereArgs, sourceId, filter);
 
-        where.append(" AND tray = " + TaskDetails.TASK_TRAY_ASSIGNED);
+        where.append(" AND tray = " + TaskDetails.TASK_TRAY_FINISHED);
 
         Cursor c = qb.query(db, sqlSelect, where.toString(), whereArgs.toArray(new String[]{}), null, null, null);
         return c;

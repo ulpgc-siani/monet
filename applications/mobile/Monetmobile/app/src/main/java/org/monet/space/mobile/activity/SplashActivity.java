@@ -21,7 +21,7 @@ import org.monet.mobile.service.results.HeloResult;
 import org.monet.space.mobile.R;
 import org.monet.space.mobile.db.Repository;
 import org.monet.space.mobile.exception.ConnectionException;
-import org.monet.space.mobile.gcm.MonetRegistrationIntentService;
+import org.monet.space.mobile.fcm.MonetRegistrationIntentService;
 import org.monet.space.mobile.helpers.FontUtils;
 import org.monet.space.mobile.helpers.LocalStorage;
 import org.monet.space.mobile.helpers.SyncAccountHelper;

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.content.ContextCompat;
@@ -63,7 +64,8 @@ public class TaskMapFragment extends MapFragment<TaskMapListView, TaskMapListPre
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //Inicializar valor, mostrar todos los sources(unidades de negocio)
+        this.sourceId = -1l;
         this.setHasOptionsMenu(true);
     }
 
@@ -125,6 +127,7 @@ public class TaskMapFragment extends MapFragment<TaskMapListView, TaskMapListPre
 
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
+/*
         MenuItemCompat.setOnActionExpandListener(searchMenuItem,
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
@@ -138,8 +141,8 @@ public class TaskMapFragment extends MapFragment<TaskMapListView, TaskMapListPre
                     }
                 });
 
+*/
 
-/*
         searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
 
             @Override
@@ -152,8 +155,9 @@ public class TaskMapFragment extends MapFragment<TaskMapListView, TaskMapListPre
                 BusProvider.get().post(new SearchEvent(null));
                 return true;
             }
+
         });
-        */
+
         final SearchView searchView = (SearchView) searchMenuItem.getActionView();
         SearchableInfo info = searchManager.getSearchableInfo(getActivity().getComponentName());
         searchView.setSearchableInfo(info);
@@ -298,7 +302,7 @@ public class TaskMapFragment extends MapFragment<TaskMapListView, TaskMapListPre
 
     @Override
     public long getSourceId() {
-        return this.sourceId;
+       return this.sourceId;
     }
 
     @Override

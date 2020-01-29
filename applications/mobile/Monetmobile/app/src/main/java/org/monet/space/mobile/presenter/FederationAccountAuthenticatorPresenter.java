@@ -5,6 +5,7 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -70,6 +71,7 @@ public class FederationAccountAuthenticatorPresenter extends Presenter<Federatio
         private String errorMsg;
 
         private Account setupAccount(String serverUrl, String username, String password, HeloResult heloResult) {
+
 
             Account account = new Account(username + FederationAccountAuthenticator.ACCOUNT_NAME_SPLITTER + serverUrl, FederationAccountAuthenticator.ACCOUNT_TYPE);
 

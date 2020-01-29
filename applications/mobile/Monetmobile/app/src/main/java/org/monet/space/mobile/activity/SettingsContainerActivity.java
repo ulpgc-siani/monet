@@ -53,7 +53,8 @@ public class SettingsContainerActivity extends Activity<PreferenceContainerView,
         this.actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        //TODO probar
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         File appIcon = LocalStorage.getAppIconFile(this);
         if (appIcon.exists()) {

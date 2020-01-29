@@ -47,9 +47,15 @@ public class TaskGroupViewHolder extends ViewHolder {
     }
 
     public TaskGroupViewHolder group(Item group) {
-        title.setText(group.id());
+        title.setText(removeLabelPreviousLevel(group.id()));
         styleIndentationLevel(calculateLevel(group));
         return this;
+    }
+
+    private String removeLabelPreviousLevel(String label){
+        if (label.contains(": "))
+            return label.substring(label.indexOf(": ")+2);
+        return label;
     }
 
     private void styleIndentationLevel(int level) {

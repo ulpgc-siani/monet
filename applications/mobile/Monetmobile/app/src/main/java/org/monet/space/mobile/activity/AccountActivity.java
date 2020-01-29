@@ -36,6 +36,8 @@ public class AccountActivity extends Activity<AccountView, AccountPresenter, Voi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //TODO salir del paso
+        this.setContentView(R.layout.activity_source);
         prepareActionBar();
         FontUtils.setRobotoFont(this, this.findViewById(android.R.id.content));
         syncEnabled.setOnCheckedChangeListener(this);
@@ -104,8 +106,9 @@ public class AccountActivity extends Activity<AccountView, AccountPresenter, Voi
         Intent intent = new Intent(this, FederationAccountAuthenticatorActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+        //TODO salir del paso
+      //  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+      //      intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
     }
 
