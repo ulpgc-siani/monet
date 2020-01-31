@@ -173,6 +173,7 @@ public class TaskDetailsPageFragment extends Fragment<TaskDetailPageView, TaskDe
 			case R.id.btn_display:
 				presenter.doDisplay();
 				break;
+				/*
 			case R.id.btn_unassign:
 				new AlertDialog.Builder(getActivity())
 						.setMessage(R.string.unassign_dialog_message).setTitle(R.string.unassign_dialog_title)
@@ -187,9 +188,11 @@ public class TaskDetailsPageFragment extends Fragment<TaskDetailPageView, TaskDe
 						})
 						.create().show();
 				break;
-
+*/
+				/*
 			case R.id.btn_assign:
 				presenter.doAssign();
+				 */
 			default:
 				break;
 		}
@@ -285,7 +288,7 @@ public class TaskDetailsPageFragment extends Fragment<TaskDetailPageView, TaskDe
 		this.toolBar.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		this.toolBarHolder.setVisibility(View.VISIBLE);
 
-		this.toolBar.findViewById(R.id.btn_unassign).setOnClickListener(this);
+		//this.toolBar.findViewById(R.id.btn_unassign).setOnClickListener(this);
 		this.toolBar.findViewById(R.id.btn_continue).setOnClickListener(this);
 	}
 
@@ -316,7 +319,7 @@ public class TaskDetailsPageFragment extends Fragment<TaskDetailPageView, TaskDe
 		this.toolBar.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		this.toolBarHolder.setVisibility(View.VISIBLE);
 
-		this.toolBar.findViewById(R.id.btn_assign).setOnClickListener(this);
+		//this.toolBar.findViewById(R.id.btn_assign).setOnClickListener(this);
 	}
 
 	private void refreshAttachmentsView() {

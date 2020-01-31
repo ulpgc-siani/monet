@@ -3,7 +3,7 @@
               android:id="@+id/tool_bar"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
+<!--
     <Button
             android:id="@+id/btn_unassign"
             android:layout_width="0dp"
@@ -19,7 +19,7 @@
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold"/>
-
+-->
     <Button
             android:id="@+id/btn_continue"
             android:layout_width="0dp"

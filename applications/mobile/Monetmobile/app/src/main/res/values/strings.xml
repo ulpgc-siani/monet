@@ -120,7 +120,7 @@
     <string name="attachments">Adjuntos</string>
     
     <!-- Task Details Form labels -->
-    <string name="loading_task_details">Cargando los detalles del trabajo&#8230;</string>
+    <string name="loading_task_details">Pulse sobre el trabajo para ver detalles&#8230;</string>
     <string name="urgent">Urgente</string>
     <string name="geolocated">Lugar de actuación</string>
     <string name="suggested_start_date_label">Fecha propuesta</string>
