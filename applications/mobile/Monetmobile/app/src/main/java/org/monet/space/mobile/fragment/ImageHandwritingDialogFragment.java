@@ -78,7 +78,9 @@ public class ImageHandwritingDialogFragment extends DialogFragment implements an
   }
   
   private void createView() {
-    this.customView = this.getLayoutInflater().inflate(R.layout.fragment_image_handwriting, null);
+    //TODO salir del paso
+    LayoutInflater layoutInflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.customView = layoutInflater.inflate(R.layout.fragment_image_handwriting, null);
     
     this.drawingSurface = (DrawingSurface)this.customView.findViewById(R.id.drawingSurface);
     this.drawingSurface.setZOrderOnTop(true);
@@ -101,11 +103,11 @@ public class ImageHandwritingDialogFragment extends DialogFragment implements an
       }
     }
   }
-
+  /*
   private LayoutInflater getLayoutInflater() {
     return (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
-
+*/
   public void saveImageToFile() {
     try {
       final FileOutputStream out = new FileOutputStream(new File(this.fileUri.getPath().toString()));

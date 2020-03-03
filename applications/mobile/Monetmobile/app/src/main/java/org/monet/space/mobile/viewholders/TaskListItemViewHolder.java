@@ -70,8 +70,8 @@ public class TaskListItemViewHolder extends ViewHolder {
     }
 
     private TaskListItemViewHolder title(String title) {
-	    if (title.contains(": "))
-		    title = title.substring(title.indexOf(": ") + 2);
+        while (title.contains(": "))
+            title = title.substring(title.indexOf(": ") + 2);
         this.title.setText(title);
         return this;
     }

@@ -1,21 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.0'
 
     defaultConfig {
         applicationId "org.monet.space.mobile"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
     }
-
+/*
     dexOptions {
         incremental true
-    }
+    }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -52,23 +52,31 @@ configurations{
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:preference-v7:23.3.0'
+    //compile 'com.android.support:support-fragment:28.0.0'
+    compile 'com.android.support:support-compat:27.0.0'
+    compile 'com.android.support:support-fragment:27.0.0'
+    compile 'com.android.support:support-media-compat:27.0.0'
+    compile 'com.android.support:support-core-ui:27.0.0'
+    compile 'com.android.support:support-core-utils:27.0.0'
+    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile 'com.android.support:preference-v7:27.0.0'
     //compile 'com.google.android.gms:play-services:9.2.0'
-    compile 'com.google.android.gms:play-services-gcm:9.2.0'
-    compile 'com.google.android.gms:play-services-maps:9.2.0'
-
+    //compile 'com.google.android.gms:play-services-gcm:9.2.0'
+    // compile 'com.google.android.gms:play-services-maps:9.2.0'
+    //compile 'com.google.android.gms:play-services-maps:16.2.0'
     compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
     compile 'org.simpleframework:simple-xml:2.6.7'
-
     compile 'org.roboguice:roboguice:3.0.1'
     provided 'org.roboguice:roboblender:3.0.1'
-
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
-
     compile 'org.siani.tools:string-clusterizer:1.0.3'
+    compile 'com.google.firebase:firebase-core:16.0.7'
+    compile 'com.google.firebase:firebase-messaging:17.3.4'
+    compile 'com.google.android.gms:play-services-maps:16.1.0'
 }
+
+
 
 apply plugin: 'com.google.gms.google-services'

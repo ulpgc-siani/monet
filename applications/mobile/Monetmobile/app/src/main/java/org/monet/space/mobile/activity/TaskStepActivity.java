@@ -1,9 +1,8 @@
 package org.monet.space.mobile.activity;
 
-import android.app.ActionBar;
+//import android.app.ActionBar;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -27,8 +26,8 @@ public class TaskStepActivity extends Activity<TaskStepView, TaskStepPresenter, 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taskstep);
         prepareActionBar();
     }

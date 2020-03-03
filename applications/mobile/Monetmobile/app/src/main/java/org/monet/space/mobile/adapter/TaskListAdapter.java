@@ -225,12 +225,38 @@ public class TaskListAdapter extends BaseAdapter {
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             if (item.getItemId() != R.id.menu_abandon && item.getItemId() != R.id.menu_assign) return false;
-            if (item.getItemId() == R.id.menu_abandon)
-                presenter.abandonTasks(listView.getCheckedItemIds());
-            if (item.getItemId() == R.id.menu_assign)
-                presenter.assignTasks(listView.getCheckedItemIds());
+            if (item.getItemId() == R.id.menu_abandon) {
+                SparseBooleanArray itemsId = listView.getCheckedItemPositions();
+                presenter.abandonTasks(getItemsChecked(itemsId));
+            }
+            if (item.getItemId() == R.id.menu_assign){
+                SparseBooleanArray itemsId = listView.getCheckedItemPositions();
+                presenter.assignTasks(getItemsChecked(itemsId));
+            }
             mode.finish();
             return true;
+        }
+
+        private long[] getItemsChecked(SparseBooleanArray itemsId){
+            ArrayList<Long> checked = new ArrayList<Long>();
+            for (int i = 0; i<itemsId.size(); i++)
+                if (itemsId.valueAt(i))
+                    checked.add((long)getItemId(itemsId.keyAt(i)));
+            return arrayListToLongArray(checked);
+        }
+
+        private long[] arrayListToLongArray(ArrayList<Long> arrayList){
+            long[] longArray = initializeLongArray(arrayList.size());
+            for (int i=0; i< arrayList.size();i++)
+                longArray[i] = arrayList.get(i);
+            return longArray;
+        }
+
+        private long[] initializeLongArray(int size){
+            long[] longArray = new long[size];
+            for (int i=0; i< size;i++)
+                longArray[i] = -1;
+            return longArray;
         }
 
         @Override

@@ -456,7 +456,7 @@ public class Schema {
                 }
             } catch (Exception e) {
                 Log.e("MONET", "Error reading schema: " + e.getMessage(), e);
-                schemaFile.delete();
+               // schemaFile.delete();
             } finally {
                 StreamHelper.close(inputStream);
             }
@@ -544,36 +544,42 @@ public class Schema {
                     boolean isEmmptyTag = parser.isEmptyElementTag();
                     String name = parser.getName();
                     Edit edit = editMap.get(name);
-                    switch (edit.type) {
-                        case BOOLEAN:
-                            parseEditBoolean(parser, edit, schema);
-                            break;
-                        case TEXT:
-                        case MEMO:
-                            parseEditText(parser, edit, schema);
-                            break;
-                        case PICTURE:
-                        case PICTURE_HAND:
-                            parseEditPicture(parser, edit, schema);
-                            break;
-                        case VIDEO:
-                            parseEditVideo(parser, edit, schema);
-                            break;
-                        case NUMBER:
-                            parseEditNumber(parser, edit, schema);
-                            break;
-                        case DATE:
-                            parseEditDate(parser, edit, schema);
-                            break;
-                        case POSITION:
-                            parseEditPosition(parser, edit, schema);
-                            break;
-                        case SELECT:
-                            parseEditTerm(parser, edit, schema);
-                            break;
-                        case CHECK:
-                            parseEditCheck(parser, edit, schema);
-                            break;
+                    if (edit != null) {
+                        switch (edit.type) {
+                            case BOOLEAN:
+                                parseEditBoolean(parser, edit, schema);
+                                break;
+                            case TEXT:
+                            case MEMO:
+                                parseEditText(parser, edit, schema);
+                                break;
+                            case PICTURE:
+                            case PICTURE_HAND:
+                                parseEditPicture(parser, edit, schema);
+                                break;
+                            case VIDEO:
+                                parseEditVideo(parser, edit, schema);
+                                break;
+                            case NUMBER:
+                                parseEditNumber(parser, edit, schema);
+                                break;
+                            case DATE:
+                                parseEditDate(parser, edit, schema);
+                                break;
+                            case POSITION:
+                                parseEditPosition(parser, edit, schema);
+                                break;
+                            case SELECT:
+                                parseEditTerm(parser, edit, schema);
+                                break;
+                            case CHECK:
+                                parseEditCheck(parser, edit, schema);
+                                break;
+                        }
+                    }else{
+                        while (eventType != XmlPullParser.END_TAG) {
+                            eventType = parser.next();
+                        }
                     }
                     if (!isEmmptyTag) {
                         parser.require(XmlPullParser.END_TAG, "", name);
