@@ -20,7 +20,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-
+/*
         maven {
             name 'siani-maven-releases'
             url 'http://artifactory.siani.es/artifactory/libs-release'
@@ -28,7 +28,7 @@ allprojects {
         maven {
             name 'siani-maven-snapshot'
             url 'http://artifactory.siani.es/artifactory/libs-snapshot'
-        }
+        }*/
         maven { url "https://maven.google.com" }
     }
 }

@@ -28,9 +28,9 @@ import org.monet.space.mobile.mvp.Presenter;
 import org.monet.space.mobile.mvp.content.CursorLoaderCallbacks;
 import org.monet.space.mobile.mvp.content.CursorLoaderCallbacks.LoaderFactory;
 import org.monet.space.mobile.view.TaskListView;
-import org.siani.cluster.Item;
-import org.siani.cluster.ItemList;
-import org.siani.cluster.RegexClusterizer;
+import org.monet.space.mobile.stringclusterizer.Item;
+import org.monet.space.mobile.stringclusterizer.ItemList;
+import org.monet.space.mobile.stringclusterizer.RegexClusterizer;
 
 import java.util.ArrayList;
 import java.util.List;

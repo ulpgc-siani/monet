@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.monet.space.mobile.R;
-import org.siani.cluster.Item;
-import org.siani.cluster.NullItem;
+import org.monet.space.mobile.stringclusterizer.Item;
+import org.monet.space.mobile.stringclusterizer.NullItem;
 
 public class TaskGroupViewHolder extends ViewHolder {
 
