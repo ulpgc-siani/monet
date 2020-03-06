@@ -53,7 +53,7 @@ public class TaskGroupViewHolder extends ViewHolder {
 
     public TaskGroupViewHolder group(Item group) {
         int level = calculateLevel(group);
-        title.setText(removeLabelPreviousLevel(level,group.id()));
+        title.setText(removeLabelPreviousLevel(level,group.id().replaceAll("\n","")));
         styleIndentationLevel(level);
         title.setTextColor(colorIndentationLevel(level));
         title.setTypeface(title.getTypeface(), Typeface.BOLD_ITALIC);
