@@ -4,10 +4,11 @@ buildscript {
     repositories {
         jcenter()
         maven { url "https://maven.google.com" }
+        google()
         //google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.6.1'
        // classpath 'com.google.gms:google-services:3.0.0'
         classpath 'com.google.gms:google-services:4.2.0' //fcm
 
@@ -19,7 +20,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-
+/*
         maven {
             name 'siani-maven-releases'
             url 'http://artifactory.siani.es/artifactory/libs-release'
@@ -27,7 +28,7 @@ allprojects {
         maven {
             name 'siani-maven-snapshot'
             url 'http://artifactory.siani.es/artifactory/libs-snapshot'
-        }
+        }*/
         maven { url "https://maven.google.com" }
     }
 }

@@ -20,7 +20,7 @@ import org.monet.space.mobile.model.TaskTray;
 import org.monet.space.mobile.presenter.TaskListPresenter;
 import org.monet.space.mobile.viewholders.TaskGroupViewHolder;
 import org.monet.space.mobile.viewholders.TaskListItemViewHolder;
-import org.siani.cluster.Item;
+import org.monet.space.mobile.stringclusterizer.Item;
 
 import java.util.ArrayList;
 import java.util.List;
