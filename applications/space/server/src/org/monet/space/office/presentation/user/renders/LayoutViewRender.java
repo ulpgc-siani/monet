@@ -40,7 +40,6 @@ public class LayoutViewRender extends ViewRender {
 		boolean lastElementIsBreak = false;
 
 		for (LayoutElementDefinition elementDefinition : elements) {
-			columns.append(this.initElement(elementDefinition, container));
 
 			if (elementDefinition.isBreak() || elementDefinition.isSection()) {
 				rows.append(this.renderRow(columns));
@@ -51,6 +50,7 @@ public class LayoutViewRender extends ViewRender {
 					continue;
 			}
 
+			columns.append(this.initElement(elementDefinition, container));
 			lastElementIsBreak = false;
 		}
 

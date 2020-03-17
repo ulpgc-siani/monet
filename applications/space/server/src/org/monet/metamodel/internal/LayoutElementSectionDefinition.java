@@ -53,7 +53,7 @@ public class LayoutElementSectionDefinition extends LayoutElementDefinition {
 	public boolean isOpened() {
 
 		if (opened == null)
-			return false;
+			return true;
 
 		return Boolean.valueOf(opened);
 	}
