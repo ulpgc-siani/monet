@@ -15,7 +15,9 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
@@ -178,6 +180,16 @@
         </service>
 
         <provider
+            android:name="org.monet.space.mobile.provider.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+        <provider
             android:name="org.monet.space.mobile.provider.MonetDataProvider"
             android:authorities="org.monet.mobile.sync"
             android:enabled="true"
@@ -189,57 +201,20 @@
             android:authorities="org.monet.mobile.suggestions"
             android:exported="false" />
 
-        <!-- ANTIGUO GCM -->
-        <!--
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <category android:name="org.monet.space.mobile" />
-            </intent-filter>
-        </receiver>
-        -->
-        <!--
-                <service
-                    android:name=".gcm.MonetGcmListenerService"
-                    android:exported="false" >
-                    <intent-filter>
-                        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                    </intent-filter>
-                </service>
-                -->
+        <!-- Nuevo FireBase FCM -->
         <service android:name=".fcm.MonetFireBaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <!--
-        <service
-            android:name=".gcm.MonetIDListenerService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
-            </intent-filter>
-        </service>
-        -->
 
-        <!--
-        <service
-            android:name=".gcm.MonetRegistrationIntentService"
-            android:exported="false">
-        </service>
-        -->
 
         <service
             android:name=".fcm.MonetRegistrationIntentService"
             android:exported="false">
         </service>
 
-        <!-- FINAL ........... ANTIGUO GCM -->
-        <!-- Nuevo FireBase FCM -->
+
 
 
 

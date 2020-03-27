@@ -13,7 +13,7 @@
     <string name="menu_item_add_account">Añadir cuenta</string>
     
     <!-- Federation -->
-    <string name="federation_authenticator_name">Monet Mobile 2.3.1</string>
+    <string name="federation_authenticator_name">Monet Mobile 2.3.2</string>
     <string name="federation_authenticator_activity_label">Inicio de sesión en Monet</string>
     <string name="federation_account_serverurl_label">Unidad de negocio</string>
     <string name="federation_account_username_label">Nombre de usuario</string>
@@ -31,7 +31,7 @@
     <string name="error_cant_connect_server">Error al conectar con el servidor. Compruebe los datos introducidos.</string>
     <string name="error_cant_setup_account">Error al crear la cuenta de Monet. Contacte con el servicio técnico.</string>
     
-    <string name="app_name">Monet Mobile 2.3.1</string>
+    <string name="app_name">Monet Mobile 2.3.2</string>
     <string name="title_activity_tasklist">Tareas</string>
     <string name="title_activity_taskmap">Tareas</string>
     <string name="title_activity_taskresume">Detalles del trabajo</string>
@@ -40,7 +40,7 @@
     <string name="title_activity_taskpreparepackage">Finalizando el trabajo</string>
     <string name="title_activity_account">Unidades de negocio</string>
     <string name="title_activity_sourcelist">Source List Activity</string>
-    <string name="title_activity_splash">Monet Mobile 2.3.1</string>
+    <string name="title_activity_splash">Monet Mobile 2.3.2</string>
     <string name="title_activity_settings">Ajustes</string>
     <string name="title_activity_pickterm">Seleccionar término</string>
     <string name="title_activity_pickcheck">Seleccionar valores</string>
@@ -51,7 +51,7 @@
     <string name="tab_available">Disponibles</string>
     
     <string name="all">Todos</string>
-    <string name="splash_logo_description">Logo of Monet Mobile 2.3.1</string>
+    <string name="splash_logo_description">Logo of Monet Mobile 2.3.2</string>
     <string name="tasks_navigation_menu_title">Tareas</string>
     <string name="loading_more_items">Cargando elementos&#8230;</string>
     <plurals name="selected_items">
