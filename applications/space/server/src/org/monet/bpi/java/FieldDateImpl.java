@@ -59,7 +59,7 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 	public void set(Date value) {
 		TimeZone localZone = TimeZone.getDefault();
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(new java.util.Date());
+		cal.setTime(value.getValue());
 		cal.add(Calendar.MILLISECOND, localZone.getOffset(0));
 		set(cal.getTime());
 	}
