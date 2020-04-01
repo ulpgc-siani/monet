@@ -59,7 +59,7 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 
 	@Override
 	public void set(Date value) {
-		this.set(value, TimeZone.getDefault());
+		this.set(value, null);
 	}
 
 	public void set(Date value, TimeZone timezone) {
