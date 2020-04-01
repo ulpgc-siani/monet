@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Handler;
+import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 import com.google.inject.Inject;
 
@@ -25,6 +26,7 @@ import org.monet.space.mobile.view.TaskDetailPageView;
 
 import roboguice.util.SafeAsyncTask;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
@@ -45,8 +47,13 @@ public class TaskDetailPagePresenter extends Presenter<TaskDetailPageView, Void>
     public void openAttachment(Attachment attachment) {
         PackageManager packageManager = this.context.getPackageManager();
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri pathUri = (new Uri.Builder()).scheme("file").path(attachment.path).build();
-        intent.setDataAndType(pathUri, attachment.contentType);
+        Uri pathUri = (new Uri.Builder()).scheme("content").path(attachment.path).build();
+        Uri pathUri2 = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", new File(pathUri.getPath()));
+        intent.setDataAndType(pathUri2, attachment.contentType);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+
 
         List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         if (list.size() > 0)
