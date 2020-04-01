@@ -11,6 +11,8 @@ import org.monet.space.kernel.model.Indicator;
 import org.monet.space.kernel.model.Language;
 import org.monet.space.kernel.utils.DateFormat;
 
+import java.util.TimeZone;
+
 public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 
 	public static Date get(Attribute attribute) {
@@ -52,11 +54,15 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 	}
 
 	public void set(java.util.Date value) {
-		this.set(new Date(value));
+		this.set(new Date(value), BusinessUnit.getTimeZone());
 	}
 
 	@Override
 	public void set(Date value) {
+		this.set(value, TimeZone.getDefault());
+	}
+
+	public void set(Date value, TimeZone timezone) {
 		DateFieldProperty fieldDefinition = (DateFieldProperty) this.fieldDefinition;
 		String dateInternal = null;
 		String dateValue;
@@ -64,11 +70,11 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 		if (value == null) {
 			dateValue = "";
 		} else if (value.getValue() != null) {
-			dateInternal = LibraryDate.getDateAndTimeString(value.getValue(), Language.getCurrent(), BusinessUnit.getTimeZone(), LibraryDate.Format.INTERNAL, true, Strings.BAR45);
-			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal), BusinessUnit.getTimeZone());
+			dateInternal = LibraryDate.getDateAndTimeString(value.getValue(), Language.getCurrent(), timezone, LibraryDate.Format.INTERNAL, true, Strings.BAR45);
+			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal), timezone);
 		} else if (value.getFormattedValue() != null) {
 			dateInternal = value.getFormattedValue();
-			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal), BusinessUnit.getTimeZone());
+			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal), timezone);
 		} else {
 			dateInternal = "";
 			dateValue = "";
