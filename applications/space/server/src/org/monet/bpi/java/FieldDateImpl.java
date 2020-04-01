@@ -11,6 +11,8 @@ import org.monet.space.kernel.model.Indicator;
 import org.monet.space.kernel.model.Language;
 import org.monet.space.kernel.utils.DateFormat;
 
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.TimeZone;
 
 public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
@@ -53,13 +55,17 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 		return dateTime;
 	}
 
-	public void set(java.util.Date value) {
-		this.set(new Date(value), BusinessUnit.getTimeZone());
-	}
-
 	@Override
 	public void set(Date value) {
-		this.set(value, null);
+		TimeZone localZone = TimeZone.getDefault();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new java.util.Date());
+		cal.add(Calendar.MILLISECOND, localZone.getOffset(0));
+		set(cal.getTime());
+	}
+
+	public void set(java.util.Date value) {
+		this.set(new Date(value), BusinessUnit.getTimeZone());
 	}
 
 	public void set(Date value, TimeZone timezone) {
