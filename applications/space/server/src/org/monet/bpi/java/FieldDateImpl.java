@@ -57,11 +57,7 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 
 	@Override
 	public void set(Date value) {
-		TimeZone localZone = TimeZone.getDefault();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(value.getValue());
-		cal.add(Calendar.MILLISECOND, localZone.getOffset(0));
-		set(cal.getTime());
+		set(value, TimeZone.getDefault());
 	}
 
 	public void set(java.util.Date value) {
@@ -77,10 +73,10 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 			dateValue = "";
 		} else if (value.getValue() != null) {
 			dateInternal = LibraryDate.getDateAndTimeString(value.getValue(), Language.getCurrent(), timezone, LibraryDate.Format.INTERNAL, true, Strings.BAR45);
-			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal), timezone);
+			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal, timezone), timezone);
 		} else if (value.getFormattedValue() != null) {
 			dateInternal = value.getFormattedValue();
-			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal), timezone);
+			dateValue = DateFormat.format(fieldDefinition.getFormat(Language.getCurrent()), LibraryDate.parseDate(dateInternal, timezone), timezone);
 		} else {
 			dateInternal = "";
 			dateValue = "";
