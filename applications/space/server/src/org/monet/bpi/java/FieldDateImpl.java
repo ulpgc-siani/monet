@@ -61,7 +61,7 @@ public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {
 	}
 
 	public void set(java.util.Date value) {
-		this.set(new Date(value), BusinessUnit.getTimeZone());
+		set(new Date(value), BusinessUnit.getTimeZone());
 	}
 
 	public void set(Date value, TimeZone timezone) {
