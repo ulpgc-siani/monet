@@ -33,7 +33,7 @@ import java.util.zip.ZipOutputStream;
 @Singleton
 public class MessageQueueServiceMonet implements MessageQueueService {
 
-	private static final int SECOND = 60 * 1000;
+	private static final int SECOND = 1000;
 	private static final int MINUTE = SECOND * 60;
 	private static final int HOUR = MINUTE * 60;
 	private static final int DAY = HOUR * 24;
