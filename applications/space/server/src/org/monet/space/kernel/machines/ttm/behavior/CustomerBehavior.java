@@ -61,10 +61,18 @@ public class CustomerBehavior extends Behavior {
 			return;
 		}
 
+		if (!checkRequestMessageCode(code)) {
+			throw new RuntimeException("Message request code '" + code + "' not recognized in customer for task " + this.taskId);
+		}
+
 		MonetEvent event = new MonetEvent(MonetEvent.TASK_CUSTOMER_REQUEST_IMPORT, null, this.taskId);
 		event.addParameter(MonetEvent.PARAMETER_CODE, code);
 		event.addParameter(MonetEvent.PARAMETER_MESSAGE, message);
 		this.agentNotifier.notify(event);
+	}
+
+	private boolean checkRequestMessageCode(String code) {
+		return declaration.getRequestByCode(code) != null;
 	}
 
 	private void processChat(Message message) {

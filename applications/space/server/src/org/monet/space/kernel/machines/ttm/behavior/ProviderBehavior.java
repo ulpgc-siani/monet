@@ -181,7 +181,7 @@ public class ProviderBehavior extends Behavior {
 
 		String code = message.getSubject();
 		if (!checkResponseMessageCode(code)) {
-			throw new RuntimeException("Message code '" + code + "' not recognized in " + declaration.getName());
+			throw new RuntimeException("Message response code '" + code + "' not recognized in " + declaration.getName() + " for task " + this.taskId);
 		}
 
 		MonetEvent event = new MonetEvent(MonetEvent.TASK_PROVIDER_RESPONSE_IMPORT, null, this.taskId);
