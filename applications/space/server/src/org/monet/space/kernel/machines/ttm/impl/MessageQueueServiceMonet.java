@@ -193,6 +193,9 @@ public class MessageQueueServiceMonet implements MessageQueueService {
 			Date now = new Date();
 			long difference = now.getTime() - lastUpdateTime.getTime();
 
+			if (retries == 0)
+				return true;
+
 			if (retries < 10 && difference > MINUTE)
 				return true;
 
