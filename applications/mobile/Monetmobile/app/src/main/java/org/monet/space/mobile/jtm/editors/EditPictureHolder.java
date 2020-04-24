@@ -1,6 +1,7 @@
 package org.monet.space.mobile.jtm.editors;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import org.monet.space.mobile.helpers.StreamHelper;
 import org.monet.space.mobile.model.schema.Schema;
 import org.monet.space.mobile.mvp.BusProvider;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -153,14 +156,42 @@ public class EditPictureHolder extends EditHolder<String> implements OnClickList
 
     @Subscribe
     public void doSelectFromCamera(EditPictureFromCameraEvent event) throws IOException {
+        Context context = this.getContext();
         this.tempFileId = this.repository.newFileId();
         this.tempFileName = this.taskId + "_" + String.valueOf(this.tempFileId) + ".jpg";
-        Uri tempFileUri = ImageProvider.getUri(this.getContext(), String.valueOf(this.taskId), this.tempFileName);
+        //Uri tempFileUri = ImageProvider.getUri(this.getContext(), String.valueOf(this.taskId), this.tempFileName);
+        File tempFile = ImageProvider.getFile(this.getContext(), String.valueOf(this.taskId), this.tempFileName);
+
+        Uri pathUri2 = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", tempFile);
+
+
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, tempFileUri);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, pathUri2);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         this.activityManager.startActivityForResult(intent, RESULT_FOR_TAKE_NEW_FROM_CAMERA, this);
+   /*
+   public void launchCamera() {
+    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, getPhotoFileUri());
+    } else {
+        File file = new File(getPhotoFileUri().getPath());
+        Uri photoUri = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+    }
+    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+}
+
+    */
+
+
     }
 
     @Subscribe
