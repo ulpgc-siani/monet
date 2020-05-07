@@ -20100,6 +20100,7 @@ CGActionSetupTaskDelegation.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSetupTaskDelegation.prototype.step_1 = function () {
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSetupTaskDelegation.prototype.checkOption.bind(this));
@@ -20361,6 +20362,7 @@ CGActionSolveTaskLine.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskLine.prototype.step_1 = function () {
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSolveTaskLine.prototype.checkOption.bind(this));
@@ -20406,6 +20408,7 @@ CGActionSolveTaskEdition.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskEdition.prototype.step_1 = function () {
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSolveTaskEdition.prototype.checkOption.bind(this));
