@@ -20100,6 +20100,7 @@ CGActionSetupTaskDelegation.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSetupTaskDelegation.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
   this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
@@ -20136,7 +20137,10 @@ CGActionSetupTaskDelegation.prototype.step_4 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SetupTaskDelegation.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -20362,6 +20366,7 @@ CGActionSolveTaskLine.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskLine.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
   this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
@@ -20386,7 +20391,10 @@ CGActionSolveTaskLine.prototype.step_3 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SolveTaskLine.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -20408,6 +20416,7 @@ CGActionSolveTaskEdition.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskEdition.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
   this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
@@ -20435,7 +20444,10 @@ CGActionSolveTaskEdition.prototype.step_4 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SolveTaskEdition.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
