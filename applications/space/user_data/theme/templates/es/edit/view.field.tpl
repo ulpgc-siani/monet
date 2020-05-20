@@ -205,7 +205,7 @@ Sin etiqueta
 ::checked::<label for="::id::" class="box">::label::</label>
 
 @field.boolean$label
-Haga click para seleccionar ::declarationLabel::
+Sí/No
 
 @field.boolean$checked
 <input id="::id::" type="checkbox" class="component" checked/>
