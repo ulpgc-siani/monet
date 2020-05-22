@@ -412,9 +412,12 @@ Sí/No
 <p class="def allowadd">::allowAdd::</p>
 
 @field.node$node
+::render(view.node)::
 
 @field.node$node.document
-  
+<a class="command" href="shownode(::id::)" alt="::label::" style="float\:left;"><img style="border\:1px solid \#666;" src="::previewImageSource::" title="::label::"/></a>
+<div class="toolbar" style="float:left;border-bottom:0px;clear:both;margin: 10px 0px;padding-bottom:10px;"><a class="command button" href="shownode(::id::)" style="width:60px;display:inline;text-align:center;margin:0px;">abrir</a>\&nbsp;\&nbsp;\&nbsp;<a class="command button" href="downloadnode(::id::)" style="width:60px;display:inline;text-align:center;margin:0px;">descargar</a></div>
+
 @field.node$node.empty
 
 @field.serial

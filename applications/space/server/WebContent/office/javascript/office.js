@@ -10142,8 +10142,7 @@ aLocationPickerMessages["es"]["LOCATED"] = "Si desea volver a representar el ele
 aLocationPickerMessages["es"]["FINISH_EDITION"] = "Ha finalizado la edición correctamente. Para deslocalizar el elemento haga click en Borrar localización.";
 aLocationPickerMessages["es"]["SET_POINT"] = "Arrastra el marcador y colócalo en el punto donde desea ubicar el elemento.";
 aLocationPickerMessages["es"]["SET_LINE"] = "Haga click en las esquinas de la línea que vaya a construir. Finalize la edición de la línea haciendo click en el botón derecho o pulsando sobre el botón de finalizar edición.";
-aLocationPickerMessages["es"]["SET_POLYGON"]
-= "Haga click en los vértices del polígono que vaya a construir. Finalize la edición del polígono haciendo click en el botón derecho o pulsando sobre el botón de finalizar edición.";
+aLocationPickerMessages["es"]["SET_POLYGON"] = "Haga click en los vértices del polígono que vaya a construir. Finalize la edición del polígono haciendo click en el botón derecho o pulsando sobre el botón de finalizar edición.";
 aLocationPickerMessages["es"]["SEARCHING_GPS_POSITION"] = "Buscando posición GPS actual...";
 aLocationPickerMessages["es"]["SEARCHING_GPS_POSITION_ERROR"] = "Su navegador no permite obtener la posición, actualize a una versión más reciente.";
 aLocationPickerMessages["es"]["PLACE_NOT_FOUND"] = "No se ha encontrado la ubicación indicada.";
@@ -44669,6 +44668,7 @@ CGDecoratorField.prototype.execute = function (DOMField) {
     Widget.onAddDefaultValue = this.atWidgetAddDefaultValue.bind(this);
     Widget.setEditor(EditorsFactory.get(EditorType));
     Widget.setTarget(this);
+    if (Widget.hideLoading) Widget.hideLoading();
   };
 
   DOMField.isLockedByDefinition = function () {

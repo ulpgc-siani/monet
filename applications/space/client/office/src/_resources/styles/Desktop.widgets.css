@@ -631,6 +631,10 @@ img.required {
   right: 0;
 }
 
+.widget.wlist.locked li a.delete, .widget.wtable.locked li a.delete {
+  display: none !important;
+}
+
 .widget.wtable .hidelist {
   float: left;
 }

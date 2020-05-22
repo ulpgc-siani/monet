@@ -126,7 +126,6 @@ Sin etiqueta
 </div>
 
 @field.boolean$label
-::unchecked|No ::::declarationLabel::
 
 @field.boolean$checked
 <img alt="Marcado" title="Marcado" class="checker" src="::themeSource::&path=_images/icons/check_disabled.gif" />
