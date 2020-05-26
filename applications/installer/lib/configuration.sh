@@ -249,8 +249,6 @@ function get_backup_dir {
   while [ -d $FILENAME_NEW_BACKUP ]; do
     FILENAME_NEW_BACKUP=$FILENAME_BACKUP.$x
     x=$((x+1))
-    echo $x
-
   done
   echo $FILENAME_NEW_BACKUP
 }

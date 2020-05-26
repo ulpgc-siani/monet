@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_NAME="Monet installer"
-APP_VERSION="1.0.80"
+APP_VERSION="1.0.81"
 FILE_CURRENT=`readlink -e $0`
 DIR_CURRENT=`dirname $FILE_CURRENT`
 DIR_APPS="$DIR_CURRENT/apps"

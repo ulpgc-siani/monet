@@ -21,16 +21,22 @@ function upgrade_tomcat {
 
     show_status " Stop services... "
     TOMCATPUBLIC_ID=`ps -FC java |grep tomcat-public| awk 'BEGIN{FS="[ :]+"}{print $2}' |awk 'FNR == 1'`
+    if [ "$TOMCATPUBLIC_ID" != "" ]; then
+      kill -9 $TOMCATPUBLIC_ID &>> $FILELOG
+      if [ "$OS_VERSION" = "6" ]; then
+        /etc/init.d/tomcat-public kill &> /dev/null
+      else
+        systemctl stop tomcat-public
+      fi
+    fi
     TOMCATLOCAL_ID=`ps -FC java |grep tomcat-public| awk 'BEGIN{FS="[ :]+"}{print $2}' |awk 'FNR == 1'`
-    kill -9 $TOMCATPUBLIC_ID &>> $FILELOG
-    kill -9 $TOMCATLOCAL_ID &>> $FILELOG
-
-    if [ "$OS_VERSION" = "6" ]; then
-      /etc/init.d/tomcat-public kill &> /dev/null
-      /etc/init.d/tomcat-local kill &> /dev/null
-    else
-      systemctl stop tomcat-public
-      systemctl stop tomcat-local
+    if [ "$TOMCATLOCAL_ID" != "" ]; then
+      kill -9 $TOMCATLOCAL_ID &>> $FILELOG
+      if [ "$OS_VERSION" = "6" ]; then
+        /etc/init.d/tomcat-local kill &> /dev/null
+      else
+        systemctl stop tomcat-local
+      fi
     fi
     show_status_ok
 
