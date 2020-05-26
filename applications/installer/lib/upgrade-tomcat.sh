@@ -1,12 +1,9 @@
 #-------------------------------------------------------------------------------
 function upgrade_tomcat {
   tomcat_current_version=`cat /opt/tomcat-public/RELEASE-NOTES |grep "Apache Tomcat Version" | sed 's/^ *//;s/ *$//' |sed -E 's/^Apache Tomcat Version (.*)$/\1/'`
-  tomcat_last_version=`curl -s 'https://tomcat.apache.org/download-80.cgi' |grep -E -i -w '<h3 id="8\.5.*>(.*)</h3>'|sed -E 's/^<h3 id="8\.5.*>(.*)<\/h3>$/\1/'`
+  tomcat_last_version=`curl -s 'https://tomcat.apache.org/download-80.cgi' |grep -Po '<h3 id="8\.5.*>(.*)</h3>'|sed -E 's/^<h3 id="8\.5.*>(.*)<\/h3>$/\1/'`
 
   show_info_text "Upgrade tomcat-public (from version $tomcat_current_version to $tomcat_last_version)..."
-
-  tomcat_current_version=`cat /opt/tomcat-public/RELEASE-NOTES |grep "Apache Tomcat Version" | sed 's/^ *//;s/ *$//' |sed -E 's/^Apache Tomcat Version (.*)$/\1/'`
-  tomcat_last_version=`curl -s 'https://tomcat.apache.org/download-80.cgi' |grep -E -i -w '<h3 id="8\.5.*>(.*)</h3>'|sed -E 's/^<h3 id="8\.5.*>(.*)<\/h3>$/\1/'`
 
   if [ "$tomcat_current_version" != "$tomcat_last_version" ]; then
     url_tomcat_base="https://archive.apache.org/dist/tomcat/tomcat-8/v$tomcat_last_version/bin"
@@ -16,6 +13,11 @@ function upgrade_tomcat {
     if [ ! -f "$tomcat_app_file" ]; then
       show_status " Downloading new version..."
       wget --no-check-certificate "$url_tomcat_base/$tomcat_app" -O "$tomcat_app_file" &>> $FILELOG || rm "$tomcat_app_file"
+      result=$?
+      if [ "$result" != "0" ]; then
+        echo "  Error: failed to download Apache Tomcat"
+        exit
+      fi
       show_status_ok
     fi
 
@@ -29,7 +31,7 @@ function upgrade_tomcat {
         systemctl stop tomcat-public
       fi
     fi
-    TOMCATLOCAL_ID=`ps -FC java |grep tomcat-public| awk 'BEGIN{FS="[ :]+"}{print $2}' |awk 'FNR == 1'`
+    TOMCATLOCAL_ID=`ps -FC java |grep tomcat-local| awk 'BEGIN{FS="[ :]+"}{print $2}' |awk 'FNR == 1'`
     if [ "$TOMCATLOCAL_ID" != "" ]; then
       kill -9 $TOMCATLOCAL_ID &>> $FILELOG
       if [ "$OS_VERSION" = "6" ]; then
@@ -54,7 +56,6 @@ function upgrade_tomcat {
     mv "$DIR_APP_TOMCATPUBLIC"/"$dir_into_tar"/* "$DIR_APP_TOMCATPUBLIC"
     rm -rf "$DIR_APP_TOMCATPUBLIC"/"$dir_into_tar"/
     rm -rf "$DIR_APP_TOMCATPUBLIC"/webapps/*
-    rmdir "$DIR_APP_TOMCATPUBLIC"/webapps
     show_status_ok
 
     show_status " Deploy new version (tomcat-local)..."
@@ -64,14 +65,12 @@ function upgrade_tomcat {
     mv "$DIR_APP_TOMCATLOCAL"/"$dir_into_tar"/* "$DIR_APP_TOMCATLOCAL"
     rm -rf "$DIR_APP_TOMCATLOCAL"/"$dir_into_tar"/
     rm -rf "$DIR_APP_TOMCATLOCAL"/webapps/*
-    rmdir "$DIR_APP_TOMCATLOCAL"/webapps
     show_status_ok
 
     show_status " Configure (tomcat-public)..."
-    cp -R "$BACKUP_DIR_TOMCATPUBLIC"/webapps "$DIR_APP_TOMCATPUBLIC"
+    cp "$BACKUP_DIR_TOMCATPUBLIC"/webapps/*.war "$DIR_APP_TOMCATPUBLIC"/webapps/
     cp -f "$BACKUP_DIR_TOMCATPUBLIC"/bin/startup.sh "$DIR_APP_TOMCATPUBLIC"/bin
     cp -f "$BACKUP_DIR_TOMCATPUBLIC"/bin/debugging.sh "$DIR_APP_TOMCATPUBLIC"/bin
-#    cp -f "$BACKUP_DIR_TOMCATPUBLIC"/conf/server.xml "$DIR_APP_TOMCATPUBLIC"/conf
     sed -i ':a;N;$!ba;s/connectionTimeout="20000"\n               redirectPort="8443"/connectionTimeout="20000" redirectPort="8443" compression="on" compressionMinSize="2048" noCompressionUserAgents="gozilla, traviata" compressableMimeType="text\/html, text\/xml, text\/css, application\/javascript"/g' "$DIR_APP_TOMCATPUBLIC"/conf/server.xml
     cp -f "$BACKUP_DIR_TOMCATPUBLIC"/lib/log4j-1.2.17.jar "$DIR_APP_TOMCATPUBLIC"/lib &>> $FILELOG
     cp -f "$BACKUP_DIR_TOMCATPUBLIC"/lib/log4j.properties "$DIR_APP_TOMCATPUBLIC"/lib &>> $FILELOG
@@ -80,10 +79,9 @@ function upgrade_tomcat {
     show_status_ok
 
     show_status " Configure (tomcat-local)..."
-    cp -R "$BACKUP_DIR_TOMCATLOCAL"/webapps "$DIR_APP_TOMCATLOCAL"
+    cp "$BACKUP_DIR_TOMCATLOCAL"/webapps/*.war "$DIR_APP_TOMCATLOCAL"/webapps/
     cp -f "$BACKUP_DIR_TOMCATLOCAL"/bin/startup.sh "$DIR_APP_TOMCATLOCAL"/bin
     cp -f "$BACKUP_DIR_TOMCATLOCAL"/bin/debugging.sh "$DIR_APP_TOMCATLOCAL"/bin
-#    cp -f "$BACKUP_DIR_TOMCATLOCAL"/conf/server.xml "$DIR_APP_TOMCATLOCAL"/conf
     sed -i "s/8005/8006/g" "$DIR_APP_TOMCATLOCAL"/conf/server.xml
     sed -i "s/8080/8081/g" "$DIR_APP_TOMCATLOCAL"/conf/server.xml
     sed -i "s/8443/8444/g" "$DIR_APP_TOMCATLOCAL"/conf/server.xml
