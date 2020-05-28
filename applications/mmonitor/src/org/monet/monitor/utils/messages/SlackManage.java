@@ -1,4 +1,4 @@
-package org.monet.monitor.utils;
+package org.monet.monitor.utils.messages;
 
 import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.methods.request.channels.ChannelsListRequest;
@@ -7,9 +7,8 @@ import com.github.seratch.jslack.api.methods.request.files.FilesUploadRequest;
 import com.github.seratch.jslack.api.methods.response.channels.ChannelsListResponse;
 import com.github.seratch.jslack.api.model.Channel;
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.monet.monitor.configuration.Configuration;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -20,11 +19,10 @@ import java.util.Collections;
 
 public class SlackManage {
 
-  private Logger logger;
+//  private Logger logger;
   private String token = "";
   private Slack session = Slack.getInstance();
   private ChannelsListResponse channelsResponse = null;
-  private Socks socks = new Socks();
 
   public static class SlackManageException extends Exception {
     SlackManageException(Throwable cause) {super(cause);}
@@ -33,9 +31,8 @@ public class SlackManage {
     }
   }
 
-  public SlackManage(String token) throws SlackManageException, Configuration.ConfigurationException {
-    logger = LogManager.getLogger(this.getClass());
-    socks.enable();
+  public SlackManage(String token) throws SlackManageException {
+//    logger = LogManager.getLogger(this.getClass());
     if (! "".equals(token)) {
       this.token = token;
       try {
@@ -46,13 +43,11 @@ public class SlackManage {
     }
   }
 
-  public void sendMessageToAChannel(String channelName, String message) throws SlackManageException, Configuration.ConfigurationException {
+  public void sendMessageToAChannel(String channelName, String message) throws SlackManageException {
     this.sendMessageToAChannel(channelName,message,"");
   }
 
-  private void sendMessageToAChannel(String channelName, String message, String body) throws SlackManageException, Configuration.ConfigurationException {
-    socks.enable();
-
+  private void sendMessageToAChannel(String channelName, String message, String body) throws SlackManageException {
     if ((! "".equals(channelName)) && (session != null)) {
       //WARNING: First bot must be receive a invitation.
       try {
@@ -93,8 +88,8 @@ public class SlackManage {
         throw new SlackManageException(e);
       }
     } else {
-      if ("".equals(channelName)) logger.warn("SlackManage channel name is empty.");
-      if (session == null) logger.warn("SlackManage session is null.");
+      if ("".equals(channelName)) System.out.println("SlackManage channel name is empty.");
+      if (session == null) System.out.println("SlackManage session is null.");
     }
   }
 }
