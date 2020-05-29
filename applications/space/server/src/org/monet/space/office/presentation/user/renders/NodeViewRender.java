@@ -251,7 +251,7 @@ public class NodeViewRender extends ViewRender {
 		if (view instanceof FormViewProperty) {
 			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) view).getShow();
 			for (Ref ref : showDefinition.getRecentTask().getTask()) {
-				taskTypes.add(ref.getDefinition());
+				taskTypes.add(ref.getValue());
 			}
 		}
 
