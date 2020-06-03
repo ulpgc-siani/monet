@@ -22,7 +22,7 @@ public class Configuration {
 
 	public static final String CONST_AppName = "deployservice";
 	public static final String CONST_AppCaption = "Monet Deploy Service";
-	public static final String CONST_Version = "0.99.258";
+	public static final String CONST_Version = "0.99.259";
 	public static final String CONST_CONFIG_FILE = CONST_AppName + ".config";
 	public static final String CONST_FileBiEngineWar = "biengine.war";
 	public static final String CONST_FileSaikuWar = "saiku.war";
