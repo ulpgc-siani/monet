@@ -35,7 +35,7 @@ Select_Count_Work_Queue_Document_State=SELECT COUNT(*) AS count_state FROM ds$wo
 Select_Count_Work_Queue_Document_State_Of_Type=SELECT COUNT(*) AS count_state FROM ds$work_queue WHERE id_document=@id_document AND operation=@type AND (state=0 OR state=1 OR state=2)
 Select_Document_Estimated_Time=SELECT AVG(TIMESTAMPDIFF(SECOND,start_date,finish_date))*(SELECT COUNT(*) FROM ds$work_queue WHERE (state=0 OR state=1 OR state=2) AND queue_date <= (SELECT MAX(queue_date) FROM ds$work_queue WHERE id_document=@id_document)) AS time FROM ds$work_queue WHERE state=3 LIMIT 10
 Reset_Work_Queue_Items_In_Progress=UPDATE ds$work_queue SET state=0 WHERE state=2 OR state=1
-Select_Not_Started_Work_Queue_Items=SELECT id, id_document, operation, queue_date, state FROM ds$work_queue WHERE state=0 AND id_document NOT IN (SELECT DISTINCT id_document FROM ds$work_queue WHERE state IN (1,2)) GROUP BY id_document HAVING queue_date=MIN(queue_date)
+Select_Not_Started_Work_Queue_Items=SELECT id, id_document, operation, queue_date, state FROM ds$work_queue WHERE state=0 AND id_document NOT IN (SELECT DISTINCT id_document FROM ds$work_queue WHERE state IN (1,2)) GROUP BY id, id_document HAVING queue_date=MIN(queue_date)
 Select_Work_Queue_Item_Extra_Data=SELECT extra_data from ds$work_queue WHERE id=@id
 Update_Work_Queue_Item_State_To_Error=UPDATE ds$work_queue SET state=@state, error_msg=@error_msg WHERE id=@id
 Update_Work_Queue_Item_State_To_Finish=UPDATE ds$work_queue SET state=@state, finish_date=NOW() WHERE id=@id

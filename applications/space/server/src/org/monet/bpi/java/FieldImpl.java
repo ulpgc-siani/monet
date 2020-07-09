@@ -2,10 +2,9 @@ package org.monet.bpi.java;
 
 import org.monet.bpi.Field;
 import org.monet.metamodel.FieldProperty;
-import org.monet.space.kernel.model.Attribute;
-import org.monet.space.kernel.model.AttributeList;
-import org.monet.space.kernel.model.Indicator;
-import org.monet.space.kernel.model.Language;
+import org.monet.space.kernel.components.ComponentPersistence;
+import org.monet.space.kernel.components.layers.NodeLayer;
+import org.monet.space.kernel.model.*;
 
 public abstract class FieldImpl<V> implements Field<V> {
 
@@ -62,6 +61,11 @@ public abstract class FieldImpl<V> implements Field<V> {
 
 		attributeList = this.attribute.getAttributeList();
 		attributeList.add(attribute);
+	}
+
+	protected static Node node(String id) {
+		NodeLayer nodeLayer = ComponentPersistence.getInstance().getNodeLayer();
+		return nodeLayer.loadNode(id);
 	}
 
 	@Override

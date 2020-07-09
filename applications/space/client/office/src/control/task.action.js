@@ -25,7 +25,7 @@ CGActionShowTask.prototype.step_1 = function () {
   State.TaskNode = null;
 
   ViewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, this.Id);
-  if (ViewTask != null) {
+  if (ViewTask != null && ViewTask.getDOM() != null) {
     this.DOMViewActiveTab = ViewTask.getDOM().getActiveTab();
     if ((this.Mode == null) || (ViewTask.getMode() == this.Mode)) {
       var Process = new CGProcessActivateTask();
@@ -218,6 +218,14 @@ CGActionShowTaskNode.prototype = new CGAction;
 CGActionShowTaskNode.constructor = CGActionShowTaskNode;
 CommandFactory.register(CGActionShowTaskNode, { Id: 0 }, false);
 
+CGActionShowTaskNode.prototype.isRecentTaskViewOfNode = function () {
+  return this.DOMItem != null && this.DOMItem.up(".recenttask") != null;
+};
+
+CGActionShowTaskNode.prototype.getRecentTaskViewInfo = function () {
+  return this.DOMItem.up(".recenttask").getControlInfo();
+};
+
 CGActionShowTaskNode.prototype.step_1 = function () {
   var Task = TasksCache.getCurrent();
 
@@ -229,6 +237,11 @@ CGActionShowTaskNode.prototype.step_1 = function () {
   var Process = new CGProcessShowTaskNode();
   Process.IdTask = Task.getId();
   Process.IdNode = this.Id;
+  if (this.isRecentTaskViewOfNode()) {
+    var info = this.getRecentTaskViewInfo();
+    Process.TargetNode = info.IdNode;
+    Process.TargetView = info.CodeView;
+  }
   Process.execute();
 
   this.terminate();
@@ -741,6 +754,8 @@ CGActionSetupTaskDelegation.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSetupTaskDelegation.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSetupTaskDelegation.prototype.checkOption.bind(this));
@@ -776,7 +791,10 @@ CGActionSetupTaskDelegation.prototype.step_4 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SetupTaskDelegation.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -1002,6 +1020,8 @@ CGActionSolveTaskLine.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskLine.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSolveTaskLine.prototype.checkOption.bind(this));
@@ -1025,7 +1045,10 @@ CGActionSolveTaskLine.prototype.step_3 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SolveTaskLine.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -1047,6 +1070,8 @@ CGActionSolveTaskEdition.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskEdition.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSolveTaskEdition.prototype.checkOption.bind(this));
@@ -1073,7 +1098,10 @@ CGActionSolveTaskEdition.prototype.step_4 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SolveTaskEdition.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 

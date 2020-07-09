@@ -17,6 +17,7 @@ import org.monet.space.kernel.model.MonetEvent;
 import org.monet.space.kernel.model.Role;
 import org.monet.space.kernel.model.TaskOrder;
 
+import java.util.Collection;
 import java.util.Date;
 
 public class ProviderBehavior extends Behavior {
@@ -179,12 +180,32 @@ public class ProviderBehavior extends Behavior {
 		}
 
 		String code = message.getSubject();
+		if (!checkResponseMessageCode(code)) {
+			throw new RuntimeException("Message response code '" + code + "' not recognized in " + declaration.getName() + " for task " + this.taskId);
+		}
 
 		MonetEvent event = new MonetEvent(MonetEvent.TASK_PROVIDER_RESPONSE_IMPORT, null, this.taskId);
 		event.addParameter(MonetEvent.PARAMETER_PROVIDER, (this.model.isInternal() ? "internal" : "external") + declaration.getName());
 		event.addParameter(MonetEvent.PARAMETER_CODE, code);
 		event.addParameter(MonetEvent.PARAMETER_MESSAGE, message);
 		this.agentNotifier.notify(event);
+	}
+
+	private boolean checkResponseMessageCode(String code) {
+		if (this.model.isInternal()) {
+			Collection<TaskProviderProperty.InternalProperty.ResponseProperty> responseList = declaration.getInternal().getResponseList();
+			for (TaskProviderProperty.InternalProperty.ResponseProperty response : responseList) {
+				if (response.getCode().equals(code)) return true;
+			}
+			return false;
+		}
+		else {
+			Collection<TaskProviderProperty.ExternalProperty.ResponseProperty> responseList = declaration.getExternal().getResponseList();
+			for (TaskProviderProperty.ExternalProperty.ResponseProperty response : responseList) {
+				if (response.getCode().equals(code)) return true;
+			}
+			return false;
+		}
 	}
 
 	private void processChat(Message message) {

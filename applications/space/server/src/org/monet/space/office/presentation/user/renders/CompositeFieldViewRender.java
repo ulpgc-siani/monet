@@ -95,6 +95,7 @@ public class CompositeFieldViewRender extends FieldViewRender {
 			render.setParameter(RenderParameter.ID, id);
 			render.setParameter(RenderParameter.IS_ROOT, "false");
 			render.setParameter(RenderParameter.IS_TEMPLATE, isTemplate);
+			render.setParameter(RenderParameter.VIEW, "preview");
 
 			return render.getOutput();
 		}

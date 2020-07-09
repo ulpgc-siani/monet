@@ -22,6 +22,7 @@
 
 package org.monet.space.kernel.model;
 
+import org.jdom.Element;
 import org.monet.space.kernel.constants.Strings;
 import org.xmlpull.v1.XmlSerializer;
 
@@ -74,4 +75,10 @@ public class ServerConfiguration extends BaseObject {
 
 	}
 
+	@Override
+	public void unserializeFromXML(Element node) {
+		if (node.getAttribute("name") != null) this.name = node.getAttributeValue("name");
+		if (node.getAttribute("host") != null) this.host = node.getAttributeValue("host");
+		if (node.getAttribute("port") != null) this.port = node.getAttributeValue("port");
+	}
 }

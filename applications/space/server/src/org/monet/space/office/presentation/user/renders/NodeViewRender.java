@@ -13,10 +13,7 @@ import org.monet.space.kernel.model.*;
 import org.monet.space.office.configuration.Configuration;
 import org.monet.space.office.core.model.Language;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class NodeViewRender extends ViewRender {
 	protected Node node;
@@ -244,14 +241,35 @@ public class NodeViewRender extends ViewRender {
 	}
 
 	protected String initRecentTaskSystemView(NodeViewProperty view, HashMap<String, Object> contentMap) {
-		TaskList taskList = this.node.getLinkedTasks();
-
+		List<Task> taskList = new ArrayList<>(this.node.getLinkedTasks().get().values());
 		contentMap.put("type", "recenttask");
 
-		if (taskList.getCount() <= 0)
+		if (taskList.size() <= 0)
 			return block("content.recenttask$empty", contentMap);
 
-		contentMap.put("idTask", taskList.get(0).getId());
+		List<String> taskTypes = new ArrayList<>();
+		if (view instanceof FormViewProperty) {
+			FormViewProperty.ShowProperty showDefinition = ((FormViewProperty) view).getShow();
+			for (Ref ref : showDefinition.getRecentTask().getTask()) {
+				taskTypes.add(ref.getValue());
+			}
+		}
+
+		Task selected = null;
+		if (taskTypes.size() > 0) {
+			for (Task task : taskList) {
+				if (taskTypes.contains(task.getDefinition().getName())) {
+					selected = task;
+					break;
+				}
+			}
+		}
+		else selected = taskList.get(0);
+
+		if (selected == null)
+			return block("content.recenttask$empty", contentMap);
+
+		contentMap.put("idTask", selected.getId());
 
 		return block("content.recenttask", contentMap);
 	}

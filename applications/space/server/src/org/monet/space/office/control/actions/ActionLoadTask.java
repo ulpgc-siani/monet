@@ -74,7 +74,7 @@ public class ActionLoadTask extends Action {
 			return ErrorCode.READ_TASK_PERMISSIONS + Strings.COLON + Strings.SPACE + Language.getInstance().getErrorMessage(ErrorCode.READ_TASK_PERMISSIONS);
 		}
 
-		OfficeRender render = this.rendersFactory.get(task, template, this.getRenderLink(), getAccount());
+		OfficeRender render = this.rendersFactory.get(task, template != null && !template.equalsIgnoreCase("null") ? template : "preview.html?mode=page", this.getRenderLink(), getAccount());
 		task.setContent(render.getOutput());
 
 		return task.toJson().toJSONString();

@@ -22,6 +22,9 @@
     	<attribute token="deploy-uri" type="URI">
     		<description>URL de la instalación de Monet en la que publicar este modelo</description>
     	</attribute>
+    	<attribute token="deploy-path" type="string">
+    		<description>Path de la instalación de Monet en la que publicar este modelo. Es opcional. Si se desea indicar la operación se debe usar la variable ':operation'</description>
+    	</attribute>
     </property>
 
 	<attribute token="script" type="key" link="ActivityDefinition" multiple="true">

@@ -18,10 +18,10 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 	public FieldCompositeImpl() {
 	}
 
-	Node node;
+	Node _node;
 
 	void injectNode(Node node) {
-		this.node = node;
+		this._node = node;
 	}
 
 	FieldFactory fieldFactory = FieldFactory.getInstance();
@@ -37,7 +37,7 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 	}
 
 	public <T, F extends Field<V>, V> T getField(String key) {
-		return getField(node.getCode(), key);
+		return getField(this._node.getCode(), key);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,6 +45,7 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 		Attribute attribute = null;
 		Field<?> field = null;
 		FieldProperty fieldDeclaration = ((CompositeFieldProperty) this.fieldDefinition).getField(name);
+		Node node = FieldImpl.node(this._node.getId());
 
 		if (!name.substring(0, 1).equals("[")) name = "[" + name + "]";
 
@@ -62,13 +63,13 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 
 			ArrayList<F> fields = new ArrayList<F>();
 			for (Attribute currentAttribute : attributes) {
-				fields.add((F) fieldFactory.get(definitionName, fieldDeclaration, currentAttribute, this.node));
+				fields.add((F) fieldFactory.get(definitionName, fieldDeclaration, currentAttribute, node));
 			}
 
 			FieldMultipleImpl<F, V> fieldMultiple = new FieldMultipleImpl<F, V>();
 			fieldMultiple.injectDefinitionName(definitionName);
 			fieldMultiple.injectFieldDeclaration(fieldDeclaration);
-			fieldMultiple.injectNode(this.node);
+			fieldMultiple.injectNode(node);
 			fieldMultiple.injectAttribute(attribute);
 			fieldMultiple.injectFields(fields);
 			fieldMultiple.injectFactory(this.fieldFactory);
@@ -82,7 +83,7 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 				attribute.setCode(fieldDeclaration.getCode());
 				this.setAttribute(fieldDeclaration.getCode(), attribute);
 			}
-			field = fieldFactory.get(definitionName, fieldDeclaration, attribute, this.node);
+			field = fieldFactory.get(definitionName, fieldDeclaration, attribute, node);
 		}
 
 		return (T) field;
@@ -94,7 +95,7 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 		List<Field<?>> result = new ArrayList<>();
 
 		for (FieldProperty fieldProperty : definition.getAllFieldPropertyList())
-			result.add((Field<?>) getField(node.getCode(), fieldProperty.getCode()));
+			result.add((Field<?>) getField(this._node.getCode(), fieldProperty.getCode()));
 
 		return result;
 	}

@@ -10,15 +10,21 @@ import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.monet.mobile.service.federation.Response;
 import org.monet.space.mobile.R;
 import org.monet.space.mobile.activity.FederationAccountAuthenticatorActivity;
+import org.monet.space.mobile.helpers.HttpClientHelper;
 import org.monet.space.mobile.helpers.Log;
 import org.monet.space.mobile.net.ProxyLayer;
 import org.monet.space.mobile.presenter.FederationAccountAuthenticatorPresenter;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.monet.space.mobile.helpers.HttpClientHelper.setupHttpClient;
 
 public class FederationAccountAuthenticator extends AbstractAccountAuthenticator {
 
@@ -108,7 +114,7 @@ public class FederationAccountAuthenticator extends AbstractAccountAuthenticator
 
     private String onlineConfirmPassword(String federationUrl, String businessUnit, String secret, String username, String password) {
         OAuthAPI oAuthAPI = new OAuthAPI(federationUrl);
-        OAuthProvider provider = new CommonsHttpOAuthProvider(oAuthAPI.getRequestTokenEndpoint(), oAuthAPI.getAccessTokenEndpoint(), oAuthAPI.getAuthorizationUrl()); //, HttpClientHelper.setupHttpClient(this.context)
+        OAuthProvider provider = new CommonsHttpOAuthProvider(oAuthAPI.getRequestTokenEndpoint(), oAuthAPI.getAccessTokenEndpoint(), oAuthAPI.getAuthorizationUrl(), HttpClientHelper.setupHttpClient(this.context));
         OAuthConsumer consumer = new CommonsHttpOAuthConsumer(businessUnit, secret);
 
         String requestToken;

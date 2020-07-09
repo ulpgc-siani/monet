@@ -28,7 +28,7 @@ public class ActionGetUserLinkedToNode extends Action {
 		node = nodeLayer.loadNode(idNode);
 		user = federationLayer.loadUserLinkedToNode(node);
 
-		return user.serializeToXML();
+		return user != null ? user.serializeToXML() : "";
 	}
 
 }

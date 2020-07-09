@@ -37,6 +37,7 @@ CGDecoratorField.prototype.execute = function (DOMField) {
     Widget.onAddDefaultValue = this.atWidgetAddDefaultValue.bind(this);
     Widget.setEditor(EditorsFactory.get(EditorType));
     Widget.setTarget(this);
+    if (Widget.hideLoading) Widget.hideLoading();
   };
 
   DOMField.isLockedByDefinition = function () {

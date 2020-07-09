@@ -173,7 +173,7 @@ CREATE TABLE `ds$templates_data` (
 CREATE TABLE `ds$templates_parts` (
   `id_template` BIGINT(20) NOT NULL,
   `id` VARCHAR(255) COLLATE utf8_bin NOT NULL,
-  `data` TEXT COLLATE utf8_bin NOT NULL,
+  `data` MEDIUMTEXT COLLATE utf8_bin NOT NULL,
   PRIMARY KEY  (`id`,`id_template`),
   KEY `id_template` (`id_template`),
   CONSTRAINT `templates_parts_ibfk_1` FOREIGN KEY (`id_template`) REFERENCES `ds$templates` (`id`) ON DELETE CASCADE ON UPDATE CASCADE

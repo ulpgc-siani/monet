@@ -3,16 +3,15 @@ package org.monet.monitor;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.monet.monitor.configuration.Configuration;
-import org.monet.monitor.utils.SlackManage;
+import org.monet.monitor.utils.messages.Message;
 
 public class Main {
 
-  private static Logger logger;
+//  private static Logger logger;
 
   private Main() { initializeLogger(); }
 
@@ -23,16 +22,16 @@ public class Main {
 
     } catch (IOException ignore) {
     }
-    logger = LogManager.getLogger(this.getClass());
+//    logger = LogManager.getLogger(this.getClass());
   }
 
-  public static void main(String[] args) throws IOException, Configuration.ConfigurationException, SlackManage.SlackManageException {
+  public static void main(String[] args) throws Exception {
     new Main().start();
   }
 
-  private void start() throws Configuration.ConfigurationException, UnknownHostException, SlackManage.SlackManageException {
+  private void start() throws Exception {
     System.out.println(Configuration.appCaption() + " v" + Configuration.version() + "\n");
-    logger.info("Initializing the application");
+//    logger.info("Initializing the application");
 
     String disks = Configuration.getDisks();
     String[] aDisks = disks.split(";");
@@ -41,24 +40,25 @@ public class Main {
     }
   }
 
-  private static void CheckSizeDisk(String disk) throws Configuration.ConfigurationException, UnknownHostException, SlackManage.SlackManageException {
-    long MaxDiskSize = Configuration.getMaxSizeGB();
+  private static void CheckSizeDisk(String disk) throws Exception {
+    long MinDiskSize = Configuration.getMinSizeGB();
 
-    logger.info("Check size disk " + disk);
+//    logger.info("Check size disk " + disk);
 
     File file = new File(disk);
     long usableSpace = file.getUsableSpace() / 1024 / 1024 / 1024;
 
 
-    String info = "";
+/*    String info = "";
     info += "Project: *" + Configuration.getProject() + "*\n";
     info += "Host: " + InetAddress.getLocalHost().getHostName() + "\n";
     info += "Space free in '" + disk + "': _" + usableSpace + " GB_\n";
-    logger.info(info);
-
-    if (usableSpace < MaxDiskSize) {
-      logger.info("Detected problem. Send alert.");
-      new SlackManage(Configuration.getSlackToken()).sendMessageToAChannel(Configuration.getSlackChannel(), info);
+*/
+    String info = "mMonitor ["+Configuration.getProject()+", "+InetAddress.getLocalHost().getHostName()+"] Alert: " + "Space free in '" + disk + "': " + usableSpace + " GB";
+    if (usableSpace < MinDiskSize) {
+      System.out.println(info);
+//      logger.info(info);
+      new Message(Configuration.getSlackToken(), Configuration.getSlackChannel(), Configuration.getTeamsURL()).send(info);
     }
   }
 

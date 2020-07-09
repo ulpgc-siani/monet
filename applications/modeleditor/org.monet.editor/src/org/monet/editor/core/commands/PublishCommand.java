@@ -38,6 +38,7 @@ public class PublishCommand implements IJobCommand {
 		
 		final IProject project = manifest.getProject();
 		String deployUri = null;
+		String deployPath = null;
 		
 		if (ProjectHelper.hasError(project, true)) {
       EclipseHelper.showErrorMessage("Can't publish project with errors.");
@@ -67,6 +68,7 @@ public class PublishCommand implements IJobCommand {
         console.println("Package built at '%s'", packageFile.getFullPath().toString());
         
         deployUri = setupModel.getDeployUri();
+        deployPath = setupModel.getDeployPath();
         
         if(deployUri == null) {
           console.println("Not found a deploy-uri at setup definition. Publish finish here.");
@@ -79,6 +81,7 @@ public class PublishCommand implements IJobCommand {
             console.println("Uploading distribution package to '%s'", deployUri);
             console.println("|--------- Progress ---------|");
             SpaceSetupServiceClient.publish(deployUri, 
+            								deployPath,
                                             packageFile, 
                                             keyStoreFilename, 
                                             ProjectHelper.getProjectKeyStorePassword(project),

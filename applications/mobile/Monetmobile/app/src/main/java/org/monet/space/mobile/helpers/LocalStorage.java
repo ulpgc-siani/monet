@@ -4,6 +4,8 @@ import android.content.Context;
 import android.media.MediaScannerConnection;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class LocalStorage {
     private static final String MONET_TASK_STORE = "tasks/%s";
     private static final String MONET_TASK_SOURCE_STORE = "tasks/%s/source";
     private static final String MONET_TASK_RESULT_STORE = "tasks/%s/result";
+    private static final String MONET_TASK_INITIALIZE_SCHEMA_FILE = ".default.txt";
     private static final String MONET_TASK_SCHEMA_FILE = ".schema";
     private static final String MONET_TASK_METADATA_FILE = ".metadata";
 
@@ -39,6 +42,22 @@ public class LocalStorage {
 
     public static File getTaskResultSchemaFile(Context context, String taskId) {
         return new File(getTaskResultStore(context, taskId), MONET_TASK_SCHEMA_FILE);
+    }
+
+    public static File getTaskInitializeStore(Context context, String taskId) {
+        return getDirectory(context, String.format(MONET_TASK_STORE, taskId));
+    }
+
+    public static File getTaskInitializeSchemaFile(Context context, String taskId) {
+        return new File(getTaskInitializeStore(context, taskId), "");
+    }
+
+    public static File getTaskDefaultSchemaStore(Context context, String taskId) {
+        return getDirectory(context, String.format(MONET_TASK_STORE, taskId));
+    }
+
+    public static File getTaskDefaultSchemaFile(Context context, String taskId) {
+        return new File(getTaskInitializeStore(context, taskId), MONET_TASK_INITIALIZE_SCHEMA_FILE);
     }
 
     public static File getTaskResultMetadataFile(Context context, String taskId) {
@@ -98,5 +117,33 @@ public class LocalStorage {
 
     public static File getAppIconFile(Context context) {
         return new File(context.getExternalFilesDir(null).getAbsolutePath(), "appicon.png");
+    }
+
+    public static void copyMonetSchemaFile(File defaultValues, Context context, String taskId) {
+        FileInputStream inputStream = null;
+        FileOutputStream outputStream = null;
+        try {
+            inputStream = new FileInputStream(defaultValues);
+            File defaultValues2 = new File(LocalStorage.getTaskInitializeSchemaFile(context,taskId), ".default.txt");
+            outputStream = new FileOutputStream(defaultValues2);
+            if (inputStream.available() > 0) {
+                int data;
+                while  ((data=inputStream.read()) != -1){
+                    char caracter = (char) data;
+                    if (caracter == '\t') continue;
+                    if (caracter == '\r') continue;
+                    if (caracter == '\n') continue;
+                    outputStream.write(data);
+                }
+
+            }
+        } catch (Exception e) {
+            Log.error("Error reading default schema: " + e.getMessage(), e);
+            throw new RuntimeException("Can't read default schema", e);
+        } finally {
+            StreamHelper.close(inputStream);
+            StreamHelper.close(outputStream);
+        }
+
     }
 }

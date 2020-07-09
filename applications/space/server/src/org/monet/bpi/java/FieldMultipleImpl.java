@@ -20,7 +20,7 @@ import java.util.UUID;
 public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T, V>, Iterable<V> {
 
 	protected String definitionName;
-	protected Node node;
+	protected Node _node;
 	protected FieldProperty definition;
 	protected Attribute attribute;
 	protected List<T> fields;
@@ -31,7 +31,7 @@ public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T
 	}
 
 	void injectNode(Node node) {
-		this.node = node;
+		this._node = node;
 	}
 
 	void injectAttribute(Attribute attribute) {
@@ -51,7 +51,7 @@ public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T
 	}
 
 	private FieldImpl<V> createField(V newValue) {
-		FieldImpl<V> field = (FieldImpl<V>) this.fieldFactory.get(this.definitionName, this.definition, new Attribute(), node);
+		FieldImpl<V> field = (FieldImpl<V>) this.fieldFactory.get(this.definitionName, this.definition, new Attribute(), FieldImpl.node(this._node.getId()));
 		field.set(newValue);
 		int count = this.attribute.getAttributeList().getCount();
 		field.attribute.setId(UUID.randomUUID().toString());

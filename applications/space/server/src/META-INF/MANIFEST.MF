@@ -1,0 +1,57 @@
+Manifest-Version: 1.0
+Class-Path: batik-gvt-1.7.jar error_prone_annotations-2.1.2.jar mail-1
+ .4.jar gson-2.1.jar simple-xml-2.6.7.jar avalon-framework-4.1.5.jar g
+ ax-httpjson-0.47.0.jar oracle-sdoapi-1.0.jar google-http-client-jacks
+ on-1.24.1.jar json-20160810.jar batik-bridge-1.7.jar google-api-servi
+ ces-storage-v1-rev135-1.24.1.jar google-http-client-jackson2-1.25.0.j
+ ar batik-parser-1.7.jar jackson-core-asl-1.9.11.jar servlet-api.jar t
+ omcat-dbcp.jar grpc-auth-1.13.1.jar mysql-connector-java-5.1.47.jar g
+ uice-multibindings-2.0.jar c3p0-0.9.5.2.jar proto-google-common-proto
+ s-1.12.0.jar google-cloud-firestore-0.61.0-beta.jar grpc-protobuf-1.1
+ 3.1.jar jdom-1.1.3.jar metadata-extractor-2.11.0.jar commons-chain-1.
+ 1.jar google-oauth-client-1.25.0.jar commons-io-1.4.jar struts-core-1
+ .3.8.jar guava-20.0.jar encrypt-1.2.jar jts-1.8.jar federation-setup-
+ 1.0.jar grpc-core-1.13.1.jar xmlgraphics-commons-1.4.jar itrules-stan
+ dalone-0.7.jar batik-js-1.7.jar gson-2.2.4.jar j2objc-annotations-1.1
+ .jar opencensus-contrib-http-util-0.15.0.jar batik-extension-1.7.jar 
+ netty-buffer-4.1.22.Final.jar bcmail-jdk15-1.45.jar google-cloud-stor
+ age-1.43.0.jar mchange-commons-java-0.2.11.jar batik-util-1.7.jar bac
+ kport-util-concurrent-3.1.jar google-auth-library-oauth2-http-0.11.0.
+ jar struts-taglib-1.3.8.jar batik-ext-1.7.jar concurrent-1.0.jar fop-
+ 1.0.jar google-cloud-core-http-1.43.0.jar ojdbc14-10.2.0.4.0.jar bcpr
+ ov-jdk15-1.45.jar netty-codec-4.1.22.Final.jar commons-validator-1.3.
+ 1.jar netty-codec-http-4.1.22.Final.jar commons-fileupload-1.2.2.jar 
+ jai-codec-1.0.jar commons-logging-1.1.3.jar velocity-tools-1.4.jar ba
+ tik-dom-1.7.jar xpp3-1.1.3.3.jar servlet-api-1.0.jar commons-collecti
+ ons-3.1.jar jackson-core-2.9.6.jar google-cloud-core-grpc-1.43.0.jar 
+ google-auth-library-credentials-0.11.0.jar netty-resolver-4.1.22.Fina
+ l.jar batik-anim-1.7.jar jacksum-1.0.jar avalon-framework-impl-4.3.1.
+ jar proto-google-cloud-firestore-v1beta1-0.26.0.jar backservice-3.0.j
+ ar log4j-1.2.17.jar netty-transport-4.1.22.Final.jar httpmime-4.3.6.j
+ ar bctsp-jdk14-1.38.jar opencensus-contrib-grpc-metrics-0.12.3.jar op
+ encensus-contrib-grpc-util-0.15.0.jar batik-transcoder-1.7.jar guice-
+ 2.0.jar tika-core-0.4.jar joda-time-1.6.2.jar bctsp-jdk15-1.45.jar gu
+ ice-servlet-2.0.jar fswatcher-1.0.jar commons-httpclient-3.1.jar fire
+ base-admin-6.7.0.jar gax-1.30.0.jar grpc-protobuf-lite-1.13.1.jar jai
+ -core-1.0.jar auto-value-1.4.jar commons-beanutils-1.7.0.jar bcmail-j
+ dk14-1.38.jar aopalliance-1.0.jar xml-apis-1.0.jar httpcore-4.3.3.jar
+  quartz-2.3.0.jar commons-codec-1.6.jar antlr-2.7.2.jar slf4j-api-1.7
+ .7.jar oro-2.0.8.jar stax-api-1.0.1.jar sumus-1.0.jar tomcat-dbcp-7.0
+ .12.jar itextpdf-5.0.6.jar opencensus-api-0.15.0.jar batik-svggen-1.7
+ .jar netty-handler-4.1.22.Final.jar urlrewritefilter-3.2.0.jar jcs-1.
+ 3.jar scribe-1.1.3.jar api-common-1.7.0.jar json-simple-1.1.jar httpc
+ lient-4.3.6.jar google-http-client-appengine-1.24.1.jar commons-email
+ -1.1.jar stax-1.2.0.jar batik-svg-dom-1.7.jar grpc-context-1.13.1.jar
+  jsr305-3.0.2.jar google-api-client-gson-1.25.0.jar sslext-1.2-0.jar 
+ google-http-client-gson-1.25.0.jar bcprov-jdk14-1.38.jar grpc-stub-1.
+ 13.1.jar struts-tiles-1.3.8.jar batik-awt-util-1.7.jar commons-digest
+ er-1.8.jar cotton-signatory-1.4.jar xmpcore-5.1.3.jar batik-xml-1.7.j
+ ar json-smart-1.1.1.jar google-cloud-core-1.43.0.jar xml-apis-ext-1.3
+ .04.jar google-api-client-1.25.0.jar batik-script-1.7.jar avalon-fram
+ ework-api-4.3.1.jar batik-css-1.7.jar xalan-2.6.0.jar grpc-netty-shad
+ ed-1.13.1.jar proto-google-iam-v1-0.12.0.jar netty-common-4.1.22.Fina
+ l.jar protobuf-java-util-3.6.0.jar activation-1.1.jar HikariCP-java6-
+ 2.3.13.jar xml-apis-1.3.04.jar google-http-client-1.25.0.jar commons-
+ lang-2.1.jar velocity-1.5.jar oracle-sdoutl-1.0.jar gax-grpc-1.30.0.j
+ ar protobuf-java-3.6.0.jar threetenbp-1.3.3.jar templation-1.0.jar
+

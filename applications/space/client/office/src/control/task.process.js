@@ -589,8 +589,8 @@ CGProcessShowTaskNode.prototype.step_1 = function () {
 CGProcessShowTaskNode.prototype.step_2 = function () {
 	var ViewNode = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.IdNode);
 
-	State.TaskNode = {IdNode: this.IdNode, IdTask: this.IdTask};
-	ViewNode.getDOM().showBackTaskCommand(this.IdTask);
+	State.TaskNode = {IdNode: this.IdNode, TargetNode: this.TargetNode, TargetView: this.TargetView, IdTask: this.IdTask};
+	ViewNode.getDOM().showBackTaskCommand(this.IdTask, this.TargetNode, this.TargetView);
 
 	this.terminateOnSuccess();
 };

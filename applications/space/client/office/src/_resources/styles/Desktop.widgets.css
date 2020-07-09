@@ -487,6 +487,10 @@ img.required {
   color: #777;
 }
 
+.widget.wtable.locked .more {
+  color: #777;
+}
+
 .widget.wlist ul.draglist, .widget.wtable ul.draglist {
   position: relative;
 }
@@ -625,6 +629,10 @@ img.required {
   margin: 2px 6px;
   z-index: 10;
   right: 0;
+}
+
+.widget.wlist.locked li a.delete, .widget.wtable.locked li a.delete {
+  display: none !important;
 }
 
 .widget.wtable .hidelist {

@@ -91,13 +91,13 @@ public class AgentWorkQueue extends TimerTask {
 		Date now = new Date();
 		long difference = now.getTime() - lastUpdateTime.getTime();
 
-		if (retries < 10 && difference > SECOND)
+		if (retries == 0)
 			return true;
-		else if (retries < 100 && difference > MINUTE)
+		else if (retries < 10 && difference > MINUTE)
 			return true;
-		else if (retries < 1000 && difference > HOUR)
+		else if (retries < 100 && difference > HOUR)
 			return true;
-		else if (retries >= 1000 && difference > DAY)
+		else if (retries < 1000 && difference > DAY)
 			return true;
 
 		return false;

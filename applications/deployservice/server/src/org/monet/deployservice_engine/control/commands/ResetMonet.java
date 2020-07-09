@@ -252,7 +252,10 @@ public class ResetMonet implements ICommand {
 			if (space.equals("ROOT"))
 				dbData.name = dbPrefix + servers.getItem(server).getItem(container).getProperty("db-default-name");
 
-			if (dbData.name.equals("")) {
+			if ("".equals(dbData.name))
+				dbData.name = servers.getItem(server).getItem(container).getProperty("db-user");
+
+			if ("".equals(dbData.name)) {
 				String error = "Name database (db-name) not found in parameters.";
 				logger.error(error + " Database type: " + db.getDbTypeFromUrl(dbData.url) + " Url: " + dbData.url);
 				status.setContent(ResultIDs.InvalidDbName);

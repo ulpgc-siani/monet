@@ -168,7 +168,6 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                 protected void onSuccess(Void t) throws Exception {
                     super.onSuccess(t);
                     Schema schema= Schema.fromFile(LocalStorage.getTaskResultSchemaFile(context, String.valueOf(taskId)), state.Definition);
-                    Object datos = schema.get("Gestion");
                     finish();
 
                 }
@@ -194,6 +193,8 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                     state.CurrentStepIndex = task.step;
                     state.MultipleStepIteration = task.stepIteration;
                     state.Schema = Schema.fromFile(LocalStorage.getTaskResultSchemaFile(context, String.valueOf(taskId)), state.Definition);
+                    //state.Schema = Schema.fromFile(LocalStorage.getTaskDefaultSchemaFile(context, String.valueOf(taskId)), state.Definition);
+
 
                     int index = state.CurrentStepIndex;
                     if (index > 0) index--;

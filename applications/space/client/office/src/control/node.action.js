@@ -2368,7 +2368,10 @@ CGActionRenderRecentTask.prototype.step_1 = function () {
 	var Task = new CGTask();
 	Task.setId(this.IdTask);
 
-	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement);
+	//var ContainerView = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.Id);
+	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement, null);
+	ViewTask.NodeDependant = true;
+
 	var Process = new CGProcessShowTask();
 	Process.Id = this.IdTask;
 	Process.Mode = ViewTask.getMode();

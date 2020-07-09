@@ -769,8 +769,8 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 
 		this.addFormFactToHistory(actionProperty, form);
 
-		this.persistenceService.deleteNodeAndRemoveFromTrash(form.getId());
 		this.model.setEditionFormId(null);
+		this.persistenceService.deleteNodeAndRemoveFromTrash(form.getId());
 
 		this.unlock(new Lock(placeProperty.getCode(), placeProperty.getCode()));
 
@@ -1206,7 +1206,18 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		if (this.isFinished())
 			throw new RuntimeException("Invalid operation: Task is finished.");
 
+		PlaceProperty placeProperty = this.model.getPlaceProperty();
+		String lockName = placeProperty.getCode() + "$" + placeProperty.getCode();
+		boolean resetEdition = false;
+		if (placeProperty.getEditionActionProperty() != null) resetEdition = true;
+
 		this.gotoPlace(placeName, historyText);
+
+		if (resetEdition) {
+			this.model.setEditionFormId(null);
+			this.model.getLockStates().clear();
+			this.save();
+		}
 	}
 
 	public synchronized ProviderBehavior getCurrentProvider() {

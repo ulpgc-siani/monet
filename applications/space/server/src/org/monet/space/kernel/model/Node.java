@@ -26,6 +26,7 @@ import net.minidev.json.JSONObject;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.monet.bpi.types.Date;
 import org.monet.metamodel.*;
 import org.monet.metamodel.ProjectBase.TypeEnumeration;
 import org.monet.metamodel.RuleProperty.ListenProperty;
@@ -581,23 +582,30 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 		return reference;
 	}
 
-	public Reference getReference(String code) {
+	public Reference getReference(String key) {
 		ReferenceLink link;
 		Reference reference;
 
-		if (code == null)
+		if (key == null)
 			return this.getReference();
-		if (this.references.containsKey(code))
-			return this.references.get(code);
+		if (this.references.containsKey(key))
+			return this.references.get(key);
+		else {
+			IndexDefinition indexDefinition = Dictionary.getInstance().getIndexDefinition(key);
+			if (this.references.containsKey(indexDefinition.getCode()))
+				return this.references.get(indexDefinition.getCode());
+			if (this.references.containsKey(indexDefinition.getName()))
+				return this.references.get(indexDefinition.getName());
+		}
 
 		link = this.getReferenceLink();
 		if (link == null) {
-			return new Reference(code);
+			return new Reference(key);
 		}
 
-		reference = link.loadNodeReference(this, code);
+		reference = link.loadNodeReference(this, key);
 
-		this.references.put(code, reference);
+		this.references.put(key, reference);
 
 		return reference;
 	}
@@ -1251,8 +1259,10 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 		Reference reference = this.getReference();
 		if (reference != null) {
 			DateFormat dateFormat = new SimpleDateFormat("yyyyy-MM-dd HH:mm:ss.S z");
-			serializer.attribute("", "createDate", dateFormat.format(reference.getCreateDate().getValue()));
-			serializer.attribute("", "updateDate", dateFormat.format(reference.getUpdateDate().getValue()));
+			Date createDate = reference.getCreateDate();
+			if (createDate != null) serializer.attribute("", "createDate", dateFormat.format(createDate.getValue()));
+			Date updateDate = reference.getUpdateDate();
+			if (updateDate != null) serializer.attribute("", "updateDate", dateFormat.format(updateDate.getValue()));
 			if (reference.getDeleteDate() != null) serializer.attribute("", "deleteDate", dateFormat.format(reference.getDeleteDate().getValue()));
 			serializer.attribute("", "isHighlighted", String.valueOf(reference.isHighlighted()));
 			serializer.attribute("", "isPrototype", String.valueOf(reference.isPrototype()));

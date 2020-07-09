@@ -57,53 +57,45 @@ public class Configuration {
 		return prop.getProperty(parameter);
 	}
 
-	private static String getValue(String sName) throws ConfigurationException {
-		String result;
-		if (System.getenv(sName) == null)
-			throw new ConfigurationException("ERROR: Environment parameter '" + sName + "' is null.");
-		else
-			result = System.getenv(sName);
-
-		return result;
+	private static String getValue(String sName) {
+		return System.getenv(sName);
 	}
 
-	public static String getSlackToken() throws ConfigurationException {
+	public static String getSlackToken() {
 		return getValue("SLACK_TOKEN");
 	}
 
-	public static String getSlackChannel() throws ConfigurationException {
+	public static String getSlackChannel() {
 		return getValue("SLACK_CHANNEL");
 	}
 
+	public static String getTeamsURL() {
+		return getValue("TEAMS_URL");
+	}
 
 	public static String getSocksHost() {
-		try {
-			return getValue("SOCKS_HOST");
-		} catch (ConfigurationException e) {
-			//ignore
-		}
+	  String value = getValue("SOCKS_HOST");
+	  if (value != null)
+	    return value;
 		return "";
 	}
 
 	public static String getSocksPort() {
-		try {
-			return getValue("SOCKS_PORT");
-		} catch (ConfigurationException e) {
-			//ignore
-    }
-		return "";
+    String value = getValue("SOCKS_PORT");
+    if (value != null)
+      return value;
+    return "";
 	}
 
-  public static long getMaxSizeGB() throws ConfigurationException {
-    return Long.parseLong(getValue("MAX_DISK_SIZE_GB"));
+  public static long getMinSizeGB() {
+    return Long.parseLong(getValue("MIN_DISK_SIZE_GB"));
   }
 
-  public static String getDisks() throws ConfigurationException {
+  public static String getDisks() {
     return getValue("DISKS");
   }
 
-  public static String getProject() throws ConfigurationException {
+  public static String getProject() {
     return getValue("PROJECT");
   }
-
 }

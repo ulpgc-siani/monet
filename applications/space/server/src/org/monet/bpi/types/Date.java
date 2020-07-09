@@ -278,9 +278,9 @@ public class Date {
 	public static SimpleDateFormat buildFormatter(String format) {
 		SimpleDateFormat formatter = new SimpleDateFormat(format);
 
-		TimeZone timeZone = BusinessUnit.getTimeZone();
-		if (timeZone != null)
-			formatter.setTimeZone(timeZone);
+//		TimeZone timeZone = BusinessUnit.getTimeZone();
+//		if (timeZone != null)
+//			formatter.setTimeZone(timeZone);
 
 		return formatter;
 	}

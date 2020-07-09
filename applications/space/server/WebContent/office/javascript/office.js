@@ -1865,13 +1865,15 @@ function getMonetLinkAction(sMonetLink) {
     var aResult = Expression.exec(sMonetLink);
 
     var type = aResult[1];
-    var entityId = aResult[2].split("\\.")[0];
+    var entityId = aResult[2].split(".")[0];
     var editMode = aResult.length == 3;
     var viewId = aResult[2].indexOf(".")!=-1?aResult[2].substring(aResult[2].lastIndexOf(".") + 1):null;
 
     if (type == "node") {
-      if (editMode) return "shownode(" + entityId + ",edit.html?mode=page)";
-      else return "shownode(" + entityId + ")";
+      var command = "shownode(" + entityId;
+      // if (viewId != null) command += "," + viewId;
+      if (editMode) command += ",edit.html?mode=page";
+      return command + ")";
     }
     else if (type == "task") {
       if (viewId != null) return "showtaskview(" + entityId + "," + viewId + ")";
@@ -5394,7 +5396,7 @@ CGActionShowBase.prototype.getContainerView = function (Type, Object) {
   var View = Desktop.Main.Center.Body.getContainerView(Type, Object.getId());
   var IdTab = null;
 
-  if (View != null) {
+  if (View != null && !View.NodeDependant) {
     Desktop.Main.Center.Body.deleteView(Type, View.getId());
     IdTab = Desktop.Main.Center.Body.getTabId(Type, Object.getId());
   }
@@ -5434,8 +5436,8 @@ CGActionShowBase.prototype.getView = function (Type, Object, DOMElement) {
   return View;
 };
 
-CGActionShowBase.prototype.createView = function (Type, Object, DOMElement) {
-  var View = Desktop.createView(DOMElement, Object, null, this.Mode, false);
+CGActionShowBase.prototype.createView = function (Type, Object, DOMElement, ContainerView) {
+  var View = Desktop.createView(DOMElement, Object, ContainerView, this.Mode, false);
   View.setMode(this.Mode);
   return View;
 };
@@ -14287,7 +14289,10 @@ CGActionRenderRecentTask.prototype.step_1 = function () {
 	var Task = new CGTask();
 	Task.setId(this.IdTask);
 
-	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement);
+	//var ContainerView = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.Id);
+	var ViewTask = this.createView(VIEW_TASK, Task, DOMElement, null);
+	ViewTask.NodeDependant = true;
+
 	var Process = new CGProcessShowTask();
 	Process.Id = this.IdTask;
 	Process.Mode = ViewTask.getMode();
@@ -18119,8 +18124,8 @@ CGProcessShowTaskNode.prototype.step_1 = function () {
 CGProcessShowTaskNode.prototype.step_2 = function () {
 	var ViewNode = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, this.IdNode);
 
-	State.TaskNode = {IdNode: this.IdNode, IdTask: this.IdTask};
-	ViewNode.getDOM().showBackTaskCommand(this.IdTask);
+	State.TaskNode = {IdNode: this.IdNode, TargetNode: this.TargetNode, TargetView: this.TargetView, IdTask: this.IdTask};
+	ViewNode.getDOM().showBackTaskCommand(this.IdTask, this.TargetNode, this.TargetView);
 
 	this.terminateOnSuccess();
 };
@@ -19366,7 +19371,7 @@ CGActionShowTask.prototype.step_1 = function () {
   State.TaskNode = null;
 
   ViewTask = Desktop.Main.Center.Body.getContainerView(VIEW_TASK, this.Id);
-  if (ViewTask != null) {
+  if (ViewTask != null && ViewTask.getDOM() != null) {
     this.DOMViewActiveTab = ViewTask.getDOM().getActiveTab();
     if ((this.Mode == null) || (ViewTask.getMode() == this.Mode)) {
       var Process = new CGProcessActivateTask();
@@ -19559,6 +19564,14 @@ CGActionShowTaskNode.prototype = new CGAction;
 CGActionShowTaskNode.constructor = CGActionShowTaskNode;
 CommandFactory.register(CGActionShowTaskNode, { Id: 0 }, false);
 
+CGActionShowTaskNode.prototype.isRecentTaskViewOfNode = function () {
+  return this.DOMItem != null && this.DOMItem.up(".recenttask") != null;
+};
+
+CGActionShowTaskNode.prototype.getRecentTaskViewInfo = function () {
+  return this.DOMItem.up(".recenttask").getControlInfo();
+};
+
 CGActionShowTaskNode.prototype.step_1 = function () {
   var Task = TasksCache.getCurrent();
 
@@ -19570,6 +19583,11 @@ CGActionShowTaskNode.prototype.step_1 = function () {
   var Process = new CGProcessShowTaskNode();
   Process.IdTask = Task.getId();
   Process.IdNode = this.Id;
+  if (this.isRecentTaskViewOfNode()) {
+    var info = this.getRecentTaskViewInfo();
+    Process.TargetNode = info.IdNode;
+    Process.TargetView = info.CodeView;
+  }
   Process.execute();
 
   this.terminate();
@@ -20082,6 +20100,8 @@ CGActionSetupTaskDelegation.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSetupTaskDelegation.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSetupTaskDelegation.prototype.checkOption.bind(this));
@@ -20117,7 +20137,10 @@ CGActionSetupTaskDelegation.prototype.step_4 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SetupTaskDelegation.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -20343,6 +20366,8 @@ CGActionSolveTaskLine.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskLine.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSolveTaskLine.prototype.checkOption.bind(this));
@@ -20366,7 +20391,10 @@ CGActionSolveTaskLine.prototype.step_3 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SolveTaskLine.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -20388,6 +20416,8 @@ CGActionSolveTaskEdition.prototype.onFailure = function (sResponse) {
 };
 
 CGActionSolveTaskEdition.prototype.step_1 = function () {
+  this.DOMItemRef = this.DOMItem.href;
+  this.DOMItem.href = "";
 
   if (this.RequireConfirmation != null && this.RequireConfirmation != "") {
     Ext.MessageBox.confirm(Lang.ViewTask.DialogConfirmAction.Title, utf8Decode(this.RequireConfirmation), CGActionSolveTaskEdition.prototype.checkOption.bind(this));
@@ -20414,7 +20444,10 @@ CGActionSolveTaskEdition.prototype.step_4 = function () {
   if (this.Process.success()) {
     if (!this.Process.Cancel) Desktop.reportSuccess(Lang.Action.SolveTaskEdition.Done);
   }
-  else Desktop.reportError(this.Process.getFailure());
+  else {
+    Desktop.reportError(this.Process.getFailure());
+    this.DOMItem.href = this.DOMItemRef;
+  }
   this.terminate();
 };
 
@@ -28737,12 +28770,21 @@ CGViewerToolbar.prototype.refresh = function () {
   CommandListener.capture(this.extLayer);
 };
 
-CGViewerToolbar.prototype.showBackTaskCommand = function (IdTask) {
+CGViewerToolbar.prototype.showBackTaskCommand = function (IdTask, TargetNode, TargetView) {
   var extCommand = this.extLayer.select(".command.backtask").first();
   if (extCommand) {
     extCommand.dom.style.display = "block";
-    extCommand.dom.href = getMonetLinkAction("ml://task." + IdTask);
+    extCommand.dom.onclick = CGViewerToolbar.prototype.doShowBackTaskCommand.bind(this, IdTask, TargetNode, TargetView);//href = getMonetLinkAction(TargetNode != null ? "ml://node." + TargetNode + "." + TargetView : "ml://task." + IdTask);
   }
+};
+
+CGViewerToolbar.prototype.doShowBackTaskCommand = function(IdTask, TargetNode, TargetView) {
+  var action = TargetNode != null ? new CGActionShowNode() : new CGActionShowTask();
+  // getMonetLinkAction(TargetNode != null ? "ml://node." + TargetNode + "." + TargetView : "ml://task." + IdTask);
+  action.Id = TargetNode != null ? TargetNode : IdTask;
+  action.execute();
+  if (TargetView == null) return;
+  window.setTimeout(function() { Desktop.Main.Center.Body.getContainerView(VIEW_NODE, TargetNode).getDOM().activateTab(TargetView); }, 1000);
 };
 
 CGViewerToolbar.prototype.refreshBackTaskCommand = function () {
@@ -28760,7 +28802,7 @@ CGViewerToolbar.prototype.refreshBackTaskCommand = function () {
       this.hideBackTaskCommand();
       State.TaskNode = null;
     } else
-      this.showBackTaskCommand(State.TaskNode.IdTask);
+      this.showBackTaskCommand(State.TaskNode.IdTask, State.TaskNode.TargetNode, State.TaskNode.TargetView);
   } else
     this.hideBackTaskCommand();
 };
@@ -44626,6 +44668,7 @@ CGDecoratorField.prototype.execute = function (DOMField) {
     Widget.onAddDefaultValue = this.atWidgetAddDefaultValue.bind(this);
     Widget.setEditor(EditorsFactory.get(EditorType));
     Widget.setTarget(this);
+    if (Widget.hideLoading) Widget.hideLoading();
   };
 
   DOMField.isLockedByDefinition = function () {
@@ -46446,8 +46489,8 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     return (ControlInfo.Ancestors.indexOf("," + IdParent) != -1);
   };
 
-  DOMNode.showBackTaskCommand = function (IdTask) {
-    if (this.viewerToolbar != null) this.viewerToolbar.showBackTaskCommand(IdTask);
+  DOMNode.showBackTaskCommand = function (IdTask, TargetNode, TargetView) {
+    if (this.viewerToolbar != null) this.viewerToolbar.showBackTaskCommand(IdTask, TargetNode, TargetView);
   };
 
   DOMNode.hideBackTaskCommand = function () {

@@ -842,8 +842,8 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     return (ControlInfo.Ancestors.indexOf("," + IdParent) != -1);
   };
 
-  DOMNode.showBackTaskCommand = function (IdTask) {
-    if (this.viewerToolbar != null) this.viewerToolbar.showBackTaskCommand(IdTask);
+  DOMNode.showBackTaskCommand = function (IdTask, TargetNode, TargetView) {
+    if (this.viewerToolbar != null) this.viewerToolbar.showBackTaskCommand(IdTask, TargetNode, TargetView);
   };
 
   DOMNode.hideBackTaskCommand = function () {

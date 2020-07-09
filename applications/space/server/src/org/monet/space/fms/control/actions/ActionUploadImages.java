@@ -116,7 +116,7 @@ public class ActionUploadImages extends Action {
 				imageIds.add(upload(fileItem, parametersMap, parametersMap.get(Parameter.NEW_PICTURE).size() > 1));
 
 				if (realWidth < 0 || realHeight < 0) {
-					BufferedImage image = ImageIO.read(fileItem.getInputStream());
+					BufferedImage image = loadImage(fileItem.getInputStream(), contentTypeOf(fileItem));
 					realWidth = image.getWidth();
 					realHeight = image.getHeight();
 				}
@@ -172,11 +172,20 @@ public class ActionUploadImages extends Action {
 		return imageId;
 	}
 
+	private String contentTypeOf(FileItem fileItem) {
+		String filename = LibraryFile.getFilename(fileItem.getName()).replaceAll(FILE_NAME_EMPTY_CHARACTERS_REPLACEMENT, "");
+		String contentType = fileItem.getContentType();
+		if (contentType == null || contentType.equals("application/octet-stream"))
+			contentType = MimeTypes.getInstance().getFromFilename(filename);
+		return contentType;
+	}
+
 	private ByteArrayInputStream reduceImage(BufferedImage image, String contentType, int width, int height, int sliceWidth, int sliceHeight, int sliceX, int sliceY) throws IOException {
-		Dimension sliceSize = fitSize(new Dimension(image.getWidth(), image.getHeight()), new Dimension(sliceWidth, sliceHeight));
-		image = image.getSubimage(sliceX, sliceY, sliceSize.width, sliceSize.height);
-		Transform transform = getScaleFactor(image.getWidth(), image.getHeight(), width, height);
-		byte[] imageBytes = transformImage(image, contentType, width, height, transform);
+		image = image.getSubimage(sliceX, sliceY, sliceWidth, sliceHeight);
+		int toWidth = Math.min(image.getWidth(), width);
+		int toHeight = Math.min(image.getHeight(), height);
+		Transform transform = getScaleFactor(image.getWidth(), image.getHeight(), toWidth, toHeight);
+		byte[] imageBytes = transformImage(image, contentType, toWidth, toHeight, transform);
 		return new ByteArrayInputStream(imageBytes);
 	}
 

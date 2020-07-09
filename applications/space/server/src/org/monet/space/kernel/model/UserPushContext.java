@@ -116,9 +116,9 @@ public class UserPushContext {
 
 	public synchronized void pushToViewers(PushClient sender, String viewId, String message) {
 		if (viewId == null) return;
-		List<PushClient> clients = this.clientsByView.get(viewId);
+		List<PushClient> clients = this.clientsByView.get(viewId) != null ? new ArrayList<>(this.clientsByView.get(viewId)) : null;
 		if (clients == null) return;
-        for (PushClient client : clients)
+		for (PushClient client : clients)
             if (sender != client)
                 client.push(message);
 	}

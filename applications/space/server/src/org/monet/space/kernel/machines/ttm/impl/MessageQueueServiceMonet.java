@@ -33,7 +33,7 @@ import java.util.zip.ZipOutputStream;
 @Singleton
 public class MessageQueueServiceMonet implements MessageQueueService {
 
-	private static final int SECOND = 60 * 1000;
+	private static final int SECOND = 1000;
 	private static final int MINUTE = SECOND * 60;
 	private static final int HOUR = MINUTE * 60;
 	private static final int DAY = HOUR * 24;
@@ -193,13 +193,13 @@ public class MessageQueueServiceMonet implements MessageQueueService {
 			Date now = new Date();
 			long difference = now.getTime() - lastUpdateTime.getTime();
 
-			if (retries < 10)
+			if (retries == 0)
 				return true;
 
-			if (retries < 100 && difference > MINUTE)
+			if (retries < 10 && difference > MINUTE)
 				return true;
 
-			if (retries < 1000 && difference > HOUR)
+			if (retries < 100 && difference > HOUR)
 				return true;
 
 			if (retries >= 1000 && difference > DAY)

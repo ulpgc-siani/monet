@@ -274,9 +274,11 @@ public class ProcessViewRender extends TaskViewRender {
 
 		if ((idForm != null) && (!idForm.isEmpty())) {
 			form = this.renderLink.loadNode(idForm);
-			render = this.rendersFactory.get(form, "edit.html", this.renderLink, account);
-			render.setParameter("view", formDefinition.getViewMap().get(useDefinition.getWithView().getValue()).getCode());
-			renderResult = render.getOutput();
+			if (form != null) {
+				render = this.rendersFactory.get(form, "edit.html", this.renderLink, account);
+				render.setParameter("view", formDefinition.getViewMap().get(useDefinition.getWithView().getValue()).getCode());
+				renderResult = render.getOutput();
+			}
 		}
 
 		map.put("label", this.language.getModelResource(formDefinition.getLabel()));

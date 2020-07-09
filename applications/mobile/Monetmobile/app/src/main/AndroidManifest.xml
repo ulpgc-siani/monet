@@ -15,7 +15,9 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
@@ -23,7 +25,7 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="org.monet.space.mobile.permission.C2D_MESSAGE" />
@@ -35,7 +37,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:uiOptions="splitActionBarWhenNarrow">
+        android:uiOptions="splitActionBarWhenNarrow"
+        android:usesCleartextTraffic="true">
+
 
         <meta-data android:name="roboguice.modules" android:value="org.monet.space.mobile.guice.AppModule"/>
 
@@ -76,6 +80,7 @@
         <activity
             android:name="org.monet.space.mobile.activity.TaskMapActivity"
             android:label="@string/title_activity_taskmap"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -175,6 +180,16 @@
         </service>
 
         <provider
+            android:name="org.monet.space.mobile.provider.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+        <provider
             android:name="org.monet.space.mobile.provider.MonetDataProvider"
             android:authorities="org.monet.mobile.sync"
             android:enabled="true"
@@ -186,39 +201,26 @@
             android:authorities="org.monet.mobile.suggestions"
             android:exported="false" />
 
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+        <!-- Nuevo FireBase FCM -->
+        <service android:name=".fcm.MonetFireBaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <category android:name="org.monet.space.mobile" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </receiver>
+        </service>
+
 
         <service
-            android:name=".gcm.MonetGcmListenerService"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".gcm.MonetIDListenerService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".gcm.MonetRegistrationIntentService"
+            android:name=".fcm.MonetRegistrationIntentService"
             android:exported="false">
         </service>
+
+
+
+
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyB2wOT1bctdiHmmCV_wVNJ8AzacDOgowoM" />
+            android:value="AIzaSyBw78uiYFENkp6WL3qqqBvX6QuR80W6l-c" />
 
     </application>
 

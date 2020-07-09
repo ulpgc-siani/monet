@@ -1,12 +1,17 @@
 package org.monet.space.mobile.viewholders;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableWrapper;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.monet.space.mobile.R;
-import org.siani.cluster.Item;
-import org.siani.cluster.NullItem;
+import org.monet.space.mobile.stringclusterizer.Item;
+import org.monet.space.mobile.stringclusterizer.NullItem;
 
 public class TaskGroupViewHolder extends ViewHolder {
 
@@ -47,9 +52,33 @@ public class TaskGroupViewHolder extends ViewHolder {
     }
 
     public TaskGroupViewHolder group(Item group) {
-        title.setText(group.id());
-        styleIndentationLevel(calculateLevel(group));
+        int level = calculateLevel(group);
+        title.setText(removeLabelPreviousLevel(level,group.id().replaceAll("\n","")));
+        styleIndentationLevel(level);
+        title.setTextColor(colorIndentationLevel(level));
+        title.setTypeface(title.getTypeface(), Typeface.BOLD_ITALIC);
         return this;
+    }
+
+    private int colorIndentationLevel(int level){
+        if (level == 1)
+            return Color.rgb(0, 26, 102);
+        if (level == 2)
+            return Color.rgb(0, 51, 204);
+        if (level == 3)
+            return Color.rgb(26, 83, 255);
+        if (level == 4)
+            return Color.rgb(102, 140, 255);
+        if (level == 5)
+            return Color.rgb(179, 198, 255);
+        return Color.rgb(179, 198, 255);
+    }
+
+    private String removeLabelPreviousLevel(int level, String label){
+        String[] titleLevel = label.split(": ");
+        if (titleLevel.length > 0)
+            return titleLevel[level-1];
+        return label;
     }
 
     private void styleIndentationLevel(int level) {

@@ -1074,7 +1074,6 @@ public class ProducerNodeList extends ProducerList {
 	public void removeItemsView(IndexDefinition indexdefinition) {
 		List<SetDefinition> setDefinitionsWithIndex = getDictionary().getSetDefinitionsWithIndex(indexdefinition);
 		List<String> setDefinitionCodes = new ArrayList<>();
-		Map<String, String> queryParameters = new HashMap<>();
 
 		for (SetDefinition definition : setDefinitionsWithIndex)
 			setDefinitionCodes.add(definition.getCode());
@@ -1082,10 +1081,10 @@ public class ProducerNodeList extends ProducerList {
 		List<String> setIds = loadSetIds(setDefinitionCodes);
 
 		List<DatabaseRepositoryQuery> queries = new ArrayList<>();
-		for (String id : setIds) {
+		for (final String id : setIds) {
 			if (!existsItemsView(id)) continue;
-			queryParameters.put(Database.QueryFields.ID_NODE, id);
-			queries.add(new DatabaseRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW_DELETE, null, queryParameters));
+			Map<String, String> subQueries = new HashMap<String, String>() {{ put(Database.QueryFields.ID_NODE, id); }};
+			queries.add(new DatabaseRepositoryQuery(Database.Queries.NODE_LIST_LOAD_ITEMS_VIEW_DELETE, null, subQueries));
 			views.remove("Items_" + id);
 		}
 

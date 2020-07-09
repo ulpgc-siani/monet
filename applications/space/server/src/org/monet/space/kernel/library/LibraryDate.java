@@ -154,8 +154,15 @@ public abstract class LibraryDate {
 	}
 
 	public static Date parseDate(String sDate) {
+		return parseDate(sDate, null);
+	}
+
+	public static Date parseDate(String sDate, TimeZone timeZone) {
 		DateFormat dfDate = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
 		Date dtResult = LibraryDate.parseInternalDate(sDate);
+
+		if (timeZone != null)
+			dfDate.setTimeZone(timeZone);
 
 		if (dtResult != null) return dtResult;
 

@@ -226,6 +226,8 @@ public class TaskListFragment extends ListFragment<TaskListView, TaskListPresent
 
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
+        //TODO Salir del paso
+/*
         MenuItemCompat.setOnActionExpandListener(searchMenuItem, new MenuItemCompat.OnActionExpandListener() {
 
             @Override
@@ -242,7 +244,7 @@ public class TaskListFragment extends ListFragment<TaskListView, TaskListPresent
                 return true;
             }
         });
-
+*/
         final SearchView searchView = (SearchView) searchMenuItem.getActionView();
         SearchableInfo info = searchManager.getSearchableInfo(getActivity().getComponentName());
         searchView.setSearchableInfo(info);
