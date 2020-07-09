@@ -169,8 +169,11 @@ public class ResetDocService implements ICommand {
 
 			if (space.equals("ROOT"))
 				dbData.name = dbPrefix + docservers.getItem(docserverServer).getItem(docserverContainer).getProperty("db-default-name");
-			
-			if (dbData.name.equals("")) {
+
+			if ("".equals(dbData.name))
+				dbData.name = docservers.getItem(docserverServer).getItem(docserverContainer).getProperty("db-user");
+
+			if ("".equals(dbData.name)) {
 				String error = "Name database (db-name) not found in parameters.";
 				logger.error(error + " Database type: " + db.getDbTypeFromUrl(dbData.url) + " Url: " + dbData.url);
 				status.setContent(ResultIDs.InvalidDbName);
