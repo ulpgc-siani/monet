@@ -11,8 +11,6 @@ import org.monet.space.kernel.model.Indicator;
 import org.monet.space.kernel.model.Language;
 import org.monet.space.kernel.utils.DateFormat;
 
-import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.TimeZone;
 
 public class FieldDateImpl extends FieldImpl<Date> implements FieldDate {

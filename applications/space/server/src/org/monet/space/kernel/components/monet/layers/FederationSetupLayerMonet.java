@@ -22,6 +22,7 @@
 
 package org.monet.space.kernel.components.monet.layers;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.monet.api.federation.setupservice.impl.FederationSetupApiImpl;
 import org.monet.api.federation.setupservice.impl.model.*;
 import org.monet.space.kernel.components.layers.FederationSetupLayer;
@@ -30,6 +31,7 @@ import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.model.Federation;
 
 import java.net.URI;
+import java.security.Security;
 import java.util.List;
 
 public class FederationSetupLayerMonet extends LayerMonet implements FederationSetupLayer {
