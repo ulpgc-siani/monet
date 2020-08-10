@@ -59,6 +59,7 @@ public class ActionLoadGroupedRoleList extends Action {
 			throw new DataException(ErrorCode.INCORRECT_PARAMETERS, Actions.LOAD_ROLE_LIST);
 
 		dataRequest = new DataRequest();
+		dataRequest.setCode(code);
 		dataRequest.setLimit(-1);
 
 		HashMap<String, String> parameters = this.getRequestParameters();
@@ -72,7 +73,7 @@ public class ActionLoadGroupedRoleList extends Action {
 			dataRequest.setCondition(Strings.EMPTY);
 		}
 
-		RoleList roleList = this.roleLayer.loadRoleList(code, dataRequest);
+		RoleList roleList = this.roleLayer.loadRoleList(dataRequest);
 		boolean isFirst = true;
 		for (Role role : roleList.get().values()) {
 			String roleGroupedId = this.getGroupedRoleId(role);

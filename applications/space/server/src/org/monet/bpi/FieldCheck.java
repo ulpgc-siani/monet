@@ -15,6 +15,8 @@ public interface FieldCheck extends Field<CheckList> {
 
 	public String getFrom();
 
+	public String getSource();
+
 	public void setFrom(String from);
 
 }

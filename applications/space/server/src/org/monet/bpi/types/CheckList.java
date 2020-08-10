@@ -89,4 +89,18 @@ public class CheckList {
 		return builder.toString();
 	}
 
+	public TermList toTermList() {
+	    TermList termList = new TermList();
+	    for (Check value : getAll()) {
+	        termList.add(termOf(value));
+        }
+	    return termList;
+    }
+
+	private Term termOf(Check value) {
+		Term term = new Term();
+		term.setKey(value.getCode());
+		term.setLabel(value.getLabel());
+		return term;
+	}
 }

@@ -113,7 +113,8 @@ public class ListenerMobilePushNotifications extends Listener {
 		dataRequest.addParameter(DataRequest.NON_EXPIRED, "true");
 
 		RoleDefinition roleDefinition = Dictionary.getInstance().getRoleDefinition(sendJobActionDefinition.getRole().getValue());
-		RoleList roleList = roleLayer.loadRoleList(roleDefinition.getCode(), dataRequest);
+		dataRequest.setCode(roleDefinition.getCode());
+		RoleList roleList = roleLayer.loadRoleList(dataRequest);
 		for (Role roleInstance : roleList.get().values()) {
 			if (!roleInstance.isUserRole()) continue;
 

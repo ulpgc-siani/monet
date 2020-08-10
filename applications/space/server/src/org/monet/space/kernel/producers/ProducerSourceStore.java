@@ -873,7 +873,8 @@ public class ProducerSourceStore extends Producer {
 
         for (Ref roleRef : fromRolesDefinition.getRole()) {
             String roleCode = this.getDictionary().getDefinitionCode(roleRef.getValue());
-            org.monet.space.kernel.model.RoleList monetRoleList = producerRoleList.load(roleCode, roleDataRequest);
+			roleDataRequest.setCode(roleCode);
+            org.monet.space.kernel.model.RoleList monetRoleList = producerRoleList.load(roleDataRequest);
 
             for (org.monet.space.kernel.model.Role role : monetRoleList) {
                 String label = role.getLabel();

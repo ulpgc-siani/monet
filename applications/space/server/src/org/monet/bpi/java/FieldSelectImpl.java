@@ -121,6 +121,11 @@ public class FieldSelectImpl extends FieldImpl<Term> implements FieldSelect {
 	}
 
 	@Override
+	public String getSource() {
+		return this.getIndicatorValue(this.attribute, Indicator.SOURCE);
+	}
+
+	@Override
 	public void setInlineTerms(List<Term> termList) {
 		SelectFieldProperty fieldDeclaration = (SelectFieldProperty) this.fieldDefinition;
 		List<org.monet.space.kernel.model.Term> monetTermList = new ArrayList<>();

@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface FieldMultiple<T extends Field<?>, V> extends Iterable<V> {
 
+	public String getCode();
+
 	public T addNew();
 
 	public T addNew(V newValue);

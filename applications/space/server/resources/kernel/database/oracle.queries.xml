@@ -180,7 +180,7 @@ DELETE FROM ts$masters WHERE id=@id
 SELECT * FROM (SELECT rownum rnum, a.* FROM (
   SELECT ts$roles.*
   FROM ts$roles 
-  WHERE ts$roles.code=@code ::nature:: ::nonexpired:: ::condition:: 
+  WHERE 1=1 ::codesubquery:: ::typesubquery:: ::nature:: ::nonexpired:: ::condition::
   ORDER BY id DESC
 ) a WHERE rownum <= @startpos+@limit-1) where rnum >= @startpos 
 ]]>
@@ -189,12 +189,22 @@ SELECT * FROM (SELECT rownum rnum, a.* FROM (
     <![CDATA[
 SELECT COUNT(ts$roles.id) as counter
 FROM ts$roles 
-WHERE ts$roles.code=@code ::nature:: ::nonexpired:: ::condition::
+WHERE 1=1 ::codesubquery:: ::typesubquery:: ::nature:: ::nonexpired:: ::condition::
 ]]>
   </entry>
   <entry key="ROLE_LIST_LOAD_SUBQUERY_NON_EXPIRED">
     <![CDATA[
 AND (ts$roles.expire_date IS NULL OR @date <= ts$roles.expire_date)
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_SUBQUERY_CODE">
+    <![CDATA[
+AND ts$roles.code=@code
+]]>
+  </entry>
+  <entry key="ROLE_LIST_LOAD_SUBQUERY_TYPE">
+    <![CDATA[
+AND ts$roles.type=@type
 ]]>
   </entry>
   <entry key="ROLE_LIST_LOAD_SUBQUERY_NATURE_EXTERNAL">
@@ -2101,6 +2111,11 @@ INSERT INTO ts$locations (id_node, id_location, geometry, create_date) VALUES (@
   <entry key="LOCATION_SAVE">
     <![CDATA[
 UPDATE ts$locations SET id_node=@idnode, id_location=@idlocation, geometry=@geometry, create_date=@createdate WHERE id=@id
+]]>
+  </entry>
+  <entry key="LOCATION_DELETE">
+    <![CDATA[
+DELETE FROM ts$locations WHERE id=@id
 ]]>
   </entry>
   <entry key="LOCATION_LOAD_BY_NODE_ID">

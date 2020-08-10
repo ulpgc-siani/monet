@@ -129,6 +129,11 @@ public class FieldCheckImpl extends FieldImpl<CheckList> implements FieldCheck {
 	}
 
 	@Override
+	public String getSource() {
+		return this.getIndicatorValue(this.attribute, Indicator.SOURCE);
+	}
+
+	@Override
 	public void setFrom(String from) {
 		IndicatorList indicatorList = this.attribute.getIndicatorList();
 		Indicator indicator = indicatorList.get(Indicator.FROM);

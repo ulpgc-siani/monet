@@ -21,11 +21,12 @@ public class RoleServiceImpl extends RoleService {
 		RoleDefinition roleDefinition = Dictionary.getInstance().getRoleDefinition(name);
 
 		DataRequest dataRequest = new DataRequest();
+		dataRequest.setCode(roleDefinition.getCode());
 		dataRequest.setStartPos(0);
 		dataRequest.setLimit(-1);
 		dataRequest.addParameter(DataRequest.NATURE, Nature.Both.toString());
 		dataRequest.addParameter(DataRequest.NON_EXPIRED, "true");
-		org.monet.space.kernel.model.RoleList monetRoleList = roleLayer.loadRoleList(roleDefinition.getCode(), dataRequest);
+		org.monet.space.kernel.model.RoleList monetRoleList = roleLayer.loadRoleList(dataRequest);
 
 		ArrayList<Role> roles = new ArrayList<Role>();
 		for (org.monet.space.kernel.model.Role role : monetRoleList) {

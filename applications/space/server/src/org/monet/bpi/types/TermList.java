@@ -1,5 +1,9 @@
 package org.monet.bpi.types;
 
+import org.monet.metamodel.TermProperty;
+import org.monet.space.kernel.model.Language;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -8,6 +12,14 @@ public class TermList {
 	private HashMap<String, Term> terms = new HashMap<String, Term>();
 
 	public TermList() {
+	}
+
+	public TermList(org.monet.space.kernel.model.TermList termList) {
+		for (org.monet.space.kernel.model.Term value : termList.getAll()) add(termOf(value));
+	}
+
+	public TermList(ArrayList<TermProperty> termPropertyList) {
+		for (TermProperty value : termPropertyList) add(termOf(value));
 	}
 
 	public void clear() {
@@ -58,6 +70,14 @@ public class TermList {
 			builder.delete(length - separator.length(), length);
 		}
 		return builder.toString();
+	}
+
+	private Term termOf(org.monet.space.kernel.model.Term term) {
+		return new Term(term.getCode(), term.getLabel());
+	}
+
+	private Term termOf(TermProperty term) {
+		return new Term(term.getKey(), Language.getInstance().getModelResource(term.getLabel()));
 	}
 
 }

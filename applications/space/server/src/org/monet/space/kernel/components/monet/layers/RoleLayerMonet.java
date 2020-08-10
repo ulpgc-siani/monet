@@ -33,7 +33,7 @@ public class RoleLayerMonet extends LayerMonet implements RoleLayer {
 	}
 
 	@Override
-	public RoleList loadRoleList(String code, DataRequest dataRequest) {
+	public RoleList loadRoleList(DataRequest dataRequest) {
 		ProducerRoleList producerRoleList;
 
 		if (!this.isStarted()) {
@@ -42,7 +42,7 @@ public class RoleLayerMonet extends LayerMonet implements RoleLayer {
 
 		producerRoleList = (ProducerRoleList) this.producersFactory.get(Producers.ROLELIST);
 
-		return producerRoleList.load(code, dataRequest);
+		return producerRoleList.load(dataRequest);
 	}
 
 	@Override

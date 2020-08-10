@@ -169,11 +169,12 @@ public class RenderProvider implements RenderLink {
 	@Override
 	public RoleList loadNonExpiredRoleList(String codeRole, Nature nature) {
 		DataRequest dataRequest = new DataRequest();
+		dataRequest.setCode(codeRole);
 		dataRequest.setStartPos(0);
 		dataRequest.setLimit(-1);
 		dataRequest.addParameter(DataRequest.NATURE, nature.toString());
 		dataRequest.addParameter(DataRequest.NON_EXPIRED, "true");
-		return this.roleLayer.loadRoleList(codeRole, dataRequest);
+		return this.roleLayer.loadRoleList(dataRequest);
 	}
 
 	@Override

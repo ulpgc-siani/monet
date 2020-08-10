@@ -81,12 +81,13 @@ public class LoadTaskDelegationRolesAction extends Action<TaskDialog, RoleDispla
 
     private RoleList loadNonExpiredRoleList(String roleCode, Role.Nature nature) {
         DataRequest dataRequest = new DataRequest();
+        dataRequest.setCode(roleCode);
         dataRequest.setStartPos(0);
         dataRequest.setLimit(-1);
         dataRequest.addParameter(DataRequest.NATURE, nature.toString());
         dataRequest.addParameter(DataRequest.NON_EXPIRED, "true");
 
-        return layerProvider.getRoleLayer().loadRoleList(roleCode, dataRequest);
+        return layerProvider.getRoleLayer().loadRoleList(dataRequest);
     }
 
     private Role.Nature getNature(TaskProviderProperty providerDefinition) {

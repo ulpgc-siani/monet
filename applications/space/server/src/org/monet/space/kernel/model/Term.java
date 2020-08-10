@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 
+import static com.google.common.collect.Maps.toMap;
+
 public class Term extends BaseObject {
 	private String sourceId;
 	private String sourceCode;
@@ -99,6 +101,17 @@ public class Term extends BaseObject {
 		this.addAttribute(Term.FLATTEN_LABEL, flattenLabel);
 	}
 
+	public Map<String, String> getTagsMap() {
+		Map<String, String> result = new HashMap<>();
+		for (String tag : tagsSet) {
+			String name = tag.contains("=") && tag.split("=").length > 0 ? tag.split("=")[0] : tag;
+			String value = tag.contains("=") && tag.split("=").length > 1 ? tag.split("=")[1] : "";
+			if (name.isEmpty() && value.isEmpty()) continue;
+			result.put(name, value);
+		}
+		return result;
+	}
+
 	public Set<String> getTags() {
 		return this.tagsSet;
 	}
@@ -107,7 +120,7 @@ public class Term extends BaseObject {
 
 		for (String tag : this.tagsSet) {
 			String[] tagArray = tag.split("=");
-			if (tagArray.length >= 2 && tagArray[0] == name)
+			if (tagArray.length >= 2 && tagArray[0].equals(name))
 				return tagArray[1];
 		}
 
@@ -121,6 +134,13 @@ public class Term extends BaseObject {
 	public void setTags(Set<String> tagsSet) {
 		this.tagsSet.clear();
 		this.tagsSet.addAll(tagsSet);
+	}
+
+	public void setTags(Map<String, String> tags) {
+		this.tagsSet.clear();
+		for (Entry<String, String> tag : tags.entrySet()) {
+			tagsSet.add(tag.getKey() + "=" + tag.getValue());
+		}
 	}
 
 	public String getParent() {

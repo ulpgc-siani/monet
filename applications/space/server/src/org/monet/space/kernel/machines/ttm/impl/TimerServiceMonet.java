@@ -80,6 +80,12 @@ public class TimerServiceMonet implements TimerService, TimerServiceCallback {
 		if (this.isActive(taskId, tag))
 			this.cancel(taskId, tag);
 
+		if (delay != null && delay.getTime() == 0) {
+			ProcessBehavior process = TimerServiceMonet.this.engine.getProcess(taskId);
+			process.onTimeout(tag);
+			return;
+		}
+
 		Timer timer = new Timer();
 		timer.setTaskId(taskId);
 		timer.setTag(tag);

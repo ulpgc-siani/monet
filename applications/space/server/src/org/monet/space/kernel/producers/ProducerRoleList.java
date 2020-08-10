@@ -41,7 +41,7 @@ public class ProducerRoleList extends ProducerList {
 		super();
 	}
 
-	public RoleList load(String code, DataRequest dataRequest) {
+	public RoleList load(DataRequest dataRequest) {
 		ResultSet result = null;
 		RoleList roleList;
 		Map<String, Object> parameters = new HashMap<>();
@@ -51,10 +51,11 @@ public class ProducerRoleList extends ProducerList {
 		try {
 			roleList = new RoleList();
 
-			parameters.put(Database.QueryFields.CODE, code);
-			this.addNatureToQuery(code, dataRequest, parameters, subQueries);
-			this.addNonExpiredToQuery(code, dataRequest, parameters, subQueries);
-			this.addConditionToQuery(code, dataRequest, parameters, subQueries);
+			this.addCodeToQuery(dataRequest, parameters, subQueries);
+			this.addTypeToQuery(dataRequest, parameters, subQueries);
+			this.addNatureToQuery(dataRequest, parameters, subQueries);
+			this.addNonExpiredToQuery(dataRequest, parameters, subQueries);
+			this.addConditionToQuery(dataRequest, parameters, subQueries);
 
 			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.ROLE_LIST_LOAD_COUNT, parameters, subQueries);
 			if (!result.next())
@@ -112,7 +113,7 @@ public class ProducerRoleList extends ProducerList {
 		return userList;
 	}
 
-	private void addNonExpiredToQuery(String code, DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
+	private void addNonExpiredToQuery(DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
 		String nonExpired = dataRequest.getParameter(DataRequest.NON_EXPIRED);
 
 		if (nonExpired != null && Boolean.valueOf(nonExpired) == true) {
@@ -124,7 +125,27 @@ public class ProducerRoleList extends ProducerList {
 		}
 	}
 
-	private void addNatureToQuery(String code, DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
+	private void addCodeToQuery(DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
+		String code = dataRequest.getCode();
+
+		if (code != null && !code.isEmpty()) {
+			subQueries.put(Database.QueryFields.CODE_SUBQUERY, this.agentDatabase.getRepositoryQuery(Database.Queries.ROLE_LIST_LOAD_SUBQUERY_CODE));
+			parameters.put(Database.QueryFields.CODE, code);
+		} else
+			subQueries.put(Database.QueryFields.CODE_SUBQUERY, Strings.EMPTY);
+	}
+
+	private void addTypeToQuery(DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
+		String type = dataRequest.getParameter(DataRequest.MODE);
+
+		if (type != null && !type.isEmpty()) {
+			subQueries.put(Database.QueryFields.TYPE_SUBQUERY, this.agentDatabase.getRepositoryQuery(Database.Queries.ROLE_LIST_LOAD_SUBQUERY_TYPE));
+			parameters.put(Database.QueryFields.TYPE, type);
+		} else
+			subQueries.put(Database.QueryFields.TYPE_SUBQUERY, Strings.EMPTY);
+	}
+
+	private void addNatureToQuery(DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
 		String type = dataRequest.getParameter(DataRequest.NATURE);
 
 		if (type != null && !type.equals(Nature.Both.toString())) {
@@ -138,7 +159,7 @@ public class ProducerRoleList extends ProducerList {
 			subQueries.put(Database.QueryFields.NATURE, Strings.EMPTY);
 	}
 
-	private void addConditionToQuery(String code, DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
+	private void addConditionToQuery(DataRequest dataRequest, Map<String, Object> parameters, Map<String, String> subQueries) {
 		String condition = dataRequest.getCondition();
 
 		if (condition != null && !condition.isEmpty()) {

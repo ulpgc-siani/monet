@@ -28,6 +28,8 @@ public class FieldFileImpl extends FieldImpl<File> implements FieldFile {
 
 	@Override
 	public void set(File value, String label) {
+	    if (value == null) return;
+
 		if (!value.isStoredAtDocEngine()) {
 			MessageAttach source = value.getSource();
 			InputStream sourceStream = null;

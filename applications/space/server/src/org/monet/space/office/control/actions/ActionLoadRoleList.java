@@ -67,6 +67,7 @@ public class ActionLoadRoleList extends Action {
 		dataRequest = new DataRequest();
 		parameters = this.getRequestParameters();
 
+		dataRequest.setCode(code);
 		dataRequest.setParameters(parameters);
 
 		try {
@@ -93,7 +94,7 @@ public class ActionLoadRoleList extends Action {
 			dataRequest.setCondition(Strings.EMPTY);
 		}
 
-		RoleList roleList = this.roleLayer.loadRoleList(code, dataRequest);
+		RoleList roleList = this.roleLayer.loadRoleList(dataRequest);
 		if (view == null || view.isEmpty()) {
 			HashMap<String, String> groupedRolesIds = new HashMap<String, String>();
 			ArrayList<Role> groupedRoles = this.getGroupedRoles(roleList, groupedRolesIds);

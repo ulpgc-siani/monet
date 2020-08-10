@@ -74,6 +74,11 @@ public abstract class FieldImpl<V> implements Field<V> {
 	}
 
 	@Override
+	public FieldProperty getDefinition() {
+		return this.fieldDefinition;
+	}
+
+	@Override
 	public String getName() {
 		return this.fieldDefinition.getName();
 	}

@@ -26,6 +26,10 @@ public class FieldMultipleImpl<T extends Field<?>, V> implements FieldMultiple<T
 	protected List<T> fields;
 	protected FieldFactory fieldFactory;
 
+	public String getCode() {
+		return this.definition.getCode();
+	}
+
 	void injectDefinitionName(String definitionName) {
 		this.definitionName = definitionName;
 	}

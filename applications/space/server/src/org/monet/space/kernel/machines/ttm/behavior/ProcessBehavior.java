@@ -653,7 +653,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 	}
 
 	private void setupTimer(String tag, Date dueDate, Time timeAfter) {
-		this.timerService.schedule(this.model.getId(), tag, dueDate, timeAfter);
+		timerService.schedule(this.model.getId(), tag, dueDate, timeAfter);
 	}
 
 	private boolean isTimerActive(String tag) {

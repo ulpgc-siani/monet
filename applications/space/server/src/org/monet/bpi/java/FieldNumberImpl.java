@@ -33,8 +33,7 @@ public class FieldNumberImpl extends FieldImpl<Number> implements FieldNumber {
 			return null;
 		}
 
-		Number number = new Number(value,
-			this.attribute.getIndicatorValue(Indicator.VALUE));
+		Number number = new Number(value, this.attribute.getIndicatorValue(Indicator.VALUE));
 		number.setMetric(metricValue);
 		return number;
 	}
@@ -63,10 +62,10 @@ public class FieldNumberImpl extends FieldImpl<Number> implements FieldNumber {
 			format = "0.##";
 		DecimalFormat formatter = new DecimalFormat(format);
 
+		if (value == null) return;
 		internalIndicator.setData(String.valueOf(value.doubleValue()));
 		valueIndicator.setData(formatter.format(value.doubleValue()));
-		if (value.getMetric() != null)
-			metricIndicator.setData(value.getMetric());
+		if (value.getMetric() != null) metricIndicator.setData(value.getMetric());
 	}
 
 	@Override

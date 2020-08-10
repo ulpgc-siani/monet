@@ -244,11 +244,12 @@ public class PersistenceServiceMonet implements PersistenceService {
 	public RoleList loadNonExpiredRoleList(String roleName, Nature nature) {
 		String roleCode = Dictionary.getInstance().getRoleDefinition(roleName).getCode();
 		DataRequest dataRequest = new DataRequest();
+		dataRequest.setCode(roleCode);
 		dataRequest.setStartPos(0);
 		dataRequest.setLimit(-1);
 		dataRequest.addParameter(DataRequest.NATURE, nature.toString());
 		dataRequest.addParameter(DataRequest.NON_EXPIRED, "true");
-		return this.roleLayerProvider.get().loadRoleList(roleCode, dataRequest);
+		return this.roleLayerProvider.get().loadRoleList(dataRequest);
 	}
 
 	@Override

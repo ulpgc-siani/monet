@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface RoleLayer extends Layer {
-	public RoleList loadRoleList(String code, DataRequest dataRequest);
+	public RoleList loadRoleList(DataRequest dataRequest);
 
 	public List<String> loadRoleListUsersIds(String code);
 

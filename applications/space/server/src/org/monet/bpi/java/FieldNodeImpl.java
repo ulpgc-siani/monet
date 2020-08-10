@@ -47,10 +47,11 @@ public class FieldNodeImpl extends FieldImpl<Link> implements FieldNode {
 
 	@Override
 	public void set(Link value) {
-		this.nodeLayer.setParentNode(this.nodeLayer.loadNode(value.getId()), this.nodeLayer.loadNode(this.nodeId));
-		this.setIndicatorValue(Indicator.CODE, value.getId().toString());
-		this.setIndicatorValue(Indicator.NODE, value.getId().toString());
-		this.setIndicatorValue(Indicator.VALUE, value.getLabel().toString());
+		if (value == null) value = emptyLink();
+		if (!value.getId().isEmpty()) this.nodeLayer.setParentNode(this.nodeLayer.loadNode(value.getId()), this.nodeLayer.loadNode(this.nodeId));
+		this.setIndicatorValue(Indicator.CODE, value.getId());
+		this.setIndicatorValue(Indicator.NODE, value.getId());
+		this.setIndicatorValue(Indicator.VALUE, value.getLabel());
 	}
 
 	@Override
@@ -64,6 +65,13 @@ public class FieldNodeImpl extends FieldImpl<Link> implements FieldNode {
 	@Override
 	public void clear() {
 		this.set(new Link("", ""));
+	}
+
+	private Link emptyLink() {
+		Link result = new Link();
+		result.setId("");
+		result.setLabel("");
+		return result;
 	}
 
 }

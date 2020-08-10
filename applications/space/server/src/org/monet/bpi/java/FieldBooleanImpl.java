@@ -23,11 +23,7 @@ public class FieldBooleanImpl extends FieldImpl<Boolean> implements FieldBoolean
 	@Override
 	public Boolean get() {
 		Attribute optionAttribute = this.getAttribute(Attribute.OPTION);
-
-		// Compatibility mode
-		if (optionAttribute != null) this.attribute = optionAttribute;
-
-		String value = this.getIndicatorValue(this.attribute, Indicator.CODE);
+		String value = this.getIndicatorValue(optionAttribute != null ? optionAttribute : attribute, Indicator.CODE);
 		Boolean boolValue;
 
 		if (value.equals("")) boolValue = false;

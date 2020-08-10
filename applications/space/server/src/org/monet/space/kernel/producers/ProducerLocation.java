@@ -65,12 +65,14 @@ public class ProducerLocation extends Producer {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put(Database.QueryFields.ID, location.getId());
-		parameters.put(Database.QueryFields.ID_NODE, location.getNodeId());
-		parameters.put(Database.QueryFields.ID_LOCATION, location.getLocationId());
-		parameters.put(Database.QueryFields.GEOMETRY, location.getGeometry());
-		parameters.put(Database.QueryFields.CREATE_DATE, this.agentDatabase.getDateAsTimestamp(location.getInternalCreateDate()));
+		if (location.getGeometry() != null) {
+			parameters.put(Database.QueryFields.ID_NODE, location.getNodeId());
+			parameters.put(Database.QueryFields.ID_LOCATION, location.getLocationId());
+			parameters.put(Database.QueryFields.GEOMETRY, location.getGeometry());
+			parameters.put(Database.QueryFields.CREATE_DATE, this.agentDatabase.getDateAsTimestamp(location.getInternalCreateDate()));
+		}
 
-		this.agentDatabase.executeRepositoryUpdateQuery(Database.Queries.LOCATION_SAVE, parameters);
+		this.agentDatabase.executeRepositoryUpdateQuery(location.getGeometry() != null ? Database.Queries.LOCATION_SAVE : Database.Queries.LOCATION_DELETE, parameters);
 	}
 
 	public boolean exists(Node node) {

@@ -72,6 +72,8 @@ public abstract class Database {
 		public static final String ROLE_LIST_LOAD = "ROLE_LIST_LOAD";
 		public static final String ROLE_LIST_LOAD_COUNT = "ROLE_LIST_LOAD_COUNT";
 		public static final String ROLE_LIST_LOAD_SUBQUERY_NON_EXPIRED = "ROLE_LIST_LOAD_SUBQUERY_NON_EXPIRED";
+		public static final String ROLE_LIST_LOAD_SUBQUERY_CODE = "ROLE_LIST_LOAD_SUBQUERY_CODE";
+		public static final String ROLE_LIST_LOAD_SUBQUERY_TYPE = "ROLE_LIST_LOAD_SUBQUERY_TYPE";
 		public static final String ROLE_LIST_LOAD_SUBQUERY_NATURE_INTERNAL = "ROLE_LIST_LOAD_SUBQUERY_NATURE_INTERNAL";
 		public static final String ROLE_LIST_LOAD_SUBQUERY_NATURE_EXTERNAL = "ROLE_LIST_LOAD_SUBQUERY_NATURE_EXTERNAL";
 		public static final String ROLE_LIST_LOAD_SUBQUERY_CONDITION = "ROLE_LIST_LOAD_SUBQUERY_CONDITION";
@@ -226,6 +228,7 @@ public abstract class Database {
 
 		public static final String LOCATION_CREATE = "LOCATION_CREATE";
 		public static final String LOCATION_SAVE = "LOCATION_SAVE";
+		public static final String LOCATION_DELETE = "LOCATION_DELETE";
 		public static final String LOCATION_EXISTS = "LOCATION_EXISTS";
 		public static final String LOCATION_LOAD_BY_NODE_ID = "LOCATION_LOAD_BY_NODE_ID";
 		public static final String LOCATION_LOAD_REFERENCE = "LOCATION_LOAD_REFERENCE";
@@ -780,6 +783,7 @@ public abstract class Database {
 		public static final String PARTNER_NAME = "partnername";
 		public static final String PARTNER_LABEL = "partnerlabel";
 		public static final String NATURE = "nature";
+		public static final String CODE_SUBQUERY = "codesubquery";
 		public static final String JOBS = "jobs";
 		public static final String ONTOLOGIES = "ontologies";
 		public static final String ONTOLOGIES_SUBQUERY = "ontologiessubquery";
