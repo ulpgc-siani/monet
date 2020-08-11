@@ -994,11 +994,20 @@ public class ProducerNodeList extends ProducerList {
 		ResultSet result = null;
 		NodeList nodeList;
 		Map<String, Object> parameters = new HashMap<>();
+		Map<String, String> subQueries = new HashMap<>();
+		String condition = this.agentDatabase.prepareAsFullTextCondition(dataRequest.getCondition());
 
 		try {
 			parameters.put(Database.QueryFields.START_POS, this.agentDatabase.getQueryStartPos(dataRequest.getStartPos()));
 			parameters.put(Database.QueryFields.LIMIT, dataRequest.getLimit());
-			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.NODE_LIST_LOAD_FROM_TRASH, parameters);
+
+			if (!condition.isEmpty()) {
+				parameters.put(Database.QueryFields.CONDITION, condition);
+				subQueries.put(Database.QueryFields.CONDITION, this.agentDatabase.getRepositoryQuery(Database.Queries.NODE_LIST_LOAD_FROM_TRASH_CONDITION));
+			} else
+				subQueries.put(Database.QueryFields.CONDITION, "");
+
+			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.NODE_LIST_LOAD_FROM_TRASH, parameters, subQueries);
 
 			nodeList = new NodeList();
 
@@ -1023,7 +1032,9 @@ public class ProducerNodeList extends ProducerList {
 			}
 			this.agentDatabase.closeQuery(result);
 
-			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.NODE_LIST_LOAD_FROM_TRASH_COUNT);
+			parameters.remove(Database.QueryFields.START_POS);
+			parameters.remove(Database.QueryFields.LIMIT);
+			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.NODE_LIST_LOAD_FROM_TRASH_COUNT, parameters, subQueries);
 			if (!result.next())
 				throw new Exception("Can't get total count of trash elements");
 			nodeList.setTotalCount(result.getInt("counter"));

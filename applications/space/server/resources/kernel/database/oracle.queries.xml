@@ -807,17 +807,22 @@ SELECT * FROM ts$nodes_descriptors
   </entry>
   <entry key="NODE_LIST_LOAD_FROM_TRASH">
     <![CDATA[
-SELECT * FROM (SELECT rownum rnum, a.* FROM (SELECT DISTINCT * FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ORDER BY delete_date DESC, ordering DESC) a WHERE rownum <= @startpos+@limit-1) where rnum >= @startpos
+SELECT * FROM (SELECT rownum rnum, a.* FROM (SELECT DISTINCT * FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ::condition:: ORDER BY delete_date DESC, ordering DESC) a WHERE rownum <= @startpos+@limit-1) where rnum >= @startpos
 ]]>
   </entry>
   <entry key="NODE_LIST_LOAD_FROM_TRASH_COUNT">
     <![CDATA[
-SELECT COUNT(DISTINCT(id_node)) as counter FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT delete_date IS NULL
+SELECT COUNT(DISTINCT(id_node)) as counter FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT delete_date IS NULL ::condition::
 ]]>
   </entry>
   <entry key="NODE_LIST_LOAD_FROM_TRASH_OFPARENT">
     <![CDATA[
 SELECT DISTINCT id_node FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT delete_date IS NULL
+]]>
+  </entry>
+  <entry key="NODE_LIST_LOAD_FROM_TRASH_CONDITION">
+    <![CDATA[
+ AND (CONTAINS(label, @condition, 20) > 0 OR CONTAINS(description, @condition, 30) > 0)
 ]]>
   </entry>
   <entry key="NODE_LIST_LOCATE">
