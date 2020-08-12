@@ -214,7 +214,7 @@ public abstract class TaskImpl implements Task, BehaviorTask {
 	}
 
 	@Override
-	public void onUnAssign() {
+	public void onUnassign() {
 	}
 
 	@Override

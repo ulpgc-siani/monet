@@ -146,11 +146,20 @@ configuration.sidebar.operationSet.push({type:"TOOL", visible: ::visible::, labe
 <div class="toolbar">
   <table>
     <tr>
-      <td><a class="command button" href="refreshtask(::idTask::)">Actualizar</a></td>
+      <td><a class="command button" href="refreshtask(::idTask::)">Refresh</a></td>
+      ::assign::
+      ::unassign::
+      <td><a class="command button" href="aborttask(::idTask::)">Abort</a></td>
     </tr>
   </table>
 </div>
 <div id="recenttaskviewer_::idNode::_::idTask::_::codeView::"></div>
+
+@content.recenttask$assign
+<td><a id="assign_task_::idNode::" class="command button" href="setnodetaskowner(::idTask::,::idNode::)" style="display\:::assignDisplay::;">Assign...</a></td>
+
+@content.recenttask$unassign
+<td><a id="unassign_task_::idNode::" class="command button" href="unsetnodetaskowner(::idTask::,::idNode::,owner)" style="display\:::unassignDisplay::;">Unassign...</a></td>
 
 @content.recenttask$empty
 <div style="margin-top:15px" class="node summary"><div class="message" style="clear:both;">This element is not used by any task</div></div>

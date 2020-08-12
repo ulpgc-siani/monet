@@ -1207,50 +1207,45 @@ CGActionSetTaskOwner.prototype = new CGAction;
 CGActionSetTaskOwner.constructor = CGActionSetTaskOwner;
 CommandFactory.register(CGActionSetTaskOwner, { Task: 0 }, false);
 
-CGActionSetTaskOwner.prototype.saveReason = function () {
-	if (this.dialog == null) return;
-	State.SetTaskOwnerReason = this.dialog.Reason;
-};
-
-CGActionSetTaskOwner.prototype.destroy = function (sResponse) {
-  this.resetState();
-  if (this.dialogLayerId != null) $(this.dialogLayerId).remove();
-};
-
-CGActionSetTaskOwner.prototype.cancel = function() {
-	this.saveReason();
-	this.destroy();
-};
-
-CGActionSetTaskOwner.prototype.onFailure = function (sResponse) {
-  this.saveReason();
-  Desktop.reportError(Lang.Action.SetTaskOwner.Failure);
-  if (this.dialogLayerId != null) $(this.dialogLayerId).remove();
-  this.terminate();
-};
-
 CGActionSetTaskOwner.prototype.step_1 = function () {
-  var extItem = Ext.get(this.DOMItem);
-  this.dialogLayerId = Ext.id();
-  new Insertion.After(extItem.dom, "<div class='dialog embedded' id='" + this.dialogLayerId + "'></div>");
-
-  this.dialog = new CGDialogSelectTaskOwner();
-  this.dialog.target = { reason: State.SetTaskOwnerReason };
-  this.dialog.onAccept = this.execute.bind(this);
-  this.dialog.onCancel = this.destroy.bind(this);
-  this.dialog.init(this.dialogLayerId);
-  this.dialog.show();
+  var Process = new CGProcessSetTaskOwner();
+  Process.ReturnProcess = this;
+  Process.Task = this.Task;
+  Process.DOMItem = this.DOMItem;
+  Process.execute();
 };
 
 CGActionSetTaskOwner.prototype.step_2 = function () {
-  $(this.dialogLayerId).remove();
-  State.SetTaskOwnerReason = null;
-  Kernel.setTasksOwner(this, this.dialog.User, this.dialog.Reason, this.Task);
-};
-
-CGActionSetTaskOwner.prototype.step_3 = function () {
   CommandListener.throwCommand("refreshtask(" + this.Task + ")");
   this.terminate();
+};
+
+//----------------------------------------------------------------------
+// Set node task owner
+//----------------------------------------------------------------------
+function CGActionSetNodeTaskOwner() {
+  this.base = CGAction;
+  this.base(2);
+};
+
+CGActionSetNodeTaskOwner.prototype = new CGAction;
+CGActionSetNodeTaskOwner.constructor = CGActionSetNodeTaskOwner;
+CommandFactory.register(CGActionSetNodeTaskOwner, { Task: 0, Node: 1 }, false);
+
+CGActionSetNodeTaskOwner.prototype.step_1 = function () {
+  var Process = new CGProcessSetTaskOwner();
+  Process.ReturnProcess = this;
+  Process.Task = this.Task;
+  Process.DOMItem = this.DOMItem;
+  Process.execute();
+};
+
+CGActionSetNodeTaskOwner.prototype.step_2 = function () {
+    var DOMAssign = $("assign_task_" + this.Node);
+    var DOMUnassign = $("unassign_task_" + this.Node);
+    DOMAssign.style.display = "none";
+    DOMUnassign.style.display = "block";
+    this.terminate();
 };
 
 //----------------------------------------------------------------------
@@ -1258,27 +1253,22 @@ CGActionSetTaskOwner.prototype.step_3 = function () {
 //----------------------------------------------------------------------
 function CGActionUnsetTaskOwner() {
   this.base = CGAction;
-  this.base(3);
+  this.base(2);
 };
 
 CGActionUnsetTaskOwner.prototype = new CGAction;
 CGActionUnsetTaskOwner.constructor = CGActionUnsetTaskOwner;
 CommandFactory.register(CGActionUnsetTaskOwner, { Task: 0, ParentClass: 1 }, false);
 
-CGActionUnsetTaskOwner.prototype.onFailure = function (sResponse) {
-  Desktop.reportError(Lang.Action.UnsetTaskOwner.Failure);
-  this.terminate();
-};
-
 CGActionUnsetTaskOwner.prototype.step_1 = function () {
-  Ext.MessageBox.confirm(Lang.ViewTask.DialogUnsetTaskOwner.Title, Lang.ViewTask.DialogUnsetTaskOwner.Description, CGActionUnsetTaskOwner.prototype.checkOption.bind(this));
+  var Process = new CGProcessUnsetTaskOwner();
+  Process.ReturnProcess = this;
+  Process.Task = this.Task;
+  Process.DOMItem = this.DOMItem;
+  Process.execute();
 };
 
 CGActionUnsetTaskOwner.prototype.step_2 = function () {
-  Kernel.unsetTaskOwner(this, this.Task);
-};
-
-CGActionUnsetTaskOwner.prototype.step_3 = function () {
   var extItem = Ext.get(this.DOMItem);
 
   extItem.up("." + this.ParentClass).removeClass(CLASS_ACTIVE);
@@ -1287,6 +1277,34 @@ CGActionUnsetTaskOwner.prototype.step_3 = function () {
   if (Task != null && Task.getId() == this.Task)
     CommandListener.throwCommand("refreshtask(" + this.Task + ")");
 
+  this.terminate();
+};
+
+//----------------------------------------------------------------------
+// Unset node task owner
+//----------------------------------------------------------------------
+function CGActionUnsetNodeTaskOwner() {
+  this.base = CGAction;
+  this.base(2);
+};
+
+CGActionUnsetNodeTaskOwner.prototype = new CGAction;
+CGActionUnsetNodeTaskOwner.constructor = CGActionUnsetNodeTaskOwner;
+CommandFactory.register(CGActionUnsetNodeTaskOwner, { Task: 0, Node: 1, ParentClass: 2 }, false);
+
+CGActionUnsetNodeTaskOwner.prototype.step_1 = function () {
+  var Process = new CGProcessUnsetTaskOwner();
+  Process.ReturnProcess = this;
+  Process.Task = this.Task;
+  Process.DOMItem = this.DOMItem;
+  Process.execute();
+};
+
+CGActionUnsetNodeTaskOwner.prototype.step_2 = function () {
+  var DOMAssign = $("assign_task_" + this.Node);
+  var DOMUnassign = $("unassign_task_" + this.Node);
+  DOMAssign.style.display = "block";
+  DOMUnassign.style.display = "none";
   this.terminate();
 };
 

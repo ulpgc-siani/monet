@@ -870,3 +870,87 @@ CGProcessSolveTaskEdition.prototype.step_2 = function () {
 	this.terminateOnSuccess();
 	Desktop.hideProgress();
 };
+
+//----------------------------------------------------------------------
+// Set Task Owner
+//----------------------------------------------------------------------
+function CGProcessSetTaskOwner() {
+	this.base = CGProcess;
+	this.base(3);
+};
+
+CGProcessSetTaskOwner.prototype = new CGProcess;
+CGProcessSetTaskOwner.constructor = CGProcessSetTaskOwner;
+
+CGProcessSetTaskOwner.prototype.saveReason = function () {
+	if (this.dialog == null) return;
+	State.SetTaskOwnerReason = this.dialog.Reason;
+};
+
+CGProcessSetTaskOwner.prototype.destroy = function (sResponse) {
+  this.resetState();
+  if (this.dialogLayerId != null) $(this.dialogLayerId).remove();
+};
+
+CGProcessSetTaskOwner.prototype.cancel = function() {
+	this.saveReason();
+	this.destroy();
+};
+
+CGProcessSetTaskOwner.prototype.onFailure = function (sResponse) {
+  this.saveReason();
+  Desktop.reportError(Lang.Action.SetTaskOwner.Failure);
+  if (this.dialogLayerId != null) $(this.dialogLayerId).remove();
+  this.terminateOnFailure();
+};
+
+CGProcessSetTaskOwner.prototype.step_1 = function () {
+  var extItem = Ext.get(this.DOMItem);
+  this.dialogLayerId = Ext.id();
+  new Insertion.After(extItem.dom, "<div class='dialog embedded' id='" + this.dialogLayerId + "'></div>");
+
+  this.dialog = new CGDialogSelectTaskOwner();
+  this.dialog.target = { reason: State.SetTaskOwnerReason };
+  this.dialog.onAccept = this.execute.bind(this);
+  this.dialog.onCancel = this.destroy.bind(this);
+  this.dialog.init(this.dialogLayerId);
+  this.dialog.show();
+}
+
+CGProcessSetTaskOwner.prototype.step_2 = function () {
+  $(this.dialogLayerId).remove();
+  State.SetTaskOwnerReason = null;
+  Kernel.setTasksOwner(this, this.dialog.User, this.dialog.Reason, this.Task);
+};
+
+CGProcessSetTaskOwner.prototype.step_3 = function () {
+  this.terminateOnSuccess();
+};
+
+//----------------------------------------------------------------------
+// Unset task owner
+//----------------------------------------------------------------------
+function CGProcessUnsetTaskOwner() {
+  this.base = CGProcess;
+  this.base(3);
+};
+
+CGProcessUnsetTaskOwner.prototype = new CGProcess;
+CGProcessUnsetTaskOwner.constructor = CGProcessUnsetTaskOwner;
+
+CGProcessUnsetTaskOwner.prototype.onFailure = function (sResponse) {
+  Desktop.reportError(Lang.Action.UnsetTaskOwner.Failure);
+  this.terminateOnFailure();
+};
+
+CGProcessUnsetTaskOwner.prototype.step_1 = function () {
+  Ext.MessageBox.confirm(Lang.ViewTask.DialogUnsetTaskOwner.Title, Lang.ViewTask.DialogUnsetTaskOwner.Description, CGProcessUnsetTaskOwner.prototype.checkOption.bind(this));
+};
+
+CGProcessUnsetTaskOwner.prototype.step_2 = function () {
+  Kernel.unsetTaskOwner(this, this.Task);
+};
+
+CGProcessUnsetTaskOwner.prototype.step_3 = function () {
+  this.terminateOnSuccess();
+};

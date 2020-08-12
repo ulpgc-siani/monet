@@ -270,6 +270,10 @@ public class NodeViewRender extends ViewRender {
 			return block("content.recenttask$empty", contentMap);
 
 		contentMap.put("idTask", selected.getId());
+		contentMap.put("unassignDisplay", selected.getOwner() != null ? "block" : "none");
+		contentMap.put("unassign", block("content.recenttask$unassign", contentMap));
+		contentMap.put("assignDisplay", selected.getOwner() != null ? "none" : "block");
+		contentMap.put("assign", block("content.recenttask$assign", contentMap));
 
 		return block("content.recenttask", contentMap);
 	}

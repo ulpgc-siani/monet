@@ -346,7 +346,7 @@ public class BPIEventManagerImpl implements BPIEventManager {
 		TaskImpl behaviour = this.bpiClassLocator.instantiateBehaviour(task.getDefinition());
 		if (behaviour == null) return;
 		behaviour.injectTask(task);
-		behaviour.onUnAssign();
+		behaviour.onUnassign();
 	}
 
 	@Override

@@ -56,6 +56,6 @@ public interface BehaviorTask {
 
 	public void onAssign(User user);
 
-	public void onUnAssign();
+	public void onUnassign();
 
 }
