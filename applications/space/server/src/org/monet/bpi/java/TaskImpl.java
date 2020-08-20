@@ -179,7 +179,7 @@ public abstract class TaskImpl implements Task, BehaviorTask {
 
 	public User getOwner() {
 		org.monet.space.kernel.model.User owner = this.task.getOwner();
-		if (owner != null) return null;
+		if (owner == null) return null;
 
 		UserImpl bpiOwner = new UserImpl();
 		bpiOwner.injectUser(owner);
