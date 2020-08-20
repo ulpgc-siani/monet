@@ -12,6 +12,14 @@ import java.util.Properties;
 
 public class ConfigurationMap extends HashMap<String, String> {
 
+    public static ConfigurationMap fromMap(Map<String, String> map) {
+        ConfigurationMap result = new ConfigurationMap();
+        for (Entry<String, String> entry : map.entrySet()) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
+	}
+
     public static ConfigurationMap fromArgs(String[] args) {
         ConfigurationMap map = new ConfigurationMap();
         for (String arg : args) {

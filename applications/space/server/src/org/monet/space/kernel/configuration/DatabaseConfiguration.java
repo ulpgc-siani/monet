@@ -85,6 +85,10 @@ public class DatabaseConfiguration {
         MYSQL, ORACLE
     }
 
+    public static DatabaseConfiguration fromMap(Map<String, String> map) {
+    	return new DatabaseConfiguration(map);
+	}
+
     public static DatabaseConfiguration fromXml(String sFilename) {
         InputStream isConfigFileContent;
 
