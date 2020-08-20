@@ -754,12 +754,12 @@ SELECT * FROM ts$nodes_descriptors
   </entry>
   <entry key="NODE_LIST_LOAD_FROM_TRASH">
     <![CDATA[
-SELECT DISTINCT * FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ::condition:: ::groupsby:: ORDER BY delete_date DESC, ordering DESC LIMIT @startpos,@limit
+SELECT DISTINCT * FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ::condition:: ORDER BY delete_date DESC, ordering DESC LIMIT @startpos,@limit
 ]]>
   </entry>
   <entry key="NODE_LIST_LOAD_FROM_TRASH_COUNT">
     <![CDATA[
-SELECT COUNT(DISTINCT(id_node)) as counter FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ::condition:: ::groupsby::
+SELECT COUNT(DISTINCT(id_node)) as counter FROM ts$nodes_descriptors WHERE id_node IN (SELECT id_node FROM ts$logbooknode WHERE deleted=1) AND NOT ts$nodes_descriptors.delete_date IS NULL ::condition::
 ]]>
   </entry>
   <entry key="NODE_LIST_LOAD_FROM_TRASH_OFPARENT">
