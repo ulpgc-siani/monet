@@ -64,7 +64,7 @@ public class FieldNodeImpl extends FieldImpl<Link> implements FieldNode {
 
 	@Override
 	public void clear() {
-		this.set(new Link("", ""));
+		this.set(emptyLink());
 	}
 
 	private Link emptyLink() {
