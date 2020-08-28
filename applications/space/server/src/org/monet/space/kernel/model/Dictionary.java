@@ -94,6 +94,7 @@ public class Dictionary extends org.monet.metamodel.Dictionary implements ILoadL
 	private Map<String, DatastoreBuilderDefinition> datastoreBuilderMap;
 	private List<DatastoreBuilderDefinition> datastoreBuilderList;
 	private Map<String, LayoutDefinition> layoutDefinitionMap;
+	private String basePackage = null;
 
 	private Map<String, List<DatastoreBuilderDefinition>> datastoreBuilders = new HashMap<>();
 	private List<NodeDefinition> environments;
@@ -1065,6 +1066,28 @@ public class Dictionary extends org.monet.metamodel.Dictionary implements ILoadL
 		if (!this.ontologiesMap.containsKey(definitionKey))
 			return null;
 		return this.ontologiesMap.get(definitionKey);
+	}
+
+	public String basePackage() {
+		if (basePackage != null) return basePackage;
+		for (Definition d : getAllDefinitions()) {
+			if (d instanceof TaskOrderDefinition) continue;
+			String name = d.getName();
+			if (name.contains(".")) name = name.substring(0, name.lastIndexOf("."));
+			if (basePackage == null) basePackage = name;
+			else basePackage = greatestCommonPrefix(basePackage, name);
+		}
+		return basePackage;
+	}
+
+	private String greatestCommonPrefix(String a, String b) {
+		int minLength = Math.min(a.length(), b.length());
+		for (int i = 0; i < minLength; i++) {
+			if (a.charAt(i) != b.charAt(i)) {
+				return a.substring(0, i);
+			}
+		}
+		return a.substring(0, minLength);
 	}
 
 }
