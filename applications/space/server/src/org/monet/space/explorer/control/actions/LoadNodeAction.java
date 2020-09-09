@@ -44,8 +44,8 @@ public class LoadNodeAction extends Action<LoadNodeDialog, NodeDisplay> {
 
         Node node = layerProvider.getNodeLayer().loadNode(dialog.getId());
 
-        if (!componentProvider.getComponentSecurity().canRead(node, getAccount()))
-            throw new ReadEntityPermissionException();
+//        if (!componentProvider.getComponentSecurity().canRead(node, getAccount()))
+//            throw new ReadEntityPermissionException();
 
         display.write(node);
     }
