@@ -1034,13 +1034,13 @@ INSERT INTO ::referencetable:: (id_node,id_parent,code,::attributes::) VALUES (@
     <![CDATA[
 SELECT DISTINCT(::referencetable::.::attribute::) FROM ::referencetable::
 LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=::referencetable::.id_node
-WHERE ts$nodes_descriptors.delete_date IS NULL AND ::referencetable::.code IN (::codenodes::) ::parameters:: ORDER BY ::referencetable::.::attribute::
+WHERE ts$nodes_descriptors.delete_date IS NULL ::codenodessubquery:: ::parameters:: ORDER BY ::referencetable::.::attribute::
 ]]>
   </entry>
   <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_FOR_OWNER">
     <![CDATA[
 SELECT DISTINCT(::attribute::) FROM tv$items_::idnode::
-WHERE code IN (::codenodes::) ::parameters:: ORDER BY ::attribute::
+WHERE 1=1 ::codenodessubquery:: ::parameters:: ORDER BY ::attribute::
 ]]>
   </entry>
   <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES">
@@ -1048,22 +1048,27 @@ WHERE code IN (::codenodes::) ::parameters:: ORDER BY ::attribute::
 SELECT DISTINCT(code) FROM ::referencetable::
 ]]>
   </entry>
-  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES_FOR_OWNER">
-    <![CDATA[
-SELECT DISTINCT(code) FROM tv$items_::idnode::
-]]>
-  </entry>
   <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_COUNT">
     <![CDATA[
 SELECT ::referencetable::.::attribute::, COUNT(*) AS counter FROM ::referencetable::
 LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=::referencetable::.id_node
-WHERE ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 AND ::referencetable::.code IN (::codenodes::) ::parameters:: GROUP BY ::referencetable::.::attribute::
+WHERE ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::parameters:: GROUP BY ::referencetable::.::attribute::
 ]]>
   </entry>
   <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_COUNT_FOR_OWNER">
     <![CDATA[
 SELECT ::attribute::, COUNT(*) AS counter FROM tv$items_::idnode::
-WHERE code IN (::codenodes::) ::parameters:: GROUP BY ::attribute::
+WHERE 1=1 ::codenodessubquery:: ::parameters:: GROUP BY ::attribute::
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_CODENODES_SUBQUERY_FOR_OWNER">
+    <![CDATA[
+AND code IN (::nodes::)
+]]>
+  </entry>
+  <entry key="REFERENCE_LOAD_ATTRIBUTE_VALUES_CODENODES_SUBQUERY">
+    <![CDATA[
+AND ::referencetable::.code IN (::nodes::)
 ]]>
   </entry>
   <entry key="REFERENCE_LIST_LOAD">
