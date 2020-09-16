@@ -149,7 +149,7 @@ CGProcessShowNode.prototype.step_3 = function () {
 	}
 
 	if (!this.Node) {
-		if (this.IdRevision == null || this.IdRevision == "-1") Kernel.loadNode(this, this.Id, this.Mode);
+		if (this.IdRevision == null || this.IdRevision == "-1") Kernel.loadNode(this, this.Id, this.Mode, this.Index, this.Count);
 		else Kernel.loadNodeRevision(this, this.IdRevision, this.Id, this.Mode, null);
 	}
 	else this.gotoStep(5);

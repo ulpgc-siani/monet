@@ -51,6 +51,10 @@ Lang.ViewNode = {
     Description: "¿Está seguro que desea ejecutar la operación?"
   },
 
+  ChildView : {
+    Final: "Se ha llegado al final"
+  },
+
   SignatureState: {
     Pending: "Pendiente",
     Waiting: "En espera",

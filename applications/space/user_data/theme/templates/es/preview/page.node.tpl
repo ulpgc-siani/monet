@@ -3,6 +3,8 @@
     <div class="idnode">::id::</div>
     <div class="code">::code::</div>
     <div class="type">::type::</div>
+    <div class="setindex">::index::</div>
+    <div class="setcount">::count::</div>
     <div class="tpl refresh ::id::">preview.html?mode=page::from|&from=*::</div>
     <div class="ancestors">::ancestorsIds::</div>
     <div class="mode">edition</div>

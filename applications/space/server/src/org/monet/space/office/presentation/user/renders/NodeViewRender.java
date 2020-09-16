@@ -359,6 +359,8 @@ public class NodeViewRender extends ViewRender {
 		NodeState state = this.node.getState();
 
 		map.put("idNode", this.node.getId());
+		map.put("index", getParameter("index"));
+		map.put("count", getParameter("count"));
 		map.put("codeNode", this.node.getCode());
 		map.put("type", this.getNodeType(this.node));
 		map.put("from", this.getParameterAsString("from"));

@@ -526,7 +526,7 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
   DOMNode.getControlInfo = function () {
     var aResult = new Array();
     var extNode = Ext.get(this);
-    var extId, extAncestors, extCode, extCodeView, extMode, extNodes, extResult, extTimeStamp, extState;
+    var extId, extAncestors, extCode, extCodeView, extSetIndex, extSetCount, extMode, extNodes, extResult, extTimeStamp, extState;
 
     if (this.ControlInfo) return this.ControlInfo;
 
@@ -537,6 +537,8 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     this.ControlInfo.Ancestors = (extAncestors = extNode.select(CSS_CONTROL_INFO + " > .ancestors").first()) ? extAncestors.dom.innerHTML : "-1";
     this.ControlInfo.Code = (extCode = extNode.select(CSS_CONTROL_INFO + " > .code").first()) ? extCode.dom.innerHTML : "";
     this.ControlInfo.CodeView = (extCodeView = extNode.select(CSS_CONTROL_INFO + " > .codeview").first()) ? extCodeView.dom.innerHTML : "-1";
+    this.ControlInfo.SetIndex = (extSetIndex = extNode.select(CSS_CONTROL_INFO + " > .setindex").first()) ? extSetIndex.dom.innerHTML : "-1";
+    this.ControlInfo.SetCount = (extSetCount = extNode.select(CSS_CONTROL_INFO + " > .setcount").first()) ? extSetCount.dom.innerHTML : "-1";
     this.ControlInfo.Mode = (extMode = extNode.select(CSS_CONTROL_INFO + " > .mode").first()) ? extMode.dom.innerHTML.replace(/&amp;/g, AMP) : null;
     this.ControlInfo.Nodes = (extNodes = extNode.select(CSS_CONTROL_INFO + " > .nodes").first()) ? extNodes.dom.innerHTML : null;
     this.ControlInfo.TimeStamp = (extTimeStamp = extNode.select(CSS_CONTROL_INFO + " > .timestamp").first()) ? extTimeStamp.dom.innerHTML : null;

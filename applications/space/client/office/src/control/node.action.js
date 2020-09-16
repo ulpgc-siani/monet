@@ -235,6 +235,10 @@ CommandFactory.register(CGActionShowNodeChild, {
 	Count: 3
 }, true);
 
+CGActionShowNodeChild.prototype.onFailure = function (sResponse) {
+    Desktop.reportWarning(Lang.ViewNode.ChildView.Final);
+};
+
 CGActionShowNodeChild.prototype.step_1 = function () {
 	var view = State.SetsContext[this.Ancestor].view;
 	var filters = State.getListViewerFilters(this.Ancestor + view);
@@ -356,6 +360,8 @@ CGActionRefreshNode.prototype.step_1 = function () {
 	Process.ReturnProcess = this;
 	Process.Id = this.Id;
 	Process.Mode = DOMNode.getControlInfo().Templates.Refresh;
+	Process.Index = DOMNode.getControlInfo().SetIndex;
+	Process.Count = DOMNode.getControlInfo().SetCount;
 	Process.ViewNode = this.ViewNode;
 	Process.ActivateNode = true;
 	Process.execute();
@@ -3488,7 +3494,7 @@ CGActionExecuteNodeCommand.prototype.step_3 = function () {
 	}
 	else if (response.type == "operation") {
 		var operation = response.data;
-		CommandDispatcher.execute(operation.name, null, operation.data);
+        CommandDispatcher.execute(operation.name, null, operation.data);
 	}
 	else Desktop.reportSuccess(Lang.Action.ExecuteNodeCommand.Done);
 
