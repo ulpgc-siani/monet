@@ -12167,8 +12167,12 @@ CGActionShowNodeChild.prototype.step_1 = function () {
 };
 
 CGActionShowNodeChild.prototype.step_2 = function () {
-	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
+    if (this.data === "-1") {
+        this.onFailure();
+        return;
+    }
 
+	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
 	var ActionShowNode = new CGActionShowNode();
 	ActionShowNode.Id = this.data;
 	ActionShowNode.Mode = this.Mode;
