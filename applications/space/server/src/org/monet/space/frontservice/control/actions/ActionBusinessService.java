@@ -107,6 +107,8 @@ public class ActionBusinessService extends Action {
 		if (replyMailBox == null)
 			throw new SessionException(ErrorCode.INCORRECT_PARAMETERS, Parameter.REPLY_MAILBOX);
 
+		AgentLogger.getInstance().info("Service request with unit: " + sourceUnit + ", service: " + serviceName + " and reply mailbox: " + replyMailBox);
+
 		try {
 
 			try {
@@ -160,7 +162,7 @@ public class ActionBusinessService extends Action {
 				throw new CantSignException(String.format("Could not sign message: %s with certificate: %s", mailBoxUri, configuration.getCertificateFilename()));
 			}
 
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			AgentLogger.getInstance().error("Error in service request with unit: " + sourceUnit + ", service: " + serviceName + " and reply mailbox: " + replyMailBox, e);
 			if (task != null) {
 				try {
