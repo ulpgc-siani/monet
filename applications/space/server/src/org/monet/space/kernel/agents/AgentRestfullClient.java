@@ -95,6 +95,7 @@ public class AgentRestfullClient {
 
 	@SuppressWarnings("unchecked")
 	public Result execute(String url, boolean isPost, HashMap<String, ?> parameters) throws Exception {
+		url = addRandParam(url);
 		HttpClient client = buildClient();
         HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
 		HttpResponse response;
@@ -127,6 +128,12 @@ public class AgentRestfullClient {
 		return new Result(entity.getContent(), entity.getContentLength(), entity.getContentType() != null ? entity.getContentType().getValue() : null);
 	}
 
+	private String addRandParam(String url) {
+		if (url == null) return null;
+		if (url.contains("mr=")) return url;
+		return url.contains("?") ? "&" : "?" + "&mr=" + Math.random();
+	}
+
 	private HttpClient buildClient() {
 		return HttpClientBuilder.create().setDefaultRequestConfig(requestConfig()).build();
 	}
@@ -148,6 +155,7 @@ public class AgentRestfullClient {
 	}
 
 	public String executeWithAuth(String url, ArrayList<Entry<String, ContentBody>> parameters) throws Exception {
+		url = addRandParam(url);
 		Configuration configuration = Configuration.getInstance();
 
         HttpClient client = buildClient();
