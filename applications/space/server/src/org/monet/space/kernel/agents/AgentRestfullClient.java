@@ -95,23 +95,23 @@ public class AgentRestfullClient {
 
 	@SuppressWarnings("unchecked")
 	public Result execute(String url, boolean isPost, HashMap<String, ?> parameters) throws Exception {
-		url = addRandParam(url);
 		HttpClient client = buildClient();
-        HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
+		HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
 		HttpResponse response;
 
 		if (isPost) {
 			MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
 
-            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+			entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 			for (Entry<String, ?> param : parameters.entrySet()) {
 				if (param.getValue() instanceof List<?>) {
 					for (ContentBody contentBody : (List<ContentBody>) param.getValue())
 						entityBuilder.addPart(param.getKey(), contentBody);
 				} else {
-                    entityBuilder.addPart(param.getKey(), (ContentBody) param.getValue());
+					entityBuilder.addPart(param.getKey(), (ContentBody) param.getValue());
 				}
 			}
+			if (!parameters.containsKey("mr")) entityBuilder.addPart("mr", new StringBody(String.valueOf(Math.random()), ContentType.TEXT_PLAIN));
 
 			((HttpPost) method).setEntity(entityBuilder.build());
 		}
@@ -126,12 +126,6 @@ public class AgentRestfullClient {
 
 		HttpEntity entity = response.getEntity();
 		return new Result(entity.getContent(), entity.getContentLength(), entity.getContentType() != null ? entity.getContentType().getValue() : null);
-	}
-
-	private String addRandParam(String url) {
-		if (url == null) return null;
-		if (url.contains("mr=")) return url;
-		return url.contains("?") ? "&" : "?" + "&mr=" + Math.random();
 	}
 
 	private HttpClient buildClient() {
@@ -155,16 +149,15 @@ public class AgentRestfullClient {
 	}
 
 	public String executeWithAuth(String url, ArrayList<Entry<String, ContentBody>> parameters) throws Exception {
-		url = addRandParam(url);
 		Configuration configuration = Configuration.getInstance();
 
-        HttpClient client = buildClient();
+		HttpClient client = buildClient();
 		HttpPost post = new HttpPost(url);
 		MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-        StringBuilder requestArgsBuilder = new StringBuilder();
-        HttpResponse response;
+		StringBuilder requestArgsBuilder = new StringBuilder();
+		HttpResponse response;
 
-        entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+		entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
 		for (Entry<String, ContentBody> param : parameters) {
 			entityBuilder.addPart(param.getKey(), param.getValue());
