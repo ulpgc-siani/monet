@@ -111,7 +111,6 @@ public class AgentRestfullClient {
 					entityBuilder.addPart(param.getKey(), (ContentBody) param.getValue());
 				}
 			}
-			if (!parameters.containsKey("mr")) entityBuilder.addPart("mr", new StringBody(String.valueOf(Math.random()), ContentType.TEXT_PLAIN));
 
 			((HttpPost) method).setEntity(entityBuilder.build());
 		}
