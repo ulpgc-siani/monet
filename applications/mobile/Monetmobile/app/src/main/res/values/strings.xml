@@ -304,4 +304,5 @@
     <string name="sync_disabled">Monet ha desactivado la sincronización</string>
     <string name="sync_disabled_content">No es posible sincronizar los datos. Compruebe su conexión, si persiste contacte con su proveedor</string>
     <string name="sync_incorrect_credentials">Sus datos de inicio de sesión han cambiado. No es posible sincronizar los datos.</string>
+
 </resources>
