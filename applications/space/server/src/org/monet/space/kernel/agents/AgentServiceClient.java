@@ -101,8 +101,8 @@ public class AgentServiceClient {
 
 			return result;
 		} catch (Exception e) {
-			item.setErrorMessage(e.getClass().getName() + ": " + e.getMessage());
 			AgentLogger.getInstance().error("AgentServiceClient: Error sending message", e);
+			item.setErrorMessage(e.getClass().getName() + ": " + e.getMessage());
 			return false;
 		} finally {
 			StreamHelper.close(messageStream);
@@ -125,8 +125,8 @@ public class AgentServiceClient {
 
 			return result;
 		} catch (Exception e) {
-			item.setErrorMessage(e.getClass().getName() + ": " + e.getMessage());
 			AgentLogger.getInstance().error("AgentServiceClient: Error sending signaling", e);
+			item.setErrorMessage(e.getClass().getName() + ": " + e.getMessage());
 			return false;
 		}
 	}

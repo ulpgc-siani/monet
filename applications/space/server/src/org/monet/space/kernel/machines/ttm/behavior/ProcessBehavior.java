@@ -813,7 +813,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.selectDelegationActionRole: Invalid state, this task isn't on a delegation action");
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
@@ -868,7 +868,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.setupDelegationAction: Invalid state, this task isn't on a delegation action");
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
@@ -895,7 +895,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.completeDelegationAction: Invalid state, this task isn't on a delegation action");
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
@@ -917,7 +917,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.failureDelegationAction: Invalid state, this task isn't on a delegation action");
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
