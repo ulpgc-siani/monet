@@ -67,6 +67,7 @@ public class AgentWorkQueue extends TimerTask {
 					action.execute(item);
 					this.producer.updateToFinish(item.getId());
 				} catch (Throwable e) {
+					AgentLogger.getInstance().error("AgentWorkQueue: " + e);
 					StringBuilder builder = new StringBuilder();
 					builder.append(e.getMessage());
 					builder.append("\n");
@@ -74,7 +75,6 @@ public class AgentWorkQueue extends TimerTask {
 						builder.append(element.toString());
 						builder.append("\n");
 					}
-
 					this.producer.updateWithError(item.getId(), builder.toString());
 				}
 			}
