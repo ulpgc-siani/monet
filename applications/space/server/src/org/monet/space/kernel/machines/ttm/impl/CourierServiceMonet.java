@@ -141,7 +141,7 @@ public class CourierServiceMonet implements CourierService {
 			message.setType(Message.Type.REQUEST_SERVICE);
 			message.setContent(fromMailBox.toString());
 
-			AgentLogger.getInstance().info("CourierServiceMonet: Added message to message queue. Task id: " + taskOrder.getTaskId() + ".Order id: " + taskOrder.getId() + ".Setup node: " + taskOrder.getSetupNodeId());
+			AgentLogger.getInstance().info("CourierServiceMonet: Added message to message queue. Task id: " + taskOrder.getTaskId() + ". Order id: " + taskOrder.getId() + ". Setup node: " + taskOrder.getSetupNodeId());
 			this.messageQueueService.push(taskOrder.getId(), message);
 		}
 

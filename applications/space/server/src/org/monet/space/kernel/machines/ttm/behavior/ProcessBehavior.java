@@ -32,10 +32,7 @@ import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.Dictionary;
 import org.monet.space.kernel.threads.MonetSystemThread;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ProcessBehavior extends Behavior implements PersistenceHandler {
@@ -68,6 +65,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 	private ContestantsBehavior contestants;
 	private HashMap<String, ProviderBehavior> providers = new HashMap<String, ProviderBehavior>();
 	private HashMap<String, ContestBehavior> contests = new HashMap<String, ContestBehavior>();
+	private static Set<String> delegatingProcesses = new HashSet<>();
 
 	public void injectModel(Process model) {
 		this.model = model;
@@ -866,31 +864,45 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		if (this.isFinished())
 			throw new RuntimeException("Invalid operation: Task is finished.");
 
-		PlaceProperty placeProperty = this.model.getPlaceProperty();
-		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
-		if (actionProperty == null)
-			throw new RuntimeException("ProcessBehavior.setupDelegationAction: Invalid state, this task isn't on a delegation action. Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
+		try {
+			if (delegatingProcesses.contains(this.model.getId())) {
+				AgentLogger.getInstance().info("Already delegating. TaskId: " + this.model.getId() + ". OrderId: " + this.model.getCurrentJobOrderId());
+				return;
+			}
+			delegatingProcesses.add(this.model.getId());
 
-		AgentLogger.getInstance().info("ProcessBehavior.startDelegation for task " + this.model.getId());
-		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
-		ProviderBehavior provider = this.providers.get(declaration.getCode());
-		provider.start();
+			PlaceProperty placeProperty = this.model.getPlaceProperty();
+			DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
+			if (actionProperty == null) {
+				delegatingProcesses.remove(this.model.getId());
+				throw new RuntimeException("ProcessBehavior.setupDelegationAction: Invalid state, this task isn't on a delegation action. Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
+			}
 
-		TaskOrder order = this.persistenceService.loadTaskOrder(provider.getModel().getOrderId());
-		order.setSetupNodeId(null);
-		this.persistenceService.saveTaskOrder(order);
+			AgentLogger.getInstance().info("ProcessBehavior.startDelegation for task " + this.model.getId());
+			TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
+			ProviderBehavior provider = this.providers.get(declaration.getCode());
+			provider.start();
 
-		MonetEvent event = new MonetEvent(MonetEvent.TASK_SETUP_DELEGATION_COMPLETE, null, this.model.getId());
-		event.addParameter(MonetEvent.PARAMETER_PLACE, placeProperty.getCode());
-		event.addParameter(MonetEvent.PARAMETER_ACTION, actionProperty.getCode());
-		event.addParameter(MonetEvent.PARAMETER_SUGGESTED_START_DATE, order.getInternalSuggestedStartDate());
-		event.addParameter(MonetEvent.PARAMETER_SUGGESTED_END_DATE, order.getInternalSuggestedEndDate());
-		event.addParameter(MonetEvent.PARAMETER_OBSERVATIONS, order.getComments());
-		event.addParameter(MonetEvent.PARAMETER_URGENT, order.isUrgent());
-		event.addParameter(MonetEvent.PARAMETER_PROVIDER, order.getRole().getLabel());
-		this.agentNotifier.notify(event);
+			TaskOrder order = this.persistenceService.loadTaskOrder(provider.getModel().getOrderId());
+			order.setSetupNodeId(null);
+			this.persistenceService.saveTaskOrder(order);
 
-		this.updateTaskState();
+			MonetEvent event = new MonetEvent(MonetEvent.TASK_SETUP_DELEGATION_COMPLETE, null, this.model.getId());
+			event.addParameter(MonetEvent.PARAMETER_PLACE, placeProperty.getCode());
+			event.addParameter(MonetEvent.PARAMETER_ACTION, actionProperty.getCode());
+			event.addParameter(MonetEvent.PARAMETER_SUGGESTED_START_DATE, order.getInternalSuggestedStartDate());
+			event.addParameter(MonetEvent.PARAMETER_SUGGESTED_END_DATE, order.getInternalSuggestedEndDate());
+			event.addParameter(MonetEvent.PARAMETER_OBSERVATIONS, order.getComments());
+			event.addParameter(MonetEvent.PARAMETER_URGENT, order.isUrgent());
+			event.addParameter(MonetEvent.PARAMETER_PROVIDER, order.getRole().getLabel());
+			this.agentNotifier.notify(event);
+
+			delegatingProcesses.remove(this.model.getId());
+			this.updateTaskState();
+		}
+		finally {
+			delegatingProcesses.remove(this.model.getId());
+		}
 	}
 
 	public synchronized void completeDelegationAction(MailBoxUri providerMailbox, String providerUserId) {
