@@ -22,12 +22,14 @@
 
 package org.monet.space.frontservice.control.actions;
 
+import com.sun.media.jfxmedia.logging.Logger;
 import org.monet.metamodel.TaskDefinition;
 import org.monet.metamodel.internal.Ref;
 import org.monet.http.Request;
 import org.monet.space.frontservice.control.constants.Parameter;
 import org.monet.space.frontservice.ApplicationFrontService;
 import org.monet.space.frontservice.core.constants.ErrorCode;
+import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentNotifier;
 import org.monet.space.kernel.components.ComponentFederation;
 import org.monet.space.kernel.components.ComponentPersistence;
@@ -105,6 +107,8 @@ public class ActionBusinessService extends Action {
 		if (replyMailBox == null)
 			throw new SessionException(ErrorCode.INCORRECT_PARAMETERS, Parameter.REPLY_MAILBOX);
 
+		AgentLogger.getInstance().info("Service request with unit: " + sourceUnit + ", service: " + serviceName + " and reply mailbox: " + replyMailBox);
+
 		try {
 
 			try {
@@ -158,7 +162,8 @@ public class ActionBusinessService extends Action {
 				throw new CantSignException(String.format("Could not sign message: %s with certificate: %s", mailBoxUri, configuration.getCertificateFilename()));
 			}
 
-		} catch (Exception e) {
+		} catch (Throwable e) {
+			AgentLogger.getInstance().error("Error in service request with unit: " + sourceUnit + ", service: " + serviceName + " and reply mailbox: " + replyMailBox, e);
 			if (task != null) {
 				try {
 					this.taskLayer.deleteTask(task.getId());

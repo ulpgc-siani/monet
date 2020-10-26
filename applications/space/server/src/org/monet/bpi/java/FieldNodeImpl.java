@@ -68,10 +68,7 @@ public class FieldNodeImpl extends FieldImpl<Link> implements FieldNode {
 	}
 
 	private Link emptyLink() {
-		Link result = new Link();
-		result.setId("");
-		result.setLabel("");
-		return result;
+		return new Link("", "");
 	}
 
 }

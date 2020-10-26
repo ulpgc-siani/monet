@@ -48,6 +48,8 @@ public interface Task {
 
   public String currentPlace();
 
+  public User getOwner();
+
   public void assignTo(User user, String reason);
   
   public boolean isFinished();

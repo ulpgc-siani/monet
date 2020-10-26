@@ -578,21 +578,25 @@ public class ProducerReference extends Producer {
 	}
 
 	private void addFilterNodesToQuery(String ownerId, List<String> filterNodes, String tableName, Map<String, String> subQueries) {
-		String filterNodesQuery = "";
+		String nodes = null;
 
-		if ((filterNodes != null) && (filterNodes.size() > 0))
-			filterNodesQuery = "'" + LibraryArray.implode(filterNodes, "','") + "'";
+		if (filterNodes != null && filterNodes.size() > 0) nodes = "'" + LibraryArray.implode(filterNodes, "','") + "'";
 
-		if (filterNodesQuery.isEmpty() || filterNodesQuery.equals("''")) {
-			String codesQuery = ownerId == null ? Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES : Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES_FOR_OWNER;
-			String allCodesQuery = this.agentDatabase.getRepositoryQuery(codesQuery);
-			QueryBuilder builder = new QueryBuilder(allCodesQuery);
-			if (ownerId == null) builder.insertSubQuery(Database.QueryFields.REFERENCE_TABLE, tableName);
-			else builder.insertSubQuery(Database.QueryFields.ID_NODE, ownerId);
-			filterNodesQuery = builder.build();
+		if (nodes == null && ownerId == null) {
+			String query = this.agentDatabase.getRepositoryQuery(Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_CODES);
+			QueryBuilder builder = new QueryBuilder(query);
+			builder.insertSubQuery(Database.QueryFields.REFERENCE_TABLE, tableName);
+			nodes = builder.build();
 		}
 
-		subQueries.put(Database.QueryFields.CODE_NODES, filterNodesQuery);
+		if (nodes != null) {
+			String query = this.agentDatabase.getRepositoryQuery(ownerId != null ? Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_CODENODES_SUBQUERY_FOR_OWNER : Database.Queries.REFERENCE_LOAD_ATTRIBUTE_VALUES_CODENODES_SUBQUERY);
+			QueryBuilder builder = new QueryBuilder(query);
+			if (ownerId == null) builder.insertSubQuery(Database.QueryFields.REFERENCE_TABLE, tableName);
+			builder.insertSubQuery(Database.QueryFields.NODES, nodes);
+			subQueries.put(Database.QueryFields.CODE_NODES_SUBQUERY, builder.build());
+		}
+		else subQueries.put(Database.QueryFields.CODE_NODES_SUBQUERY, "");
 	}
 
 	private void addFiltersToQuery(String nodeId, String codeReference, Map<String, String> subQueries, List<FilterProperty> filtersDefinition, boolean queryUsingView) {

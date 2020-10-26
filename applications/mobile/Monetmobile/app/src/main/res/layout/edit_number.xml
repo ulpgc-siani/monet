@@ -5,11 +5,11 @@
                 android:orientation="vertical">
 
     <EditText
-            android:id="@+id/item_editor"
-            style="@style/editorText"
-            android:layout_alignWithParentIfMissing="true"
-            android:layout_toLeftOf="@+id/clear_editor"
-            android:inputType="number"/>
+        android:id="@+id/item_editor"
+        style="@style/editorText"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toLeftOf="@+id/clear_editor"
+        android:inputType="number|numberDecimal" />
 
     <include
             android:id="@+id/clear_editor"

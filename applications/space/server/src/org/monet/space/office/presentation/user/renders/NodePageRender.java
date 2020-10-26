@@ -59,6 +59,8 @@ public class NodePageRender extends OfficeRender {
 		addMark("addList", "");
 		addMark("timestamp", String.valueOf(this.node.getReference().getUpdateDate().getValue().getTime()));
 		addMark("state", state != null ? state.toJson().toString() : "");
+		addMark("index", getParameter("index"));
+		addMark("count", getParameter("count"));
 	}
 
 	protected void initHeader() {

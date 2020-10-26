@@ -94,11 +94,14 @@ public class AgentServiceClient {
 			String resultString = this.restfullClient.executeWithAuth(mailboxUrl, parameters);
 			boolean result = resultString.equals("OK");
 
-			if (!result)
+			if (!result) {
 				item.setErrorMessage(resultString);
+				AgentLogger.getInstance().error("AgentServiceClient: Error with 'sending message' response '" + resultString + "'");
+			}
 
 			return result;
 		} catch (Exception e) {
+			AgentLogger.getInstance().error("AgentServiceClient: Error sending message", e);
 			item.setErrorMessage(e.getClass().getName() + ": " + e.getMessage());
 			return false;
 		} finally {
@@ -115,11 +118,14 @@ public class AgentServiceClient {
 			String resultString = this.restfullClient.executeWithAuth(mailboxUrl, parameters);
 			boolean result = resultString.equals("OK");
 
-			if (!result)
+			if (!result) {
 				item.setErrorMessage(resultString);
+				AgentLogger.getInstance().error("AgentServiceClient: Error with 'sending signaling' response '" + resultString + "'");
+			}
 
 			return result;
 		} catch (Exception e) {
+			AgentLogger.getInstance().error("AgentServiceClient: Error sending signaling", e);
 			item.setErrorMessage(e.getClass().getName() + ": " + e.getMessage());
 			return false;
 		}

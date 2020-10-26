@@ -3,6 +3,7 @@ package org.monet.space.kernel.machines.ttm.behavior;
 import com.google.inject.Inject;
 import org.monet.metamodel.TaskProviderProperty;
 import org.monet.metamodel.TaskRequestProperty;
+import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentNotifier;
 import org.monet.space.kernel.machines.ttm.CourierService;
 import org.monet.space.kernel.machines.ttm.model.MailBox;
@@ -30,6 +31,7 @@ public class ProviderBehavior extends Behavior {
 	private String taskId;
 	private TaskProviderProperty declaration;
 	private Provider model;
+	private boolean starting = false;
 
 	public void inject(String taskId, TaskProviderProperty declaration, Provider model, PersistenceHandler persistenceHandler, PersistenceService persistenceService) {
 		this.taskId = taskId;
@@ -68,6 +70,13 @@ public class ProviderBehavior extends Behavior {
 		if (this.model.isOpen()) {
 			throw new RuntimeException("Provider already open.");
 		}
+
+		if (this.starting) {
+			AgentLogger.getInstance().info("Provider already starting for task " + this.taskId + " and order " + this.model.getOrderId());
+			return;
+		}
+
+		this.starting = true;
 
 		String orderId = this.model.getOrderId();
 		TaskOrder taskOrder = this.persistenceService.loadTaskOrder(orderId);
@@ -114,6 +123,7 @@ public class ProviderBehavior extends Behavior {
 		this.model.setServiceMailBox(providerMailbox);
 
 		this.model.setOpen(true);
+		this.starting = false;
 		this.persistenceHandler.save();
 
 		try {
@@ -236,6 +246,7 @@ public class ProviderBehavior extends Behavior {
 
 		this.model.reset();
 		this.model.setOpen(false);
+		this.starting = false;
 		this.courierService.destroyMailBox(this.model.getLocalMailBox());
 		this.persistenceHandler.save();
 
@@ -247,6 +258,7 @@ public class ProviderBehavior extends Behavior {
 	public void abort() {
 		String orderId = this.model.getOrderId();
 		this.markAsCompleted(orderId);
+		this.starting = false;
 		this.courierService.signaling(orderId, this.model.getServiceMailBox(), Signaling.ABORT);
 	}
 

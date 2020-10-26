@@ -16,6 +16,7 @@ import org.monet.metamodel.internal.Lock;
 import org.monet.metamodel.internal.Ref;
 import org.monet.metamodel.internal.TaskOrderDefinition;
 import org.monet.metamodel.internal.Time;
+import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentNotifier;
 import org.monet.space.kernel.constants.TaskState;
 import org.monet.space.kernel.machines.ttm.CourierService;
@@ -31,10 +32,7 @@ import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.Dictionary;
 import org.monet.space.kernel.threads.MonetSystemThread;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ProcessBehavior extends Behavior implements PersistenceHandler {
@@ -744,7 +742,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		EditionActionProperty actionProperty = placeProperty.getEditionActionProperty();
 		if (actionProperty == null) {
-			throw new RuntimeException("Invalid state, this task isn't on a edition action");
+			throw new RuntimeException("ProcessBehavior.solveEditionAction: Invalid state, this task isn't on a edition action. Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
 		}
 
 		Node form = this.persistenceService.loadForm(this.model.getEditionFormId());
@@ -813,7 +811,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.selectDelegationActionRole: Invalid state, this task isn't on a delegation action. Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
@@ -867,9 +865,11 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
-		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+		if (actionProperty == null) {
+			throw new RuntimeException("ProcessBehavior.setupDelegationAction: Invalid state, this task isn't on a delegation action. Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
+		}
 
+		AgentLogger.getInstance().info("ProcessBehavior.startDelegation for task " + this.model.getId());
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
 		provider.start();
@@ -895,7 +895,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.completeDelegationAction: Invalid state, this task isn't on a delegation action. Provider mailbox: " + providerMailbox.toString() + ". Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
@@ -917,7 +917,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		PlaceProperty placeProperty = this.model.getPlaceProperty();
 		DelegationActionProperty actionProperty = placeProperty.getDelegationActionProperty();
 		if (actionProperty == null)
-			throw new RuntimeException("Invalid state, this task isn't on a delegation action");
+			throw new RuntimeException("ProcessBehavior.failureDelegationAction: Invalid state, this task isn't on a delegation action. Task: " + this.model.getId() + ".Order id: " + this.model.getCurrentJobOrderId());
 
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());

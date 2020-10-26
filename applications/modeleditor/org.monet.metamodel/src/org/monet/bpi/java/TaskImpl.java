@@ -145,7 +145,11 @@ public abstract class TaskImpl extends BPIObject implements Task, BehaviorTask {
   public void abort() {
     
   }
-  
+
+  public User getOwner() {
+      return null;
+  }
+
   public void assignTo(User user, String reason) {
     
   }

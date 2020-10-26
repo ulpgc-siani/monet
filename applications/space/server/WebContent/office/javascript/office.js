@@ -5593,7 +5593,7 @@ CGProcessShowNode.prototype.step_3 = function () {
 	}
 
 	if (!this.Node) {
-		if (this.IdRevision == null || this.IdRevision == "-1") Kernel.loadNode(this, this.Id, this.Mode);
+		if (this.IdRevision == null || this.IdRevision == "-1") Kernel.loadNode(this, this.Id, this.Mode, this.Index, this.Count);
 		else Kernel.loadNodeRevision(this, this.IdRevision, this.Id, this.Mode, null);
 	}
 	else this.gotoStep(5);
@@ -12156,6 +12156,10 @@ CommandFactory.register(CGActionShowNodeChild, {
 	Count: 3
 }, true);
 
+CGActionShowNodeChild.prototype.onFailure = function (sResponse) {
+    Desktop.reportWarning(Lang.ViewNode.ChildView.Final);
+};
+
 CGActionShowNodeChild.prototype.step_1 = function () {
 	var view = State.SetsContext[this.Ancestor].view;
 	var filters = State.getListViewerFilters(this.Ancestor + view);
@@ -12163,8 +12167,12 @@ CGActionShowNodeChild.prototype.step_1 = function () {
 };
 
 CGActionShowNodeChild.prototype.step_2 = function () {
-	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
+    if (this.data === "-1") {
+        this.onFailure();
+        return;
+    }
 
+	this.activeTab = Desktop.Main.Center.Body.getContainerView(VIEW_NODE, NodesCache.getCurrent().getId()).getDOM().getActiveTab();
 	var ActionShowNode = new CGActionShowNode();
 	ActionShowNode.Id = this.data;
 	ActionShowNode.Mode = this.Mode;
@@ -12277,6 +12285,8 @@ CGActionRefreshNode.prototype.step_1 = function () {
 	Process.ReturnProcess = this;
 	Process.Id = this.Id;
 	Process.Mode = DOMNode.getControlInfo().Templates.Refresh;
+	Process.Index = DOMNode.getControlInfo().SetIndex;
+	Process.Count = DOMNode.getControlInfo().SetCount;
 	Process.ViewNode = this.ViewNode;
 	Process.ActivateNode = true;
 	Process.execute();
@@ -15396,7 +15406,7 @@ CGActionExecuteNodeCommand.prototype.step_3 = function () {
 	}
 	else if (response.type == "operation") {
 		var operation = response.data;
-		CommandDispatcher.execute(operation.name, null, operation.data);
+        CommandDispatcher.execute(operation.name, null, operation.data);
 	}
 	else Desktop.reportSuccess(Lang.Action.ExecuteNodeCommand.Done);
 
@@ -46275,7 +46285,7 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
   DOMNode.getControlInfo = function () {
     var aResult = new Array();
     var extNode = Ext.get(this);
-    var extId, extAncestors, extCode, extCodeView, extMode, extNodes, extResult, extTimeStamp, extState;
+    var extId, extAncestors, extCode, extCodeView, extSetIndex, extSetCount, extMode, extNodes, extResult, extTimeStamp, extState;
 
     if (this.ControlInfo) return this.ControlInfo;
 
@@ -46286,6 +46296,8 @@ CGDecoratorNode.prototype.execute = function (DOMNode) {
     this.ControlInfo.Ancestors = (extAncestors = extNode.select(CSS_CONTROL_INFO + " > .ancestors").first()) ? extAncestors.dom.innerHTML : "-1";
     this.ControlInfo.Code = (extCode = extNode.select(CSS_CONTROL_INFO + " > .code").first()) ? extCode.dom.innerHTML : "";
     this.ControlInfo.CodeView = (extCodeView = extNode.select(CSS_CONTROL_INFO + " > .codeview").first()) ? extCodeView.dom.innerHTML : "-1";
+    this.ControlInfo.SetIndex = (extSetIndex = extNode.select(CSS_CONTROL_INFO + " > .setindex").first()) ? extSetIndex.dom.innerHTML : "-1";
+    this.ControlInfo.SetCount = (extSetCount = extNode.select(CSS_CONTROL_INFO + " > .setcount").first()) ? extSetCount.dom.innerHTML : "-1";
     this.ControlInfo.Mode = (extMode = extNode.select(CSS_CONTROL_INFO + " > .mode").first()) ? extMode.dom.innerHTML.replace(/&amp;/g, AMP) : null;
     this.ControlInfo.Nodes = (extNodes = extNode.select(CSS_CONTROL_INFO + " > .nodes").first()) ? extNodes.dom.innerHTML : null;
     this.ControlInfo.TimeStamp = (extTimeStamp = extNode.select(CSS_CONTROL_INFO + " > .timestamp").first()) ? extTimeStamp.dom.innerHTML : null;
