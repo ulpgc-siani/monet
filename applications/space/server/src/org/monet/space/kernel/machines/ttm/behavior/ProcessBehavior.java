@@ -872,7 +872,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		AgentLogger.getInstance().info("ProcessBehavior.startDelegation for task " + this.model.getId());
 		TaskProviderProperty declaration = this.model.getDefinition().getTaskProviderPropertyMap().get(actionProperty.getProvider().getValue());
 		ProviderBehavior provider = this.providers.get(declaration.getCode());
-		provider.start();
+		if (!provider.start()) return;
 
 		TaskOrder order = this.persistenceService.loadTaskOrder(provider.getModel().getOrderId());
 		order.setSetupNodeId(null);

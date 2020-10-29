@@ -66,14 +66,14 @@ public class ProviderBehavior extends Behavior {
 		return taskOrder;
 	}
 
-	public void start() {
+	public boolean start() {
 		if (this.model.isOpen()) {
 			throw new RuntimeException("Provider already open.");
 		}
 
 		if (this.starting) {
 			AgentLogger.getInstance().info("Provider already starting for task " + this.taskId + " and order " + this.model.getOrderId());
-			return;
+			return false;
 		}
 
 		this.starting = true;
@@ -92,7 +92,7 @@ public class ProviderBehavior extends Behavior {
 			if (this.declaration.getInternal() == null) {
 				this.model.setFailureDate(new Date());
 				this.persistenceHandler.save();
-				return;
+				return true;
 			}
 
 			internalTask = this.declaration.getInternal().getService().getValue();
@@ -102,7 +102,7 @@ public class ProviderBehavior extends Behavior {
 			if (this.declaration.getExternal() == null) {
 				this.model.setFailureDate(new Date());
 				this.persistenceHandler.save();
-				return;
+				return true;
 			}
 
 			mailBoxType = Type.EXTERNAL_PROVIDER;
@@ -113,6 +113,8 @@ public class ProviderBehavior extends Behavior {
 		this.courierService.openChannel(this.model.getLocalMailBox(), taskOrder, internalTask);
 
 		this.persistenceHandler.save();
+
+		return true;
 	}
 
 	public boolean isOpen() {
