@@ -41,7 +41,6 @@ public class DatabaseLoader {
 
     private static ConnectionPoolDataSource mysqlDataSource(DatabaseConfiguration database) {
         MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
-        //TODO GOROS: Check parameters needed
         dataSource.setRetainStatementAfterResultSetClose(true);
         dataSource.setURL(database.url());
         dataSource.setUser(database.user());
@@ -51,7 +50,6 @@ public class DatabaseLoader {
 
     private static ConnectionPoolDataSource oracleDataSource(DatabaseConfiguration database) throws SQLException {
         OracleConnectionPoolDataSource dataSource = new OracleConnectionPoolDataSource();
-        //TODO GOROS: Check parameters needed
         dataSource.setURL(database.url());
         dataSource.setUser(database.user());
         dataSource.setPassword(database.password());

@@ -1,13 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryUtils;
 import org.monet.docservice.core.log.Logger;
@@ -17,9 +11,13 @@ import org.monet.docservice.docprocessor.model.DocumentType;
 import org.monet.docservice.docprocessor.templates.PartsExtractor;
 import org.monet.docservice.servlet.RequestParams;
 import org.monet.docservice.servlet.factory.MessageResponse;
+import org.monet.http.Response;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Map;
 
 public class UploadTemplate extends Action {
 
@@ -49,7 +47,7 @@ public class UploadTemplate extends Action {
   }
 
   @Override
-  public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+  public void execute(Map<String, Object> params, Response response) throws Exception {
     String templateCode = (String) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_CODE);
     String mimeType = (String) params.get(RequestParams.REQUEST_PARAM_MIME_TYPE);
     InputStream templateData = (InputStream) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_DATA);

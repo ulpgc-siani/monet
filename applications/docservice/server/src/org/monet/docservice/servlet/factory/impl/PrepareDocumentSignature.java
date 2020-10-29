@@ -6,9 +6,9 @@ import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.model.PresignedDocument;
 import org.monet.docservice.docprocessor.pdf.Signer;
 import org.monet.docservice.servlet.RequestParams;
+import org.monet.http.Response;
 import org.simpleframework.xml.Serializer;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.StringWriter;
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class PrepareDocumentSignature extends ActionStringResult {
   }
   
   @Override
-  public String onExecute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+  public String onExecute(Map<String, Object> params, Response response) throws Exception {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_ID);
     String certificate = (String) params.get(RequestParams.REQUEST_PARAM_CERTIFICATE);
     String reason = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_REASON);

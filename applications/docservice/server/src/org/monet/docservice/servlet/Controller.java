@@ -6,6 +6,7 @@ import org.monet.docservice.core.exceptions.DocServiceException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.servlet.factory.ActionFactory;
 import org.monet.docservice.servlet.factory.impl.Action;
+import org.monet.http.HttpResponse;
 import org.monet.http.LibraryRequest;
 
 import javax.servlet.ServletException;
@@ -38,7 +39,7 @@ public class Controller extends HttpServlet {
       String actionName = (String)params.get(RequestParams.REQUEST_PARAM_ACTION);
       this.logger.info("Controller.doProcess(%s)", actionName);
       Action action = this.actionsFactory.create(actionName);
-      if(action != null) action.execute(params, response);
+      if(action != null) action.execute(params, new HttpResponse(response));
       else 
         this.logger.info("Action(%s) not found", actionName);
     } catch (DocServiceException e) {

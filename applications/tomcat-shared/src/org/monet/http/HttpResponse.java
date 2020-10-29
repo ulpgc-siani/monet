@@ -37,4 +37,9 @@ public class HttpResponse implements Response {
     public PrintWriter getWriter() throws IOException {
         return this.response.getWriter();
     }
+
+    @Override
+    public void setCharacterEncoding(String encoding) {
+        response.setCharacterEncoding("UTF-8");
+    }
 }

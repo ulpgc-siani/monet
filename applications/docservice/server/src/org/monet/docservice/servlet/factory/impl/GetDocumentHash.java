@@ -1,17 +1,15 @@
 package org.monet.docservice.servlet.factory.impl;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
+import org.monet.http.Response;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
+import java.util.Map;
 
-public class GetDocumentHash extends ActionStringResult{
+public class GetDocumentHash extends ActionStringResult {
 
   private Logger logger;
   private Provider<Repository> repositoryProvider;
@@ -27,7 +25,7 @@ public class GetDocumentHash extends ActionStringResult{
   }
 
   @Override
-  public String onExecute(Map<String, Object> params, HttpServletResponse response)
+  public String onExecute(Map<String, Object> params, Response response)
       throws Exception {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
     logger.debug("getDocumentHash(%s)", documentId);

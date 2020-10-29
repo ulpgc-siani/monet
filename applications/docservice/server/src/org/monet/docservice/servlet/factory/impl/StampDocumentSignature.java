@@ -6,8 +6,8 @@ import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.pdf.Signer;
 import org.monet.docservice.servlet.RequestParams;
 import org.monet.docservice.servlet.factory.MessageResponse;
+import org.monet.http.Response;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public class StampDocumentSignature extends ActionStringResult {
@@ -32,7 +32,7 @@ public class StampDocumentSignature extends ActionStringResult {
   }
   
   @Override
-  public String onExecute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+  public String onExecute(Map<String, Object> params, Response response) throws Exception {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_ID);
     String signId = (String) params.get(RequestParams.REQUEST_PARAM_SIGN_ID);
     String signature = (String) params.get(RequestParams.REQUEST_PARAM_SIGNATURE);

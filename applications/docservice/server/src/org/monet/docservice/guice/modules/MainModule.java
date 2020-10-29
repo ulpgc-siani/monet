@@ -95,8 +95,6 @@ public class MainModule extends AbstractModule {
 		}
 
 		bind(Context.class).toInstance(this.context);
-		bind(ServerConfigurator.class).to(ServerConfiguratorImpl.class).asEagerSingleton();
-		bind(Configuration.class).to(ConfigurationImpl.class).asEagerSingleton();
 		bind(AgentFilesystem.class).to(AgentFilesystemImpl.class);
 		bind(LibraryFile.class).to(LibraryFileImpl.class);
 		bind(LibraryZip.class).to(LibraryZipImpl.class);

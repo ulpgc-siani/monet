@@ -9,9 +9,12 @@ import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.model.Document;
 import org.monet.docservice.servlet.RequestParams;
 import org.monet.docservice.servlet.factory.MessageResponse;
+import org.monet.http.Response;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.Map;
 
 public class UploadImage extends Action {
@@ -30,7 +33,7 @@ public class UploadImage extends Action {
 	}
 
 	@Override
-	public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+	public void execute(Map<String, Object> params, Response response) throws Exception {
 
 		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
 		InputStream documentData  = (InputStream) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_DATA);

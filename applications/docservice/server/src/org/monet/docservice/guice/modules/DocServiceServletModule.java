@@ -21,6 +21,7 @@ public class DocServiceServletModule extends com.google.inject.servlet.ServletMo
 		serve("/download/*").with(Download.class);
 		serve("/document/*").with(Controller.class);
 
+		install(new ConfigurationModule());
 		install(new MainModule());
 	}
 

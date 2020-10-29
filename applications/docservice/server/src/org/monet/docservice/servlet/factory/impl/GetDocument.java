@@ -7,8 +7,8 @@ import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
+import org.monet.http.Response;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class GetDocument extends Action {
   }
 
   @Override
-  public void execute(Map<String, Object> params, HttpServletResponse response)
+  public void execute(Map<String, Object> params, Response response)
       throws Exception {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
     logger.debug("getDocument(%s)", documentId);

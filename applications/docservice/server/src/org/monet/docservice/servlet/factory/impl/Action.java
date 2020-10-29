@@ -1,9 +1,9 @@
 package org.monet.docservice.servlet.factory.impl;
 
+import org.monet.http.Response;
+
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 public abstract class Action {
-  public abstract void execute(Map<String, Object> params, HttpServletResponse response) throws Exception;
+  public abstract void execute(Map<String, Object> params, Response response) throws Exception;
 }

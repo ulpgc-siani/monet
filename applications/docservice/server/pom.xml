@@ -5,14 +5,52 @@
 
   <groupId>org.siani.monet</groupId>
   <artifactId>docservice</artifactId>
-  <version>1.0</version>
-  <packaging>war</packaging>
+  <version>1.1</version>
 
   <properties>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <profiles>
+    <profile>
+        <id>docservice war</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <packaging.type>war</packaging.type>
+        </properties>
+    </profile>
+    <profile>
+        <id>docservice jar</id>
+        <properties>
+            <packaging.type>jar</packaging.type>
+        </properties>
+    </profile>
+  </profiles>
+
+  <repositories>
+    <repository>
+        <id>siani-maven-releases</id>
+        <name>siani-maven-releases</name>
+        <url>https://artifactory.siani.es/artifactory/libs-release</url>
+    </repository>
+    <repository>
+        <id>siani-maven-snapshot</id>
+        <name>siani-maven-snapshot</name>
+        <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>siani-maven</id>
+      <name>siani-maven</name>
+      <url>https://artifactory.siani.es/artifactory/libs-release-local</url>
+    </repository>
+  </distributionManagement>
 
   <build>
     <finalName>${project.artifactId}</finalName>
@@ -60,11 +98,11 @@
   </build>
 
   <dependencies>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>javax.servlet</groupId>-->
+<!--      <artifactId>servlet-api</artifactId>-->
+<!--      <version>2.5</version>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
@@ -127,6 +165,11 @@
       <version>5.1.47</version>
     </dependency>
     <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc8</artifactId>
+      <version>19.6.0.0</version>
+    </dependency>
+    <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
       <version>1.2.2</version>
@@ -136,42 +179,35 @@
       <artifactId>commons-io</artifactId>
       <version>1.4</version>
     </dependency>
-
-
     <dependency>
-      <groupId>Aspose</groupId>
-      <artifactId>Aspose.Words</artifactId>
+      <groupId>com.aspose.words</groupId>
+      <artifactId>aspose-words</artifactId>
       <version>1.0</version>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/Aspose.Words.jdk16.jar</systemPath>
-      <scope>system</scope>
     </dependency>
     <dependency>
-      <groupId>monet</groupId>
-      <artifactId>monet.component.filesystem</artifactId>
-      <version>0.4</version>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/monet.component.filesystem-0.4.jar</systemPath>
-      <scope>system</scope>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>monet-component-filesystem</artifactId>
+        <version>0.4</version>
     </dependency>
     <dependency>
       <groupId>org.jpedal</groupId>
-      <artifactId>jpedal</artifactId>
+      <artifactId>jpedal_lgpl</artifactId>
       <version>1.0</version>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/jpedal_lgpl.jar</systemPath>
-      <scope>system</scope>
     </dependency>
     <dependency>
-      <groupId>monet</groupId>
-      <artifactId>monet.library.http</artifactId>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>monet-library-http</artifactId>
       <version>0.3</version>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/monet.library.http-0.3.jar</systemPath>
-      <scope>system</scope>
     </dependency>
     <dependency> <!-- IMPORTANT THIS LIBRARY VERSION FOR DIGITAL SIGNATURES EMBEDDED IN PDF . IT MUST BE SYNCRONIZED WITH AFIRMA -->
       <groupId>com.itextpdf</groupId>
       <artifactId>itextpdf</artifactId>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/iText-5.0.2.jar</systemPath>
       <version>5.0.2</version>
-      <scope>system</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.siani.monet</groupId>
+      <artifactId>tomcat-shared</artifactId>
+      <version>1.0</version>
     </dependency>
 
   </dependencies>

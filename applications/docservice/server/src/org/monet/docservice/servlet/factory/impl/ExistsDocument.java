@@ -1,17 +1,15 @@
 package org.monet.docservice.servlet.factory.impl;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
 import org.monet.docservice.servlet.factory.MessageResponse;
+import org.monet.http.Response;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
+import java.util.Map;
 
 public class ExistsDocument extends Action {
 
@@ -29,7 +27,7 @@ public class ExistsDocument extends Action {
   }
 
   @Override
-  public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+  public void execute(Map<String, Object> params, Response response) throws Exception {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
     logger.debug("existsDocument(%s)", documentId);
 

@@ -8,8 +8,8 @@ import org.monet.docservice.docprocessor.worker.WorkQueue;
 import org.monet.docservice.docprocessor.worker.WorkQueueItem;
 import org.monet.docservice.servlet.RequestParams;
 import org.monet.docservice.servlet.factory.MessageResponse;
+import org.monet.http.Response;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 public class ConsolidateDocument extends Action {
@@ -34,7 +34,7 @@ public class ConsolidateDocument extends Action {
 	}
 
 	@Override
-	public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+	public void execute(Map<String, Object> params, Response response) throws Exception {
 		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
 		boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
 		logger.debug("consolidateDocument(%s, %s)", documentId, async);

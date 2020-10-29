@@ -14,4 +14,6 @@ public interface Response {
     OutputStream getOutputStream() throws IOException;
 
     PrintWriter getWriter() throws IOException;
+
+    void setCharacterEncoding(String encoding);
 }
