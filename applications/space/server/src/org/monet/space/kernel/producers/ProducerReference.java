@@ -600,7 +600,7 @@ public class ProducerReference extends Producer {
 	}
 
 	private void addFiltersToQuery(String nodeId, String codeReference, Map<String, String> subQueries, List<FilterProperty> filtersDefinition, boolean queryUsingView) {
-		NodeDataRequest nodeDataRequest = defaultDataRequest(nodeId, codeReference);
+		NodeDataRequest nodeDataRequest = defaultDataRequest(null, codeReference);
 		((ProducerNodeList)producersFactory.get(Producers.NODELIST)).addFiltersToQuery(codeReference, subQueries, filtersDefinition, nodeId, nodeDataRequest.getParameters(), queryUsingView);
 	}
 
