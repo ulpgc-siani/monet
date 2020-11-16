@@ -206,13 +206,13 @@ begin
     ResultList := TStringList.Create;
     Content := TStringList.Create;
     try
-      Content.Text := fxmlcontent;
+      Content.AddText(fxmlcontent);
       for x := 0 to Content.Count-1 do
       begin
         line := Content.Strings[x];
         RegexObj.Expression := '<space id="([^"]+)" url="([^"]+)" model="([^"]*)" federation-url="([^"]+)"';
 
-        if RegexObj.Exec(line) then
+        if (line <> '') and RegexObj.Exec(line) then
         begin
           name := RegexObj.Match[1];
           url :=  RegexObj.Match[2];
@@ -220,7 +220,7 @@ begin
           federation_url:= RegexObj.Match[4];
 
           RegexObj.Expression := '<space .* certificate-expiration="([^"]+)"';
-          if RegexObj.Exec(line) then
+          if (line <> '') and RegexObj.Exec(line) then
           begin
             certificate_expiration := RegexObj.Match[1];
           end;
@@ -265,7 +265,7 @@ begin
       begin
         line := Content.Strings[x];
         RegexObj.Expression := '<federation id="([^"]+)"';
-        if RegexObj.Exec(line) then
+        if (line <> '') and RegexObj.Exec(line) then
         begin
           name := RegexObj.Match[1];
           FederationsList.Add(name);
@@ -275,7 +275,7 @@ begin
         is_mobile := '';
         last_use := '';
         RegexObj.Expression := '<user name="([^"]+)" is_mobile="([^"]+)" last_use="([^"]+)"';
-        if RegexObj.Exec(line) then
+        if (line <> '') and RegexObj.Exec(line) then
         begin
           username := RegexObj.Match[1];
           is_mobile := RegexObj.Match[2];
@@ -284,7 +284,7 @@ begin
           space := '';
           node := '';
           RegexObj.Expression := '<user .* space="([^"]*)" node="([^"]*)"';
-          if RegexObj.Exec(line) then
+          if (line <> '') and RegexObj.Exec(line) then
           begin
             space := RegexObj.Match[1];
             node := RegexObj.Match[2];
