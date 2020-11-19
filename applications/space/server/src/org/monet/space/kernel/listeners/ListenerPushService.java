@@ -8,9 +8,13 @@ import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.news.Post;
 import org.monet.space.kernel.model.news.PostComment;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ListenerPushService extends Listener {
 
 	private AgentPushService agentPushService = AgentPushService.getInstance();
+	private Timer timer = null;
 
 	@Override
 	public void accountModified(MonetEvent event) {
@@ -110,10 +114,18 @@ public class ListenerPushService extends Listener {
 	}
 
 	@Override
-	public void taskStateUpdated(MonetEvent event) {
-        JSONObject jsonInfo = new JSONObject();
-		jsonInfo.put("task", ((Task) event.getSender()).getId());
-		agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
+	public void taskStateUpdated(final MonetEvent event) {
+		final String id = ((Task) event.getSender()).getId();
+		if (timer != null) timer.cancel();
+		timer = new Timer("Task " + id + " state updated");
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				JSONObject jsonInfo = new JSONObject();
+				jsonInfo.put("task", id);
+				agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
+			}
+		}, 100);
 	}
 
 	@Override
