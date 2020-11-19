@@ -117,7 +117,7 @@ public class ListenerPushService extends Listener {
 	public void taskStateUpdated(final MonetEvent event) {
 		final String id = ((Task) event.getSender()).getId();
 		if (timer != null) timer.cancel();
-		timer = new Timer("Task " + id + " state updated");
+		timer = new Timer("Task state updated");
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
