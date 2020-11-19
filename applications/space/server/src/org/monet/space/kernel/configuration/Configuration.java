@@ -70,6 +70,7 @@ public class Configuration {
 	public static final String MOBILE_FCM_PROJECT_ID = "MONET_MOBILE_FCM_PROJECT_ID";
 	public static final String GOOGLE_API_KEY = "MONET_GOOGLE_API_KEY";
 	public static final String IS_DEBUG_MODE = "MONET_IS_DEBUG_MODE";
+	public static final String DEBUG_PARAM = "MONET_DEBUG_PARAM";
 	public static final String DATABASE_QUERY_EXECUTION_TIME_WARNING = "MONET_DATABASE_QUERY_EXECUTION_TIME_WARNING";
 	public static final String SERVICES_REQUEST_MAX_ELAPSED_TIME = "MONET_SERVICES_REQUEST_MAX_ELAPSED_TIME";
 	public static final String WORKQUEUE_PERIOD = "MONET_WORKQUEUE_PERIOD";
@@ -386,6 +387,10 @@ public class Configuration {
 		} else {
 			return false;
 		}
+	}
+
+	public String debugParam() {
+		return this.properties.containsKey(DEBUG_PARAM) ? this.properties.getProperty(DEBUG_PARAM) : null;
 	}
 
 	public int getDatabaseQueryExecutionTimeWarning() {

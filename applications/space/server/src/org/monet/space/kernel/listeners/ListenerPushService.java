@@ -4,6 +4,7 @@ import net.minidev.json.JSONObject;
 import org.monet.space.kernel.agents.AgentPushService;
 import org.monet.space.kernel.components.ComponentPersistence;
 import org.monet.space.kernel.components.layers.TaskLayer;
+import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.news.Post;
 import org.monet.space.kernel.model.news.PostComment;
@@ -128,7 +129,7 @@ public class ListenerPushService extends Listener {
 				agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
 				updateTaskTimers.remove(id);
 			}
-		}, 2000);
+		}, Long.parseLong(Configuration.getInstance().debugParam()));
 	}
 
 	@Override
