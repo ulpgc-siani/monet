@@ -129,7 +129,7 @@ public class ListenerPushService extends Listener {
 				agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
 				updateTaskTimers.remove(id);
 			}
-		}, Long.parseLong(Configuration.getInstance().debugParam()));
+		}, 1000);
 	}
 
 	@Override
