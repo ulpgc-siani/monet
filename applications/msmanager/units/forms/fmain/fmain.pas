@@ -622,7 +622,7 @@ end;
 procedure TFrmMain.AppActivate(Sender: TObject);
 begin
   StrGridServersLocal.Color := clWindow;
-  StrGridServersLocal.Visible := false;
+//  StrGridServersLocal.Visible := false;
   PanLoading.Visible := true;
   PanNoServers.Visible := false;
 end;

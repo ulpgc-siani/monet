@@ -5,21 +5,30 @@ unit uagent_commandthread;
 interface
 
 uses
-  Classes, SysUtils, utypes;
+  Classes, SysUtils, utypes, uagent_preferences;
 
 type
   TAgentCommandThread = class
     private
+      FAgentPreferences: TAgentPreferences;
+
       function ProcessFileNameExe(FileName: string): string;
       function GetVBoxWindowsPath: string;
     public
+      constructor Create(AgentPreferences: TAgentPreferences);
+
       function GetCommand(CommandInfo: TCommandInfo): string;
       function GetPath:string;
   end;
 
 implementation
 
-uses utools, process, registry,blcksock;
+uses utools,registry,blcksock;
+
+constructor TAgentCommandThread.Create(AgentPreferences: TAgentPreferences);
+begin
+  FAgentPreferences := AgentPreferences;
+end;
 
 function TAgentCommandThread.GetCommand(CommandInfo: TCommandInfo): string;
 begin
@@ -27,6 +36,7 @@ begin
   Result := 'VBoxManage ';
   if OsType = 'windows' then
     Result := 'VBoxManage.exe '
+//    Result := '"'+ GetVBoxWindowsPath + 'VBoxManage.exe" '
   else
     if OsType = 'macos' then
       Result := '/usr/local/bin/VBoxManage ';
@@ -67,6 +77,7 @@ begin
   begin
     Result := 'cmd /S /C ' + Result;
   end;
+  FAgentPreferences.Log.Info('GetCommand. Command: ' + Result);
 end;
 
 function TAgentCommandThread.ProcessFileNameExe(filename: string): string;
@@ -101,6 +112,7 @@ begin
   finally
     Reg.Free;
   end;
+  FAgentPreferences.Log.Info('GetVBoxWindowsPath. Path: ' + Result);
 end;
 
 function TAgentCommandThread.GetPath: string;

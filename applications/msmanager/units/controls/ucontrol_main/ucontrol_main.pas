@@ -49,7 +49,7 @@ begin
   FAgentPreferences.Log.Info('TControlMain.Create: Start application.');
 
   FAgentMain := TAgentMain.Create(FAgentPreferences);
-  FAgentCommandThread := TAgentCommandThread.Create;
+  FAgentCommandThread := TAgentCommandThread.Create(FAgentPreferences);
   FAgentVM := TAgentVM.Create(FAgentPreferences, FAgentCommandThread);
   FAgentRemoteServer := TAgentRemoteServer.Create(FAgentPreferences);
 
@@ -258,7 +258,7 @@ begin
 
         if PanLoading.Visible then PanLoading.Visible := false;
 //        if (MachinesCount = 0) <> PanNoServers.Visible then
-          PanNoServers.Visible:= (MachinesCount = 0);
+        PanNoServers.Visible:= (MachinesCount = 0);
 
         if (MachinesCount > 0) <> StrGridServersLocal.Visible then
         begin
