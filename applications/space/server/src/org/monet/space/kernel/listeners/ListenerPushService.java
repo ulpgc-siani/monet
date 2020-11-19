@@ -8,13 +8,15 @@ import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.news.Post;
 import org.monet.space.kernel.model.news.PostComment;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ListenerPushService extends Listener {
 
 	private AgentPushService agentPushService = AgentPushService.getInstance();
-	private Timer timer = null;
+	private Map<String, Timer> updateTaskTimers = new HashMap<>();
 
 	@Override
 	public void accountModified(MonetEvent event) {
@@ -116,14 +118,15 @@ public class ListenerPushService extends Listener {
 	@Override
 	public void taskStateUpdated(final MonetEvent event) {
 		final String id = ((Task) event.getSender()).getId();
-		if (timer != null) timer.cancel();
-		timer = new Timer("Task state updated");
-		timer.schedule(new TimerTask() {
+		if (updateTaskTimers.containsKey(id)) updateTaskTimers.get(id).cancel();
+		updateTaskTimers.put(id, new Timer("Task " + id + " state updated"));
+		updateTaskTimers.get(id).schedule(new TimerTask() {
 			@Override
 			public void run() {
 				JSONObject jsonInfo = new JSONObject();
 				jsonInfo.put("task", id);
 				agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
+				updateTaskTimers.remove(id);
 			}
 		}, 100);
 	}
