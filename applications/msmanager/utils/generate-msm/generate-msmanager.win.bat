@@ -2,7 +2,7 @@
 
 @set git_install_root="E:\SmartGit\git"
 @set lazarus_install_root="e:\lazarus"
-@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%git_install_root%\cmd;%lazarus_install_root%;%PATH%
+@set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%git_install_root%\cmd;%lazarus_install_root%;%PATH%;E:\apps\upx-3.96-win64
 @set HOME=%USERPROFILE%
 
 c:
@@ -13,4 +13,4 @@ git pull
 git checkout %1
 git pull
 lazbuild --build-all ..\..\msmanager.lpi
-upx C:\Users\application_jenkins\Documents\proyectos\monet\applications\msmanager\build\msmanager.exe
+upx.exe C:\Users\application_jenkins\Documents\proyectos\monet\applications\msmanager\build\msmanager.exe
