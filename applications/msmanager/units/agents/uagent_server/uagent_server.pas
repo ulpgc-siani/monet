@@ -410,15 +410,12 @@ begin
 end;
 
 procedure TAgentServer.FederationDomainInit(FirstTime: boolean = false);
-var
+//var
   //RegexObj: TRegExpr;
-  expression: string;
 begin
   if FirstTime then FFederationDomain := '';
 
-  expression := '<federation .* domain="([^"]+)"';
   FFederationDomain := GetMatchRegularExpression(fxmlcontent, '<federation .* domain="([^"]+)"', 1);
-
   if (FFederationDomain = '') then
     FFederationDomain := GetMatchRegularExpression(fxmlcontent, '<servers .* federation-domain="([^"]+)"', 1);
 

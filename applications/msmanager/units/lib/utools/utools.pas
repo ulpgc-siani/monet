@@ -307,6 +307,7 @@ var
   S: String;
   I, Code: Integer;
 begin
+  Result := '';
   SetLength(Result, Length(AStr));
   Sp := PChar(AStr);
   Rp := PChar(Result);
