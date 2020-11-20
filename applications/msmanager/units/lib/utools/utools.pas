@@ -31,16 +31,17 @@ function DeployServiceSendCommandUrl(Url: string; Wait: boolean): string;
 function IsPortConnected(Ip, Port: string): boolean;
 function IsPortOccuped(Host: string; Port: string): boolean;
 function VerifyName(name: string): boolean;
-function HTMLDecode(const AStr: String): String;
+function HTMLDecode(const AStr: String): string;
 function ResolveHost(HostName: string): string;
 function StripHTML(S: string): string;
 function etxt(s: string; code: longint; encrypt :boolean): string;
 function ConvertDateTime(datetime: string): TDateTime;
+function GetMatchRegularExpression(text: string; expression: string; index: integer): string;
 
 
 implementation
 
-uses forms, LCLType, uinfo, versiontypes, LSHTTPSend {$ifdef windows},windows{$else},netdb{$endif}, md5,DateUtils,blcksock, httpsend, ssl_openssl, SynaCode;
+uses forms, LCLType, uinfo, versiontypes, LSHTTPSend {$ifdef windows},windows{$else},netdb{$endif}, md5,DateUtils,blcksock, httpsend, ssl_openssl, SynaCode, regexpr;
 
 function DirectoryTemp: string;
 begin
@@ -500,6 +501,24 @@ begin
     date := day + '-' + month + '-' + year + ' ' + hour + ':' + minute;
 
   result := StrToDateTime(date);
+end;
+
+function GetMatchRegularExpression(text: string; expression: string; index: integer): string;
+var
+  RegexObj: TRegExpr;
+begin
+  Result := '';
+  if text <> '' then
+  begin
+    RegexObj := TRegExpr.Create;
+        try
+      RegexObj.Expression := expression;
+      if RegexObj.Exec(text) then
+        Result := RegexObj.Match[index];
+    finally
+      RegexObj.Free;
+    end;
+  end;
 end;
 
 end.
