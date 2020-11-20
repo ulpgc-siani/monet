@@ -13,3 +13,4 @@ git pull
 git checkout %1
 git pull
 lazbuild --build-all ..\..\msmanager.lpi
+upx C:\Users\application_jenkins\Documents\proyectos\monet\applications\msmanager\build\msmanager.exe
