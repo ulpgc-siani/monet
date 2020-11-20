@@ -11,7 +11,7 @@ type
   TLog = class
   private
     FFileName: string;
-    TextFile: TStringList;
+//    TextFile: TStringList;
     FEnabled: boolean;
     procedure WriteMessage(mtype, message: string);
   public
@@ -28,20 +28,24 @@ implementation
 constructor TLog.Create(FileName: string);
 begin
   FFileName := FileName;
-  TextFile := TStringList.Create;
+//  TextFile := TStringList.Create;
   FEnabled := true;
 end;
 
 procedure TLog.WriteMessage(mtype, message: string);
-var formattedDateTime: string;
+var
+  formattedDateTime: string;
+  TextFile: TStringList;
 begin
   if FEnabled then
   begin
-    try
-    if FileExists(FFileName) then TextFile.LoadFromFile(FFileName);
     DateTimeToString(formattedDateTime, 'dd:mm:yyyy hh:nn:ss', Now);
-    TextFile.Add('['+formattedDateTime +'] '+mtype+': ' + message);
-    TextFile.SaveToFile(FFileName);
+    try
+      TextFile := TStringList.Create;
+      if FileExists(FFileName) then TextFile.LoadFromFile(FFileName);
+      TextFile.Add('['+formattedDateTime +'] '+mtype+': ' + message);
+      TextFile.SaveToFile(FFileName);
+      TextFile.Free;
     except end;
   end;
 end;
