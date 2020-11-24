@@ -28,6 +28,7 @@ uses utools,registry,blcksock;
 constructor TAgentCommandThread.Create(AgentPreferences: TAgentPreferences);
 begin
   FAgentPreferences := AgentPreferences;
+  FAgentPreferences.Log.Debug('TAgentCommandThread.GetVBoxWindowsPath. Path: ' + GetVBoxWindowsPath);
 end;
 
 function TAgentCommandThread.GetCommand(CommandInfo: TCommandInfo): string;
@@ -77,7 +78,7 @@ begin
   begin
     Result := 'cmd /S /C ' + Result;
   end;
-  FAgentPreferences.Log.Info('GetCommand. Command: ' + Result);
+  FAgentPreferences.Log.Debug('TAgentCommandThread.GetCommand. Command: ' + Result);
 end;
 
 function TAgentCommandThread.ProcessFileNameExe(filename: string): string;
@@ -112,7 +113,6 @@ begin
   finally
     Reg.Free;
   end;
-  FAgentPreferences.Log.Info('GetVBoxWindowsPath. Path: ' + Result);
 end;
 
 function TAgentCommandThread.GetPath: string;
