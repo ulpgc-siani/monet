@@ -32,6 +32,9 @@
             <directory>../user_data</directory>
             <targetPath>WEB-INF/user_data</targetPath>
           </resource>
+          <resource>
+            <directory>resources</directory>
+          </resource>
         </resources>
       </build>
 
