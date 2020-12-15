@@ -53,3 +53,4 @@ _develop/_space/.idea/libraries
 *.bak
 applications/deployservice/server/.idea/libraries
 Guía de uso del directorio corporativo de la ULPGC.pdf
+.idea/libraries

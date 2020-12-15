@@ -22,7 +22,6 @@
 
 package org.monet.space.frontservice.control.actions;
 
-import com.sun.media.jfxmedia.logging.Logger;
 import org.monet.metamodel.TaskDefinition;
 import org.monet.metamodel.internal.Ref;
 import org.monet.http.Request;

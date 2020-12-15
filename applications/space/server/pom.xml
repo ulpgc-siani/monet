@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.siani.monet</groupId>
   <artifactId>space</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
 
   <properties>
     <maven.compiler.source>1.7</maven.compiler.source>
@@ -26,6 +26,15 @@
       <properties>
         <packaging.type>jar</packaging.type>
       </properties>
+      <build>
+        <resources>
+          <resource>
+            <directory>../user_data</directory>
+            <targetPath>WEB-INF/user_data</targetPath>
+          </resource>
+        </resources>
+      </build>
+
     </profile>
   </profiles>
 
@@ -52,6 +61,7 @@
 
   <build>
     <finalName>${project.artifactId}</finalName>
+
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
