@@ -22,6 +22,7 @@
 
 package org.monet.space.kernel.agents;
 
+import org.apache.commons.io.filefilter.AgeFileFilter;
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.exceptions.FilesystemException;
 import org.monet.space.kernel.utils.Resources;
@@ -43,6 +44,7 @@ public class AgentFilesystem {
 	}
 
 	public static String[] listDir(String dirname) {
+		String result = dirname.contains("jar!") ? dirname.substring(dirname.indexOf("jar!") + "jar!".length()) : dirname;
 		try {
 			FilenameFilter filter = new FilenameFilter() {
 				public boolean accept(File dir, String name) {
@@ -50,7 +52,9 @@ public class AgentFilesystem {
 				}
 			};
 
-			return isJar(dirname) ? jarPathOf(dirname).toFile().list(filter) : new File(dirname).list(filter);
+			if (isJar(result)) return Objects.requireNonNull(jarPathOf(result)).toFile().list(filter);
+			File file = new File(result);
+			return file.exists() ? file.list(filter) : new File(AgentFilesystem.class.getResource(result).toURI()).list(filter);
 		} catch (IOException | URISyntaxException e) {
 			AgentLogger.getInstance().error(e);
 			return null;
@@ -420,4 +424,5 @@ public class AgentFilesystem {
 		FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
 		return fileSystem.getPath(dirname);
 	}
+
 }
