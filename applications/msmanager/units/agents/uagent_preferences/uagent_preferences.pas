@@ -5,7 +5,7 @@ unit uagent_preferences;
 interface
 
 uses
-  Classes, SysUtils, ulog;
+  Classes, SysUtils, Log4Pascal;
 
 type
   TAgentPreferences = class
@@ -47,7 +47,8 @@ type
       function GetLogFile: string;
       function GetIsInactiveNetwork: boolean;
     public
-      Log: TLog;
+//      Log: TLog
+      Log: TLogger;
 
       constructor Create;
 
@@ -82,8 +83,20 @@ constructor TAgentPreferences.Create;
 begin
   FConfigFile := GetConfigDir + '/' + GetAppProductShortName + '.config';
   LoadConfig;
-  Log := TLog.Create(GetLogFile);
-  Log.Enabled:= FDebug;
+
+//  Log := TLog.Create(GetLogFile);
+//  Log.Enabled:= FDebug;
+  Log := TLogger.Create(GetLogFile);
+  if FDebug then
+  begin
+   Log.EnableDebugLog
+  end
+  else
+  begin
+    Log.DisableDebugLog;
+    Log.DisableInfoLog;
+  end;
+
 end;
 
 procedure TAgentPreferences.SetIP(value: string); begin FIP := value; end;
@@ -101,7 +114,22 @@ function TAgentPreferences.GetTabIndex: integer; begin Result := FTabIndex; end;
 procedure TAgentPreferences.SetSSHKeyFile(value: string); begin FSSHKeyFile := value; end;
 function TAgentPreferences.GetSSHKeyFile: string; begin Result := FSSHKeyFile; end;
 
-procedure TAgentPreferences.SetDebug(value: boolean); begin FDebug := value; Log.Enabled:= FDebug; end;
+procedure TAgentPreferences.SetDebug(value: boolean);
+begin
+  FDebug := value;
+
+  if FDebug then
+  begin
+   Log.EnableDebugLog
+  end
+  else
+  begin
+    Log.DisableDebugLog;
+    Log.DisableInfoLog;
+  end;
+
+  //  Log.Enabled:= FDebug;
+end;
 function TAgentPreferences.GetDebug: boolean; begin Result := FDebug; end;
 
 procedure TAgentPreferences.SetRemoteServersConfigFile(value: string); begin FRemoteServersConfigFile := value; end;

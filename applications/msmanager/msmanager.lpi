@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="11"/>
     <General>
       <SessionStorage Value="InIDEConfig"/>
       <MainUnit Value="0"/>
@@ -17,9 +17,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <MinorVersionNr Value="7"/>
-      <RevisionNr Value="43"/>
-      <BuildNr Value="13"/>
+      <MinorVersionNr Value="8"/>
       <Language Value="040A"/>
       <StringTable CompanyName="Grupo de Ingenieria del Software y del Conocimiento del SIANI" ProductName="Monet Server Manager"/>
     </VersionInfo>
@@ -28,13 +26,12 @@
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
-      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
-      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
     </PublishOptions>
     <RunParams>
-      <local>
-        <FormatVersion Value="1"/>
-      </local>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default"/>
+      </Modes>
     </RunParams>
     <RequiredPackages Count="1">
       <Item1>
@@ -209,7 +206,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="components/lazsolutions/3rdParty/Synapse;components/uniqueinstance;components/zipfile;components/lazsolutions/Units;units/controls/ucontrol_main;units/forms/fmain;units/agents/uagent_main;units/forms/fwait;units/controls/ucontrol_wait;units/lib/utools;units/lib/uinfo;units/forms/fconsole;units/forms/fabout;units/controls/ucontrol_commandthread;units/agents/uagent_commandthread;units/lib/utypes;units/agents/uagent_vm;units/lib/uconstants;units/forms/finformation;units/controls/ucontrol_spaces;units/agents/uagent_spaces;units/forms/fspaces;units/forms/fmessage;units/forms/finput;units/agents/uagent_server;units/controls/ucontrol_server;units/forms/fserver;units/forms/fproperties;units/lib/uassocarray;units/forms/fpreferences;components/lazsolutions/Forms;units/controls/ucontrol_preferences;units/agents/uagent_preferences;units/forms/fnewremoteserver;units/agents/uagent_remoteserver;units/lib/usocommand;units/forms/fnewspace;units/lib/ulog;units/forms/flogin"/>
+      <OtherUnitFiles Value="components/lazsolutions/3rdParty/Synapse;components/uniqueinstance;components/zipfile;components/lazsolutions/Units;units/controls/ucontrol_main;units/forms/fmain;units/agents/uagent_main;units/forms/fwait;units/controls/ucontrol_wait;units/lib/utools;units/lib/uinfo;units/forms/fconsole;units/forms/fabout;units/controls/ucontrol_commandthread;units/agents/uagent_commandthread;units/lib/utypes;units/agents/uagent_vm;units/lib/uconstants;units/forms/finformation;units/controls/ucontrol_spaces;units/agents/uagent_spaces;units/forms/fspaces;units/forms/fmessage;units/forms/finput;units/agents/uagent_server;units/controls/ucontrol_server;units/forms/fserver;units/forms/fproperties;units/lib/uassocarray;units/forms/fpreferences;components/lazsolutions/Forms;units/controls/ucontrol_preferences;units/agents/uagent_preferences;units/forms/fnewremoteserver;units/agents/uagent_remoteserver;units/lib/usocommand;units/forms/fnewspace;units/lib/ulog;units/forms/flogin;units/lib/log4pascal"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

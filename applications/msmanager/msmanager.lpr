@@ -12,9 +12,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, ucontrol_main, utools,
   fabout, fproperties, fmessage,
-  finput, uniqueinstanceraw,
-uagent_preferences, uagent_remoteserver, fnewremoteserver, usocommand, 
-fnewspace, ulog, finformation, flogin;
+  finput, uniqueinstanceraw, fnewremoteserver,
+fnewspace, finformation, flogin;
 
 {$R *.res}
 
