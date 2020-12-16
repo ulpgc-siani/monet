@@ -24,11 +24,18 @@ package org.monet.space.kernel.agents;
 
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.exceptions.FilesystemException;
+import org.monet.space.kernel.utils.Resources;
 import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class AgentFilesystem {
 
@@ -36,13 +43,18 @@ public class AgentFilesystem {
 	}
 
 	public static String[] listDir(String dirname) {
-		FilenameFilter oFilter = new FilenameFilter() {
-			public boolean accept(File dir, String name) {
-				return !name.startsWith(".");
-			}
-		};
+		try {
+			FilenameFilter filter = new FilenameFilter() {
+				public boolean accept(File dir, String name) {
+					return !name.startsWith(".");
+				}
+			};
 
-		return new File(dirname).list(oFilter);
+			return isJar(dirname) ? jarPathOf(dirname).toFile().list(filter) : new File(dirname).list(filter);
+		} catch (IOException | URISyntaxException e) {
+			AgentLogger.getInstance().error(e);
+			return null;
+		}
 	}
 
 	public static String[] listFiles(String dirname) {
@@ -56,7 +68,7 @@ public class AgentFilesystem {
 			}
 		};
 
-        File[] aFiles = new File(dirname).listFiles(oFilter);
+		File[] aFiles = new File(dirname).listFiles(oFilter);
 		for (iPos = 0; iPos < aFiles.length; iPos++) {
 			if (aFiles[iPos].isDirectory()) continue;
 			alResult.add(aFiles[iPos].getName());
@@ -70,16 +82,16 @@ public class AgentFilesystem {
 	}
 
 	public static Boolean renameDir(String source, String destination) {
-        return new File(source).renameTo(new File(destination));
+		return new File(source).renameTo(new File(destination));
 	}
 
 	public static Boolean removeDir(String dirname) {
-        return removeDir(new File(dirname));
+		return removeDir(new File(dirname));
 	}
 
 	public static Boolean removeDir(File file) {
-        if (!file.exists())
-            return true;
+		if (!file.exists())
+			return true;
 
 		removeDirContent(file);
 
@@ -96,7 +108,7 @@ public class AgentFilesystem {
 	}
 
 	public static Boolean copyDir(String source, String destination) {
-        return copyDir(new File(source), new File(destination));
+		return copyDir(new File(source), new File(destination));
 	}
 
 	public static Boolean copyDir(File source, File destination) {
@@ -107,8 +119,8 @@ public class AgentFilesystem {
 						destination.mkdir();
 					}
 
-                    for (String child : source.list())
-                        copyDir(new File(source, child), new File(destination, child));
+					for (String child : source.list())
+						copyDir(new File(source, child), new File(destination, child));
 				} else {
 
 					InputStream in = new FileInputStream(source);
@@ -133,20 +145,20 @@ public class AgentFilesystem {
 	}
 
 	public static Boolean moveDir(File source, File destination) {
-        if (!destination.exists())
-            return source.renameTo(destination);
-        boolean result = true;
-        for (String child : source.list()) {
-            File sourceChild = new File(source, child);
-            File destinationChild = new File(destination, child);
-            if (sourceChild.isDirectory()) {
-                if (!moveDir(sourceChild, destinationChild)) result = false;
-            } else {
-                if (destinationChild.exists()) destinationChild.delete();
-                if (!sourceChild.renameTo(destinationChild)) result = false;
-            }
-        }
-        return result;
+		if (!destination.exists())
+			return source.renameTo(destination);
+		boolean result = true;
+		for (String child : source.list()) {
+			File sourceChild = new File(source, child);
+			File destinationChild = new File(destination, child);
+			if (sourceChild.isDirectory()) {
+				if (!moveDir(sourceChild, destinationChild)) result = false;
+			} else {
+				if (destinationChild.exists()) destinationChild.delete();
+				if (!sourceChild.renameTo(destinationChild)) result = false;
+			}
+		}
+		return result;
 	}
 
 	public static Boolean forceDir(String dirname) {
@@ -199,7 +211,7 @@ public class AgentFilesystem {
 
 
 	public static Boolean renameFile(String source, String destination) {
-        return new File(source).renameTo(new File(destination));
+		return new File(source).renameTo(new File(destination));
 	}
 
 	public static Boolean removeFile(String sFilename) {
@@ -282,19 +294,19 @@ public class AgentFilesystem {
 	}
 
 	public static String readStream(InputStream is) throws IOException {
-        if (is == null) return "";
-        Writer writer = new StringWriter();
+		if (is == null) return "";
+		Writer writer = new StringWriter();
 
-        char[] buffer = new char[1024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1)
-                writer.write(buffer, 0, n);
-        } finally {
-            is.close();
-        }
-        return writer.toString();
+		char[] buffer = new char[1024];
+		try {
+			Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+			int n;
+			while ((n = reader.read(buffer)) != -1)
+				writer.write(buffer, 0, n);
+		} finally {
+			is.close();
+		}
+		return writer.toString();
 	}
 
 	public static String readFile(String filename) {
@@ -370,7 +382,7 @@ public class AgentFilesystem {
 	}
 
 	public static OutputStream getOutputStream(String filename) {
-        try {
+		try {
 			return new FileOutputStream(filename);
 		} catch (IOException oException) {
 			throw new FilesystemException("Could not read file", filename, oException);
@@ -397,4 +409,15 @@ public class AgentFilesystem {
 			output.write(buffer, 0, readed);
 	}
 
+	private static boolean isJar(String dirname) throws URISyntaxException {
+		URL resource = AgentFilesystem.class.getResource(dirname);
+		return resource != null && resource.toURI().getScheme().equals("jar");
+	}
+
+	private static Path jarPathOf(String dirname) throws IOException, URISyntaxException {
+		URI uri = AgentFilesystem.class.getResource(dirname).toURI();
+		if (!uri.getScheme().equals("jar")) return null;
+		FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+		return fileSystem.getPath(dirname);
+	}
 }
