@@ -235,7 +235,7 @@ public class Files {
 		  String[] commands;
 		  Process process;
 
-		  command = " sudo chmod " + parameters + " \"" + fileName + "\"";
+		  command = "chmod " + parameters + " \"" + fileName + "\"";
 		  commands = new String[] { "sh", "-c", command };
 		  logger.info(command);
 

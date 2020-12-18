@@ -10,7 +10,6 @@ import org.monet.deployservice.services.ServiceHTTPS;
 import org.monet.deployservice.services.ServiceTCP;
 import org.monet.deployservice.services.ServiceUDP;
 
-
 public class DeployService {
 
 	private static Engine engine;
