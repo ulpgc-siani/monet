@@ -16,7 +16,7 @@
     <orderEntry type="library" name="Maven: org.siani.monet:servlet-api:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.siani.monet:xml-apis:1.0" level="project" />
     <orderEntry type="module" module-name="federation-shared" />
-    <orderEntry type="library" name="Maven: org.siani.monet:tomcat-shared:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:core-shared:1.0" level="project" />
+    <orderEntry type="module" module-name="tomcat-shared" />
+    <orderEntry type="module" module-name="core-shared" />
   </component>
 </module>
