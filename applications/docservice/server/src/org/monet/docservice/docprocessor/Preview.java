@@ -4,9 +4,9 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import net.sf.json.JSONSerializer;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
-import org.monet.docservice.core.util.Normalize;
 import org.monet.docservice.core.util.Resources;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.model.Document;
@@ -70,14 +70,11 @@ public class Preview extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("doGet(%s, %s)", req, resp);
 
-		String documentId = req.getParameter("id");
+		Key documentKey = new Key(req.getParameter("space"), req.getParameter("id"));
 		String page = req.getParameter("page");
 		String thumb = req.getParameter("thumb");
-		String space = req.getParameter("space");
-		documentId = Normalize.normalize(documentId, space);
 
-
-		this.generateDocumentPreviewIfNotExists(documentId);
+		this.generateDocumentPreviewIfNotExists(documentKey);
 
 		int pageNumber = -1;
 		boolean isThumb = false;
@@ -97,11 +94,11 @@ public class Preview extends HttpServlet {
 			}
 		}
 
-		if (documentId != null && documentId.length() != 0) {
+		if (documentKey != null && documentKey.getId().length() != 0) {
 			if (pageNumber > 0) {
-				getPagePreviewData(resp, documentId, pageNumber, isThumb);
+				getPagePreviewData(resp, documentKey, pageNumber, isThumb);
 			} else {
-				getDocumentMetadata(resp, documentId);
+				getDocumentMetadata(resp, documentKey);
 			}
 		} else {
 			resp.getWriter().println("Invalid query string");
@@ -110,25 +107,25 @@ public class Preview extends HttpServlet {
 
 	}
 
-	private void generateDocumentPreviewIfNotExists(String documentId) {
+	private void generateDocumentPreviewIfNotExists(Key documentKey) {
 		Repository repository = repositoryProvider.get();
 
-		if (repository.existsDocumentPreview(documentId))
+		if (repository.existsDocumentPreview(documentKey))
 			return;
 
-		if (this.workQueue.documentHasPendingOperationsOfType(documentId, Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW))
+		if (this.workQueue.documentHasPendingOperationsOfType(documentKey, Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW))
 			return;
 
 		WorkQueueItem item = new WorkQueueItem(-1);
-		item.setDocumentId(documentId);
+		item.setDocumentKey(documentKey);
 		item.setOperation(Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW);
 		this.workQueue.queueNewWorkItem(item);
 	}
 
-	private void getDocumentMetadata(HttpServletResponse resp, String sDocumentId) {
+	private void getDocumentMetadata(HttpServletResponse resp, Key documentKey) {
 		Repository repository = repositoryProvider.get();
 		try {
-			Document document = repository.getDocument(sDocumentId);
+			Document document = repository.getDocument(documentKey);
 			DocumentMetadata metadata = repository.getDocumentMetadata(document);
 
 			resp.setContentType(JSON_MIMETYPE);
@@ -139,22 +136,22 @@ public class Preview extends HttpServlet {
 		}
 	}
 
-	private void getPagePreviewData(HttpServletResponse resp, String sDocumentId, int iPage, boolean isThumb) {
+	private void getPagePreviewData(HttpServletResponse resp, Key documentKey, int iPage, boolean isThumb) {
 		Repository repository = repositoryProvider.get();
 		try {
 			int type = isThumb ? PreviewType.THUMBNAIL : PreviewType.PAGE;
 
-			String sContentType = repository.getDocumentPreviewDataContentType(sDocumentId, iPage, type);
+			String sContentType = repository.getDocumentPreviewDataContentType(documentKey, iPage, type);
 
 			resp.setContentType(sContentType);
 			resp.setHeader("Content-Disposition", String.format("attachment; filename=%s_%s.png",
-				sDocumentId,
+				documentKey.toString(),
 				iPage));
-			repository.readDocumentPreviewData(sDocumentId, iPage, resp.getOutputStream(), type);
+			repository.readDocumentPreviewData(documentKey, iPage, resp.getOutputStream(), type);
 		} catch (Exception e) {
 			resp.setContentType("image/png");
 			resp.setHeader("Content-Disposition", String.format("attachment; filename=%s_%s.png",
-				sDocumentId,
+				documentKey.toString(),
 				iPage));
 			InputStream img;
 			if (isThumb) img = Resources.getAsStream("/images/defaultThumb.png");

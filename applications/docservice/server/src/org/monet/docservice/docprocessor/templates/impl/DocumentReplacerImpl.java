@@ -1,6 +1,7 @@
 package org.monet.docservice.docprocessor.templates.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.model.DocumentType;
 import org.monet.docservice.docprocessor.templates.DocumentProcessor;
@@ -53,8 +54,8 @@ public class DocumentReplacerImpl implements DocumentReplacer {
 		this.modelProducer = modelProducer;
 	}
 
-	public void updateDocument(String documentId, String sDocumentPath, InputStream dataStream, int type) {
-		logger.debug("updateDocument(%s, %s, %s, %s)", documentId, sDocumentPath, dataStream, String.valueOf(type));
+	public void updateDocument(Key documentKey, String sDocumentPath, InputStream dataStream, int type) {
+		logger.debug("updateDocument(%s, %s, %s, %s)", documentKey, sDocumentPath, dataStream, String.valueOf(type));
 
 		DocumentProcessor docProcessor;
 		switch (type) {
@@ -74,7 +75,7 @@ public class DocumentReplacerImpl implements DocumentReplacer {
 		}
 
 		docProcessor.setModel(modelProducer.create(dataStream));
-		docProcessor.setDocumentId(documentId);
+		docProcessor.setDocumentKey(documentKey);
 		docProcessor.process(sDocumentPath);
 	}
 

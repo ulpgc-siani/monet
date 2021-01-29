@@ -19,6 +19,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.library.LibraryUtils;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.guice.InjectorFactory;
@@ -28,11 +29,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ImageProcessor {
+  private final Key documentKey;
   private String dir;
   private String relsFile;
   private String pathSourcedoc;
 
-  public ImageProcessor(String dir, String sourceDocument) {
+  public ImageProcessor(Key documentKey, String dir, String sourceDocument) {
+    this.documentKey = documentKey;
     this.dir = dir;
     this.pathSourcedoc = sourceDocument.substring(0, sourceDocument.lastIndexOf("/"));
     this.relsFile = sourceDocument.substring(sourceDocument.lastIndexOf("/") + 1) + ".rels";
@@ -120,7 +123,7 @@ public class ImageProcessor {
       element.setAttribute("Type", "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image");
       parent.appendChild(element);
 
-      InputStream inImage = repo.getDocumentData(idImagen);
+      InputStream inImage = repo.getDocumentData(new Key(documentKey.getSpace(), idImagen));
       OutputStream outImage = new FileOutputStream(this.dir + this.pathSourcedoc + File.separator + "media" + File.separator + fileName);
       lUtils.copyStream(inImage, outImage);
       outImage.flush();

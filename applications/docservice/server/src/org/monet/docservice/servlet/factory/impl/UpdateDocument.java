@@ -1,6 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.operations.Operation;
@@ -37,15 +38,14 @@ public class UpdateDocument extends Action {
 
   @Override
   public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+    Key documentKey = documentKey(params);
     InputStream documentData  = (InputStream) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_DATA);
     boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
     String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
-    logger.debug("updateDocument(%s, %s, %s)", documentId, documentData, async);
+    logger.debug("updateDocument(%s, %s, %s)", documentKey, documentData, async);
 
     WorkQueueItem item = new WorkQueueItem(-1);
-    item.setDocumentId(documentId);
+    item.setDocumentKey(documentKey);
     item.setOperation(Operation.OPERATION_UPDATE_DOCUMENT);
     try {
       item.setExtraDataInputStream((documentData != null)?documentData:null);

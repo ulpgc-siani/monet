@@ -3,6 +3,7 @@ package org.monet.docservice.servlet.factory.impl;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.apache.commons.io.IOUtils;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -31,16 +32,14 @@ public class GetDocument extends Action {
   @Override
   public void execute(Map<String, Object> params, HttpServletResponse response)
       throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
-    logger.debug("getDocument(%s)", documentId);
+    Key key = documentKey(params);
+    logger.debug("getDocument(%s)", key);
 
     ByteArrayOutputStream outputStream = null;
     InputStream documentStream = null;
     try {
       Repository repository = repositoryProvider.get();
-      documentStream = repository.getDocumentData(documentId);
+      documentStream = repository.getDocumentData(key);
       IOUtils.copy(documentStream, response.getOutputStream());
     } finally {
       StreamHelper.close(documentStream);

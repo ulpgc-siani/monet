@@ -5,6 +5,7 @@ import com.google.inject.Provider;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
 import org.apache.commons.io.IOUtils;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryUtils;
 import org.monet.docservice.core.log.Logger;
@@ -83,14 +84,14 @@ public class ConsolidateDocumentOperation implements Operation {
 		File pdfTempFile = new File(this.configuration.getPath(Configuration.PATH_TEMP) + File.separator + UUID.randomUUID().toString());
 		File outputTempFile = new File(this.configuration.getPath(Configuration.PATH_TEMP) + File.separator + UUID.randomUUID().toString());
 
-		Document document = repository.getDocument(this.target.getDocumentId());
+		Document document = repository.getDocument(this.target.getDocumentKey());
 		int state = document.getState();
 
 		if (! (state == Document.STATE_EDITABLE || state == Document.STATE_OVERWRITTEN))
-			throw new ApplicationException(String.format("The document '%s' isn't editable", this.target.getDocumentId()));
+			throw new ApplicationException(String.format("The document '%s' isn't editable", this.target.getDocumentKey()));
 
 		try {
-			String contentType = repository.getDocumentDataContentType(this.target.getDocumentId());
+			String contentType = repository.getDocumentDataContentType(this.target.getDocumentKey());
 			int documentType = DocumentType.valueOf(contentType);
 
 			if (documentType != DocumentType.XML_DOCUMENT) {
@@ -99,7 +100,7 @@ public class ConsolidateDocumentOperation implements Operation {
 				InputStream documentData = null;
 
 				try {
-					documentData = repository.getDocumentData(this.target.getDocumentId());
+					documentData = repository.getDocumentData(this.target.getDocumentKey());
 					outputStream = new FileOutputStream(tempFile);
 					IOUtils.copy(documentData, outputStream);
 				} finally {
@@ -119,8 +120,8 @@ public class ConsolidateDocumentOperation implements Operation {
 
 				InputStream xmlData = null;
 				try {
-					xmlData = repository.getDocumentXmlData(document.getId());
-					this.addFields(pdfTempFile, outputTempFile, xmlData, signsPosition, signsFields, signsCount, signsCountPattern);
+					xmlData = repository.getDocumentXmlData(document.getKey());
+					this.addFields(document.getKey(), pdfTempFile, outputTempFile, xmlData, signsPosition, signsFields, signsCount, signsCountPattern);
 				} finally {
 					StreamHelper.close(xmlData);
 				}
@@ -132,13 +133,13 @@ public class ConsolidateDocumentOperation implements Operation {
 					String hash = StreamHelper.calculateHashToHexString(inputStream);
 					StreamHelper.close(inputStream);
 					inputStream = new FileInputStream(outputTempFile);
-					repository.saveDocumentData(this.target.getDocumentId(), inputStream, "application/pdf", hash);
+					repository.saveDocumentData(this.target.getDocumentKey(), inputStream, "application/pdf", hash);
 				} finally {
 					StreamHelper.close(inputStream);
 				}
 			}
 
-			repository.updateDocument(this.target.getDocumentId(), Document.STATE_CONSOLIDATED);
+			repository.updateDocument(this.target.getDocumentKey(), Document.STATE_CONSOLIDATED);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -186,7 +187,7 @@ public class ConsolidateDocumentOperation implements Operation {
 		return getExtraDataParameters().get("signsCountPattern");
 	}
 
-	private void addAttachment(PdfStamper stamper, InputStream xmlData) {
+	private void addAttachment(Key documentKey, PdfStamper stamper, InputStream xmlData) {
 
 		Repository repository = repositoryProvider.get();
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -203,10 +204,10 @@ public class ConsolidateDocumentOperation implements Operation {
 			NodeList nodeList = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
 
 			for (int i = 0; i < nodeList.getLength(); i++) {
-				String attachId = nodeList.item(i).getNodeValue();
-				String contentType = repository.getDocumentDataContentType(attachId);
-				String attachName = attachId.contains(".") ? attachId : attachId + "." + mimeTypes.getExtension(contentType);
-				attachFile = repository.getDocumentData(attachId);
+				Key attachKey = new Key(documentKey.getSpace(), nodeList.item(i).getNodeValue());
+				String contentType = repository.getDocumentDataContentType(attachKey);
+				String attachName = attachKey.getId().contains(".") ? attachKey.getId() : attachKey.getId() + "." + mimeTypes.getExtension(contentType);
+				attachFile = repository.getDocumentData(attachKey);
 				byte[] acttachAsByteArray = this.libraryUtils.copyStreamToByteArray(attachFile);
 				PdfFileSpecification fs = PdfFileSpecification.fileEmbedded(stamper.getWriter(), null, attachName, acttachAsByteArray);
 				PdfAnnotation pdfAnnot = PdfAnnotation.createFileAttachment(stamper.getWriter(), new Rectangle(0, 0, 10f, 10f), contentType, fs);
@@ -224,7 +225,7 @@ public class ConsolidateDocumentOperation implements Operation {
 
 	}
 
-	private void addFields(File documentInput, File documentOutput, InputStream xmlDataStream, String signsPosition, List<String> signsFieldsNames, Map<String, Integer> signsCount, String signsCountPattern) {
+	private void addFields(Key documentKey, File documentInput, File documentOutput, InputStream xmlDataStream, String signsPosition, List<String> signsFieldsNames, Map<String, Integer> signsCount, String signsCountPattern) {
 		FileInputStream documentInputStream = null;
 		FileOutputStream outputStream = null;
 
@@ -248,7 +249,7 @@ public class ConsolidateDocumentOperation implements Operation {
 			}
 
 			if (xmlDataStream != null) {
-				addAttachment(stamper, xmlDataStream);
+				addAttachment(documentKey, stamper, xmlDataStream);
 				xmlDataStream.reset();
 
 				TextField xmlDataField = new TextField(pdfWriter, new Rectangle(0, 0, 10, 10), "xmlData");

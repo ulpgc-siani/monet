@@ -16,6 +16,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.data.Repository;
 
 
@@ -39,7 +40,7 @@ public abstract class BaseXmlProcessor {
   protected OutputStream underlayingOutputStream;
   protected Model model;
   protected Repository repository;
-  protected String documentId;
+  protected Key documentKey;
   protected HashSet<String> newIdImages;
   protected HashSet<String> oldIdImages;
   private boolean stop = false;
@@ -48,13 +49,15 @@ public abstract class BaseXmlProcessor {
   private HashMap<String, String> modifiedAttributes = new HashMap<String, String>();
  
   
-  public BaseXmlProcessor(XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) {
+  public BaseXmlProcessor(Key documentKey, XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) {
+    this.documentKey = documentKey;
     this.reader = reader;
     this.writer = writer;
     this.underlayingOutputStream = underlayingOutputStream;
   }
   
-  public BaseXmlProcessor(InputStream documentStream, OutputStream processedDocStream) throws XMLStreamException, FactoryConfigurationError {
+  public BaseXmlProcessor(Key documentKey, InputStream documentStream, OutputStream processedDocStream) throws XMLStreamException, FactoryConfigurationError {
+    this.documentKey = documentKey;
     this.reader = XMLInputFactory.newInstance().createXMLStreamReader(documentStream);
     this.writer = XMLOutputFactory.newInstance().createXMLStreamWriter(processedDocStream, "UTF-8");
     this.underlayingOutputStream = processedDocStream;
@@ -88,8 +91,8 @@ public abstract class BaseXmlProcessor {
     this.repository = repository;
   }
   
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setDocumentKey(Key documentKey) {
+    this.documentKey = documentKey;
   }
   
   public HashSet<String> getNewIdImages() {

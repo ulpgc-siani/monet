@@ -1,6 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.library.LibraryBase64;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.model.PresignedDocument;
@@ -41,19 +42,17 @@ public class PrepareDocumentSignature extends ActionStringResult {
   
   @Override
   public String onExecute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_ID);
+    Key documentKey = documentKeyFromId(params);
     String certificate = (String) params.get(RequestParams.REQUEST_PARAM_CERTIFICATE);
     String reason = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_REASON);
     String location = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_LOCATION);
     String contact = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_CONTACT);
     String signField = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_FIELD);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
     
-    logger.debug("prepareDocumentSignature(%s,%s)", documentId, certificate);
+    logger.debug("prepareDocumentSignature(%s,%s)", documentKey, certificate);
 
     byte[] binaryCert = this.libraryBase64.decode(certificate);
-    PresignedDocument result = signer.prepareDocument(documentId, binaryCert, reason, location, contact, signField);
+    PresignedDocument result = signer.prepareDocument(documentKey, binaryCert, reason, location, contact, signField);
     
     StringWriter writer = new StringWriter();
     this.serializer.write(result, writer);

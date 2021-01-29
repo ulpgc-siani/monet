@@ -2,6 +2,7 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
@@ -31,14 +32,11 @@ public class UploadImage extends Action {
 
 	@Override
 	public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-
-		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+		Key documentKey = documentKey(params);
 		InputStream documentData  = (InputStream) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_DATA);
 		String contentType = (String) params.get(RequestParams.REQUEST_PARAM_CONTENT_TYPE);
-		int width =  Integer.valueOf((String) params.get(RequestParams.REQUEST_PARAM_WIDTH));
-		int height =  Integer.valueOf((String) params.get(RequestParams.REQUEST_PARAM_HEIGHT));
-		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-		documentId = normalize(documentId, space);
+		int width =  Integer.parseInt((String) params.get(RequestParams.REQUEST_PARAM_WIDTH));
+		int height =  Integer.parseInt((String) params.get(RequestParams.REQUEST_PARAM_HEIGHT));
 
 		logger.debug("uploadImage(%s)", documentData);
 
@@ -47,8 +45,8 @@ public class UploadImage extends Action {
 
 		try {
 			Repository repository = repositoryProvider.get();
-			if (!repository.existsDocument(documentId))
-				repository.createEmptyDocument(documentId, Document.STATE_CONSOLIDATED);
+			if (!repository.existsDocument(documentKey))
+				repository.createEmptyDocument(documentKey, Document.STATE_CONSOLIDATED);
 
 			tempFile = File.createTempFile("docService", ".tpl");
 
@@ -61,13 +59,13 @@ public class UploadImage extends Action {
 				String hash = StreamHelper.calculateHashToHexString(imageFileStream);
 				StreamHelper.close(imageFileStream);
 				imageFileStream = new FileInputStream(tempFile);
-				repository.saveDocumentData(documentId, imageFileStream, xmlData, contentType, hash);
+				repository.saveDocumentData(documentKey, imageFileStream, xmlData, contentType, hash);
 			} finally {
 				StreamHelper.close(imageFileStream);
 			}
 
-			repository.clearDocumentPreviewData(documentId);
-			repository.createImagePreview(documentId, width, height);
+			repository.clearDocumentPreviewData(documentKey);
+			repository.createImagePreview(documentKey, width, height);
 
 			if(response != null)response.getWriter().write(MessageResponse.OPERATION_SUCCESFULLY);
 		} catch (Exception e) {

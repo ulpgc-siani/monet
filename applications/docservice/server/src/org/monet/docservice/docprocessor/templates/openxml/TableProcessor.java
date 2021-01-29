@@ -13,6 +13,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.templates.common.Attributes;
 import org.monet.docservice.docprocessor.templates.common.BaseXmlProcessor;
 import org.monet.docservice.docprocessor.templates.common.Model;
@@ -32,8 +33,8 @@ public class TableProcessor extends BaseXmlProcessor {
   private String tableName;
   private int rowLevel = 0;
   
-  public TableProcessor(XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
-    super(reader, writer, underlayingOutputStream);
+  public TableProcessor(Key documentKey, XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
+    super(documentKey, reader, writer, underlayingOutputStream);
     fileWriter = writer;
     fileUnderlayingStream = underlayingOutputStream;
     onMemoryStream = new ByteArrayOutputStream();
@@ -102,18 +103,18 @@ public class TableProcessor extends BaseXmlProcessor {
   }
 
   private void fillRows() throws IOException, XMLStreamException, FactoryConfigurationError {
-    InputStream rowTemplate = this.repository.getTemplatePart(this.documentId, this.tableName);
+    InputStream rowTemplate = this.repository.getTemplatePart(this.documentKey, this.tableName);
     
     this.underlayingOutputStream = fileUnderlayingStream;
     
     for(Model model : currentCollection) {
       rowTemplate.reset();
       XMLStreamReader onMemoryReader = XMLInputFactory.newInstance().createXMLStreamReader(rowTemplate);
-      RootProcessor proc = new RootProcessor(onMemoryReader, fileWriter, underlayingOutputStream);
+      RootProcessor proc = new RootProcessor(documentKey, onMemoryReader, fileWriter, underlayingOutputStream);
       proc.setModel(model);
       proc.setPartial(true);
       proc.setRepository(this.repository);
-      proc.setDocumentId(this.documentId);
+      proc.setDocumentKey(this.documentKey);
       proc.setNamespceContext(this.getNamespaceContext());
       proc.setNewIdImages(newIdImages);
       proc.setOldIdImages(oldIdImages);

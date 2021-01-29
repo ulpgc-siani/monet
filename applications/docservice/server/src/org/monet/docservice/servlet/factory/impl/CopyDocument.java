@@ -2,6 +2,7 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -41,31 +42,29 @@ public class CopyDocument extends Action {
 	public void execute(Map<String, Object> params, HttpServletResponse response)
 		throws Exception {
 
-		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-		String newDocumentId = (String) params.get(RequestParams.REQUEST_PARAM_COPIED_DOCUMENT_CODE);
+		Key documentKey = documentKey(params);
+		Key newDocumentKey = new Key(documentKey.getSpace(), (String) params.get(RequestParams.REQUEST_PARAM_COPIED_DOCUMENT_CODE));
 		boolean generatePreview = Boolean.valueOf((String)params.get(RequestParams.REQUEST_PARAM_GENERATE_PREVIEW));
-		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-		documentId = normalize(documentId, space);
 
-		logger.debug("copyDocument(%s,%s)", documentId, newDocumentId);
+		logger.debug("copyDocument(%s,%s)", documentKey, newDocumentKey);
 
 		Repository repository = repositoryProvider.get();
-		InputStream inputDocument = repository.getDocumentData(documentId);
-		InputStream xmlData = repository.getDocumentXmlData(documentId);
-		String contentType = repository.getDocumentDataContentType(documentId);
-		String hash = repository.getDocumentHash(documentId);
+		InputStream inputDocument = repository.getDocumentData(documentKey);
+		InputStream xmlData = repository.getDocumentXmlData(documentKey);
+		String contentType = repository.getDocumentDataContentType(documentKey);
+		String hash = repository.getDocumentHash(documentKey);
 
-		if (!repository.existsDocument(newDocumentId))
-			repository.createEmptyDocument(newDocumentId, Document.STATE_CONSOLIDATED);
+		if (!repository.existsDocument(newDocumentKey))
+			repository.createEmptyDocument(newDocumentKey, Document.STATE_CONSOLIDATED);
 
-		repository.saveDocumentData(newDocumentId, inputDocument, xmlData, contentType, hash);
-		repository.clearDocumentPreviewData(documentId);
+		repository.saveDocumentData(newDocumentKey, inputDocument, xmlData, contentType, hash);
+		repository.clearDocumentPreviewData(documentKey);
 
 		StreamHelper.close(inputDocument);
 
 		if (generatePreview) {
 			WorkQueueItem item = new WorkQueueItem(-1);
-			item.setDocumentId(documentId);
+			item.setDocumentKey(documentKey);
 			item.setOperation(Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW);
 			this.workQueue.queueNewWorkItem(item);
 		}

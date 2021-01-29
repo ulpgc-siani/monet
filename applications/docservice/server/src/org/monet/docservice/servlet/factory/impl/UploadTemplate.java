@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryUtils;
 import org.monet.docservice.core.log.Logger;
@@ -50,20 +51,19 @@ public class UploadTemplate extends Action {
 
   @Override
   public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
     String templateCode = (String) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_CODE);
     String mimeType = (String) params.get(RequestParams.REQUEST_PARAM_MIME_TYPE);
     InputStream templateData = (InputStream) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_DATA);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    templateCode = normalize(templateCode, space);
-    
-    logger.debug("uploadTemplate(%s, %s, %s)", templateCode, mimeType, templateData);
+
+    logger.debug("uploadTemplate(%s, %s, %s, %s)", space, templateCode, mimeType, templateData);
 
     File tempFile = null;
     int documentType = DocumentType.valueOf(mimeType);
 
     try {
       Repository repository = repositoryProvider.get();
-      String templateId = repository.createTemplate(templateCode, documentType);
+      String templateId = repository.createTemplate(space, templateCode, documentType);
 
       tempFile = File.createTempFile("docService", ".tpl");
 

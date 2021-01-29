@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -30,14 +31,12 @@ public class ExistsDocument extends Action {
 
   @Override
   public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
-    logger.debug("existsDocument(%s)", documentId);
+    Key documentKey = documentKey(params);
+    logger.debug("existsDocument(%s)", documentKey);
 
     try{
     Repository repository = repositoryProvider.get();
-    boolean result = repository.getDocument(documentId) != null;
+    boolean result = repository.getDocument(documentKey) != null;
     if(result)
       response.getWriter().write(MessageResponse.DOCUMENT_EXISTS);
     else 

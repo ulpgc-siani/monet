@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
@@ -30,17 +31,14 @@ public class GetDocumentXmlData extends ActionStringResult{
   }
 
   @Override
-  public String onExecute(Map<String, Object> params, HttpServletResponse response)
-      throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
-    logger.debug("getDocumentXmlData(%s)", documentId);
+  public String onExecute(Map<String, Object> params, HttpServletResponse response) {
+    Key documentKey = documentKey(params);
+    logger.debug("getDocumentXmlData(%s)", documentKey);
 
-    String xmlData = null;
+    String xmlData;
     try {
       Repository repository = repositoryProvider.get();
-      InputStream xmlDataStream = repository.getDocumentXmlData(documentId);
+      InputStream xmlDataStream = repository.getDocumentXmlData(documentKey);
       xmlData = xmlDataStream != null ? StreamHelper.toString(xmlDataStream) : null;
     } catch (IOException e) {
       logger.error(e.getMessage(), e);

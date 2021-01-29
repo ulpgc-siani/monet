@@ -1,5 +1,6 @@
 package org.monet.docservice.docprocessor.data;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.EventLog;
 import org.monet.docservice.docprocessor.model.Document;
 import org.monet.docservice.docprocessor.model.DocumentMetadata;
@@ -10,72 +11,72 @@ import java.util.List;
 
 public interface Repository {
 
-	String createTemplate(String code, int documentType);
+	String createTemplate(String space, String code, int documentType);
 
 	void saveTemplateData(String templateId, InputStream stream, String hash, String contentType, String signPosition);
 
 	void addTemplatePart(String templateId, String partId, InputStream partData);
 
-	InputStream getTemplatePart(String documentId, String partId);
+	InputStream getTemplatePart(Key documentKey, String partId);
 
-	void createDocument(String documentId, String templateCode, int state, String documentReferenced);
+	void createDocument(Key documentKey, Key templateKey, int state, Key documentReferenced);
 
-	void createEmptyDocument(String documentId, int state);
+	void createEmptyDocument(Key documentKey, int state);
 
-	Document getDocument(String documentId);
+	Document getDocument(Key documentKey);
 
-	boolean existsDocument(String documentId);
+	boolean existsDocument(Key documentKey);
 
-	void removeDocument(String documentId);
+	void removeDocument(Key documentKey);
 
-	String getDocumentDataContentType(String documentId);
+	String getDocumentDataContentType(Key documentKey);
 
-	String getDocumentDataLocation(String documentId);
+	String getDocumentDataLocation(Key documentKey);
 
-	String getDocumentHash(String documentId);
+	String getDocumentHash(Key documentKey);
 
-	boolean existsDocumentPreview(String documentId);
+	boolean existsDocumentPreview(Key documentKey);
 
-	String getDocumentPreviewDataContentType(String documentId, int page, int type);
+	String getDocumentPreviewDataContentType(Key documentKey, int page, int type);
 
-	void readDocumentPreviewData(String documentId, int page, OutputStream data, int type);
+	void readDocumentPreviewData(Key documentKey, int page, OutputStream data, int type);
 
-	void saveDocumentPreviewData(String documentId, int page, InputStream data, String contentType, int type, int width, int height, float aspectRatio);
+	void saveDocumentPreviewData(Key documentKey, int page, InputStream data, String contentType, int type, int width, int height, float aspectRatio);
 
-	void clearDocumentPreviewData(String documentId);
+	void clearDocumentPreviewData(Key documentKey);
 
 	DocumentMetadata getDocumentMetadata(Document document);
 
-	void updateDocument(String documentId, int state);
+	void updateDocument(Key documentKey, int state);
 
-	int removeAllNodeFiles(int nodeId);
+	int removeAllNodeFiles(String space, int nodeId);
 
-	List<String> getTemplateSigns(String id);
+	List<String> getTemplateSigns(String templateId);
 
-	String getTemplateSignsPosition(String id);
+	String getTemplateSignsPosition(String templateId);
 
 	void addSignFields(String templateId, String[] signFields);
 
-	InputStream getDocumentData(String documentId);
+	InputStream getDocumentData(Key documentKey);
 
-	void saveDocumentData(String documentId, InputStream inputStream, InputStream xmlData, String contentType, String hash);
+	void saveDocumentData(Key documentKey, InputStream inputStream, InputStream xmlData, String contentType, String hash);
 
-	void saveDocumentData(String documentId, InputStream inputStream, String xmlData, String contentType, String hash);
+	void saveDocumentData(Key documentKey, InputStream inputStream, String xmlData, String contentType, String hash);
 
-	void saveDocumentData(String documentId, InputStream inputStream, String contentType, String hash);
+	void saveDocumentData(Key documentKey, InputStream inputStream, String contentType, String hash);
 
-	void saveDocumentXmlData(String documentId, InputStream xmlData);
+	void saveDocumentXmlData(Key documentKey, InputStream xmlData);
 
-	InputStream getDocumentXmlData(String documentId);
+	InputStream getDocumentXmlData(Key documentKey);
 
 	void insertEventLogBlock(List<EventLog> eventLogs);
 
 	/**
 	 * @return: Width = Position[0], Height = Position[1]
 	 */
-	int[] getImageDimension(String documentId);
+	int[] getImageDimension(Key documentKey);
 
-	void overwriteDocument(String destinationDocumentId, String sourceDocumentId);
+	void overwriteDocument(Key destinationDocumentId, Key sourceDocumentId);
 
 	public String getVersion();
 
@@ -83,5 +84,5 @@ public interface Repository {
 
 	void cleanDocumentPreviews();
 
-	void createImagePreview(String imageId, int width, int height);
+	void createImagePreview(Key imageKey, int width, int height);
 }

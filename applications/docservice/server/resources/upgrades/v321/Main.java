@@ -1,6 +1,7 @@
 package upgrades.v321;
 
 import org.monet.docservice.Application;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.configuration.Configuration;
 import org.monet.docservice.docprocessor.data.DiskManager;
@@ -41,9 +42,9 @@ public class Main extends UpgradeScript {
 		Statement statementData = null;
 		ResultSet resultSetData = null;
 
-		List<String> migrationState;
+		List<Key> migrationState;
 		FileWriter migrationStateWriter = null;
-		Map<String, String> migrationLocations;
+		Map<Key, String> migrationLocations;
 		FileWriter migrationLocationsWriter = null;
 
 		try {
@@ -61,15 +62,15 @@ public class Main extends UpgradeScript {
 			resultSet = statement.executeQuery("SELECT id_document FROM ds$documents_data");
 
 			while (resultSet.next()) {
-				String documentId = resultSet.getString("id_document");
+				Key documentKey = Key.from(resultSet.getString("id_document"));
 
-				if (migrationState.contains(documentId))
+				if (migrationState.contains(documentKey))
 					continue;
 
-				InputStream documentStream = null;
+				InputStream documentStream;
 				try {
 					statementData = connection.createStatement();
-					resultSetData = statementData.executeQuery("SELECT `data` FROM ds$documents_data WHERE id_document = '" + documentId + "'");
+					resultSetData = statementData.executeQuery("SELECT `data` FROM ds$documents_data WHERE id_document = '" + documentKey + "'");
                     resultSetData.next();
 					documentStream = resultSetData.getBlob("data").getBinaryStream();
 				} finally {
@@ -77,14 +78,14 @@ public class Main extends UpgradeScript {
 					if (statementData != null) statementData.close();
 				}
 
-				String location = diskManager.addDocument(documentId, documentStream);
+				String location = diskManager.addDocument(documentKey, documentStream);
 
-				migrationState.add(documentId);
-				migrationStateWriter.write(documentId + "\n");
+				migrationState.add(documentKey);
+				migrationStateWriter.write(documentKey + "\n");
 				migrationStateWriter.flush();
 
-				migrationLocations.put(documentId, location);
-				migrationLocationsWriter.write(documentId + ":" + location + "\n");
+				migrationLocations.put(documentKey, location);
+				migrationLocationsWriter.write(documentKey + ":" + location + "\n");
 				migrationLocationsWriter.flush();
 			}
 
@@ -93,31 +94,24 @@ public class Main extends UpgradeScript {
 				connection.setAutoCommit(true);
 			}
 
-		} catch (SQLException exception) {
+		} catch (SQLException | IOException exception) {
 			this.logger.error(exception.getMessage());
 			try {
 				connection.rollback();
-			} catch (SQLException oRollbackException) {
-			}
-			return false;
-		} catch (IOException exception) {
-			this.logger.error(exception.getMessage());
-			try {
-				connection.rollback();
-			} catch (SQLException oRollbackException) {
+			} catch (SQLException ignored) {
 			}
 			return false;
 		} finally {
 			try {
 				if (statement != null) statement.close();
-			} catch (SQLException e) {
+			} catch (SQLException ignored) {
 			}
 			try {
 				if (migrationStateWriter != null)
 					migrationStateWriter.close();
 				if (migrationLocationsWriter != null)
 					migrationLocationsWriter.close();
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 
@@ -127,7 +121,7 @@ public class Main extends UpgradeScript {
 	private boolean saveDocumentsLocations(Connection connection) {
 		boolean autoCommit;
 		Statement statement = null;
-		Map<String, String> migrationLocations;
+		Map<Key, String> migrationLocations;
 
 		try {
 			migrationLocations = readMigrationLocations();
@@ -136,9 +130,9 @@ public class Main extends UpgradeScript {
 			connection.setAutoCommit(false);
 			statement = connection.createStatement();
 
-			for (String documentId : migrationLocations.keySet()) {
-				String location = migrationLocations.get(documentId);
-				statement.executeUpdate(String.format("UPDATE ds$documents_data SET location='%s' WHERE id_document='%s'", location, documentId));
+			for (Key documentKey : migrationLocations.keySet()) {
+				String location = migrationLocations.get(documentKey);
+				statement.executeUpdate(String.format("UPDATE ds$documents_data SET location='%s' WHERE id_document='%s'", location, documentKey));
 			}
 
 			if (autoCommit) {
@@ -146,24 +140,17 @@ public class Main extends UpgradeScript {
 				connection.setAutoCommit(true);
 			}
 
-		} catch (SQLException exception) {
+		} catch (SQLException | IOException exception) {
 			this.logger.error(exception.getMessage());
 			try {
 				connection.rollback();
-			} catch (SQLException oRollbackException) {
-			}
-			return false;
-		} catch (IOException exception) {
-			this.logger.error(exception.getMessage());
-			try {
-				connection.rollback();
-			} catch (SQLException oRollbackException) {
+			} catch (SQLException ignored) {
 			}
 			return false;
 		} finally {
 			try {
 				if (statement != null) statement.close();
-			} catch (SQLException e) {
+			} catch (SQLException ignored) {
 			}
 		}
 
@@ -178,50 +165,38 @@ public class Main extends UpgradeScript {
 		return new File(configuration.getUserDataDir() + "/upgrade." + VERSION + ".locations");
 	}
 
-	private ArrayList<String> readMigrationState() throws IOException {
-		ArrayList<String> result = new ArrayList<>();
+	private List<Key> readMigrationState() throws IOException {
+		List<Key> result = new ArrayList<>();
 		File source = getMigrationStateFile();
-		Scanner fileScanner = null;
 
 		if (!source.exists())
 			source.createNewFile();
 
-		try {
-			fileScanner = new Scanner(source);
+		try (Scanner fileScanner = new Scanner(source)) {
 			while (fileScanner.hasNextLine()) {
 				String documentId = fileScanner.nextLine();
 				if (documentId.isEmpty()) continue;
-				result.add(documentId);
+				result.add(Key.from(documentId));
 			}
-		}
-		finally {
-			if (fileScanner != null)
-				fileScanner.close();
 		}
 
 		return result;
 	}
 
-	private Map<String, String> readMigrationLocations() throws IOException {
-		Map<String, String> result = new HashMap<>();
+	private Map<Key, String> readMigrationLocations() throws IOException {
+		Map<Key, String> result = new HashMap<>();
 		File source = getMigrationLocationsFile();
-		Scanner fileScanner = null;
 
 		if (!source.exists())
 			source.createNewFile();
 
-		try {
-			fileScanner = new Scanner(source);
+		try (Scanner fileScanner = new Scanner(source)) {
 			while (fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 				if (line.isEmpty()) continue;
 				String[] document = line.split(":");
-				result.put(document[0], document[1]);
+				result.put(Key.from(document[0]), document[1]);
 			}
-		}
-		finally {
-			if (fileScanner != null)
-				fileScanner.close();
 		}
 
 		return result;

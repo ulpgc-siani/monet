@@ -1,6 +1,7 @@
 package org.monet.docservice.docprocessor.data.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.exceptions.BaseException;
 import org.monet.docservice.core.exceptions.DocServiceException;
@@ -56,8 +57,8 @@ public class DatabaseRepository implements Repository {
 		this.mimeTypes = mimeTypes;
 	}
 
-	public String createTemplate(String code, int documentType) {
-		logger.debug("createTemplate(%s ,%s)", code, String.valueOf(documentType));
+	public String createTemplate(String space, String code, int documentType) {
+		logger.debug("createTemplate(%s, %s, %s)", space, code, String.valueOf(documentType));
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -66,14 +67,13 @@ public class DatabaseRepository implements Repository {
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.INSERT_TEMPLATE), Statement.RETURN_GENERATED_KEYS);
-			statement.setString(QueryStore.INSERT_TEMPLATE_PARAM_CODE, code);
+			statement.setString(QueryStore.INSERT_TEMPLATE_PARAM_CODE, Key.from(space, code).toString());
 			statement.setInt(QueryStore.INSERT_TEMPLATE_PARAM_ID_DOCUMENT_TYPE, documentType);
 			statement.setTimestamp(QueryStore.INSERT_TEMPLATE_PARAM_CREATED_DATE, new Timestamp(Calendar.getInstance().getTime().getTime()));
 
 			keys = statement.executeUpdateAndGetGeneratedKeys();
 			if (keys != null && keys.next()) {
-				String instanceId = keys.getString(1);
-				return instanceId;
+				return keys.getString(1);
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -133,8 +133,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void createDocument(String documentId, String templateId, int state, String documentReferenced) {
-		logger.debug("createDocument(%s, %s, %s, %s)", documentId, templateId, String.valueOf(state), documentReferenced);
+	public void createDocument(Key documentKey, Key templateKey, int state, Key documentReferenced) {
+		logger.debug("createDocument(%s, %s, %s, %s)", documentKey, templateKey, String.valueOf(state), documentReferenced);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -145,11 +145,11 @@ public class DatabaseRepository implements Repository {
 			connection.setAutoCommit(false);
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.EXISTS_TEMPLATE));
-			statement.setString(QueryStore.EXISTS_TEMPLATE_PARAM_ID, templateId);
+			statement.setString(QueryStore.EXISTS_TEMPLATE_PARAM_ID, templateKey.toString());
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				if (resultSet.getInt(1) < 1)
-					throw new DocServiceException(String.format("Template '%s' doesn't exists.", templateId));
+					throw new DocServiceException(String.format("Template '%s' doesn't exists.", templateKey));
 			}
 			resultSet.close();
 			resultSet = null;
@@ -157,8 +157,8 @@ public class DatabaseRepository implements Repository {
 			statement = null;
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.INSERT_DOCUMENT));
-			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID, documentId);
-			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID_TEMPLATE, templateId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID, documentKey.toString());
+			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID_TEMPLATE, templateKey.toString());
 			statement.setInt(QueryStore.INSERT_DOCUMENT_PARAM_STATE, state);
 			statement.setTimestamp(QueryStore.INSERT_DOCUMENT_PARAM_CREATED_DATE, new Timestamp(Calendar.getInstance().getTime().getTime()));
 			statement.executeUpdate();
@@ -166,32 +166,32 @@ public class DatabaseRepository implements Repository {
 			statement = null;
 
 			statement = new NamedParameterStatement(connection, queryStore.get(QueryStore.CREATE_DOCUMENT_DATA_FROM_TEMPLATE));
-			statement.setString(QueryStore.CREATE_DOCUMENT_DATA_FROM_TEMPLATE_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.CREATE_DOCUMENT_DATA_FROM_TEMPLATE_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
 
 			statement = new NamedParameterStatement(connection, queryStore.get(QueryStore.SELECT_TEMPLATE_DATA_FOR_DOCUMENT));
-			statement.setString(QueryStore.SELECT_TEMPLATE_DATA_FOR_DOCUMENT_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_TEMPLATE_DATA_FOR_DOCUMENT_PARAM_ID_DOCUMENT, documentKey.toString());
 			 resultSet= statement.executeQuery();
 
 			if (documentReferenced != null){
 				statement.close();
 				statement = null;
-				this.saveInteroperableDocumentData(connection, documentId, getDocumentXmlData(documentReferenced), getDocumentDataContentType(documentReferenced), getDocumentHash(documentReferenced));
-				this.saveDocumentDataLocation(connection, documentId, getReferencedLocation(connection,documentReferenced));
+				this.saveInteroperableDocumentData(connection, documentKey, getDocumentXmlData(documentReferenced), getDocumentDataContentType(documentReferenced), getDocumentHash(documentReferenced));
+				this.saveDocumentDataLocation(connection, documentKey, getReferencedLocation(connection,documentReferenced));
 			}else{
 				String location;
 				if (resultSet.next()) {
 					Blob blob = resultSet.getBlob(1);
-					location = diskManager.addDocument(documentId, blob.getBinaryStream());
+					location = diskManager.addDocument(documentKey, blob.getBinaryStream());
 				} else {
-					throw new ApplicationException(String.format("Not found template for document %s", documentId));
+					throw new ApplicationException(String.format("Not found template for document %s", documentKey));
 				}
 				statement.close();
 				statement = null;
 
-				this.saveDocumentDataLocation(connection, documentId, location);
+				this.saveDocumentDataLocation(connection, documentKey, location);
 			}
 
 			connection.commit();
@@ -215,7 +215,7 @@ public class DatabaseRepository implements Repository {
 	}
 
 
-	public String getReferencedLocation(Connection connection, String documentReferenced){
+	public String getReferencedLocation(Connection connection, Key documentReferenced){
 		NamedParameterStatement statement = null;
 		ResultSet resultSet = null;
 		String location = null;
@@ -223,7 +223,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_DATA_LOCATION));
-			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentReferenced);
+			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentReferenced.toString());
 			resultSet = statement.executeQuery();
 
 			if (resultSet == null || !resultSet.next())
@@ -242,8 +242,8 @@ public class DatabaseRepository implements Repository {
 		return location;
 	}
 
-	public void createEmptyDocument(String documentId, int state) {
-		logger.debug("createEmptyDocument(%s, %s)", documentId, String.valueOf(state));
+	public void createEmptyDocument(Key documentKey, int state) {
+		logger.debug("createEmptyDocument(%s, %s)", documentKey, String.valueOf(state));
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -251,7 +251,7 @@ public class DatabaseRepository implements Repository {
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.INSERT_DOCUMENT));
-			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID, documentKey.toString());
 			statement.setString(QueryStore.INSERT_DOCUMENT_PARAM_ID_TEMPLATE, null);
 			statement.setInt(QueryStore.INSERT_DOCUMENT_PARAM_STATE, state);
 			statement.setTimestamp(QueryStore.INSERT_DOCUMENT_PARAM_CREATED_DATE, new Timestamp(Calendar.getInstance().getTime().getTime()));
@@ -265,8 +265,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public Document getDocument(String documentId) {
-		logger.debug("getDocument(%s)", documentId);
+	public Document getDocument(Key documentKey) {
+		logger.debug("getDocument(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -275,11 +275,11 @@ public class DatabaseRepository implements Repository {
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT));
-			statement.setString(QueryStore.SELECT_DOCUMENT_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_PARAM_ID_DOCUMENT, documentKey.toString());
 			documentRS = statement.executeQuery();
 			if (documentRS != null && documentRS.next()) {
 				Document document = new Document();
-				document.setId(documentRS.getString(QueryStore.SELECT_DOCUMENT_RESULTSET_ID));
+				document.setKey(Key.from(documentRS.getString(QueryStore.SELECT_DOCUMENT_RESULTSET_ID)));
 				document.setState(documentRS.getInt(QueryStore.SELECT_DOCUMENT_RESULTSET_STATE));
 				document.setDeprecated(documentRS.getBoolean(QueryStore.SELECT_DOCUMENT_RESULTSET_IS_DEPRECATED));
 
@@ -297,38 +297,38 @@ public class DatabaseRepository implements Repository {
 			close(statement);
 			close(connection);
 		}
-		throw new ApplicationException(String.format("Document '%s' not found", documentId));
+		throw new ApplicationException(String.format("Document '%s' not found", documentKey));
 	}
 
-	public void removeDocument(String documentId) {
-		logger.debug("removeDocument(%s)", documentId);
+	public void removeDocument(Key documentKey) {
+		logger.debug("removeDocument(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
 
 		try {
 			String location = null;
-			if (this.existsDocument(documentId))
-				location = this.getDocumentDataLocation(documentId);
+			if (this.existsDocument(documentKey))
+				location = this.getDocumentDataLocation(documentKey);
 
 			connection = this.dataSource.getConnection();
 			connection.setAutoCommit(false);
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA));
-			statement.setString(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT_DATA));
-			statement.setString(QueryStore.DELETE_DOCUMENT_DATA_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.DELETE_DOCUMENT_DATA_ID_DOCUMENT, documentKey.toString());
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
 
-			diskManager.deleteDocument(documentId, location);
+			diskManager.deleteDocument(documentKey, location);
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT));
-			statement.setString(QueryStore.DELETE_DOCUMENT_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.DELETE_DOCUMENT_ID_DOCUMENT, documentKey.toString());
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
@@ -350,8 +350,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public InputStream getDocumentData(String documentId) {
-		logger.debug("getDocumentData(%s)", documentId);
+	public InputStream getDocumentData(Key documentKey) {
+		logger.debug("getDocumentData(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -361,15 +361,15 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_DATA_LOCATION));
-			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentKey.toString());
 			resultSet = statement.executeQuery();
 
 			if (resultSet == null || !resultSet.next())
-				throw new ApplicationException(String.format("Document %s not found", documentId));
+				throw new ApplicationException(String.format("Document %s not found", documentKey.toString()));
 
 			String location = resultSet.getString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_RESULTSET_LOCATION);
 
-			return diskManager.readDocument(documentId, location);
+			return diskManager.readDocument(documentKey, location);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new ApplicationException(e.getMessage());
@@ -380,8 +380,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public String getDocumentDataLocation(String documentId) {
-		logger.debug("getDocumentDataLocation(%s)", documentId);
+	public String getDocumentDataLocation(Key documentKey) {
+		logger.debug("getDocumentDataLocation(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -390,11 +390,11 @@ public class DatabaseRepository implements Repository {
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_DATA_LOCATION));
-			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentKey.toString());
 			rs = statement.executeQuery();
 
 			if (rs == null || !rs.next())
-				throw new ApplicationException(String.format("Document %s not found", documentId));
+				throw new ApplicationException(String.format("Document %s not found", documentKey));
 
 			return rs.getString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_RESULTSET_LOCATION);
 		} catch (SQLException e) {
@@ -407,8 +407,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public String getDocumentDataContentType(String documentId) {
-		logger.debug("getDocumentDataContentType(%s)", documentId);
+	public String getDocumentDataContentType(Key documentKey) {
+		logger.debug("getDocumentDataContentType(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -417,13 +417,13 @@ public class DatabaseRepository implements Repository {
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_DATA_CONTENTTYPE));
-			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_CONTENTTYPE_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_CONTENTTYPE_PARAM_ID_DOCUMENT, documentKey.toString());
 			rs = statement.executeQuery();
 			if (rs != null && rs.next()) {
 				String contentType = rs.getString(QueryStore.SELECT_DOCUMENT_DATA_CONTENTTYPE_RESULTSET_CONTENTTYPE);
 				return contentType;
 			} else {
-				throw new ApplicationException(String.format("Document %s not found", documentId));
+				throw new ApplicationException(String.format("Document %s not found", documentKey.toString()));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -435,8 +435,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public String getDocumentHash(String documentId) {
-		logger.debug("getDocumentHash(%s)", documentId);
+	public String getDocumentHash(Key documentKey) {
+		logger.debug("getDocumentHash(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -445,13 +445,13 @@ public class DatabaseRepository implements Repository {
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_HASH));
-			statement.setString(QueryStore.SELECT_DOCUMENT_HASH_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_HASH_PARAM_ID_DOCUMENT, documentKey.toString());
 			rs = statement.executeQuery();
 			if (rs != null && rs.next()) {
 				String hash = rs.getString(QueryStore.SELECT_DOCUMENT_HASH_RESULTSET_HASH);
 				return hash;
 			} else {
-				throw new ApplicationException(String.format("Document %s not found", documentId));
+				throw new ApplicationException(String.format("Document %s not found", documentKey));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -463,15 +463,15 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveDocumentData(String documentId, InputStream data, String xmlData, String contentType, String hash) {
-		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentId, data, xmlData, contentType);
+	public void saveDocumentData(Key documentKey, InputStream data, String xmlData, String contentType, String hash) {
+		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentKey, data, xmlData, contentType);
 
 		ByteArrayInputStream xmlDataStream = null;
 
 		try {
 			if (xmlData != null)
 				xmlDataStream = new ByteArrayInputStream(xmlData.getBytes("UTF-8"));
-			saveDocumentData(documentId, data, xmlDataStream, contentType, hash);
+			saveDocumentData(documentKey, data, xmlDataStream, contentType, hash);
 		} catch (UnsupportedEncodingException e) {
 			logger.error(e.getMessage(), e);
 			throw new ApplicationException(e.getMessage());
@@ -480,8 +480,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveInteroperableDocumentData(Connection connection, String documentId, InputStream xmlData, String contentType, String hash) {
-		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentId, xmlData, contentType, hash);
+	public void saveInteroperableDocumentData(Connection connection, Key documentKey, InputStream xmlData, String contentType, String hash) {
+		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentKey, xmlData, contentType, hash);
 
 		NamedParameterStatement statement = null;
 
@@ -489,7 +489,7 @@ public class DatabaseRepository implements Repository {
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT_DATA_WITH_XML_DATA));
 
-			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_CONTENT_TYPE, contentType);
 			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_HASH, hash);
 			statement.setBinaryStream(QueryStore.INSERT_DOCUMENT_DATA_PARAM_XML_DATA, xmlData);
@@ -506,8 +506,8 @@ public class DatabaseRepository implements Repository {
 
 
 
-	public void saveDocumentData(String documentId, InputStream data, InputStream xmlData, String contentType, String hash) {
-		logger.debug("saveDocumentData(%s, %s, %s, %s, %s)", documentId, data, xmlData, contentType, hash);
+	public void saveDocumentData(Key documentKey, InputStream data, InputStream xmlData, String contentType, String hash) {
+		logger.debug("saveDocumentData(%s, %s, %s, %s, %s)", documentKey, data, xmlData, contentType, hash);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -517,7 +517,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_DATA_WITH_ID));
-			statement.setString(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_DATA_WITH_ID_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_DATA_WITH_ID_PARAM_ID_DOCUMENT, documentKey.toString());
 			documentDataCount = statement.executeQuery();
 			boolean documentExists = documentDataCount != null && documentDataCount.next() && documentDataCount.getInt(1) > 0;
 			documentDataCount.close();
@@ -526,17 +526,17 @@ public class DatabaseRepository implements Repository {
 			statement = null;
 
 			if (documentExists) {
-				String location = this.getDocumentDataLocation(documentId);
+				String location = this.getDocumentDataLocation(documentKey);
 				statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT_DATA_WITH_XML_DATA));
-				diskManager.saveDocument(documentId, location, data);
+				diskManager.saveDocument(documentKey, location, data);
 			}
 			else {
 				statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.INSERT_DOCUMENT_DATA_WITH_XML_DATA));
-				String location = diskManager.addDocument(documentId, data);
+				String location = diskManager.addDocument(documentKey, data);
 				statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_LOCATION, location);
 			}
 
-			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_CONTENT_TYPE, contentType);
 			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_HASH, hash);
 			statement.setBinaryStream(QueryStore.INSERT_DOCUMENT_DATA_PARAM_XML_DATA, xmlData);
@@ -553,8 +553,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveDocumentData(String documentId, InputStream data, String contentType, String hash) {
-		logger.debug("saveDocumentData(%s, %s, %s)", documentId, data, contentType);
+	public void saveDocumentData(Key documentKey, InputStream data, String contentType, String hash) {
+		logger.debug("saveDocumentData(%s, %s, %s)", documentKey, data, contentType);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -564,7 +564,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_DATA_WITH_ID));
-			statement.setString(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_DATA_WITH_ID_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_DATA_WITH_ID_PARAM_ID_DOCUMENT, documentKey.toString());
 			documentDataCount = statement.executeQuery();
 			boolean documentExists = documentDataCount != null && documentDataCount.next() && documentDataCount.getInt(1) > 0;
 			documentDataCount.close();
@@ -573,17 +573,17 @@ public class DatabaseRepository implements Repository {
 			statement = null;
 
 			if (documentExists) {
-				String location = this.getDocumentDataLocation(documentId);
+				String location = this.getDocumentDataLocation(documentKey);
 				statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT_DATA));
-				diskManager.saveDocument(documentId, location, data);
+				diskManager.saveDocument(documentKey, location, data);
 			}
 			else {
 				statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.INSERT_DOCUMENT_DATA));
-				String location = diskManager.addDocument(documentId, data);
+				String location = diskManager.addDocument(documentKey, data);
 				statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_LOCATION, location);
 			}
 
-			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_CONTENT_TYPE, contentType);
 			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_HASH, hash);
 			statement.executeUpdate();
@@ -599,8 +599,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveDocumentXmlData(String documentId, InputStream xmlData) {
-		logger.debug("saveDocumentXmlData(%s, %s)", documentId, xmlData);
+	public void saveDocumentXmlData(Key documentKey, InputStream xmlData) {
+		logger.debug("saveDocumentXmlData(%s, %s)", documentKey, xmlData);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -610,7 +610,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT_XML_DATA));
-			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setBinaryStream(QueryStore.INSERT_DOCUMENT_DATA_PARAM_XML_DATA, xmlData);
 			statement.executeUpdate();
 			statement.close();
@@ -625,8 +625,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public boolean existsDocumentPreview(String documentId) {
-		logger.debug("existsDocumentPreview(%s)", documentId);
+	public boolean existsDocumentPreview(Key documentKey) {
+		logger.debug("existsDocumentPreview(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -636,7 +636,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.EXISTS_DOCUMENT_PREVIEW));
-			statement.setString(QueryStore.EXISTS_DOCUMENT_PREVIEW_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.EXISTS_DOCUMENT_PREVIEW_PARAM_ID_DOCUMENT, documentKey.toString());
 			rs = statement.executeQuery();
 
 			return (rs != null && rs.next());
@@ -650,8 +650,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public String getDocumentPreviewDataContentType(String documentId, int page, int type) {
-		logger.debug("getDocumentPreviewDataContentType(%s, %s, %s)", documentId, String.valueOf(page), type);
+	public String getDocumentPreviewDataContentType(Key documentKey, int page, int type) {
+		logger.debug("getDocumentPreviewDataContentType(%s, %s, %s)", documentKey, String.valueOf(page), type);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -661,7 +661,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_CONTENTTYPE));
-			statement.setString(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_CONTENTTYPE_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_CONTENTTYPE_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setInt(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_CONTENTTYPE_PARAM_PAGE, page);
 			statement.setInt(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_CONTENTTYPE_PARAM_TYPE, type);
 			rs = statement.executeQuery();
@@ -669,7 +669,7 @@ public class DatabaseRepository implements Repository {
 				String contentType = rs.getString(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_CONTENTTYPE_RESULTSET_CONTENTTYPE);
 				return contentType;
 			} else {
-				throw new ApplicationException(String.format("Document %s not found", documentId));
+				throw new ApplicationException(String.format("Document %s not found", documentKey));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -681,8 +681,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void readDocumentPreviewData(String documentId, int page, OutputStream data, int type) {
-		logger.debug("readDocumentPreviewData(%s, %s, %s, %s)", documentId, String.valueOf(page), data, type);
+	public void readDocumentPreviewData(Key documentKey, int page, OutputStream data, int type) {
+		logger.debug("readDocumentPreviewData(%s, %s, %s, %s)", documentKey, String.valueOf(page), data, type);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -692,7 +692,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA));
-			statement.setString(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setInt(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_PARAM_PAGE, page);
 			statement.setInt(QueryStore.SELECT_DOCUMENT_PREVIEW_DATA_PARAM_TYPE, type);
 			rs = statement.executeQuery();
@@ -700,7 +700,7 @@ public class DatabaseRepository implements Repository {
 				Blob blob = rs.getBlob(1);
 				copyData(blob.getBinaryStream(), data);
 			} else {
-				throw new ApplicationException(String.format("Document preview %s not found", documentId));
+				throw new ApplicationException(String.format("Document preview %s not found", documentKey));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -712,8 +712,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveDocumentPreviewData(String documentId, int page, InputStream data, String contentType, int type, int width, int height, float aspectRatio) {
-		logger.debug("saveDocumentPreviewData(%s, %s, %s, %s, %s, %s, %s, %s)", documentId, String.valueOf(page), data, contentType, type, width, height, aspectRatio);
+	public void saveDocumentPreviewData(Key documentKey, int page, InputStream data, String contentType, int type, int width, int height, float aspectRatio) {
+		logger.debug("saveDocumentPreviewData(%s, %s, %s, %s, %s, %s, %s, %s)", documentKey, String.valueOf(page), data, contentType, type, width, height, aspectRatio);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -722,7 +722,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 			connection.setAutoCommit(false);
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.INSERT_DOCUMENT_PREVIEW_DATA));
-			statement.setString(QueryStore.INSERT_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setInt(QueryStore.INSERT_DOCUMENT_PREVIEW_DATA_PARAM_PAGE, page);
 			statement.setBinaryStream(QueryStore.INSERT_DOCUMENT_PREVIEW_DATA_PARAM_DATA, data);
 			statement.setString(QueryStore.INSERT_DOCUMENT_PREVIEW_DATA_PARAM_CONTENTTYPE, contentType);
@@ -751,8 +751,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void clearDocumentPreviewData(String documentId) {
-		logger.debug("clearDocumentPreviewData(%s)", documentId);
+	public void clearDocumentPreviewData(Key documentKey) {
+		logger.debug("clearDocumentPreviewData(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -761,7 +761,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA));
-			statement.setString(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			logger.error(e.getMessage(), e);
@@ -783,11 +783,11 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			DocumentMetadata metadata = new DocumentMetadata();
-			metadata.setDocumentId(document.getId());
+			metadata.setDocumentId(document.getKey().getId());
 			metadata.setDeprecated(document.isDeprecated());
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_ESTIMATED_TIME));
-			statement.setString(QueryStore.SELECT_DOCUMENT_ESTIMATED_TIME_PARAM_ID_DOCUMENT, document.getId());
+			statement.setString(QueryStore.SELECT_DOCUMENT_ESTIMATED_TIME_PARAM_ID_DOCUMENT, document.getKey().toString());
 			resultSet = statement.executeQuery();
 			if (resultSet != null && resultSet.next()) {
 				long time = resultSet.getLong(QueryStore.SELECT_DOCUMENT_ESTIMATED_TIME_RESULTSET_TIME);
@@ -803,7 +803,7 @@ public class DatabaseRepository implements Repository {
 
 			if (!metadata.getHasPendingOperations()) {
 				statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_METADATA));
-				statement.setString(QueryStore.SELECT_DOCUMENT_METADATA_PARAM_ID_DOCUMENT, document.getId());
+				statement.setString(QueryStore.SELECT_DOCUMENT_METADATA_PARAM_ID_DOCUMENT, document.getKey().toString());
 
 				resultSet = statement.executeQuery();
 
@@ -827,8 +827,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void updateDocument(String documentId, int state) {
-		logger.debug("updateDocument(%s, %s)", documentId, String.valueOf(state));
+	public void updateDocument(Key documentKey, int state) {
+		logger.debug("updateDocument(%s, %s)", documentKey, String.valueOf(state));
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -837,7 +837,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT));
-			statement.setString(QueryStore.UPDATE_DOCUMENT_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.UPDATE_DOCUMENT_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setInt(QueryStore.UPDATE_DOCUMENT_PARAM_STATE, state);
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -849,8 +849,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public InputStream getTemplatePart(String documentId, String partId) {
-		logger.debug("getTemplatePart(%s, %s)", documentId, partId);
+	public InputStream getTemplatePart(Key documentKey, String partId) {
+		logger.debug("getTemplatePart(%s, %s)", documentKey, partId);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -862,7 +862,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_TEMPLATE_PART));
-			statement.setString(QueryStore.SELECT_TEMPLATE_PART_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_TEMPLATE_PART_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setString(QueryStore.SELECT_TEMPLATE_PART_PARAM_ID_PART, partId);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -882,8 +882,8 @@ public class DatabaseRepository implements Repository {
 		return new ByteArrayInputStream(data.toByteArray());
 	}
 
-	public boolean existsDocument(String documentId) {
-		logger.debug("existsDocument(%s)", documentId);
+	public boolean existsDocument(Key documentKey) {
+		logger.debug("existsDocument(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -893,7 +893,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_WITH_ID));
-			statement.setString(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_WITH_ID_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_NUMBER_OF_DOCUMENTS_WITH_ID_PARAM_ID_DOCUMENT, documentKey.toString());
 			resultSet = statement.executeQuery();
 			return resultSet != null && resultSet.next() && resultSet.getInt(1) > 0;
 		} catch (Exception e) {
@@ -906,7 +906,7 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public int removeAllNodeFiles(int nodeId) {
+	public int removeAllNodeFiles(String space, int nodeId) {
 		logger.debug("removeAllNodeFiles(%d)", nodeId);
 
 		Connection connection = null;
@@ -918,8 +918,8 @@ public class DatabaseRepository implements Repository {
 			String id_document_ims = String.format("%d/ims/%%", nodeId);
 			String id_document_dms = String.format("%d/dms/%%", nodeId);
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_NODE_DOCUMENTS));
-			statement.setString(QueryStore.DELETE_NODE_DOCUMENTS_PARAM_ID_DOCUMENT_IMS, id_document_ims);
-			statement.setString(QueryStore.DELETE_NODE_DOCUMENTS_PARAM_ID_DOCUMENT_DMS, id_document_dms);
+			statement.setString(QueryStore.DELETE_NODE_DOCUMENTS_PARAM_ID_DOCUMENT_IMS, Key.from(space, id_document_ims).toString());
+			statement.setString(QueryStore.DELETE_NODE_DOCUMENTS_PARAM_ID_DOCUMENT_DMS, Key.from(space, id_document_dms).toString());
 			return statement.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -1027,8 +1027,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public InputStream getDocumentXmlData(String documentId) {
-		logger.debug("getDocumentXmlData(%s)", documentId);
+	public InputStream getDocumentXmlData(Key documentKey) {
+		logger.debug("getDocumentXmlData(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -1040,7 +1040,7 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_XML_DATA));
-			statement.setString(QueryStore.SELECT_DOCUMENT_XML_DATA_PARAM_DOCUMENT_ID, documentId);
+			statement.setString(QueryStore.SELECT_DOCUMENT_XML_DATA_PARAM_DOCUMENT_ID, documentKey.toString());
 
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -1049,7 +1049,7 @@ public class DatabaseRepository implements Repository {
 					return null;
 				copyData(blob.getBinaryStream(), data);
 			} else {
-				throw new ApplicationException(String.format("Document xml data %s not found", documentId));
+				throw new ApplicationException(String.format("Document xml data %s not found", documentKey));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -1101,8 +1101,8 @@ public class DatabaseRepository implements Repository {
 	}
 
 	@Override
-	public int[] getImageDimension(String documentId) {
-		logger.debug("getImageDimension(%s)", documentId);
+	public int[] getImageDimension(Key documentKey) {
+		logger.debug("getImageDimension(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -1114,15 +1114,15 @@ public class DatabaseRepository implements Repository {
 			connection = this.dataSource.getConnection();
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_IMAGE_DIMENSION));
-			statement.setString(QueryStore.SELECT_IMAGE_DIMENSION_PARAM_ID, documentId);
+			statement.setString(QueryStore.SELECT_IMAGE_DIMENSION_PARAM_ID, documentKey.toString());
 
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
 				dimension[0] = resultSet.getInt(QueryStore.SELECT_IMAGE_DIMENSION_PARAM_WIDTH);
 				dimension[1] = resultSet.getInt(QueryStore.SELECT_IMAGE_DIMENSION_PARAM_HEIGHT);
 			} else {
-				createImagePreview(documentId, -1, -1);
-				return getImageDimension(documentId);
+				createImagePreview(documentKey, -1, -1);
+				return getImageDimension(documentKey);
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -1155,7 +1155,7 @@ public class DatabaseRepository implements Repository {
 	}
 
 	@Override
-	public void overwriteDocument(String destinationDocumentId, String sourceDocumentId) {
+	public void overwriteDocument(Key destinationDocumentId, Key sourceDocumentId) {
 		logger.debug("overwriteDocument(%s, %s)", destinationDocumentId, sourceDocumentId);
 
 		Connection connection = null;
@@ -1170,21 +1170,21 @@ public class DatabaseRepository implements Repository {
 			connection.setAutoCommit(false);
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.OVERWRITE_DOCUMENT_DATA));
-			statement.setString(QueryStore.OVERWRITE_DOCUMENT_PARAM_SOURCE_ID, sourceDocumentId);
-			statement.setString(QueryStore.OVERWRITE_DOCUMENT_PARAM_DESTINATION_ID, destinationDocumentId);
+			statement.setString(QueryStore.OVERWRITE_DOCUMENT_PARAM_SOURCE_ID, sourceDocumentId.toString());
+			statement.setString(QueryStore.OVERWRITE_DOCUMENT_PARAM_DESTINATION_ID, destinationDocumentId.toString());
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT));
-			statement.setString(QueryStore.UPDATE_DOCUMENT_PARAM_ID_DOCUMENT, destinationDocumentId);
+			statement.setString(QueryStore.UPDATE_DOCUMENT_PARAM_ID_DOCUMENT, destinationDocumentId.toString());
 			statement.setInt(QueryStore.UPDATE_DOCUMENT_PARAM_STATE, Document.STATE_OVERWRITTEN);
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA));
-			statement.setString(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, destinationDocumentId);
+			statement.setString(QueryStore.DELETE_DOCUMENT_PREVIEW_DATA_PARAM_ID_DOCUMENT, destinationDocumentId.toString());
 			statement.executeUpdate();
 			statement.close();
 			statement = null;
@@ -1309,14 +1309,14 @@ public class DatabaseRepository implements Repository {
 
 	}
 
-	private void saveDocumentDataLocation(Connection connection, String documentId, String location) {
-		logger.debug("saveDocumentDataLocation(%s,%s)", documentId, location);
+	private void saveDocumentDataLocation(Connection connection, Key documentKey, String location) {
+		logger.debug("saveDocumentDataLocation(%s,%s)", documentKey, location);
 
 		NamedParameterStatement statement = null;
 
 		try {
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT_DATA_LOCATION));
-			statement.setString(QueryStore.UPDATE_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.UPDATE_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setString(QueryStore.UPDATE_DOCUMENT_DATA_LOCATION_PARAM_LOCATION, location);
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -1327,17 +1327,17 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void createImagePreview(String imageId, int width, int height) {
+	public void createImagePreview(Key imageKey, int width, int height) {
 		ByteArrayInputStream finalImageStream = null;
 		ByteArrayOutputStream imageTempOutput = null;
 		InputStream imageStream = null;
 
 		try {
-			imageStream = getDocumentData(imageId);
+			imageStream = getDocumentData(imageKey);
 			String contentType = mimeTypes.getFromStream(imageStream);
 			StreamHelper.close(imageStream);
 
-			imageStream = getDocumentData(imageId);
+			imageStream = getDocumentData(imageKey);
 
 			BufferedImage image = ImageIO.read(imageStream);
 			boolean alpha = this.hasAlpha(image, contentType);
@@ -1361,10 +1361,10 @@ public class DatabaseRepository implements Repository {
 			ImageIO.write(bdest, "png", imageTempOutput);
 
 			finalImageStream = new ByteArrayInputStream(imageTempOutput.toByteArray());
-			clearDocumentPreviewData(imageId);
-			saveDocumentPreviewData(imageId, 1, finalImageStream, contentType, PreviewType.PAGE, thumbWidth, thumbHeight, width / (float) height);
+			clearDocumentPreviewData(imageKey);
+			saveDocumentPreviewData(imageKey, 1, finalImageStream, contentType, PreviewType.PAGE, thumbWidth, thumbHeight, width / (float) height);
 		} catch (Exception e) {
-			logger.warn(String.format("Could not create image preview for %s", imageId));
+			logger.warn(String.format("Could not create image preview for %s", imageKey));
 		}
 		finally {
 			StreamHelper.close(imageStream);

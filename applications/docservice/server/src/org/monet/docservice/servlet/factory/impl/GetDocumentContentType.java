@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
@@ -27,15 +28,12 @@ public class GetDocumentContentType extends ActionStringResult{
   }
 
   @Override
-  public String onExecute(Map<String, Object> params, HttpServletResponse response)
-      throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
-    logger.debug("getDocumentContentType(%s)", documentId);
+  public String onExecute(Map<String, Object> params, HttpServletResponse response) {
+    Key documentKey = documentKey(params);
+    logger.debug("getDocumentContentType(%s)", documentKey);
 
     Repository repository = repositoryProvider.get();
-    return repository.getDocumentDataContentType(documentId);
+    return repository.getDocumentDataContentType(documentKey);
 
   }
 

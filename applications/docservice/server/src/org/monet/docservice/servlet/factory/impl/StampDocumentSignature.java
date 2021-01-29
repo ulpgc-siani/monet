@@ -1,6 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.library.LibraryBase64;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.pdf.Signer;
@@ -32,19 +33,16 @@ public class StampDocumentSignature extends ActionStringResult {
   }
   
   @Override
-  public String onExecute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_ID);
+  public String onExecute(Map<String, Object> params, HttpServletResponse response) {
+    Key documentKey = documentKeyFromId(params);
     String signId = (String) params.get(RequestParams.REQUEST_PARAM_SIGN_ID);
     String signature = (String) params.get(RequestParams.REQUEST_PARAM_SIGNATURE);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
 
-    
-    logger.debug("stampDocumentSignature(%s,%s,%s)", documentId, signId, signature);
+    logger.debug("stampDocumentSignature(%s,%s,%s)", documentKey, signId, signature);
 
     byte[] pkcs7Block = this.libraryBase64.decode(signature);
     
-    signer.signDocument(documentId, signId, pkcs7Block);
+    signer.signDocument(documentKey, signId, pkcs7Block);
     
     return MessageResponse.OPERATION_SUCCESFULLY;
   }

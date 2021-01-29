@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
@@ -29,13 +30,11 @@ public class RemoveDocument extends Action{
 
   @Override
   public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-    documentId = normalize(documentId, space);
-    logger.debug("removeDocument(%s)", documentId);
+    Key documentKey = documentKey(params);
+    logger.debug("removeDocument(%s)", documentKey);
 
     Repository repository = repositoryProvider.get();
-    repository.removeDocument(documentId);
+    repository.removeDocument(documentKey);
     response.getWriter().write(MessageResponse.OPERATION_SUCCESFULLY);
   }
 

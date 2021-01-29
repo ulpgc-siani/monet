@@ -69,24 +69,24 @@ public class UpdateDocumentOperation implements Operation {
 		Repository repository = repositoryProvider.get();
 		File tempFile = new File(this.configuration.getPath(Configuration.PATH_TEMP) + File.separator + UUID.randomUUID().toString());
 		File pdfTempFile = new File(this.configuration.getPath(Configuration.PATH_TEMP) + File.separator + UUID.randomUUID().toString());
-		int state = repository.getDocument(target.getDocumentId()).getState();
+		int state = repository.getDocument(target.getDocumentKey()).getState();
 
 		if (! (state == Document.STATE_EDITABLE || state == Document.STATE_OVERWRITTEN))
-			throw new ApplicationException(String.format("The document '%s' isn't editable", target.getDocumentId()));
+			throw new ApplicationException(String.format("The document '%s' isn't editable", target.getDocumentKey()));
 
 		try {
 			FileOutputStream outputStream = null;
 			InputStream documentStream = null;
 			try {
 				outputStream = new FileOutputStream(tempFile);
-				documentStream = repository.getDocumentData(target.getDocumentId());
+				documentStream = repository.getDocumentData(target.getDocumentKey());
 				IOUtils.copy(documentStream, outputStream);
 			} finally {
 				StreamHelper.close(outputStream);
 				StreamHelper.close(documentStream);
 			}
 
-			String contentType = repository.getDocumentDataContentType(target.getDocumentId());
+			String contentType = repository.getDocumentDataContentType(target.getDocumentKey());
 			int documentType = DocumentType.valueOf(contentType);
 			InputStream xmlData = null;
 			ByteArrayOutputStream data = new ByteArrayOutputStream();
@@ -96,7 +96,7 @@ public class UpdateDocumentOperation implements Operation {
 			}
 
 			if (state != Document.STATE_OVERWRITTEN)
-				documentReplacer.updateDocument(target.getDocumentId(), tempFile.getAbsolutePath(), xmlData, documentType);
+				documentReplacer.updateDocument(target.getDocumentKey(), tempFile.getAbsolutePath(), xmlData, documentType);
 
 			if (xmlData != null) xmlData.reset();
 
@@ -106,13 +106,13 @@ public class UpdateDocumentOperation implements Operation {
 				String hash = StreamHelper.calculateHashToHexString(inputStream);
 				StreamHelper.close(inputStream);
 				inputStream = new FileInputStream(tempFile);
-				repository.saveDocumentData(target.getDocumentId(), inputStream, xmlData, contentType, hash);
+				repository.saveDocumentData(target.getDocumentKey(), inputStream, xmlData, contentType, hash);
 			} finally {
 				StreamHelper.close(inputStream);
 			}
 
 			if (documentType != DocumentType.XML_DOCUMENT) {
-				repository.clearDocumentPreviewData(target.getDocumentId());
+				repository.clearDocumentPreviewData(target.getDocumentKey());
 
 				String sPdfTempFile = pdfTempFile.getAbsolutePath();
 				if (documentType != DocumentType.PORTABLE_DOCUMENT)
@@ -120,7 +120,7 @@ public class UpdateDocumentOperation implements Operation {
 				else
 					sPdfTempFile = tempFile.getAbsolutePath();
 
-				previewGenerator.generatePreview(sPdfTempFile, target.getDocumentId());
+				previewGenerator.generatePreview(sPdfTempFile, target.getDocumentKey());
 			}
 
 		} catch (Exception e) {

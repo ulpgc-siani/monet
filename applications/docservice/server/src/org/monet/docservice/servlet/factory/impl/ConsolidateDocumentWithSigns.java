@@ -1,6 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.operations.Operation;
 import org.monet.docservice.docprocessor.operations.OperationsFactory;
@@ -37,26 +38,24 @@ public class ConsolidateDocumentWithSigns extends Action {
 
 	@Override
 	public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+		Key documentKey = documentKey(params);
 		String signsCount = (String) params.get(RequestParams.REQUEST_PARAM_SIGNS_COUNT);
 		String signsCountPattern = (String) params.get(RequestParams.REQUEST_PARAM_SIGNS_COUNT_PATTERN);
 		boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
-		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
-		documentId = normalize(documentId, space);
 		ByteArrayInputStream signsCountStream = new ByteArrayInputStream(String.format(ConsolidateDocumentOperation.EXTRA_PARAMETERS_PATTERN, signsCount, signsCountPattern).getBytes());
 
-		logger.debug("consolidateDocument(%s, %s)", documentId, async);
+		logger.debug("consolidateDocument(%s, %s)", documentKey, async);
 
 		if (async) {
 			WorkQueueItem item = new WorkQueueItem(-1);
-			item.setDocumentId(documentId);
+			item.setDocumentKey(documentKey);
 			item.setExtraDataInputStream(signsCountStream);
 			item.setOperation(Operation.OPERATION_CONSOLIDATE_DOCUMENT);
 			this.workQueue.queueNewWorkItem(item);
 		} else {
 			Operation operation = this.operationsFactory.create(Operation.OPERATION_CONSOLIDATE_DOCUMENT);
 			WorkQueueItem target = new WorkQueueItem(-1);
-			target.setDocumentId(documentId);
+			target.setDocumentKey(documentKey);
 			target.setExtraDataInputStream(signsCountStream);
 			operation.setTarget(target);
 			operation.execute();

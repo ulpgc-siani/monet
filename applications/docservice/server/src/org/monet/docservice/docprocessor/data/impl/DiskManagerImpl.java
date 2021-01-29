@@ -2,6 +2,7 @@ package org.monet.docservice.docprocessor.data.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.agent.AgentFilesystem;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
@@ -25,7 +26,7 @@ public class DiskManagerImpl implements DiskManager {
 		this.logger = logger;
 	}
 
-	public InputStream readDocument(String documentId, String location) {
+	public InputStream readDocument(Key documentKey, String location) {
 		File file = new File(location);
 		InputStream result;
 
@@ -34,7 +35,7 @@ public class DiskManagerImpl implements DiskManager {
 
 			result = new FileInputStream(file);
 		} catch (IOException exception) {
-			logger.error(String.format("Could not read document %s from file located at %s", documentId, location), exception);
+			logger.error(String.format("Could not read document %s from file located at %s", documentKey, location), exception);
 			return null;
 		}
 
@@ -42,23 +43,23 @@ public class DiskManagerImpl implements DiskManager {
 	}
 
 	@Override
-	public String addDocument(String documentId, InputStream data) {
-		return saveDocumentToFile(documentId, this.createTimeDirectory() + "/" + prepareId(documentId), data);
+	public String addDocument(Key documentKey, InputStream data) {
+		return saveDocumentToFile(documentKey, this.createTimeDirectory() + "/" + prepareId(documentKey), data);
 	}
 
 	@Override
-	public void saveDocument(String documentId, String location, InputStream data) {
-		saveDocumentToFile(documentId, location, data);
+	public void saveDocument(Key documentKey, String location, InputStream data) {
+		saveDocumentToFile(documentKey, location, data);
 	}
 
 	@Override
-	public void overrideDocument(String fromDocumentId, String fromLocation, String toDocumentId, String toLocation) {
+	public void overrideDocument(Key fromDocumentId, String fromLocation, Key toDocumentId, String toLocation) {
 		InputStream fromData = this.readDocument(fromDocumentId, fromLocation);
 		this.saveDocumentToFile(toDocumentId, toLocation, fromData);
 	}
 
 	@Override
-	public void deleteDocument(String documentId, String location) {
+	public void deleteDocument(Key documentKey, String location) {
 
 		if (location == null)
 			return;
@@ -68,7 +69,7 @@ public class DiskManagerImpl implements DiskManager {
 			file.delete();
 	}
 
-	private String saveDocumentToFile(String documentId, String location, InputStream data) {
+	private String saveDocumentToFile(Key documentKey, String location, InputStream data) {
 		File file = new File(location);
 		OutputStream fileStream = null;
 
@@ -79,7 +80,7 @@ public class DiskManagerImpl implements DiskManager {
 			fileStream = new FileOutputStream(file);
 			StreamHelper.copy(data, fileStream);
 		} catch (IOException exception) {
-			logger.error(String.format("Could not save document %s to file in location %s", documentId, location));
+			logger.error(String.format("Could not save document %s to file in location %s", documentKey, location));
 		} finally {
 			StreamHelper.close(fileStream);
 		}
@@ -87,8 +88,8 @@ public class DiskManagerImpl implements DiskManager {
 		return location;
 	}
 
-	private String prepareId(String id) {
-		return id.replaceAll("/", "");
+	private String prepareId(Key documentKey) {
+		return documentKey.getId().replaceAll("/", "");
 	}
 
 	private String createTimeDirectory() {

@@ -13,6 +13,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.templates.common.Attributes;
 import org.monet.docservice.docprocessor.templates.common.BaseXmlProcessor;
 import org.monet.docservice.docprocessor.templates.common.Model;
@@ -29,8 +30,8 @@ public class TableProcessor extends BaseXmlProcessor {
   boolean rowIsATemplate = false;
   boolean ignoreRestOfTemplateRows = false;
   
-  public TableProcessor(XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
-    super(reader, writer, underlayingOutputStream);
+  public TableProcessor(Key documentKey, XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
+    super(documentKey, reader, writer, underlayingOutputStream);
     fileWriter = writer;
     fileUnderlayingStream = underlayingOutputStream;
     onMemoryStream = new ByteArrayOutputStream();
@@ -50,7 +51,7 @@ public class TableProcessor extends BaseXmlProcessor {
       if(depth == 0) { //Start table
         depth++;
       } else {
-        TableProcessor tableProc = new TableProcessor(reader, writer, underlayingOutputStream);
+        TableProcessor tableProc = new TableProcessor(documentKey, reader, writer, underlayingOutputStream);
         tableProc.setCollectionModel(currentCollection);
         tableProc.start();
       }
@@ -96,7 +97,7 @@ public class TableProcessor extends BaseXmlProcessor {
         for(Model model : currentCollection) {
           tempInputStream.reset();
           XMLStreamReader onMemoryReader = XMLInputFactory.newInstance().createXMLStreamReader(tempInputStream);
-          RootProcessor proc = new RootProcessor(onMemoryReader, fileWriter, underlayingOutputStream);
+          RootProcessor proc = new RootProcessor(documentKey, onMemoryReader, fileWriter, underlayingOutputStream);
           proc.setModel(model);
           proc.setPartial(true);
           proc.setNamespceContext(this.getNamespaceContext());

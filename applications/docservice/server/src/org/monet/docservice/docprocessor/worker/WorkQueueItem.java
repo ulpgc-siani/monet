@@ -1,5 +1,7 @@
 package org.monet.docservice.docprocessor.worker;
 
+import org.monet.docservice.core.Key;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -13,7 +15,7 @@ public class WorkQueueItem {
   public static final int STATE_ERROR = 4;
   
   private long id;
-  private String documentId;
+  private Key documentKey;
   private int operation;
   private Date queueDate;
   private Date startDate;
@@ -33,12 +35,12 @@ public class WorkQueueItem {
     return id;
   }
 
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setDocumentKey(Key documentKey) {
+    this.documentKey = documentKey;
   }
 
-  public String getDocumentId() {
-    return documentId;
+  public Key getDocumentKey() {
+    return documentKey;
   }
 
   public void setOperation(int operation) {
