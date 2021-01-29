@@ -6,6 +6,7 @@ import com.google.inject.Singleton;
 import net.sf.json.JSONSerializer;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
+import org.monet.docservice.core.util.Normalize;
 import org.monet.docservice.core.util.Resources;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.model.Document;
@@ -72,6 +73,9 @@ public class Preview extends HttpServlet {
 		String documentId = req.getParameter("id");
 		String page = req.getParameter("page");
 		String thumb = req.getParameter("thumb");
+		String space = req.getParameter("space");
+		documentId = Normalize.normalize(documentId, space);
+
 
 		this.generateDocumentPreviewIfNotExists(documentId);
 

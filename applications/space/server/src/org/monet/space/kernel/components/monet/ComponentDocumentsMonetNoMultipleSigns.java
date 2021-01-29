@@ -206,6 +206,22 @@ public class ComponentDocumentsMonetNoMultipleSigns extends ComponentDocuments {
 	}
 
 	@Override
+	public void createDocumentInteroperable(String idTemplate, String idDocument, String referencedId) {
+		try {
+			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
+			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_CREATE_DOCUMENT_INTEROPERABLE));
+			parameters.put(REQUEST_PARAM_TEMPLATE_CODE, toStringBody(idTemplate));
+			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_DOCUMENT_REFERENCED, toStringBody(referencedId));
+			restFullClient.executePost(this.componentDocumentUrl, parameters);
+		} catch (Exception oException) {
+			throw new SystemException(ErrorCode.CREATE_DOCUMENT_INTEROPERABLE, idDocument +" - " + referencedId, oException);
+		}
+	}
+
+
+
+	@Override
 	public void updateDocument(String idDocument, String sContent, Boolean async) {
 		try {
 			byte[] aData = null;

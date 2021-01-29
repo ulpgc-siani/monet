@@ -53,6 +53,8 @@ public class UploadTemplate extends Action {
     String templateCode = (String) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_CODE);
     String mimeType = (String) params.get(RequestParams.REQUEST_PARAM_MIME_TYPE);
     InputStream templateData = (InputStream) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_DATA);
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    templateCode = normalize(templateCode, space);
     
     logger.debug("uploadTemplate(%s, %s, %s)", templateCode, mimeType, templateData);
 

@@ -32,6 +32,9 @@ public class OverwriteDocument extends Action {
     String sourceDocumentId = (String) params.get(RequestParams.REQUEST_PARAM_SOURCE_DOCUMENT_ID);
     String destinationDocumentId = (String) params.get(RequestParams.REQUEST_PARAM_DESTINATION_DOCUMENT_ID);
     String xmlData = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_XML_DATA);
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    //TODO revisar
+    sourceDocumentId = normalize(sourceDocumentId, space);
     logger.debug("overwriteDocument(%s, %s)", destinationDocumentId, sourceDocumentId);
 
     try {

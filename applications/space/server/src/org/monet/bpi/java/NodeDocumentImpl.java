@@ -147,7 +147,12 @@ public abstract class NodeDocumentImpl extends NodeImpl implements NodeDocument,
 		return file;
 	}
 
-	@Override
+    @Override
+    public Boolean isInteropable() {
+        return true;
+    }
+
+    @Override
 	public void onSign(User user) {
 	}
 

@@ -133,8 +133,8 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void createDocument(String documentId, String templateId, int state) {
-		logger.debug("createDocument(%s, %s, %s)", documentId, templateId, String.valueOf(state));
+	public void createDocument(String documentId, String templateId, int state, String documentReferenced) {
+		logger.debug("createDocument(%s, %s, %s, %s)", documentId, templateId, String.valueOf(state), documentReferenced);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -173,19 +173,26 @@ public class DatabaseRepository implements Repository {
 
 			statement = new NamedParameterStatement(connection, queryStore.get(QueryStore.SELECT_TEMPLATE_DATA_FOR_DOCUMENT));
 			statement.setString(QueryStore.SELECT_TEMPLATE_DATA_FOR_DOCUMENT_PARAM_ID_DOCUMENT, documentId);
-			resultSet = statement.executeQuery();
+			 resultSet= statement.executeQuery();
 
-			String location;
-			if (resultSet.next()) {
-				Blob blob = resultSet.getBlob(1);
-				location = diskManager.addDocument(documentId, blob.getBinaryStream());
-			} else {
-				throw new ApplicationException(String.format("Not found template for document %s", documentId));
+			if (documentReferenced != null){
+				statement.close();
+				statement = null;
+				this.saveInteroperableDocumentData(connection, documentId, getDocumentXmlData(documentReferenced), getDocumentDataContentType(documentReferenced), getDocumentHash(documentReferenced));
+				this.saveDocumentDataLocation(connection, documentId, getReferencedLocation(connection,documentReferenced));
+			}else{
+				String location;
+				if (resultSet.next()) {
+					Blob blob = resultSet.getBlob(1);
+					location = diskManager.addDocument(documentId, blob.getBinaryStream());
+				} else {
+					throw new ApplicationException(String.format("Not found template for document %s", documentId));
+				}
+				statement.close();
+				statement = null;
+
+				this.saveDocumentDataLocation(connection, documentId, location);
 			}
-			statement.close();
-			statement = null;
-
-			this.saveDocumentDataLocation(connection, documentId, location);
 
 			connection.commit();
 		} catch (SQLException e) {
@@ -205,6 +212,34 @@ public class DatabaseRepository implements Repository {
 			close(statement);
 			close(connection);
 		}
+	}
+
+
+	public String getReferencedLocation(Connection connection, String documentReferenced){
+		NamedParameterStatement statement = null;
+		ResultSet resultSet = null;
+		String location = null;
+		try {
+			connection = this.dataSource.getConnection();
+
+			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_DATA_LOCATION));
+			statement.setString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT, documentReferenced);
+			resultSet = statement.executeQuery();
+
+			if (resultSet == null || !resultSet.next())
+				throw new ApplicationException(String.format("Document referenced %s not found", documentReferenced));
+
+			location = resultSet.getString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_RESULTSET_LOCATION);
+
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new ApplicationException(e.getMessage());
+		} finally {
+			close(resultSet);
+			close(statement);
+			close(connection);
+		}
+		return location;
 	}
 
 	public void createEmptyDocument(String documentId, int state) {
@@ -444,6 +479,32 @@ public class DatabaseRepository implements Repository {
 			StreamHelper.close(xmlDataStream);
 		}
 	}
+
+	public void saveInteroperableDocumentData(Connection connection, String documentId, InputStream xmlData, String contentType, String hash) {
+		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentId, xmlData, contentType, hash);
+
+		NamedParameterStatement statement = null;
+
+		try {
+
+			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.UPDATE_DOCUMENT_DATA_WITH_XML_DATA));
+
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_CONTENT_TYPE, contentType);
+			statement.setString(QueryStore.INSERT_DOCUMENT_DATA_PARAM_HASH, hash);
+			statement.setBinaryStream(QueryStore.INSERT_DOCUMENT_DATA_PARAM_XML_DATA, xmlData);
+			statement.executeUpdate();
+			statement.close();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new ApplicationException(e.getMessage());
+		} finally {
+			close(statement);
+		}
+	}
+
+
 
 	public void saveDocumentData(String documentId, InputStream data, InputStream xmlData, String contentType, String hash) {
 		logger.debug("saveDocumentData(%s, %s, %s, %s, %s)", documentId, data, xmlData, contentType, hash);

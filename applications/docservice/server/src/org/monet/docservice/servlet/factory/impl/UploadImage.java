@@ -37,6 +37,8 @@ public class UploadImage extends Action {
 		String contentType = (String) params.get(RequestParams.REQUEST_PARAM_CONTENT_TYPE);
 		int width =  Integer.valueOf((String) params.get(RequestParams.REQUEST_PARAM_WIDTH));
 		int height =  Integer.valueOf((String) params.get(RequestParams.REQUEST_PARAM_HEIGHT));
+		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+		documentId = normalize(documentId, space);
 
 		logger.debug("uploadImage(%s)", documentData);
 

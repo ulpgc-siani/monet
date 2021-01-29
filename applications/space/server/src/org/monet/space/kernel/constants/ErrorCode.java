@@ -170,6 +170,7 @@ public abstract class ErrorCode {
 	public static final String EXISTS_DOCUMENT = "ERR_EXISTS_DOCUMENT";
 	public static final String UPLOAD_DOCUMENT = "ERR_UPLOAD_DOCUMENT";
 	public static final String CREATE_DOCUMENT = "ERR_CREATE_DOCUMENT";
+	public static final String CREATE_DOCUMENT_INTEROPERABLE = "ERR_CREATE_DOCUMENT_INTEROPERABLE";
 	public static final String UPDATE_DOCUMENT = "ERR_UPDATE_DOCUMENT";
 	public static final String REMOVE_DOCUMENT = "ERR_REMOVE_DOCUMENT";
 	public static final String GET_DOCUMENT = "ERR_GET_DOCUMENT";

@@ -1,6 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.operations.Operation;
 import org.monet.docservice.docprocessor.operations.OperationsFactory;
@@ -35,7 +36,7 @@ public class ConsolidateDocument extends Action {
 
 	@Override
 	public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
-		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+		Key documentId = new Key((String) params.get(RequestParams.REQUEST_PARAM_SPACE), (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE));
 		boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
 		logger.debug("consolidateDocument(%s, %s)", documentId, async);
 

@@ -29,6 +29,8 @@ public class RemoveAllNodeFiles extends Action {
   @Override
   public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
     int nodeId = Integer.valueOf((String) params.get(RequestParams.REQUEST_PARAM_NODE_CODE));
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    //TODO revisar caso
     logger.debug("removeAllNodeFiles(%s)", nodeId);
 
     Repository repository = repositoryProvider.get();

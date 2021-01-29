@@ -36,6 +36,9 @@ public class StampDocumentSignature extends ActionStringResult {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_ID);
     String signId = (String) params.get(RequestParams.REQUEST_PARAM_SIGN_ID);
     String signature = (String) params.get(RequestParams.REQUEST_PARAM_SIGNATURE);
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    documentId = normalize(documentId, space);
+
     
     logger.debug("stampDocumentSignature(%s,%s,%s)", documentId, signId, signature);
 

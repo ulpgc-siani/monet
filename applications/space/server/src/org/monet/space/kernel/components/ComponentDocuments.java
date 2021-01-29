@@ -24,6 +24,7 @@ package org.monet.space.kernel.components;
 
 import org.monet.metamodel.DocumentDefinitionBase.SignaturesProperty.PositionEnumeration;
 import org.monet.space.kernel.components.monet.documents.PresignedDocument;
+import org.monet.space.kernel.model.BusinessUnit;
 import org.monet.space.kernel.model.Node;
 import org.monet.space.kernel.model.User;
 
@@ -39,6 +40,7 @@ public abstract class ComponentDocuments extends Component {
 	public static final String ACTION_UPLOAD_DOCUMENT = "uploadDocument";
 	public static final String ACTION_UPLOAD_IMAGE = "uploadImage";
 	public static final String ACTION_CREATE_DOCUMENT = "createDocument";
+	public static final String ACTION_CREATE_DOCUMENT_INTEROPERABLE = "createDocumentInteroperable";
 	public static final String ACTION_UPDATE_DOCUMENT = "updateDocument";
 	public static final String ACTION_REMOVE_DOCUMENT = "removeDocument";
 	public static final String ACTION_EXISTS_DOCUMENT = "existsDocument";
@@ -56,6 +58,7 @@ public abstract class ComponentDocuments extends Component {
 	public static final String REQUEST_PARAM_TEMPLATE_DATA = "templateData";
 	public static final String REQUEST_PARAM_MIME_TYPE = "mimeType";
 	public static final String REQUEST_PARAM_DOCUMENT_CODE = "documentCode";
+	public static final String REQUEST_PARAM_DOCUMENT_REFERENCED = "documentReferenced";
 	public static final String REQUEST_PARAM_DOCUMENT_DATA = "documentData";
 	public static final String REQUEST_PARAM_CONTENT_TYPE = "contentType";
 	public static final String REQUEST_PARAM_GENERATE_PREVIEW = "generatePreview";
@@ -79,6 +82,8 @@ public abstract class ComponentDocuments extends Component {
 	public static final String REQUEST_PARAM_SIGNS_COUNT_PATTERN = "signsCountPattern";
 	public static final String REQUEST_PARAM_SIGN_ID = "signId";
 	public static final String REQUEST_PARAM_SIGNATURE = "signature";
+
+	public static final String REQUEST_PARAM_SPACE= "space";
 
 	protected static ComponentDocuments instance;
 
@@ -120,6 +125,8 @@ public abstract class ComponentDocuments extends Component {
 
 	public abstract void createDocument(String idTemplate, String idDocument);
 
+	public abstract void createDocumentInteroperable(String idTemplate, String idDocument, String uriDocument);
+
 	public abstract void updateDocument(String idDocument, String sContent, Boolean async);
 
 	public abstract void copyDocument(String idDocument, String idCopiedDocument, boolean generatePreview);
@@ -141,5 +148,9 @@ public abstract class ComponentDocuments extends Component {
 	public abstract PresignedDocument prepareDocumentSignature(String documentId, String certificate, String reason, String location, String contact, String field);
 
 	public abstract void stampDocumentSignature(String documentId, String signId, String signature, User user);
+
+	public String getSpace(){
+		return BusinessUnit.getInstance().getName();
+	}
 
 }

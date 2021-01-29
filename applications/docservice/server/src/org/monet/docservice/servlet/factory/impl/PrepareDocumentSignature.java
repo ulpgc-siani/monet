@@ -47,6 +47,8 @@ public class PrepareDocumentSignature extends ActionStringResult {
     String location = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_LOCATION);
     String contact = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_CONTACT);
     String signField = (String)  params.get(RequestParams.REQUEST_PARAM_SIGN_FIELD);
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    documentId = normalize(documentId, space);
     
     logger.debug("prepareDocumentSignature(%s,%s)", documentId, certificate);
 

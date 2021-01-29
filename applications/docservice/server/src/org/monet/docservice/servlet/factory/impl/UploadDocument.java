@@ -62,6 +62,8 @@ public class UploadDocument extends Action {
 		InputStream documentData = (InputStream) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_DATA);
 		String contentType = (String) params.get(RequestParams.REQUEST_PARAM_CONTENT_TYPE);
 		boolean generatePreview = Boolean.valueOf((String)params.get(RequestParams.REQUEST_PARAM_GENERATE_PREVIEW));
+		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+		documentId = normalize(documentId, space);
 		File tempFile = null;
 		String xmlData = null;
 

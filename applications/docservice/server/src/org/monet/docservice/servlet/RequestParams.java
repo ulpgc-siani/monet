@@ -11,6 +11,7 @@ public class RequestParams {
 	public static final String REQUEST_PARAM_SIGNS_COUNT = "signsCount";
 	public static final String REQUEST_PARAM_SIGNS_COUNT_PATTERN = "signsCountPattern";
 	public static final String REQUEST_PARAM_DOCUMENT_CODE = "documentCode";
+	public static final String REQUEST_PARAM_DOCUMENT_REFERENCED = "documentReferenced";
 	public static final String REQUEST_PARAM_DOCUMENT_DATA = "documentData";
 	public static final String REQUEST_PARAM_CONTENT_TYPE = "contentType";
 	public static final String REQUEST_PARAM_WIDTH = "width";
@@ -30,5 +31,6 @@ public class RequestParams {
 	public static final String REQUEST_PARAM_SIGN_FIELD = "signField";
 	public static final String REQUEST_PARAM_SIGN_ID = "signId";
 	public static final String REQUEST_PARAM_SIGNATURE = "signature";
+	public static final String REQUEST_PARAM_SPACE= "space";
 
 }

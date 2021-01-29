@@ -21,4 +21,6 @@ public interface NodeDocument extends Node {
 
 	public File getContent();
 
+	public Boolean isInteropable();
+
 }

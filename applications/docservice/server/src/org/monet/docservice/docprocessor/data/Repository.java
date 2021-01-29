@@ -18,7 +18,7 @@ public interface Repository {
 
 	InputStream getTemplatePart(String documentId, String partId);
 
-	void createDocument(String documentId, String templateCode, int state);
+	void createDocument(String documentId, String templateCode, int state, String documentReferenced);
 
 	void createEmptyDocument(String documentId, int state);
 

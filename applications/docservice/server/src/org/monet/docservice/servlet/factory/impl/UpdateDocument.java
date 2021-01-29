@@ -40,6 +40,8 @@ public class UpdateDocument extends Action {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
     InputStream documentData  = (InputStream) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_DATA);
     boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    documentId = normalize(documentId, space);
     logger.debug("updateDocument(%s, %s, %s)", documentId, documentData, async);
 
     WorkQueueItem item = new WorkQueueItem(-1);

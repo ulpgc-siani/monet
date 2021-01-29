@@ -9,6 +9,7 @@ import org.monet.space.kernel.bpi.java.importer.ImportIterable;
 import org.monet.space.kernel.bpi.java.importer.ImportIterator;
 import org.monet.space.kernel.components.ComponentDocuments;
 import org.monet.space.kernel.library.LibraryPDF;
+import org.monet.space.kernel.machines.ttm.model.Message;
 import org.monet.space.kernel.machines.ttm.model.Message.MessageAttach;
 import org.monet.space.kernel.model.BusinessModel;
 import org.monet.space.kernel.utils.MimeTypes;
@@ -90,20 +91,29 @@ public abstract class ImporterImpl implements Importer, BehaviorImporter {
 				try {
 					InputStream stream = streamOf(this.file);
 					size = stream != null ? stream.available() : 0;
+					//TODO traer el contenido de un doument referenced
+					String data = StreamHelper.toString(stream);
+					if (data.contains(Message.REFERENCED_DOCUMENT_MESSAGE)) {
+						String documentReferenced = data.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
+						String content = ComponentDocuments.getInstance().getDocumentSchema(documentReferenced);
+						this.importItem((Schema) PersisterHelper.load(content, this.getTargetSchemaClass()));
+					}else {
 
-					if (MimeTypes.PDF.equals(contentType)) {
-						String content = LibraryPDF.extractXmlData(stream);
-						sourceReader = new StringReader(content);
-					} else if (MimeTypes.XML.equals(contentType)) {
-						sourceReader = AgentFilesystem.getReader(stream);
-					} else {
-						throw new RuntimeException("Source of import not supported");
+						if (MimeTypes.PDF.equals(contentType)) {
+							String content = LibraryPDF.extractXmlData(stream);
+							sourceReader = new StringReader(content);
+						} else if (MimeTypes.XML.equals(contentType)) {
+							sourceReader = AgentFilesystem.getReader(stream);
+						} else {
+							throw new RuntimeException("Source of import not supported");
+						}
+
+						ImportIterator<Schema> iterator = new ImportIterator<Schema>(this.getTargetSchemaClass(), sourceReader, size, "schema");
+						for (Schema schema : new ImportIterable<Schema>(iterator)) {
+							this.importItem(schema);
+						}
 					}
 
-					ImportIterator<Schema> iterator = new ImportIterator<Schema>(this.getTargetSchemaClass(), sourceReader, size, "schema");
-					for (Schema schema : new ImportIterable<Schema>(iterator)) {
-						this.importItem(schema);
-					}
 				} finally {
 					StreamHelper.close(sourceReader);
 				}

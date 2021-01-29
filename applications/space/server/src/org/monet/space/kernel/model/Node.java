@@ -90,6 +90,7 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 	private TaskList linkedTasks;
 	private Location location;
 	private NodeState state;
+	private String referencedId;
 
 	public static final String PROPERTIES = "Properties";
 	public static final String PARENT = "Parent";
@@ -146,6 +147,7 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 		this.schema = "";
 		this.superData = new HashMap<String, SuperDataItem>();
 		this.state = null;
+		this.referencedId = null;
 	}
 
 	private AttributeList getAttributeList(String path) {
@@ -171,6 +173,14 @@ public class Node<T extends NodeDefinition> extends Entity<T> implements ISecura
 		this.id = id;
 		this.nodeList.setIdNode(id);
 		this.clientNodeList.setIdNode(id);
+	}
+
+	public void setReferencedId(String referencedId) {
+		this.referencedId = referencedId;
+	}
+
+	public String getReferencedId() {
+		return this.referencedId;
 	}
 
 	public String getCode() {

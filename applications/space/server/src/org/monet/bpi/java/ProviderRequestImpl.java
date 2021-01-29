@@ -8,6 +8,7 @@ import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.machines.ttm.model.Message;
 import org.monet.space.kernel.machines.ttm.model.Message.MessageAttach;
 import org.monet.space.kernel.model.BusinessModel;
+import org.monet.space.kernel.model.Node;
 import org.monet.space.kernel.utils.MimeTypes;
 
 import java.io.UnsupportedEncodingException;
@@ -31,13 +32,13 @@ public class ProviderRequestImpl implements ProviderRequest {
 			String filename = BusinessModel.getInstance().getAbsoluteFilename(file.getFilename());
 			this.message.addAttachment(new MessageAttach(name, new java.io.File(filename)));
 		} else
-			this.message.addAttachment(new MessageAttach(name, file.getFilename()));
+			this.message.addAttachment(new MessageAttach(name, file.getFilename(), false));
 	}
 
 	@Override
 	public void attachDocument(String name, NodeDocument document) {
 		document.save();
-		this.message.addAttachment(new MessageAttach(name, ((NodeDocumentImpl) document).node.getId()));
+		this.message.addAttachment(new MessageAttach(name, ((NodeDocumentImpl) document).node.getId(), document.isInteropable()));
 	}
 
 	@Override

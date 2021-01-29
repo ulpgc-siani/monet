@@ -41,6 +41,8 @@ public class ConsolidateDocumentWithSigns extends Action {
 		String signsCount = (String) params.get(RequestParams.REQUEST_PARAM_SIGNS_COUNT);
 		String signsCountPattern = (String) params.get(RequestParams.REQUEST_PARAM_SIGNS_COUNT_PATTERN);
 		boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
+		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+		documentId = normalize(documentId, space);
 		ByteArrayInputStream signsCountStream = new ByteArrayInputStream(String.format(ConsolidateDocumentOperation.EXTRA_PARAMETERS_PATTERN, signsCount, signsCountPattern).getBytes());
 
 		logger.debug("consolidateDocument(%s, %s)", documentId, async);

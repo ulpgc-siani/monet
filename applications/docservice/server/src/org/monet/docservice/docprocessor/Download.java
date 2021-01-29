@@ -8,6 +8,7 @@ import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryFile;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.MimeTypes;
+import org.monet.docservice.core.util.Normalize;
 import org.monet.docservice.core.util.Resources;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.operations.Operation;
@@ -72,6 +73,8 @@ public class Download extends HttpServlet {
 
 		String documentId = request.getParameter("id");
 		String thumbnail = request.getParameter("thumb");
+		String space = request.getParameter("space");
+		documentId = Normalize.normalize(documentId,space);
 
 		int page = -1;
 		boolean isThumbnail = thumbnail != null;

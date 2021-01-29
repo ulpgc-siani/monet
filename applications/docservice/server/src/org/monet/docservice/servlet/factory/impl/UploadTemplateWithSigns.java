@@ -55,6 +55,8 @@ public class UploadTemplateWithSigns extends Action{
     String signData = (String) params.get(RequestParams.REQUEST_PARAM_SIGNS_FIELDS);
     String signPosition = (String) params.get(RequestParams.REQUEST_PARAM_SIGNS_POSITION);
     InputStream templateData = (InputStream) params.get(RequestParams.REQUEST_PARAM_TEMPLATE_DATA);
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    templateCode = normalize(templateCode, space);
     
     logger.debug("uploadTemplate(%s, %s, %s)", templateCode, mimeType, templateData);
 

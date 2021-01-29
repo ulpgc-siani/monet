@@ -44,6 +44,8 @@ public class CopyDocument extends Action {
 		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
 		String newDocumentId = (String) params.get(RequestParams.REQUEST_PARAM_COPIED_DOCUMENT_CODE);
 		boolean generatePreview = Boolean.valueOf((String)params.get(RequestParams.REQUEST_PARAM_GENERATE_PREVIEW));
+		String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+		documentId = normalize(documentId, space);
 
 		logger.debug("copyDocument(%s,%s)", documentId, newDocumentId);
 

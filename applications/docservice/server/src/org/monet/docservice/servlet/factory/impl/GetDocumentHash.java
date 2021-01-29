@@ -30,6 +30,8 @@ public class GetDocumentHash extends ActionStringResult{
   public String onExecute(Map<String, Object> params, HttpServletResponse response)
       throws Exception {
     String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+    String space = (String) params.get(RequestParams.REQUEST_PARAM_SPACE);
+    documentId = normalize(documentId, space);
     logger.debug("getDocumentHash(%s)", documentId);
 
     Repository repository = repositoryProvider.get();
