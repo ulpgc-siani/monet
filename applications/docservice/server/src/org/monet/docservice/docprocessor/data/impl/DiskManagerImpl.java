@@ -44,7 +44,7 @@ public class DiskManagerImpl implements DiskManager {
 
 	@Override
 	public String addDocument(Key documentKey, InputStream data) {
-		return saveDocumentToFile(documentKey, this.createTimeDirectory() + "/" + prepareId(documentKey), data);
+		return saveDocumentToFile(documentKey, this.createTimeDirectory(documentKey.getSpace()) + "/" + prepareId(documentKey), data);
 	}
 
 	@Override
@@ -92,10 +92,10 @@ public class DiskManagerImpl implements DiskManager {
 		return documentKey.getId().replaceAll("/", "");
 	}
 
-	private String createTimeDirectory() {
+	private String createTimeDirectory(String space) {
 		SimpleDateFormat format = new SimpleDateFormat("/yyyy/MM/dd");
 		Date date = new Date();
-		String directory = this.selectDisk() + format.format(date);
+		String directory = this.selectDisk() + "/" + space + format.format(date);
 
 		agentFilesystem.forceDir(directory);
 		directory += "/" + this.getNumberedDirectory(directory);
