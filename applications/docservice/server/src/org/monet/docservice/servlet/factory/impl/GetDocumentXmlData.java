@@ -32,7 +32,8 @@ public class GetDocumentXmlData extends ActionStringResult{
 
   @Override
   public String onExecute(Map<String, Object> params, HttpServletResponse response) {
-    Key documentKey = documentKey(params);
+    String documentCode = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+    Key documentKey = Key.containsSpace(documentCode) ? Key.from(documentCode) : documentKey(params);
     logger.debug("getDocumentXmlData(%s)", documentKey);
 
     String xmlData;

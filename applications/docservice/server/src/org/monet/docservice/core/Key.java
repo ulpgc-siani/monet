@@ -18,7 +18,11 @@ public class Key {
         return id.contains("_") ? new Key(id.split("_")[0], id.split("_")[1]) : new Key(null, id);
     }
 
-	public String getSpace() {
+    public static boolean containsSpace(String key) {
+        return key.contains("_");
+    }
+
+    public String getSpace() {
         return space;
     }
 

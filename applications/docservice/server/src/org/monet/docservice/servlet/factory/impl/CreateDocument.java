@@ -33,7 +33,8 @@ public class CreateDocument extends Action {
   public void execute(Map<String, Object> params, HttpServletResponse response) throws Exception {
     Key documentKey = documentKey(params);
     Key templateKey = templateKey(params);
-    Key documentReferenced = Key.from(space(params), (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_REFERENCED));
+    String documentReferencedId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_REFERENCED);
+    Key documentReferenced = documentReferencedId != null ? Key.from(documentReferencedId) : null;
     logger.debug("createDocument(%s, %s)", templateKey, documentKey);
 
     Repository repository = repositoryProvider.get();      

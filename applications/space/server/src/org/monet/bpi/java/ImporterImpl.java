@@ -91,7 +91,6 @@ public abstract class ImporterImpl implements Importer, BehaviorImporter {
 				try {
 					InputStream stream = streamOf(this.file);
 					size = stream != null ? stream.available() : 0;
-					//TODO traer el contenido de un doument referenced
 					String data = StreamHelper.toString(stream);
 					if (data.contains(Message.REFERENCED_DOCUMENT_MESSAGE)) {
 						String documentReferenced = data.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
