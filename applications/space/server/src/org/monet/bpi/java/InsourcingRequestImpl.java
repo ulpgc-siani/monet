@@ -40,7 +40,7 @@ public class InsourcingRequestImpl implements InsourcingRequest {
 	@Override
 	public void attachDocument(String name, NodeDocument document) {
 		document.save();
-		this.message.addAttachment(new MessageAttach(name, ((NodeDocumentImpl) document).node.getId(), document.isInteropable()));
+		this.message.addAttachment(new MessageAttach(name, ((NodeDocumentImpl) document).node.getId(), document.isShared()));
 	}
 
 	@Override

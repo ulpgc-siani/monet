@@ -148,8 +148,9 @@ public abstract class NodeDocumentImpl extends NodeImpl implements NodeDocument,
 	}
 
     @Override
-    public Boolean isInteropable() {
-        return true;
+    public Boolean isShared() {
+		DocumentDefinition definition = (DocumentDefinition) this.node.getDefinition();
+		return definition.isShared();
     }
 
     @Override
