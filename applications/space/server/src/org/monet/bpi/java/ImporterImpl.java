@@ -91,15 +91,16 @@ public abstract class ImporterImpl implements Importer, BehaviorImporter {
 				try {
 					InputStream stream = streamOf(this.file);
 					size = stream != null ? stream.available() : 0;
-					String data = StreamHelper.toString(stream);
-					if (data.contains(Message.REFERENCED_DOCUMENT_MESSAGE)) {
-						String documentReferenced = data.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
-						String content = ComponentDocuments.getInstance().getDocumentSchema(documentReferenced);
+					byte[] data = StreamHelper.readBytes(stream);
+					String content = new String(data);
+					if (content.contains(Message.REFERENCED_DOCUMENT_MESSAGE)) {
+						String documentReferenced = content.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
+						content = ComponentDocuments.getInstance().getDocumentSchema(documentReferenced);
 						this.importItem((Schema) PersisterHelper.load(content, this.getTargetSchemaClass()));
 					}else {
-
+						stream = new ByteArrayInputStream(data);
 						if (MimeTypes.PDF.equals(contentType)) {
-							String content = LibraryPDF.extractXmlData(stream);
+							content = LibraryPDF.extractXmlData(stream);
 							sourceReader = new StringReader(content);
 						} else if (MimeTypes.XML.equals(contentType)) {
 							sourceReader = AgentFilesystem.getReader(stream);
