@@ -24,11 +24,11 @@ import org.monet.editor.dsl.monetModelingLanguage.SchemaPropertyOfValue;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.SchemaPropertyOfValueImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.SchemaPropertyOfValueImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

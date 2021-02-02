@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Definition#getCode <em>Code</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Definition#isAbstract <em>Abstract</em>}</li>
@@ -21,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Definition#getReplaceSuperType <em>Replace Super Type</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Definition#getFeatures <em>Features</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getDefinition()
  * @model
@@ -32,10 +32,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Code</b></em>' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Code</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Code</em>' containment reference.
    * @see #setCode(Code)
@@ -58,10 +54,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Abstract</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Abstract</em>' attribute.
    * @see #setAbstract(boolean)
@@ -84,10 +76,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Extensible</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Extensible</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Extensible</em>' attribute.
    * @see #setExtensible(boolean)
@@ -110,10 +98,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -136,10 +120,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Definition Type</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Definition Type</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Definition Type</em>' attribute.
    * @see #setDefinitionType(String)
@@ -162,10 +142,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Super Type</b></em>' reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Super Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Super Type</em>' reference.
    * @see #setSuperType(Definition)
@@ -188,10 +164,6 @@ public interface Definition extends Feature, Referenciable
   /**
    * Returns the value of the '<em><b>Replace Super Type</b></em>' reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Replace Super Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Replace Super Type</em>' reference.
    * @see #setReplaceSuperType(Definition)
@@ -215,10 +187,6 @@ public interface Definition extends Feature, Referenciable
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
    * The list contents are of type {@link org.monet.editor.dsl.monetModelingLanguage.Feature}.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Features</em>' containment reference list.
    * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getDefinition_Features()

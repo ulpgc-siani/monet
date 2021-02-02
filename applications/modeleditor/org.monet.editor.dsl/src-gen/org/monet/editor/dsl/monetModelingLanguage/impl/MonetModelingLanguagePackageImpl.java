@@ -325,7 +325,7 @@ public class MonetModelingLanguagePackageImpl extends EPackageImpl implements Mo
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
+   *
    * <p>This method is used to initialize {@link MonetModelingLanguagePackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -340,11 +340,13 @@ public class MonetModelingLanguagePackageImpl extends EPackageImpl implements Mo
     if (isInited) return (MonetModelingLanguagePackage)EPackage.Registry.INSTANCE.getEPackage(MonetModelingLanguagePackage.eNS_URI);
 
     // Obtain or create and register package
-    MonetModelingLanguagePackageImpl theMonetModelingLanguagePackage = (MonetModelingLanguagePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MonetModelingLanguagePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MonetModelingLanguagePackageImpl());
+    Object registeredMonetModelingLanguagePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    MonetModelingLanguagePackageImpl theMonetModelingLanguagePackage = registeredMonetModelingLanguagePackage instanceof MonetModelingLanguagePackageImpl ? (MonetModelingLanguagePackageImpl)registeredMonetModelingLanguagePackage : new MonetModelingLanguagePackageImpl();
 
     isInited = true;
 
     // Initialize simple dependencies
+    TypesPackage.eINSTANCE.eClass();
     XbasePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
@@ -356,7 +358,6 @@ public class MonetModelingLanguagePackageImpl extends EPackageImpl implements Mo
     // Mark meta-data to indicate it can't be changed
     theMonetModelingLanguagePackage.freeze();
 
-  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(MonetModelingLanguagePackage.eNS_URI, theMonetModelingLanguagePackage);
     return theMonetModelingLanguagePackage;

@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Schema#getId <em>Id</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Schema#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getSchema()
  * @model
@@ -26,10 +26,6 @@ public interface Schema extends Feature
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
@@ -53,10 +49,6 @@ public interface Schema extends Feature
    * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
    * The list contents are of type {@link org.monet.editor.dsl.monetModelingLanguage.SchemaFeature}.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Properties</em>' containment reference list.
    * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getSchema_Properties()

@@ -21,11 +21,11 @@ import org.monet.editor.dsl.monetModelingLanguage.PackageDeclaration;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.PackageDeclarationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.PackageDeclarationImpl#getDefinition <em>Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -255,7 +255,7 @@ public class PackageDeclarationImpl extends MinimalEObjectImpl.Container impleme
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(')');

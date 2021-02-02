@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetLocalizationLanguage.DomainModel#getCode <em>Code</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetLocalizationLanguage.DomainModel#getFeatures <em>Features</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetLocalizationLanguage.MonetLocalizationLanguagePackage#getDomainModel()
  * @model
@@ -28,10 +28,6 @@ public interface DomainModel extends EObject
   /**
    * Returns the value of the '<em><b>Code</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Code</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Code</em>' attribute.
    * @see #setCode(String)
@@ -55,10 +51,6 @@ public interface DomainModel extends EObject
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
    * The list contents are of type {@link org.monet.editor.dsl.monetLocalizationLanguage.StringResource}.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Features</em>' containment reference list.
    * @see org.monet.editor.dsl.monetLocalizationLanguage.MonetLocalizationLanguagePackage#getDomainModel_Features()

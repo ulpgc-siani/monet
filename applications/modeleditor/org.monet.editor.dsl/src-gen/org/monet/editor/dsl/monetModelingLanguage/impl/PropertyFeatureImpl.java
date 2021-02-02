@@ -13,8 +13,6 @@ import org.monet.editor.dsl.monetModelingLanguage.PropertyFeature;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Property Feature</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

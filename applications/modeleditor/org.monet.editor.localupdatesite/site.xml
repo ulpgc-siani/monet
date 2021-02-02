@@ -3,7 +3,7 @@
    <description name="Monet Editor Update Site (BETA)" url="http://files.ces.siani.es/monet/plugin/3.2/beta">
       Sitio de actualización BETA
    </description>
-   <feature url="features/org.monet.editor.feature_3.0.0.201603100951.jar" id="org.monet.editor.feature" version="3.0.0.201603100951">
+   <feature url="features/org.monet.editor.feature_3.0.0.202102021244.jar" id="org.monet.editor.feature" version="3.0.0.202102021244">
       <category name="local_monet_updatesite"/>
    </feature>
    <category-def name="local_monet_updatesite" label="Monet Editor"/>

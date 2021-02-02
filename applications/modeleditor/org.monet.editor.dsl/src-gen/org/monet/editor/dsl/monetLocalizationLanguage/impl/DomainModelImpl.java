@@ -28,11 +28,11 @@ import org.monet.editor.dsl.monetLocalizationLanguage.StringResource;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetLocalizationLanguage.impl.DomainModelImpl#getCode <em>Code</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetLocalizationLanguage.impl.DomainModelImpl#getFeatures <em>Features</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -230,7 +230,7 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (code: ");
     result.append(code);
     result.append(')');

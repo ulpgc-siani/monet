@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.PackageDeclaration#getName <em>Name</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.PackageDeclaration#getDefinition <em>Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getPackageDeclaration()
  * @model
@@ -26,10 +26,6 @@ public interface PackageDeclaration extends EObject
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -52,10 +48,6 @@ public interface PackageDeclaration extends EObject
   /**
    * Returns the value of the '<em><b>Definition</b></em>' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Definition</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Definition</em>' containment reference.
    * @see #setDefinition(Definition)

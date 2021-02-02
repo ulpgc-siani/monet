@@ -15,12 +15,12 @@ import org.eclipse.xtext.xbase.XExpression;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Method#getId <em>Id</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Method#getParams <em>Params</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Method#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getMethod()
  * @model
@@ -31,10 +31,6 @@ public interface Method extends ManifestFeature, Feature, PropertyFeature
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
@@ -58,10 +54,6 @@ public interface Method extends ManifestFeature, Feature, PropertyFeature
    * Returns the value of the '<em><b>Params</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.xtext.common.types.JvmFormalParameter}.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Params</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Params</em>' containment reference list.
    * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getMethod_Params()
@@ -73,10 +65,6 @@ public interface Method extends ManifestFeature, Feature, PropertyFeature
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Body</em>' containment reference.
    * @see #setBody(XExpression)
