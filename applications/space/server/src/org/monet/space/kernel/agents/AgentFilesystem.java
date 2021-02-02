@@ -87,7 +87,9 @@ public class AgentFilesystem {
 	}
 
 	public static void removeDirContent(File directory) {
-		for (File file : directory.listFiles()) {
+		File[] files = directory.listFiles();
+		if (files == null) return;
+		for (File file : files) {
 			if (file.isDirectory())
 				removeDir(file.getAbsolutePath());
 			else
