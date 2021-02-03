@@ -135,8 +135,7 @@ public class ExtractAttachmentOperation implements Operation {
               params.put(RequestParams.REQUEST_PARAM_DOCUMENT_DATA, fileAttach);
               String contentType = annot.getAsString(PdfName.CONTENTS).toString();
               params.put(RequestParams.REQUEST_PARAM_CONTENT_TYPE, annot.getAsString(PdfName.CONTENTS).toString());
-
-    
+              
               InputStream[] fileAttachcopy = null;
               try{   
                 if(ImageSupport.isImage(attachKey.getId())){
