@@ -123,16 +123,19 @@ public class ExtractAttachmentOperation implements Operation {
           refs = fs.getAsDict(PdfName.EF);
 
           for(int k = 0; k < nodeList.getLength(); k++){
-            Key attachKey = new Key(documentKey.getSpace(), nodeList.item(k).getNodeValue());
-            if(fs.getAsString(PdfName.F).toString().equals(attachKey)){
+            String attachId = nodeList.item(k).getNodeValue();
+            Key attachKey = new Key(documentKey.getSpace(), attachId);
+            if(fs.getAsString(PdfName.F).toString().equals(attachId)){
               nodeList.item(k).setNodeValue(attachKey.getId());
               
               InputStream fileAttach = new ByteArrayInputStream(PdfReader.getStreamBytes((PRStream)refs.getAsStream(PdfName.F)));
               Map<String , Object> params = new HashMap<String, Object>();
-              params.put(RequestParams.REQUEST_PARAM_DOCUMENT_CODE , attachKey);
+              params.put(RequestParams.REQUEST_PARAM_DOCUMENT_CODE , attachKey.getId());
+              params.put(RequestParams.REQUEST_PARAM_SPACE , attachKey.getSpace());
               params.put(RequestParams.REQUEST_PARAM_DOCUMENT_DATA, fileAttach);
               String contentType = annot.getAsString(PdfName.CONTENTS).toString();
               params.put(RequestParams.REQUEST_PARAM_CONTENT_TYPE, annot.getAsString(PdfName.CONTENTS).toString());
+
     
               InputStream[] fileAttachcopy = null;
               try{   
