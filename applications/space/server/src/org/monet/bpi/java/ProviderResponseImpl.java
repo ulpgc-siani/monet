@@ -5,6 +5,7 @@ import org.monet.bpi.ProviderResponse;
 import org.monet.bpi.Schema;
 import org.monet.bpi.types.File;
 import org.monet.metamodel.NodeDefinition;
+import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.bpi.java.locator.BPIClassLocator;
 import org.monet.space.kernel.components.ComponentDocuments;
@@ -61,7 +62,7 @@ public class ProviderResponseImpl implements ProviderResponse {
 			String documentReferenced = null;
 			try {
 				attachStream = attach.getDocumentReference();
-				String data = attachStream != null ? StreamHelper.toString(attachStream) : null;
+				String data = attachStream != null && Kernel.getInstance().isDocumentServiceShared() ? StreamHelper.toString(attachStream) : null;
 				if (data != null) {
 					documentReferenced = data.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
 				}
