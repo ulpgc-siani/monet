@@ -148,12 +148,6 @@ public abstract class NodeDocumentImpl extends NodeImpl implements NodeDocument,
 	}
 
     @Override
-    public Boolean isShared() {
-		DocumentDefinition definition = (DocumentDefinition) this.node.getDefinition();
-		return definition.isShared();
-    }
-
-    @Override
 	public void onSign(User user) {
 	}
 

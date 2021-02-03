@@ -6,6 +6,7 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.monet.bpi.Schema;
 import org.monet.mobile.model.TaskMetadata;
+import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.components.ComponentDocuments;
 import org.monet.space.kernel.constants.ErrorCode;
@@ -32,7 +33,6 @@ public class Message {
 		private String key;
 		private File file;
 		private String documentId;
-		private Boolean documentInteroperable;
 		private byte[] rawContent;
 		private Schema schema;
 		private Node node;
@@ -44,11 +44,10 @@ public class Message {
 			this.contentType = MimeTypes.getInstance().getFromFile(file);
 		}
 
-		public MessageAttach(String key, String documentId, Boolean documentInteroperable) {
+		public MessageAttach(String key, String documentId) {
 			this.key = key;
 			this.documentId = documentId;
 			this.contentType = ComponentDocuments.getInstance().getDocumentContentType(documentId);
-			this.documentInteroperable = documentInteroperable;
 		}
 
 		public MessageAttach(String key, byte[] rawContent, String contentType) {
@@ -80,15 +79,25 @@ public class Message {
 			return this.file;
 		}
 
+		public boolean isDocument() throws Exception {
+			return documentId != null;
+		}
+
+		public InputStream getDocumentReference() throws Exception {
+			if (!isDocument() || !Kernel.getInstance().isDocumentServiceShared()) return null;
+			String idReferenced = Message.REFERENCED_DOCUMENT_MESSAGE + BusinessUnit.getInstance().getName() + "_" + URLEncoder.encode(this.documentId, "UTF-8");
+			return new ByteArrayInputStream(idReferenced.getBytes(StandardCharsets.UTF_8));
+		}
+
 		public InputStream getInputStream() throws Exception {
 			if (rawContent != null) {
 				return new ByteArrayInputStream(rawContent);
 			} else if (file != null) {
 				return new FileInputStream(this.file);
 			} else if (documentId != null) {
-				return documentInteroperable ? this.getDocumentReferencedStream() : this.getDocumentStream();
+				return this.getDocumentStream();
 			} else if (schema != null) {
-				return new ByteArrayInputStream(this.serialize().getBytes("UTF-8"));
+				return new ByteArrayInputStream(this.serialize().getBytes(StandardCharsets.UTF_8));
 			} else if (node != null){
 				return this.getNodeStream();
 			}
@@ -110,11 +119,6 @@ public class Message {
 			}
 
 			return method.getResponseBodyAsStream();
-		}
-
-		private InputStream getDocumentReferencedStream() throws HttpException, IOException {
-			String idReferenced = Message.REFERENCED_DOCUMENT_MESSAGE + BusinessUnit.getInstance().getName() + "_" + URLEncoder.encode(this.documentId, "UTF-8");
-			return new ByteArrayInputStream(idReferenced.getBytes("UTF-8"));
 		}
 
 		private String serialize() {

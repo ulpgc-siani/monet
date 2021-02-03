@@ -92,6 +92,11 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 	}
 
 	@Override
+	public boolean isShared() {
+		return configuration.isDocumentServiceShared();
+	}
+
+	@Override
 	public boolean ping() {
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();

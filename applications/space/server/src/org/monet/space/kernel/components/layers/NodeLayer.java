@@ -25,7 +25,7 @@ public interface NodeLayer extends Layer {
 
 	Node addNode(String code, Node parent);
 
-	Node addNodeInteroperable(String code, String documentReferenced);
+	Node addSharedNode(String code, String documentReferenced);
 
 	void copyNode(Node node, Node parent, String label, String description);
 

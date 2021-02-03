@@ -1,12 +1,15 @@
 package org.monet.space.kernel.utils;
 
 import org.monet.mobile.model.TaskMetadata;
+import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.machines.ttm.model.Message;
 import org.monet.space.kernel.machines.ttm.model.Message.MessageAttach;
 
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import static org.monet.space.kernel.machines.ttm.persistence.PersistenceService.MonetReferenceFileExtension;
 
 public class MessageHelper {
 
@@ -31,8 +34,9 @@ public class MessageHelper {
 				} else if (name.equals(".metadata")) {
 					message.setMetadata(PersisterHelper.load(zipStream, TaskMetadata.class));
 				} else {
-					if (entry.getExtra() == null)
-						continue;
+					if (entry.getExtra() == null) continue;
+					if (entry.getName().contains(MonetReferenceFileExtension) && !Kernel.getInstance().isDocumentServiceShared()) continue;
+					if (!entry.getName().contains(MonetReferenceFileExtension) && Kernel.getInstance().isDocumentServiceShared()) continue;
 					String key = new String(entry.getExtra(), "UTF-8");
 					File entryFile = new File(messageDir, name);
 					FileOutputStream entryOutputStream = null;

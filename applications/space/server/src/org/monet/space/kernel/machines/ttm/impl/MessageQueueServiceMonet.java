@@ -27,6 +27,8 @@ import java.io.*;
 import java.util.*;
 import java.util.zip.ZipOutputStream;
 
+import static org.monet.space.kernel.machines.ttm.persistence.PersistenceService.MonetReferenceFileExtension;
+
 @Singleton
 public class MessageQueueServiceMonet implements MessageQueueService {
 
@@ -60,6 +62,7 @@ public class MessageQueueServiceMonet implements MessageQueueService {
 					int i = 0;
 					for (MessageAttach attach : message.getAttachments()) {
 						LibraryZip.addZipEntry(String.format("attach_%d.%s", i, MimeTypes.getInstance().getExtension(attach.getContentType())), attach.getKey(), attach.getInputStream(), outputStream);
+						if (attach.isDocument()) LibraryZip.addZipEntry(String.format("attach_%d" + MonetReferenceFileExtension, i), String.format("%s;%s", attach.getKey(), MimeTypes.TEXT), attach.getInputStream(), outputStream);
 						i++;
 					}
 				} finally {

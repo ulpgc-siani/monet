@@ -61,7 +61,7 @@ public class PersistenceServiceMonet implements PersistenceService {
 	}
 
 	@Override
-	public void  resumeJob(Task task, Message message, String callbackTaskId, String callbackCode, String callbackOrderId) {
+	public void resumeJob(Task task, Message message, String callbackTaskId, String callbackCode, String callbackOrderId) {
 		File messageFile = null;
 		InputStream messageStream = null;
 
@@ -82,6 +82,7 @@ public class PersistenceServiceMonet implements PersistenceService {
 				int i = 0;
 				for (MessageAttach attach : message.getAttachments()) {
 					LibraryZip.addZipEntry(String.format("attach_%d.%s", i, MimeTypes.getInstance().getExtension(attach.getContentType())), String.format("%s;%s", attach.getKey(), attach.getContentType()), attach.getInputStream(), outputStream);
+					if (attach.isDocument()) LibraryZip.addZipEntry(String.format("attach_%d" + MonetReferenceFileExtension, i), String.format("%s;%s", attach.getKey(), MimeTypes.TEXT), attach.getInputStream(), outputStream);
 					i++;
 				}
 			} finally {

@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface PersistenceService {
 
+	public static final String MonetReferenceFileExtension = ".monet.ref";
+
 	Task createTask(String taskName);
 
 	void save(Task task);

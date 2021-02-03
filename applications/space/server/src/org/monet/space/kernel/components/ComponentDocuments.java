@@ -88,6 +88,7 @@ public abstract class ComponentDocuments extends Component {
 	protected static ComponentDocuments instance;
 
 	public static class Feature {
+
 		public static final Integer PREVIEW = 0;
 		public static final Integer DOWNLOAD = 1;
 		public static final Integer UPLOAD = 2;
@@ -107,7 +108,9 @@ public abstract class ComponentDocuments extends Component {
 		return instance.isRunning;
 	}
 
-    public abstract boolean ping();
+	public abstract boolean isShared();
+
+	public abstract boolean ping();
 
 	public abstract void uploadDocument(String idDocument, InputStream oData, String sContentType, boolean generatePreview);
 

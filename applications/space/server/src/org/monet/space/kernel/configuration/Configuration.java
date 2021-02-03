@@ -45,6 +45,7 @@ public class Configuration {
 	public static final String JDBC_DATASOURCE = "Jdbc.DataSource";
 	public static final String USER_DATA_DIR = "MONET_USER_DATA_DIR";
 	public static final String COMPONENT_DOCUMENTS_MONET_URL = "MONET_COMPONENT_DOCUMENTS_MONET_URL";
+	public static final String COMPONENT_DOCUMENTS_MONET_IS_SHARED = "MONET_COMPONENT_DOCUMENTS_MONET_IS_SHARED";
 	public static final String APPLICATION_DEFINITION_FILENAME = "MONET_APPLICATION_DEFINITION_FILENAME";
 	public static final String COMPONENT_DEFINITION_FILENAME = "MONET_COMPONENT_DEFINITION_FILENAME";
 	public static final String TRANSLATOR_DEFINITION_FILENAME = "MONET_TRANSLATOR_DEFINITION_FILENAME";
@@ -477,5 +478,11 @@ public class Configuration {
 
 	public String getDefaultApplication() {
 		return getValue(DEFAULT_APPLICATION);
+	}
+
+	public boolean isDocumentServiceShared() {
+		String shared = this.properties.getProperty(COMPONENT_DOCUMENTS_MONET_IS_SHARED);
+		if (shared == null) shared = "false";
+		return shared.contains("true");
 	}
 }

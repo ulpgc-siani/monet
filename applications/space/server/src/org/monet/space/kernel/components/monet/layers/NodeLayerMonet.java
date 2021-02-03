@@ -746,11 +746,11 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 	}
 
 	@Override
-	public Node addNodeInteroperable(String code, String documentReferenced) {
+	public Node addSharedNode(String code, String documentReference) {
 		if (!this.isStarted()) {
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 		}
-		return this.addNode(code, null, null, documentReferenced);
+		return this.addNode(code, null, null, documentReference);
 	}
 
 	@Override

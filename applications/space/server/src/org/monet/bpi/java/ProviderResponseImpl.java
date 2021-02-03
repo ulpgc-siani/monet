@@ -19,7 +19,6 @@ import org.monet.space.kernel.utils.PersisterHelper;
 import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 public class ProviderResponseImpl implements ProviderResponse {
@@ -61,9 +60,9 @@ public class ProviderResponseImpl implements ProviderResponse {
 			InputStream attachStream = null;
 			String documentReferenced = null;
 			try {
-				attachStream = attach.getInputStream();
-				String data = StreamHelper.toString(attachStream);
-				if (data.contains(Message.REFERENCED_DOCUMENT_MESSAGE)) {
+				attachStream = attach.getDocumentReference();
+				String data = attachStream != null ? StreamHelper.toString(attachStream) : null;
+				if (data != null) {
 					documentReferenced = data.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
 				}
 			} catch (Exception e) {
@@ -74,7 +73,7 @@ public class ProviderResponseImpl implements ProviderResponse {
 			}
 			org.monet.space.kernel.model.Node node = null;
 			if (documentReferenced != null)
-				node = nodeLayer.addNodeInteroperable(definition.getCode(), documentReferenced);
+				node = nodeLayer.addSharedNode(definition.getCode(), documentReferenced);
 			else
 				node = nodeLayer.addNode(definition.getCode());
 			bpiNode = BPIClassLocator.getInstance().instantiateBehaviour(definition);

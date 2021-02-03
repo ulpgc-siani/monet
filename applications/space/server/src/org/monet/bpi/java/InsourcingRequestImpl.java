@@ -34,13 +34,13 @@ public class InsourcingRequestImpl implements InsourcingRequest {
 			String filename = BusinessModel.getInstance().getAbsoluteFilename(file.getFilename());
 			this.message.addAttachment(new MessageAttach(name, new java.io.File(filename)));
 		} else
-			this.message.addAttachment(new MessageAttach(name, file.getFilename(), false));
+			this.message.addAttachment(new MessageAttach(name, file.getFilename()));
 	}
 
 	@Override
 	public void attachDocument(String name, NodeDocument document) {
 		document.save();
-		this.message.addAttachment(new MessageAttach(name, ((NodeDocumentImpl) document).node.getId(), document.isShared()));
+		this.message.addAttachment(new MessageAttach(name, ((NodeDocumentImpl) document).node.getId()));
 	}
 
 	@Override
