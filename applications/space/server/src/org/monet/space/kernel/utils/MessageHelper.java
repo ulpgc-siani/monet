@@ -35,9 +35,9 @@ public class MessageHelper {
 					message.setMetadata(PersisterHelper.load(zipStream, TaskMetadata.class));
 				} else {
 					if (entry.getExtra() == null) continue;
-					if (entry.getName().contains(MonetReferenceFileExtension) && !Kernel.getInstance().isDocumentServiceShared()) continue;
-					if (!entry.getName().contains(MonetReferenceFileExtension) && Kernel.getInstance().isDocumentServiceShared()) continue;
 					String key = new String(entry.getExtra(), "UTF-8");
+					if (entry.getName().contains(MonetReferenceFileExtension) && !Kernel.getInstance().isDocumentServiceShared()) continue;
+					if (message.getAttachment(key) != null) continue;
 					File entryFile = new File(messageDir, name);
 					FileOutputStream entryOutputStream = null;
 					try {
@@ -46,7 +46,6 @@ public class MessageHelper {
 					} finally {
 						StreamHelper.close(entryOutputStream);
 					}
-
 					message.addAttachment(new MessageAttach(key, entryFile));
 				}
 			}

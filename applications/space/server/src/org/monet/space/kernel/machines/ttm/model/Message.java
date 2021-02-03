@@ -84,7 +84,7 @@ public class Message {
 		}
 
 		public InputStream getDocumentReference() throws Exception {
-			if (!isDocument()) return null;
+			if (!isDocument()) return getInputStream();
 			String idReferenced = Message.REFERENCED_DOCUMENT_MESSAGE + BusinessUnit.getInstance().getName() + "_" + URLEncoder.encode(this.documentId, "UTF-8");
 			return new ByteArrayInputStream(idReferenced.getBytes(StandardCharsets.UTF_8));
 		}
