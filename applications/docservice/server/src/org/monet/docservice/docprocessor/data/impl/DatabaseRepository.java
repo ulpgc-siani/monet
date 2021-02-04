@@ -223,11 +223,16 @@ public class DatabaseRepository implements Repository {
 
 	private void saveAttachments(Key documentKey, Key templateKey, int state, Key documentReferenced) {
 		try {
-			NodeList nodeList = AttachmentExtractor.extract(StreamHelper.toString(getDocumentXmlData(documentReferenced)));
+			InputStream xmlStream = getDocumentXmlData(documentReferenced);
+			if (xmlStream == null) return;
+			NodeList nodeList = AttachmentExtractor.extract(StreamHelper.toString(xmlStream));
 			if (nodeList == null) return;
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				String attachId = nodeList.item(i).getNodeValue();
-				createDocument(Key.from(documentKey.getSpace(), attachId), templateKey, state, Key.from(documentReferenced.getSpace(), attachId));
+				Key attachKey = Key.from(documentKey.getSpace(), attachId);
+				if (!existsDocument(attachKey)) {
+					createDocument(Key.from(documentKey.getSpace(), attachId), templateKey, state, attachKey);
+				}
 			}
 		} catch (IOException | ParserConfigurationException | SAXException | XPathExpressionException e) {
 			logger.error(e.getMessage(), e);
