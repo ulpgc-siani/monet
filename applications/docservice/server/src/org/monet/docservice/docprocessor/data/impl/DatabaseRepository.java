@@ -183,7 +183,7 @@ public class DatabaseRepository implements Repository {
 			if (documentReferenced != null) {
 				statement.close();
 				statement = null;
-				this.saveInteroperableDocumentData(connection, documentKey);
+				this.saveInteroperableDocumentData(connection, documentKey, documentReferenced);
 				this.saveDocumentDataLocation(connection, documentKey, getReferencedLocation(connection,documentReferenced));
 				this.saveAttachments(documentKey, templateKey, state, documentReferenced);
 			}
@@ -230,7 +230,7 @@ public class DatabaseRepository implements Repository {
 				String attachId = nodeList.item(i).getNodeValue();
 				Key attachKey = Key.from(documentKey.getSpace(), attachId);
 				if (!existsDocument(attachKey)) {
-					createDocument(Key.from(documentKey.getSpace(), attachId), templateKey, state, attachKey);
+					createDocument(attachKey, templateKey, state, Key.from(documentReferenced.getSpace(),attachId));
 				}
 			}
 		} catch (IOException | ParserConfigurationException | SAXException | XPathExpressionException e) {
@@ -504,13 +504,13 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveInteroperableDocumentData(Connection connection, Key documentKey) {
-		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentKey);
+	public void saveInteroperableDocumentData(Connection connection, Key documentKey, Key documentReferenced) {
+		logger.debug("saveInteroperableDocumentData(%s)", documentKey);
 
 		NamedParameterStatement statement = null;
-		InputStream xmlData = existsDocumentXmlData(documentKey) ? getDocumentXmlData(documentKey) : null;
-		String contentType = getDocumentDataContentType(documentKey);
-		String hash = getDocumentHash(documentKey);
+		InputStream xmlData = existsDocumentXmlData(documentReferenced) ? getDocumentXmlData(documentReferenced) : null;
+		String contentType = getDocumentDataContentType(documentReferenced);
+		String hash = getDocumentHash(documentReferenced);
 
 		try {
 
@@ -1061,14 +1061,14 @@ public class DatabaseRepository implements Repository {
 		NamedParameterStatement statement = null;
 		ResultSet resultSet = null;
 
-		ByteArrayOutputStream data = new ByteArrayOutputStream();
-
 		try {
 			connection = this.dataSource.getConnection();
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_XML_DATA));
 			statement.setString(QueryStore.SELECT_DOCUMENT_XML_DATA_PARAM_DOCUMENT_ID, documentKey.toString());
 			resultSet = statement.executeQuery();
-			return resultSet.next();
+			if (!resultSet.next()) return false;
+			Blob blob = resultSet.getBlob(1);
+			return blob != null;
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new ApplicationException(e.getMessage());
