@@ -183,7 +183,7 @@ public class DatabaseRepository implements Repository {
 			if (documentReferenced != null) {
 				statement.close();
 				statement = null;
-				this.saveInteroperableDocumentData(connection, documentKey, getDocumentXmlData(documentReferenced), getDocumentDataContentType(documentReferenced), getDocumentHash(documentReferenced));
+				this.saveInteroperableDocumentData(connection, documentKey);
 				this.saveDocumentDataLocation(connection, documentKey, getReferencedLocation(connection,documentReferenced));
 				this.saveAttachments(documentKey, templateKey, state, documentReferenced);
 			}
@@ -223,9 +223,8 @@ public class DatabaseRepository implements Repository {
 
 	private void saveAttachments(Key documentKey, Key templateKey, int state, Key documentReferenced) {
 		try {
-			InputStream xmlStream = getDocumentXmlData(documentReferenced);
-			if (xmlStream == null) return;
-			NodeList nodeList = AttachmentExtractor.extract(StreamHelper.toString(xmlStream));
+			if (!existsDocumentXmlData(documentReferenced)) return;
+			NodeList nodeList = AttachmentExtractor.extract(StreamHelper.toString(getDocumentXmlData(documentReferenced)));
 			if (nodeList == null) return;
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				String attachId = nodeList.item(i).getNodeValue();
@@ -505,10 +504,13 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
-	public void saveInteroperableDocumentData(Connection connection, Key documentKey, InputStream xmlData, String contentType, String hash) {
-		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentKey, xmlData, contentType, hash);
+	public void saveInteroperableDocumentData(Connection connection, Key documentKey) {
+		logger.debug("saveDocumentData(%s, %s, %s, %s)", documentKey);
 
 		NamedParameterStatement statement = null;
+		InputStream xmlData = existsDocumentXmlData(documentKey) ? getDocumentXmlData(documentKey) : null;
+		String contentType = getDocumentDataContentType(documentKey);
+		String hash = getDocumentHash(documentKey);
 
 		try {
 
@@ -1047,6 +1049,31 @@ public class DatabaseRepository implements Repository {
 
 			throw new ApplicationException(e.getMessage());
 		} finally {
+			close(statement);
+			close(connection);
+		}
+	}
+
+	public boolean existsDocumentXmlData(Key documentKey) {
+		logger.debug("existsDocumentXmlData(%s)", documentKey);
+
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+		ResultSet resultSet = null;
+
+		ByteArrayOutputStream data = new ByteArrayOutputStream();
+
+		try {
+			connection = this.dataSource.getConnection();
+			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_XML_DATA));
+			statement.setString(QueryStore.SELECT_DOCUMENT_XML_DATA_PARAM_DOCUMENT_ID, documentKey.toString());
+			resultSet = statement.executeQuery();
+			return resultSet.next();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new ApplicationException(e.getMessage());
+		} finally {
+			close(resultSet);
 			close(statement);
 			close(connection);
 		}

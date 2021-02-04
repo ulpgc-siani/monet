@@ -67,6 +67,8 @@ public interface Repository {
 
 	void saveDocumentXmlData(Key documentKey, InputStream xmlData);
 
+	boolean existsDocumentXmlData(Key documentKey);
+
 	InputStream getDocumentXmlData(Key documentKey);
 
 	void insertEventLogBlock(List<EventLog> eventLogs);
