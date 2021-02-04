@@ -128,7 +128,7 @@ public abstract class ComponentDocuments extends Component {
 
 	public abstract void createDocument(String idTemplate, String idDocument);
 
-	public abstract void createDocumentInteroperable(String idTemplate, String idDocument, String uriDocument);
+	public abstract void createSharedDocument(String idTemplate, String idDocument, String uriDocument);
 
 	public abstract void updateDocument(String idDocument, String sContent, Boolean async);
 

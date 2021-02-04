@@ -211,7 +211,7 @@ public class ComponentDocumentsMonetNoMultipleSigns extends ComponentDocuments {
 	}
 
 	@Override
-	public void createDocumentInteroperable(String idTemplate, String idDocument, String referencedId) {
+	public void createSharedDocument(String idTemplate, String idDocument, String referencedId) {
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_CREATE_DOCUMENT_INTEROPERABLE));

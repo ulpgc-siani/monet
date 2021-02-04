@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.*;
 import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
+import org.monet.docservice.core.util.AttachmentExtractor;
 import org.monet.docservice.core.util.ImageSupport;
 import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -29,6 +30,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,22 +78,14 @@ public class ExtractAttachmentOperation implements Operation {
   }
 
   private void extractAttachment(Key documentKey, InputStream sourcePdfFileStream, String xmlData) {
-    DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-    DocumentBuilder docBuilder;
-
     if(xmlData == null || xmlData.trim().isEmpty()) return;
 
     try {
-      docBuilder = docFactory.newDocumentBuilder();
-      org.w3c.dom.Document doc = docBuilder.parse(new ByteArrayInputStream(xmlData.getBytes("UTF-8")));
-
-      XPath xpath = XPathFactory.newInstance().newXPath();
-      String expression = "//*[@is-attachment=\"true\"]/text()";
-
-      NodeList nodeList =  (NodeList) xpath.evaluate(expression,doc,XPathConstants.NODESET);
-
+      DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+      org.w3c.dom.Document doc = docBuilder.parse(new ByteArrayInputStream(xmlData.getBytes(StandardCharsets.UTF_8)));
+      NodeList nodeList = AttachmentExtractor.extract(xmlData);
       saveFileAttach(documentKey, nodeList,sourcePdfFileStream);
-
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       transformer.setOutputProperty("indent", "yes");
@@ -103,7 +97,6 @@ public class ExtractAttachmentOperation implements Operation {
       throw new ApplicationException("Error uploading document.");
     } 
   }
-
 
   private void saveFileAttach(Key documentKey, NodeList nodeList, InputStream sourcePdfFileStream)throws Exception {
     PdfReader reader = new PdfReader(sourcePdfFileStream);

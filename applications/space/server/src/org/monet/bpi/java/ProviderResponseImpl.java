@@ -4,6 +4,7 @@ import org.monet.bpi.NodeDocument;
 import org.monet.bpi.ProviderResponse;
 import org.monet.bpi.Schema;
 import org.monet.bpi.types.File;
+import org.monet.bpi.types.Picture;
 import org.monet.metamodel.NodeDefinition;
 import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.agents.AgentLogger;

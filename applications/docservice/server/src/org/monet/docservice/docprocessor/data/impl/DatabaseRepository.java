@@ -8,6 +8,7 @@ import org.monet.docservice.core.exceptions.DocServiceException;
 import org.monet.docservice.core.log.EventLog;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.sql.NamedParameterStatement;
+import org.monet.docservice.core.util.AttachmentExtractor;
 import org.monet.docservice.core.util.MimeTypes;
 import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.configuration.Configuration;
@@ -18,10 +19,14 @@ import org.monet.docservice.docprocessor.model.Document;
 import org.monet.docservice.docprocessor.model.DocumentMetadata;
 import org.monet.docservice.docprocessor.model.PreviewType;
 import org.monet.docservice.docprocessor.model.Template;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.imageio.ImageIO;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -175,12 +180,14 @@ public class DatabaseRepository implements Repository {
 			statement.setString(QueryStore.SELECT_TEMPLATE_DATA_FOR_DOCUMENT_PARAM_ID_DOCUMENT, documentKey.toString());
 			 resultSet= statement.executeQuery();
 
-			if (documentReferenced != null){
+			if (documentReferenced != null) {
 				statement.close();
 				statement = null;
 				this.saveInteroperableDocumentData(connection, documentKey, getDocumentXmlData(documentReferenced), getDocumentDataContentType(documentReferenced), getDocumentHash(documentReferenced));
 				this.saveDocumentDataLocation(connection, documentKey, getReferencedLocation(connection,documentReferenced));
-			}else{
+				this.saveAttachments(documentKey, templateKey, state, documentReferenced);
+			}
+			else {
 				String location;
 				if (resultSet.next()) {
 					Blob blob = resultSet.getBlob(1);
@@ -214,6 +221,19 @@ public class DatabaseRepository implements Repository {
 		}
 	}
 
+	private void saveAttachments(Key documentKey, Key templateKey, int state, Key documentReferenced) {
+		try {
+			NodeList nodeList = AttachmentExtractor.extract(StreamHelper.toString(getDocumentXmlData(documentReferenced)));
+			if (nodeList == null) return;
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				String attachId = nodeList.item(i).getNodeValue();
+				createDocument(Key.from(documentKey.getSpace(), attachId), templateKey, state, Key.from(documentReferenced.getSpace(), attachId));
+			}
+		} catch (IOException | ParserConfigurationException | SAXException | XPathExpressionException e) {
+			logger.error(e.getMessage(), e);
+			throw new ApplicationException(e.getMessage());
+		}
+	}
 
 	public String getReferencedLocation(Connection connection, Key documentReferenced){
 		NamedParameterStatement statement = null;

@@ -199,7 +199,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 				return;
 			}
 			if (node.getReferencedId() != null){
-				componentDocuments.createDocumentInteroperable(node.getCode(), node.getId(), node.getReferencedId());
+				componentDocuments.createSharedDocument(node.getCode(), node.getId(), node.getReferencedId());
 			}else {
 				componentDocuments.createDocument(node.getCode(), node.getId());
 			}
