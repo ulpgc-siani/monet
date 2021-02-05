@@ -194,7 +194,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 
 		try {
 
-			if (nodeDefinition.isReadonly()) {
+			if (nodeDefinition.isReadonly() && node.getReferencedId() == null) {
 				AgentLogger.getInstance().errorInModel(String.format("Definition %s is readonly!", nodeDefinition.getName()), null);
 				return;
 			}

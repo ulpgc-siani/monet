@@ -43,6 +43,7 @@ public class SwapModel extends Stage {
 		businessUnit.setDistribution(BusinessUnit.reloadDistribution());
 		businessUnit.setName(businessUnit.getDistribution().getSpace().getName());
 		Dictionary.getInstance().reset(businessUnit.getDistribution(), businessUnit.getBusinessModel().getProject());
+		businessUnit.save();
 	}
 
 	private void saveModel(File modelDirectory, File destinationDirectory) {
