@@ -15,10 +15,6 @@
 		</description>
 	</property>
 
-	<property token="is-shared">
-		<description>Esta propiedad se utiliza para indicar que el documento es compartido entre unidades de negocio</description>
-	</property>
-
 	<property token="schema">
 		<description>Esquema XML que representa la estructura del nodo.
 			Permite operar con atributos del nodo</description>
