@@ -15,6 +15,7 @@ Insert_Template_Part=INSERT INTO ds$templates_parts (id, id_template, data) VALU
 Select_Document=SELECT ds$documents.id AS id, tpl.code AS code_template, tpl.id AS id_template, ds$documents.state AS state, (SELECT CASE Max(templ.created_date) WHEN tpl.created_date THEN 0 ELSE 1 END FROM ds$templates templ  WHERE templ.id IN (SELECT id FROM ds$templates WHERE ds$templates.id = tpl.id)) AS is_deprecated FROM ds$documents LEFT JOIN ds$templates tpl ON ds$documents.id_template = tpl.id WHERE ds$documents.id=@id_document
 Select_Document_Metadata=SELECT page, width, height, aspect_ratio FROM ds$documents_preview_data WHERE id_document = @id_document AND type=2
 Select_Document_Data_Location=SELECT location FROM ds$documents_data WHERE id_document = @id_document
+Select_Document_Referenced_Location=SELECT location FROM ds$documents_data WHERE location = @location
 Select_Document_Data_ContentType=SELECT content_type FROM ds$documents_data WHERE id_document = @id_document
 Select_Document_Hash=SELECT hash FROM ds$documents_data WHERE id_document = @id_document
 Exists_Document_Preview=SELECT id_document FROM ds$documents_preview_data WHERE id_document = @id_document

@@ -1,33 +1,17 @@
 package org.monet.docservice.servlet.factory.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
-import com.sun.xml.internal.ws.api.message.AttachmentEx;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import org.monet.docservice.core.Key;
-import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
-import org.monet.docservice.core.util.AttachmentExtractor;
-import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.model.Document;
-import org.monet.docservice.docprocessor.model.DocumentType;
-import org.monet.docservice.docprocessor.operations.Operation;
 import org.monet.docservice.docprocessor.operations.OperationsFactory;
-import org.monet.docservice.docprocessor.worker.WorkQueueItem;
 import org.monet.docservice.servlet.RequestParams;
 import org.monet.docservice.servlet.factory.MessageResponse;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import sun.misc.IOUtils;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 public class CreateDocument extends Action {
 

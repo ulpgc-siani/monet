@@ -68,6 +68,9 @@ public interface QueryStore {
 	public static final String SELECT_DOCUMENT_DATA_LOCATION_PARAM_ID_DOCUMENT = "id_document";
 	public static final String SELECT_DOCUMENT_DATA_LOCATION_RESULTSET_LOCATION = "location";
 
+	public static final String SELECT_DOCUMENT_REFERENCED_LOCATION = "Select_Document_Referenced_Location";
+	public static final String SELECT_DOCUMENT_REFERENCED_LOCATION_PARAM_LOCATION = "location";
+
 	public static final String SELECT_DOCUMENT_HASH = "Select_Document_Hash";
 	public static final String SELECT_DOCUMENT_HASH_PARAM_ID_DOCUMENT = "id_document";
 	public static final String SELECT_DOCUMENT_HASH_RESULTSET_HASH = "hash";
