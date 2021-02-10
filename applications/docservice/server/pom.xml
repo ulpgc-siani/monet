@@ -15,32 +15,43 @@
 
   <profiles>
     <profile>
-        <id>docservice war</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <packaging.type>war</packaging.type>
-        </properties>
+      <id>docservice war</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <packaging.type>war</packaging.type>
+      </properties>
     </profile>
     <profile>
-        <id>docservice jar</id>
-        <properties>
-            <packaging.type>jar</packaging.type>
-        </properties>
+      <id>docservice jar</id>
+      <properties>
+        <packaging.type>jar</packaging.type>
+      </properties>
+      <build>
+        <resources>
+          <resource>
+            <directory>../user_data</directory>
+            <targetPath>WEB-INF/user_data</targetPath>
+          </resource>
+          <resource>
+            <directory>resources</directory>
+          </resource>
+        </resources>
+      </build>
     </profile>
   </profiles>
 
   <repositories>
     <repository>
-        <id>siani-maven-releases</id>
-        <name>siani-maven-releases</name>
-        <url>https://artifactory.siani.es/artifactory/libs-release</url>
+      <id>siani-maven-releases</id>
+      <name>siani-maven-releases</name>
+      <url>https://artifactory.siani.es/artifactory/libs-release</url>
     </repository>
     <repository>
-        <id>siani-maven-snapshot</id>
-        <name>siani-maven-snapshot</name>
-        <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
+      <id>siani-maven-snapshot</id>
+      <name>siani-maven-snapshot</name>
+      <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
     </repository>
   </repositories>
 
@@ -98,11 +109,11 @@
   </build>
 
   <dependencies>
-<!--    <dependency>-->
-<!--      <groupId>javax.servlet</groupId>-->
-<!--      <artifactId>servlet-api</artifactId>-->
-<!--      <version>2.5</version>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>javax.servlet</groupId>-->
+    <!--      <artifactId>servlet-api</artifactId>-->
+    <!--      <version>2.5</version>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
@@ -187,7 +198,7 @@
     <dependency>
       <groupId>org.siani.monet</groupId>
       <artifactId>monet-component-filesystem</artifactId>
-        <version>0.4</version>
+      <version>0.4</version>
     </dependency>
     <dependency>
       <groupId>org.jpedal</groupId>
