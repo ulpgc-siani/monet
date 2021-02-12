@@ -422,7 +422,7 @@ public class DatabaseRepository implements Repository {
 			resultSet = statement.executeQuery();
 
 			if (resultSet == null || !resultSet.next())
-				throw new ApplicationException(String.format("Location %s not found", location));
+				return true;
 
 			resultSet.first();
 			int numReferencedLocations = 0;
