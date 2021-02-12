@@ -15,11 +15,11 @@ public class Key {
     }
 
     public static Key from(String id) {
-        return id.contains("_") ? new Key(id.split("_")[0], id.split("_")[1]) : new Key(null, id);
+        return id.contains("#") ? new Key(id.split("#")[0], id.split("#")[1]) : new Key(null, id);
     }
 
     public static boolean containsSpace(String key) {
-        return key.contains("_");
+        return key.contains("#");
     }
 
     public String getSpace() {
@@ -40,6 +40,6 @@ public class Key {
 
     @Override
     public String toString() {
-        return (space != null ? space + '_' : "") + id;
+        return (space != null ? space + '#' : "") + id;
     }
 }
