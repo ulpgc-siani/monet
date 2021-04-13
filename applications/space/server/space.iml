@@ -23,8 +23,6 @@
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: org.siani.monet:tomcat-shared:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:core-shared:1.0" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: avalon-framework:avalon-framework:4.1.5" level="project" />
     <orderEntry type="library" name="Maven: backport-util-concurrent:backport-util-concurrent:3.1" level="project" />
@@ -196,6 +194,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-dbcp:7.0.12" level="project" />
     <orderEntry type="library" name="Maven: org.tuckey:urlrewritefilter:3.2.0" level="project" />
     <orderEntry type="module" module-name="tomcat-shared" />
-    <orderEntry type="module" module-name="core-shared" />
+    <orderEntry type="library" name="Maven: org.siani.monet:core-shared:1.0" level="project" />
   </component>
 </module>

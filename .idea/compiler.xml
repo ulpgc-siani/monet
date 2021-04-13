@@ -21,8 +21,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="federation" />
-        <module name="space" />
         <module name="docservice" />
+        <module name="space" />
       </profile>
       <profile name="Annotation profile for federation-client" enabled="true">
         <sourceOutputDir name="../../../../out/build/federation-client/generated-sources/annotations" />
@@ -41,12 +41,6 @@
         <sourceTestOutputDir name="../../../out/build/mobile-shared/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mobile-shared" />
-      </profile>
-      <profile name="Annotation profile for core-shared" enabled="true">
-        <sourceOutputDir name="../../out/build/core-shared/generated-sources/annotations" />
-        <sourceTestOutputDir name="../../out/build/core-shared/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="core-shared" />
       </profile>
       <profile name="Annotation profile for tomcat-shared" enabled="true">
         <sourceOutputDir name="../../out/build/tomcat-shared/generated-sources/annotations" />

@@ -14,7 +14,6 @@
         <option value="$PROJECT_DIR$/applications/mobile/shared/pom.xml" />
         <option value="$PROJECT_DIR$/applications/docservice/server/pom.xml" />
         <option value="$PROJECT_DIR$/applications/space/server/pom.xml" />
-        <option value="$PROJECT_DIR$/applications/shared/pom.xml" />
         <option value="$PROJECT_DIR$/applications/tomcat-shared/pom.xml" />
       </list>
     </option>
@@ -22,7 +21,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

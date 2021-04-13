@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/applications/shared/core-shared.iml" filepath="$PROJECT_DIR$/applications/shared/core-shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/docservice/server/docservice.iml" filepath="$PROJECT_DIR$/applications/docservice/server/docservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/federation/server/federation.iml" filepath="$PROJECT_DIR$/applications/federation/server/federation.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/federation/client/accountservice/federation-client.iml" filepath="$PROJECT_DIR$/applications/federation/client/accountservice/federation-client.iml" />

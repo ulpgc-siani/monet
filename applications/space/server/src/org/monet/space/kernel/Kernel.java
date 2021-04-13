@@ -210,7 +210,12 @@ public class Kernel {
 	public Boolean run(ConfigurationMap map, DatabaseConfiguration database) {
 		if (map != null) ConfigurationLoader.load(map);
 		DatabaseLoader.load(database);
+		initializeContext(map);
 		return run(map);
+	}
+
+	private void initializeContext(ConfigurationMap map) {
+		Context.getInstance().setFrameworkName(map.containsKey("MONET_NAME") ? map.get("MONET_NAME") : "");
 	}
 
 	public Boolean run(ConfigurationMap map) {
@@ -228,7 +233,7 @@ public class Kernel {
 		this.unserializeFromXML(content);
 		this.initializeDatabase();
 
-        if (! AgentUpgrade.update()) {
+        if (!AgentUpgrade.update()) {
             this.agentLogger.error("An error found executing monet update scripts", null);
             throw new RuntimeException("An error found executing monet update scripts");
         }
