@@ -22,20 +22,15 @@
 
 package org.monet.space.kernel.agents;
 
-import org.apache.commons.io.filefilter.AgeFileFilter;
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.exceptions.FilesystemException;
-import org.monet.space.kernel.utils.Resources;
 import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 
 public class AgentFilesystem {
@@ -44,7 +39,6 @@ public class AgentFilesystem {
 	}
 
 	public static String[] listDir(String dirname) {
-		String result = dirname.contains("jar!") ? dirname.substring(dirname.indexOf("jar!") + "jar!".length()) : dirname;
 		try {
 			FilenameFilter filter = new FilenameFilter() {
 				public boolean accept(File dir, String name) {
@@ -52,13 +46,19 @@ public class AgentFilesystem {
 				}
 			};
 
-			if (isJar(result)) return Objects.requireNonNull(jarPathOf(result)).toFile().list(filter);
-			File file = new File(result);
-			return file.exists() ? file.list(filter) : new File(AgentFilesystem.class.getResource(result).toURI()).list(filter);
+			if (isJar(dirname)) return listDirJar(dirname, filter);
+
+			File file = new File(dirname);
+			return file.exists() ? file.list(filter) : listResourceDir(dirname, filter);
 		} catch (IOException | URISyntaxException e) {
 			AgentLogger.getInstance().error(e);
 			return null;
 		}
+	}
+
+	private static String[] listResourceDir(String result, FilenameFilter filter) throws URISyntaxException {
+		if (AgentFilesystem.class.getResource(result) == null) return null;
+		return new File(AgentFilesystem.class.getResource(result).toURI()).list(filter);
 	}
 
 	public static String[] listFiles(String dirname) {
@@ -414,15 +414,48 @@ public class AgentFilesystem {
 	}
 
 	private static boolean isJar(String dirname) throws URISyntaxException {
-		URL resource = AgentFilesystem.class.getResource(dirname);
-		return resource != null && resource.toURI().getScheme().equals("jar");
+		return dirname.contains("jar!");
 	}
 
-	private static Path jarPathOf(String dirname) throws IOException, URISyntaxException {
-		URI uri = AgentFilesystem.class.getResource(dirname).toURI();
-		if (!uri.getScheme().equals("jar")) return null;
-		FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
-		return fileSystem.getPath(dirname);
+	private static String[] listDirJar(String dirname, FilenameFilter filter) throws IOException, URISyntaxException {
+		String jarFile = "jar:"+ dirname.substring(0, (dirname.indexOf("jar!") + "jar".length()));
+		String pathRelative = dirname.substring(dirname.indexOf("jar!") + "jar!".length());
+		URI uri = new URI(jarFile);
+
+		FileSystem fileSystem;
+		try {
+			fileSystem = FileSystems.getFileSystem(uri);
+		} catch (Exception e) {
+			fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+		}
+
+		final ArrayList<String> result = new ArrayList<>();
+		Files.walkFileTree(fileSystem.getPath(pathRelative), new SimpleFileVisitor<Path>(){
+			@Override
+			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+				print(file);
+				return FileVisitResult.CONTINUE;
+			}
+
+			@Override
+			public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+				print(dir);
+				return FileVisitResult.CONTINUE;
+			}
+
+			/**
+			 * prints out details about the specified path
+			 * such as size and modification time
+			 * @param file
+			 * @throws IOException
+			 */
+			private void print(Path file) throws IOException{
+				if (Files.isDirectory(file))
+					result.add(file.getFileName().toString());
+			}
+		});
+
+    return (String[]) result.toArray(new String[0]);
 	}
 
 }
