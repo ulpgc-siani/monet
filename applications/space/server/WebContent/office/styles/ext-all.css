@@ -400,7 +400,8 @@ q:before, q:after {
 }
 
 .x-tabs-strip .on .x-tabs-inner {
-  padding-bottom: 5px;
+  /*padding-bottom: 5px;*/
+  padding-bottom: 0.4em;
 }
 
 .x-tabs-strip .x-tabs-closable .x-tabs-inner {
