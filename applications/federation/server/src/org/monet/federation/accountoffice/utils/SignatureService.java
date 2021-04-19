@@ -43,7 +43,7 @@ public class SignatureService {
       e.printStackTrace();
     }
     
-    return clientSignature.equals(serverSignature) ? true : false;
+    return clientSignature.equals(serverSignature);
   }
 
   private static String hmacGetSignature(String toSign, String keyString ) throws Exception {

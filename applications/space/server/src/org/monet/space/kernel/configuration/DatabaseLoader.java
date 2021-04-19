@@ -1,6 +1,6 @@
 package org.monet.space.kernel.configuration;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import oracle.jdbc.pool.OracleConnectionPoolDataSource;
 import org.monet.space.kernel.agents.AgentLogger;
 
@@ -41,7 +41,7 @@ public class DatabaseLoader {
 
     private static ConnectionPoolDataSource mysqlDataSource(DatabaseConfiguration database) {
         MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
-        dataSource.setRetainStatementAfterResultSetClose(true);
+        //dataSource.setRetainStatementAfterResultSetClose(true);
         dataSource.setURL(database.url());
         dataSource.setUser(database.user());
         dataSource.setPassword(database.password());

@@ -22,6 +22,7 @@
 
 package org.monet.space.kernel.agents;
 
+import com.mysql.cj.jdbc.ConnectionImpl;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.*;
 import org.monet.space.kernel.library.LibraryString;
@@ -179,16 +180,12 @@ public class AgentDatabaseMysql extends AgentDatabase {
 
 	@Override
 	public String getSchemaName() {
-		String databaseUrl;
 		String schemaName = "";
 		Connection connection = null;
-		Properties props;
 
 		try {
 			connection = this.dataSource.getConnection();
-			databaseUrl = connection.getMetaData().getURL();
-			props = new com.mysql.jdbc.NonRegisteringDriver().parseURL(databaseUrl, null);
-			schemaName = props.getProperty(com.mysql.jdbc.Driver.DBNAME_PROPERTY_KEY);
+			return ((ConnectionImpl) connection).getDatabase();
 		} catch (SQLException ex) {
 		} finally {
 			close(connection);

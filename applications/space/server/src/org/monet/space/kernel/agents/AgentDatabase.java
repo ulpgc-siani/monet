@@ -686,8 +686,8 @@ public abstract class AgentDatabase {
 	public boolean closeQuery(ResultSet result) {
 
 		if (result == null) return false;
-
 		try {
+			if (result.isClosed()) return true;
 			if (result.getStatement() != null) result.getStatement().close();
 			result.close();
 		} catch (Exception exception) {

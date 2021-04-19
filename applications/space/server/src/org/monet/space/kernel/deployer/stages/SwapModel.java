@@ -51,7 +51,8 @@ public class SwapModel extends Stage {
 	}
 
 	private void cleanModel(File modelDirectory) {
-		AgentFilesystem.removeDirContent(modelDirectory);
+		if (modelDirectory.exists()) AgentFilesystem.removeDirContent(modelDirectory);
+		else modelDirectory.mkdirs();
 	}
 
 	private void addNewModel(File newModelDirectory, File modelDirectory) {

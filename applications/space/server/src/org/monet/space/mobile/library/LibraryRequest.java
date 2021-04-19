@@ -52,11 +52,11 @@ public class LibraryRequest extends org.monet.space.applications.library.Library
 
 			String element = authorizationHeader.substring(0, commaIndex);
 
-			int equealsIndex = element.indexOf("=");
-			if (equealsIndex == -1) equealsIndex = element.length();
+			int equalsIndex = element.indexOf("=");
+			if (equalsIndex == -1) equalsIndex = element.length();
 
-			String key = element.substring(0, equealsIndex).trim();
-			String value = element.substring(equealsIndex + 2, element.length() - 1);
+			String key = element.substring(0, equalsIndex).trim();
+			String value = element.substring(equalsIndex + 2, element.length() - 1);
 
 			authorizationHeader.delete(0, commaIndex + 1);
 

@@ -95,7 +95,8 @@
     <orderEntry type="library" name="Maven: org.apache.commons:commons-email:1.1" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.47" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.23" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
     <orderEntry type="library" name="Maven: com.oracle.database.jdbc:ojdbc8:19.6.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.oracle.database.jdbc:ucp:19.6.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.oracle.database.security:oraclepki:19.6.0.0" level="project" />
@@ -166,7 +167,6 @@
     <orderEntry type="library" name="Maven: com.google.apis:google-api-services-storage:v1-rev135-1.24.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.cloud:google-cloud-firestore:0.61.0-beta" level="project" />
     <orderEntry type="library" name="Maven: com.google.cloud:google-cloud-core-grpc:1.43.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.0" level="project" />
     <orderEntry type="library" name="Maven: io.grpc:grpc-protobuf:1.13.1" level="project" />
     <orderEntry type="library" name="Maven: io.grpc:grpc-protobuf-lite:1.13.1" level="project" />
     <orderEntry type="library" name="Maven: io.grpc:grpc-context:1.13.1" level="project" />

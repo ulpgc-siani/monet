@@ -378,6 +378,7 @@ public class FederationService {
 		if (this.conn != null) {
 			if (!this.conn.isOpen())
 				return;
+
 			SocketMessageModel socketMessage = createHeaderMessage(REQUEST_TERMINATE_CONNECTION);
 			this.conn.execute(socketMessage, false);
 			this.conn.close();
