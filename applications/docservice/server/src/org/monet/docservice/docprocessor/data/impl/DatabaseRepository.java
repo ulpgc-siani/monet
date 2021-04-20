@@ -246,7 +246,7 @@ public class DatabaseRepository implements Repository {
 				Document document = new Document();
 				document.setId(documentRS.getString(QueryStore.SELECT_DOCUMENT_RESULTSET_ID));
 				document.setState(documentRS.getInt(QueryStore.SELECT_DOCUMENT_RESULTSET_STATE));
-				document.setDeprecated(documentRS.getBoolean(QueryStore.SELECT_DOCUMENT_RESULTSET_IS_DEPRECATED));
+				document.setDeprecated(documentRS.getDate(QueryStore.SELECT_DOCUMENT_RESULTSET_IS_DEPRECATED) != null);
 
 				Template template = new Template();
 				template.setCode(documentRS.getString(QueryStore.SELECT_DOCUMENT_RESULTSET_TEMPLATE_CODE));
