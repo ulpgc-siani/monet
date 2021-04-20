@@ -10,7 +10,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/applications/federation/server/pom.xml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/applications/federation/server/src/org/monet/federation/accountoffice/control/servlets/AccessTokenServlet.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/applications/federation/server/src/org/monet/federation/accountoffice/guice/ServletContextListener.java">
           <value>
             <Attribute>
               <option name="separator" value=";" />
