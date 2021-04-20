@@ -69,7 +69,7 @@ public class ActionSearchUsers extends Action {
 			oDataRequest.setLimit(10);
 		}
 
-		oUserList = layer.searchUsers(oDataRequest);
+		oUserList = layer.searchUsersWithRoles(oDataRequest);
 
 		return oUserList.toJson().toJSONString();
 	}

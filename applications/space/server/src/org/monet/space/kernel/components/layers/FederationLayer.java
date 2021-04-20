@@ -64,6 +64,8 @@ public interface FederationLayer extends Layer {
 
 	UserList searchUsers(DataRequest dataRequest);
 
+	UserList searchUsersWithRoles(DataRequest dataRequest);
+
 	UserList searchFederationUsers(DataRequest dataRequest);
 
 	FederationUnitList loadMembers();

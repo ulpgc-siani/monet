@@ -104,6 +104,16 @@ SELECT * FROM ts$users WHERE (MATCH(username) AGAINST (@condition IN BOOLEAN MOD
 SELECT COUNT(id) as counter FROM ts$users WHERE (MATCH(username) AGAINST (@condition IN BOOLEAN MODE) OR username LIKE '%::condition::%')
 ]]>
   </entry>
+  <entry key="ACCOUNT_LIST_SEARCH_USERS_WITH_ROLES">
+    <![CDATA[
+SELECT * FROM ts$users WHERE (MATCH(username) AGAINST (@condition IN BOOLEAN MODE) OR username LIKE '%::condition::%') AND EXISTS (SELECT 1 FROM ts$roles WHERE id_user=ts$users.id) LIMIT @startpos,@limit
+]]>
+  </entry>
+  <entry key="ACCOUNT_LIST_SEARCH_USERS_WITH_ROLES_COUNT">
+    <![CDATA[
+SELECT COUNT(id) as counter FROM ts$users WHERE (MATCH(username) AGAINST (@condition IN BOOLEAN MODE) OR username LIKE '%::condition::%') AND EXISTS (SELECT 1 FROM ts$roles WHERE id_user=ts$users.id)
+]]>
+  </entry>
   <entry key="ACCOUNT_LOAD_LINKED_NODES">
     <![CDATA[
 SELECT id_node, code, role FROM ts$users, ts$users_nodes, ts$nodes WHERE ts$users.id=@id AND ts$users.id=ts$users_nodes.id_user AND ts$users_nodes.id_node=ts$nodes.id

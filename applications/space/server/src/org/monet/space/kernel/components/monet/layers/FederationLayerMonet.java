@@ -546,6 +546,16 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 	}
 
 	@Override
+	public UserList searchUsersWithRoles(DataRequest dataRequest) {
+
+		if (!this.isStarted())
+			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
+
+		ProducerFederationList producerFederationList = this.producersFactory.get(Producers.FEDERATIONLIST);
+		return producerFederationList.searchUsersWithRoles(dataRequest);
+	}
+
+	@Override
 	public UserList searchFederationUsers(DataRequest dataRequest) {
 
 		if (!this.isStarted())
