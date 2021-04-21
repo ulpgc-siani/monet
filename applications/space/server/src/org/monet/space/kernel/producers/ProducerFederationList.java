@@ -128,6 +128,14 @@ public class ProducerFederationList extends Producer {
 	}
 
 	public UserList searchUsers(DataRequest dataRequest) {
+		return searchUsers(dataRequest, Database.Queries.ACCOUNT_LIST_SEARCH_USERS, Database.Queries.ACCOUNT_LIST_SEARCH_USERS_COUNT);
+	}
+
+	public UserList searchUsersWithRoles(DataRequest dataRequest) {
+		return searchUsers(dataRequest, Database.Queries.ACCOUNT_LIST_SEARCH_USERS_WITH_ROLES, Database.Queries.ACCOUNT_LIST_SEARCH_USERS_WITH_ROLES_COUNT);
+	}
+
+	public UserList searchUsers(DataRequest dataRequest, String query, String countQuery) {
 		UserList userList;
 		ResultSet result = null;
 		Account account = this.getAccount();
@@ -142,7 +150,7 @@ public class ProducerFederationList extends Producer {
 		subQueries.put(Database.QueryFields.CONDITION, condition);
 
 		try {
-			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.ACCOUNT_LIST_SEARCH_USERS, parameters, subQueries);
+			result = this.agentDatabase.executeRepositorySelectQuery(query, parameters, subQueries);
 			userList = new UserList();
 			while (result.next()) {
 				User user = new User();
@@ -153,7 +161,7 @@ public class ProducerFederationList extends Producer {
 
 			parameters.clear();
 			parameters.put(Database.QueryFields.CONDITION, condition);
-			result = this.agentDatabase.executeRepositorySelectQuery(Database.Queries.ACCOUNT_LIST_SEARCH_USERS_COUNT, parameters, subQueries);
+			result = this.agentDatabase.executeRepositorySelectQuery(countQuery, parameters, subQueries);
 			if (!result.next())
 				throw new Exception("Can't get total count of users");
 			userList.setTotalCount(result.getInt("counter"));

@@ -79,7 +79,7 @@ public class ActionLoadUsers extends Action {
 			dataRequest.setLimit(Strings.UNDEFINED_INT);
 		}
 
-		userList = layer.searchUsers(dataRequest);
+		userList = layer.searchUsersWithRoles(dataRequest);
 		for (User user : userList.get().values()) {
 			JSONObject jsonUser = user.toJson();
 			String label = user.getInfo().getFullname();
