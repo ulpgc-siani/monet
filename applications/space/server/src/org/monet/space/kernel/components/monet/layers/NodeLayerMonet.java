@@ -194,7 +194,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 
 		try {
 
-			if (nodeDefinition.isReadonly()) {
+			if (nodeDefinition.isReadonly() && node.getReferencedId() == null) {
 				AgentLogger.getInstance().errorInModel(String.format("Definition %s is readonly!", nodeDefinition.getName()), null);
 				return;
 			}
@@ -450,6 +450,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		ComponentDocuments componentDocuments = ComponentDocuments.getInstance();
 
 		try {
+			if (node.getReferencedId() != null && !node.getReferencedId().equals("-1")) return;
 			componentDocuments.updateDocument(node.getId(), node.getSchema(), async);
 		} catch (Exception exception) {
 			throw new DataException(ErrorCode.SAVE_NODE, node.getId(), exception);

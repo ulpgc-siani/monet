@@ -349,7 +349,9 @@ public class DatabaseRepository implements Repository {
 			statement.close();
 			statement = null;
 
-			diskManager.deleteDocument(documentKey, location);
+			if (isLastReferencedLocation(location)){
+				diskManager.deleteDocument(documentKey, location);
+			}
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT));
 			statement.setString(QueryStore.DELETE_DOCUMENT_ID_DOCUMENT, documentKey.toString());
@@ -394,6 +396,41 @@ public class DatabaseRepository implements Repository {
 			String location = resultSet.getString(QueryStore.SELECT_DOCUMENT_DATA_LOCATION_RESULTSET_LOCATION);
 
 			return diskManager.readDocument(documentKey, location);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new ApplicationException(e.getMessage());
+		} finally {
+			close(resultSet);
+			close(statement);
+			close(connection);
+		}
+	}
+
+
+	public boolean isLastReferencedLocation(String location) {
+		logger.debug("isLastReferencedLocation(%s)", location);
+
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+
+			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.SELECT_DOCUMENT_REFERENCED_LOCATION));
+			statement.setString(QueryStore.SELECT_DOCUMENT_REFERENCED_LOCATION_PARAM_LOCATION, location);
+			resultSet = statement.executeQuery();
+
+			if (resultSet == null || !resultSet.next())
+				return true;
+
+			resultSet.first();
+			int numReferencedLocations = 0;
+			while (resultSet.next()){
+				numReferencedLocations++;
+			}
+			return numReferencedLocations <= 1;
+
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new ApplicationException(e.getMessage());
