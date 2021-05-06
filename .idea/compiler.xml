@@ -21,8 +21,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="federation" />
-        <module name="space" />
         <module name="docservice" />
+        <module name="space" />
       </profile>
       <profile name="Annotation profile for federation-client" enabled="true">
         <sourceOutputDir name="../../../../out/build/federation-client/generated-sources/annotations" />
