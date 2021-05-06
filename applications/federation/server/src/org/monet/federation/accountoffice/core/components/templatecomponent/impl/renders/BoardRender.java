@@ -120,6 +120,7 @@ public class BoardRender extends FederationRender {
 			String user = this.getParameterAsString(Parameter.USER);
 			return api.hasPermissions(user);
 		} catch (Throwable e) {
+			logger.debug(e.getMessage(), e);
 			return false;
 		}
 	}
