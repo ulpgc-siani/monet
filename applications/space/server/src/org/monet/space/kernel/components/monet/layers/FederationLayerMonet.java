@@ -173,7 +173,7 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 		Project project = businessUnit.getBusinessModel().getProject();
 		TaskLayer taskLayer = ComponentPersistence.getInstance().getTaskLayer();
 		Session currentSession = Context.getInstance().getCurrentSession();
-		String accountId = currentSession.getAccount() != null ? currentSession.getAccount().getId() : null;
+		String accountId = currentSession != null && currentSession.getAccount() != null ? currentSession.getAccount().getId() : null;
 		Account account = accountId != null && !accountId.equals("-1") ? loadAccount(accountId) : null;
 
 		Banner banner = new Banner();
