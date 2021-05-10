@@ -301,9 +301,9 @@ begin
         is_mobile := GetMatchRegularExpression(line, expression, 2);
         last_use := GetMatchRegularExpression(line, expression, 3);
 
-        expression := '<user name="([^"]+)" is_mobile="([^"]+)" last_use="([^"]+)"';
+        expression := '<user .* space="([^"]*)" node="([^"]*)"';
         space := GetMatchRegularExpression(line, expression, 1);
-        node := GetMatchRegularExpression(line, expression, 1);
+        node := GetMatchRegularExpression(line, expression, 2);
 
         if last_use <> '' then
           UsersList.Add(last_use + '|' + username + '|' + name + '|' + is_mobile + '|' + space + '|' + node + '|');
