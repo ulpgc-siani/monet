@@ -53,6 +53,7 @@ public interface Configuration {
   String MOBILE_PUSH_API_KEY = "Mobile.PushApi.Key";
   String MOBILE_FCM_SETTINGS_FILE = "Mobile.FCM.SettingsFile";
   String MOBILE_FCM_PROJECT_ID = "Mobile.FCM.ProjectId";
+  String ACCESS_TOKEN = "AccessToken";
 
   String getCertificateAuthorityIdentifier();
 
@@ -142,4 +143,6 @@ public interface Configuration {
   String getMobileFCMProjectId();
 
   String getSpaceBackserviceServletPath(URI spaceUri);
+
+  String getAccessToken();
 }

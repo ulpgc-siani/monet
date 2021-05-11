@@ -482,6 +482,11 @@ public class ConfigurationImpl implements Configuration {
         return spaceUri.toString() + "/servlet/backservice";
     }
 
+    @Override
+    public String getAccessToken() {
+        return this.properties.getProperty(Configuration.ACCESS_TOKEN);
+    }
+
     private void isCertificateAuthorityCreated() {
         String pathStorePKCS12 = this.serverConfigurator.getUserPath() + File.separator + "ca.keyStore";
         String pathStorePKCS7 = this.getP7B();
