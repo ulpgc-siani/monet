@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.monet.federation.accountoffice.core.components.certificatecomponent.CertificateComponent;
+import org.monet.federation.accountoffice.core.configuration.Configuration;
 import org.monet.federation.accountoffice.core.logger.Logger;
 import org.monet.federation.setupservice.control.actions.ActionSetupService;
 import org.monet.federation.setupservice.control.actions.ActionsFactorySetupService;
@@ -65,10 +66,11 @@ public class ControllerSetupService extends HttpServlet {
     this.verificationComponent = verificationComponent;
   }
 
-  private Boolean doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  private Boolean doRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String result, operation;
     ActionSetupService action;
     HashMap<String, Object> parameters = LibraryRequest.parseParameters(request);
+    String accessToken;
     String signature, timestamp, hash;
 
     try {
@@ -78,31 +80,39 @@ public class ControllerSetupService extends HttpServlet {
         return false;
       }
 
-      signature = (String)parameters.get(Parameter.SIGNATURE);
-      timestamp = (String)parameters.get(Parameter.TIMESTAMP);
-      hash = (String)parameters.get(Parameter.HASH);
-      
-      if (signature == null) {
-        response.setStatus(403);
-        response.getWriter().println("No signature on request");
-      }
-      
-      if (timestamp == null) {
-        response.setStatus(403);
-        response.getWriter().println("No timestamp on request");
-        return false;
-      }
-      
-      if (hash == null) {
-        response.setStatus(403);
-        response.getWriter().println("No hash on request");
-        return false;
-      }
+      if ((accessToken = (String) parameters.get(Parameter.ACCESSTOKEN)) != null) {
+        System.out.println(accessToken);
+        if (! accessToken.equals(actionFactory.getConfiguration().getAccessToken())) {
+          response.getWriter().print("invalid access token");
+          return false;
+        }
+      } else {
+        signature = (String) parameters.get(Parameter.SIGNATURE);
+        timestamp = (String) parameters.get(Parameter.TIMESTAMP);
+        hash = (String) parameters.get(Parameter.HASH);
 
-      if (!this.verificationComponent.checkRootCertificate(hash, signature, false)) {
-        response.setStatus(403);
-        response.getWriter().println("No valid certificate");
-        return false;
+        if (signature == null) {
+          response.setStatus(403);
+          response.getWriter().println("No signature on request");
+        }
+
+        if (timestamp == null) {
+          response.setStatus(403);
+          response.getWriter().println("No timestamp on request");
+          return false;
+        }
+
+        if (hash == null) {
+          response.setStatus(403);
+          response.getWriter().println("No hash on request");
+          return false;
+        }
+
+        if (!this.verificationComponent.checkRootCertificate(hash, signature, false)) {
+          response.setStatus(403);
+          response.getWriter().println("No valid certificate");
+          return false;
+        }
       }
 
       action = actionFactory.get(operation, request, response, parameters);

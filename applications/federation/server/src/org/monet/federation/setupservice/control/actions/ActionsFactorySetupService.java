@@ -65,6 +65,7 @@ public class ActionsFactorySetupService {
         this.register(Actions.REGISTER_PARTNER, ActionRegisterPartner.class);
         this.register(Actions.UNREGISTER_PARTNER, ActionUnregisterPartner.class);
         this.register(Actions.REGISTER_TRUSTED_FEDERATION, ActionRegisterTrustedFederation.class);
+        this.register(Actions.ADD_UNIT, ActionAddUnit.class);
     }
 
     public String getOperation(String op) {
@@ -98,4 +99,7 @@ public class ActionsFactorySetupService {
         return true;
     }
 
-}
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+ }

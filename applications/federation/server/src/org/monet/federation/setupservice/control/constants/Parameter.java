@@ -34,4 +34,6 @@ public class Parameter {
   public static final Object HASH = "hash";
   public static final Object SERVICES = "services";
   public static final Object FEEDERS = "feeders";
+  public static final Object ACCESSTOKEN = "accesstoken";
+
 }

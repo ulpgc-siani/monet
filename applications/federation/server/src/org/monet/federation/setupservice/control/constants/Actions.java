@@ -36,4 +36,5 @@ public class Actions {
     public static final String REGISTER_PARTNER = "registerpartner";
     public static final String UNREGISTER_PARTNER = "unregisterpartner";
     public static final String REGISTER_TRUSTED_FEDERATION = "registertrustedfederation";
+    public static final String ADD_UNIT= "addunit";
 }
