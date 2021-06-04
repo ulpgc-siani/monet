@@ -349,9 +349,9 @@ public class DatabaseRepository implements Repository {
 			statement.close();
 			statement = null;
 
-			if (isLastReferencedLocation(location)){
-				diskManager.deleteDocument(documentKey, location);
-			}
+//			if (isLastReferencedLocation(location)){
+//				diskManager.deleteDocument(documentKey, location);
+//			}
 
 			statement = new NamedParameterStatement(connection, this.queryStore.get(QueryStore.DELETE_DOCUMENT));
 			statement.setString(QueryStore.DELETE_DOCUMENT_ID_DOCUMENT, documentKey.toString());
