@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" global="jdbc/FederationServiceDatabaseSource" maxActive="15" maxIdle="2"
-            maxWait="30000" name="jdbc/FederationServiceDatabaseSource" password="12345678" type="javax.sql.DataSource"
-            url="jdbc:mysql://127.0.0.1:3306/monet-intino-demo-federation?autoReconnect=true&amp;integratedSecurity=true&amp;useSSL=false" username="root" removeAbandoned="true"
+            maxWait="30000" name="jdbc/FederationServiceDatabaseSource" password="1234" type="javax.sql.DataSource"
+            url="jdbc:mysql://127.0.0.1:3306/monet-federation?autoReconnect=true&amp;integratedSecurity=true&amp;useSSL=false" username="root" removeAbandoned="true"
             removeAbandonedTimeout="5" logAbandoned="true" accessToUnderlyingConnectionAllowed="true" validationQuery="SELECT 1"
             validationQueryTimeout="10" validationInterval="10000" testOnBorrow="true" />
 </Context>
