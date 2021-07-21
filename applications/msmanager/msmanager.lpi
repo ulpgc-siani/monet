@@ -18,6 +18,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="8"/>
+      <RevisionNr Value="1"/>
       <Language Value="040A"/>
       <StringTable CompanyName="Grupo de Ingenieria del Software y del Conocimiento del SIANI" ProductName="Monet Server Manager"/>
     </VersionInfo>
