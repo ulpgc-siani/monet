@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Explorer Client Publisher">
+
+  <property name="gwt.sdk" location="../gwt_sdk" />
+
+  <path id="project.class.path">
+    <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+    <fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+    <fileset dir="../Cosmos.Gwt/lib" includes="**/*.jar"/>
+  </path>
+
+  <target name="application-module-prepare">
+    <copy file="src/Application.gwt.xml.dist" tofile="src/Application.gwt.xml" overwrite="true"/>
+  </target>
+
+  <target name="compile">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <pathelement location="../Cosmos/src"/>
+        <pathelement location="../Cosmos.Gwt/src"/>
+        <pathelement location="src"/>
+        <path refid="project.class.path"/>
+      </classpath>
+      <jvmarg value="-Xmx1024M"/>
+      <arg value="Application"/>
+    </java>
+  </target>
+
+  <target name="build" depends="clean, application-module-prepare, compile">
+    <copy todir="war">
+      <fileset dir="web">
+        <include name="**/*"/>
+        <exclude name="**/.sass-cache/**"/>
+        <exclude name="**/*.sass"/>
+      </fileset>
+    </copy>
+    <delete dir="war/WEB-INF"/>
+	
+    <antcall target="sass">
+      <param name="theme-name" value="default"/>
+    </antcall>
+    <antcall target="sass">
+      <param name="theme-name" value="micv"/>
+    </antcall>
+  </target>
+
+  <target name="compile-debug">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+        <pathelement location="../Cosmos/src"/>
+        <pathelement location="../Cosmos.Gwt/src"/>
+        <pathelement location="src"/>
+        <path refid="project.class.path"/>
+      </classpath>
+      <jvmarg value="-Xmx1024M"/>
+      <arg value="-style"/>
+      <arg value="OBFUSCATED"/>
+      <arg value="Application"/>
+    </java>
+  </target>
+
+  <target name="build-debug" depends="clean, application-module-prepare, compile-debug">
+    <copy todir="war">
+      <fileset dir="web">
+        <include name="**/*"/>
+        <exclude name="**/.sass-cache/**"/>
+        <exclude name="**/*.sass"/>
+      </fileset>
+    </copy>
+    <delete dir="war/WEB-INF"/>
+
+    <antcall target="sass">
+      <param name="theme-name" value="default"/>
+    </antcall>
+    <antcall target="sass">
+      <param name="theme-name" value="micv"/>
+    </antcall>
+  </target>
+
+  <target name="clean">
+    <delete dir="war"/>
+  </target>
+
+  <target name="sass">
+    <property name="css-dest" location="war/themes/${theme-name}/styles"/>
+    <apply executable="sass.bat" dest="${css-dest}" >
+      <srcfile/>
+      <targetfile/>
+      <fileset dir="web/themes/${theme-name}/styles" includes="**/*.sass" excludes="**/_*"/>
+      <mapper type="glob" from="*.sass" to="*.css"/>
+      <arg value="--sourcemap=none" />
+    </apply>
+
+    <delete includeemptydirs="true">
+      <fileset dir="war/themes/${theme-name}/styles"  >
+        <and>
+          <size value="0"/>
+          <type type="dir"/>
+        </and>
+      </fileset>
+    </delete>
+
+  </target>
+
+  <!-- DEV UTILS -->
+
+  <target name="publish" depends="build">
+    <delete dir="../../../server/WebContent/explorer"/>
+    <mkdir dir="../../../server/WebContent/explorer"/>
+    <delete dir="../../../server/target/space/explorer"/>
+    <mkdir dir="../../../server/target/space/explorer"/>
+
+    <copy todir="../../../server/resources/explorer/templates">
+      <fileset dir="war">
+        <include name="**/home.html"/>
+      </fileset>
+    </copy>
+
+    <copy todir="../../../server/WebContent/explorer">
+      <fileset dir="war">
+        <exclude name="**/*.html"/>
+        <exclude name="**/WEB-INF"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="publish-themes">
+    <copy todir="../../../server/WebContent/explorer/styles">
+      <fileset dir="web/styles">
+      </fileset>
+    </copy>
+    <copy todir="../../../server/WebContent/explorer/themes">
+      <fileset dir="web/themes">
+      </fileset>
+    </copy>
+  </target>
+
+</project>
