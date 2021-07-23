@@ -204,11 +204,11 @@ public abstract class TaskImpl implements Task, BehaviorTask {
 	}
 
 	public boolean isFinished() {
-		return this.task.isFinished();
+		return this.task.isFinished() || this.task.isAborted();
 	}
 
 	public boolean isAborted() {
-		return this.task.isFinished();
+		return this.task.isAborted();
 	}
 
 	@Override
