@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Import#getImportedNamespace <em>Imported Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getImport()
  * @model
@@ -25,10 +25,6 @@ public interface Import extends EObject
   /**
    * Returns the value of the '<em><b>Imported Namespace</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Imported Namespace</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Imported Namespace</em>' attribute.
    * @see #setImportedNamespace(String)

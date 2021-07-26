@@ -5,7 +5,7 @@
     forceOverwrite="true" modelName="MonetLocalizationLanguage" updateClasspath="false"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
     copyrightFields="false" editPluginID="org.monet.editor.dsl.edit" editorPluginID="org.monet.editor.dsl.editor"
-    runtimeVersion="2.10">
+    runtimeVersion="2.24">
   <genPackages prefix="MonetLocalizationLanguage" basePackage="org.monet.editor.dsl"
       disposableProviderFactory="true" ecorePackage="MonetLocalizationLanguage.ecore#/">
     <genClasses ecoreClass="MonetLocalizationLanguage.ecore#//DomainModel">

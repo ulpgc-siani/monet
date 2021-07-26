@@ -17,11 +17,11 @@ import org.monet.editor.dsl.monetModelingLanguage.Resource;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.ResourceImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.ResourceImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -220,7 +220,7 @@ public class ResourceImpl extends AttributeValueImpl implements Resource
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (type: ");
     result.append(type);
     result.append(", value: ");

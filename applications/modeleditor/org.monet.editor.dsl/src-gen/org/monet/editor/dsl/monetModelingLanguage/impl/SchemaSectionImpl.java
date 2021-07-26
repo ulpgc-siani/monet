@@ -24,10 +24,10 @@ import org.monet.editor.dsl.monetModelingLanguage.SchemaSection;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.SchemaSectionImpl#getFeatures <em>Features</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

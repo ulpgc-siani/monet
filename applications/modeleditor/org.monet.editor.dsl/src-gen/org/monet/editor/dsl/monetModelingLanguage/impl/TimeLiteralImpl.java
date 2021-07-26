@@ -17,10 +17,10 @@ import org.monet.editor.dsl.monetModelingLanguage.TimeLiteral;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.TimeLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -166,7 +166,7 @@ public class TimeLiteralImpl extends AttributeValueImpl implements TimeLiteral
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (value: ");
     result.append(value);
     result.append(')');

@@ -10,11 +10,11 @@ package org.monet.editor.dsl.monetModelingLanguage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Resource#getType <em>Type</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Resource#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getResource()
  * @model
@@ -25,10 +25,6 @@ public interface Resource extends AttributeValue
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' attribute.
    * @see #setType(String)
@@ -51,10 +47,6 @@ public interface Resource extends AttributeValue
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(String)

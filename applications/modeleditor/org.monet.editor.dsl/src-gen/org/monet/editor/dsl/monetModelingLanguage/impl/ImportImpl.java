@@ -18,10 +18,10 @@ import org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.ImportImpl#getImportedNamespace <em>Imported Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -167,7 +167,7 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (importedNamespace: ");
     result.append(importedNamespace);
     result.append(')');

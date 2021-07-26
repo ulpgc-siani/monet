@@ -18,11 +18,11 @@ import org.monet.editor.dsl.monetModelingLanguage.SchemaFeature;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.SchemaFeatureImpl#isMany <em>Many</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.SchemaFeatureImpl#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -221,7 +221,7 @@ public class SchemaFeatureImpl extends MinimalEObjectImpl.Container implements S
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (many: ");
     result.append(many);
     result.append(", id: ");

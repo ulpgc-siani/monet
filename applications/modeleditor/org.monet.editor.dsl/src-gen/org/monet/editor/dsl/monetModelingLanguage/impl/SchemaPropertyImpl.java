@@ -20,10 +20,10 @@ import org.monet.editor.dsl.monetModelingLanguage.SchemaPropertyOfValue;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.SchemaPropertyImpl#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
