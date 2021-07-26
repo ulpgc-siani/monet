@@ -36,6 +36,9 @@
 			<attribute token="shortcut" type="string">
 				<description>Mostrar el nodo que está vinculado en el shortcut</description>
 			</attribute>
+			<attribute token="shortcut-definition" type="key" link="NodeDefinition" multiple="true">
+				<description>Permite indicar las definiciones que se usan en el shortcut</description>
+			</attribute>
 			<attribute token="shortcut-view" type="string">
 				<description>Permite indicar la vista concreta que se quiere del shortcut. En otro caso se usará la vista por defecto del shortcut.</description>
 			</attribute>
