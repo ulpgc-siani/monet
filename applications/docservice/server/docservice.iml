@@ -32,7 +32,13 @@
     <orderEntry type="library" name="Maven: org.jpedal:jpedal_lgpl:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.siani.monet:monet-library-http:0.3" level="project" />
     <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.siani.monet:core-shared:1.0" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.23" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
+    <orderEntry type="library" name="Maven: com.aspose.words:aspose-words:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.siani.monet:monet-component-filesystem:0.4" level="project" />
+    <orderEntry type="library" name="Maven: org.jpedal:jpedal_lgpl:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.siani.monet:monet-library-http:0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.inject:guice:2.0" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tika:tika-core:0.4" level="project" />
