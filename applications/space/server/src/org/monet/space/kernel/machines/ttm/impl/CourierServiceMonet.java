@@ -34,13 +34,13 @@ public class CourierServiceMonet implements CourierService {
 		MailBox mailBox = this.persistenceService.loadMailBox(mailBoxUri.getId());
 		if (mailBox == null)
 			return;
-		if (!this.persistenceService.isAllowedSenderForMailBox(sender, mailBoxUri.getId())) {
-			String taskState = this.persistenceService.loadTask(mailBox.getTaskId()).getState();
-			if (signal == Signaling.TERMINATE && taskState.equals(TaskState.FINISHED)) {
-				return;
-			}
-			throw new RuntimeException(String.format("Permission denied. User %s not allowed to communicate with this mailbox.", sender.getName()));
-		}
+//		if (!this.persistenceService.isAllowedSenderForMailBox(sender, mailBoxUri.getId())) {
+//			String taskState = this.persistenceService.loadTask(mailBox.getTaskId()).getState();
+//			if (signal == Signaling.TERMINATE && taskState.equals(TaskState.FINISHED)) {
+//				return;
+//			}
+//			throw new RuntimeException(String.format("Permission denied. User %s not allowed to communicate with this mailbox.", sender.getName()));
+//		}
 
 		ProcessBehavior process = this.engine.getProcess(mailBox.getTaskId());
 		process.signaling(mailBox, signal);
@@ -73,10 +73,10 @@ public class CourierServiceMonet implements CourierService {
             return;
         }
 
-		if (!this.persistenceService.isAllowedSenderForMailBox(sender, recipientMailBox.getId())) {
-			AgentLogger.getInstance().error(new RuntimeException(String.format("Permission denied. User %s not allowed to communicate with this mailbox.", sender.getName())));
-			return;
-		}
+//		if (!this.persistenceService.isAllowedSenderForMailBox(sender, recipientMailBox.getId())) {
+//			AgentLogger.getInstance().error(new RuntimeException(String.format("Permission denied. User %s not allowed to communicate with this mailbox.", sender.getName())));
+//			return;
+//		}
 
 		MailBox mailBox = this.persistenceService.loadMailBox(recipientMailBox.getId());
 		this.localDeliver(mailBox, message);
