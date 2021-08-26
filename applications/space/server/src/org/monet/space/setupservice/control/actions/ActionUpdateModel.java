@@ -86,7 +86,7 @@ public class ActionUpdateModel extends Action {
 		} finally {
 			kernel.runApplications();
 			StreamHelper.close(modelStream.getInputStream());
-			tempModelFile.delete();
+			if (tempModelFile != null) tempModelFile.delete();
 		}
 
 		return null;
