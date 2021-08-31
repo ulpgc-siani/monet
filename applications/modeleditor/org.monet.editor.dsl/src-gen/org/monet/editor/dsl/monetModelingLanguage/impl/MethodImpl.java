@@ -30,12 +30,12 @@ import org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.MethodImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.MethodImpl#getParams <em>Params</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.MethodImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -303,7 +303,7 @@ public class MethodImpl extends ManifestFeatureImpl implements Method
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (id: ");
     result.append(id);
     result.append(')');

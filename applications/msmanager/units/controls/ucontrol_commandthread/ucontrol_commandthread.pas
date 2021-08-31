@@ -145,7 +145,7 @@ begin
   inherited Create(true);
   Self.FreeOnTerminate := True;
 
-  FAgentCommandThread := AgentCommandThread;
+  FAgentCommandThread := AgentCommandThread.Create(AgentPreferences);
   FAgentVM := AgentVM;
   FAgentServer := AgentServer;
   FAgentPreferences := AgentPreferences;
@@ -434,6 +434,7 @@ const
   {$IFDEF Windows}
     CDownloadKBBySec = 500 * 1024; // Use High(Int64) to download direct.
 //    CDownloadKBBySec = 1000 * 1024; // Use High(Int64) to download direct.
+//    CDownloadKBBySec = 100000 * 1024;
   {$ELSE}
 //      CDownloadKBBySec = High(Int64); // Use High(Int64) to download direct.
      CDownloadKBBySec = 100000 * 1024;

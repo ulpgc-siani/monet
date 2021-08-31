@@ -65,7 +65,7 @@ public class MonetLocalizationLanguagePackageImpl extends EPackageImpl implement
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
+   *
    * <p>This method is used to initialize {@link MonetLocalizationLanguagePackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -80,7 +80,8 @@ public class MonetLocalizationLanguagePackageImpl extends EPackageImpl implement
     if (isInited) return (MonetLocalizationLanguagePackage)EPackage.Registry.INSTANCE.getEPackage(MonetLocalizationLanguagePackage.eNS_URI);
 
     // Obtain or create and register package
-    MonetLocalizationLanguagePackageImpl theMonetLocalizationLanguagePackage = (MonetLocalizationLanguagePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MonetLocalizationLanguagePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MonetLocalizationLanguagePackageImpl());
+    Object registeredMonetLocalizationLanguagePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    MonetLocalizationLanguagePackageImpl theMonetLocalizationLanguagePackage = registeredMonetLocalizationLanguagePackage instanceof MonetLocalizationLanguagePackageImpl ? (MonetLocalizationLanguagePackageImpl)registeredMonetLocalizationLanguagePackage : new MonetLocalizationLanguagePackageImpl();
 
     isInited = true;
 
@@ -93,7 +94,6 @@ public class MonetLocalizationLanguagePackageImpl extends EPackageImpl implement
     // Mark meta-data to indicate it can't be changed
     theMonetLocalizationLanguagePackage.freeze();
 
-  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(MonetLocalizationLanguagePackage.eNS_URI, theMonetLocalizationLanguagePackage);
     return theMonetLocalizationLanguagePackage;

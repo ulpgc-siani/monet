@@ -11,13 +11,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Property#getCode <em>Code</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Property#getId <em>Id</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Property#getName <em>Name</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Property#getFeatures <em>Features</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getProperty()
  * @model
@@ -28,10 +28,6 @@ public interface Property extends ManifestFeature, Feature, Referenciable, Prope
   /**
    * Returns the value of the '<em><b>Code</b></em>' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Code</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Code</em>' containment reference.
    * @see #setCode(Code)
@@ -54,10 +50,6 @@ public interface Property extends ManifestFeature, Feature, Referenciable, Prope
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
@@ -80,10 +72,6 @@ public interface Property extends ManifestFeature, Feature, Referenciable, Prope
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
@@ -107,10 +95,6 @@ public interface Property extends ManifestFeature, Feature, Referenciable, Prope
    * Returns the value of the '<em><b>Features</b></em>' containment reference list.
    * The list contents are of type {@link org.monet.editor.dsl.monetModelingLanguage.PropertyFeature}.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Features</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Features</em>' containment reference list.
    * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getProperty_Features()

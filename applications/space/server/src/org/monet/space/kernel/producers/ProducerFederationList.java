@@ -142,7 +142,7 @@ public class ProducerFederationList extends Producer {
 	public void loadAttribute(EventObject eventObject, String attribute) {
 	}
 
-	private UserList searchUsers(DataRequest dataRequest, String query, String countQuery) {
+	public UserList searchUsers(DataRequest dataRequest, String query, String countQuery) {
 		UserList userList;
 		ResultSet result = null;
 		Account account = this.getAccount();

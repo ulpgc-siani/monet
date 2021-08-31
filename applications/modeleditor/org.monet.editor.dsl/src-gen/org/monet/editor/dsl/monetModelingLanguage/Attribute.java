@@ -10,11 +10,11 @@ package org.monet.editor.dsl.monetModelingLanguage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Attribute#getId <em>Id</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.Attribute#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getAttribute()
  * @model
@@ -25,10 +25,6 @@ public interface Attribute extends ManifestFeature, Feature, PropertyFeature
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)
@@ -51,10 +47,6 @@ public interface Attribute extends ManifestFeature, Feature, PropertyFeature
   /**
    * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
    * @see #setValue(AttributeValue)

@@ -5,7 +5,7 @@ unit uagent_server;
 interface
 
 uses
-  Classes, SysUtils, uagent_preferences, process;
+  Classes, SysUtils, uagent_preferences;
 
 type
 
@@ -193,26 +193,38 @@ procedure TAgentServer.SpacesListInit(FirstTime: boolean = false);
 var
   ResultList: TStringList;
   Content: TStringList;
-  RegexObj: TRegExpr;
+//  RegexObj: TRegExpr;
   x: integer;
   line: string;
   name, model, url, federation_url: string;
   certificate_expiration: string;
+  expression: string;
 begin
   if FirstTime then FSpacesList := '';
   if fxmlcontent <> '' then
   begin
-    RegexObj := TRegExpr.Create;
+//    RegexObj := TRegExpr.Create;
     ResultList := TStringList.Create;
     Content := TStringList.Create;
     try
-      Content.Text := fxmlcontent;
+      Content.AddText(fxmlcontent);
       for x := 0 to Content.Count-1 do
       begin
         line := Content.Strings[x];
-        RegexObj.Expression := '<space id="([^"]+)" url="([^"]+)" model="([^"]*)" federation-url="([^"]+)"';
 
-        if RegexObj.Exec(line) then
+        expression := '<space id="([^"]+)" url="([^"]+)" model="([^"]*)" federation-url="([^"]+)"';
+        name := GetMatchRegularExpression(line, expression, 1);
+        url := GetMatchRegularExpression(line, expression, 2);
+        model := GetMatchRegularExpression(line, expression, 3);
+        federation_url := GetMatchRegularExpression(line, expression, 4);
+
+        expression := '<space .* certificate-expiration="([^"]+)"';
+        certificate_expiration := GetMatchRegularExpression(line, expression, 1);
+
+
+{        RegexObj.Expression := '<space id="([^"]+)" url="([^"]+)" model="([^"]*)" federation-url="([^"]+)"';
+
+        if (line <> '') and RegexObj.Exec(line) then
         begin
           name := RegexObj.Match[1];
           url :=  RegexObj.Match[2];
@@ -220,24 +232,28 @@ begin
           federation_url:= RegexObj.Match[4];
 
           RegexObj.Expression := '<space .* certificate-expiration="([^"]+)"';
-          if RegexObj.Exec(line) then
+          if (line <> '') and RegexObj.Exec(line) then
           begin
             certificate_expiration := RegexObj.Match[1];
-          end;
+          end;}
+
+        if (name <> '') then
+        begin
           ResultList.Add(name +'|'+ model + '|' + url +'|'+ federation_url + '|' + certificate_expiration + '|');
         end;
       end;
+    finally
       ResultList.Sort;
       FSpacesList := ResultList.Text;
-    finally
-      RegexObj.Free;
+//      RegexObj.Free;
       ResultList.Free;
       Content.Free;
+      FAgentPreferences.Log.Info('TAgentServer.SpacesListInit. Spaces list: ' + FSpacesList);
     end;
   end;
 end;
 
-function StringListSortCompare(List: TStringList; Index1, Index2: Integer): Integer;
+function StringListSortCompare(List: TStringList; Index1, Index2: Integer): LongInt;
 begin
   Result := AnsiCompareStr(List[Index2], List[Index1]); // Will sort in reverse order
 end;
@@ -247,15 +263,16 @@ var
   FederationsList: TStringList;
   UsersList: TStringList;
   Content: TStringList;
-  RegexObj: TRegExpr;
+//  RegexObj: TRegExpr;
   x: integer;
   line: string;
   name, username, is_mobile, last_use, space, node: string;
+  expression: string;
 begin
   if FirstTime then FFederationsList := '';
   if fxmlcontent <> '' then
   begin
-    RegexObj := TRegExpr.Create;
+//    RegexObj := TRegExpr.Create;
     FederationsList := TStringList.Create;
     UsersList := TStringList.Create;
     Content := TStringList.Create;
@@ -264,14 +281,35 @@ begin
       for x := 0 to Content.Count-1 do
       begin
         line := Content.Strings[x];
-        RegexObj.Expression := '<federation id="([^"]+)"';
+
+        expression := '<federation id="([^"]+)"';
+        name := GetMatchRegularExpression(line, expression, 1);
+        if (name <> '') then
+          FederationsList.Add(name);
+
+
+
+{        RegexObj.Expression := '<federation id="([^"]+)"';
         if RegexObj.Exec(line) then
         begin
           name := RegexObj.Match[1];
           FederationsList.Add(name);
-        end;
+        end;}
 
-        username := '';
+        expression := '<user name="([^"]+)" is_mobile="([^"]+)" last_use="([^"]+)"';
+        username := GetMatchRegularExpression(line, expression, 1);
+        is_mobile := GetMatchRegularExpression(line, expression, 2);
+        last_use := GetMatchRegularExpression(line, expression, 3);
+
+        expression := '<user .* space="([^"]*)" node="([^"]*)"';
+        space := GetMatchRegularExpression(line, expression, 1);
+        node := GetMatchRegularExpression(line, expression, 2);
+
+        if last_use <> '' then
+          UsersList.Add(last_use + '|' + username + '|' + name + '|' + is_mobile + '|' + space + '|' + node + '|');
+
+
+{        username := '';
         is_mobile := '';
         last_use := '';
         RegexObj.Expression := '<user name="([^"]+)" is_mobile="([^"]+)" last_use="([^"]+)"';
@@ -284,24 +322,26 @@ begin
           space := '';
           node := '';
           RegexObj.Expression := '<user .* space="([^"]*)" node="([^"]*)"';
-          if RegexObj.Exec(line) then
+          if (line <> '') and RegexObj.Exec(line) then
           begin
             space := RegexObj.Match[1];
             node := RegexObj.Match[2];
           end;
 
           UsersList.Add(last_use + '|' + username + '|' + name + '|' + is_mobile + '|' + space + '|' + node + '|');
-        end;
+        end;}
       end;
+    finally
       FederationsList.Sort;
       FFederationsList := FederationsList.Text;
       UsersList.CustomSort(@StringListSortCompare);
       FUsersList := UsersList.Text;
-    finally
-      RegexObj.Free;
+
+//      RegexObj.Free;
       FederationsList.Free;
       UsersList.Free;
       Content.Free;
+      FAgentPreferences.Log.Info('TAgentServer.FederationListInit. Users list: ' + FUsersList + ', Federation list: ' + FFederationsList);
     end;
   end;
 end;
@@ -327,12 +367,14 @@ begin
 end;
 
 procedure TAgentServer.DeployServiceVersionInit(FirstTime: boolean = false);
-var
-  RegexObj: TRegExpr;
+//var
+//  RegexObj: TRegExpr;
 begin
   if FirstTime then FDeployServiceVersion := '';
 
-  if fxmlcontent <> '' then
+  FDeployServiceVersion := GetMatchRegularExpression(fxmlcontent, '<servers .* deploy-server-version="([^"]+)"', 1);
+
+{  if fxmlcontent <> '' then
   begin
     RegexObj := TRegExpr.Create;
 
@@ -343,14 +385,15 @@ begin
     finally
       RegexObj.Free;
     end;
-  end;
+  end;}
 end;
 
 procedure TAgentServer.DeployServiceTimeInit;
-var
-  RegexObj: TRegExpr;
+{var
+  RegexObj: TRegExpr;}
 begin
-  FDeployServiceTime := '';
+  FDeployServiceTime := GetMatchRegularExpression(fxmlcontent, '<servers .* time="([^"]+)"', 1);
+{  FDeployServiceTime := '';
 
   if fxmlcontent <> '' then
   begin
@@ -363,16 +406,20 @@ begin
     finally
       RegexObj.Free;
     end;
-  end;
+  end;}
 end;
 
 procedure TAgentServer.FederationDomainInit(FirstTime: boolean = false);
-var
-  RegexObj: TRegExpr;
+//var
+  //RegexObj: TRegExpr;
 begin
   if FirstTime then FFederationDomain := '';
 
-  if fxmlcontent <> '' then
+  FFederationDomain := GetMatchRegularExpression(fxmlcontent, '<federation .* domain="([^"]+)"', 1);
+  if (FFederationDomain = '') then
+    FFederationDomain := GetMatchRegularExpression(fxmlcontent, '<servers .* federation-domain="([^"]+)"', 1);
+
+{  if fxmlcontent <> '' then
   begin
     RegexObj := TRegExpr.Create;
     try
@@ -392,7 +439,7 @@ begin
     finally
       RegexObj.Free;
     end;
-  end;
+  end;}
 end;
 
 procedure TAgentServer.Refresh(FirstTime: boolean = false);
@@ -728,16 +775,28 @@ end;
 
 procedure TAgentServer.GenerateResultError(commandid,info,result: string);
 var
-  RegexObj: TRegExpr;
+//  RegexObj: TRegExpr;
+  expression: string;
+  messageA, messageB: string;
 begin
   if not AnsiContainsStr(result, '<result id="'+commandid+'"><status>ok</status><caption /><content></content></result>') then
   begin
-    RegexObj := TRegExpr.Create;
+
+    expression := '<status>(.*)</status>.*<caption>(.*)</caption>';
+    messageA := GetMatchRegularExpression(result, expression, 1);
+
+    if (messageA <> '') then
+    begin
+      messageB := GetMatchRegularExpression(result, expression, 2);
+      result := 'Message: ' + messageA +LineBreak+ messageB;
+    end;
+
+{    RegexObj := TRegExpr.Create;
     RegexObj.Expression := '<status>(.*)</status>.*<caption>(.*)</caption>';
     if RegexObj.Exec(result) then
     begin
       result := 'Message: ' + RegexObj.Match[1] +LineBreak+ RegexObj.Match[2];
-    end;
+    end;}
 
     raise Exception.Create(info+LineBreak+LineBreak+ result);
   end;

@@ -600,7 +600,7 @@ public class ProducerReference extends Producer {
 	}
 
 	private void addFiltersToQuery(String nodeId, String codeReference, Map<String, String> subQueries, List<FilterProperty> filtersDefinition, boolean queryUsingView) {
-		NodeDataRequest nodeDataRequest = defaultDataRequest(codeReference);
+		NodeDataRequest nodeDataRequest = defaultDataRequest(null, codeReference);
 		((ProducerNodeList)producersFactory.get(Producers.NODELIST)).addFiltersToQuery(codeReference, subQueries, filtersDefinition, nodeId, nodeDataRequest.getParameters(), queryUsingView);
 	}
 
@@ -810,12 +810,17 @@ public class ProducerReference extends Producer {
 	}
 
 	private void createItemsView(String ownerId, String codeReference) {
-		((ProducerNodeList)producersFactory.get(Producers.NODELIST)).createItemsView(ownerId, defaultDataRequest(codeReference));
+		((ProducerNodeList)producersFactory.get(Producers.NODELIST)).createItemsView(ownerId, defaultDataRequest(ownerId, codeReference));
 	}
 
-	private NodeDataRequest defaultDataRequest(String codeReference) {
+	private NodeDataRequest defaultDataRequest(String ownerId, String codeReference) {
 		NodeDataRequest result = new NodeDataRequest();
-		result.setCodeDomainNode("");
+		String codeDomainNode = "";
+		if (ownerId != null) {
+			ProducerNode producer = producersFactory.get(Producers.NODE);
+			codeDomainNode = producer.load(ownerId).getCode();
+		}
+		result.setCodeDomainNode(codeDomainNode);
 		result.setCodeReference(codeReference);
 		return result;
 	}

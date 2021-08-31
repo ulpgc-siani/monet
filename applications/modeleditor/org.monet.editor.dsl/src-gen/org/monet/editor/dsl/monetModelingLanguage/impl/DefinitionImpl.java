@@ -28,6 +28,7 @@ import org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.DefinitionImpl#getCode <em>Code</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.DefinitionImpl#isAbstract <em>Abstract</em>}</li>
@@ -38,7 +39,6 @@ import org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage;
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.DefinitionImpl#getReplaceSuperType <em>Replace Super Type</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.impl.DefinitionImpl#getFeatures <em>Features</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -593,7 +593,7 @@ public class DefinitionImpl extends FeatureImpl implements Definition
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (abstract: ");
     result.append(abstract_);
     result.append(", extensible: ");

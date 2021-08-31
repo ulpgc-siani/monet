@@ -13,8 +13,6 @@ import org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Attribute Value</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

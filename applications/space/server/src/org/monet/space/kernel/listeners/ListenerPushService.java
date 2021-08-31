@@ -4,13 +4,20 @@ import net.minidev.json.JSONObject;
 import org.monet.space.kernel.agents.AgentPushService;
 import org.monet.space.kernel.components.ComponentPersistence;
 import org.monet.space.kernel.components.layers.TaskLayer;
+import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.news.Post;
 import org.monet.space.kernel.model.news.PostComment;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ListenerPushService extends Listener {
 
 	private AgentPushService agentPushService = AgentPushService.getInstance();
+	private Map<String, Timer> updateTaskTimers = new HashMap<>();
 
 	@Override
 	public void accountModified(MonetEvent event) {
@@ -110,10 +117,19 @@ public class ListenerPushService extends Listener {
 	}
 
 	@Override
-	public void taskStateUpdated(MonetEvent event) {
-        JSONObject jsonInfo = new JSONObject();
-		jsonInfo.put("task", ((Task) event.getSender()).getId());
-		agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
+	public void taskStateUpdated(final MonetEvent event) {
+		final String id = ((Task) event.getSender()).getId();
+		if (updateTaskTimers.containsKey(id)) updateTaskTimers.get(id).cancel();
+		updateTaskTimers.put(id, new Timer("Task " + id + " state updated"));
+		updateTaskTimers.get(id).schedule(new TimerTask() {
+			@Override
+			public void run() {
+				JSONObject jsonInfo = new JSONObject();
+				jsonInfo.put("task", id);
+				agentPushService.pushBroadcast(PushClientMessages.UPDATE_TASK_STATE, jsonInfo);
+				updateTaskTimers.remove(id);
+			}
+		}, 1000);
 	}
 
 	@Override

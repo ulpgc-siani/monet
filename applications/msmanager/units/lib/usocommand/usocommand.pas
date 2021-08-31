@@ -31,7 +31,7 @@ end;
 
 implementation
 
-uses utools{$IFDEF Windows}, ShellApi{$ENDIF};
+uses utools;
 
 constructor TSOCommand.Create(AgentPreferences: TAgentPreferences);
 begin

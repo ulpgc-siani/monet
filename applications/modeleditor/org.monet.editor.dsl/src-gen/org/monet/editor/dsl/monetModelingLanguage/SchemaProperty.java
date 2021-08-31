@@ -10,10 +10,10 @@ package org.monet.editor.dsl.monetModelingLanguage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.SchemaProperty#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getSchemaProperty()
  * @model
@@ -24,10 +24,6 @@ public interface SchemaProperty extends SchemaFeature
   /**
    * Returns the value of the '<em><b>Source</b></em>' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Source</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Source</em>' containment reference.
    * @see #setSource(SchemaPropertyOfValue)

@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.SchemaFeature#isMany <em>Many</em>}</li>
  *   <li>{@link org.monet.editor.dsl.monetModelingLanguage.SchemaFeature#getId <em>Id</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.monet.editor.dsl.monetModelingLanguage.MonetModelingLanguagePackage#getSchemaFeature()
  * @model
@@ -26,10 +26,6 @@ public interface SchemaFeature extends EObject
   /**
    * Returns the value of the '<em><b>Many</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Many</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Many</em>' attribute.
    * @see #setMany(boolean)
@@ -52,10 +48,6 @@ public interface SchemaFeature extends EObject
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Id</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Id</em>' attribute.
    * @see #setId(String)

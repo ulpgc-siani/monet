@@ -28,9 +28,9 @@
   <script type="text/javascript" src="::javascriptUrl::/datatable.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=visualization&key=::googleApiKey::"></script>
   <script type="text/javascript" src="::javascriptUrl::/map-icons.min.js"></script>
-  <script type="text/javascript" src="::httpProtocol::\://www.google.com/jsapi"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
-    google.load('visualization', '1.0', {packages: ['corechart', 'controls', 'table', 'imagelinechart', 'geochart']});
+    google.charts.load('45.2', {packages: ['corechart', 'controls', 'table', 'imagelinechart', 'geochart']});
   </script>
   <script type="text/javascript" src="::javascriptUrl::/analytics.en.js"></script>
   <script type="text/javascript" src="::javascriptUrl::/analytics.js"></script>

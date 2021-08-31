@@ -11,7 +11,7 @@ function install_needed_apps {
   show_info_text "Install needed apps... "
 #  yum clean all >> $FILELOG
   yum -y update >> $FILELOG
-  yum -y install unzip wget zip setuptool nfs-utils >> $FILELOG
+  yum -y install unzip wget zip setuptool nfs-utils openssl >> $FILELOG
 }
 
 function install_java {
