@@ -1,6 +1,7 @@
 package org.monet.docservice.docprocessor.worker.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.sql.NamedParameterStatement;
@@ -41,8 +42,8 @@ public class WorkQueueImpl implements WorkQueue, WorkQueueRepository {
 		this.dataSource = dataSourceProvider.get();
 	}
 
-	public boolean documentHasPendingOperations(String documentId) {
-		logger.debug("documentHasPendingOperations(%s)", documentId);
+	public boolean documentHasPendingOperations(Key documentKey) {
+		logger.debug("documentHasPendingOperations(%s)", documentKey);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -54,7 +55,7 @@ public class WorkQueueImpl implements WorkQueue, WorkQueueRepository {
 			statement = new NamedParameterStatement(connection,
 				this.queryStore.get(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS));
 
-			statement.setString(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS_PARAM_ID_DOCUMENT, documentKey.toString());
 			resultSet = statement.executeQuery();
 			boolean result = resultSet != null &&
 				resultSet.next() &&
@@ -70,8 +71,8 @@ public class WorkQueueImpl implements WorkQueue, WorkQueueRepository {
 		}
 	}
 
-	public boolean documentHasPendingOperationsOfType(String documentId, int operationType) {
-		logger.debug("documentHasPendingOperationsOfType(%s,%d)", documentId, operationType);
+	public boolean documentHasPendingOperationsOfType(Key documentKey, int operationType) {
+		logger.debug("documentHasPendingOperationsOfType(%s,%d)", documentKey, operationType);
 
 		Connection connection = null;
 		NamedParameterStatement statement = null;
@@ -82,7 +83,7 @@ public class WorkQueueImpl implements WorkQueue, WorkQueueRepository {
 
 			statement = new NamedParameterStatement(connection,
 				this.queryStore.get(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS_OF_TYPE));
-			statement.setString(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS_OF_TYPE_PARAM_ID_DOCUMENT, documentId);
+			statement.setString(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS_OF_TYPE_PARAM_ID_DOCUMENT, documentKey.toString());
 			statement.setInt(QueryStore.SELECT_WORK_QUEUE_DOCUMENT_HAS_PENDING_OPERATIONS_OF_TYPE_PARAM_TYPE, operationType);
 
 			resultSet = statement.executeQuery();
@@ -113,7 +114,7 @@ public class WorkQueueImpl implements WorkQueue, WorkQueueRepository {
 				this.queryStore.get(QueryStore.INSERT_WORK_QUEUE_ITEM),
 				Statement.RETURN_GENERATED_KEYS);
 
-			statement.setString(QueryStore.INSERT_WORK_QUEUE_ITEM_PARAM_ID_DOCUMENT, item.getDocumentId());
+			statement.setString(QueryStore.INSERT_WORK_QUEUE_ITEM_PARAM_ID_DOCUMENT, item.getDocumentKey().toString());
 			statement.setInt(QueryStore.INSERT_WORK_QUEUE_ITEM_PARAM_OPERATION, item.getOperation());
 			statement.setInt(QueryStore.INSERT_WORK_QUEUE_ITEM_PARAM_STATE, item.getState());
 			statement.setBinaryStream(QueryStore.INSERT_WORK_QUEUE_ITEM_PARAM_EXTRA_DATA, item.getExtraDataInputStream());
@@ -203,7 +204,7 @@ public class WorkQueueImpl implements WorkQueue, WorkQueueRepository {
 			if (resultSet != null) {
 				while (resultSet.next()) {
 					WorkQueueItem item = new WorkQueueItem(resultSet.getLong(QueryStore.SELECT_NOT_STARTED_WORK_QUEUE_ITEMS_RESULTSET_ID));
-					item.setDocumentId(resultSet.getString(QueryStore.SELECT_NOT_STARTED_WORK_QUEUE_ITEMS_RESULTSET_ID_DOCUMENT));
+					item.setDocumentKey(Key.from(resultSet.getString(QueryStore.SELECT_NOT_STARTED_WORK_QUEUE_ITEMS_RESULTSET_ID_DOCUMENT)));
 					item.setOperation(resultSet.getInt(QueryStore.SELECT_NOT_STARTED_WORK_QUEUE_ITEMS_RESULTSET_OPERATION));
 					item.setQueueDate(resultSet.getDate(QueryStore.SELECT_NOT_STARTED_WORK_QUEUE_ITEMS_RESULTSET_QUEUE_DATE));
 					item.setState(resultSet.getInt(QueryStore.SELECT_NOT_STARTED_WORK_QUEUE_ITEMS_RESULTSET_STATE));

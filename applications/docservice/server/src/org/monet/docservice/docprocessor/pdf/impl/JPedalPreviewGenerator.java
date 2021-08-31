@@ -3,6 +3,7 @@ package org.monet.docservice.docprocessor.pdf.impl;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.jpedal.PdfDecoder;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
@@ -36,8 +37,8 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
     PdfDecoder.setFontDirs(fontsDirs);
   }
   
-  public void generatePreview(String pdfPath, String documentId) {
-    logger.debug("generatePreview(%s, %s)", pdfPath, documentId);
+  public void generatePreview(String pdfPath, Key documentKey) {
+    logger.debug("generatePreview(%s, %s)", pdfPath, documentKey);
     
     Repository repository = this.repositoryProvider.get();
     File tempFile = new File(this.configuration.getPath(Configuration.PATH_TEMP) + File.separator + UUID.randomUUID().toString());
@@ -55,7 +56,7 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
         ImageIO.write(buff, "png", tempFile);
         
         FileInputStream stream = new FileInputStream(tempFile);
-        repository.saveDocumentPreviewData(documentId, 
+        repository.saveDocumentPreviewData(documentKey,
                                            i, 
                                            stream, 
                                            "image/png", 
@@ -70,7 +71,7 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
         ImageIO.write(buff, "png", tempFile);
         
         stream = new FileInputStream(tempFile);
-        repository.saveDocumentPreviewData(documentId, 
+        repository.saveDocumentPreviewData(documentKey,
                                            i, 
                                            stream, 
                                            "image/png", 
@@ -85,7 +86,7 @@ public class JPedalPreviewGenerator implements PreviewGenerator {
             
     } catch (Exception e) {
       logger.error(e.getMessage(), e);
-      throw new ApplicationException(String.format("Error creating preview of document '%s'", documentId));
+      throw new ApplicationException(String.format("Error creating preview of document '%s'", documentKey));
     }
     finally {
       if(tempFile.exists()) tempFile.delete();

@@ -4,7 +4,9 @@ import org.monet.bpi.NodeDocument;
 import org.monet.bpi.ProviderResponse;
 import org.monet.bpi.Schema;
 import org.monet.bpi.types.File;
+import org.monet.bpi.types.Picture;
 import org.monet.metamodel.NodeDefinition;
+import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.bpi.java.locator.BPIClassLocator;
 import org.monet.space.kernel.components.ComponentDocuments;
@@ -57,15 +59,34 @@ public class ProviderResponseImpl implements ProviderResponse {
 			ComponentPersistence componentPersistence = ComponentPersistence.getInstance();
 			NodeLayer nodeLayer = componentPersistence.getNodeLayer();
 			NodeDefinition definition = Dictionary.getInstance().getNodeDefinition(documentType.getName());
-			org.monet.space.kernel.model.Node node = nodeLayer.addNode(definition.getCode());
+			InputStream attachStream = null;
+			String documentReferenced = null;
+			try {
+				attachStream = attach.getDocumentReference();
+				String data = attachStream != null && Kernel.getInstance().isDocumentServiceShared() ? StreamHelper.toString(attachStream) : null;
+				if (data != null) {
+					documentReferenced = data.replace(Message.REFERENCED_DOCUMENT_MESSAGE, "").replace("\r\n", "");
+				}
+			} catch (Exception e) {
+				AgentLogger.getInstance().error(e);
+				throw new RuntimeException("Error extracting interoperable document from message. See log for details.");
+			} finally {
+				StreamHelper.close(attachStream);
+			}
+			org.monet.space.kernel.model.Node node = null;
+			if (documentReferenced != null)
+				node = nodeLayer.addSharedNode(definition.getCode(), documentReferenced);
+			else
+				node = nodeLayer.addNode(definition.getCode());
 			bpiNode = BPIClassLocator.getInstance().instantiateBehaviour(definition);
 			bpiNode.injectNode(node);
 
-			InputStream attachStream = null;
 			try {
-				attachStream = attach.getInputStream();
 				String contentType = attach.getContentType();
-				componentDocuments.uploadDocument(node.getId(), attachStream, contentType, MimeTypes.getInstance().isPreviewable(contentType));
+				if (documentReferenced == null){
+					attachStream = attach.getInputStream();
+					componentDocuments.uploadDocument(node.getId(), attachStream, contentType, MimeTypes.getInstance().isPreviewable(contentType));
+				}
 				node.setSchema(componentDocuments.getDocumentSchema(node.getId()));
 				nodeLayer.saveNodeSchema(node);
 				if (MimeTypes.PDF.equals(contentType))

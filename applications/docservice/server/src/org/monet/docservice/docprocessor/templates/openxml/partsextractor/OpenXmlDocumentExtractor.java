@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.UUID;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.agent.AgentFilesystem;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryZip;

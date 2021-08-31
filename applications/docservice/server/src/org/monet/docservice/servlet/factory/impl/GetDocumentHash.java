@@ -2,6 +2,10 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+
+import java.util.Map;
+
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
@@ -25,13 +29,12 @@ public class GetDocumentHash extends ActionStringResult {
   }
 
   @Override
-  public String onExecute(Map<String, Object> params, Response response)
-      throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    logger.debug("getDocumentHash(%s)", documentId);
+  public String onExecute(Map<String, Object> params, Response response) throws Exception {
+    Key documentKey = documentKey(params);
+    logger.debug("getDocumentHash(%s)", documentKey);
 
     Repository repository = repositoryProvider.get();
-    return repository.getDocumentHash(documentId);
+    return repository.getDocumentHash(documentKey);
 
   }
 

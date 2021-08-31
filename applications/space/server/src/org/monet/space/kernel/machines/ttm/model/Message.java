@@ -6,10 +6,12 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.monet.bpi.Schema;
 import org.monet.mobile.model.TaskMetadata;
+import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.components.ComponentDocuments;
 import org.monet.space.kernel.constants.ErrorCode;
 import org.monet.space.kernel.exceptions.SystemException;
+import org.monet.space.kernel.model.BusinessUnit;
 import org.monet.space.kernel.model.Node;
 import org.monet.space.kernel.model.map.Location;
 import org.monet.space.kernel.utils.MimeTypes;
@@ -17,11 +19,14 @@ import org.monet.space.kernel.utils.PersisterHelper;
 
 import java.io.*;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Message {
+
+	public static final String REFERENCED_DOCUMENT_MESSAGE = "idReferenced:";
 
 	public static class MessageAttach {
 
@@ -74,6 +79,16 @@ public class Message {
 			return this.file;
 		}
 
+		public boolean isDocument() throws Exception {
+			return documentId != null;
+		}
+
+		public InputStream getDocumentReference() throws Exception {
+			if (!isDocument()) return getInputStream();
+			String idReferenced = Message.REFERENCED_DOCUMENT_MESSAGE + BusinessUnit.getInstance().getName() + "#" + URLEncoder.encode(this.documentId, "UTF-8");
+			return new ByteArrayInputStream(idReferenced.getBytes(StandardCharsets.UTF_8));
+		}
+
 		public InputStream getInputStream() throws Exception {
 			if (rawContent != null) {
 				return new ByteArrayInputStream(rawContent);
@@ -82,9 +97,15 @@ public class Message {
 			} else if (documentId != null) {
 				return this.getDocumentStream();
 			} else if (schema != null) {
-				return new ByteArrayInputStream(this.serialize().getBytes("UTF-8"));
+				return new ByteArrayInputStream(this.serialize().getBytes(StandardCharsets.UTF_8));
+			} else if (node != null){
+				return this.getNodeStream();
 			}
 			return null;
+		}
+
+		private InputStream getNodeStream() throws HttpException, IOException {
+			return new ByteArrayInputStream(node.getId().getBytes("UTF-8"));
 		}
 
 		private InputStream getDocumentStream() throws HttpException, IOException {

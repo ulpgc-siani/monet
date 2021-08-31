@@ -54,3 +54,6 @@ _develop/_space/.idea/libraries
 *.bak
 applications/deployservice/server/.idea/libraries
 Guía de uso del directorio corporativo de la ULPGC.pdf
+applications/federation/server/WebContent/META-INF/context.xml
+applications/docservice/server/WebContent/WEB-INF/web.xml
+applications/space/server/WebContent/WEB-INF/web.xml

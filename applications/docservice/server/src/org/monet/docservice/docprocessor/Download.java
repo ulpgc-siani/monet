@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import org.apache.commons.io.IOUtils;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryFile;
 import org.monet.docservice.core.log.Logger;
@@ -70,14 +71,14 @@ public class Download extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("doGet(%s, %s)", request, response);
 
-		String documentId = request.getParameter("id");
+		Key documentKey = new Key(request.getParameter("space"), request.getParameter("id"));
 		String thumbnail = request.getParameter("thumb");
 
 		int page = -1;
 		boolean isThumbnail = thumbnail != null;
 
-		if (documentId != null && documentId.length() != 0) {
-			getDownloadData(response, documentId, page, isThumbnail);
+		if (documentKey != null && documentKey.getId().length() != 0) {
+			getDownloadData(response, documentKey, page, isThumbnail);
 		} else {
 			response.getWriter().println("Invalid query string");
 			return;
@@ -85,13 +86,13 @@ public class Download extends HttpServlet {
 
 	}
 
-	private void getDownloadData(HttpServletResponse response, String documentId, int page, boolean isThumb) {
+	private void getDownloadData(HttpServletResponse response, Key documentKey, int page, boolean isThumb) {
 		Repository repository = repositoryProvider.get();
 		InputStream documentData = null;
 
 		try {
 
-			if (!repository.existsDocument(documentId)) {
+			if (!repository.existsDocument(documentKey)) {
 				response.setStatus(404);
 				response.setContentType("image/png");
 
@@ -101,23 +102,23 @@ public class Download extends HttpServlet {
 				return;
 			}
 
-			String contentType = repository.getDocumentDataContentType(documentId);
-			String extension = this.libraryFile.getExtension(documentId);
+			String contentType = repository.getDocumentDataContentType(documentKey);
+			String extension = this.libraryFile.getExtension(documentKey.getId());
 			if (extension == null) extension = mimeTypes.getExtension(contentType);
 
-			documentData = repository.getDocumentData(documentId);
+			documentData = repository.getDocumentData(documentKey);
 			String fileContentType = libraryFile.getContentType(documentData);
 			StreamHelper.close(documentData);
 
 			response.setContentType(contentType);
-			response.setHeader("Content-Disposition", String.format("attachment; filename=%s.%s", URLEncoder.encode(this.libraryFile.getFilenameWithoutExtension(documentId), "UTF-8"), extension));
+			response.setHeader("Content-Disposition", String.format("attachment; filename=%s.%s", URLEncoder.encode(this.libraryFile.getFilenameWithoutExtension(documentKey.getId()), "UTF-8"), extension));
 
 			if (isThumb && !mimeTypes.isImage(fileContentType)) {
-				this.generateDocumentPreviewIfNotExists(documentId);
-				repository.readDocumentPreviewData(documentId, 1, response.getOutputStream(), 2);
+				this.generateDocumentPreviewIfNotExists(documentKey);
+				repository.readDocumentPreviewData(documentKey, 1, response.getOutputStream(), 2);
 			}
 			else {
-				documentData = repository.getDocumentData(documentId);
+				documentData = repository.getDocumentData(documentKey);
 				IOUtils.copy(documentData, response.getOutputStream());
 			}
 
@@ -130,17 +131,17 @@ public class Download extends HttpServlet {
 		}
 	}
 
-	private void generateDocumentPreviewIfNotExists(String documentId) {
+	private void generateDocumentPreviewIfNotExists(Key documentKey) {
 		Repository repository = repositoryProvider.get();
 
-		if (repository.existsDocumentPreview(documentId))
+		if (repository.existsDocumentPreview(documentKey))
 			return;
 
-		if (this.workQueue.documentHasPendingOperationsOfType(documentId, Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW))
+		if (this.workQueue.documentHasPendingOperationsOfType(documentKey, Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW))
 			return;
 
 		WorkQueueItem item = new WorkQueueItem(-1);
-		item.setDocumentId(documentId);
+		item.setDocumentKey(documentKey);
 		item.setOperation(Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW);
 		this.workQueue.queueNewWorkItem(item);
 	}

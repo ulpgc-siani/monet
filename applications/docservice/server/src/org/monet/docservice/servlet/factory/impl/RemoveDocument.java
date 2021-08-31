@@ -2,6 +2,10 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+
+import java.util.Map;
+
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
@@ -27,11 +31,11 @@ public class RemoveDocument extends Action{
 
   @Override
   public void execute(Map<String, Object> params, Response response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    logger.debug("removeDocument(%s)", documentId);
+    Key documentKey = documentKey(params);
+    logger.debug("removeDocument(%s)", documentKey);
 
     Repository repository = repositoryProvider.get();
-    repository.removeDocument(documentId);
+    repository.removeDocument(documentKey);
     response.getWriter().write(MessageResponse.OPERATION_SUCCESFULLY);
   }
 

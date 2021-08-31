@@ -8,6 +8,7 @@ import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.machines.ttm.model.Message;
 import org.monet.space.kernel.machines.ttm.model.Message.MessageAttach;
 import org.monet.space.kernel.model.BusinessModel;
+import org.monet.space.kernel.model.Node;
 import org.monet.space.kernel.utils.MimeTypes;
 
 import java.io.UnsupportedEncodingException;

@@ -10,6 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.templates.common.Attributes;
 import org.monet.docservice.docprocessor.templates.common.BaseXmlProcessor;
 
@@ -19,8 +20,8 @@ public class BlockProcessor extends BaseXmlProcessor {
   private String blockName;
   private boolean showBlock;
   
-  public BlockProcessor(XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
-    super(reader, writer, underlayingOutputStream);
+  public BlockProcessor(Key documentKey, XMLStreamReader reader, XMLStreamWriter writer, OutputStream underlayingOutputStream) throws FactoryConfigurationError {
+    super(documentKey, reader, writer, underlayingOutputStream);
   }
     
   @Override
@@ -57,14 +58,14 @@ public class BlockProcessor extends BaseXmlProcessor {
   }
   
   public void Create() throws XMLStreamException, FactoryConfigurationError, IOException {
-    InputStream partTemplate = this.repository.getTemplatePart(this.documentId, this.blockName);
+    InputStream partTemplate = this.repository.getTemplatePart(this.documentKey, this.blockName);
     
     XMLStreamReader onMemoryReader = XMLInputFactory.newInstance().createXMLStreamReader(partTemplate);
-    RootProcessor proc = new RootProcessor(onMemoryReader, this.writer, this.underlayingOutputStream);
+    RootProcessor proc = new RootProcessor(documentKey, onMemoryReader, this.writer, this.underlayingOutputStream);
     proc.setModel(model);
     proc.setPartial(true);
     proc.setRepository(this.repository);
-    proc.setDocumentId(this.documentId);
+    proc.setDocumentKey(this.documentKey);
     proc.setNamespceContext(this.getNamespaceContext());
     proc.setNewIdImages(newIdImages);
     proc.setOldIdImages(oldIdImages);

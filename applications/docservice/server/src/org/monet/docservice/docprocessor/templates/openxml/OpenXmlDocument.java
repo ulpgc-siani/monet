@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.agent.AgentFilesystem;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryZip;
@@ -33,7 +34,7 @@ public class OpenXmlDocument implements DocumentProcessor {
   private Configuration configuration;
   private Logger logger;
   private Repository repository;
-  private String documentId;
+  private Key documentKey;
   
   @Inject
   public void injectAgentFilesystem(AgentFilesystem oAgentFilesystem) {
@@ -66,8 +67,8 @@ public class OpenXmlDocument implements DocumentProcessor {
     this.model = model;
   }
   
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setDocumentKey(Key documentKey) {
+    this.documentKey = documentKey;
   }
 
   public void process(String document) {
@@ -167,13 +168,13 @@ public class OpenXmlDocument implements DocumentProcessor {
       //Procesar el Xml sobreescribiendo el original
       sourceDocumentStream = new FileInputStream(workingXmlFile);
       processedDocumentStream = new FileOutputStream(documentXmlPath);
-      RootProcessor rootProc = new RootProcessor(sourceDocumentStream, processedDocumentStream);
+      RootProcessor rootProc = new RootProcessor(documentKey, sourceDocumentStream, processedDocumentStream);
       rootProc.setModel(this.model);
       rootProc.setRepository(this.repository);
-      rootProc.setDocumentId(this.documentId);
+      rootProc.setDocumentKey(this.documentKey);
       rootProc.start();
       
-      ImageProcessor imgProc = new ImageProcessor(tempDir, sourceDocument);
+      ImageProcessor imgProc = new ImageProcessor(documentKey, tempDir, sourceDocument);
       imgProc.replaceImages(rootProc.getOldIdImages(),rootProc.getNewIdImages());
     } catch (Exception e) {
        logger.error(e.getMessage(), e);

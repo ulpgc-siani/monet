@@ -32,7 +32,6 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class Configuration {
-
     private static Configuration instance;
     private Map<String, String> map;
 
@@ -42,6 +41,7 @@ public class Configuration {
     public static final String CERTIFICATE_PASSWORD = "MONET_CERTIFICATE_PASSWORD";
     public static final String USER_DATA_DIR = "MONET_USER_DATA_DIR";
     public static final String COMPONENT_DOCUMENTS_MONET_URL = "MONET_COMPONENT_DOCUMENTS_MONET_URL";
+    public static final String COMPONENT_DOCUMENTS_MONET_IS_SHARED = "MONET_COMPONENT_DOCUMENTS_MONET_IS_SHARED";
     public static final String APPLICATION_DEFINITION_FILENAME = "MONET_APPLICATION_DEFINITION_FILENAME";
     public static final String COMPONENT_DEFINITION_FILENAME = "MONET_COMPONENT_DEFINITION_FILENAME";
     public static final String TRANSLATOR_DEFINITION_FILENAME = "MONET_TRANSLATOR_DEFINITION_FILENAME";
@@ -71,6 +71,7 @@ public class Configuration {
     public static final String SERVICES_REQUEST_MAX_ELAPSED_TIME = "MONET_SERVICES_REQUEST_MAX_ELAPSED_TIME";
     public static final String WORKQUEUE_PERIOD = "MONET_WORKQUEUE_PERIOD";
     public static final String SOURCE_UPGRADE_HOUR = "MONET_SOURCE_UPGRADE_HOUR";
+    public static final String DEBUG_PARAM = "MONET_DEBUG_PARAM";
     public static final String SOURCE_UPGRADE_LAUNCH_ON_START = "MONET_SOURCE_UPGRADE_LAUNCH_ON_START";
     public static final String DATAWAREHOUSE_DIR = "MONET_DATAWAREHOUSE_DIR";
     public static final String DATAWAREHOUSE_UPGRADE_HOUR = "MONET_DATAWAREHOUSE_UPGRADE_HOUR";
@@ -437,7 +438,14 @@ public class Configuration {
         return "asset";
     }
 
-    public String getDefaultApplication() {
-        return getValue(DEFAULT_APPLICATION);
-    }
+	public String getDefaultApplication() {
+		return getValue(DEFAULT_APPLICATION);
+	}
+
+	public boolean isDocumentServiceShared() {
+		String shared = this.properties.getProperty(COMPONENT_DOCUMENTS_MONET_IS_SHARED);
+		if (shared == null) shared = "false";
+		return shared.contains("true");
+	}
+
 }

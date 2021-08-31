@@ -1,5 +1,7 @@
 package org.monet.docservice.docprocessor.model;
 
+import org.monet.docservice.core.Key;
+
 public class Template {
 	private String id;
 	private String code;

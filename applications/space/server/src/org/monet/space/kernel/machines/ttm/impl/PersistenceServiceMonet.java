@@ -61,7 +61,7 @@ public class PersistenceServiceMonet implements PersistenceService {
 	}
 
 	@Override
-	public void  resumeJob(Task task, Message message, String callbackTaskId, String callbackCode, String callbackOrderId) {
+	public void resumeJob(Task task, Message message, String callbackTaskId, String callbackCode, String callbackOrderId) {
 		File messageFile = null;
 		InputStream messageStream = null;
 

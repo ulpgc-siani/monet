@@ -1,5 +1,7 @@
 package org.monet.docservice.docprocessor.model;
 
+import org.monet.docservice.core.Key;
+
 public class Document {
 
   public static final int STATE_EDITABLE = 1;
@@ -9,16 +11,16 @@ public class Document {
   public static final int STATE_ERROR = 5;
   public static final int STATE_OVERWRITTEN = 6;
 
-  private String id;
+  private Key key;
   private Template template;
   private int state;
   private boolean isDeprecated;
   
-  public void setId(String id) {
-    this.id = id;
+  public void setKey(Key key) {
+    this.key = key;
   }
-  public String getId() {
-    return id;
+  public Key getKey() {
+    return key;
   }
   public void setTemplate(Template template) {
     this.template = template;

@@ -1,5 +1,6 @@
 package org.monet.docservice.docprocessor.templates.impl;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.model.DocumentType;
 import org.monet.docservice.docprocessor.templates.PartsExtractor;
 import org.monet.docservice.docprocessor.templates.openxml.partsextractor.OpenXmlDocumentExtractor;

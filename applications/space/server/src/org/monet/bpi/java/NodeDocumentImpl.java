@@ -147,7 +147,7 @@ public abstract class NodeDocumentImpl extends NodeImpl implements NodeDocument,
 		return file;
 	}
 
-	@Override
+    @Override
 	public void onSign(User user) {
 	}
 

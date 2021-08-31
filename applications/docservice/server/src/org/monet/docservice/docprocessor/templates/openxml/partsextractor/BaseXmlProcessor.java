@@ -15,6 +15,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.templates.common.Attributes;
 

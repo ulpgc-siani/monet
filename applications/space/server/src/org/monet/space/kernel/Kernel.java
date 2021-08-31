@@ -79,6 +79,10 @@ public class Kernel {
 		return this.getConfiguration().getAppDataComponentsDir();
 	}
 
+	public boolean isDocumentServiceShared() {
+		return ComponentDocuments.getInstance().isShared();
+	}
+
 	private Boolean loadComponentsInfo() {
 		String[] components = AgentFilesystem.listDir(this.getComponentsDataDirname());
 		Integer pos;

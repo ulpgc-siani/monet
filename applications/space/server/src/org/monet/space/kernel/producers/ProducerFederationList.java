@@ -135,13 +135,6 @@ public class ProducerFederationList extends Producer {
 		return searchUsers(dataRequest, Database.Queries.ACCOUNT_LIST_SEARCH_USERS_WITH_ROLES, Database.Queries.ACCOUNT_LIST_SEARCH_USERS_WITH_ROLES_COUNT);
 	}
 
-	public Object newObject() {
-		return null;
-	}
-
-	public void loadAttribute(EventObject eventObject, String attribute) {
-	}
-
 	public UserList searchUsers(DataRequest dataRequest, String query, String countQuery) {
 		UserList userList;
 		ResultSet result = null;

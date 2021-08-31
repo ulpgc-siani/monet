@@ -2,6 +2,7 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -29,8 +30,8 @@ public class OverwriteDocument extends Action {
   
   @Override
   public void execute(Map<String, Object> params, Response response) throws Exception {
-    String sourceDocumentId = (String) params.get(RequestParams.REQUEST_PARAM_SOURCE_DOCUMENT_ID);
-    String destinationDocumentId = (String) params.get(RequestParams.REQUEST_PARAM_DESTINATION_DOCUMENT_ID);
+    Key sourceDocumentId = new Key(space(params), (String) params.get(RequestParams.REQUEST_PARAM_SOURCE_DOCUMENT_ID));
+    Key destinationDocumentId = new Key(space(params), (String) params.get(RequestParams.REQUEST_PARAM_DESTINATION_DOCUMENT_ID));
     String xmlData = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_XML_DATA);
     logger.debug("overwriteDocument(%s, %s)", destinationDocumentId, sourceDocumentId);
 

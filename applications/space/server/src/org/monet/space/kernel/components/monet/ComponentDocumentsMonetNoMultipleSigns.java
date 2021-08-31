@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ComponentDocumentsMonetNoMultipleSigns extends ComponentDocuments {
-	private final Configuration oConfiguration;
+	private final Configuration configuration;
 	private final String componentDocumentUrl;
 	private final AgentRestfullClient restFullClient;
 
@@ -54,8 +54,8 @@ public class ComponentDocumentsMonetNoMultipleSigns extends ComponentDocuments {
 
 	protected ComponentDocumentsMonetNoMultipleSigns() {
 		super();
-		this.oConfiguration = Configuration.getInstance();
-		this.componentDocumentUrl = this.oConfiguration.getValue(Configuration.COMPONENT_DOCUMENTS_MONET_URL) + "/document/";
+		this.configuration = Configuration.getInstance();
+		this.componentDocumentUrl = this.configuration.getValue(Configuration.COMPONENT_DOCUMENTS_MONET_URL) + "/document/";
 		this.restFullClient = AgentRestfullClient.getInstance();
 	}
 
@@ -63,6 +63,11 @@ public class ComponentDocumentsMonetNoMultipleSigns extends ComponentDocuments {
 		if (instance == null)
 			instance = new ComponentDocumentsMonetNoMultipleSigns();
 		return instance;
+	}
+
+	@Override
+	public boolean isShared() {
+		return configuration.isDocumentServiceShared();
 	}
 
 	@Override
@@ -204,6 +209,22 @@ public class ComponentDocumentsMonetNoMultipleSigns extends ComponentDocuments {
 			throw new SystemException(ErrorCode.CREATE_DOCUMENT, idDocument, oException);
 		}
 	}
+
+	@Override
+	public void createSharedDocument(String idTemplate, String idDocument, String referencedId) {
+		try {
+			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
+			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_CREATE_DOCUMENT_INTEROPERABLE));
+			parameters.put(REQUEST_PARAM_TEMPLATE_CODE, toStringBody(idTemplate));
+			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_DOCUMENT_REFERENCED, toStringBody(referencedId));
+			restFullClient.executePost(this.componentDocumentUrl, parameters);
+		} catch (Exception oException) {
+			throw new SystemException(ErrorCode.CREATE_DOCUMENT_INTEROPERABLE, idDocument +" - " + referencedId, oException);
+		}
+	}
+
+
 
 	@Override
 	public void updateDocument(String idDocument, String sContent, Boolean async) {

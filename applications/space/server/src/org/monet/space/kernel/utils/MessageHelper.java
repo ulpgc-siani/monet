@@ -1,12 +1,15 @@
 package org.monet.space.kernel.utils;
 
 import org.monet.mobile.model.TaskMetadata;
+import org.monet.space.kernel.Kernel;
 import org.monet.space.kernel.machines.ttm.model.Message;
 import org.monet.space.kernel.machines.ttm.model.Message.MessageAttach;
 
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import static org.monet.space.kernel.machines.ttm.persistence.PersistenceService.MonetReferenceFileExtension;
 
 public class MessageHelper {
 
@@ -24,6 +27,7 @@ public class MessageHelper {
 			 *
 			 */
 			ZipEntry entry;
+			boolean sharedMode = Kernel.getInstance().isDocumentServiceShared();
 			while ((entry = zipStream.getNextEntry()) != null) {
 				String name = entry.getName();
 				if (name.equals(".content")) {
@@ -31,19 +35,14 @@ public class MessageHelper {
 				} else if (name.equals(".metadata")) {
 					message.setMetadata(PersisterHelper.load(zipStream, TaskMetadata.class));
 				} else {
-					if (entry.getExtra() == null)
-						continue;
+					if (entry.getExtra() == null) continue;
 					String key = new String(entry.getExtra(), "UTF-8");
-					File entryFile = new File(messageDir, name);
-					FileOutputStream entryOutputStream = null;
-					try {
-						entryOutputStream = new FileOutputStream(entryFile);
-						StreamHelper.copyData(zipStream, entryOutputStream);
-					} finally {
-						StreamHelper.close(entryOutputStream);
+					boolean isMonetReference = entry.getName().contains(MonetReferenceFileExtension);
+					if (sharedMode) {
+						if (isMonetReference) registerAttachment(messageDir, message, zipStream, name, key);
+						else if (message.getAttachment(key) == null) registerAttachment(messageDir, message, zipStream, name, key);
 					}
-
-					message.addAttachment(new MessageAttach(key, entryFile));
+					else if (!isMonetReference) registerAttachment(messageDir, message, zipStream, name, key);
 				}
 			}
 		} else {
@@ -55,6 +54,18 @@ public class MessageHelper {
 				StreamHelper.close(messageFileStream);
 			}
 		}
+	}
+
+	private static void registerAttachment(File messageDir, Message message, ZipInputStream zipStream, String name, String key) throws IOException {
+		File entryFile = new File(messageDir, name);
+		FileOutputStream entryOutputStream = null;
+		try {
+			entryOutputStream = new FileOutputStream(entryFile);
+			StreamHelper.copyData(zipStream, entryOutputStream);
+		} finally {
+			StreamHelper.close(entryOutputStream);
+		}
+		message.addAttachment(new MessageAttach(key, entryFile));
 	}
 
 	private static boolean isZipFile(File file) throws IOException {

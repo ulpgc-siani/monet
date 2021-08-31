@@ -1,6 +1,7 @@
 package org.monet.docservice.docprocessor.templates.xml;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
@@ -23,7 +24,7 @@ public class XmlProcessor implements DocumentProcessor {
 	public void setModel(Model model) {
 	}
 
-	public void setDocumentId(String documentId) {
+	public void setDocumentKey(Key documentKey) {
 	}
 
 	public void setDocument(InputStream dataStream) {

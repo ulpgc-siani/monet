@@ -2,6 +2,10 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+
+import java.util.Map;
+
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -28,17 +32,17 @@ public class ExistsDocument extends Action {
 
   @Override
   public void execute(Map<String, Object> params, Response response) throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    logger.debug("existsDocument(%s)", documentId);
+    Key documentKey = documentKey(params);
+    logger.debug("existsDocument(%s)", documentKey);
 
-    try{
-    Repository repository = repositoryProvider.get();
-    boolean result = repository.getDocument(documentId) != null;
-    if(result)
-      response.getWriter().write(MessageResponse.DOCUMENT_EXISTS);
-    else 
-      response.getWriter().write(MessageResponse.DOCUMENT_NOT_EXISTS); 
-    }catch (ApplicationException e) {
+    try {
+      Repository repository = repositoryProvider.get();
+      boolean result = repository.getDocument(documentKey) != null;
+      if(result)
+        response.getWriter().write(MessageResponse.DOCUMENT_EXISTS);
+      else 
+        response.getWriter().write(MessageResponse.DOCUMENT_NOT_EXISTS); 
+    } catch (ApplicationException e) {
       response.getWriter().write(MessageResponse.DOCUMENT_NOT_EXISTS); 
     }
   }

@@ -2,6 +2,10 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+
+import java.util.Map;
+
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.servlet.RequestParams;
@@ -26,12 +30,11 @@ public class GetDocumentContentType extends ActionStringResult {
 
   @Override
   public String onExecute(Map<String, Object> params, Response response)
-      throws Exception {
-    String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-    logger.debug("getDocumentContentType(%s)", documentId);
+    Key documentKey = documentKey(params);
+    logger.debug("getDocumentContentType(%s)", documentKey);
 
     Repository repository = repositoryProvider.get();
-    return repository.getDocumentDataContentType(documentId);
+    return repository.getDocumentDataContentType(documentKey);
 
   }
 

@@ -1,5 +1,6 @@
 package org.monet.space.kernel.deployer.stages;
 
+import org.monet.metamodel.Distribution;
 import org.monet.space.kernel.agents.AgentFilesystem;
 import org.monet.space.kernel.deployer.GlobalData;
 import org.monet.space.kernel.deployer.Stage;
@@ -40,7 +41,9 @@ public class SwapModel extends Stage {
 		BusinessUnit businessUnit = BusinessUnit.getInstance();
 		businessUnit.setBusinessModel(BusinessModel.reload());
 		businessUnit.setDistribution(BusinessUnit.reloadDistribution());
+		businessUnit.setName(businessUnit.getDistribution().getSpace().getName());
 		Dictionary.getInstance().reset(businessUnit.getDistribution(), businessUnit.getBusinessModel().getProject());
+		businessUnit.save();
 	}
 
 	private void saveModel(File modelDirectory, File destinationDirectory) {

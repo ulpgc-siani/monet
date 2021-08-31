@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.xml.xmp.PdfA1Schema;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryBase64;
 import org.monet.docservice.core.log.Logger;
@@ -56,36 +57,36 @@ public class PdfSigner implements Signer {
     this.repositoryProvider = repositoryProvider;
   }
 
-  public PresignedDocument prepareDocument(String documentId, byte[] aCertificate, String reason, String location, String contact, String signField) {
-    logger.debug("prepareDocument(%s, %s)", documentId, aCertificate);
+  public PresignedDocument prepareDocument(Key documentKey, byte[] aCertificate, String reason, String location, String contact, String signField) {
+    logger.debug("prepareDocument(%s, %s)", documentKey, aCertificate);
 
     try {
       CertificateFactory cf = CertificateFactory.getInstance("X.509");
       Certificate certificate = cf.generateCertificate(new ByteArrayInputStream(aCertificate));
 
-      return prepareDocument(documentId, certificate, reason, location, contact, signField);
+      return prepareDocument(documentKey, certificate, reason, location, contact, signField);
     } catch (CertificateException e) {
       logger.error(e.getMessage(), e);
       throw new ApplicationException(String.format("Error processing certificate"));
     }
   }
 
-  private PresignedDocument prepareDocument(String documentId, Certificate certificate, String reason, String location, String contact, String signField) {
-    logger.debug("prepareDocument(%s, %s)", documentId, certificate);
+  private PresignedDocument prepareDocument(Key documentKey, Certificate certificate, String reason, String location, String contact, String signField) {
+    logger.debug("prepareDocument(%s, %s)", documentKey, certificate);
 
     PresignedDocument info = new PresignedDocument();
     
-    InputStream document = getDocumentFile(documentId);
+    InputStream document = getDocumentFile(documentKey);
     String instanceId = UUID.randomUUID().toString();
-    File preparedDoc = getPresignedDocumentFile(documentId, instanceId);
-    byte[] hash = getDocumentHash(document, preparedDoc, certificate, reason, location, contact, signField, documentId, info);
+    File preparedDoc = getPresignedDocumentFile(documentKey, instanceId);
+    byte[] hash = getDocumentHash(document, preparedDoc, certificate, reason, location, contact, signField, documentKey, info);
 
     info.setSignId(instanceId);
     info.setHash(libraryBase64.encode(hash));
     return info;
   }
 
-  public byte[] getDocumentHash(InputStream document, File preparedDoc, Certificate certificate, String reason, String location, String contact, String signField, String documentId, PresignedDocument info) {
+  public byte[] getDocumentHash(InputStream document, File preparedDoc, Certificate certificate, String reason, String location, String contact, String signField, Key documentKey, PresignedDocument info) {
     logger.debug("getDocumentHash(%s, %s, %s)", document, preparedDoc, certificate);
 
     try {
@@ -140,7 +141,7 @@ public class PdfSigner implements Signer {
       return hash;
     } catch (Exception e) {
       logger.error(e.getMessage(), e);
-      throw new ApplicationException(String.format("Error calculating document '%s' sign field '%s' hash", documentId, signField));
+      throw new ApplicationException(String.format("Error calculating document '%s' sign field '%s' hash", documentKey, signField));
     }
   }
 
@@ -193,24 +194,24 @@ public class PdfSigner implements Signer {
     return date.getTime();
   }
 
-  private File getPresignedDocumentFile(String documentId, String instanceId) {
-    logger.debug("getPresignedDocumentFile(%s, %s)", documentId, instanceId);
+  private File getPresignedDocumentFile(Key documentKey, String instanceId) {
+    logger.debug("getPresignedDocumentFile(%s, %s)", documentKey, instanceId);
 
-    File file = new File(this.configuration.getPath(Configuration.PATH_TEMP) + String.format(RESOURCES_PRESIGN_DOCUMENT, documentId, instanceId));
+    File file = new File(this.configuration.getPath(Configuration.PATH_TEMP) + String.format(RESOURCES_PRESIGN_DOCUMENT, documentKey, instanceId));
     file.getParentFile().mkdirs();
     return file;
   }
 
-  private InputStream getDocumentFile(String documentId) {
-    logger.debug("getDocumentFile(%s)", documentId);
-    return repositoryProvider.get().getDocumentData(documentId);
+  private InputStream getDocumentFile(Key documentKey) {
+    logger.debug("getDocumentFile(%s)", documentKey);
+    return repositoryProvider.get().getDocumentData(documentKey);
     // return new File(this.configuration.getPath(Configuration.PATH_TEMP) + String.format(RESOURCES_DOCUMENT, documentId, documentId));
   }
 
-  public void signDocument(String documentId, String instanceId, byte[] pkcs7Block) {
-    logger.debug("signDocument(%s, %s, %s)", documentId, instanceId, pkcs7Block);
+  public void signDocument(Key documentKey, String instanceId, byte[] pkcs7Block) {
+    logger.debug("signDocument(%s, %s, %s)", documentKey, instanceId, pkcs7Block);
 
-    File presignedDoc = getPresignedDocumentFile(documentId, instanceId);
+    File presignedDoc = getPresignedDocumentFile(documentKey, instanceId);
 
     try {
 
@@ -239,14 +240,14 @@ public class PdfSigner implements Signer {
     if (!isValid)
       throw new ApplicationException("Creation of signed document failed: invalid document generated.");
     else {
-      String contentType = repositoryProvider.get().getDocumentDataContentType(documentId);
+      String contentType = repositoryProvider.get().getDocumentDataContentType(documentKey);
       try {
         FileInputStream fileInputStream = new FileInputStream(presignedDoc);
         String hash = StreamHelper.calculateHashToHexString(fileInputStream);
         StreamHelper.close(fileInputStream);
         fileInputStream = new FileInputStream(presignedDoc);
         
-        repositoryProvider.get().saveDocumentData(documentId, fileInputStream, contentType, hash);
+        repositoryProvider.get().saveDocumentData(documentKey, fileInputStream, contentType, hash);
         presignedDoc.delete();
       } catch (Exception e) {
         logger.error(e.getMessage(), e);

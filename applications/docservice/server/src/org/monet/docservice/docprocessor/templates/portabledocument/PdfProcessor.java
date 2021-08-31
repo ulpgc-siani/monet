@@ -22,6 +22,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.configuration.Configuration;
@@ -67,7 +68,7 @@ public class PdfProcessor implements DocumentProcessor {
   private Map<Integer, List<String>> plainFields = new HashMap<Integer, List<String>>();
   private Map<String, List<FieldInfo>> collectionsFields = new HashMap<String, List<FieldInfo>>();
   private com.itextpdf.text.Document document;
-  
+
   @Inject
   public void injectLogger(Logger logger) {
     this.logger = logger;
@@ -89,8 +90,7 @@ public class PdfProcessor implements DocumentProcessor {
     this.model = model;
   }
   
-  public void setDocumentId(String documentId) {
-
+  public void setDocumentKey(Key documentKey) {
   }
   
   public void process(String sourceDocumentPath) {

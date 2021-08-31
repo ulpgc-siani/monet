@@ -15,6 +15,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.docprocessor.templates.common.Attributes;
 import org.monet.docservice.docprocessor.templates.common.BaseXmlProcessor;
 import org.monet.docservice.docprocessor.templates.common.Model;
@@ -28,18 +29,18 @@ public class RootProcessor extends BaseXmlProcessor {
   
   private boolean bInsideUserFieldDecls = false;
   private boolean bIgnoreContent = false;
-  private HashMap<String, List<String>> tables = new HashMap<String, List<String>>();
+  private HashMap<String, List<String>> tables = new HashMap<>();
   private boolean bIgnoreEndElement = false;
   private boolean captureTable = false;
   private Collection<?> currentCollection;
   private int rowIndex = -1;
   
-  public RootProcessor(InputStream documentStream, OutputStream processedDocStream) throws XMLStreamException, FactoryConfigurationError {
-    super(documentStream, processedDocStream);
+  public RootProcessor(Key documentKey, InputStream documentStream, OutputStream processedDocStream) throws XMLStreamException, FactoryConfigurationError {
+    super(documentKey, documentStream, processedDocStream);
   }
   
-  public RootProcessor(XMLStreamReader documentStream, XMLStreamWriter processedDocStream, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
-    super(documentStream, processedDocStream, underlayingOutputStream);
+  public RootProcessor(Key documentKey, XMLStreamReader documentStream, XMLStreamWriter processedDocStream, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
+    super(documentKey, documentStream, processedDocStream, underlayingOutputStream);
   }
    
   public void setRowIndex(int rowIndex) {
@@ -80,16 +81,14 @@ public class RootProcessor extends BaseXmlProcessor {
       }
       return true;      
     } else if(localName.equals("table") && captureTable) {
-      TableProcessor tableProcessor = new TableProcessor(this.reader, this.writer, this.underlayingOutputStream);
+      TableProcessor tableProcessor = new TableProcessor(documentKey, this.reader, this.writer, this.underlayingOutputStream);
       tableProcessor.setCollectionModel(currentCollection);
       tableProcessor.setPartial(true);
       tableProcessor.setNamespceContext(this.getNamespaceContext());
       tableProcessor.start();
       captureTable = false;
       return true;
-    } else if(localName.equals("_8E03AB25A2E342ea84854A32DEA84BBC")) {
-      return true;
-    }
+    } else return localName.equals("_8E03AB25A2E342ea84854A32DEA84BBC");
     return false;
   }
 
@@ -170,9 +169,8 @@ public class RootProcessor extends BaseXmlProcessor {
   private void addProperty(String property, String value, String fieldName, String label) throws XMLStreamException {
 	  String namespaceURI    = reader.getAttributeNamespace(0);
 	  String namespacePrefix = reader.getAttributePrefix(0);
-	  String attrbLocalName  = property;
-	  
-	  writer.writeAttribute(namespacePrefix, namespaceURI, attrbLocalName, value);
+
+    writer.writeAttribute(namespacePrefix, namespaceURI, property, value);
   }
  
   protected boolean handleContent(String content) throws IOException, XMLStreamException {
@@ -181,40 +179,43 @@ public class RootProcessor extends BaseXmlProcessor {
   
   @Override
   protected boolean handleEndElement(String localName) throws XMLStreamException {
-    if(localName.equals("user-field-decls")) {
-      this.bInsideUserFieldDecls = false;
-      
-      for(String tableId : tables.keySet()) {
-        Collection<Model> tableModels = this.model.getPropertyAsCollection(tableId);
-        int i = 0;
-        for(Model model : tableModels) {
-          for(String cellId : tables.get(tableId)) {
-            writer.writeStartElement("text",
-                                     "user-field-decl",
-                                     "urn:oasis:names:tc:opendocument:xmlns:text:1.0");
-            writer.writeAttribute("office", 
-                                  "urn:oasis:names:tc:opendocument:xmlns:office:1.0", 
-                                  "value-type", 
-                                  "string");
-            writer.writeAttribute("office", 
-                                  "urn:oasis:names:tc:opendocument:xmlns:office:1.0", 
-                                  "string-value", 
-                                  model.getPropertyAsString(cellId));
-            writer.writeAttribute("text", 
-                                  "urn:oasis:names:tc:opendocument:xmlns:text:1.0", 
-                                  "name", 
-                                  String.format(TABLE_ROW_CELL_TEMPLATE, tableId, i, cellId));
-            writer.writeEndElement();
+    switch (localName) {
+      case "user-field-decls":
+        this.bInsideUserFieldDecls = false;
+
+        for (String tableId : tables.keySet()) {
+          Collection<Model> tableModels = this.model.getPropertyAsCollection(tableId);
+          int i = 0;
+          for (Model model : tableModels) {
+            for (String cellId : tables.get(tableId)) {
+              writer.writeStartElement("text",
+                      "user-field-decl",
+                      "urn:oasis:names:tc:opendocument:xmlns:text:1.0");
+              writer.writeAttribute("office",
+                      "urn:oasis:names:tc:opendocument:xmlns:office:1.0",
+                      "value-type",
+                      "string");
+              writer.writeAttribute("office",
+                      "urn:oasis:names:tc:opendocument:xmlns:office:1.0",
+                      "string-value",
+                      model.getPropertyAsString(cellId));
+              writer.writeAttribute("text",
+                      "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
+                      "name",
+                      String.format(TABLE_ROW_CELL_TEMPLATE, tableId, i, cellId));
+              writer.writeEndElement();
+            }
+            i++;
           }
-          i++;
         }
-      }
-    } else if(localName.equals("user-field-decl")) {
-      boolean ignoreEnd = bIgnoreEndElement;
-      bIgnoreEndElement = false;
-      return ignoreEnd;
-    } else if(localName.equals("user-field-get")) {
-      this.bIgnoreContent = false;
+        break;
+      case "user-field-decl":
+        boolean ignoreEnd = bIgnoreEndElement;
+        bIgnoreEndElement = false;
+        return ignoreEnd;
+      case "user-field-get":
+        this.bIgnoreContent = false;
+        break;
     }
     
     return localName.equals("_8E03AB25A2E342ea84854A32DEA84BBC"); 

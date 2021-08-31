@@ -34,6 +34,7 @@ import org.monet.space.kernel.components.monet.documents.SignPositions;
 import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.constants.ErrorCode;
 import org.monet.space.kernel.exceptions.SystemException;
+import org.monet.space.kernel.model.BusinessUnit;
 import org.monet.space.kernel.model.Node;
 import org.monet.space.kernel.model.User;
 import org.monet.space.kernel.model.wrappers.NodeDocumentWrapper;
@@ -91,6 +92,11 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 	}
 
 	@Override
+	public boolean isShared() {
+		return configuration.isDocumentServiceShared();
+	}
+
+	@Override
 	public boolean ping() {
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
@@ -127,6 +133,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_TEMPLATE_CODE, toStringBody(idTemplate));
 			parameters.put(REQUEST_PARAM_MIME_TYPE, toStringBody(type));
 			parameters.put(REQUEST_PARAM_SIGNS_POSITION, toStringBody(positionForSignature(position).toString()));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.UPLOAD_DOCUMENT_TEMPLATE, idTemplate, oException);
@@ -138,7 +145,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 		Configuration oConfiguration = Configuration.getInstance();
 		String sPreviewUrl;
 
-		sPreviewUrl = oConfiguration.getValue(Configuration.COMPONENT_DOCUMENTS_MONET_URL) + "/preview/?id=" + hmParameters.get("id");
+		sPreviewUrl = oConfiguration.getValue(Configuration.COMPONENT_DOCUMENTS_MONET_URL) + "/preview/?id=" + hmParameters.get("id") + "&space=" + this.getSpace();
 
 		if (hmParameters.get("page") != null)
 			sPreviewUrl += "&page=" + hmParameters.get("page");
@@ -151,7 +158,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 	@Override
 	public String getDownloadUrl(Map<String, String> hmParameters) {
 		Configuration oConfiguration = Configuration.getInstance();
-		String url = oConfiguration.getValue(Configuration.COMPONENT_DOCUMENTS_MONET_URL) + "/download/?id=" + hmParameters.get("id");
+		String url = oConfiguration.getValue(Configuration.COMPONENT_DOCUMENTS_MONET_URL) + "/download/?id=" + hmParameters.get("id") + "&space=" +this.getSpace();
 		if (hmParameters.containsKey("thumb"))
 			url += "&thumb=1";
 		return url;
@@ -178,6 +185,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(operation));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
 			parameters.put(REQUEST_PARAM_ASYNCRONOUS, toStringBody(Boolean.toString(async)));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
@@ -191,6 +199,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_EXISTS_DOCUMENT));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			String result = StreamHelper.toString(restFullClient.executePost(this.componentDocumentUrl, parameters).content);
 			return result.indexOf("true") != -1;
 		} catch (Exception oException) {
@@ -205,6 +214,22 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_CREATE_DOCUMENT));
 			parameters.put(REQUEST_PARAM_TEMPLATE_CODE, toStringBody(idTemplate));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
+			restFullClient.executePost(this.componentDocumentUrl, parameters);
+		} catch (Exception oException) {
+			throw new SystemException(ErrorCode.CREATE_DOCUMENT, idDocument, oException);
+		}
+	}
+
+	@Override
+	public void createSharedDocument(String idTemplate, String idDocument, String referencedDocument) {
+		try {
+			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
+			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_CREATE_DOCUMENT));
+			parameters.put(REQUEST_PARAM_TEMPLATE_CODE, toStringBody(idTemplate));
+			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_DOCUMENT_REFERENCED, toStringBody(referencedDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.CREATE_DOCUMENT, idDocument, oException);
@@ -225,6 +250,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			if (aData != null)
 				parameters.put(REQUEST_PARAM_DOCUMENT_DATA, new InputStreamBody(new ByteArrayInputStream(aData), idDocument));
 			parameters.put(REQUEST_PARAM_ASYNCRONOUS, toStringBody(Boolean.toString(async)));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.UPDATE_DOCUMENT, idDocument, oException);
@@ -239,6 +265,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
 			parameters.put(REQUEST_PARAM_COPIED_DOCUMENT_CODE, toStringBody(idCopiedDocument));
 			parameters.put(REQUEST_PARAM_GENERATE_PREVIEW, toStringBody(Boolean.toString(generatePreview)));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.UPDATE_DOCUMENT, idDocument, oException);
@@ -251,6 +278,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_REMOVE_DOCUMENT));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.REMOVE_DOCUMENT, idDocument, oException);
@@ -266,6 +294,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_CONTENT_TYPE, toStringBody(sContentType));
 			parameters.put(REQUEST_PARAM_DOCUMENT_DATA, new InputStreamBody(oData, idDocument));
 			parameters.put(REQUEST_PARAM_GENERATE_PREVIEW, toStringBody(Boolean.toString(generatePreview)));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.UPLOAD_DOCUMENT, idDocument, oException);
@@ -279,6 +308,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_OVERWRITE_CONTENT));
 			parameters.put(REQUEST_PARAM_DESTINATION_DOCUMENT_ID, toStringBody(id));
 			parameters.put(REQUEST_PARAM_SOURCE_DOCUMENT_ID, toStringBody(sourceContentId));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.OVERWRITE_DOCUMENT, id, oException);
@@ -296,6 +326,8 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			if (schema != null)
 				parameters.put(REQUEST_PARAM_DOCUMENT_XML_DATA, toStringBody(schema));
 
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
+
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.OVERWRITE_DOCUMENT, id, oException);
@@ -312,6 +344,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_DOCUMENT_DATA, new InputStreamBody(oData, idDocument));
 			parameters.put(REQUEST_PARAM_WIDTH, toStringBody(String.valueOf(width)));
 			parameters.put(REQUEST_PARAM_HEIGHT, toStringBody(String.valueOf(height)));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.UPLOAD_DOCUMENT, idDocument, oException);
@@ -324,6 +357,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_GET_DOCUMENT));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			return restFullClient.execute(this.componentDocumentUrl, true, parameters).content;
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.GET_DOCUMENT, idDocument, oException);
@@ -336,6 +370,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody(ACTION_GET_DOCUMENT_XML_DATA));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			return StreamHelper.toString(restFullClient.executePost(this.componentDocumentUrl, parameters).content);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.GET_DOCUMENT, idDocument, oException);
@@ -348,6 +383,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody("getDocumentHash"));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			return StreamHelper.toString(restFullClient.executePost(this.componentDocumentUrl, parameters).content).trim();
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.GET_DOCUMENT, idDocument, oException);
@@ -360,6 +396,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			parameters.put(REQUEST_PARAM_ACTION, toStringBody("getDocumentContentType"));
 			parameters.put(REQUEST_PARAM_DOCUMENT_CODE, toStringBody(idDocument));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			return StreamHelper.toString(restFullClient.executePost(this.componentDocumentUrl, parameters).content).trim();
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.GET_DOCUMENT, idDocument, oException);
@@ -377,6 +414,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_SIGN_LOCATION, toStringBody(location));
 			parameters.put(REQUEST_PARAM_SIGN_CONTACT, toStringBody(contact));
 			parameters.put(REQUEST_PARAM_SIGN_FIELD, toStringBody(field));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			return PersisterHelper.load(restFullClient.executePost(this.componentDocumentUrl, parameters).content, PresignedDocument.class);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.GET_DOCUMENT, documentId, oException);
@@ -391,6 +429,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 			parameters.put(REQUEST_PARAM_DOCUMENT_ID, toStringBody(documentId));
 			parameters.put(REQUEST_PARAM_SIGN_ID, toStringBody(signId));
 			parameters.put(REQUEST_PARAM_SIGNATURE, toStringBody(signature));
+			parameters.put(REQUEST_PARAM_SPACE, toStringBody(this.getSpace()));
 			restFullClient.executePost(this.componentDocumentUrl, parameters);
 		} catch (Exception oException) {
 			throw new SystemException(ErrorCode.GET_DOCUMENT, documentId, oException);

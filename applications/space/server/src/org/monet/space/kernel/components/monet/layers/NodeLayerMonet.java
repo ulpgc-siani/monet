@@ -53,7 +53,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (containerDefinition.getContain() != null) {
 			for (Ref contain : containerDefinition.getContain().getNode()) {
 				String codeNode = dictionary.getDefinitionCode(contain.getValue());
-				Node newNode = this.addNode(codeNode, owner, node);
+				Node newNode = this.addNode(codeNode, owner, node,null);
 				addNodeContainerChild(node, newNode);
 			}
 		}
@@ -84,7 +84,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (desktopDefinition.getContain() != null) {
 			for (Ref contain : desktopDefinition.getContain().getNode()) {
 				String codeNode = dictionary.getDefinitionCode(contain.getValue());
-				Node newNode = this.addNode(codeNode, owner, node);
+				Node newNode = this.addNode(codeNode, owner, node, null);
 
 				addNodeContainerChild(node, newNode);
 			}
@@ -194,12 +194,15 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 
 		try {
 
-			if (nodeDefinition.isReadonly()) {
+			if (nodeDefinition.isReadonly() && node.getReferencedId() == null) {
 				AgentLogger.getInstance().errorInModel(String.format("Definition %s is readonly!", nodeDefinition.getName()), null);
 				return;
 			}
-
-			componentDocuments.createDocument(node.getCode(), node.getId());
+			if (node.getReferencedId() != null){
+				componentDocuments.createSharedDocument(node.getCode(), node.getId(), node.getReferencedId());
+			}else {
+				componentDocuments.createDocument(node.getCode(), node.getId());
+			}
 		} catch (Exception oException) {
 			try {
 				this.deleteAndRemoveNodeFromTrash(node.getId());
@@ -226,7 +229,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 				continue;
 
 			indicatorList = attribute.getIndicatorList();
-			newNode = this.addNode(dictionary.getDefinitionCode(nodeFieldDeclaration.getContain().getNode().getValue()), node.getOwner(), node);
+			newNode = this.addNode(dictionary.getDefinitionCode(nodeFieldDeclaration.getContain().getNode().getValue()), node.getOwner(), node, node.getReferencedId());
 
 			this.saveNodeReference(newNode, newNode.getReference());
 
@@ -447,6 +450,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		ComponentDocuments componentDocuments = ComponentDocuments.getInstance();
 
 		try {
+			if (node.getReferencedId() != null && !node.getReferencedId().equals("-1")) return;
 			componentDocuments.updateDocument(node.getId(), node.getSchema(), async);
 		} catch (Exception exception) {
 			throw new DataException(ErrorCode.SAVE_NODE, node.getId(), exception);
@@ -483,7 +487,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 
 		for (String key : sourceNodes.keySet()) {
 			Node sourceChildNode = sourceNodes.get(key);
-			Node newNode = this.addNode(sourceChildNode.getCode(), node.getOwner(), node);
+			Node newNode = this.addNode(sourceChildNode.getCode(), node.getOwner(), node, node.getReferencedId());
 			this.copyNode(newNode, sourceChildNode, label, description);
 		}
 
@@ -509,7 +513,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 				continue;
 
 			sourceNode = this.loadNode(indicatorNode.getData());
-			newNode = this.addNode(sourceNode.getCode(), node.getOwner(), node);
+			newNode = this.addNode(sourceNode.getCode(), node.getOwner(), node, node.getReferencedId());
 			this.copyNode(newNode, sourceNode, indicatorValue.getData(), indicatorValue.getData());
 			this.saveNodeReference(newNode, newNode.getReference());
 
@@ -590,12 +594,12 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 
 	@Override
 	public Node addPrototype(String code, Node parent) {
-		Node node = this.addNode(code, parent != null ? parent.getOwner() : null, parent);
+		Node node = this.addNode(code, parent != null ? parent.getOwner() : null, parent, null);
 		this.makeNodePrototype(node);
 		return node;
 	}
 
-	private Node addNode(String key, User owner, Node parent) {
+	private Node addNode(String key, User owner, Node parent, String referencedId) {
 		ProducerNode producerNode;
 		ProducerReference producerReference;
 		Node node;
@@ -635,6 +639,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 			node.setOrder(0);
 			node.setParent(parent);
 			node.setCode(code);
+			node.setReferencedId(referencedId);
 			node.setAttributeList(nodeDefinition.buildAttributes());
 
 			reference = node.getReference();
@@ -722,7 +727,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (!this.isStarted()) {
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 		}
-		return this.addNode(code, null, null);
+		return this.addNode(code, null, null, null);
 	}
 
 	@Override
@@ -730,7 +735,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (!this.isStarted()) {
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 		}
-		return this.addNode(code, owner, null);
+		return this.addNode(code, owner, null, null);
 	}
 
 	@Override
@@ -738,7 +743,15 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 		if (!this.isStarted()) {
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 		}
-		return this.addNode(code, parent != null ? parent.getOwner() : null, parent);
+		return this.addNode(code, parent != null ? parent.getOwner() : null, parent, null);
+	}
+
+	@Override
+	public Node addSharedNode(String code, String documentReference) {
+		if (!this.isStarted()) {
+			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
+		}
+		return this.addNode(code, null, null, documentReference);
 	}
 
 	@Override
@@ -970,7 +983,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 			String childDefinitionCode = dictionary.getDefinitionCode(contain.getValue());
 			String idChild = node.getIndicatorValue("[" + childDefinitionCode + "].value");
 			if (!this.existsNode(idChild)) {
-				Node childNode = this.addNode(childDefinitionCode, node.getOwner(), node);
+				Node childNode = this.addNode(childDefinitionCode, node.getOwner(), node, node.getReferencedId());
 				this.addNodeContainerChild(node, childNode);
 				this.saveNode(node);
 			}

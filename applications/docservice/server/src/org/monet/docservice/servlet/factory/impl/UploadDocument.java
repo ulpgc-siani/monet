@@ -2,6 +2,7 @@ package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.core.util.StreamHelper;
@@ -58,7 +59,7 @@ public class UploadDocument extends Action {
 
 	@Override
 	public void execute(Map<String, Object> params, Response response) throws Exception {
-		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
+		Key documentKey = documentKey(params);
 		InputStream documentData = (InputStream) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_DATA);
 		String contentType = (String) params.get(RequestParams.REQUEST_PARAM_CONTENT_TYPE);
 		boolean generatePreview = Boolean.valueOf((String)params.get(RequestParams.REQUEST_PARAM_GENERATE_PREVIEW));
@@ -86,11 +87,11 @@ public class UploadDocument extends Action {
 			StreamHelper.close(sourcePdfFileStream);
 			sourcePdfFileStream = new FileInputStream(tempFile);
 
-			if (!repository.existsDocument(documentId))
-				repository.createEmptyDocument(documentId, Document.STATE_CONSOLIDATED);
+			if (!repository.existsDocument(documentKey))
+				repository.createEmptyDocument(documentKey, Document.STATE_CONSOLIDATED);
 			else {
 				try {
-					InputStream inputStream = repository.getDocumentXmlData(documentId);
+					InputStream inputStream = repository.getDocumentXmlData(documentKey);
 					if (inputStream != null)
 						xmlData = StreamHelper.toString(inputStream);
 				}
@@ -101,7 +102,7 @@ public class UploadDocument extends Action {
 			if (DocumentType.valueOf(contentType) == DocumentType.PORTABLE_DOCUMENT) {
 				Operation operation = this.operationsFactory.create(Operation.OPERATION_EXTRACT_ATTACHMENT);
 				WorkQueueItem target = new WorkQueueItem(-1);
-				target.setDocumentId(documentId);
+				target.setDocumentKey(documentKey);
 				target.setDataFile(tempFile);
 				target.setXmlData(xmlData);
 				operation.setTarget(target);
@@ -109,12 +110,12 @@ public class UploadDocument extends Action {
 				xmlData = target.getXmlData();
 			}
 
-			repository.saveDocumentData(documentId, sourcePdfFileStream, xmlData, contentType, hash);
-			repository.clearDocumentPreviewData(documentId);
+			repository.saveDocumentData(documentKey, sourcePdfFileStream, xmlData, contentType, hash);
+			repository.clearDocumentPreviewData(documentKey);
 
 			if (generatePreview) {
 				WorkQueueItem item = new WorkQueueItem(-1);
-				item.setDocumentId(documentId);
+				item.setDocumentKey(documentKey);
 				item.setOperation(Operation.OPERATION_GENERATE_DOCUMENT_PREVIEW);
 				this.workQueue.queueNewWorkItem(item);
 			}

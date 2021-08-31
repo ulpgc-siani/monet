@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.agent.AgentFilesystem;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.library.LibraryZip;
@@ -23,7 +24,7 @@ public class OpenDocument implements DocumentProcessor {
   private LibraryZip oLibraryZip;
   private Configuration configuration;
   private Logger logger;
-  private String documentId;
+  private Key documentKey;
   
   @Inject
   public void injectAgentFilesystem(AgentFilesystem oAgentFilesystem) {
@@ -45,8 +46,8 @@ public class OpenDocument implements DocumentProcessor {
     this.logger = logger;
   }
   
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
+  public void setDocumentKey(Key documentKey) {
+    this.documentKey = documentKey;
   }
 
   public void setModel(Model model) {
@@ -74,9 +75,9 @@ public class OpenDocument implements DocumentProcessor {
       //Procesar el Xml sobreescribiendo el original
       FileInputStream sourceDocumentStream = new FileInputStream(workingXmlFile);
       FileOutputStream processedDocumentStream = new FileOutputStream(documentXmlPath);
-      RootProcessor rootProc = new RootProcessor(sourceDocumentStream, processedDocumentStream);
+      RootProcessor rootProc = new RootProcessor(documentKey, sourceDocumentStream, processedDocumentStream);
       rootProc.setModel(this.model);
-      rootProc.setDocumentId(this.documentId);
+      rootProc.setDocumentKey(this.documentKey);
       rootProc.start();
       sourceDocumentStream.close();
       processedDocumentStream.close();

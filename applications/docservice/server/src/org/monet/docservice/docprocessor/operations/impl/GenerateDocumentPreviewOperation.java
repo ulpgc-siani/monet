@@ -74,17 +74,17 @@ public class GenerateDocumentPreviewOperation implements Operation {
 			InputStream documentStream = null;
 			try {
 				outputStream = new FileOutputStream(tempFile);
-				documentStream = repository.getDocumentData(target.getDocumentId());
+				documentStream = repository.getDocumentData(target.getDocumentKey());
 				IOUtils.copy(documentStream, outputStream);
 			} finally {
 				StreamHelper.close(documentStream);
 				StreamHelper.close(outputStream);
 			}
 
-			String contentType = repository.getDocumentDataContentType(target.getDocumentId());
+			String contentType = repository.getDocumentDataContentType(target.getDocumentKey());
 			int documentType = DocumentType.valueOf(contentType);
 
-			repository.clearDocumentPreviewData(target.getDocumentId());
+			repository.clearDocumentPreviewData(target.getDocumentKey());
 
 			String pdfTempFilePath = pdfTempFile.getAbsolutePath();
 			boolean generatePreview = false;
@@ -99,11 +99,11 @@ public class GenerateDocumentPreviewOperation implements Operation {
 				}
 			else {
 				pdfTempFilePath = tempFile.getAbsolutePath();
-				generatePreview = documentType != DocumentType.XML_DOCUMENT && !repository.existsDocumentPreview(target.getDocumentId());
+				generatePreview = documentType != DocumentType.XML_DOCUMENT && !repository.existsDocumentPreview(target.getDocumentKey());
 			}
 
 			if (generatePreview)
-				previewGenerator.generatePreview(pdfTempFilePath, target.getDocumentId());
+				previewGenerator.generatePreview(pdfTempFilePath, target.getDocumentKey());
 			else
 				generateDefaultPreview(repository);
 
@@ -124,7 +124,7 @@ public class GenerateDocumentPreviewOperation implements Operation {
 		BufferedImage previewImage = ImageIO.read(previewDataForImage);
 		BufferedImage previewThumbnailImage = ImageIO.read(previewThumbnailDataForImage);
 
-		repository.saveDocumentPreviewData(target.getDocumentId(),
+		repository.saveDocumentPreviewData(target.getDocumentKey(),
 			1,
 			previewData,
 			"image/png",
@@ -135,7 +135,7 @@ public class GenerateDocumentPreviewOperation implements Operation {
 		StreamHelper.close(previewData);
 		StreamHelper.close(previewDataForImage);
 
-		repository.saveDocumentPreviewData(target.getDocumentId(),
+		repository.saveDocumentPreviewData(target.getDocumentKey(),
 			1,
 			previewThumbnailData,
 			"image/png",

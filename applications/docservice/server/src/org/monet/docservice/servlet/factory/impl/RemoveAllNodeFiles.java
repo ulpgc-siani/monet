@@ -26,11 +26,12 @@ public class RemoveAllNodeFiles extends Action {
 
   @Override
   public void execute(Map<String, Object> params, Response response) throws Exception {
-    int nodeId = Integer.valueOf((String) params.get(RequestParams.REQUEST_PARAM_NODE_CODE));
+    int nodeId = Integer.parseInt((String) params.get(RequestParams.REQUEST_PARAM_NODE_CODE));
+    //TODO revisar caso
     logger.debug("removeAllNodeFiles(%s)", nodeId);
 
     Repository repository = repositoryProvider.get();
-    response.getWriter().write(String.valueOf(repository.removeAllNodeFiles(nodeId)));
+    response.getWriter().write(String.valueOf(repository.removeAllNodeFiles(space(params), nodeId)));
   }
 
 }

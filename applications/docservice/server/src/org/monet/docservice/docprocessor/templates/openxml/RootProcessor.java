@@ -16,6 +16,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.data.Repository;
 import org.monet.docservice.docprocessor.templates.common.Attributes;
@@ -57,13 +58,13 @@ public class RootProcessor extends BaseXmlProcessor {
   private Logger         logger;
   private boolean        finishDrawingInsideSimple = false;
 
-  public RootProcessor(InputStream documentStream, OutputStream processedDocStream) throws XMLStreamException, FactoryConfigurationError {
-    super(documentStream, processedDocStream);
+  public RootProcessor(Key documentKey, InputStream documentStream, OutputStream processedDocStream) throws XMLStreamException, FactoryConfigurationError {
+    super(documentKey, documentStream, processedDocStream);
     init();
   }
 
-  public RootProcessor(XMLStreamReader documentStream, XMLStreamWriter processedDocStream, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
-    super(documentStream, processedDocStream, underlayingOutputStream);
+  public RootProcessor(Key documentKey, XMLStreamReader documentStream, XMLStreamWriter processedDocStream, OutputStream underlayingOutputStream) throws XMLStreamException, FactoryConfigurationError {
+    super(documentKey, documentStream, processedDocStream, underlayingOutputStream);
     init();
   }
 
@@ -108,7 +109,7 @@ public class RootProcessor extends BaseXmlProcessor {
       } else if (localName.equals("extent")) {
         handleTableField();
         if (this.valueOfField != null && !this.valueOfField.isEmpty()) {
-          int[] dimension = this.repository.getImageDimension(this.valueOfField);
+          int[] dimension = this.repository.getImageDimension(Key.from(documentKey.getSpace(), this.valueOfField));
           int imageWidth = dimension[0];
           int imageHeight = dimension[1];
           if (imageWidth > imageHeight) {
@@ -129,7 +130,7 @@ public class RootProcessor extends BaseXmlProcessor {
         return true;
       } else if (localName.equals("ext")) {
         if (this.valueOfField != null && !this.valueOfField.isEmpty()) {
-          int[] dimension = this.repository.getImageDimension(this.valueOfField);
+          int[] dimension = this.repository.getImageDimension(Key.from(documentKey.getSpace(), this.valueOfField));
           int imageWidth = dimension[0];
           int imageHeight = dimension[1];
           if (imageWidth > imageHeight) {
@@ -201,11 +202,11 @@ public class RootProcessor extends BaseXmlProcessor {
     } else if (localName.equals("tbl")) {
       if (captureBlock && startBlock) {
         if (!showBlock) {
-          BlockProcessor blockProcessor = new BlockProcessor(this.reader, this.writer, this.underlayingOutputStream);
+          BlockProcessor blockProcessor = new BlockProcessor(documentKey, this.reader, this.writer, this.underlayingOutputStream);
           blockProcessor.setModel(this.model);
           blockProcessor.setPartial(true);
           blockProcessor.setRepository(repository);
-          blockProcessor.setDocumentId(documentId);
+          blockProcessor.setDocumentKey(documentKey);
           blockProcessor.showBlock(showBlock);
           blockProcessor.setNamespceContext(this.getNamespaceContext());
           blockProcessor.setNewIdImages(newIdImages);
@@ -217,11 +218,11 @@ public class RootProcessor extends BaseXmlProcessor {
         startBlock = showBlock = captureBlock = false;
         return false;
       } else if (captureTable) {
-        TableProcessor tableProcessor = new TableProcessor(this.reader, this.writer, this.underlayingOutputStream);
+        TableProcessor tableProcessor = new TableProcessor(documentKey, this.reader, this.writer, this.underlayingOutputStream);
         tableProcessor.setCollectionModel(currentCollection);
         tableProcessor.setPartial(true);
         tableProcessor.setRepository(repository);
-        tableProcessor.setDocumentId(this.documentId);
+        tableProcessor.setDocumentKey(this.documentKey);
         tableProcessor.setTableName(this.tableName);
         tableProcessor.setNamespceContext(this.getNamespaceContext());
         tableProcessor.setNewIdImages(newIdImages);
@@ -237,11 +238,11 @@ public class RootProcessor extends BaseXmlProcessor {
                                              // doesn't exists
       // Insert the block from database
       if (showBlock) {
-        BlockProcessor blockProcessor = new BlockProcessor(this.reader, this.writer, this.underlayingOutputStream);
+        BlockProcessor blockProcessor = new BlockProcessor(documentKey, this.reader, this.writer, this.underlayingOutputStream);
         blockProcessor.setModel(this.model);
         blockProcessor.setPartial(true);
         blockProcessor.setRepository(repository);
-        blockProcessor.setDocumentId(documentId);
+        blockProcessor.setDocumentKey(documentKey);
         blockProcessor.setBlockName(this.blockName);
         blockProcessor.setNamespceContext(this.getNamespaceContext());
         blockProcessor.setNewIdImages(newIdImages);

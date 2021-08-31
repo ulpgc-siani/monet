@@ -3,8 +3,10 @@ package org.monet.docservice.docprocessor.operations.impl;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.itextpdf.text.pdf.*;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.exceptions.ApplicationException;
 import org.monet.docservice.core.log.Logger;
+import org.monet.docservice.core.util.AttachmentExtractor;
 import org.monet.docservice.core.util.ImageSupport;
 import org.monet.docservice.core.util.StreamHelper;
 import org.monet.docservice.docprocessor.data.Repository;
@@ -28,6 +30,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,33 +67,25 @@ public class ExtractAttachmentOperation implements Operation {
 
     InputStream pdfFile = null;
     try{
-      pdfFile = new FileInputStream(this.target.getDataFile());
+      pdfFile = new FileInputStream(target.getDataFile());
 
-      extractAttachment(pdfFile, this.target.getXmlData());
+      extractAttachment(target.getDocumentKey(), pdfFile, target.getXmlData());
     } catch(Exception e){
-      logger.info("Documento id="+this.target.getDocumentId()+" sin modelo xml asociado",e);
+      logger.info("Documento id="+target.getDocumentKey()+" sin modelo xml asociado",e);
     } finally {
       StreamHelper.close(pdfFile);
     }
   }
 
-  private void extractAttachment(InputStream sourcePdfFileStream, String xmlData) {
-    DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-    DocumentBuilder docBuilder;
-
+  private void extractAttachment(Key documentKey, InputStream sourcePdfFileStream, String xmlData) {
     if(xmlData == null || xmlData.trim().isEmpty()) return;
 
     try {
-      docBuilder = docFactory.newDocumentBuilder();
-      org.w3c.dom.Document doc = docBuilder.parse(new ByteArrayInputStream(xmlData.getBytes("UTF-8")));
-
-      XPath xpath = XPathFactory.newInstance().newXPath();
-      String expression = "//*[@is-attachment=\"true\"]/text()";
-
-      NodeList nodeList =  (NodeList) xpath.evaluate(expression,doc,XPathConstants.NODESET);
-
-      saveFileAttach(nodeList,sourcePdfFileStream);
-
+      DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+      org.w3c.dom.Document doc = docBuilder.parse(new ByteArrayInputStream(xmlData.getBytes(StandardCharsets.UTF_8)));
+      NodeList nodeList = AttachmentExtractor.extract(xmlData);
+      saveFileAttach(documentKey, nodeList,sourcePdfFileStream);
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       transformer.setOutputProperty("indent", "yes");
@@ -103,8 +98,7 @@ public class ExtractAttachmentOperation implements Operation {
     } 
   }
 
-
-  private void saveFileAttach(NodeList nodeList,InputStream sourcePdfFileStream)throws Exception {
+  private void saveFileAttach(Key documentKey, NodeList nodeList, InputStream sourcePdfFileStream)throws Exception {
     PdfReader reader = new PdfReader(sourcePdfFileStream);
     PdfArray array;
     PdfDictionary annot;
@@ -122,21 +116,22 @@ public class ExtractAttachmentOperation implements Operation {
           refs = fs.getAsDict(PdfName.EF);
 
           for(int k = 0; k < nodeList.getLength(); k++){
-            String idAttach = nodeList.item(k).getNodeValue();
-            if(fs.getAsString(PdfName.F).toString().equals(idAttach)){ 
-              //idAttach = this.target.getDocumentId() + "/" + idAttach;
-              nodeList.item(k).setNodeValue(idAttach);
+            String attachId = nodeList.item(k).getNodeValue();
+            Key attachKey = new Key(documentKey.getSpace(), attachId);
+            if(fs.getAsString(PdfName.F).toString().equals(attachId)){
+              nodeList.item(k).setNodeValue(attachKey.getId());
               
               InputStream fileAttach = new ByteArrayInputStream(PdfReader.getStreamBytes((PRStream)refs.getAsStream(PdfName.F)));
               Map<String , Object> params = new HashMap<String, Object>();
-              params.put(RequestParams.REQUEST_PARAM_DOCUMENT_CODE , idAttach);
+              params.put(RequestParams.REQUEST_PARAM_DOCUMENT_CODE , attachKey.getId());
+              params.put(RequestParams.REQUEST_PARAM_SPACE , attachKey.getSpace());
               params.put(RequestParams.REQUEST_PARAM_DOCUMENT_DATA, fileAttach);
               String contentType = annot.getAsString(PdfName.CONTENTS).toString();
               params.put(RequestParams.REQUEST_PARAM_CONTENT_TYPE, annot.getAsString(PdfName.CONTENTS).toString());
-    
+              
               InputStream[] fileAttachcopy = null;
               try{   
-                if(ImageSupport.isImage(idAttach)){
+                if(ImageSupport.isImage(attachKey.getId())){
                   BufferedImage image = ImageIO.read(fileAttach);
                   Repository repository = repositoryProvider.get();
                   
@@ -144,8 +139,8 @@ public class ExtractAttachmentOperation implements Operation {
                   int height = image.getHeight();
                   fileAttach.reset();
                   
-                  if (repository.existsDocument(idAttach))
-                    repository.removeDocument(idAttach);
+                  if (repository.existsDocument(attachKey))
+                    repository.removeDocument(attachKey);
                     
                   Action action = this.actionFactory.create(ActionFactory.ACTION_UPLOAD_IMAGE);
                   params.put(RequestParams.REQUEST_PARAM_WIDTH, String.valueOf(width));
@@ -155,18 +150,13 @@ public class ExtractAttachmentOperation implements Operation {
                 else{
                   Repository repository = repositoryProvider.get();
                   
-                  //if(repository.existsDocument(idAttach))
-                    //throw new RuntimeException("Duplicated attachment!");
-                  //else
-                    //repository.createEmptyDocument(idAttach, Document.STATE_CONSOLIDATED);
-
-                  if(!repository.existsDocument(idAttach))
-                    repository.createEmptyDocument(idAttach, Document.STATE_CONSOLIDATED);
+                  if(!repository.existsDocument(attachKey))
+                    repository.createEmptyDocument(attachKey, Document.STATE_CONSOLIDATED);
                   
                   fileAttachcopy = org.monet.filesystem.StreamHelper.copy(fileAttach, 2);
                   String hash = StreamHelper.calculateHashToHexString(fileAttachcopy[0]);
                   String xmlData = null;
-                  repository.saveDocumentData(idAttach, fileAttachcopy[1], xmlData, contentType, hash);
+                  repository.saveDocumentData(attachKey, fileAttachcopy[1], xmlData, contentType, hash);
                 }
                 break;
               }

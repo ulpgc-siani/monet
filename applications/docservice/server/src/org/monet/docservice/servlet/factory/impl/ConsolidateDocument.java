@@ -1,6 +1,7 @@
 package org.monet.docservice.servlet.factory.impl;
 
 import com.google.inject.Inject;
+import org.monet.docservice.core.Key;
 import org.monet.docservice.core.log.Logger;
 import org.monet.docservice.docprocessor.operations.Operation;
 import org.monet.docservice.docprocessor.operations.OperationsFactory;
@@ -35,19 +36,19 @@ public class ConsolidateDocument extends Action {
 
 	@Override
 	public void execute(Map<String, Object> params, Response response) throws Exception {
-		String documentId = (String) params.get(RequestParams.REQUEST_PARAM_DOCUMENT_CODE);
-		boolean async = Boolean.valueOf((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
-		logger.debug("consolidateDocument(%s, %s)", documentId, async);
+		Key documentKey = documentKey(params);
+		boolean async = Boolean.parseBoolean((String) params.get(RequestParams.REQUEST_PARAM_ASYNCRONOUS));
+		logger.debug("consolidateDocument(%s, %s)", documentKey, async);
 
 		if (async) {
 			WorkQueueItem item = new WorkQueueItem(-1);
-			item.setDocumentId(documentId);
+			item.setDocumentKey(documentKey);
 			item.setOperation(Operation.OPERATION_CONSOLIDATE_DOCUMENT);
 			this.workQueue.queueNewWorkItem(item);
 		} else {
 			Operation operation = this.operationsFactory.create(Operation.OPERATION_CONSOLIDATE_DOCUMENT);
 			WorkQueueItem target = new WorkQueueItem(-1);
-			target.setDocumentId(documentId);
+			target.setDocumentKey(documentKey);
 			operation.setTarget(target);
 			operation.execute();
 		}
