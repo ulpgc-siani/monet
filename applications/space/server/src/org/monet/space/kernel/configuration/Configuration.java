@@ -443,7 +443,7 @@ public class Configuration {
 	}
 
 	public boolean isDocumentServiceShared() {
-		String shared = this.properties.getProperty(COMPONENT_DOCUMENTS_MONET_IS_SHARED);
+		String shared = this.map.get(COMPONENT_DOCUMENTS_MONET_IS_SHARED);
 		if (shared == null) shared = "false";
 		return shared.contains("true");
 	}

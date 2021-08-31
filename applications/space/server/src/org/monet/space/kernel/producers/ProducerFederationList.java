@@ -174,4 +174,8 @@ public class ProducerFederationList extends Producer {
 		return userList;
 	}
 
+	@Override
+	public void loadAttribute(EventObject oEventObject, String sAttribute) {
+	}
+
 }

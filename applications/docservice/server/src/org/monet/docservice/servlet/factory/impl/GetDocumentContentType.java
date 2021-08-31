@@ -29,13 +29,12 @@ public class GetDocumentContentType extends ActionStringResult {
   }
 
   @Override
-  public String onExecute(Map<String, Object> params, Response response)
+  public String onExecute(Map<String, Object> params, Response response) throws Exception {
     Key documentKey = documentKey(params);
     logger.debug("getDocumentContentType(%s)", documentKey);
 
     Repository repository = repositoryProvider.get();
     return repository.getDocumentDataContentType(documentKey);
-
   }
 
 }
