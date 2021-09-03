@@ -147,7 +147,7 @@ public class Configuration {
     }
 
     public String getBackserviceServletPath() {
-        return "/servlet/backservice";
+        return "/backservice";
     }
 
     public String getEnterpriseLoginUrl() {

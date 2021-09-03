@@ -62,12 +62,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("adddatastorecubefact"));
+			String location = this.location + "/adddatastorecubefact";
 			parameters.put("name", toStringBody(datastore));
 			parameters.put("cube", toStringBody(cube));
 			parameters.put("data", toStringBody(encode(fact.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -81,12 +81,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("adddatastorecubefacts"));
+			String location = this.location + "/adddatastorecubefacts";
 			parameters.put("name", toStringBody(datastore));
 			parameters.put("cube", toStringBody(cube));
 			parameters.put("data", toStringBody(encode(factList.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -100,12 +100,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("adddatastoredimensioncomponent"));
+			String location = this.location + "/adddatastoredimensioncomponent";
 			parameters.put("name", toStringBody(datastore));
 			parameters.put("dimension", toStringBody(dimension));
 			parameters.put("data", toStringBody(encode(component.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -119,12 +119,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("addnodeflag"));
+			String location = this.location + "/addnodeflag";
 			parameters.put("id", toStringBody(nodeId));
 			parameters.put("name", toStringBody(encode(name)));
 			parameters.put("value", toStringBody(encode(value)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -138,12 +138,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("addnodenote"));
+			String location = this.location + "/addnodenote";
 			parameters.put("id", toStringBody(id));
 			parameters.put("name", toStringBody(encode(name)));
 			parameters.put("value", toStringBody(encode(value)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -157,7 +157,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("addsourceterm"));
+			String location = this.location + "/addsourceterm";
 			parameters.put("source", toStringBody(sourceId));
 			parameters.put("code", toStringBody(code));
 			parameters.put("label", toStringBody(encode(label)));
@@ -174,7 +174,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			}
 			parameters.put("tags", toStringBody(encode(tagsBuilder.toString())));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -188,7 +188,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("addtaskfact"));
+			String location = this.location + "/addtaskfact";
 			parameters.put("id", toStringBody(id));
 			parameters.put("title", toStringBody(encode(title)));
 			parameters.put("subtitle", toStringBody(encode(subTitle)));
@@ -202,7 +202,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			}
 			parameters.put("links", toStringBody(encode(linksBuilder.toString())));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -216,12 +216,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("addtaskflag"));
+			String location = this.location + "/addtaskflag";
 			parameters.put("id", toStringBody(taskId));
 			parameters.put("name", toStringBody(encode(name)));
 			parameters.put("value", toStringBody(encode(value)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -235,12 +235,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("addtaskshortcut"));
+			String location = this.location + "/addtaskshortcut";
 			parameters.put("id", toStringBody(taskId));
 			parameters.put("name", toStringBody(encode(name)));
 			parameters.put("value", toStringBody(nodeId));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -254,10 +254,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("consolidatenode"));
+			String location = this.location + "/consolidatenode";
 			parameters.put("id", toStringBody(nodeId));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -272,13 +272,13 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 		try {
-			parameters.put("op", toStringBody("createaccount"));
+			String location = this.location + "/createaccount";
 			parameters.put("code", toStringBody(code));
 			parameters.put("fullname", toStringBody(encode(fullname)));
 			parameters.put("email", toStringBody(encode(email)));
 			parameters.put("roles", toStringBody(encode(LibraryArray.implode(roles, ","))));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			account.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -293,13 +293,13 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 		try {
-			parameters.put("op", toStringBody("createnode"));
+			String location = this.location + "/createnode";
 			parameters.put("type", toStringBody(type));
 
 			if (parentId != null)
 				parameters.put("parent", toStringBody(parentId));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			node.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -314,10 +314,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 		try {
-			parameters.put("op", toStringBody("createtask"));
+			String location = this.location + "/createtask";
 			parameters.put("type", toStringBody(type));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			task.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -331,11 +331,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("deletenodeflag"));
+			String location = this.location + "/deletenodeflag";
 			parameters.put("id", toStringBody(nodeId));
 			parameters.put("name", toStringBody(encode(name)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -349,11 +349,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("deletenodenote"));
+			String location = this.location + "/deletenodenote";
 			parameters.put("id", toStringBody(nodeId));
 			parameters.put("name", toStringBody(encode(name)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -367,11 +367,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("deletetaskflag"));
+			String location = this.location + "/deletetaskflag";
 			parameters.put("id", toStringBody(taskId));
 			parameters.put("name", toStringBody(encode(name)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -385,11 +385,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("deletetaskshortcut"));
+			String location = this.location + "/deletetaskshortcut";
 			parameters.put("id", toStringBody(taskId));
 			parameters.put("name", toStringBody(encode(name)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -405,7 +405,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 		try {
-			parameters.put("op", toStringBody("downloaddistribution"));
+			String location = this.location + "/downloaddistribution";
 
 			InputStream inputStream = LibraryRestfull.requestStream(this.location, parameters, this.loadCertificate(), this.certificatePassword);
 			zipFile = File.createTempFile("distribution", Long.toString(System.nanoTime()));
@@ -432,8 +432,8 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("emptytrash"));
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String location = this.location + "/emptytrash";
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -446,7 +446,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("executeexporter"));
+			String location = this.location + "/executeexporter";
 			parameters.put("exporter", toStringBody(exporter));
 
 			if (scope != null)
@@ -469,10 +469,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("existsnode"));
+			String location = this.location + "/existsnode";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			return result.toLowerCase().contains("true");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -485,11 +485,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("executenodecommand"));
+			String location = this.location + "/executenodecommand";
 			parameters.put("idNode", toStringBody(idNode));
 			parameters.put("command", toStringBody(encode(command)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -503,10 +503,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		ExportItem exportItem = new ExportItem();
 
 		try {
-			parameters.put("op", toStringBody("exportnode"));
+			String location = this.location + "/exportnode";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			exportItem.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -521,10 +521,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("exportnodes"));
+			String location = this.location + "/exportnodes";
 			parameters.put("ids", toStringBody(LibraryArray.implode(ids, ",")));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			exportList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -542,10 +542,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodeancestors"));
+			String location = this.location + "/getnodeancestors";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			nodeList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -561,7 +561,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodedocument"));
+			String location = this.location + "/getnodedocument";
 			parameters.put("id", toStringBody(id));
 
 			return LibraryRestfull.requestStream(this.location, parameters, this.loadCertificate(), this.certificatePassword);
@@ -577,10 +577,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodedocumentcontenttype"));
+			String location = this.location + "/getnodedocumentcontenttype";
 			parameters.put("id", toStringBody(id));
 
-			return LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			return LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -593,7 +593,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodefile"));
+			String location = this.location + "/getnodefile";
 			parameters.put("id", toStringBody(id));
 			parameters.put("name", toStringBody(name));
 
@@ -611,10 +611,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodeflags"));
+			String location = this.location + "/getnodeflags";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (result.isEmpty())
 				return flags;
@@ -640,10 +640,9 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodelocation"));
 			parameters.put("id", toStringBody(id));
 
-			String data = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String data = LibraryRestfull.request(this.location + "/getnodelocation", parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (data.isEmpty())
 				return null;
@@ -663,10 +662,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodenotes"));
+			String location = this.location + "/getnodenotes";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (result.isEmpty())
 				return notes;
@@ -692,11 +691,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodereference"));
+			String location = this.location + "/getnodereference";
 			parameters.put("id", toStringBody(nodeId));
 			parameters.put("name", toStringBody(encode(name)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			reference.deserializeFromXML(result);
 
 		} catch (Exception e) {
@@ -713,7 +712,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodereferences"));
+			String location = this.location + "/getnodereferences";
 			parameters.put("code", toStringBody(codeReference));
 			parameters.put("filter", toStringBody(encode(filter)));
 			parameters.put("orderby", toStringBody(encode(orderBy)));
@@ -728,7 +727,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			}
 			parameters.put("parameters", toStringBody(encode(paramsBuilder.toString())));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			referenceList.deserializeFromXML(result);
 
 		} catch (Exception e) {
@@ -745,7 +744,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodereferencescount"));
+			String location = this.location + "/getnodereferencescount";
 			parameters.put("code", toStringBody(codeReference));
 			parameters.put("filter", toStringBody(encode(filter)));
 
@@ -757,7 +756,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			}
 			parameters.put("parameters", toStringBody(encode(paramsBuilder.toString())));
 
-			result = Integer.valueOf(LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword));
+			result = Integer.valueOf(LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -771,10 +770,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodeschema"));
+			String location = this.location + "/getnodeschema";
 			parameters.put("id", toStringBody(id));
 
-			result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -788,10 +787,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getnodetasks"));
+			String location = this.location + "/getnodetasks";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			taskList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -806,13 +805,13 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getsourceterms"));
+			String location = this.location + "/getsourceterms";
 			parameters.put("id", toStringBody(id));
 
 			if (parent != null)
 				parameters.put("parent", toStringBody(parent));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			termList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -827,11 +826,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getsourceparentterm"));
+			String location = this.location + "/getsourceparentterm";
 			parameters.put("id", toStringBody(id));
 			parameters.put("code", toStringBody(code));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (result == null || result.isEmpty())
 				return null;
@@ -850,7 +849,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettasks"));
+			String location = this.location + "/gettasks";
 			parameters.put("inbox", toStringBody(encode(inbox)));
 			parameters.put("folder", toStringBody(encode(folder)));
 			parameters.put("condition", toStringBody(encode(condition)));
@@ -858,7 +857,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			parameters.put("start", toStringBody(String.valueOf(start)));
 			parameters.put("limit", toStringBody(String.valueOf(limit)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			taskList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -873,7 +872,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettasks"));
+			String location = this.location + "/gettasks";
 			parameters.put("inbox", toStringBody("tasktray"));
 			parameters.put("folder", toStringBody(encode(folder)));
 			parameters.put("condition", toStringBody(encode(condition)));
@@ -881,7 +880,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			parameters.put("start", toStringBody(String.valueOf(start)));
 			parameters.put("limit", toStringBody(String.valueOf(limit)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			taskList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -896,14 +895,14 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettasks"));
+			String location = this.location + "/gettasks";
 			parameters.put("inbox", toStringBody("taskboard"));
 			parameters.put("folder", toStringBody(encode(folder)));
 			parameters.put("condition", toStringBody(encode(condition)));
 			parameters.put("start", toStringBody(String.valueOf(start)));
 			parameters.put("limit", toStringBody(String.valueOf(limit)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			taskList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -918,10 +917,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettaskfacts"));
+			String location = this.location + "/gettaskfacts";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			taskFactList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -936,10 +935,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettaskflags"));
+			String location = this.location + "/gettaskflags";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (result.isEmpty())
 				return flags;
@@ -965,10 +964,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettaskprocess"));
+			String location = this.location + "/gettaskprocess";
 			parameters.put("id", toStringBody(id));
 
-			String data = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String data = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (data.isEmpty())
 				return null;
@@ -987,10 +986,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("gettaskshortcuts"));
+			String location = this.location + "/gettaskshortcuts";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 
 			if (result.isEmpty())
 				return flags;
@@ -1016,10 +1015,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getuserlinkedtonode"));
+			String location = this.location + "/getuserlinkedtonode";
 			parameters.put("idnode", toStringBody(idNode));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			user.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1034,11 +1033,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getusernode"));
+			String location = this.location + "/getusernode";
 			parameters.put("code", toStringBody(codeUser));
 			parameters.put("depth", toStringBody(String.valueOf(depth)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			node.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1053,10 +1052,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("getusertasks"));
+			String location = this.location + "/getusertasks";
 			parameters.put("code", toStringBody(codeUser));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			taskList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1070,10 +1069,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("haspermissions"));
+			String location = this.location + "/haspermissions";
 			parameters.put("username", toStringBody(username));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword, 60);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword, 60);
 			return result != null && result.toLowerCase().contains("true");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1087,14 +1086,14 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("importnode"));
+			String location = this.location + "/importnode";
 			parameters.put("importer", toStringBody(importer));
 			parameters.put("data", toStringBody(encode(data)));
 
 			if (scopeNodeId != null)
 				parameters.put("idscope", toStringBody(scopeNodeId));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1108,10 +1107,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("loaduser"));
+			String location = this.location + "/loaduser";
 			parameters.put("code", toStringBody(code));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			user.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1129,10 +1128,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("locatenode"));
+			String location = this.location + "/locatenode";
 			parameters.put("code", toStringBody(code));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			node.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1152,11 +1151,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("locatenode"));
+			String location = this.location + "/locatenode";
 			parameters.put("code", toStringBody(code));
 			parameters.put("depth", toStringBody(String.valueOf(depth)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			node.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1176,10 +1175,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("loadsource"));
+			String location = this.location + "/loadsource";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			source.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1199,13 +1198,13 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("locatesource"));
+			String location = this.location + "/locatesource";
 			parameters.put("code", toStringBody(code));
 
 			if (url != null)
 				parameters.put("url", toStringBody(encode(url)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			source.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1223,10 +1222,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		nodesCache.remove(id);
 
 		try {
-			parameters.put("op", toStringBody("makenodedeleteable"));
+			String location = this.location + "/makenodedeleteable";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1241,10 +1240,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		nodesCache.remove(id);
 
 		try {
-			parameters.put("op", toStringBody("makenodeeditable"));
+			String location = this.location + "/makenodeeditable";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1259,10 +1258,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		nodesCache.remove(id);
 
 		try {
-			parameters.put("op", toStringBody("makenodeprivate"));
+			String location = this.location + "/makenodeprivate";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1277,10 +1276,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		nodesCache.remove(id);
 
 		try {
-			parameters.put("op", toStringBody("makenodepublic"));
+			String location = this.location + "/makenodepublic";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1295,10 +1294,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		nodesCache.remove(id);
 
 		try {
-			parameters.put("op", toStringBody("makenodeundeleteable"));
+			String location = this.location + "/makenodeundeleteable";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1313,10 +1312,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		nodesCache.remove(id);
 
 		try {
-			parameters.put("op", toStringBody("makenodeuneditable"));
+			String location = this.location + "/makenodeuneditable";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1333,10 +1332,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("opendatastore"));
+			String location = this.location + "/opendatastore";
 			parameters.put("name", toStringBody(name));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			datastore.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1356,10 +1355,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("opennode"));
+			String location = this.location + "/opennode";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			node.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1376,10 +1375,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("opennodes"));
+			String location = this.location + "/opennodes";
 			parameters.put("ids", toStringBody(LibraryArray.implode(ids, ",")));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			nodeList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1397,10 +1396,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("opentask"));
+			String location = this.location + "/opentask";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			task.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1419,10 +1418,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("recovernode"));
+			String location = this.location + "/recovernode";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			node.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1438,10 +1437,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("removenode"));
+			String location = this.location + "/removenode";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1456,10 +1455,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("removetask"));
+			String location = this.location + "/removetask";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1474,10 +1473,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("resetnodeform"));
+			String location = this.location + "/resetnodeform";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1491,10 +1490,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 		try {
-			parameters.put("op", toStringBody("resumetask"));
+			String location = this.location + "/resumetask";
 			parameters.put("id", toStringBody(id));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			task.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1508,10 +1507,10 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("runtask"));
+			String location = this.location + "/runtask";
 			parameters.put("id", toStringBody(id));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1527,11 +1526,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenode"));
+			String location = this.location + "/savenode";
 			parameters.put("id", toStringBody(node.getId()));
 			parameters.put("data", toStringBody(encode(node.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1547,12 +1546,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodedocument"));
+			String location = this.location + "/savenodedocument";
 			parameters.put("id", toStringBody(id));
 			parameters.put("data", new InputStreamBody(data, id));
 			parameters.put("contenttype", toStringBody(contentType));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1568,12 +1567,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodefile"));
+			String location = this.location + "/savenodefile";
 			parameters.put("id", toStringBody(id));
 			parameters.put("name", toStringBody(name));
 			parameters.put("data", new InputStreamBody(data, name));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1588,12 +1587,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodepicture"));
+			String location = this.location + "/savenodepicture";
 			parameters.put("id", toStringBody(id));
 			parameters.put("name", toStringBody(name));
 			parameters.put("data", new InputStreamBody(data, name));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1609,11 +1608,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodeparent"));
+			String location = this.location + "/savenodeparent";
 			parameters.put("id", toStringBody(nodeId));
 			parameters.put("parent", toStringBody(parentId));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1629,11 +1628,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodepartnercontext"));
+			String location = this.location + "/savenodepartnercontext";
 			parameters.put("id", toStringBody(idNode));
 			parameters.put("context", toStringBody(encode(context)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1649,7 +1648,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodereference"));
+			String location = this.location + "/savenodereference";
 			parameters.put("id", toStringBody(idNode));
 			parameters.put("code", toStringBody(reference.getCode()));
 
@@ -1661,7 +1660,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			}
 			parameters.put("attributes", toStringBody(encode(attributesBuilder.toString())));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1675,11 +1674,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savenodesattribute"));
+			String location = this.location + "/savenodesattribute";
 			parameters.put("nodes", toStringBody(LibraryString.implodeAndWrap(idNodes, ",", null)));
 			parameters.put("data", toStringBody(encode(attribute.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1695,11 +1694,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("savetask"));
+			String location = this.location + "/savetask";
 			parameters.put("id", toStringBody(task.getId()));
 			parameters.put("data", toStringBody(encode(task.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1713,11 +1712,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("saveuser"));
+			String location = this.location + "/saveuser";
 			parameters.put("id", toStringBody(user.getId()));
 			parameters.put("data", toStringBody(encode(user.serializeToXML()), ContentType.TEXT_XML));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -1733,12 +1732,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("searchevent"));
+			String location = this.location + "/searchevent";
 			parameters.put("type", toStringBody(type));
 			parameters.put("from", toStringBody(dateFormat.format(from)));
 			parameters.put("to", toStringBody(dateFormat.format(to)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			logHistory.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1754,12 +1753,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("searchnodes"));
+			String location = this.location + "/searchnodes";
 			parameters.put("id", toStringBody(id));
 			parameters.put("from", toStringBody(dateFormat.format(from)));
 			parameters.put("to", toStringBody(dateFormat.format(to)));
 
-			String result = LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			String result = LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 			nodeList.deserializeFromXML(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1773,11 +1772,11 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
-			parameters.put("op", toStringBody("subscribe"));
+			String location = this.location + "/subscribe";
 			parameters.put("type", toStringBody(type));
 			parameters.put("data", toStringBody(encode(data)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1790,12 +1789,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("unlocktask"));
+			String location = this.location + "/unlocktask";
 			parameters.put("id", toStringBody(id));
 			parameters.put("place", toStringBody(place));
 			parameters.put("stop", toStringBody(stop));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1808,12 +1807,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
 		try {
-			parameters.put("op", toStringBody("gotoplaceintask"));
+			String location = this.location + "/gotoplaceintask";
 			parameters.put("id", toStringBody(id));
 			parameters.put("place", toStringBody(place));
 			parameters.put("history", toStringBody(encode(history)));
 
-			LibraryRestfull.request(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
