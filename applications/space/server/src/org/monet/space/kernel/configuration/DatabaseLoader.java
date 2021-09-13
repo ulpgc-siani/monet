@@ -2,12 +2,20 @@ package org.monet.space.kernel.configuration;
 
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import oracle.jdbc.pool.OracleConnectionPoolDataSource;
+import org.apache.tomcat.dbcp.dbcp.ConnectionFactory;
+import org.apache.tomcat.dbcp.dbcp.DriverManagerConnectionFactory;
+import org.apache.tomcat.dbcp.dbcp.PoolableConnection;
+import org.apache.tomcat.dbcp.dbcp.PoolableConnectionFactory;
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.monet.space.kernel.agents.AgentLogger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.ConnectionPoolDataSource;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseLoader {
@@ -39,20 +47,38 @@ public class DatabaseLoader {
         }
     }
 
-    private static ConnectionPoolDataSource mysqlDataSource(DatabaseConfiguration database) {
-        MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
-        //dataSource.setRetainStatementAfterResultSetClose(true);
-        dataSource.setURL(database.url());
-        dataSource.setUser(database.user());
-        dataSource.setPassword(database.password());
-        return dataSource;
+    private static ConnectionPoolDataSource mysqlDataSource(DatabaseConfiguration configuration) {
+        return dataSource(configuration, "com.mysql.jdbc.Driver");
     }
 
-    private static ConnectionPoolDataSource oracleDataSource(DatabaseConfiguration database) throws SQLException {
-        OracleConnectionPoolDataSource dataSource = new OracleConnectionPoolDataSource();
-        dataSource.setURL(database.url());
-        dataSource.setUser(database.user());
-        dataSource.setPassword(database.password());
-        return dataSource;
+    private static ConnectionPoolDataSource oracleDataSource(DatabaseConfiguration configuration) {
+        return dataSource(configuration, "oracle.jdbc.OracleDriver");
     }
+
+    private static ConnectionPoolDataSource dataSource(DatabaseConfiguration configuration, String driver) {
+        DataSource datasource = new DataSource();
+        datasource.setPoolProperties(poolProperties(configuration, driver));
+        return datasource;
+    }
+
+    private static PoolProperties poolProperties(DatabaseConfiguration configuration, String driver) {
+        PoolProperties p = new PoolProperties();
+        p.setUrl(configuration.url());
+        p.setUsername(configuration.user());
+        p.setPassword(configuration.password());
+        p.setDriverClassName(driver);
+        p.setMaxActive(15);
+        p.setMaxIdle(2);
+        p.setMaxWait(30000);
+        p.setRemoveAbandonedTimeout(5);
+        p.setLogAbandoned(true);
+        p.setAccessToUnderlyingConnectionAllowed(true);
+        p.setValidationQuery("SELECT 1");
+        p.setValidationQueryTimeout(10);
+        p.setValidationInterval(10000);
+        p.setTestOnBorrow(true);
+        p.setJdbcInterceptors("org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+        return p;
+    }
+
 }
