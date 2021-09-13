@@ -185,7 +185,7 @@ public class AgentDatabaseMysql extends AgentDatabase {
 
 		try {
 			connection = this.dataSource.getConnection();
-			return ((ConnectionImpl) connection).getDatabase();
+			return connection.getCatalog();
 		} catch (SQLException ex) {
 		} finally {
 			close(connection);
