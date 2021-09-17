@@ -75,7 +75,7 @@ public class SetupSpace extends Stage {
 		Federation localFederation = businessUnit.getFederation();
 		String name = businessUnit.getName();
 		String label = businessUnit.getLabel();
-		URI uri = new URI(Configuration.getInstance().getUrl());
+		URI uri = new URI(Configuration.getInstance().getServicesBaseUrl());
 
 		for (PublishProperty publishDefinition : distribution.getPublishList()) {
 			Federation federation = new Federation(publishDefinition.getFederation().getSetupUri().toString(), null);

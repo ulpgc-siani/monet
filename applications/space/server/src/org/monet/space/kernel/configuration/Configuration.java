@@ -69,6 +69,7 @@ public class Configuration {
     public static final String IS_DEBUG_MODE = "MONET_IS_DEBUG_MODE";
     public static final String DATABASE_QUERY_EXECUTION_TIME_WARNING = "MONET_DATABASE_QUERY_EXECUTION_TIME_WARNING";
     public static final String SERVICES_REQUEST_MAX_ELAPSED_TIME = "MONET_SERVICES_REQUEST_MAX_ELAPSED_TIME";
+    public static final String SERVICES_BASE_URL = "MONET_SERVICES_BASE_URL";
     public static final String WORKQUEUE_PERIOD = "MONET_WORKQUEUE_PERIOD";
     public static final String SOURCE_UPGRADE_HOUR = "MONET_SOURCE_UPGRADE_HOUR";
     public static final String DEBUG_PARAM = "MONET_DEBUG_PARAM";
@@ -127,6 +128,10 @@ public class Configuration {
         String sUseSSL = this.getValue(USE_SSL);
         String sExcludePath = this.getValue(EXCLUDE_URL_PATH);
         return Context.getInstance().getUrl(idThread, sUseSSL.equals(Strings.TRUE), sExcludePath.equals(Strings.TRUE));
+    }
+
+    public String getServicesBaseUrl() {
+        return getValue(SERVICES_BASE_URL);
     }
 
     public boolean useSSL() {
