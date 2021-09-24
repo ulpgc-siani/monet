@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -81,10 +82,10 @@ public abstract class LibraryDate {
 	}
 
 	public static String getDateAndTimeString(Date dtDate, String codeLanguage, TimeZone timeZone, String format, Boolean bShowTime, String separator) {
-		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE, dd");
-		SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
-		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE, dd", new Locale(codeLanguage));
+		SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", new Locale(codeLanguage));
+		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", new Locale(codeLanguage));
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", new Locale(codeLanguage));
 		String sAtLabel, sOfLabel, sDate = Strings.EMPTY;
 		String time = Strings.EMPTY;
 		String day, month, year = Strings.EMPTY;
