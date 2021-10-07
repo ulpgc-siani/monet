@@ -38,8 +38,12 @@ public class AgentSession extends TimerTask {
     to.setTime(miliseconds-this.inactivityTime);
     
     this.logger.info("Removing federation sessions until %s", to.toString());
-    this.dataRepository.unregisterSessions(to);
-    this.logger.info("Federacion sessions until %s removed", to.toString());
+    try {
+      this.dataRepository.unregisterSessions(to);
+      this.logger.info("Federacion sessions until %s removed", to.toString());
+    } catch (Exception e) {
+      this.logger.error("Error deleting sessions. Message: " + e.getMessage());
+    }
   }
 
   public synchronized void stop() {
