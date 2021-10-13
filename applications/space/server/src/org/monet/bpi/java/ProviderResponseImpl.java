@@ -82,11 +82,13 @@ public class ProviderResponseImpl implements ProviderResponse {
 			bpiNode.injectNode(node);
 
 			try {
-				String contentType = attach.getContentType();
-				if (documentReferenced == null){
+				String contentType;
+				if (documentReferenced == null) {
+					contentType = attach.getContentType();
 					attachStream = attach.getInputStream();
 					componentDocuments.uploadDocument(node.getId(), attachStream, contentType, MimeTypes.getInstance().isPreviewable(contentType));
 				}
+				else contentType = componentDocuments.getDocumentContentType(node.getId());
 				node.setSchema(componentDocuments.getDocumentSchema(node.getId()));
 				nodeLayer.saveNodeSchema(node);
 				if (MimeTypes.PDF.equals(contentType))
