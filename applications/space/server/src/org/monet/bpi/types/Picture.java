@@ -52,7 +52,11 @@ public class Picture extends File {
 	}
 
 	public static Picture fromInputStream(String contentType, InputStream stream) {
-		Picture picture = new Picture(UUID.randomUUID().toString());
+		return fromInputStream(UUID.randomUUID().toString(), contentType, stream);
+	}
+
+	public static Picture fromInputStream(String filename, String contentType, InputStream stream) {
+		Picture picture = new Picture(filename);
 
 		ComponentDocuments componentDocuments = ComponentDocuments.getInstance();
 		componentDocuments.uploadImage(picture.getFilename(), stream, contentType, -1, -1);
