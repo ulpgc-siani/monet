@@ -22,6 +22,7 @@
 
 package org.monet.space.kernel.components.monet;
 
+import org.apache.http.Consts;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
@@ -469,7 +470,7 @@ public class ComponentDocumentsMonet extends ComponentDocuments {
 	}
 
 	private StringBody toStringBody(String content) {
-		return toStringBody(content, ContentType.TEXT_PLAIN);
+		return toStringBody(content, ContentType.create("text/plain", Consts.UTF_8));
 	}
 
 	private StringBody toStringBody(String content, ContentType contentType) {
