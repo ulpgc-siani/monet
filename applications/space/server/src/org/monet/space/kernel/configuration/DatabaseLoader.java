@@ -70,6 +70,7 @@ public class DatabaseLoader {
         p.setMaxActive(15);
         p.setMaxIdle(2);
         p.setMaxWait(30000);
+        p.setRemoveAbandoned(true);
         p.setRemoveAbandonedTimeout(5);
         p.setLogAbandoned(true);
         p.setAccessToUnderlyingConnectionAllowed(true);
