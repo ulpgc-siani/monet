@@ -67,11 +67,11 @@ public class DatabaseLoader {
         p.setUsername(configuration.user());
         p.setPassword(configuration.password());
         p.setDriverClassName(driver);
-        p.setMaxActive(15);
+        p.setMaxActive(configuration.maxActiveConnections());
         p.setMaxIdle(2);
         p.setMaxWait(30000);
         p.setRemoveAbandoned(true);
-        p.setRemoveAbandonedTimeout(300); // 5 min
+        p.setRemoveAbandonedTimeout(configuration.removeAbandonedTimeout()); // 5 min
         p.setLogAbandoned(true);
         p.setAccessToUnderlyingConnectionAllowed(true);
         p.setValidationQuery("SELECT 1");
