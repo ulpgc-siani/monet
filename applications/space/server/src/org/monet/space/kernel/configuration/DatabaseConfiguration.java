@@ -17,8 +17,6 @@ public class DatabaseConfiguration {
 
     private static final String JDBC_TYPE = "Jdbc.Type";
     private static final String JDBC_DATASOURCE = "Jdbc.DataSource";
-    private static final String JDBC_MAX_ACTIVE_CONNECTIONS = "Jdbc.MaxActiveConnections";
-    private static final String JDBC_REMOVE_ABANDONED_TIMEOUT = "Jdbc.RemoveAbandonedTimeout";
     private static final String DATABASE_URL = "Jdbc.Url";
     private static final String DATABASE_USER = "Jdbc.User";
     private static final String DATABASE_PASSWORD = "Jdbc.Password";
@@ -53,11 +51,11 @@ public class DatabaseConfiguration {
     }
 
     public int maxActiveConnections() {
-        return map.containsKey(JDBC_MAX_ACTIVE_CONNECTIONS) ? Integer.parseInt(map.get(JDBC_MAX_ACTIVE_CONNECTIONS)) : 15;
+        return map.containsKey(Configuration.JDBC_MAX_ACTIVE_CONNECTIONS) ? Integer.parseInt(map.get(Configuration.JDBC_MAX_ACTIVE_CONNECTIONS)) : 15;
     }
 
     public int removeAbandonedTimeout() {
-        return map.containsKey(JDBC_REMOVE_ABANDONED_TIMEOUT) ? Integer.parseInt(map.get(JDBC_REMOVE_ABANDONED_TIMEOUT)) : 300;
+        return map.containsKey(Configuration.JDBC_REMOVE_ABANDONED_TIMEOUT) ? Integer.parseInt(map.get(Configuration.JDBC_REMOVE_ABANDONED_TIMEOUT)) : 300;
     }
 
     public String datasource() {

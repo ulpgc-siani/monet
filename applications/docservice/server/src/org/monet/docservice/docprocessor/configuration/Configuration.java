@@ -5,8 +5,10 @@ public interface Configuration {
 
     public static final String JDBC_DATABASE = "Jdbc.Database";
     public static final String JDBC_DATASOURCE = "Jdbc.DataSource";
+	public static final String JDBC_MAX_ACTIVE_CONNECTIONS = "Jdbc.MaxActiveConnections";
+	public static final String JDBC_REMOVE_ABANDONED_TIMEOUT = "Jdbc.RemoveAbandonedTimeout";
 
-    public static final String PATH_TRUETYPE_FONTS = "TrueTypeFonts";
+	public static final String PATH_TRUETYPE_FONTS = "TrueTypeFonts";
     public static final String PATH_TEMP = "Temp";
     public static final String WORKQUEUE_THREADPOOL_SIZE = "WorkQueue.ThreadPoolSize";
     public static final String WORKQUEUE_THREADPOOL_PERIOD = "WorkQueue.CollectWorkPeriod";

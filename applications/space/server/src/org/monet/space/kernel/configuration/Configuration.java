@@ -37,6 +37,8 @@ public class Configuration {
 
     public static final String JDBC_TYPE = "Jdbc.Type";
     public static final String JDBC_DATASOURCE = "Jdbc.DataSource";
+    public static final String JDBC_MAX_ACTIVE_CONNECTIONS = "Jdbc.MaxActiveConnections";
+    public static final String JDBC_REMOVE_ABANDONED_TIMEOUT = "Jdbc.RemoveAbandonedTimeout";
     public static final String CERTIFICATE_FILENAME = "MONET_CERTIFICATE_FILENAME";
     public static final String CERTIFICATE_PASSWORD = "MONET_CERTIFICATE_PASSWORD";
     public static final String USER_DATA_DIR = "MONET_USER_DATA_DIR";
