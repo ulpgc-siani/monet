@@ -71,7 +71,7 @@ public class DatabaseLoader {
         p.setMaxIdle(2);
         p.setMaxWait(30000);
         p.setRemoveAbandoned(true);
-        p.setRemoveAbandonedTimeout(5);
+        p.setRemoveAbandonedTimeout(300); // 5 min
         p.setLogAbandoned(true);
         p.setAccessToUnderlyingConnectionAllowed(true);
         p.setValidationQuery("SELECT 1");
