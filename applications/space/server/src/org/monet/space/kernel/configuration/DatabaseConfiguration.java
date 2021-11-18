@@ -54,6 +54,10 @@ public class DatabaseConfiguration {
         return map.containsKey(Configuration.JDBC_MAX_ACTIVE_CONNECTIONS) ? Integer.parseInt(map.get(Configuration.JDBC_MAX_ACTIVE_CONNECTIONS)) : 15;
     }
 
+    public int maxIdleConnections() {
+        return map.containsKey(Configuration.JDBC_MAX_IDLE_CONNECTIONS) ? Integer.parseInt(map.get(Configuration.JDBC_MAX_IDLE_CONNECTIONS)) : 2;
+    }
+
     public int removeAbandonedTimeout() {
         return map.containsKey(Configuration.JDBC_REMOVE_ABANDONED_TIMEOUT) ? Integer.parseInt(map.get(Configuration.JDBC_REMOVE_ABANDONED_TIMEOUT)) : 300;
     }
