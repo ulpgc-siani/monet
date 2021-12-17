@@ -121,7 +121,7 @@ public class FieldCompositeImpl extends FieldImpl<List<Field<?>>> implements Fie
 
 	@Override
 	public void setEnabled(boolean value) {
-		setIndicatorValue(Indicator.CONDITIONED, "conditioned");
+		setIndicatorValue(Indicator.CONDITIONED, value ? "conditioned" : "");
 	}
 
 	@Override
