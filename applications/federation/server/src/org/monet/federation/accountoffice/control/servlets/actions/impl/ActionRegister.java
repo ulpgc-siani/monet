@@ -41,38 +41,41 @@ public class ActionRegister implements Action {
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response, String path) {
     this.logger.info("execute()");
+    if (this.configuration.isRegisterEnable()) {
+      String lang = (String) request.getSession().getAttribute("lang");
+      String baseUrl = Utils.getBaseUrl(request);
 
-    String lang = (String) request.getSession().getAttribute("lang");
-    String baseUrl = Utils.getBaseUrl(request);
+      try {
+        String username = StringEscapeUtils.unescapeHtml(request.getParameter("username"));
+        String fullname = StringEscapeUtils.unescapeHtml(request.getParameter("fullname"));
+        String email = StringEscapeUtils.unescapeHtml(request.getParameter("email"));
+        String password = StringEscapeUtils.unescapeHtml(request.getParameter("password"));
 
-    try {
-      String username = StringEscapeUtils.unescapeHtml(request.getParameter("username"));
-      String fullname = StringEscapeUtils.unescapeHtml(request.getParameter("fullname"));
-      String email = StringEscapeUtils.unescapeHtml(request.getParameter("email"));
-      String password = StringEscapeUtils.unescapeHtml(request.getParameter("password"));
+        if (username == null || username.isEmpty()) {
+          this.templateComponent.createRegisterTemplate(response, path, true, "", lang, baseUrl, "");
+          return;
+        }
 
-      if (username == null || username.isEmpty()) {
-        this.templateComponent.createRegisterTemplate(response, path, true, "", lang, baseUrl, "");
-        return;
+        if (this.accountLayer.existsUser(username)) {
+          this.templateComponent.createRegisterTemplate(response, path, true, "", lang, baseUrl, "errorExists");
+          return;
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setFullname(fullname);
+        user.setEmail(email);
+        user.setLang(lang);
+        user.setMode(LoginMode.PASSWORD);
+        this.accountLayer.createUser(user, password);
+        this.actionFactory.getAction(ActionFactory.LOGIN).execute(request, response, path);
+        sendMailAdmin(user, request.getRequestURL().toString());
+      } catch (Exception e) {
+        this.logger.error(e.getMessage(), e);
+        this.templateComponent.createRegisterTemplate(response, path, false, "", lang, baseUrl, "");
       }
-
-      if (this.accountLayer.existsUser(username)) {
-        this.templateComponent.createRegisterTemplate(response, path, true, "", lang, baseUrl, "errorExists");
-        return;
-      }
-
-      User user = new User();
-      user.setUsername(username);
-      user.setFullname(fullname);
-      user.setEmail(email);
-      user.setLang(lang);
-      user.setMode(LoginMode.PASSWORD);
-      this.accountLayer.createUser(user, password);
-      this.actionFactory.getAction(ActionFactory.LOGIN).execute(request, response, path);
-      sendMailAdmin(user, request.getRequestURL().toString());
-    } catch (Exception e) {
-      this.logger.error(e.getMessage(), e);
-      this.templateComponent.createRegisterTemplate(response, path, false, "", lang, baseUrl, "");
+    } else {
+      this.logger.error("execute(); The federation does not allow user registration. Attempt at hacking!!!");
     }
   }
 

@@ -6,3 +6,10 @@
 .idea/artifacts
 .idea/inspectionProfiles
 .idea/libraries
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/server.iml
+.idea/vcs.xml
