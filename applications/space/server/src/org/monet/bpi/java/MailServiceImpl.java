@@ -88,10 +88,10 @@ public class MailServiceImpl extends MailService {
 			email.setHostName(configuration.getValue(Configuration.MAIL_ADMIN_HOST));
 			email.setAuthentication(configuration.getValue(Configuration.MAIL_ADMIN_USERNAME), configuration.getValue(Configuration.MAIL_ADMIN_PASSWORD));
 			email.setSmtpPort(Integer.valueOf(configuration.getValue(Configuration.MAIL_ADMIN_PORT)));
-			email.setSSL(Boolean.valueOf(configuration.getValue(Configuration.MAIL_ADMIN_SECURE)));
+			email.setSSLOnConnect(Boolean.valueOf(configuration.getValue(Configuration.MAIL_ADMIN_SECURE)));
 
 			String tls = configuration.getValue(Configuration.MAIL_ADMIN_TLS);
-			if (!tls.isEmpty()) email.setTLS(Boolean.valueOf(tls));
+			if (!tls.isEmpty()) email.setStartTLSEnabled(Boolean.valueOf(tls));
 
 			email.setFrom(configuration.getValue(Configuration.MAIL_ADMIN_FROM));
 
