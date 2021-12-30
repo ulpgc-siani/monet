@@ -28,6 +28,8 @@ public class SwapModel extends Stage {
 			cleanModel(this.modelDirectory);
 			addNewModel(this.newModelDirectory, this.modelDirectory);
 		}
+		catch (NoClassDefFoundError ignored) {
+		}
 		catch (Exception exception) {
 			this.problems.add(new CantSwapModelError());
 			throw new RuntimeException("Can't swap models, maybe already in use. Try again later.", exception);
