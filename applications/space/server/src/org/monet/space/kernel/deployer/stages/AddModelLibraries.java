@@ -5,6 +5,9 @@ import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.deployer.Stage;
 import org.monet.space.kernel.deployer.errors.CantAddModelLibraryError;
 import org.monet.space.kernel.library.LibraryZip;
+import org.monet.space.kernel.model.BusinessModel;
+import org.monet.space.kernel.model.BusinessUnit;
+import org.monet.space.kernel.model.Dictionary;
 
 import java.io.File;
 import java.util.ArrayList;
