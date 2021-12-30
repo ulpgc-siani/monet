@@ -38,6 +38,7 @@ public class DeployerPipeline implements GlobalData {
 		stages.add(new CheckManifests());
 		stages.add(new SwapModel());
 		stages.add(new AddModelLibraries());
+		stages.add(new ReloadBusinessUnit());
 		stages.add(new RefreshTaskDefinitions());
 		stages.add(new RecalculateDefinitionsSchema());
 		stages.add(new RefreshIndexDefinitions());
