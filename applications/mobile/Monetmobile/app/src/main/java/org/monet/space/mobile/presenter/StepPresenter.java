@@ -4,17 +4,25 @@ import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.inject.Inject;
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import org.monet.mobile.model.TaskDefinition;
 import org.monet.mobile.model.TaskDefinition.Step;
 import org.monet.mobile.model.TaskDefinition.Step.Edit;
+import org.monet.space.mobile.R;
 import org.monet.space.mobile.db.Repository;
 import org.monet.space.mobile.events.CapturingDataFinishedEvent;
 import org.monet.space.mobile.events.CapturingDataStartedEvent;
 import org.monet.space.mobile.events.FinishLoadingEvent;
 import org.monet.space.mobile.events.StartLoadingEvent;
+import org.monet.space.mobile.fragment.StepFragment;
 import org.monet.space.mobile.helpers.LocalStorage;
 import org.monet.space.mobile.helpers.LocationHelper;
 import org.monet.space.mobile.helpers.Log;
@@ -30,6 +38,7 @@ import org.monet.space.mobile.model.schema.Schema;
 import org.monet.space.mobile.model.schema.Term;
 import org.monet.space.mobile.mvp.BusProvider;
 import org.monet.space.mobile.mvp.Presenter;
+import org.monet.space.mobile.mvp.activity.Activity;
 import org.monet.space.mobile.mvp.content.SimpleDataLoader;
 import org.monet.space.mobile.view.StepView;
 import org.monet.space.mobile.view.validator.FormValidator;
@@ -174,6 +183,38 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
             }.execute();
         }
     }
+
+    public void loadQrCode(){
+        Toast.makeText(context, "Cargando QRCode", Toast.LENGTH_SHORT).show();
+
+        new IntentIntegrator((Activity)context).initiateScan();
+    }
+
+
+    public void saveQrValue(EditHolder holder, Term value){
+        String valor = this.getFieldValue(holder.getName());
+        //Term inicial = state.CurrentStepSchema.getTerm(holder.getName());
+        state.CurrentStepSchema.putTerm(holder.getName(), value);
+        //Term finald = state.CurrentStepSchema.getTerm(holder.getName());
+        holder.load(state.CurrentStepSchema);
+        saveToSchema();
+    }
+
+    public void saveQrValue(EditHolder holder, String value){
+        String valor = this.getFieldValue(holder.getName());
+        state.CurrentStepSchema.putText(holder.getName(), value);
+        holder.load(state.CurrentStepSchema);
+        saveToSchema();
+    }
+
+    public void saveQrValue(EditHolder holder, Boolean value){
+        String valor = this.getFieldValue(holder.getName());
+        state.CurrentStepSchema.putBoolean(holder.getName(), value);
+        holder.load(state.CurrentStepSchema);
+        saveToSchema();
+    }
+
+
 
     @Override
     public Loader<State> onCreateLoader(int id, Bundle args) {
