@@ -1863,6 +1863,26 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 	}
 
 	@Override
+	public LocationList loadLocations(String definitionCode) {
+		if (!this.isStarted()) {
+			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
+		}
+
+		ProducerLocationList producerLocationList = this.producersFactory.get(Producers.LOCATIONLIST);
+		return producerLocationList.load(definitionCode);
+	}
+
+	@Override
+	public LocationList loadLocations(String definitionCode, String ownerId) {
+		if (!this.isStarted()) {
+			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
+		}
+
+		ProducerLocationList producerLocationList = this.producersFactory.get(Producers.LOCATIONLIST);
+		return producerLocationList.load(definitionCode, ownerId);
+	}
+
+	@Override
 	public LocationList loadLocationsInNode(Node node, Polygon boundingBox, String indexCode) {
 		if (!this.isStarted()) {
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);

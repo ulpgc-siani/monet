@@ -2168,6 +2168,16 @@ LEFT JOIN ::referencetable:: ON ::referencetable::.id_node=ts$locations.id_node
 SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=ts$locations.id_node AND ts$nodes_descriptors.georeferenced=1 ::reference:: WHERE ts$nodes_descriptors.delete_date IS NULL ::parent:: ::location:: ::boundingbox::
 ]]>
   </entry>
+  <entry key="LOCATION_LIST_LOAD">
+    <![CDATA[
+SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node = ts$locations.id_node AND ts$nodes_descriptors.georeferenced=1 ::reference:: WHERE ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.code=@code
+]]>
+  </entry>
+  <entry key="LOCATION_LIST_LOAD_WITH_OWNER">
+    <![CDATA[
+SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node = ts$locations.id_node AND ts$nodes_descriptors.georeferenced=1 ::reference:: WHERE ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.code=@code AND ts$nodes_descriptors.id_owner=@idowner
+]]>
+  </entry>
 
   <!-- POSTS -->
   <entry key="POST_LOAD">

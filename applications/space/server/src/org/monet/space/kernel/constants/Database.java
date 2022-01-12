@@ -239,6 +239,8 @@ public abstract class Database {
 		public static final String LOCATION_LIST_LOAD_IN_NODE_WITH_LOCATION = "LOCATION_LIST_LOAD_IN_NODE_WITH_LOCATION";
 		public static final String LOCATION_LIST_LOAD_IN_NODE_WITH_PARENT = "LOCATION_LIST_LOAD_IN_NODE_WITH_PARENT";
 		public static final String LOCATION_LIST_LOAD_IN_NODE = "LOCATION_LIST_LOAD_IN_NODE";
+		public static final String LOCATION_LIST_LOAD = "LOCATION_LIST_LOAD";
+		public static final String LOCATION_LIST_LOAD_WITH_OWNER = "LOCATION_LIST_LOAD_WITH_OWNER";
 
 		public static final String POST_LOAD = "POST_LOAD";
 		public static final String POST_SAVE = "POST_SAVE";

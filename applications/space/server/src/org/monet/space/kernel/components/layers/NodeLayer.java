@@ -229,6 +229,10 @@ public interface NodeLayer extends Layer {
 
 	void cleanNodeLocation(Node node);
 
+	LocationList loadLocations(String definitionCode);
+
+	LocationList loadLocations(String definitionCode, String ownerId);
+
 	LocationList loadLocationsInNode(Node node, Polygon boundingBox, String indexCode);
 
 	LocationList loadLocationsInNode(Node node, String withName, Polygon boundingBox, String indexCode);
