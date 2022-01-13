@@ -2332,7 +2332,8 @@ public class ProducerNode extends Producer {
 	}
 
 	private void loadLocation(Node node) {
-		node.setLocation(node.isGeoReferenced() ? this.producerLocation.load(node, null) : null);
+		IndexDefinition indexDefinition = Dictionary.getInstance().locateIndex(node.getDefinition());
+		node.setLocation(node.isGeoReferenced() ? this.producerLocation.load(node, indexDefinition != null ? indexDefinition.getCode() : null) : null);
 	}
 
 	public boolean checkTableSchemaLoaded() {

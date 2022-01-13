@@ -37,6 +37,7 @@ import org.monet.space.kernel.sql.QueryBuilder;
 import java.sql.ResultSet;
 import java.util.EventObject;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class ProducerLocation extends Producer {
@@ -158,6 +159,9 @@ public class ProducerLocation extends Producer {
 			}
 
 			location.setMetadata(writer.getResult());
+			for (Map.Entry<String, String> entry : attributes.entrySet()) {
+				location.getAttributes().put(indexDefinition.getAttribute(entry.getKey()).getName(), entry.getValue());
+			}
 		}
 
 		location.setGeometry(this.agentDatabase.getGeometryColumn(resultSet, "geometry"));

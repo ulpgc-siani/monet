@@ -84,7 +84,7 @@ public class ProducerLocationList extends Producer {
 		HashMap<String, String> subQueries = new HashMap<>();
 		HashMap<String, Object> parameters = new HashMap<>();
 		NodeDefinition definition = Dictionary.getInstance().getNodeDefinition(definitionKey);
-		IndexDefinition indexDefinition = locateIndex(definition);
+		IndexDefinition indexDefinition = Dictionary.getInstance().locateIndex(definition);
 		String indexCode = indexDefinition != null ? indexDefinition.getCode() : null;
 		String query = ownerId != null ? Database.Queries.LOCATION_LIST_LOAD_WITH_OWNER : Database.Queries.LOCATION_LIST_LOAD;
 
@@ -108,33 +108,6 @@ public class ProducerLocationList extends Producer {
 		}
 
 		return locationList;
-	}
-
-	private IndexDefinition locateIndex(NodeDefinition definition) {
-		Dictionary dictionary = Dictionary.getInstance();
-
-		if (definition.isContainer() ) {
-			ContainerDefinition.ContainProperty containDefinition = ((ContainerDefinition)definition).getContain();
-			if (containDefinition == null) return null;
-			for (Ref contain : containDefinition.getNode()) {
-				NodeDefinition childDefinition = dictionary.getNodeDefinition(contain.getValue());
-				if (!childDefinition.isForm()) continue;
-				return locateIndex((FormDefinition)childDefinition);
-			}
-		}
-		else if (definition.isForm()) return locateIndex((FormDefinition) definition);
-		else if (definition.isDocument()) {
-			ArrayList<DocumentDefinitionBase.MappingProperty> mappingList = ((DocumentDefinition) definition).getMappingList();
-			return mappingList.size() > 0 ? Dictionary.getInstance().getIndexDefinition(mappingList.get(0).getIndex().getValue()) : null;
-		}
-
-		return null;
-	}
-
-	private IndexDefinition locateIndex(FormDefinition definition) {
-		ArrayList<FormDefinitionBase.MappingProperty> mappingList = definition.getMappingList();
-		if (mappingList.size() <= 0) return null;
-		return Dictionary.getInstance().getIndexDefinition(mappingList.get(0).getIndex().getValue());
 	}
 
 	public LocationList loadInNode(Node node, String locationId, Polygon boundingBox, String indexCode) {

@@ -444,6 +444,33 @@ public class Dictionary extends org.monet.metamodel.Dictionary implements ILoadL
 		return this.getDefinition(key, this.measureUnitMap).get(0);
 	}
 
+	public IndexDefinition locateIndex(NodeDefinition definition) {
+		Dictionary dictionary = Dictionary.getInstance();
+
+		if (definition.isContainer() ) {
+			ContainerDefinition.ContainProperty containDefinition = ((ContainerDefinition)definition).getContain();
+			if (containDefinition == null) return null;
+			for (Ref contain : containDefinition.getNode()) {
+				NodeDefinition childDefinition = dictionary.getNodeDefinition(contain.getValue());
+				if (!childDefinition.isForm()) continue;
+				return locateIndex((FormDefinition)childDefinition);
+			}
+		}
+		else if (definition.isForm()) return locateIndex((FormDefinition) definition);
+		else if (definition.isDocument()) {
+			ArrayList<DocumentDefinitionBase.MappingProperty> mappingList = ((DocumentDefinition) definition).getMappingList();
+			return mappingList.size() > 0 ? Dictionary.getInstance().getIndexDefinition(mappingList.get(0).getIndex().getValue()) : null;
+		}
+
+		return null;
+	}
+
+	private IndexDefinition locateIndex(FormDefinition definition) {
+		ArrayList<FormDefinitionBase.MappingProperty> mappingList = definition.getMappingList();
+		if (mappingList.size() <= 0) return null;
+		return Dictionary.getInstance().getIndexDefinition(mappingList.get(0).getIndex().getValue());
+	}
+
 	public Map<String, FieldProperty> getFieldDefinitionMap() {
 		return this.fieldsMap;
 	}
