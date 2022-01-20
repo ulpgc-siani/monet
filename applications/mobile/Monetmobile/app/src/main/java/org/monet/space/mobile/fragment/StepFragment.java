@@ -22,6 +22,7 @@ import org.monet.space.mobile.events.CapturingDataFinishedEvent;
 import org.monet.space.mobile.events.CapturingDataStartedEvent;
 import org.monet.space.mobile.events.FinishLoadingEvent;
 import org.monet.space.mobile.jtm.editors.EditHolder;
+import org.monet.space.mobile.model.Preferences;
 import org.monet.space.mobile.model.schema.Term;
 import org.monet.space.mobile.mvp.fragment.Fragment;
 import org.monet.space.mobile.presenter.StepPresenter;
@@ -70,6 +71,9 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
         subLabelText = (TextView) view.findViewById(R.id.text_sub_label);
         qrCode = (ImageButton) view.findViewById(R.id.qr_button);
         qrCode.setOnClickListener(this);
+        Preferences preferences = new Preferences(this.getContext());
+        if (!preferences.isQrCodeEnabled())
+            qrCode.setVisibility(View.INVISIBLE);
 
 
         return view;
@@ -133,13 +137,13 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 666){
+       // if (requestCode == 666){
             //TODO borrar valor por defecto y poner if comentado, solo para desarrollo
-            String qrValue = "MonetMobileQr#;#ciudaddemar#;#ObjetoActuacion#;#0001#;#PLAYA DE LA LAJA#;#";
-            //if (requestCode == 666 && data != null){
-            //String qrValue = data.getStringExtra("SCAN_RESULT");
-            if (data != null)
-                qrValue = data.getStringExtra("SCAN_RESULT");
+            //String qrValue = "MonetMobileQr#;#ciudaddemar#;#ObjetoActuacion#;#Term#;#0001#;#PLAYA DE LA LAJA#;#";
+            if (requestCode == 666 && data != null){
+                String qrValue = data.getStringExtra("SCAN_RESULT");
+            //if (data != null)
+            //    qrValue = data.getStringExtra("SCAN_RESULT");
                 Log.d("QRCODE",qrValue);
                // Toast.makeText(this.getContext(), "Cargando QRCode: " + qrValue, Toast.LENGTH_SHORT).show();
                 fillEditHolderWithQr(qrValue);
@@ -170,23 +174,23 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
                     String value = qrParse[5];
                     switch (type){
                         case "Term":
-                            Term termino = new Term();
-                            termino.code = key;
-                            termino.label = value;
-                            presenter.saveQrValue(holder, termino);
+                            Term term = new Term();
+                            term.code = key;
+                            term.label = value;
+                            presenter.saveQrValue(holder, term);
                             break;
                         case "String":
                             presenter.saveQrValue(holder, value);
                             break;
-
                         case "Boolean":
                             Boolean boolValue = Boolean.valueOf(value);
                             presenter.saveQrValue(holder, boolValue);
                             break;
                         case "Date":
-
+                            // TODO
                             break;
                         case "Number":
+                            // TODO
                             break;
 
                     }

@@ -17,6 +17,7 @@ public class Preferences {
     private static final String KEY_NOTIFICATIONS = "pref_key_notifications";
     private static final String KEY_WIFI_ONLY = "pref_key_wifi_only";
     private static final String KEY_ROAMING_SYNC = "pref_key_roaming_sync";
+    private static final String KEY_QRCODE = "pref_key_qrcode";
 
     @Inject
     private SharedPreferences sharedPreferences;
@@ -39,16 +40,16 @@ public class Preferences {
         return this.sharedPreferences.getBoolean(KEY_NOTIFICATIONS, true);
     }
 
+    public boolean isQrCodeEnabled() {
+        return this.sharedPreferences.getBoolean(KEY_QRCODE, false);
+    }
+
     public boolean syncOnWiFiOnly() {
         return this.sharedPreferences.getBoolean(KEY_WIFI_ONLY, false);
     }
 
     public boolean syncOnRoaming() {
         return !this.sharedPreferences.getBoolean(KEY_ROAMING_SYNC, true);
-    }
-
-    public boolean sentTokenToServer() {
-        return this.sharedPreferences.getBoolean(SENT_TOKEN_TO_SERVER, false);
     }
 
     public void setSentTokenToServer(boolean value) {

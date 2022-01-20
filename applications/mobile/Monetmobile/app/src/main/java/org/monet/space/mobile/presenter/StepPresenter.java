@@ -184,37 +184,26 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
         }
     }
 
-    public void loadQrCode(){
-        Toast.makeText(context, "Cargando QRCode", Toast.LENGTH_SHORT).show();
-
-        new IntentIntegrator((Activity)context).initiateScan();
-    }
-
-
     public void saveQrValue(EditHolder holder, Term value){
-        String valor = this.getFieldValue(holder.getName());
-        //Term inicial = state.CurrentStepSchema.getTerm(holder.getName());
         state.CurrentStepSchema.putTerm(holder.getName(), value);
-        //Term finald = state.CurrentStepSchema.getTerm(holder.getName());
-        holder.load(state.CurrentStepSchema);
-        saveToSchema();
+        updateValues(holder);
+
     }
 
     public void saveQrValue(EditHolder holder, String value){
-        String valor = this.getFieldValue(holder.getName());
         state.CurrentStepSchema.putText(holder.getName(), value);
-        holder.load(state.CurrentStepSchema);
-        saveToSchema();
+        updateValues(holder);
     }
 
     public void saveQrValue(EditHolder holder, Boolean value){
-        String valor = this.getFieldValue(holder.getName());
         state.CurrentStepSchema.putBoolean(holder.getName(), value);
-        holder.load(state.CurrentStepSchema);
-        saveToSchema();
+        updateValues(holder);
     }
 
-
+    private void updateValues(EditHolder holder){
+        holder.loadQrMode(state.CurrentStepSchema);
+        saveToSchema();
+    }
 
     @Override
     public Loader<State> onCreateLoader(int id, Bundle args) {
