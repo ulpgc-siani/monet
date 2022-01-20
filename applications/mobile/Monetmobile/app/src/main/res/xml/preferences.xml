@@ -34,7 +34,7 @@
             android:key="pref_key_qrcode"
             android:summary="@string/qrcode_summary"
             android:title="@string/qrcode_title"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
         <CheckBoxPreference
             android:key="pref_key_wifi_only"
             android:summary="@string/wifi_only_summary"
