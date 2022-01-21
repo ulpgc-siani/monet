@@ -366,5 +366,67 @@
       <artifactId>urlrewritefilter</artifactId>
       <version>3.2.0</version>
     </dependency>
+
+    <!-- digital signature -->
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>DNIeJCAProvider</artifactId>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>iaikPkcs11Wrapper</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>jss</artifactId>
+      <version>4.2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibAPI</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibCert</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibCrypt</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibOCSP</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibPolicy</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibTrust</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibTSA</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>MITyCLibXADES</artifactId>
+      <version>1.1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>dnie</groupId>
+      <artifactId>xmlsec</artifactId>
+      <version>1.4.2-ADSI</version>
+    </dependency>
   </dependencies>
 </project>
