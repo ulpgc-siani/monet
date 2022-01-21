@@ -52,7 +52,7 @@ public class Picture extends File {
 	}
 
 	public static Picture fromInputStream(String contentType, InputStream stream) {
-		return fromInputStream(UUID.randomUUID().toString(), contentType, stream);
+		return fromInputStream(UUID.randomUUID().toString().replace("-", ""), contentType, stream);
 	}
 
 	public static Picture fromInputStream(String filename, String contentType, InputStream stream) {
