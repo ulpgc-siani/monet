@@ -143,7 +143,7 @@ public class File {
 	}
 
 	public static File fromInputStream(String contentType, InputStream stream) {
-		return fromInputStream(UUID.randomUUID().toString(), contentType, stream);
+		return fromInputStream(UUID.randomUUID().toString().replace("-", ""), contentType, stream);
 	}
 
 	public static File fromInputStream(String filename, String contentType, InputStream stream) {
