@@ -143,7 +143,7 @@ public class File {
 	}
 
 	public static File fromInputStream(String contentType, InputStream stream) {
-		return fromInputStream(UUID.randomUUID().toString().replace("-", ""), contentType, stream);
+		return fromInputStream(generateFilename(contentType), contentType, stream);
 	}
 
 	public static File fromInputStream(String filename, String contentType, InputStream stream) {
@@ -171,6 +171,10 @@ public class File {
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
+	}
+
+	protected static String generateFilename(String contentType) {
+		return UUID.randomUUID().toString().replace("-", "") + "." + MimeTypes.getInstance().getExtension(contentType);
 	}
 
 }

@@ -10,7 +10,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class Picture extends File {
 
@@ -52,7 +51,7 @@ public class Picture extends File {
 	}
 
 	public static Picture fromInputStream(String contentType, InputStream stream) {
-		return fromInputStream(UUID.randomUUID().toString().replace("-", ""), contentType, stream);
+		return fromInputStream(generateFilename(contentType), contentType, stream);
 	}
 
 	public static Picture fromInputStream(String filename, String contentType, InputStream stream) {
