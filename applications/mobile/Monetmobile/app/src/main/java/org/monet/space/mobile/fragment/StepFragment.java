@@ -3,14 +3,18 @@ package org.monet.space.mobile.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.squareup.otto.Subscribe;
 
 import org.monet.space.mobile.R;
@@ -18,6 +22,8 @@ import org.monet.space.mobile.events.CapturingDataFinishedEvent;
 import org.monet.space.mobile.events.CapturingDataStartedEvent;
 import org.monet.space.mobile.events.FinishLoadingEvent;
 import org.monet.space.mobile.jtm.editors.EditHolder;
+import org.monet.space.mobile.model.Preferences;
+import org.monet.space.mobile.model.schema.Term;
 import org.monet.space.mobile.mvp.fragment.Fragment;
 import org.monet.space.mobile.presenter.StepPresenter;
 import org.monet.space.mobile.view.StepView;
@@ -32,6 +38,7 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
     private static final String KEY_ARTICLE_SCROLL_POSITION = "ARTICLE_SCROLL_POSITION";
     private static final String KEY_REQUESTS = "REQUESTS";
     private static final String KEY_EDIT_HOLDER = "EDIT_HOLDER$";
+    private static final int RESULT_FROM_QRSCAN = 666;
 
     private final List<Result> pendingResults = new ArrayList<>();
     private View buttonsLayout;
@@ -45,6 +52,7 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
     private LinearLayout contentLayout;
     private HashMap<Integer, String> activityRequesters;
     private int[] scrollViewPosition;
+    private ImageButton qrCode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +69,12 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
         contentLayout = (LinearLayout) view.findViewById(R.id.step_content);
         labelText = (TextView) view.findViewById(R.id.text_label);
         subLabelText = (TextView) view.findViewById(R.id.text_sub_label);
+        qrCode = (ImageButton) view.findViewById(R.id.qr_button);
+        qrCode.setOnClickListener(this);
+        Preferences preferences = new Preferences(this.getContext());
+        if (!preferences.isQrCodeEnabled())
+            qrCode.setVisibility(View.INVISIBLE);
+
 
         return view;
     }
@@ -123,13 +137,71 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String editName = activityRequesters.get(requestCode);
-        activityRequesters.remove(requestCode);
-        EditHolder<?> holder = getEditHolders().get(editName);
-        if (holder == null)
-            pendingResults.add(new Result(editName, requestCode, resultCode, data));
-        else
-            holder.onActivityForResult(requestCode, resultCode, data);
+       // if (requestCode == 666){
+            //TODO borrar valor por defecto y poner if comentado, solo para desarrollo
+            //String qrValue = "MonetMobileQr#;#ciudaddemar#;#ObjetoActuacion#;#Term#;#0001#;#PLAYA DE LA LAJA#;#";
+            if (requestCode == 666 && data != null){
+                String qrValue = data.getStringExtra("SCAN_RESULT");
+            //if (data != null)
+            //    qrValue = data.getStringExtra("SCAN_RESULT");
+                Log.d("QRCODE",qrValue);
+               // Toast.makeText(this.getContext(), "Cargando QRCode: " + qrValue, Toast.LENGTH_SHORT).show();
+                fillEditHolderWithQr(qrValue);
+
+        }else{
+            String editName = activityRequesters.get(requestCode);
+            activityRequesters.remove(requestCode);
+            EditHolder<?> holder = getEditHolders().get(editName);
+            if (holder == null)
+                pendingResults.add(new Result(editName, requestCode, resultCode, data));
+            else
+                holder.onActivityForResult(requestCode, resultCode, data);
+        }
+
+    }
+
+    private void fillEditHolderWithQr(String qrValue){
+        String[] qrParse = qrValue.split("#;#");
+        if (qrParse[0].equals("MonetMobileQr")){
+            String field = qrParse[2];
+            String type = qrParse[3];
+            Map<String, EditHolder<?>> editHolders = getEditHolders();
+            for (String keys : editHolders.keySet()){
+                if (keys.equals(field)){
+                    Log.d("Campo encontrado ", keys);
+                    EditHolder<?> holder = editHolders.get(keys);
+                    String key = qrParse[4];
+                    String value = qrParse[5];
+                    switch (type){
+                        case "Term":
+                            Term term = new Term();
+                            term.code = key;
+                            term.label = value;
+                            presenter.saveQrValue(holder, term);
+                            break;
+                        case "String":
+                            presenter.saveQrValue(holder, value);
+                            break;
+                        case "Boolean":
+                            Boolean boolValue = Boolean.valueOf(value);
+                            presenter.saveQrValue(holder, boolValue);
+                            break;
+                        case "Date":
+                            // TODO
+                            break;
+                        case "Number":
+                            // TODO
+                            break;
+
+                    }
+
+
+                }
+                Log.d("Campos", keys);
+            }
+        }else{
+
+        }
     }
 
     @Override
@@ -140,6 +212,8 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
             presenter.next();
         else if (view.getId() == R.id.button_finish)
             presenter.finalizeTask();
+        else if (view.getId() == R.id.qr_button)
+            startActivityForResult(new IntentIntegrator(getActivity()).createScanIntent(), RESULT_FROM_QRSCAN);
     }
 
     public void setTitle(String title) {

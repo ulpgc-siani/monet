@@ -4,17 +4,25 @@ import android.media.MediaScannerConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.inject.Inject;
+import com.google.zxing.integration.android.IntentIntegrator;
+
 import org.monet.mobile.model.TaskDefinition;
 import org.monet.mobile.model.TaskDefinition.Step;
 import org.monet.mobile.model.TaskDefinition.Step.Edit;
+import org.monet.space.mobile.R;
 import org.monet.space.mobile.db.Repository;
 import org.monet.space.mobile.events.CapturingDataFinishedEvent;
 import org.monet.space.mobile.events.CapturingDataStartedEvent;
 import org.monet.space.mobile.events.FinishLoadingEvent;
 import org.monet.space.mobile.events.StartLoadingEvent;
+import org.monet.space.mobile.fragment.StepFragment;
 import org.monet.space.mobile.helpers.LocalStorage;
 import org.monet.space.mobile.helpers.LocationHelper;
 import org.monet.space.mobile.helpers.Log;
@@ -30,6 +38,7 @@ import org.monet.space.mobile.model.schema.Schema;
 import org.monet.space.mobile.model.schema.Term;
 import org.monet.space.mobile.mvp.BusProvider;
 import org.monet.space.mobile.mvp.Presenter;
+import org.monet.space.mobile.mvp.activity.Activity;
 import org.monet.space.mobile.mvp.content.SimpleDataLoader;
 import org.monet.space.mobile.view.StepView;
 import org.monet.space.mobile.view.validator.FormValidator;
@@ -173,6 +182,27 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                 }
             }.execute();
         }
+    }
+
+    public void saveQrValue(EditHolder holder, Term value){
+        state.CurrentStepSchema.putTerm(holder.getName(), value);
+        updateValues(holder);
+
+    }
+
+    public void saveQrValue(EditHolder holder, String value){
+        state.CurrentStepSchema.putText(holder.getName(), value);
+        updateValues(holder);
+    }
+
+    public void saveQrValue(EditHolder holder, Boolean value){
+        state.CurrentStepSchema.putBoolean(holder.getName(), value);
+        updateValues(holder);
+    }
+
+    private void updateValues(EditHolder holder){
+        holder.loadQrMode(state.CurrentStepSchema);
+        saveToSchema();
     }
 
     @Override

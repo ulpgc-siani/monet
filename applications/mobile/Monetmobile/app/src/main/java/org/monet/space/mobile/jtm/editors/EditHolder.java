@@ -107,6 +107,18 @@ public abstract class EditHolder<V> implements OnClickListener {
         editor.requestFocus();
     }
 
+    private void addNewEditorQrMode(V value) {
+        View oldEditor = this.editors.getChildAt(0);
+        if (oldEditor != null)
+            this.editors.removeView(oldEditor);
+        View editor = this.createEditor(value, this.editors);
+        editor.setTag(this.nextEditorId++);
+        attachClearButtonBehaviorAndVisibility(editor, this.edit.isMultiple & !this.isReadOnly());
+        this.editors.addView(editor);
+        checkLastEditorIsEmpty();
+        editor.requestFocus();
+    }
+
     private void attachClearButtonBehaviorAndVisibility(View editor, boolean isEnabled) {
         View clearBtn = editor.findViewById(R.id.clear_editor);
         if (clearBtn == null)
@@ -173,6 +185,23 @@ public abstract class EditHolder<V> implements OnClickListener {
         }
     }
 
+    public void onLoadQrMode(Schema schema) {
+        if (edit.isMultiple) {
+            //TODO multiple field implementation is not checked
+            List<V> values = this.onLoadValueArray(schema);
+            if (values == null || values.size() == 0) {
+                addNewEditor(null);
+            } else {
+                for (V value : values)
+                    addNewEditor(value);
+                checkLastEditorIsEmpty();
+            }
+        } else {
+            V value = onLoadValue(schema);
+            addNewEditorQrMode(value);
+        }
+    }
+
     public void onSave(Schema schema) {
         int childCount = this.editors.getChildCount();
         List<V> items = new ArrayList<>();
@@ -204,6 +233,10 @@ public abstract class EditHolder<V> implements OnClickListener {
 
     public void load(Schema schema) {
         this.onLoad(schema);
+    }
+
+    public void loadQrMode(Schema schema) {
+        this.onLoadQrMode(schema);
     }
 
     protected Context getContext() {
