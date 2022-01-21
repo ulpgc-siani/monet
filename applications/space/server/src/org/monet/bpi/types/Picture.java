@@ -42,7 +42,7 @@ public class Picture extends File {
 	}
 
 	public static Picture fromFile(File file) {
-		Picture picture = new Picture(file.getFilename().replace("-", ""));
+		Picture picture = new Picture(file.getFilename());
 		String contentType = MimeTypes.getInstance().getFromStream(new ByteArrayInputStream(file.getContent()));
 
 		ComponentDocuments componentDocuments = ComponentDocuments.getInstance();
@@ -52,7 +52,7 @@ public class Picture extends File {
 	}
 
 	public static Picture fromInputStream(String contentType, InputStream stream) {
-		Picture picture = new Picture(UUID.randomUUID().toString().replace("-", ""));
+		Picture picture = new Picture(generateFilename(contentType));
 
 		ComponentDocuments componentDocuments = ComponentDocuments.getInstance();
 		componentDocuments.uploadImage(picture.getFilename(), stream, contentType, -1, -1);

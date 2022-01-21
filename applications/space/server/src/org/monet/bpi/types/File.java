@@ -143,7 +143,7 @@ public class File {
 	}
 
 	public static File fromInputStream(String contentType, InputStream stream) {
-		return fromInputStream(UUID.randomUUID().toString().replace("-", ""), contentType, stream);
+		return fromInputStream(generateFilename(contentType), contentType, stream);
 	}
 
 	public static File fromInputStream(String filename, String contentType, InputStream stream) {
@@ -153,6 +153,10 @@ public class File {
 		componentDocuments.uploadDocument(file.filename, stream, contentType, false);
 
 		return file;
+	}
+
+	protected static String generateFilename(String contentType) {
+		return UUID.randomUUID().toString().replace("-", "") + "." + MimeTypes.getInstance().getExtension(contentType);
 	}
 
 	public static File fromUrl(String url) {
