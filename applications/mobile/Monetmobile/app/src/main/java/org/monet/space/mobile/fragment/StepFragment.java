@@ -73,7 +73,7 @@ public class StepFragment extends Fragment<StepView, StepPresenter, Void> implem
         qrCode.setOnClickListener(this);
         Preferences preferences = new Preferences(this.getContext());
         if (!preferences.isQrCodeEnabled())
-            qrCode.setVisibility(View.INVISIBLE);
+            qrCode.setVisibility(View.GONE);
 
 
         return view;
