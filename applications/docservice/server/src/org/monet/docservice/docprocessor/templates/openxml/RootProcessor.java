@@ -117,7 +117,7 @@ public class RootProcessor extends BaseXmlProcessor {
             imageHeight = (dimension[1] * imageWidth) / dimension[0];
           } else {
             imageHeight = Integer.parseInt(attributes.getValue("cy")) / (914400 / 96);
-            imageWidth = (dimension[0] * imageHeight) / dimension[1];
+            imageWidth = dimension[1] > 0 ? (dimension[0] * imageHeight) / dimension[1] : 0;
           }
           int cx = imageWidth * 914400 / 96;
           int cy = imageHeight * 914400 / 96;
@@ -138,7 +138,7 @@ public class RootProcessor extends BaseXmlProcessor {
             imageHeight = (dimension[1] * imageWidth) / dimension[0];
           } else {
             imageHeight = Integer.parseInt(attributes.getValue("cy")) / (914400 / 96);
-            imageWidth = (dimension[0] * imageHeight) / dimension[1];
+            imageWidth = dimension[1] > 0 ? (dimension[0] * imageHeight) / dimension[1] : 0;
           }
           int cx = imageWidth * 914400 / 96;
           int cy = imageHeight * 914400 / 96;
