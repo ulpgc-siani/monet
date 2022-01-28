@@ -1304,7 +1304,7 @@ public class DatabaseRepository implements Repository {
 			saveDocumentPreviewData(imageId, 1, finalImageStream, contentType, PreviewType.PAGE, thumbWidth, thumbHeight, width / (float) height);
 		} catch (Exception e) {
 			logger.warn(String.format("Could not create image preview for %s", imageId));
-			saveDocumentPreviewData(imageId, 1, finalImageStream, "application/octet-stream", PreviewType.PAGE, 0, 0, width / (float) height);
+			saveDocumentPreviewData(imageId, 1, new ByteArrayInputStream(new byte[0]), "application/octet-stream", PreviewType.PAGE, 0, 0, width / (float) height);
 		}
 		finally {
 			StreamHelper.close(imageStream);
