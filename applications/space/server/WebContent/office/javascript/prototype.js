@@ -528,7 +528,7 @@ Object.extend(Enumerable, {
   member: Enumerable.include,
   entries: Enumerable.toArray
 });
-var $A = Array.from = function (iterable) {
+var $A = function (iterable) {
   if (!iterable) return [];
   if (iterable.toArray) {
     return iterable.toArray();
