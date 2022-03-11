@@ -685,9 +685,10 @@ SELECT COUNT(id_node) AS counter FROM tv$items_::idnode:: WHERE ::part1:: 1=1 ::
      FROM (
     SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
     FROM ::referencesubquery::
+    INNER JOIN ts$links ON ts$links.id_source = ts$nodes_descriptors.id_node
     WHERE
       ::part1:: 
-        ts$nodes_descriptors.id_node IN (SELECT id_source FROM ts$links WHERE type_source='node' AND type_target='node' AND id_target=@idnode) AND
+      type_source='node' AND type_target='node' AND id_target=@idnode AND
       ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
      ) a 
      WHERE rownum <= @startpos+@limit-1
@@ -699,9 +700,10 @@ SELECT COUNT(id_node) AS counter FROM tv$items_::idnode:: WHERE ::part1:: 1=1 ::
     <![CDATA[
   SELECT COUNT(DISTINCT(::referencesubquery::.id_node)) AS counter
   FROM ::referencesubquery::
+  INNER JOIN ts$links ON ts$links.id_source = ::referencesubquery::.id_node
   WHERE
   ::part1:: 
-    ts$nodes_descriptors.id_node IN (SELECT id_source FROM ts$links WHERE type_source='node' AND type_target='node' AND id_target=@idnode) AND
+  WHERE type_source='node' AND type_target='node' AND id_target=@idnode AND
   ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters::
 ]]>
   </entry>
@@ -713,9 +715,10 @@ SELECT COUNT(id_node) AS counter FROM tv$items_::idnode:: WHERE ::part1:: 1=1 ::
      FROM (
     SELECT ::referenceattributes:: ts$nodes_descriptors.id_node AS desc_id_node,ts$nodes_descriptors.id_owner,ts$nodes_descriptors.id_parent AS desc_id_parent,ts$nodes_descriptors.code AS desc_code,ts$nodes_descriptors.label,ts$nodes_descriptors.description,ts$nodes_descriptors.color,ts$nodes_descriptors.ordering,ts$nodes_descriptors.create_date,ts$nodes_descriptors.update_date,ts$nodes_descriptors.delete_date,ts$nodes_descriptors.highlighted,ts$nodes_descriptors.editable,ts$nodes_descriptors.deletable,ts$nodes_descriptors.prototype,ts$nodes_descriptors.georeferenced
     FROM ::referencesubquery::
+    INNER JOIN ts$links ON ts$links.id_target = ts$nodes_descriptors.id_node
     WHERE
       ::part1:: 
-        ts$nodes_descriptors.id_node IN (SELECT id_target FROM ts$links WHERE type_source='node' AND type_target='node' AND id_source=@idnode) AND
+      type_source='node' AND type_target='node' AND id_source=@idnode AND
       ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters:: ORDER BY ::sortsby::
      ) a 
      WHERE rownum <= @startpos+@limit-1
@@ -727,9 +730,10 @@ SELECT COUNT(id_node) AS counter FROM tv$items_::idnode:: WHERE ::part1:: 1=1 ::
     <![CDATA[
   SELECT COUNT(DISTINCT(::referencesubquery::.id_node)) AS counter
   FROM ::referencesubquery::
+  INNER JOIN ts$links ON ts$links.id_target = ::referencesubquery::.id_node
   WHERE
   ::part1:: 
-    ts$nodes_descriptors.id_node IN (SELECT id_target FROM ts$links WHERE type_source='node' AND type_target='node' AND id_source=@idnode) AND
+  type_source='node' AND type_target='node' AND id_source=@idnode AND
   ts$nodes_descriptors.delete_date IS NULL AND ts$nodes_descriptors.prototype=0 ::codenodessubquery:: ::groupsby:: ::parameters::
 ]]>
   </entry>
