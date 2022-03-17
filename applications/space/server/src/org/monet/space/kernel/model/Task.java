@@ -162,7 +162,7 @@ public class Task<T extends TaskDefinition> extends Entity<T> implements ISecura
 	}
 
 	public User getOwner() {
-		if (this.idOwner == null)
+		if (this.getOwnerId() == null)
 			return null;
 
 		onLoad(this, Task.OWNER);
