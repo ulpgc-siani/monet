@@ -130,6 +130,8 @@ public abstract class NodeDocumentImpl extends NodeImpl implements NodeDocument,
 			contentStream = new ByteArrayInputStream(content);
 			componentDocuments.uploadDocument(uuid, contentStream, contentType, MimeTypes.getInstance().isPreviewable(contentType));
 			componentDocuments.overwriteDocument(this.node.getId(), uuid);
+			node.setSchema(componentDocuments.getDocumentSchema(this.node.getId()));
+			ComponentPersistence.getInstance().getNodeLayer().saveNodeSchema(node);
 		}
 		finally {
 			StreamHelper.close(contentStream);
