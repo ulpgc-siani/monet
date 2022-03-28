@@ -41,6 +41,7 @@ import org.monet.space.kernel.extension.Enricher;
 import org.monet.space.kernel.library.LibraryArray;
 import org.monet.space.kernel.library.LibraryDate;
 import org.monet.space.kernel.library.LibraryString;
+import org.monet.space.kernel.log.Logger;
 import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.Dictionary;
 import org.monet.space.kernel.utils.cache.Cache;
@@ -2093,6 +2094,8 @@ public class ProducerNode extends Producer {
 			this.agentNotifier.notify(event);
 		}
 
+		this.agentLogger.info("NODE REMOVED! Id: " + node.getId());
+		Thread.dumpStack();
 		this.addToLogBook(node.getId(), LogBookNodeEvent.DELETED);
 
 		return true;
