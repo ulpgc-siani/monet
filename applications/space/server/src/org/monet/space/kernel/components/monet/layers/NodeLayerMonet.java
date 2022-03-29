@@ -198,14 +198,15 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 				AgentLogger.getInstance().errorInModel(String.format("Definition %s is readonly!", nodeDefinition.getName()), null);
 				return;
 			}
-			if (node.getReferencedId() != null){
+
+			if (node.getReferencedId() != null) {
 				componentDocuments.createSharedDocument(node.getCode(), node.getId(), node.getReferencedId());
-			}else {
+			} else {
 				componentDocuments.createDocument(node.getCode(), node.getId());
 			}
 		} catch (Exception oException) {
 			try {
-				this.deleteAndRemoveNodeFromTrash(node.getId());
+				if (node.getReferencedId() == null) this.deleteAndRemoveNodeFromTrash(node.getId());
 			} catch (Exception e) {
 				AgentLogger.getInstance().error(e);
 			}
@@ -438,7 +439,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 			orphanNodes.add(currentNode);
 		}
 
-		this.deleteAndRemoveNodesFromTrash(orphanNodes);
+		for (Node orphanNode : orphanNodes) deleteNode(orphanNode);
 	}
 
 	private void clearLinks(Node node) {
