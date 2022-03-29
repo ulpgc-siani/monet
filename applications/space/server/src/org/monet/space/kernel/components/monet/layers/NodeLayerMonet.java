@@ -435,7 +435,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 			orphanNodes.add(currentNode);
 		}
 
-		this.deleteAndRemoveNodesFromTrash(orphanNodes);
+		for (Node orphanNode : orphanNodes) deleteNode(orphanNode);
 	}
 
 	private void clearLinks(Node node) {

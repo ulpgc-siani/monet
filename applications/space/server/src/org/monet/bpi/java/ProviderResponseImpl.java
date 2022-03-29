@@ -71,7 +71,7 @@ public class ProviderResponseImpl implements ProviderResponse {
 				if (MimeTypes.PDF.equals(contentType))
 					nodeLayer.makeUneditable(node);
 			} catch (Exception e) {
-				nodeLayer.deleteAndRemoveNodeFromTrash(node.getId());
+				//nodeLayer.deleteAndRemoveNodeFromTrash(node.getId());
 				AgentLogger.getInstance().error(e);
 				throw new RuntimeException("Error extracting document from message. See log for details.");
 			} finally {

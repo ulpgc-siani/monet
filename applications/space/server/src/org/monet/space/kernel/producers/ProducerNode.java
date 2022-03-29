@@ -2093,8 +2093,6 @@ public class ProducerNode extends Producer {
 			this.agentNotifier.notify(event);
 		}
 
-		this.agentLogger.info("NODE REMOVED! Id: " + node.getId());
-		Thread.dumpStack();
 		this.addToLogBook(node.getId(), LogBookNodeEvent.DELETED);
 
 		return true;
