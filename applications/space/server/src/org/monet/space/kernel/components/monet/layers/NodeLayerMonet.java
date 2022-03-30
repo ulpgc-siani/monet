@@ -205,7 +205,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 			}
 		} catch (Exception oException) {
 			try {
-				this.deleteAndRemoveNodeFromTrash(node.getId());
+				if (node.getReferencedId() == null) this.deleteAndRemoveNodeFromTrash(node.getId());
 			} catch (Exception e) {
 				AgentLogger.getInstance().error(e);
 			}
@@ -438,7 +438,7 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 			orphanNodes.add(currentNode);
 		}
 
-		this.deleteAndRemoveNodesFromTrash(orphanNodes);
+		for (Node orphanNode : orphanNodes) deleteNode(orphanNode);
 	}
 
 	private void clearLinks(Node node) {
