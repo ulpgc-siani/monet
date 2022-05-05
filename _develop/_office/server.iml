@@ -92,8 +92,8 @@
     <orderEntry type="library" name="Maven: com.mchange:mchange-commons-java:0.2.11" level="project" />
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP-java6:2.3.13" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-email:1.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-email:1.5" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.6" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.47" level="project" />
     <orderEntry type="library" name="Maven: com.oracle.database.jdbc:ojdbc8:19.6.0.0" level="project" />
@@ -193,5 +193,17 @@
     <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.22.Final" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-dbcp:7.0.12" level="project" />
     <orderEntry type="library" name="Maven: org.tuckey:urlrewritefilter:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: dnie:DNIeJCAProvider:1.4" level="project" />
+    <orderEntry type="library" name="Maven: dnie:iaikPkcs11Wrapper:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:jss:4.2.5" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibAPI:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibCert:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibCrypt:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibOCSP:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibPolicy:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibTrust:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibTSA:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:MITyCLibXADES:1.1.7" level="project" />
+    <orderEntry type="library" name="Maven: dnie:xmlsec:1.4.2-ADSI" level="project" />
   </component>
 </module>

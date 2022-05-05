@@ -45,6 +45,7 @@ public class AgentRuleManager implements CacheEventListener<String, Node> {
 				for (String id : nodeIds)
 					agentLogger.debug("    * dependant: %s", id);
 
+				AgentNotifier.getInstance().notify(new MonetEvent(MonetEvent.NODE_REFRESH_STATE, null, node));
 				this.subscribeNode(node, nodeIds);
 				break;
 			case REMOVED:
@@ -120,6 +121,7 @@ public class AgentRuleManager implements CacheEventListener<String, Node> {
 		synchronized (nodeWatchTo) {
 			AgentNotifier agentNotifier = AgentNotifier.getInstance();
 			NodeLayer nodeLayer = ComponentPersistence.getInstance().getNodeLayer();
+			agentNotifier.notify(new MonetEvent(MonetEvent.NODE_REFRESH_STATE, null, nodeLayer.loadNode(node.getId())));
 			String id = node.getId();
 			List<String> watchers = watchersOfNode.get(id);
 			if (watchers != null) {
