@@ -81,27 +81,9 @@ public class ClientServiceImpl extends ClientService {
 
 	private User userOf(final org.monet.space.kernel.model.User user) {
 		if (user == null) return null;
-
-		return new User() {
-			@Override
-			public String getId() {
-				return user.getId();
-			}
-
-			@Override
-			public String getName() {
-				return user.getName();
-			}
-
-			@Override
-			public String getEmail() {
-				return user.getInfo().getEmail();
-			}
-
-			@Override
-			public String getFullName() {
-				return user.getInfo().getFullname();
-			}
-		};
+		UserImpl result = new UserImpl();
+		result.injectUser(user);
+		return result;
 	}
+
 }
