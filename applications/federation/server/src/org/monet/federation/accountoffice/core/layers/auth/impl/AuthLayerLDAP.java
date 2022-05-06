@@ -91,6 +91,7 @@ public class AuthLayerLDAP extends FederationAuthLayer implements AuthLayer {
     logger.debug("login(%s, %s)", username, "****");
 
     User userInfo = null;
+    String searchUserIDAtributte = "userPrincipalName";
     if (username != null && password != null) {
       String principalName = this.parameters.get(ALIAS_username) + "=" + username + "," + this.schema;
       String userPrincipalName = principalName;
@@ -103,6 +104,11 @@ public class AuthLayerLDAP extends FederationAuthLayer implements AuthLayer {
       if (this.parameters.get(ALIAS_APP) != null && "ldap".equals(this.parameters.get(ALIAS_APP))) {
         principalName = username;
         userPrincipalName = username + "@" + userdomainName;
+        if (this.parameters.get(ALIAS_username) != null && !this.parameters.get(ALIAS_username).equals("") ){
+          searchUserIDAtributte = this.parameters.get(ALIAS_username);
+          userPrincipalName = username;
+          principalName = this.parameters.get(ALIAS_username) + "=" + username + "," + this.schema;
+        }
       }
 
       properties.put(Context.SECURITY_PRINCIPAL, this.securityPrincipalPrefix + principalName);
@@ -114,7 +120,7 @@ public class AuthLayerLDAP extends FederationAuthLayer implements AuthLayer {
 
         SearchControls controls = new SearchControls();
         controls.setSearchScope(SUBTREE_SCOPE);
-        NamingEnumeration<SearchResult> renum = context.search(toDC(domainName),"(& (userPrincipalName="+userPrincipalName+")(objectClass=user))", controls);
+        NamingEnumeration<SearchResult> renum = context.search(toDC(domainName),"(& ("+searchUserIDAtributte+"="+userPrincipalName+")(objectClass=*))", controls);
         if(!renum.hasMore()) {
           throw new Exception("Cannot locate user information for " + userPrincipalName);
         }
