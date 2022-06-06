@@ -63,9 +63,9 @@ public class FieldNumberImpl extends FieldImpl<Number> implements FieldNumber {
 			format = "0.##";
 		DecimalFormat formatter = new DecimalFormat(format);
 
-		internalIndicator.setData(String.valueOf(value.doubleValue()));
-		valueIndicator.setData(formatter.format(value.doubleValue()));
-		if (value.getMetric() != null)
+		internalIndicator.setData(value != null ? String.valueOf(value.doubleValue()) : "");
+		valueIndicator.setData(value != null ? formatter.format(value.doubleValue()) : "");
+		if (value != null && value.getMetric() != null)
 			metricIndicator.setData(value.getMetric());
 	}
 
