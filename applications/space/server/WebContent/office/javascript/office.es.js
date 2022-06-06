@@ -472,7 +472,7 @@ Date.patterns = {
 };
 
 Lang.Dialog = {
-  Required: "Par�metros obligatorios"
+  Required: "Parï¿½metros obligatorios"
 };
 
 Lang.ViewNodeLocation = {
@@ -576,7 +576,7 @@ Lang.DialogSearchUsers = {
 };
 
 Lang.DialogSearchUsersItem = {
-  Add: "A�adir"
+  Add: "Aï¿½adir"
 };
 
 Lang.DialogSearchRoles = {
@@ -645,7 +645,7 @@ Lang.LayoutMainCenter = {
 Lang.LayoutMainCenterHeader = {
   Title: "Curriculum Vitae",
   NoViews: "No se dispone de vistas para este elemento",
-  NoSortingOptions: "No se dispone de opciones de ordenaci�n para este elemento"
+  NoSortingOptions: "No se dispone de opciones de ordenaciï¿½n para este elemento"
 };
 
 Lang.DialogSearchNodes = {

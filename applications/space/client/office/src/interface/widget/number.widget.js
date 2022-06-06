@@ -180,7 +180,10 @@ CGWidgetNumber.prototype.atKeyUp = function (oEvent) {
   if ((codeKey == oEvent.ESC) && (this.onEscape)) this.onEscape();
   else if ((codeKey == oEvent.ENTER) && (this.onEnter)) this.onEnter();
   else if (codeKey == oEvent.TAB) dummy = 1;
-  else if (this.onKeyPress) this.onKeyPress(this.Target.getNumberFromFormattedValue(sValue), codeKey);
+  else if (this.onKeyPress) {
+    this.onKeyPress(this.Target.getNumberFromFormattedValue(sValue), codeKey);
+    if (this.extValue.dom.value == "0") this.updateData();
+  }
 
   if (this.extMessageEmpty) this.extMessageEmpty.dom.style.display = (this.extValue.dom.value == "0") ? "block" : "none";
 
