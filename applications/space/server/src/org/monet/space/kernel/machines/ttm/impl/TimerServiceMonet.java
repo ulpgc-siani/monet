@@ -11,6 +11,7 @@ import org.monet.space.kernel.machines.ttm.model.Timer;
 import org.monet.space.kernel.machines.ttm.persistence.PersistenceService;
 import org.monet.space.kernel.threads.MonetSystemThread;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +81,7 @@ public class TimerServiceMonet implements TimerService, TimerServiceCallback {
 		if (this.isActive(taskId, tag))
 			this.cancel(taskId, tag);
 
-		if (delay != null && delay.getTime() == 0) {
+		if (dueDate.before(new Date()) && delay != null && delay.getTime() == 0) {
 			ProcessBehavior process = TimerServiceMonet.this.engine.getProcess(taskId);
 			process.onTimeout(tag);
 			return;
