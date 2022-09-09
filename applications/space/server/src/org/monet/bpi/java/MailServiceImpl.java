@@ -7,10 +7,13 @@ import org.monet.space.kernel.components.ComponentDocuments;
 import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.utils.MimeTypes;
 
+import javax.mail.Session;
+import javax.mail.Store;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class MailServiceImpl extends MailService {
 
