@@ -34,7 +34,7 @@ public class ActionDownloadDocument extends Action {
 
 	@Override
 	public String execute() {
-		String nodeId = this.request.getParameter(Parameter.ID_NODE);
+		String nodeId = (String) this.parameters.get(Parameter.ID_NODE);
 		Node node;
 		HttpClient httpClient = new HttpClient();
 		GetMethod method;
@@ -62,7 +62,7 @@ public class ActionDownloadDocument extends Action {
 
 		try {
 			HashMap<String, String> parameters = new HashMap<String, String>();
-			String fileId = this.request.getParameter(Parameter.FILENAME);
+			String fileId = (String) this.parameters.get(Parameter.FILENAME);
 			parameters.put(Parameter.ID, URLEncoder.encode(fileId, "UTF-8"));
 			method = new GetMethod(this.componentDocuments.getDownloadUrl(parameters));
 			status = httpClient.executeMethod(method);

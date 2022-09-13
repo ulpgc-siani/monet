@@ -44,7 +44,7 @@ public class ActionUploadDocuments extends Action {
 
 	@Override
 	public String execute() {
-		String nodeId = this.request.getParameter(Parameter.ID_NODE);
+		String nodeId = (String) this.parameters.get(Parameter.ID_NODE);
 		Node node;
 		Boolean upload;
 		int status = STATUS_CANT_UPLOAD;
@@ -83,7 +83,7 @@ public class ActionUploadDocuments extends Action {
 
 	private String upload(FileItem fileItem) throws IOException {
 		String filename = LibraryFile.getFilename(fileItem.getName()).replaceAll(FILE_NAME_EMPTY_CHARACTERS_REPLACEMENT, "");
-		String documentId = String.format(ID_DOCUMENT_TEMPLATE, request.getParameter(Parameter.ID_NODE), filename);
+		String documentId = String.format(ID_DOCUMENT_TEMPLATE, parameters.get(Parameter.ID_NODE), filename);
 		String contentType = fileItem.getContentType();
 
 		if (contentType == null || contentType.equals("application/octet-stream"))

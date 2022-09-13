@@ -39,7 +39,7 @@ public class ActionDownloadImage extends Action {
 
 	@Override
 	public String execute() {
-		String idNode = this.request.getParameter(Parameter.ID_NODE);
+		String idNode = (String) this.parameters.get(Parameter.ID_NODE);
 		Node oNode;
 		HttpClient oHttpClient = new HttpClient();
 		GetMethod method;
@@ -64,8 +64,8 @@ public class ActionDownloadImage extends Action {
 
 		try {
 			HashMap<String, String> parameters = new HashMap<String, String>();
-			String fileId = this.request.getParameter(Parameter.FILENAME);
-			String thumb = this.request.getParameter(Parameter.THUMB);
+			String fileId = (String) this.parameters.get(Parameter.FILENAME);
+			String thumb = (String) this.parameters.get(Parameter.THUMB);
 			boolean isPreview = thumb != null && thumb.equals("1");
 			String contentType;
 

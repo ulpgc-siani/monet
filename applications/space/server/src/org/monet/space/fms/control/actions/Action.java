@@ -26,6 +26,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.monet.http.*;
+import org.monet.space.applications.ServiceAction;
 import org.monet.space.applications.upload.FileUploadWrapper;
 import org.monet.space.fms.ApplicationFms;
 import org.monet.space.kernel.agents.AgentLogger;
@@ -41,10 +42,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class Action {
+public abstract class Action implements ServiceAction {
 	protected String codeLanguage;
 	protected Request request;
 	protected Response response;
+	protected HashMap<String, Object> parameters;
 	protected ComponentFederation oComponentAccountsManager;
 	protected AgentSession oAgentSession;
 	protected AgentLogger oAgentException;
@@ -99,23 +101,25 @@ public abstract class Action {
 		return this.getFederationLayer().loadAccount();
 	}
 
-	public Boolean setRequest(HttpServletRequest oRequest) {
-		return setRequest(new HttpRequest(oRequest));
+	public void setRequest(HttpServletRequest oRequest) {
+		setRequest(new HttpRequest(oRequest));
 	}
 
-	public Boolean setRequest(Request oRequest) {
+	public void setRequest(Request oRequest) {
 		this.request = oRequest;
 		this.idSession = oRequest.getSessionId();
-		return true;
 	}
 
-	public Boolean setResponse(HttpServletResponse oResponse) {
-		return setResponse(new HttpResponse(oResponse));
+	public void setResponse(HttpServletResponse oResponse) {
+		setResponse(new HttpResponse(oResponse));
 	}
 
-	public Boolean setResponse(Response oResponse) {
+	public void setResponse(Response oResponse) {
 		this.response = oResponse;
-		return true;
+	}
+
+	public void setParameters(HashMap<String, Object> parameters) {
+		this.parameters = parameters;
 	}
 
 	public Boolean initialize() {

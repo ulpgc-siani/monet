@@ -58,11 +58,11 @@ public class ActionsFactory {
 		return oInstance;
 	}
 
-	public Action get(String sType, HttpServletRequest oRequest, HttpServletResponse oResponse) {
-		return get(sType, new HttpRequest(oRequest), new HttpResponse(oResponse));
+	public Action get(String sType, HttpServletRequest oRequest, HttpServletResponse oResponse, HashMap<String, Object> parameters) {
+		return get(sType, new HttpRequest(oRequest), new HttpResponse(oResponse), parameters);
 	}
 
-	public Action get(String sType, Request oRequest, Response oResponse) {
+	public Action get(String sType, Request oRequest, Response oResponse, HashMap<String, Object> parameters) {
 		Class<?> cAction;
 		Action oAction = null;
 
@@ -71,6 +71,7 @@ public class ActionsFactory {
 			oAction = (Action) cAction.newInstance();
 			oAction.setRequest(oRequest);
 			oAction.setResponse(oResponse);
+			oAction.setParameters(parameters);
 			oAction.initialize();
 		} catch (NullPointerException oException) {
 			throw new SystemException(ErrorCode.ACTIONS_FACTORY, sType, oException);

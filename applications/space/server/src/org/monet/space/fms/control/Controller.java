@@ -40,6 +40,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller extends javax.servlet.http.HttpServlet implements
 	javax.servlet.Servlet {
@@ -65,6 +68,8 @@ public class Controller extends javax.servlet.http.HttpServlet implements
 		String idSession = request.getSession().getId();
 		Context context = Context.getInstance();
 		Long idThread = Thread.currentThread().getId();
+		ArrayList<Map.Entry<String, Object>> parameterList = LibraryRequest.parametersToList(request);
+		HashMap<String, Object> parameters = LibraryRequest.parametersToMap(parameterList);
 
 		try {
 			context.setApplication(idThread, LibraryRequest.getRealIp(request), ApplicationFms.NAME, ApplicationInterface.USER);
@@ -77,7 +82,7 @@ public class Controller extends javax.servlet.http.HttpServlet implements
 				return false;
 			}
 
-			oAction = ActionsFactory.getInstance().get(sOperation, request, response);
+			oAction = ActionsFactory.getInstance().get(sOperation, request, response, parameters);
 			sResult = oAction.execute();
 		} catch (BaseException oException) {
 			oAgentException.error(oException);

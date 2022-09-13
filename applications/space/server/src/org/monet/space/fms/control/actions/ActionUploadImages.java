@@ -36,6 +36,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -87,7 +88,7 @@ public class ActionUploadImages extends Action {
 		String fileName = null, contentType = null;
 		long size = 0;
 		List<String> imageIds = new ArrayList<>();
-		String nodeId = this.request.getParameter(Parameter.ID_NODE);
+		String nodeId = (String) this.parameters.get(Parameter.ID_NODE);
 
 		try {
 			Map<String, List<FileItem>> parametersMap = getPostParameterMap(request);
@@ -132,10 +133,10 @@ public class ActionUploadImages extends Action {
 
 	private String upload(FileItem fileItem, Map<String, List<FileItem>> parametersMap, boolean multiple) throws IOException {
 		String filename = LibraryFile.getFilename(fileItem.getName()).replaceAll(FILE_NAME_EMPTY_CHARACTERS_REPLACEMENT, "");
-		String imageId = String.format(ID_IMAGE_TEMPLATE, request.getParameter(Parameter.ID_NODE), filename);
+		String imageId = String.format(ID_IMAGE_TEMPLATE, parameters.get(Parameter.ID_NODE), filename);
 		String contentType = fileItem.getContentType();
-		int width = tryParse(this.request.getParameter(Parameter.WIDTH), -1);
-		int height = tryParse(this.request.getParameter(Parameter.HEIGHT), -1);
+		int width = tryParse((String) this.parameters.get(Parameter.WIDTH), -1);
+		int height = tryParse((String) this.parameters.get(Parameter.HEIGHT), -1);
 		int sliceX = tryParse(parametersMap.get(Parameter.SLICE_X).get(0).getString(), 0);
 		int sliceY = tryParse(parametersMap.get(Parameter.SLICE_Y).get(0).getString(), 0);
 		int sliceWidth = tryParse(parametersMap.get(Parameter.SLICE_WIDTH).get(0).getString(), width);
