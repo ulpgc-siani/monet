@@ -3454,3 +3454,7 @@ td.x-date-mp-sep {
 #x-msg-box .x-dlg-bd, .x-btn button {
   font-size: 14px;
 }
+
+.ext-mb-text {
+    white-space: nowrap;
+}
