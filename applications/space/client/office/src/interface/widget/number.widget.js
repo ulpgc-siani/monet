@@ -27,7 +27,7 @@ CGWidgetNumber.prototype.validate = function () {
   }
 
   sValue = this.Target.format(this.extValue.dom.value);
-  if (sValue == false || isNaN(iValue)) sValue = null;
+  if (this.extValue.dom.value === "" || isNaN(iValue)) sValue = null;
   bValidRange = this.Target.isValidRange(iValue);
 
   if (bValidRange || sValue == null || sValue == 0) this.extValue.removeClass(CLASS_WRONG);
