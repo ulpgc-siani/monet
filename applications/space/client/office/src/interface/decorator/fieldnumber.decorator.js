@@ -65,6 +65,7 @@ CGDecoratorFieldNumber.prototype.execute = function (DOMField) {
   };
 
   DOMField.isValidRange = function (iNumber) {
+    if (isNaN(iNumber)) return true;
     var aRange = this.getRange();
     if (aRange.length < 2) return true;
 

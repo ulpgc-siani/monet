@@ -27,10 +27,10 @@ CGWidgetNumber.prototype.validate = function () {
   }
 
   sValue = this.Target.format(this.extValue.dom.value);
-  if (sValue == false || isNaN(iValue)) sValue = 0;
+  if (sValue == false || isNaN(iValue)) sValue = null;
   bValidRange = this.Target.isValidRange(iValue);
 
-  if ((bValidRange) || (sValue == 0)) this.extValue.removeClass(CLASS_WRONG);
+  if (bValidRange || sValue == null || sValue == 0) this.extValue.removeClass(CLASS_WRONG);
   else this.extValue.addClass(CLASS_WRONG);
 
   this.extValue.dom.value = sValue;
@@ -113,7 +113,7 @@ CGWidgetNumber.prototype.subtract = function () {
 
 CGWidgetNumber.prototype.clearValue = function (oEvent) {
   this.focus();
-  this.extValue.dom.value = "0";
+  this.extValue.dom.value = null;
   this.validate();
   this.updateData();
   this.hideClearValue();
@@ -185,9 +185,10 @@ CGWidgetNumber.prototype.atKeyUp = function (oEvent) {
     if (this.extValue.dom.value == "0") this.updateData();
   }
 
-  if (this.extMessageEmpty) this.extMessageEmpty.dom.style.display = (this.extValue.dom.value == "0") ? "block" : "none";
+  var isEmpty = this.extValue.dom.value == "0" || this.extValue.dom.value == "" || this.extValue.dom.value == null;
+  if (this.extMessageEmpty) this.extMessageEmpty.dom.style.display = isEmpty ? "block" : "none";
 
-  if (this.extValue.dom.value != "0") this.showClearValue();
+  if (!isEmpty) this.showClearValue();
   else this.hideClearValue();
 
   Event.stop(oEvent);
