@@ -210,6 +210,20 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
         BusProvider.get().post(new StartLoadingEvent());
         return new SimpleDataLoader<State>(this.context, args) {
 
+            private boolean isMultipleEmpty(Step.Edit.Type type, Schema currentSchema, String name){
+                if (type.name().equals("TEXT") && currentSchema.getTextList(name).size() == 0) return true;
+                if (type.name().equals("DATE") && currentSchema.getDateList(name).size() == 0) return true;
+                if (type.name().equals("NUMBER") && currentSchema.getNumberList(name).size() == 0) return true;
+                if (type.name().equals("MEMO") && currentSchema.getTextList(name).size() == 0) return true;
+                if (type.name().equals("BOOLEAN") && currentSchema.getBooleanList(name).size() == 0) return true;
+                //if (type.name().equals("CHECK") && currentSchema.getList(name).size() == 0) state.goBack();
+                if (type.name().equals("SELECT") && currentSchema.getTermList(name).size() == 0) return true;
+                if (type.name().equals("PICTURE") && currentSchema.getPictureList(name).size() == 0) return true;
+                if (type.name().equals("PICTURE_HAND") && currentSchema.getPictureList(name).size() == 0) return true;
+                if (type.name().equals("VIDEO") && currentSchema.getVideoList(name).size() == 0) return true;
+                return false;
+            }
+
             @Override
             public State loadInBackground() {
                 try {
@@ -232,11 +246,15 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                     for (Step.Edit field :previousStep.edits){
                         if (field.isRequired){
                             Step.Edit.Type type = field.type;
-                            previousStep.edits.indexOf(field.name);
+                            //reviousStep.edits.indexOf(field.name);
                             Schema currentSchema = state.Schema.getSchema(previousStep.name);
                             if (currentSchema != null){
                                 Object shField = currentSchema.get(field.name);
-                                if (shField== null) state.goBack();
+                                if (field.isMultiple){
+                                    if (isMultipleEmpty(type, currentSchema, field.name)) state.goBack();
+                                }else{
+                                    if (shField== null) state.goBack();
+                                }
                             }
                         }
                     }

@@ -1099,6 +1099,12 @@ public class Schema {
 
     private static void writeDate(XmlSerializer serializer, Date date) throws IOException {
         serializer.attribute("", "internal", fixTimeZone(date));
+        /*
+        FORMATO UTC
+        SimpleDateFormat utcFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        serializer.text(utcFormat.format(date));
+        */
         serializer.text(String.valueOf(date));
     }
 
@@ -1134,6 +1140,14 @@ public class Schema {
     }
 
     private static String fixTimeZone(Date date) {
+        /*
+        FORMATO UTC
+        if (date == null) return null;
+        SimpleDateFormat formatWithoutTimeZone = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
+        formatWithoutTimeZone.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String formattedDate = formatWithoutTimeZone.format(date);
+        return formattedDate;
+         */
         return date == null ? null : dateFormat.format(date);
     }
 
