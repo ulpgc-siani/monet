@@ -17,14 +17,12 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.monet.space.kernel.configuration.Configuration;
 import org.monet.space.kernel.exceptions.CantSignException;
 import org.monet.space.kernel.library.LibrarySigner;
+import org.monet.space.kernel.utils.MessageHelper;
 import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class AgentRestfullClient {
@@ -153,7 +151,7 @@ public class AgentRestfullClient {
 		HttpClient client = buildClient();
 		HttpPost post = new HttpPost(url);
 		MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-		StringBuilder requestArgsBuilder = new StringBuilder();
+		Map<String, String> parametersToSign = new HashMap<>();
 		HttpResponse response;
 
 		entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -162,26 +160,22 @@ public class AgentRestfullClient {
 			entityBuilder.addPart(param.getKey(), param.getValue());
 
 			if (param.getValue() instanceof StringBody) {
-				requestArgsBuilder.append(param.getKey());
-				requestArgsBuilder.append("=");
-				requestArgsBuilder.append(AgentFilesystem.getReaderContent(((StringBody) param.getValue()).getReader()).trim());
-				requestArgsBuilder.append("&");
+				parametersToSign.put(param.getKey(), AgentFilesystem.getReaderContent(((StringBody) param.getValue()).getReader()).trim());
 			}
 		}
 
 		String timestamp = String.valueOf((new Date()).getTime());
 		entityBuilder.addPart("timestamp", new StringBody(timestamp, ContentType.TEXT_PLAIN));
+		parametersToSign.put("timestamp", timestamp);
 
-		requestArgsBuilder.append("timestamp=");
-		requestArgsBuilder.append(timestamp);
-
+		String requestArgsBuilder = MessageHelper.toQueryString(parametersToSign);
 		try {
-			String signature = LibrarySigner.signText(requestArgsBuilder.toString(), configuration.getCertificateFilename(), configuration.getCertificatePassword());
+			String signature = LibrarySigner.signText(requestArgsBuilder, configuration.getCertificateFilename(), configuration.getCertificatePassword());
 			entityBuilder.addPart("signature", new StringBody(signature, ContentType.TEXT_PLAIN));
 
-			AgentLogger.getInstance().debug("AgentRestfullClient:executeWithAuth. Signature: %s. RequestArgs: %s.", signature, requestArgsBuilder.toString());
+			AgentLogger.getInstance().debug("AgentRestfullClient:executeWithAuth. Signature: %s. RequestArgs: %s.", signature, requestArgsBuilder);
 		} catch (Exception exception) {
-			throw new CantSignException(String.format("Could not sign message: %s with certificate: %s", requestArgsBuilder.toString(), configuration.getCertificateFilename()));
+			throw new CantSignException(String.format("Could not sign message: %s with certificate: %s", requestArgsBuilder, configuration.getCertificateFilename()));
 		}
 
 		post.setEntity(entityBuilder.build());

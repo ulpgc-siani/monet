@@ -6,12 +6,27 @@ import org.monet.space.kernel.machines.ttm.model.Message;
 import org.monet.space.kernel.machines.ttm.model.Message.MessageAttach;
 
 import java.io.*;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import static org.monet.space.kernel.machines.ttm.persistence.PersistenceService.MonetReferenceFileExtension;
 
 public class MessageHelper {
+
+	public static String toQueryString(Map<String, String> parameters) {
+		SortedSet<String> keys = new TreeSet<>(parameters.keySet());
+		StringBuilder result = new StringBuilder();
+		for (String key : keys) {
+			result.append(key);
+			result.append("=");
+			result.append(parameters.get(key));
+			result.append("&");
+		}
+		return result.length() > 0 ? result.substring(0, result.length()-1) : "";
+	}
 
 	public static void parseMessageContent(File messageFile, File messageDir, Message message) throws Exception {
 		if (isZipFile(messageFile)) {

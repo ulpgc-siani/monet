@@ -45,12 +45,13 @@ import org.monet.space.kernel.exceptions.DataException;
 import org.monet.space.kernel.exceptions.SessionException;
 import org.monet.space.kernel.exceptions.SystemException;
 import org.monet.space.kernel.library.LibraryString;
-import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.model.Dictionary;
+import org.monet.space.kernel.model.*;
 import org.monet.space.kernel.producers.ProducerFederation;
 import org.monet.space.kernel.producers.ProducerFederationList;
 import org.monet.space.kernel.producers.ProducerRole;
 import org.monet.space.kernel.producers.ProducersFactory;
+import org.monet.space.kernel.utils.MessageHelper;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
@@ -313,20 +314,17 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 
 		try {
-			StringBuilder builder = new StringBuilder();
+			Map<String, String> parametersToSign = new HashMap<>();
 			HashSet<String> addedKeys = new HashSet<String>();
 			for (Entry<String, Object> entry : parameters) {
 				String key = entry.getKey();
 				if (!(entry.getValue() instanceof String) || keys.contains(key) || addedKeys.contains(key))
 					continue;
 				addedKeys.add(key);
-				builder.append(key);
-				builder.append("=");
-				builder.append(entry.getValue());
-				builder.append("&");
+				parametersToSign.put(key, (String) entry.getValue());
 			}
-			builder.append(String.format("%s=%d", TIMESTAMP_PARAMETER, timestamp));
-			String requestArgs = LibraryString.cleanSpecialChars(builder.toString());
+			parametersToSign.put(TIMESTAMP_PARAMETER, String.valueOf(timestamp));
+			String requestArgs = LibraryString.cleanSpecialChars(MessageHelper.toQueryString(parametersToSign));
 
 			AgentLogger.getInstance().debug("FederationLayer:validateRequest. Signature: %s. RequestArgs: %s.", signature, requestArgs);
 
