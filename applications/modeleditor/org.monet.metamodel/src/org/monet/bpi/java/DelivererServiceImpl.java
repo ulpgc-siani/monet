@@ -18,11 +18,23 @@ public class DelivererServiceImpl extends DelivererService {
   }
 
   @Override
+  public void deliver(URI url, NodeDocument document, Map<String, String> headers) throws Exception {
+  }
+
+  @Override
   public void deliver(URI url, Map<String, String> params) throws Exception {
   }
 
   @Override
+  public void deliver(URI url, Map<String, String> params, Map<String, String> headers) throws Exception {
+  }
+
+  @Override
   public void deliverJson(URI url, Map<String, Object> params) throws Exception {
+  }
+
+  @Override
+  public void deliverJson(URI url, Map<String, Object> params, Map<String, String> headers) throws Exception {
   }
 
   @Override
