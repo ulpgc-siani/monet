@@ -102,7 +102,7 @@ public class AgentRestfullClient {
 		HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
 		HttpResponse response;
 
-		method.he
+		for (Map.Entry<String, String> entry : headers.entrySet()) method.addHeader(entry.getKey(), entry.getValue());
 
 		if (isPost) {
 			MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
@@ -148,7 +148,7 @@ public class AgentRestfullClient {
 		return this.execute(url, true, parameters);
 	}
 
-	public void executePost(String url, HashMap<String, ContentBody> parameters, Map<String, String> headers) {
+	public Result executePost(String url, HashMap<String, ContentBody> parameters, HashMap<String, String> headers) throws Exception {
 		return this.execute(url, true, parameters, headers);
 	}
 
