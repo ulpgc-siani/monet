@@ -93,9 +93,16 @@ public class AgentRestfullClient {
 
 	@SuppressWarnings("unchecked")
 	public Result execute(String url, boolean isPost, HashMap<String, ?> parameters) throws Exception {
+		return execute(url, isPost, parameters, new HashMap<String, String>());
+	}
+
+	@SuppressWarnings("unchecked")
+	public Result execute(String url, boolean isPost, HashMap<String, ?> parameters, HashMap<String, String> headers) throws Exception {
 		HttpClient client = buildClient();
 		HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
 		HttpResponse response;
+
+		method.he
 
 		if (isPost) {
 			MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
@@ -139,6 +146,10 @@ public class AgentRestfullClient {
 
 	public Result executePost(String url, HashMap<String, ContentBody> parameters) throws Exception {
 		return this.execute(url, true, parameters);
+	}
+
+	public void executePost(String url, HashMap<String, ContentBody> parameters, Map<String, String> headers) {
+		return this.execute(url, true, parameters, headers);
 	}
 
 	public Result executeGet(String url) throws Exception {

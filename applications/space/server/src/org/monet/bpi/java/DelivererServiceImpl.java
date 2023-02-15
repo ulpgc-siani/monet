@@ -18,6 +18,7 @@ import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.*;
 import java.net.URI;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -35,13 +36,18 @@ public class DelivererServiceImpl extends DelivererService {
 
 	@Override
 	public void deliver(URI url, NodeDocument document) throws Exception {
+		deliver(url, document, new HashMap<String, String>());
+	}
+
+	@Override
+	public void deliver(URI url, NodeDocument document, Map<String, String> headers) throws Exception {
 		InputStream documentContent = null;
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
 			documentContent = getDocumentContent(document);
 			parameters.put("document", new InputStreamBody(documentContent, "document"));
-			AgentRestfullClient.getInstance().executePost(url.toString(), parameters);
+			AgentRestfullClient.getInstance().executePost(url.toString(), parameters, headers);
 		} finally {
 			StreamHelper.close(documentContent);
 		}

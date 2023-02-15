@@ -13,9 +13,15 @@ public abstract class DelivererService {
   
   public abstract void deliver(URI url, NodeDocument document) throws Exception;
 
+  public abstract void deliver(URI url, NodeDocument document, Map<String, String> headers) throws Exception;
+
   public abstract void deliver(URI url, Map<String, String> params) throws Exception;
 
+  public abstract void deliver(URI url, Map<String, String> params, Map<String, String> headers) throws Exception;
+
   public abstract void deliverJson(URI url, Map<String, Object> params) throws Exception;
+
+  public abstract void deliverJson(URI url, Map<String, Object> params, Map<String, String> headers) throws Exception;
 
   public abstract void deliverToMail(URI from, URI to, String subject, String body, NodeDocument document);
 
