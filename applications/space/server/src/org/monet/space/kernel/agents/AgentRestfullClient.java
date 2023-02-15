@@ -21,10 +21,7 @@ import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class AgentRestfullClient {
@@ -95,9 +92,16 @@ public class AgentRestfullClient {
 
 	@SuppressWarnings("unchecked")
 	public Result execute(String url, boolean isPost, HashMap<String, ?> parameters) throws Exception {
+		return execute(url, isPost, parameters, new HashMap<String, String>());
+	}
+
+	@SuppressWarnings("unchecked")
+	public Result execute(String url, boolean isPost, HashMap<String, ?> parameters, HashMap<String, String> headers) throws Exception {
 		HttpClient client = buildClient();
 		HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
 		HttpResponse response;
+
+		for (Map.Entry<String, String> entry : headers.entrySet()) method.addHeader(entry.getKey(), entry.getValue());
 
 		if (isPost) {
 			MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
@@ -141,6 +145,10 @@ public class AgentRestfullClient {
 
 	public Result executePost(String url, HashMap<String, ContentBody> parameters) throws Exception {
 		return this.execute(url, true, parameters);
+	}
+
+	public Result executePost(String url, HashMap<String, ContentBody> parameters, HashMap<String, String> headers) throws Exception {
+		return this.execute(url, true, parameters, headers);
 	}
 
 	public Result executeGet(String url) throws Exception {

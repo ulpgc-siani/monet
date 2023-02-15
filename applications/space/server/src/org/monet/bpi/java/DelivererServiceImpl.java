@@ -35,13 +35,18 @@ public class DelivererServiceImpl extends DelivererService {
 
 	@Override
 	public void deliver(URI url, NodeDocument document) throws Exception {
+		deliver(url, document, new HashMap<String, String>());
+	}
+
+	@Override
+	public void deliver(URI url, NodeDocument document, Map<String, String> headers) throws Exception {
 		InputStream documentContent = null;
 
 		try {
-			HashMap<String, ContentBody> parameters = new HashMap<String, ContentBody>();
+			HashMap<String, ContentBody> parameters = new HashMap<>();
 			documentContent = getDocumentContent(document);
 			parameters.put("document", new InputStreamBody(documentContent, "document"));
-			AgentRestfullClient.getInstance().executePost(url.toString(), parameters);
+			AgentRestfullClient.getInstance().executePost(url.toString(), parameters, new HashMap<>(headers));
 		} finally {
 			StreamHelper.close(documentContent);
 		}
@@ -49,12 +54,17 @@ public class DelivererServiceImpl extends DelivererService {
 
 	@Override
 	public void deliver(URI url, Map<String, String> params) throws Exception {
+		deliver(url, params, new HashMap<String, String>());
+	}
+
+	@Override
+	public void deliver(URI url, Map<String, String> params, Map<String, String> headers) throws Exception {
 		InputStream documentContent = null;
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			for (Map.Entry<String, String> entry : params.entrySet())
 				parameters.put(entry.getKey(), new StringBody(entry.getValue(), ContentType.APPLICATION_JSON));
-			AgentRestfullClient.getInstance().executePost(url.toString(), parameters);
+			AgentRestfullClient.getInstance().executePost(url.toString(), parameters, new HashMap<>(headers));
 		} finally {
 			StreamHelper.close(documentContent);
 		}
@@ -62,13 +72,18 @@ public class DelivererServiceImpl extends DelivererService {
 
 	@Override
 	public void deliverJson(URI url, Map<String, Object> params) throws Exception {
+		deliverJson(url, params, new HashMap<String, String>());
+	}
+
+	@Override
+	public void deliverJson(URI url, Map<String, Object> params, Map<String, String> headers) throws Exception {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 		Gson gson = new Gson();
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			if (entry.getValue() instanceof String) parameters.put(entry.getKey(), new StringBody((String) entry.getValue(), ContentType.APPLICATION_JSON));
 			else parameters.put(entry.getKey(), new InputStreamBody(new ByteArrayInputStream(gson.toJson(entry.getValue()).getBytes()), ContentType.APPLICATION_OCTET_STREAM, "message"));
 		}
-		AgentRestfullClient.getInstance().executePost(url.toString(), parameters);
+		AgentRestfullClient.getInstance().executePost(url.toString(), parameters, new HashMap<>(headers));
 	}
 
 	@Override
