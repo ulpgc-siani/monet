@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ContentBody;
@@ -102,7 +103,7 @@ public class AgentRestfullClient {
 		HttpRequestBase method = isPost ? new HttpPost(url) : new HttpGet(url);
 		HttpResponse response;
 
-		for (Map.Entry<String, String> entry : headers.entrySet()) method.addHeader(entry.getKey(), entry.getValue());
+		for (Map.Entry<String, String> entry : headers.entrySet()) method.setHeader(entry.getKey(), entry.getValue());
 
 		if (isPost) {
 			MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
@@ -150,6 +151,26 @@ public class AgentRestfullClient {
 
 	public Result executePost(String url, HashMap<String, ContentBody> parameters, HashMap<String, String> headers) throws Exception {
 		return this.execute(url, true, parameters, headers);
+	}
+
+	public Result executePost(String url, String body, HashMap<String, String> headers) throws Exception {
+		HttpClient client = buildClient();
+		HttpPost method = new HttpPost(url);
+		HttpResponse response;
+
+		for (Map.Entry<String, String> entry : headers.entrySet()) method.setHeader(entry.getKey(), entry.getValue());
+
+		method.setEntity(new StringEntity(body, ContentType.APPLICATION_JSON));
+		method.setConfig(requestConfig());
+		response = client.execute(method);
+
+		int status = response.getStatusLine().getStatusCode();
+
+		if (status < 200 || status >= 300)
+			throw new HttpException(String.format("%s => %d - %s", url, status, response.getStatusLine().getReasonPhrase()));
+
+		HttpEntity entity = response.getEntity();
+		return new Result(entity.getContent(), entity.getContentLength(), entity.getContentType() != null ? entity.getContentType().getValue() : null);
 	}
 
 	public Result executeGet(String url) throws Exception {

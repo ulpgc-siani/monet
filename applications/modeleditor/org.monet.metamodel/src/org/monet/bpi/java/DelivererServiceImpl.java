@@ -38,6 +38,14 @@ public class DelivererServiceImpl extends DelivererService {
   }
 
   @Override
+  public void deliverJson(URI url, String body) throws Exception {
+  }
+
+  @Override
+  public void deliverJson(URI url, String body, Map<String, String> headers) throws Exception {
+  }
+
+  @Override
   public void deliverToMail(URI from, URI to, String subject, String body, NodeDocument document) {
   }
 

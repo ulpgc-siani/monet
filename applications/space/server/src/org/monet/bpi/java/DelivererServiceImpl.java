@@ -2,9 +2,19 @@ package org.monet.bpi.java;
 
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpException;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -18,10 +28,8 @@ import org.monet.space.kernel.utils.StreamHelper;
 
 import java.io.*;
 import java.net.URI;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.net.URL;
+import java.util.*;
 
 public class DelivererServiceImpl extends DelivererService {
 
@@ -85,6 +93,16 @@ public class DelivererServiceImpl extends DelivererService {
 			else parameters.put(entry.getKey(), new InputStreamBody(new ByteArrayInputStream(gson.toJson(entry.getValue()).getBytes()), ContentType.APPLICATION_OCTET_STREAM, "message"));
 		}
 		AgentRestfullClient.getInstance().executePost(url.toString(), parameters, new HashMap<>(headers));
+	}
+
+	@Override
+	public void deliverJson(URI url, String body) throws Exception {
+		deliverJson(url, body, new HashMap<String, String>());
+	}
+
+	@Override
+	public void deliverJson(URI url, String body, Map<String, String> headers) throws Exception {
+		AgentRestfullClient.getInstance().executePost(url.toString(), body, new HashMap<>(headers));
 	}
 
 	@Override

@@ -23,6 +23,10 @@ public abstract class DelivererService {
 
 	public abstract void deliverJson(URI url, Map<String, Object> params, Map<String, String> headers) throws Exception;
 
+	public abstract void deliverJson(URI url, String body) throws Exception;
+
+	public abstract void deliverJson(URI url, String body, Map<String, String> headers) throws Exception;
+
 	public abstract void deliverToMail(URI from, URI to, String subject, String body, NodeDocument document);
 
 }
