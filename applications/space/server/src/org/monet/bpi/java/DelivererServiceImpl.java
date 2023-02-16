@@ -87,6 +87,16 @@ public class DelivererServiceImpl extends DelivererService {
 	}
 
 	@Override
+	public void deliverJson(URI url, String body) throws Exception {
+		deliverJson(url, body, new HashMap<String, String>());
+	}
+
+	@Override
+	public void deliverJson(URI url, String body, Map<String, String> headers) throws Exception {
+		AgentRestfullClient.getInstance().executePost(url.toString(), body, new HashMap<>(headers));
+	}
+
+	@Override
 	public void deliverToMail(URI from, URI to, String subject, String body, NodeDocument document) {
 		HtmlEmail email = new HtmlEmail();
 		String filename = Configuration.getInstance().getTempDir() + UUID.randomUUID().toString();

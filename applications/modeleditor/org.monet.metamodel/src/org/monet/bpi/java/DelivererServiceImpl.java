@@ -1,10 +1,12 @@
 package org.monet.bpi.java;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.monet.bpi.DelivererService;
 import org.monet.bpi.NodeDocument;
+import org.monet.space.kernel.agents.AgentRestfullClient;
 
 
 public class DelivererServiceImpl extends DelivererService {
@@ -35,6 +37,14 @@ public class DelivererServiceImpl extends DelivererService {
 
   @Override
   public void deliverJson(URI url, Map<String, Object> params, Map<String, String> headers) throws Exception {
+  }
+
+  @Override
+  public void deliverJson(URI url, String body) throws Exception {
+  }
+
+  @Override
+  public void deliverJson(URI url, String body, Map<String, String> headers) throws Exception {
   }
 
   @Override
