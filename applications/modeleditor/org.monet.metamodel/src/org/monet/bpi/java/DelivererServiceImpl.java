@@ -6,7 +6,6 @@ import java.util.Map;
 import org.monet.bpi.DelivererService;
 import org.monet.bpi.NodeDocument;
 
-
 public class DelivererServiceImpl extends DelivererService {
 
   public static void init() {
