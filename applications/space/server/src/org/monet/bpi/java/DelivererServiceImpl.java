@@ -96,13 +96,15 @@ public class DelivererServiceImpl extends DelivererService {
 	}
 
 	@Override
-	public void deliverJson(URI url, String body) throws Exception {
+	public void deliverJson(URI url, Object body) throws Exception {
 		deliverJson(url, body, new HashMap<String, String>());
 	}
 
 	@Override
-	public void deliverJson(URI url, String body, Map<String, String> headers) throws Exception {
-		AgentRestfullClient.getInstance().executePost(url.toString(), body, new HashMap<>(headers));
+	public void deliverJson(URI url, Object body, Map<String, String> headers) throws Exception {
+		Gson gson = new Gson();
+		String bodyContent = body instanceof String ? (String)body : gson.toJson(body);
+		AgentRestfullClient.getInstance().executePost(url.toString(), bodyContent, new HashMap<>(headers));
 	}
 
 	@Override
