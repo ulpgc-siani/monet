@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.monet.bpi.DelivererService;
 import org.monet.bpi.NodeDocument;
-import org.monet.space.kernel.agents.AgentRestfullClient;
-
 
 public class DelivererServiceImpl extends DelivererService {
 
