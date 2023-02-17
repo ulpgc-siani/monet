@@ -38,11 +38,11 @@ public class DelivererServiceImpl extends DelivererService {
   }
 
   @Override
-  public void deliverJson(URI url, String body) throws Exception {
+  public void deliverJson(URI url, Object body) throws Exception {
   }
 
   @Override
-  public void deliverJson(URI url, String body, Map<String, String> headers) throws Exception {
+  public void deliverJson(URI url, Object body, Map<String, String> headers) throws Exception {
   }
 
   @Override
