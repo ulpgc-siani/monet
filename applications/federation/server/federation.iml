@@ -213,7 +213,7 @@
     <orderEntry type="module-library">
       <library name="Maven: monet:space-backservice:0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/WebContent/WEB-INF/lib/monet.api.space.backservice-3.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/WebContent/WEB-INF/lib/backservice-3.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

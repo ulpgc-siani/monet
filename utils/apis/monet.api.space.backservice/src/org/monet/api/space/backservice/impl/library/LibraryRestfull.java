@@ -13,8 +13,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClients;
 
 import java.io.*;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class LibraryRestfull {
@@ -75,14 +74,23 @@ public class LibraryRestfull {
 	}
 
 	public static InputStream requestStream(String url, HashMap<String, ContentBody> parameters, InputStream certificate, String certificatePassword, int timeoutInSeconds) throws Exception {
+		try {
+			return requestStreamWithSortedParameters(url, parameters, certificate, certificatePassword, timeoutInSeconds);
+		}
+		catch (Throwable ex) {
+			return requestStreamWithParameters(url, parameters, certificate, certificatePassword, timeoutInSeconds);
+		}
+	}
+
+	private static InputStream requestStreamWithParameters(String url, HashMap<String, ContentBody> parameters, InputStream certificate, String certificatePassword, int timeoutInSeconds) throws Exception {
 		RequestConfig configuration = RequestConfig.custom().setSocketTimeout(timeoutInSeconds * 1000).setStaleConnectionCheckEnabled(true).build();
 		HttpClient client = HttpClients.custom().setDefaultRequestConfig(configuration).build();
 		HttpPost post = new HttpPost(url);
 		MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-        StringBuilder requestArgsBuilder = new StringBuilder();
+		StringBuilder requestArgsBuilder = new StringBuilder();
 		HttpResponse response;
 
-        entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+		entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
 		for (Entry<String, ContentBody> param : parameters.entrySet()) {
 			entityBuilder.addPart(param.getKey(), param.getValue());
@@ -97,16 +105,57 @@ public class LibraryRestfull {
 		}
 
 		String timestamp = String.valueOf((new Date()).getTime());
-        entityBuilder.addPart("timestamp", new StringBody(timestamp, ContentType.TEXT_PLAIN));
+		entityBuilder.addPart("timestamp", new StringBody(timestamp, ContentType.TEXT_PLAIN));
 
 		requestArgsBuilder.append("timestamp=");
 		requestArgsBuilder.append(timestamp);
 
 		String hash = requestArgsBuilder.toString();
-        entityBuilder.addPart("hash", new StringBody(hash, ContentType.TEXT_PLAIN));
+		entityBuilder.addPart("hash", new StringBody(hash, ContentType.TEXT_PLAIN));
 
 		String signature = LibrarySigner.signText(hash, certificate, certificatePassword);
-        entityBuilder.addPart("signature", new StringBody(signature, ContentType.TEXT_PLAIN));
+		entityBuilder.addPart("signature", new StringBody(signature, ContentType.TEXT_PLAIN));
+
+		post.setEntity(entityBuilder.build());
+
+		response = client.execute(post);
+
+		int status = response.getStatusLine().getStatusCode();
+
+		if (status < 200 || status >= 300)
+			throw new HttpException(String.format("%s => %d - %s", url, status, response.getStatusLine().getReasonPhrase()));
+
+		return response.getEntity().getContent();
+	}
+
+	private static InputStream requestStreamWithSortedParameters(String url, HashMap<String, ContentBody> parameters, InputStream certificate, String certificatePassword, int timeoutInSeconds) throws Exception {
+		RequestConfig configuration = RequestConfig.custom().setSocketTimeout(timeoutInSeconds * 1000).setStaleConnectionCheckEnabled(true).build();
+		HttpClient client = HttpClients.custom().setDefaultRequestConfig(configuration).build();
+		HttpPost post = new HttpPost(url);
+		MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+		Map<String, String> parametersToSign = new HashMap<>();
+		HttpResponse response;
+
+		entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+		for (Entry<String, ContentBody> param : parameters.entrySet()) {
+			entityBuilder.addPart(param.getKey(), param.getValue());
+
+			if (param.getValue() instanceof StringBody) {
+				if (param.getKey().equals("op")) continue;
+				parametersToSign.put(param.getKey(), LibraryRestfull.getReaderContent(((StringBody) param.getValue()).getReader()).trim());
+			}
+		}
+
+		String timestamp = String.valueOf((new Date()).getTime());
+		entityBuilder.addPart("timestamp", new StringBody(timestamp, ContentType.TEXT_PLAIN));
+		parametersToSign.put("timestamp", timestamp);
+
+		String hash = toQueryString(parametersToSign);
+		entityBuilder.addPart("hash", new StringBody(hash, ContentType.TEXT_PLAIN));
+
+		String signature = LibrarySigner.signText(hash, certificate, certificatePassword);
+		entityBuilder.addPart("signature", new StringBody(signature, ContentType.TEXT_PLAIN));
 
 		post.setEntity(entityBuilder.build());
 
@@ -136,6 +185,18 @@ public class LibraryRestfull {
 		InputStream stream = LibraryRestfull.requestStream(url, parameters, certificate, certificatePassword, timeoutInSeconds);
 		InputStreamReader reader = new InputStreamReader(stream, "UTF-8");
 		return LibraryRestfull.getReaderContent(reader).trim();
+	}
+
+	public static String toQueryString(Map<String, String> parameters) {
+		SortedSet<String> keys = new TreeSet<>(parameters.keySet());
+		StringBuilder result = new StringBuilder();
+		for (String key : keys) {
+			result.append(key);
+			result.append("=");
+			result.append(parameters.get(key));
+			result.append("&");
+		}
+		return result.length() > 0 ? result.substring(0, result.length()-1) : "";
 	}
 
 }
