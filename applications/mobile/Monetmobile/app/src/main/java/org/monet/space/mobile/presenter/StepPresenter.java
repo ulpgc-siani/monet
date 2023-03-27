@@ -251,9 +251,15 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                             if (currentSchema != null){
                                 Object shField = currentSchema.get(field.name);
                                 if (field.isMultiple){
-                                    if (isMultipleEmpty(type, currentSchema, field.name)) state.goBack();
+                                    if (isMultipleEmpty(type, currentSchema, field.name)){
+                                        state.goBack();
+                                        break;
+                                    }
                                 }else{
-                                    if (shField== null) state.goBack();
+                                    if (shField== null){
+                                        state.goBack();
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -265,6 +271,18 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                         if (stepSchemas.size() == 0)
                             stepSchemas.add(new Schema());
                         state.CurrentStepSchema = stepSchemas.get(state.MultipleStepIteration);
+                        int minIndex = 0;
+                        for (int i = 0;i<state.Schema.getSchemaList(currentStep.name).size(); i++){
+                            if (state.Schema.getSchemaList(currentStep.name).get(i).getBoolean("IsLastStep")){
+                                minIndex=i;
+                                break;
+                            }
+                        }
+                        if (state.Schema.getSchemaList(currentStep.name).get(minIndex).getBoolean("IsLastStep") && minIndex + 1 == state.MultipleStepIteration){
+                            state.MultipleStepIteration = 0;
+                            if (state.CurrentStepIndex < (state.Definition.stepList.size() - 1))
+                                state.CurrentStepIndex++;
+                        }
                     } else
                         state.CurrentStepSchema = state.Schema.getSchema(currentStep.name);
                 } catch (Exception e) {
