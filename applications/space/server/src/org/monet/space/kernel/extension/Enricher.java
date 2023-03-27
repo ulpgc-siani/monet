@@ -56,7 +56,7 @@ public class Enricher implements IEnricher {
 		String value = attribute.getIndicatorValue(Common.DataStoreField.VALUE);
 		saveToHistory(attribute, value, getDataStore(fieldDefinition), fieldDefinition.getCode());
 
-		if ((fieldDefinition.isRequired()) && (value.equals(Strings.EMPTY))) errors++;
+		if ((fieldDefinition.isRequired()) && (value == null || value.equals(Strings.EMPTY))) errors++;
 
 		for (Attribute childAttribute : attribute.getAttributeList()) {
 			completeNodeAttributes(formDefinition, childAttribute, errors);
