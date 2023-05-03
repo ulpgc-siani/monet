@@ -148,7 +148,7 @@ public class LibraryRequest {
 		try {
 
 			for (Map.Entry<String, Object> entry : parameters) {
-				requestParameters.put(entry.getKey(), entry.getValue());
+				requestParameters.put(entry.getKey(), entry.getValue() instanceof InputStreamBody ? ((InputStreamBody) entry.getValue()).getInputStream() : entry.getValue());
 			}
 		} catch (Exception exception) {
 			AgentLogger.getInstance().error(exception);
