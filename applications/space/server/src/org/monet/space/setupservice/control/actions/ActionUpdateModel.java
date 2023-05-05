@@ -22,6 +22,7 @@ import org.monet.space.setupservice.control.constants.Parameter;
 import org.monet.space.setupservice.core.constants.ErrorCode;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.UUID;
 
@@ -32,7 +33,7 @@ public class ActionUpdateModel extends Action {
 
 	@Override
 	public String execute() {
-		InputStreamBody modelStream = (InputStreamBody) this.parameters.get(Parameter.MODEL);
+		InputStream modelStream = (InputStream) this.parameters.get(Parameter.MODEL);
 		String destination, businessModelZipLocation;
 		Kernel kernel = Kernel.getInstance();
 		org.monet.space.kernel.configuration.Configuration monetConfiguration = kernel.getConfiguration();
@@ -55,7 +56,7 @@ public class ActionUpdateModel extends Action {
 			kernel.stopApplications();
 
 			tempModelFile = File.createTempFile("mml", ".zip");
-			AgentFilesystem.writeFile(tempModelFile, modelStream.getInputStream());
+			AgentFilesystem.writeFile(tempModelFile, modelStream);
 
 			pipeline.setData(GlobalData.MODEL_ZIP_FILE, tempModelFile);
 			pipeline.setData(GlobalData.MODEL_INSTALL_DIRECTORY, monetConfiguration.getBusinessModelDir());
@@ -85,7 +86,7 @@ public class ActionUpdateModel extends Action {
 			throw new SystemException(ErrorCode.UPDATE_BUSINESS_MODEL, null, exception);
 		} finally {
 			kernel.runApplications();
-			StreamHelper.close(modelStream.getInputStream());
+			StreamHelper.close(modelStream);
 			tempModelFile.delete();
 		}
 

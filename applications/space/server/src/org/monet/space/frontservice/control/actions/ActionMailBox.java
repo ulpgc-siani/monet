@@ -53,7 +53,7 @@ public class ActionMailBox extends Action {
 	public String execute() {
 		String mailBoxId = (String) this.parameters.get(Parameter.ADDRESS);
 		String signaling = (String) this.parameters.get(Parameter.SIGNALING);
-		InputStreamBody messageStream = (InputStreamBody) this.parameters.get(Parameter.MESSAGE);
+		InputStream messageStream = (InputStream) this.parameters.get(Parameter.MESSAGE);
 		String messageCode = (String) this.parameters.get(Parameter.MESSAGE_CODE);
 		String messageType = (String) this.parameters.get(Parameter.MESSAGE_TYPE);
 		String messageHash = (String) this.parameters.get(Parameter.MESSAGE_HASH);
@@ -91,7 +91,7 @@ public class ActionMailBox extends Action {
 			messageDir = new File(messageFile.getAbsolutePath() + "_content/");
 			messageDir.mkdirs();
 
-			this.saveMessageAndValidateHash(messageStream.getInputStream(), messageHash, messageFile);
+			this.saveMessageAndValidateHash(messageStream, messageHash, messageFile);
 
 			Message message = new Message();
 			message.setSubject(messageCode);
