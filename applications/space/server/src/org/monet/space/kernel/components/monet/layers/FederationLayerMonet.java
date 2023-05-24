@@ -314,25 +314,19 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 			throw new DataException(ErrorCode.BUSINESS_UNIT_STOPPED, null);
 
 		try {
-			Map<String, String> parametersToSign = new HashMap<>();
-			HashSet<String> addedKeys = new HashSet<String>();
-			for (Entry<String, Object> entry : parameters) {
-				String key = entry.getKey();
-				if (!(entry.getValue() instanceof String) || keys.contains(key) || addedKeys.contains(key))
-					continue;
-				addedKeys.add(key);
-				parametersToSign.put(key, (String) entry.getValue());
-			}
-			parametersToSign.put(TIMESTAMP_PARAMETER, String.valueOf(timestamp));
-			String requestArgs = LibraryString.cleanSpecialChars(MessageHelper.toQueryString(parametersToSign));
-
-			AgentLogger.getInstance().debug("FederationLayer:validateRequest. Signature: %s. RequestArgs: %s.", signature, requestArgs);
-
 			// Check that there aren't any space in the base64 field
 			signature = signature.replaceAll(" ", "+");
 
+			String requestArgs = requestArgs(parameters, timestamp);
+			AgentLogger.getInstance().debug("FederationLayer:validateRequest. Signature: %s. RequestArgs: %s.", signature, requestArgs);
 			FederationAccountResponse accountResponse = this.accountService.validateRequest(signature, requestArgs);
 			account = accountResponse.getAccount();
+			if (account == null) {
+				requestArgs = requestArgs(sortedMapWithTimestamp(parameters, timestamp));
+				AgentLogger.getInstance().debug("FederationLayer:validateRequest. Signature: %s. RequestArgs: %s.", signature, requestArgs);
+				accountResponse = this.accountService.validateRequest(signature, requestArgs);
+				account = accountResponse.getAccount();
+			}
 			if (account == null) {
 				AgentLogger.getInstance().debug(accountResponse.getError());
 				result.setValid(false);
@@ -352,6 +346,53 @@ public class FederationLayerMonet extends LayerMonet implements FederationLayer 
 		producerFederation = this.producersFactory.get(Producers.FEDERATION);
 		producerFederation.injectAsCurrentAccount(account.getUsername(), account.getLang(), this.getUserInfo(account));
 
+		return result;
+	}
+
+	private String requestArgs(Collection<Entry<String, Object>> parameters, Long timestamp) {
+		StringBuilder builder = new StringBuilder();
+		HashSet<String> addedKeys = new HashSet<>();
+		for (Entry<String, Object> entry : parameters) {
+			String key = entry.getKey();
+			if (!(entry.getValue() instanceof String) || keys.contains(key) || addedKeys.contains(key))
+				continue;
+			addedKeys.add(key);
+			builder.append(key);
+			builder.append("=");
+			builder.append(entry.getValue());
+			builder.append("&");
+		}
+		builder.append(String.format("%s=%d", TIMESTAMP_PARAMETER, timestamp));
+		return LibraryString.cleanSpecialChars(builder.toString());
+	}
+
+	private String requestArgs(Map<String, Object> parameters) {
+		StringBuilder builder = new StringBuilder();
+		HashSet<String> addedKeys = new HashSet<>();
+		for (Entry<String, Object> entry : parameters.entrySet()) {
+			String key = entry.getKey();
+			if (!key.equals(TIMESTAMP_PARAMETER) && (!(entry.getValue() instanceof String) || keys.contains(key) || addedKeys.contains(key)))
+				continue;
+			addedKeys.add(key);
+			builder.append(key);
+			builder.append("=");
+			builder.append(entry.getValue());
+			builder.append("&");
+		}
+		return LibraryString.cleanSpecialChars(builder.substring(0, builder.length()-1));
+	}
+
+	private Map<String, Object> sortedMapWithTimestamp(ArrayList<Entry<String, Object>> parameters, Long timestamp) {
+		Map<String, Object> map = new HashMap<>();
+		for (Entry<String, Object> parameter : parameters) {
+			map.put(parameter.getKey(), parameter.getValue());
+		}
+		map.put(TIMESTAMP_PARAMETER, timestamp);
+		SortedSet<String> keys = new TreeSet<>(map.keySet());
+		Map<String, Object> result = new LinkedHashMap<>();
+		for (String key : keys) {
+			result.put(key, map.get(key));
+		}
 		return result;
 	}
 
