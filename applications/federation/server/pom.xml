@@ -271,7 +271,7 @@
       <groupId>monet</groupId>
       <artifactId>space-backservice</artifactId>
       <version>0</version>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/monet.api.space.backservice-3.0.jar</systemPath>
+      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/monet.api.space.backservice-3.2.jar</systemPath>
       <scope>system</scope>
     </dependency>
     <dependency>
