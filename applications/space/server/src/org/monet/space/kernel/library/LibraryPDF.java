@@ -36,15 +36,35 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.file.Files;
 
 public class LibraryPDF {
 
 	public static ByteArrayOutputStream create(InputStream stream) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		FopFactory fopFactory = FopFactory.newInstance();
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Fop fop;
+		Transformer transformer;
+		Source source;
+		Result result;
+
+		try {
+			fop = fopFactory.newFop(MimeConstants.MIME_PDF, output);
+			transformer = factory.newTransformer();
+			source = new StreamSource(stream);
+			result = new SAXResult(fop.getDefaultHandler());
+			transformer.transform(source, result);
+		} catch (Exception exception) {
+			throw new DataException("create pdf", null, exception);
+		}
+
+		return output;
+	}
+
+	public static OutputStream create(InputStream stream, File outputFile) throws IOException {
+		OutputStream output = Files.newOutputStream(outputFile.toPath());
 		FopFactory fopFactory = FopFactory.newInstance();
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Fop fop;

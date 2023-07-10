@@ -24,6 +24,7 @@ package org.monet.space.office.control.actions;
 
 import net.minidev.json.JSONObject;
 import org.monet.space.applications.library.LibraryRequest;
+import org.monet.space.kernel.agents.AgentFilesystem;
 import org.monet.space.kernel.agents.AgentLogger;
 import org.monet.space.kernel.agents.AgentPushService;
 import org.monet.space.kernel.components.ComponentPersistence;
@@ -31,6 +32,7 @@ import org.monet.space.kernel.components.layers.NodeLayer;
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.exceptions.DataException;
 import org.monet.space.kernel.exceptions.NodeAccessException;
+import org.monet.space.kernel.library.LibraryFile;
 import org.monet.space.kernel.library.LibraryPDF;
 import org.monet.space.kernel.model.Account;
 import org.monet.space.kernel.model.Context;
@@ -42,6 +44,7 @@ import org.monet.space.office.core.constants.ErrorCode;
 import org.monet.space.office.presentation.user.renders.PrintRender;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -141,14 +144,19 @@ public class ActionPrintNode extends PrintAction {
 		render.setRange(rangeOf(dateAttribute, fromDate, toDate));
 
 		try {
-			if (template.equals("pdf"))
-				output = LibraryPDF.create(new ByteArrayInputStream(render.getOutput().getBytes("utf8"))).toByteArray();
-			else if (template.equals("csv"))
-				output = render.getOutput().replaceAll("\\\\n", "\r\n").getBytes("UTF-16LE");
-			else
-				output = render.getOutput().replaceAll("\\\\n", "\r\n").getBytes("UTF-8");
+			if (template.equals("pdf")) {
+				File result = documentFile(account, node.getId());
+				removeDocument(account, node.getId());
+				AgentFilesystem.forceDir(LibraryFile.getDirname(result.getAbsolutePath()));
+				LibraryPDF.create(new ByteArrayInputStream(render.getOutput().getBytes("utf8")), result);
+				return;
+			}
+
+			if (template.equals("csv")) output = render.getOutput().replaceAll("\\\\n", "\r\n").getBytes("UTF-16LE");
+			else output = render.getOutput().replaceAll("\\\\n", "\r\n").getBytes("UTF-8");
 
 			saveDocument(account, node.getId(), output);
+
 		} catch (Exception e) {
 			AgentLogger.getInstance().error(e);
 		}

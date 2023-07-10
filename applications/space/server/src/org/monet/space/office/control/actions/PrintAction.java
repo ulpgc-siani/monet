@@ -23,6 +23,10 @@ public abstract class PrintAction extends Action {
 		return loadDocument(this.getAccount(), idNode);
 	}
 
+	protected File documentFile(Account account, String idNode) {
+		return new File(printedNodeFilename(account, idNode));
+	}
+
 	protected void saveDocument(Account account, String idNode, byte[] data) {
 		String filename = printedNodeFilename(account, idNode);
 		removeDocument(account, idNode);
