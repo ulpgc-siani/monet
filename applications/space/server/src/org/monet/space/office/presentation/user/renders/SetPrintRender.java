@@ -338,7 +338,7 @@ public class SetPrintRender extends NodePrintRender {
 				else if (attributeDeclaration.getType() != TypeEnumeration.PICTURE && value.length() > size)
 					columnDataSizes.put(code, value.length());
 
-				localMap.put("value", value.replace("&", "&amp;"));
+				localMap.put("value", value.replace("&", "&amp;").replace("\n", " "));
 				localMap.put("comma", (showPos < showList.size() - 1) ? "comma" : "");
 
 				String blockName = "content$reference$attribute." + attributeDeclaration.getType().toString().toLowerCase();

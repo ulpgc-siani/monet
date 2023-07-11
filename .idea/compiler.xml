@@ -45,12 +45,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core-shared" target="1.7" />
-      <module name="docservice" target="1.7" />
-      <module name="federation" target="1.7" />
-      <module name="federation-client" target="1.7" />
-      <module name="federation-shared" target="1.7" />
-      <module name="mobile-shared" target="1.7" />
-      <module name="space" target="1.7" />
       <module name="tomcat-shared" target="1.7" />
     </bytecodeTargetLevel>
   </component>
