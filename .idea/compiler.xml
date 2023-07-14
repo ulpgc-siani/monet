@@ -20,9 +20,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="federation" />
         <module name="docservice" />
         <module name="space" />
+        <module name="monet-federation" />
       </profile>
       <profile name="Annotation profile for federation-client" enabled="true">
         <sourceOutputDir name="../../../../out/build/federation-client/generated-sources/annotations" />
@@ -51,6 +51,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core-shared" target="1.7" />
+      <module name="federation" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
