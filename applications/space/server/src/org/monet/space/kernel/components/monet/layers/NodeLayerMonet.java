@@ -665,9 +665,9 @@ public class NodeLayerMonet extends PersistenceLayerMonet implements NodeLayer {
 				location.setLocationId(nodeDefinition.getCode());
 				location.setGeometry(defaultGeometry);
 				location.setCreateDate(new java.util.Date());
-				node.setLocation(location);
+				node.setLocation(null);
 
-				producerLocation.create(node.getLocation());
+				producerLocation.create(location);
 			}
 
 			if (nodeDefinition instanceof ContainerDefinition)
