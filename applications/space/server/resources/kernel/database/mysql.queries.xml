@@ -2080,7 +2080,7 @@ DELETE FROM ts$locations WHERE id=@id
   </entry>
   <entry key="LOCATION_LOAD_BY_NODE_ID">
     <![CDATA[
-SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=ts$locations.id_node ::reference:: WHERE ts$nodes_descriptors.georeferenced=1 AND ts$locations.id_node=@idnode
+SELECT id, ts$locations.id_node, id_location, geometry, ts$locations.create_date, label, description, color ::referenceattributes:: FROM ts$locations LEFT JOIN ts$nodes_descriptors ON ts$nodes_descriptors.id_node=ts$locations.id_node ::reference:: WHERE ts$locations.id_node=@idnode
 ]]>
   </entry>
   <entry key="LOCATION_LIST_LOAD_IN_NODE_WITHIN_BOX">
