@@ -514,7 +514,7 @@ Lightbox.prototype = {
       }
     }
 
-	Element.setWidth('lightboxImage', imgWidth);
+	//Element.setWidth('lightboxImage', imgWidth);
 	Element.setHeight('lightboxImage', imgHeight);
     Element.setHeight('prevLink', imgHeight);
     Element.setHeight('nextLink', imgHeight);
