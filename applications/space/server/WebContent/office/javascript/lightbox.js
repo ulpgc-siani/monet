@@ -109,9 +109,17 @@ Object.extend(Element, {
     element = $(element);
     element.style.width = w + "px";
   },
+  setMaxWidth: function (element, w) {
+    element = $(element);
+    element.style.maxWidth = w + "px";
+  },
   setHeight: function (element, h) {
     element = $(element);
     element.style.height = h + "px";
+  },
+  setMaxHeight: function (element, h) {
+    element = $(element);
+    element.style.maxHeight = h + "px";
   },
   setTop: function (element, t) {
     element = $(element);
@@ -514,8 +522,8 @@ Lightbox.prototype = {
       }
     }
 
-	//Element.setWidth('lightboxImage', imgWidth);
-	Element.setHeight('lightboxImage', imgHeight);
+	Element.setMaxWidth('lightboxImage', imgWidth);
+	Element.setMaxHeight('lightboxImage', imgHeight);
     Element.setHeight('prevLink', imgHeight);
     Element.setHeight('nextLink', imgHeight);
     Element.setWidth('imageDataContainer', widthNew);
