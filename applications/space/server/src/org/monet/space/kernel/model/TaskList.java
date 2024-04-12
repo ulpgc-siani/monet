@@ -68,10 +68,10 @@ public class TaskList extends BaseModelList<Task> {
 	}
 
 	public void serializeToXML(XmlSerializer serializer, int depth) throws IllegalArgumentException, IllegalStateException, IOException {
-		serializer.startTag("", "nodelist");
+		serializer.startTag("", "tasklist");
 		for (Task task : this.get().values())
 			task.serializeToXML(serializer, depth);
-		serializer.endTag("", "nodelist");
+		serializer.endTag("", "tasklist");
 	}
 
 	public JSONObject toJson() {
