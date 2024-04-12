@@ -25,7 +25,9 @@ package org.monet.space.kernel.model;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.monet.space.kernel.constants.Strings;
+import org.xmlpull.v1.XmlSerializer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -63,6 +65,13 @@ public class TaskList extends BaseModelList<Task> {
 		iterator = ids.iterator();
 		while (iterator.hasNext()) this.items.remove(iterator.next());
 
+	}
+
+	public void serializeToXML(XmlSerializer serializer, int depth) throws IllegalArgumentException, IllegalStateException, IOException {
+		serializer.startTag("", "tasklist");
+		for (Task task : this.get().values())
+			task.serializeToXML(serializer, depth);
+		serializer.endTag("", "tasklist");
 	}
 
 	public JSONObject toJson() {
