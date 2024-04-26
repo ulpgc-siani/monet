@@ -224,6 +224,7 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                 return false;
             }
 
+
             @Override
             public State loadInBackground() {
                 try {
@@ -238,7 +239,6 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                     state.MultipleStepIteration = task.stepIteration;
                     state.Schema = Schema.fromFile(LocalStorage.getTaskResultSchemaFile(context, String.valueOf(taskId)), state.Definition);
                     //state.Schema = Schema.fromFile(LocalStorage.getTaskDefaultSchemaFile(context, String.valueOf(taskId)), state.Definition);
-
 
                     int index = state.CurrentStepIndex;
                     if (index > 0) index--;
@@ -268,20 +268,29 @@ public class StepPresenter extends Presenter<StepView, Void> implements LoaderCa
                     Step currentStep = state.getCurrentStep();
                     if (currentStep.isMultiple) {
                         List<Schema> stepSchemas = state.Schema.getSchemaList(currentStep.name);
-                        if (stepSchemas.size() == 0)
+                        if (stepSchemas.size() == 0){
                             stepSchemas.add(new Schema());
+                            //TODO ADD 9 SCHEMAS PLUS
+                            for (int i=0;i<9;i++)
+                                stepSchemas.add(new Schema());
+                        }
+
                         state.CurrentStepSchema = stepSchemas.get(state.MultipleStepIteration);
                         int minIndex = 0;
                         for (int i = 0;i<state.Schema.getSchemaList(currentStep.name).size(); i++){
-                            if (state.Schema.getSchemaList(currentStep.name).get(i).getBoolean("IsLastStep")){
+                            if (state.Schema.getSchemaList(currentStep.name).get(i).getBoolean("IsLastStep" + currentStep.name) || state.Schema.getSchemaList(currentStep.name).get(i).getBoolean("IsLastStep")){
                                 minIndex=i;
                                 break;
                             }
                         }
-                        if (state.Schema.getSchemaList(currentStep.name).get(minIndex).getBoolean("IsLastStep") && minIndex + 1 == state.MultipleStepIteration){
+
+                        if ((state.Schema.getSchemaList(currentStep.name).get(minIndex).getBoolean("IsLastStep" +currentStep.name) || state.Schema.getSchemaList(currentStep.name).get(minIndex).getBoolean("IsLastStep")  ) && minIndex + 1 == state.MultipleStepIteration){
                             state.MultipleStepIteration = 0;
-                            if (state.CurrentStepIndex < (state.Definition.stepList.size() - 1))
+                            if (state.CurrentStepIndex < (state.Definition.stepList.size() - 1)) {
                                 state.CurrentStepIndex++;
+                                Step nextStep = state.Definition.stepList.get(state.CurrentStepIndex);
+                                state.CurrentStepSchema = state.Schema.getSchema(nextStep.name);
+                            }
                         }
                     } else
                         state.CurrentStepSchema = state.Schema.getSchema(currentStep.name);

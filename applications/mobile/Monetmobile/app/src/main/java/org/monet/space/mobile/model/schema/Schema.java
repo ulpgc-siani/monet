@@ -464,6 +464,32 @@ public class Schema {
         return schema;
     }
 
+  /*  public static Schema cleanSample(Schema schema){
+        Schema newSchema = new Schema();
+
+        for (String key: schema.data.keySet()){
+            newSchema.data.put(key,schema.data.get(key));
+        }
+
+        for (String key: newSchema.data.keySet()){
+            Object value = newSchema.data.get(key);
+            if (key.contains("IsLastStep")){
+                newSchema.data.put(key,true);
+                continue;
+            }
+            if (value instanceof Boolean){
+                newSchema.data.put(key,false);
+            }else{
+                if (value instanceof String){
+                    newSchema.data.put(key,"");
+                }else{
+                    newSchema.data.put(key,null);
+                }
+            }
+        }
+        return newSchema;
+    }*/
+
     public static void deserialize(Schema schema, TaskDefinition definition, XmlPullParser parser) throws Exception {
         int eventType;
         HashMap<String, Step> stepMap = new HashMap<String, Step>();
@@ -480,9 +506,15 @@ public class Schema {
                 case XmlPullParser.START_TAG:
                     currentStepName = parser.getName();
                     Step step = stepMap.get(currentStepName);
-                    if (step.isMultiple)
+                    if (step.isMultiple) {
                         deserialize(schema.getSchemaList(step.name), step, parser);
-                    else
+/*                        //TODO RETOCAR ESQUEMA SI ES NECESARIO
+                        if (schema.getSchemaList(step.name).size() == 1){
+                            SchemaList elements = (SchemaList) schema.data.get(step.name);
+                            for (int i=1;i<9;i++)
+                                elements.data.add(cleanSample(elements.data.get(0)));
+                        }*/
+                    }else
                         deserialize(schema.getSchema(step.name), step, parser);
                     break;
                 case XmlPullParser.END_TAG:

@@ -60,7 +60,7 @@ public class State {
             if (newCurrentStep.isMultiple) {
                 for (int i = 0; i< this.Schema.getSchemaList(newCurrentStep.name).size();i++) {
                     Schema schema = this.Schema.getSchemaList(newCurrentStep.name).get(i);
-                    if (schema.getBoolean("IsLastStep") == true) {
+                    if (schema.getBoolean("IsLastStep") || schema.getBoolean("IsLastStep" + newCurrentStep.name) == true) {
                         MultipleStepIteration = i;
                         return;
                     }
