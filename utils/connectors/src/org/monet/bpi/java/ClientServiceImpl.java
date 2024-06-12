@@ -5,7 +5,7 @@ import org.monet.bpi.ClientService;
 import org.monet.bpi.MonetLink;
 import org.monet.v3.BPIClassLocator;
 import org.monet.v3.model.Dictionary;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 public class ClientServiceImpl extends ClientService {
 

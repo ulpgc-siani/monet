@@ -3,7 +3,7 @@ package org.monet.bpi.types;
 import org.monet.bpi.Source;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Text;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import java.util.LinkedHashSet;
 

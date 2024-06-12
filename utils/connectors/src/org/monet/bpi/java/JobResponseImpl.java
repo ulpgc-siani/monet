@@ -4,7 +4,7 @@ import org.monet.bpi.JobResponse;
 import org.monet.bpi.Schema;
 import org.monet.bpi.SensorResponse;
 import org.monet.bpi.types.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import java.util.List;
 

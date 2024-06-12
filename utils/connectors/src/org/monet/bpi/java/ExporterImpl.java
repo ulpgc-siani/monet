@@ -5,7 +5,7 @@ import org.monet.bpi.*;
 import org.monet.v3.BPIClassLocator;
 import org.monet.metamodel.Dictionary;
 import org.monet.metamodel.DocumentDefinition;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 public abstract class ExporterImpl implements Exporter, BehaviorExporter {
 	private Node scope;

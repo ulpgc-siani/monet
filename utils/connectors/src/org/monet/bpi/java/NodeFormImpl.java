@@ -10,7 +10,7 @@ import org.monet.metamodel.Dictionary;
 import org.monet.metamodel.FieldProperty;
 import org.monet.metamodel.FormDefinition;
 import org.monet.v3.BPIClassLocator;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

@@ -6,7 +6,7 @@ import org.monet.bpi.Post;
 import org.monet.bpi.Task;
 import org.monet.v3.BPIClassLocator;
 import org.monet.v3.model.Dictionary;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 public class NewsServiceImpl extends NewsService {
 

@@ -2,7 +2,7 @@ package org.monet.bpi.types;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Text;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -6,7 +6,7 @@ import org.monet.bpi.NodeDocument;
 import org.monet.bpi.Schema;
 import org.monet.bpi.types.File;
 import org.monet.bpi.types.Link;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 public class InsourcingRequestImpl implements InsourcingRequest {
 

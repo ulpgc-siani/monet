@@ -5,7 +5,7 @@ import org.monet.bpi.DelivererService;
 import org.monet.bpi.NodeDocument;
 import org.monet.v3.BPIClassLocator;
 import org.monet.v3.model.Dictionary;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import java.net.URI;
 

@@ -4,7 +4,7 @@ import org.monet.bpi.NodeDocument;
 import org.monet.bpi.ProviderResponse;
 import org.monet.bpi.Schema;
 import org.monet.bpi.types.File;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import java.util.Iterator;
 
