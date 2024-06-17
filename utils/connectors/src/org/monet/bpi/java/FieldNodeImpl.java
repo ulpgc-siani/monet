@@ -31,6 +31,7 @@ public class FieldNodeImpl extends FieldImpl<Link> implements FieldNode {
 		Definition definition = this.dictionary.getDefinition(node.getCode());
 		NodeImpl containedNode = bpiClassLocator.instantiateBehaviour(definition);
 		containedNode.injectNode(node);
+		containedNode.injectApi(api);
 		return (T)containedNode;
 	}
 
