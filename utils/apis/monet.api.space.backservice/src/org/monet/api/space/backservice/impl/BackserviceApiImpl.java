@@ -25,11 +25,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	private String location;
 	private byte[] certificate;
 	private String certificatePassword;
-	private Cache<NodeList> nodesAncestorsCache = new Cache<>();
-	private Cache<Node> nodesCache = new Cache<>();
-	private Cache<Task> tasksCache = new Cache<>();
-	private Cache<Source> sourcesCache = new Cache<>();
-	private Cache<Datastore> datastoresCache = new Cache<>();
 
 	private final String PARAMETER_SEPARATOR = "#__#";
 
@@ -537,9 +532,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public NodeList getNodeAncestors(String id) {
 		NodeList nodeList = new NodeList();
 
-		if (nodesAncestorsCache.containsKey(id))
-			return nodesAncestorsCache.get(id);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("getnodeancestors"));
@@ -550,8 +542,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		nodesAncestorsCache.put(id, nodeList);
 
 		return nodeList;
 	}
@@ -1124,9 +1114,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public Node locateNode(String code) {
 		Node node = new Node();
 
-		if (nodesCache.containsKey(code))
-			return nodesCache.get(code);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("locatenode"));
@@ -1138,17 +1125,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 			e.printStackTrace();
 		}
 
-		nodesCache.put(code, node);
-
 		return node;
 	}
 
 	@Override
 	public Node locateNode(String code, int depth) {
 		Node node = new Node();
-
-		if (nodesCache.containsKey(code))
-			return nodesCache.get(code);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1162,17 +1144,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 			e.printStackTrace();
 		}
 
-		nodesCache.put(code, node);
-
 		return node;
 	}
 
 	@Override
 	public Source loadSource(String id) {
 		Source source = new Source();
-
-		if (sourcesCache.containsKey(id))
-			return sourcesCache.get(id);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1185,17 +1162,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 			e.printStackTrace();
 		}
 
-		sourcesCache.put(id, source);
-
 		return source;
 	}
 
 	@Override
 	public Source locateSource(String code, String url) {
 		Source source = new Source();
-
-		if (sourcesCache.containsKey(code+url))
-			return sourcesCache.get(code+url);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1211,16 +1183,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 			e.printStackTrace();
 		}
 
-		sourcesCache.put(code + url, source);
-
 		return source;
 	}
 
 	@Override
 	public boolean makeNodeDeleteable(String id) {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
-
-		nodesCache.remove(id);
 
 		try {
 			parameters.put("op", toStringBody("makenodedeleteable"));
@@ -1238,8 +1206,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public boolean makeNodeEditable(String id) {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
-		nodesCache.remove(id);
-
 		try {
 			parameters.put("op", toStringBody("makenodeeditable"));
 			parameters.put("id", toStringBody(id));
@@ -1255,8 +1221,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean makeNodePrivate(String id) {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
-
-		nodesCache.remove(id);
 
 		try {
 			parameters.put("op", toStringBody("makenodeprivate"));
@@ -1274,8 +1238,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public boolean makeNodePublic(String id) {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
-		nodesCache.remove(id);
-
 		try {
 			parameters.put("op", toStringBody("makenodepublic"));
 			parameters.put("id", toStringBody(id));
@@ -1291,8 +1253,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean makeNodeUnDeleteable(String id) {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
-
-		nodesCache.remove(id);
 
 		try {
 			parameters.put("op", toStringBody("makenodeundeleteable"));
@@ -1310,8 +1270,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public boolean makeNodeUnEditable(String id) {
 		HashMap<String, ContentBody> parameters = new HashMap<>();
 
-		nodesCache.remove(id);
-
 		try {
 			parameters.put("op", toStringBody("makenodeuneditable"));
 			parameters.put("id", toStringBody(id));
@@ -1328,9 +1286,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public Datastore openDatastore(String name) {
 		Datastore datastore = new Datastore();
 
-		if (datastoresCache.containsKey(name))
-			return datastoresCache.get(name);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("opendatastore"));
@@ -1342,17 +1297,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 			e.printStackTrace();
 		}
 
-		datastoresCache.put(name, datastore);
-
 		return datastore;
 	}
 
 	@Override
 	public Node openNode(String id) {
 		Node node = new Node();
-
-		if (nodesCache.containsKey(id))
-			return nodesCache.get(id);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1364,8 +1314,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		nodesCache.put(id, node);
 
 		return node;
 	}
@@ -1392,9 +1340,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	public Task openTask(String id) {
 		Task task = new Task();
 
-		if (tasksCache.containsKey(id))
-			return tasksCache.get(id);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("opentask"));
@@ -1406,16 +1351,12 @@ public class BackserviceApiImpl implements BackserviceApi {
 			e.printStackTrace();
 		}
 
-		tasksCache.put(id, task);
-
 		return task;
 	}
 
 	@Override
 	public Node recoverNode(String id) {
 		Node node = new Node();
-
-		nodesCache.remove(id);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1434,8 +1375,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean removeNode(String id) {
 
-		nodesCache.remove(id);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("removenode"));
@@ -1452,8 +1391,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean removeTask(String id) {
 
-		tasksCache.remove(id);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("removetask"));
@@ -1469,8 +1406,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 	@Override
 	public boolean resetNodeForm(String id) {
-
-		nodesCache.remove(id);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1523,8 +1458,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean saveNode(Node node) {
 
-		nodesCache.remove(node.getId());
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("savenode"));
@@ -1542,8 +1475,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 	@Override
 	public boolean saveNodeDocument(String id, InputStream data, String contentType) {
-
-		nodesCache.remove(id);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1564,8 +1495,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean saveNodeFile(String id, String name, InputStream data) {
 
-		nodesCache.remove(id);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("savenodefile"));
@@ -1584,7 +1513,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 	@Override
 	public boolean saveNodePicture(String id, String name, InputStream data) {
-		nodesCache.remove(id);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1605,8 +1533,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean saveNodeParent(String nodeId, String parentId) {
 
-		nodesCache.remove(nodeId);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("savenodeparent"));
@@ -1625,8 +1551,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 	@Override
 	public boolean saveNodePartnerContext(String idNode, String context) {
 
-		nodesCache.remove(idNode);
-
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
 			parameters.put("op", toStringBody("savenodepartnercontext"));
@@ -1644,8 +1568,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 	@Override
 	public boolean saveNodeReference(String idNode, Reference reference) {
-
-		nodesCache.remove(idNode);
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
@@ -1690,8 +1612,6 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 	@Override
 	public boolean saveTask(Task task) {
-
-		tasksCache.remove(task.getId());
 
 		try {
 			HashMap<String, ContentBody> parameters = new HashMap<>();
