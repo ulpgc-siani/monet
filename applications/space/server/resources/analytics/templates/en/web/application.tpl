@@ -26,7 +26,7 @@
   <script type="text/javascript" src="::javascriptUrl::/jquery.colour-picker.js"></script>
   <script type="text/javascript" src="::javascriptUrl::/jquery.json-2.4.min.js"></script>
   <script type="text/javascript" src="::javascriptUrl::/datatable.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=visualization&key=::googleApiKey::"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.57.13&libraries=visualization&key=::googleApiKey::"></script>
   <script type="text/javascript" src="::javascriptUrl::/map-icons.min.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
