@@ -719,6 +719,7 @@ public class ProcessBehavior extends Behavior implements PersistenceHandler {
 		if (state == null)
 			state = 0;
 		state--; // Unlock
+		if (state < 0) state = 0;
 		if (state != 0)
 			lockStates.put(lockName, state);
 		else
