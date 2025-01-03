@@ -265,10 +265,7 @@ public abstract class OfficeRender extends Render {
 			if (role == null)
 				continue;
 
-			if (role.getDefinition().getDisableEdition() != null)
-				return false;
-			else
-				canExecute = true;
+			canExecute = true;
 		}
 
 		return canExecute;
