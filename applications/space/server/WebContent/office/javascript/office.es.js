@@ -472,7 +472,7 @@ Date.patterns = {
 };
 
 Lang.Dialog = {
-  Required: "Par�metros obligatorios"
+  Required: "Parï¿½metros obligatorios"
 };
 
 Lang.ViewNodeLocation = {
@@ -576,7 +576,7 @@ Lang.DialogSearchUsers = {
 };
 
 Lang.DialogSearchUsersItem = {
-  Add: "A�adir"
+  Add: "Aï¿½adir"
 };
 
 Lang.DialogSearchRoles = {

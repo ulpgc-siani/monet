@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/applications/federation/client/accountservice/federation-client.iml" filepath="$PROJECT_DIR$/applications/federation/client/accountservice/federation-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/federation/shared/federation-shared.iml" filepath="$PROJECT_DIR$/applications/federation/shared/federation-shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/mobile/shared/mobile-shared.iml" filepath="$PROJECT_DIR$/applications/mobile/shared/mobile-shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/applications/federation/server/monet-federation.iml" filepath="$PROJECT_DIR$/applications/federation/server/monet-federation.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/space/server/space.iml" filepath="$PROJECT_DIR$/applications/space/server/space.iml" />
       <module fileurl="file://$PROJECT_DIR$/applications/tomcat-shared/tomcat-shared.iml" filepath="$PROJECT_DIR$/applications/tomcat-shared/tomcat-shared.iml" />
     </modules>
