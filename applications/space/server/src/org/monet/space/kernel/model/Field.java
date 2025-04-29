@@ -13,7 +13,7 @@ public class Field extends BaseObject {
 	String content;
 
 	public static String getFilename(String nodeId, String name) {
-		return String.format("%s%s", nodeId, name);
+		return withStamp(String.format("%s%s", nodeId, name));
 	}
 
 	public Field(Node node, Attribute attribute, FieldProperty fieldDeclaration) {
@@ -93,6 +93,14 @@ public class Field extends BaseObject {
 			this.enablePartialLoading();
 
 		return result;
+	}
+
+	private static String withStamp(String name) {
+		return stamp() + "-" + name;
+	}
+
+	private static String stamp() {
+		return Long.toString(System.currentTimeMillis() / 1000);
 	}
 
 }
