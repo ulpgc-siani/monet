@@ -67,7 +67,7 @@ public class CertificateComponentImpl implements CertificateComponent {
       throw new RuntimeException(ERROR_EXTRACT_ORIGINAL_CONTENT_FROM_SIGNATURE);
     }
 
-    if (!queryString.equals(originalContent)) {
+    if (!QueryStringComparator.equals(queryString, originalContent)) {
       logger.error("sended queryString != signed content");
       throw new RuntimeException(ERROR_INVALID_HASH);
     }
