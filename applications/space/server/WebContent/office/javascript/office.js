@@ -9,8 +9,8 @@
 AppTemplate.ViewNodeLocationEditionToolbar='<ul><li><a class="op point" href="javascript:void(null)">::AddPoint::</a></li><li><a class="op line" href="javascript:void(null)">::AddLine::</a></li><li><a class="op poly" href="javascript:void(null)">::AddPolygon::</a></li><li><a class="op clean" href="javascript:void(null)">::CleanLocation::</a></li><li><a class="op finish" href="javascript:void(null)">::FinishEditingLocation::</a></li><li><a class="op cancel" href="javascript:void(null)">::CancelEditingLocation::</a></li></ul>';
 AppTemplate.ViewNodeLocationNavigationToolbar='<ul><li><a class="op center" href="javascript:void(null)">::CenterLocation::</a></li></ul>';
 AppTemplate.ViewNodeLocationSearch='<label>::FindLocation::</label><input type="text"></input><a class="op accept button" href="javascript:void(null)">::Accept::</a>';
-AppTemplate.ViewPlacemarkInfoWindow='<div class="infowindow"><div class="title"><a href="javascript:CommandDispatcher.dispatch(\'shownode({id})\');">{name}</a></div><div class="description">{description}</div><div class="extradata">{extraData}</div></div>';
-AppTemplate.ViewMapLayer='<div class="view map-layer"><div class=\'toolbar\'><div class="loading-map">::Loading::</div><div class="navigator"><span><a class=\'command previous air\'>::Previous::</a></span><span class="air"><span style="margin-right:5px;">::Page::</span><span class="page"></span>/<span class=\'count\'></span></span><span class="air"><a class=\'command next\'>::Next::</a></span></div></div><iframe id="frameMapApp" name="frameMapApp" class="map" style="border:0;padding:0" width="100%" height="100%" src="::Url::/map.html?key=::ApiKey::"></iframe></div>';
+AppTemplate.ViewPlacemarkInfoWindow='<div class="infowindow"><div class="title"><a href="javascript:CommandDispatcher.dispatch(\'shownode({id})\');" style="font-size:16px;">{name}</a></div><div class="description">{description}</div><div class="extradata" style="color:#666;">{extraData}</div></div>';
+AppTemplate.ViewMapLayer='<div class="view map-layer"><div class=\'toolbar\'><div class="loading-map">::Loading::</div><div class="navigator"><span><a class=\'command previous air\'>::Previous::</a></span><span class="air"><span style="margin-right:5px;">::Page::</span><span class="page"></span>/<span class=\'count\'></span></span><span class="air"><a class=\'command next\'>::Next::</a></span></div></div><div class="map-container" style="height:calc(100% - 25px);width:100%"></div></div>';
 AppTemplate.ViewMapLayerSearch='<label>::FindLocation::</label><input type="text"></input><a class="op accept" href="javascript:void(null)">::Accept::</a>';
 AppTemplate.ViewerDocumentList='<div class=\'header\'><table><tr><td><a class=\'previous\' title=\'::Previous::\'></a></td><td><select class="documents"></select></td><td><a class=\'next\' title=\'::Next::\'></a></td></tr></table></div><div class="dialog add" style="display:none;"><div><div>::FileLabel::</div><input class="label" type="text"></input></div><div class="file"><div>::File::</div><form class="form" method="post" enctype="multipart/form-data"><input type="file" name="newFile" class="input file"/></form></div><div style="margin-top:15px;"><a class="button accept">::Accept::</a><a class="button cancel">::Cancel::</a></div><div class="uploading">::Uploading::</div><div class="error">::ErrorOnUpload::</div></div><div class="dialog rename" style="display:none;"><div><div>::FileLabel::</div><input class="label" type="text"></input></div><div style="margin-top:15px;"><a class="button accept">::Accept::</a><a class="button cancel">::Cancel::</a></div></div><div class="empty" style="display:none;">::NoDocuments::</div><div class=\'loading\' style=\'display:none;\'>::Loading::</div><div class=\'container\'></div>';
 AppTemplate.DialogPrintEntityAttribute='<option value="{code}" {selected}>{label}</option>';
@@ -63,7 +63,7 @@ AppTemplate.ViewerHelperSidebarTool='<li><a class="command #{code}" href="execut
 AppTemplate.ViewerHelperSidebarCustom='<li><a class="command #{code}" href="#{command}" style="display:#{display};">#{label}</a></li>';
 AppTemplate.ViewerHelperSidebar='<div class="block add"><div class="info"><div class="title">::Add::</div></div><ul></ul></div><div class="block observers"></div><div class="component"><div class="block editors"></div><div class="block preview"></div><div class="block list"></div><div class="block revisionlist"></div><div class="block map"></div><div class="block source"></div><div class="block role"></div></div><div class="block tools"><div class="info"><div class="title">::Tools::</div></div><ul></ul></div><div class="block chat"></div><div class="block help"></div>';
 AppTemplate.ViewerHelperPage='<div class="info"><div class="title">::Label::</div></div><div class="page"></div>';
-AppTemplate.ViewerHelperEditors='<div class="header"><!--<div class="toolbar"><span>::GotoField::</span>&nbsp;<a class="command" href="firstfield()">::FirstField::</a>&nbsp;|&nbsp;<a class="command" href="previousfield()">::PreviousField::</a>&nbsp;|&nbsp;<a class="command" href="nextfield()">::NextField::</a>&nbsp;|&nbsp;<a class="command" href="lastfield()">::LastField::</a></div><div class="toolbar right"><a class="command undo" href="undonode()" title="::Undo::" alt="::Undo::"></a><a class="command redo" href="redonode()" title="::Redo::" alt="::Redo::"></a></div>--></div><div class="editor eboolean"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageBoolean::</div><div class="description"></div><div class="dialogs"><div class="dialog store"><div class="toolbar"></div><div class="grid"></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor echeck"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageCheck::</div><div class="description"></div><div class="dialogs"><div class="dialog source"><div class="subtitle">::Source::</div><select></select></div><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><!--<div><a class="behaviour togglecheck" href="togglecheck()">::Check::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor edate"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageDate::</div><div class="description"></div><div class="dialogs"><div class="dialog date"><div><div class="datepicker"></div></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror format">::DateWrong::</div></div></div></div><div class="editor efile"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageFile::</div><div class="description"></div><div class="dialogs"><div class="dialog fileupload"><div class="dialog"><div><div>::FileLabel::</div><input class="label" type="text"></input></div><div><div>::File::</div><form class="form" method="post" enctype="multipart/form-data"><input type="file" name="newFile" class="input file" multiple/></form></div><br><div class="uploading"></div><div class="filesize exceeded"></div></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><!--<div><a class="behaviour download" href="download()">::Download::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor egroup"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"></div></div><div class="editor elink"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLink::</div><div class="description"></div><div class="dialogs"><div class="dialog source"><div class="subtitle">::Source::</div><select></select></div><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"/></div><a class="view-table active" href="#" title="::Table::"></a><a class="view-locations" href="#" title="::Locations::"></a></div><div class="dialog store"><div class="grid"></div></div><div class="dialog history"><div class="grid"></div></div><div class="dialog location"><div class="map"></div><div class="info"></div></div><div class="toolbar"><div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div><div><a class="behaviour togglehistory" href="togglehistory()"></a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor elist"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageList::</div><div class="description"></div><div class="dialogs"><div class="dialog list"><div class="toolbar">::Select::&nbsp;&nbsp;<a class="behaviour" href="selectall()">::All::</a><span>&nbsp;|&nbsp;</span><a class="behaviour" href="selectnone()">::None::</a><span>&nbsp;|&nbsp;</span><a class="behaviour" href="selectinvert()">::Invert::</a></div><ul class="items"></ul><div class="toolbar"><div><a class="behaviour" href="additem()">::Add::</a></div><div><a class="behaviour deleteitems" href="deleteitems()">::DeleteSelected::</a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor enumber"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageNumber::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><div><a class="behaviour increment" href="increment()">::Increment::</a></div><div><a class="behaviour decrement" href="decrement()">::Decrement::</a></div></div></div><div class="edition"><div class="fmsgs"><div class="fmsg format"></div><div class="fmsg increments"></div><div class="fmsg range"></div><div class="fmsg equivalences"></div><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror format">::NumberWrong::</div><div class="verror range">::NumberRangeWrong::</div></div></div></div><div class="editor epattern"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageFormat::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror format">::FormatWrong::</div></div></div></div><div class="editor epicture"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessagePicture::</div><div class="description"></div><div class="dialogs"><div class="dialog pictureupload"><div class="dialog"><form class="form" method="post" enctype="multipart/form-data"><input type="hidden" class="slicex" name="slicex" value="10"/><input type="hidden" class="slicey" name="slicey" value="10"/><input type="hidden" class="slicewidth" name="slicewidth" value=""/><input type="hidden" class="sliceheight" name="sliceheight" value=""/><input type="file" name="newPicture" class="input file" multiple/></form><div class="crop imageContainer"><img class="preview"/><div class="toolbar upload"><div class="message">::CropMessage::</div><a class="button upload" href="upload()">::Accept::</a></div></div><div class="uploading"></div><div class="filesize exceeded"></div></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><!--<div><a class="behaviour download" href="download()">::Download::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor ecomposite"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"></div></div><div class="editor eselect"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageSelect::</div><div class="description"></div><div class="dialogs"><div class="dialog source"><div class="subtitle">::Source::</div><select></select></div><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog store"><div class="grid"></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div><div><a class="behaviour togglehistory" href="togglehistory()"></a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor etext"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageText::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><div><a class="behaviour supindex" href="supindex()">::SupIndex::</a></div><div><a class="behaviour subindex" href="subindex()">::SubIndex::</a></div><div><a class="behaviour bold" href="bold()">::Bold::</a></div><div><a class="behaviour italic" href="italic()">::Italic::</a></div></div></div><div class="edition"><div class="preview"></div><div class="fmsgs"><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror length">::LengthWrong::</div></div></div></div><div class="editor esnode"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLink::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog store"><div class="grid"></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div><div><a class="behaviour togglehistory" href="togglehistory()"></a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor eserial"><div class="info"><div class="title">::Edition::</div><!--<a class="help" href="#" title="::Help::"></a>--></div><div class="emessage"></div><div class="description"></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--></div></div><div class="edition">::MessageSerial::</div></div><div class="editor elocation"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLocation::</div><div class="description"></div><div class="dialogs"><div class="dialog location"><div class="map"></div><div class="info"></div><div class="toolbar"><div><a class="op point" href="#">::AddPoint::</a></div><div><a class="op line" href="#">::AddLine::</a></div><div><a class="op poly" href="#">::AddPolygon::</a></div><div><a class="op clean" href="#">::CleanLocation::</a></div><div><a class="op finish" href="#">::FinishEditingLocation::</a></div><div><a class="op cancel" href="#">::CancelEditingLocation::</a></div><div>&nbsp;</div><div><a class="op center" href="#">::CenterLocation::</a></div></div></div></div><div class="edition"><div class="preview"></div><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor esummation"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLocation::</div><div class="description"></div><div class="dialogs"><div class="dialog summation"><div class="info"></div></div></div><div class="edition"><div class="preview"></div><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div>';
+AppTemplate.ViewerHelperEditors='<div class="header"><!--<div class="toolbar"><span>::GotoField::</span>&nbsp;<a class="command" href="firstfield()">::FirstField::</a>&nbsp;|&nbsp;<a class="command" href="previousfield()">::PreviousField::</a>&nbsp;|&nbsp;<a class="command" href="nextfield()">::NextField::</a>&nbsp;|&nbsp;<a class="command" href="lastfield()">::LastField::</a></div><div class="toolbar right"><a class="command undo" href="undonode()" title="::Undo::" alt="::Undo::"></a><a class="command redo" href="redonode()" title="::Redo::" alt="::Redo::"></a></div>--></div><div class="editor eboolean"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageBoolean::</div><div class="description"></div><div class="dialogs"><div class="dialog store"><div class="toolbar"></div><div class="grid"></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor echeck"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageCheck::</div><div class="description"></div><div class="dialogs"><div class="dialog source"><div class="subtitle">::Source::</div><select></select></div><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><!--<div><a class="behaviour togglecheck" href="togglecheck()">::Check::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor edate"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageDate::</div><div class="description"></div><div class="dialogs"><div class="dialog date"><div><div class="datepicker"></div></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror format">::DateWrong::</div></div></div></div><div class="editor efile"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageFile::</div><div class="description"></div><div class="dialogs"><div class="dialog fileupload"><div class="dialog"><div><div>::FileLabel::</div><input class="label" type="text"></input></div><div><div>::File::</div><form class="form" method="post" enctype="multipart/form-data"><input type="file" name="newFile" class="input file" multiple/></form></div><br><div class="uploading"></div><div class="filesize exceeded"></div></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><!--<div><a class="behaviour download" href="download()">::Download::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor egroup"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"></div></div><div class="editor elink"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLink::</div><div class="description"></div><div class="dialogs"><div class="dialog source"><div class="subtitle">::Source::</div><select></select></div><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"/></div><a class="view-table active" href="#" title="::Table::"></a><a class="view-locations" href="#" title="::Locations::"></a></div><div class="dialog store"><div class="grid"></div></div><div class="dialog history"><div class="grid"></div></div><div class="dialog location"><iframe class="map" style="border:0;padding:0" width="100%" height="100%" src="::Url::/map.html?key=::ApiKey::"></iframe><div class="info"></div></div><div class="toolbar"><div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div><div><a class="behaviour togglehistory" href="togglehistory()"></a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor elist"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageList::</div><div class="description"></div><div class="dialogs"><div class="dialog list"><div class="toolbar">::Select::&nbsp;&nbsp;<a class="behaviour" href="selectall()">::All::</a><span>&nbsp;|&nbsp;</span><a class="behaviour" href="selectnone()">::None::</a><span>&nbsp;|&nbsp;</span><a class="behaviour" href="selectinvert()">::Invert::</a></div><ul class="items"></ul><div class="toolbar"><div><a class="behaviour" href="additem()">::Add::</a></div><div><a class="behaviour deleteitems" href="deleteitems()">::DeleteSelected::</a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor enumber"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageNumber::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><div><a class="behaviour increment" href="increment()">::Increment::</a></div><div><a class="behaviour decrement" href="decrement()">::Decrement::</a></div></div></div><div class="edition"><div class="fmsgs"><div class="fmsg format"></div><div class="fmsg increments"></div><div class="fmsg range"></div><div class="fmsg equivalences"></div><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror format">::NumberWrong::</div><div class="verror range">::NumberRangeWrong::</div></div></div></div><div class="editor epattern"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageFormat::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror format">::FormatWrong::</div></div></div></div><div class="editor epicture"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessagePicture::</div><div class="description"></div><div class="dialogs"><div class="dialog pictureupload"><div class="dialog"><form class="form" method="post" enctype="multipart/form-data"><input type="hidden" class="slicex" name="slicex" value="10"/><input type="hidden" class="slicey" name="slicey" value="10"/><input type="hidden" class="slicewidth" name="slicewidth" value=""/><input type="hidden" class="sliceheight" name="sliceheight" value=""/><input type="file" name="newPicture" class="input file" multiple/></form><div class="crop imageContainer"><img class="preview"/><div class="toolbar upload"><div class="message">::CropMessage::</div><a class="button upload" href="upload()">::Accept::</a></div></div><div class="uploading"></div><div class="filesize exceeded"></div></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><!--<div><a class="behaviour download" href="download()">::Download::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor ecomposite"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"></div></div><div class="editor eselect"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageSelect::</div><div class="description"></div><div class="dialogs"><div class="dialog source"><div class="subtitle">::Source::</div><select></select></div><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog store"><div class="grid"></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div><div><a class="behaviour togglehistory" href="togglehistory()"></a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor etext"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageText::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--><div><a class="behaviour supindex" href="supindex()">::SupIndex::</a></div><div><a class="behaviour subindex" href="subindex()">::SubIndex::</a></div><div><a class="behaviour bold" href="bold()">::Bold::</a></div><div><a class="behaviour italic" href="italic()">::Italic::</a></div></div></div><div class="edition"><div class="preview"></div><div class="fmsgs"><div class="fmsg ihelp"></div></div><div class="verrors"><div class="verror length">::LengthWrong::</div></div></div></div><div class="editor esnode"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLink::</div><div class="description"></div><div class="dialogs"><div class="toolbar"><div class="filter"><span></span><input type="text" class="text filter"></input></div></div><div class="dialog store"><div class="grid"></div></div><div class="dialog history"><div class="grid"></div></div><div class="toolbar"><div><a class="behaviour selectother" href="selectother()">::SelectOther::</a></div><div><a class="behaviour togglehistory" href="togglehistory()"></a></div><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--><!--<div><a class="behaviour clearfield" href="clearfield()">::ClearField::</a></div>--></div></div><div class="edition"><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor eserial"><div class="info"><div class="title">::Edition::</div><!--<a class="help" href="#" title="::Help::"></a>--></div><div class="emessage"></div><div class="description"></div><div class="dialogs"><div class="toolbar"><!--<div><a class="behaviour loaddefaultvalue" href="loaddefaultvalue()">::LoadDefaultValue::</a></div>--><!--<div><a class="behaviour adddefaultvalue" href="adddefaultvalue()">::AddDefaultValue::</a></div>--></div></div><div class="edition">::MessageSerial::</div></div><div class="editor elocation"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLocation::</div><div class="description"></div><div class="dialogs"><div class="dialog location"><iframe class="map" style="border:0;padding:0" width="100%" height="100%" src="::Url::/map.html?key=::ApiKey::"></iframe><div class="info"></div><div class="toolbar"><div><a class="op point" href="#">::AddPoint::</a></div><div><a class="op line" href="#">::AddLine::</a></div><div><a class="op poly" href="#">::AddPolygon::</a></div><div><a class="op clean" href="#">::CleanLocation::</a></div><div><a class="op finish" href="#">::FinishEditingLocation::</a></div><div><a class="op cancel" href="#">::CancelEditingLocation::</a></div><div>&nbsp;</div><div><a class="op center" href="#">::CenterLocation::</a></div></div></div></div><div class="edition"><div class="preview"></div><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div><div class="editor esummation"><div class="info"><div class="title">::Edition::</div><a class="help" href="#" title="::Help::"></a></div><div class="emessage">::MessageLocation::</div><div class="description"></div><div class="dialogs"><div class="dialog summation"><div class="info"></div></div></div><div class="edition"><div class="preview"></div><div class="fmsgs"><div class="fmsg ihelp"></div></div></div></div>';
 AppTemplate.ViewerHelperPreview='<div class="info"><div class="title">::Title::</div></div><div id="PreviewButtons"></div><div id="PreviewThumbnails"></div>';
 AppTemplate.ViewerHelperObservers='<label>::Label::</label><ul class="observers"></ul>';
 AppTemplate.ViewerHelperObserversItem='<li class="observer"><div class="box" style="background-color:#{color}"></div><div class="fullname" style="color:#{color}">#{fullname}#{field}</div></li>';
@@ -10180,7 +10180,6 @@ LocationPicker = function () {
   this.Type = VIEW_NODE_TYPE_NODE;
   this.aEditors = new Array();
   this.Language = "es";
-  this.geocoder = (typeof google != "undefined" && google.maps.GeoCoder != null) ? new google.maps.Geocoder() : null;
 };
 
 LocationPicker.prototype = new CGView;
@@ -10241,6 +10240,11 @@ LocationPicker.prototype.setPlace = function (place) {
 };
 
 LocationPicker.prototype.setLocation = function (location) {
+  window.monetMapOptions = this.atLoadMapOptions.bind(this);
+  window.monetMapInit = this.atInitMap.bind(this);
+  window.monetMapOnBoundsChanged = function() {};
+  window.monetMapOnIdle = function() {};
+
   this.options.zoom = location ? location.zoom : 12;
 
   var centerLat = 15;
@@ -10256,10 +10260,41 @@ LocationPicker.prototype.setLocation = function (location) {
       this.options.zoom = 10;
     }
   }
-  this.options.center = new google.maps.LatLng(centerLat, centerLng);
+  this.options.center = { lat: centerLat, lng: centerLng };
 
-  this.map = new google.maps.Map(this.mapLayer.dom, this.options);
+  this.location = location;
+  this.insertMap();
+};
 
+LocationPicker.prototype.insertMap = function() {
+  const iframe = document.createElement("iframe");
+  iframe.className = "map";
+  iframe.style.border = "0";
+  iframe.style.padding = "0";
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.src = `${Context.Config.Url}/map.html?key=${Context.Config.Map.ApiKey}&m=${Math.random()}`;
+
+  const container = this.mapLayer.dom;
+  if (container == null) {
+    console.error(`Container for map not found.`);
+    return;
+  }
+
+  const mapFrame = container.querySelector("iframe.map");
+  if (mapFrame != null) container.removeChild(mapFrame);
+  container.appendChild(iframe);
+}
+
+LocationPicker.prototype.atLoadMapOptions = function () {
+    return this.options;
+};
+
+LocationPicker.prototype.atInitMap = function(map, googleInstance) {
+  google = googleInstance;
+  this.map = map;
+  this.geocoder = new google.maps.Geocoder();
+  const location = this.location;
   if (location) {
     if (location.type == G_POINT) {
       var latlng = new google.maps.LatLng(location.geometry[0], location.geometry[1]);
@@ -10477,8 +10512,7 @@ LocationPicker.prototype.drawPolygon = function () {
 LocationPicker.prototype.panToCenter = function () {
   if (!this.location) return;
 
-  var pos = new google.maps.LatLng(this.location.center[0], this.location.center[1]);
-  this.map.panTo(pos);
+  this.map.panTo({lat: this.location.center[0], lng: this.location.center[1]});
 };
 
 LocationPicker.prototype.finishDraw = function () {
@@ -10504,8 +10538,7 @@ LocationPicker.prototype.atGPSPositioned = function (position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
-  var pos = new google.maps.LatLng(latitude, longitude);
-  this.map.panTo(pos);
+  this.map.panTo({ lat: latitude, lng: longitude});
 };
 
 LocationPicker.prototype.atMarkerMoved = function () {
@@ -10556,7 +10589,7 @@ LocationPicker.prototype.atGPSPositionChange = function (position) {
 
   var pos = new google.maps.LatLng(latitude, longitude);
   this.setMarkerTo(pos);
-  this.map.panTo(pos);
+  this.map.panTo({ lat: latitude, lng: longitude});
   this.save();
 };
 
@@ -10759,7 +10792,6 @@ CGViewMapLayer = function () {
 
   this.currentNodeId = null;
   this.executeIdle = true;
-  this.geocoder = google.maps.GeoCoder != null ? new google.maps.Geocoder() : null;
   this.condition = null;
   this.lastHeatMap = null;
   this.centerLat = 28;
@@ -10819,6 +10851,11 @@ CGViewMapLayer.prototype.render = function () {
   window.monetMapOnBoundsChanged = this.atBoundsChanged.bind(this);
   window.monetMapOnIdle = this.atIdle.bind(this);
 
+  if (CGViewMapLayer.oms != null && CGViewMapLayer.projHelper != null) {
+    CGViewMapLayer.oms.projHelper = CGViewMapLayer.projHelper;
+    CGViewMapLayer.oms.projHelper.map = CGViewMapLayer.map;
+  }
+
   this.options.zoom = 12;
 
   if (navigator.geolocation) {
@@ -10828,7 +10865,7 @@ CGViewMapLayer.prototype.render = function () {
   }
 
   this.options.center = { lat: parseFloat(this.centerLat), lng: parseFloat(this.centerLng) };
-  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer).replace("::ApiKey::", Context.Config.Map.ApiKey);
+  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer);
 
   var extLayer = Ext.get(this.DOMLayer);
   extLayer.select(".next").first().on("click", this.atNextPage.bind(this));
@@ -10838,10 +10875,24 @@ CGViewMapLayer.prototype.render = function () {
   this.extPage = extLayer.select(".page").first();
   this.extCount = extLayer.select(".count").first();
 
-  var frameLayer = $("#" + Literals.Frames.MapApp);
-  var frame = frames[Literals.Frames.MapApp];
-  if (frameLayer == null) frameLayer = $(Literals.Frames.MapApp);
+  this.insertMap(extLayer.dom.querySelector(".map-container"));
 };
+
+CGViewMapLayer.prototype.insertMap = function(container) {
+  this.clearLayers();
+
+  const iframe = document.createElement("iframe");
+  iframe.className = "map";
+  iframe.style.border = "0";
+  iframe.style.padding = "0";
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.src = `${Context.Config.Url}/map.html?key=${Context.Config.Map.ApiKey}&m=${Math.random()}`;
+
+  const mapFrame = container.querySelector("iframe.map");
+  if (mapFrame != null) container.removeChild(mapFrame);
+  container.appendChild(iframe);
+}
 
 CGViewMapLayer.prototype.refresh = function (condition) {
   this.updateLayer();
@@ -10856,7 +10907,7 @@ CGViewMapLayer.prototype.isSameBounds = function (bounds) {
 
   if (bounds == null) return false;
 
-  var currentBounds = this.map.getBounds();
+  var currentBounds = CGViewMapLayer.map.getBounds();
   var currentNorthEast = currentBounds.getNorthEast();
   var currentSouthWest = currentBounds.getSouthWest();
   var northEast = bounds.getNorthEast();
@@ -10894,7 +10945,7 @@ CGViewMapLayer.prototype.atPreviousPage = function () {
 };
 
 CGViewMapLayer.prototype.getBoundsQuery = function() {
-    var bounds = this.map.getBounds();
+    var bounds = CGViewMapLayer.map.getBounds();
     var northEast = bounds.getNorthEast();
     var southWest = bounds.getSouthWest();
     return "&nex=" + northEast.lat() + "&ney=" + northEast.lng() + "&swx=" + southWest.lat() + "&swy=" + southWest.lng();
@@ -10916,7 +10967,7 @@ CGViewMapLayer.prototype.getSourceUrl = function() {
 };
 
 CGViewMapLayer.prototype.updateLayer = function () {
-  var bounds = this.map.getBounds();
+  var bounds = CGViewMapLayer.map.getBounds();
   if (!bounds)
     return;
 
@@ -10943,9 +10994,9 @@ CGViewMapLayer.prototype.loadCountCallback = function (sOptions, bSuccess, Respo
 
 CGViewMapLayer.prototype.loadLayer = function () {
 
-  if (this.layer) {
-    for (var i = 0; i < this.layer.docs.length; i++) {
-        this.layer.hideDocument(this.layer.docs[i]);
+  if (CGViewMapLayer.layer) {
+    for (var i = 0; i < CGViewMapLayer.layer.docs.length; i++) {
+        CGViewMapLayer.layer.hideDocument(CGViewMapLayer.layer.docs[i]);
     }
   }
 
@@ -10972,28 +11023,33 @@ CGViewMapLayer.prototype.loadHeatLayerCallback = function (sOptions, bSuccess, R
     this.lastHeatMap.setMap(null);
 
   var heatMap = new google.maps.visualization.HeatmapLayer({data: pointArray});
-  heatMap.setMap(this.map);
+  heatMap.setMap(CGViewMapLayer.map);
 
   this.lastHeatMap = heatMap;
   this.extLoading.dom.style.display = "none";
 };
 
 CGViewMapLayer.prototype.loadKmlLayer = function () {
-  if (CGViewMapLayer.loadingKml || this.map == null) return;
+  if (CGViewMapLayer.loadingKml || CGViewMapLayer.map == null) return;
 
   CGViewMapLayer.loadingKml = true;
-  this.infoWindow = new google.maps.InfoWindow();
-  this.oms = new OverlappingMarkerSpiderfier(this.map, {keepSpiderfied: true});
+  CGViewMapLayer.oms = new OverlappingMarkerSpiderfier(CGViewMapLayer.map, {keepSpiderfied: true});
+  CGViewMapLayer.projHelper = CGViewMapLayer.oms.projHelper.getProjection() != null ? CGViewMapLayer.oms.projHelper : CGViewMapLayer.projHelper;
+  if (CGViewMapLayer.projHelper != null) {
+    CGViewMapLayer.projHelper.map = CGViewMapLayer.map;
+    CGViewMapLayer.oms.projHelper = CGViewMapLayer.projHelper;
+  }
+  CGViewMapLayer.infoWindow = new google.maps.InfoWindow();
 
-  this.layer = new geoXML3.parser({
-      map: this.map,
-      overlappingMarkerSpiderfier: this.oms,
+  CGViewMapLayer.layer = new geoXML3.parser({
+      map: CGViewMapLayer.map,
+      overlappingMarkerSpiderfier: CGViewMapLayer.oms,
       zoom: false,
       processStyles: true,
       polylineOptions: LineStringOptions,
       polygonOptions: PolygonOptions,
       singleInfoWindow: true,
-      infoWindow: this.infoWindow,
+      infoWindow: CGViewMapLayer.infoWindow,
       pmParseFn: this.atPlacemarkParsed.bind(this),
       afterParse: this.atKmlLoaded.bind(this)
   });
@@ -11002,14 +11058,19 @@ CGViewMapLayer.prototype.loadKmlLayer = function () {
   geoXML3.onInfoWindowClosed = CGViewMapLayer.prototype.atInfoWindowClosed.bind(this);
   geoXML3.onMarkerCreated = CGViewMapLayer.prototype.atMarkerCreated.bind(this);
   geoXML3.onMarkerClick = CGViewMapLayer.prototype.atMarkerClick.bind(this);
-  google.maps.event.addListener(this.infoWindow, 'closeclick', CGViewMapLayer.prototype.atInfoWindowClosed.bind(this));
+
+  google.maps.event.addListener(CGViewMapLayer.infoWindow, 'closeclick', CGViewMapLayer.prototype.atInfoWindowClosed.bind(this));
 
   this.extLoading.dom.style.display = "block";
-  this.layer.parse(this.getSourceUrl());
+  CGViewMapLayer.layer.parse(this.getSourceUrl());
 };
 
 CGViewMapLayer.prototype.atKmlLoaded = function () {
     this.extLoading.dom.style.display = "none";
+    for (var i=0; i<CGViewMapLayer.oms.markers.length; i++) {
+        const marker = CGViewMapLayer.oms.markers[i];
+        marker.position = { lat: marker.position.lat(), lng: marker.position.lng() };
+    }
     CGViewMapLayer.loadingKml = false;
 };
 
@@ -11022,7 +11083,7 @@ CGViewMapLayer.prototype.idle = function () {
 };
 
 CGViewMapLayer.prototype.resize = function () {
-  google.maps.event.trigger(this.map, "resize");
+  google.maps.event.trigger(CGViewMapLayer.map, "resize");
 };
 
 // #############################################################################################################
@@ -11032,6 +11093,8 @@ CGViewMapLayer.prototype.atResize = function () {
 
 CGViewMapLayer.prototype.atPlacemarkParsed = function (xmlNode, placemark) {
   var aExtendedData = xmlNode.getElementsByTagName('ExtendedData');
+
+  if (placemark.point == null) placemark.point = { lat: placemark.latlng.lat(), lng: placemark.latlng.lng() };
 
   if (aExtendedData && (aExtendedData.length > 0)) {
     var extendedData = aExtendedData[0];
@@ -11074,12 +11137,12 @@ CGViewMapLayer.prototype.atMarkerClick = function (marker) {
 
 CGViewMapLayer.prototype.atMarkerCreated = function (marker, placemark) {
 
-  if (this.oms != null)
-    this.oms.addMarker(marker);
+  if (CGViewMapLayer.oms != null)
+    CGViewMapLayer.oms.addMarker(marker);
 
   if (this.currentNodeId && this.currentNodeId == placemark.nodeId) {
     placemark.marker.infoWindow.setContent(this.infoWindowTemplate.applyTemplate(marker.extendedData));
-    placemark.marker.infoWindow.open(this.map, placemark.marker);
+    placemark.marker.infoWindow.open(CGViewMapLayer.map, placemark.marker);
   }
 };
 
@@ -11088,13 +11151,12 @@ CGViewMapLayer.prototype.atClickPlace = function (position) {
 };
 
 CGViewMapLayer.prototype.atGPSPositioned = function (position) {
-  if (this.map == null) return;
+  if (CGViewMapLayer.map == null) return;
 
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
-  var pos = new google.maps.LatLng(latitude, longitude);
-  this.map.panTo(pos);
+  CGViewMapLayer.map.panTo({ lat: latitude, lng: longitude });
 };
 
 CGViewMapLayer.prototype.atLoadMapOptions = function () {
@@ -11103,14 +11165,49 @@ CGViewMapLayer.prototype.atLoadMapOptions = function () {
 
 CGViewMapLayer.prototype.atInitMap = function(map, googleInstance) {
   google = googleInstance;
-  this.map = map;
-  this.updateLayer();
+  CGViewMapLayer.map = map;
+  this.geocoder = new google.maps.Geocoder();
+  //this.updateLayer();
+};
+
+CGViewMapLayer.prototype.clearLayers = function () {
+    if (CGViewMapLayer.oms != null) {
+        CGViewMapLayer.oms.clearMarkers();
+        CGViewMapLayer.oms.map = null;
+    }
+    CGViewMapLayer.oms = null;
+    if (CGViewMapLayer.map != null) {
+        google.maps.event.clearListeners(CGViewMapLayer.map, 'click');
+        google.maps.event.clearListeners(CGViewMapLayer.infoWindow, 'closeclick');
+    }
+    CGViewMapLayer.loadingKml = false;
+    if (CGViewMapLayer.layer == null) return;
+    if (CGViewMapLayer.layer.docs) {
+      CGViewMapLayer.layer.docs.forEach((doc) => {
+        if (doc.markers) {
+          doc.markers.forEach(marker => marker.setMap(null));
+        }
+        if (doc.groundOverlays) {
+          doc.groundOverlays.forEach(overlay => overlay.setMap(null));
+        }
+        if (doc.polylines) {
+          doc.polylines.forEach(line => line.setMap(null));
+        }
+        if (doc.polygons) {
+          doc.polygons.forEach(poly => poly.setMap(null));
+        }
+        if (doc.infoWindows) {
+          doc.infoWindows.forEach(info => info.close());
+        }
+      });
+    }
+    CGViewMapLayer.layer = null;
 };
 
 CGViewMapLayer.prototype.atBoundsChanged = function () {
-  if (this.map == null) return;
+  if (CGViewMapLayer.map == null) return;
   this.boundsChanged = (!this.isSameBounds(this.mapBounds));
-  this.mapBounds = this.map.getBounds();
+  this.mapBounds = CGViewMapLayer.map.getBounds();
 };
 
 CGViewMapLayer.prototype.atIdle = function () {
@@ -11129,7 +11226,7 @@ CGViewMapLayer.prototype.atSearchClick = function () {
 
 CGViewMapLayer.prototype.atGotoPlaceInfoArrived = function (geocoderResult) {
   if (!geocoderResult || (geocoderResult.length < 1)) return;
-  this.map.setCenter(geocoderResult[0].geometry.location);
+  CGViewMapLayer.map.setCenter(geocoderResult[0].geometry.location);
   this.updateLayer();
   this.addListeners();
 };

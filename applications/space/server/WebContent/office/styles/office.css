@@ -399,10 +399,10 @@
 
 
 
-.infowindow .title a {
+.gm-style-iw-d .infowindow .title a, .infowindow .title a {
   font-size: 16px;
 }
-.infowindow .extradata {
+.gm-style-iw-d .infowindow .extradata, .infowindow .extradata {
   color: #666;
 }
 

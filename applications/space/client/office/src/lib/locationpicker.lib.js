@@ -44,7 +44,6 @@ LocationPicker = function () {
   this.Type = VIEW_NODE_TYPE_NODE;
   this.aEditors = new Array();
   this.Language = "es";
-  this.geocoder = (typeof google != "undefined" && google.maps.GeoCoder != null) ? new google.maps.Geocoder() : null;
 };
 
 LocationPicker.prototype = new CGView;
@@ -105,6 +104,11 @@ LocationPicker.prototype.setPlace = function (place) {
 };
 
 LocationPicker.prototype.setLocation = function (location) {
+  window.monetMapOptions = this.atLoadMapOptions.bind(this);
+  window.monetMapInit = this.atInitMap.bind(this);
+  window.monetMapOnBoundsChanged = function() {};
+  window.monetMapOnIdle = function() {};
+
   this.options.zoom = location ? location.zoom : 12;
 
   var centerLat = 15;
@@ -120,10 +124,41 @@ LocationPicker.prototype.setLocation = function (location) {
       this.options.zoom = 10;
     }
   }
-  this.options.center = new google.maps.LatLng(centerLat, centerLng);
+  this.options.center = { lat: centerLat, lng: centerLng };
 
-  this.map = new google.maps.Map(this.mapLayer.dom, this.options);
+  this.location = location;
+  this.insertMap();
+};
 
+LocationPicker.prototype.insertMap = function() {
+  const iframe = document.createElement("iframe");
+  iframe.className = "map";
+  iframe.style.border = "0";
+  iframe.style.padding = "0";
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.src = `${Context.Config.Url}/map.html?key=${Context.Config.Map.ApiKey}&m=${Math.random()}`;
+
+  const container = this.mapLayer.dom;
+  if (container == null) {
+    console.error(`Container for map not found.`);
+    return;
+  }
+
+  const mapFrame = container.querySelector("iframe.map");
+  if (mapFrame != null) container.removeChild(mapFrame);
+  container.appendChild(iframe);
+}
+
+LocationPicker.prototype.atLoadMapOptions = function () {
+    return this.options;
+};
+
+LocationPicker.prototype.atInitMap = function(map, googleInstance) {
+  google = googleInstance;
+  this.map = map;
+  this.geocoder = new google.maps.Geocoder();
+  const location = this.location;
   if (location) {
     if (location.type == G_POINT) {
       var latlng = new google.maps.LatLng(location.geometry[0], location.geometry[1]);
@@ -341,8 +376,7 @@ LocationPicker.prototype.drawPolygon = function () {
 LocationPicker.prototype.panToCenter = function () {
   if (!this.location) return;
 
-  var pos = new google.maps.LatLng(this.location.center[0], this.location.center[1]);
-  this.map.panTo(pos);
+  this.map.panTo({lat: this.location.center[0], lng: this.location.center[1]});
 };
 
 LocationPicker.prototype.finishDraw = function () {
@@ -368,8 +402,7 @@ LocationPicker.prototype.atGPSPositioned = function (position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
-  var pos = new google.maps.LatLng(latitude, longitude);
-  this.map.panTo(pos);
+  this.map.panTo({ lat: latitude, lng: longitude});
 };
 
 LocationPicker.prototype.atMarkerMoved = function () {
@@ -420,7 +453,7 @@ LocationPicker.prototype.atGPSPositionChange = function (position) {
 
   var pos = new google.maps.LatLng(latitude, longitude);
   this.setMarkerTo(pos);
-  this.map.panTo(pos);
+  this.map.panTo({ lat: latitude, lng: longitude});
   this.save();
 };
 

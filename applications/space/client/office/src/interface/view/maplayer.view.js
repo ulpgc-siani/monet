@@ -21,7 +21,6 @@ CGViewMapLayer = function () {
 
   this.currentNodeId = null;
   this.executeIdle = true;
-  this.geocoder = google.maps.GeoCoder != null ? new google.maps.Geocoder() : null;
   this.condition = null;
   this.lastHeatMap = null;
   this.centerLat = 28;
@@ -81,6 +80,11 @@ CGViewMapLayer.prototype.render = function () {
   window.monetMapOnBoundsChanged = this.atBoundsChanged.bind(this);
   window.monetMapOnIdle = this.atIdle.bind(this);
 
+  if (CGViewMapLayer.oms != null && CGViewMapLayer.projHelper != null) {
+    CGViewMapLayer.oms.projHelper = CGViewMapLayer.projHelper;
+    CGViewMapLayer.oms.projHelper.map = CGViewMapLayer.map;
+  }
+
   this.options.zoom = 12;
 
   if (navigator.geolocation) {
@@ -90,7 +94,7 @@ CGViewMapLayer.prototype.render = function () {
   }
 
   this.options.center = { lat: parseFloat(this.centerLat), lng: parseFloat(this.centerLng) };
-  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer).replace("::ApiKey::", Context.Config.Map.ApiKey);
+  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer);
 
   var extLayer = Ext.get(this.DOMLayer);
   extLayer.select(".next").first().on("click", this.atNextPage.bind(this));
@@ -100,10 +104,24 @@ CGViewMapLayer.prototype.render = function () {
   this.extPage = extLayer.select(".page").first();
   this.extCount = extLayer.select(".count").first();
 
-  var frameLayer = $("#" + Literals.Frames.MapApp);
-  var frame = frames[Literals.Frames.MapApp];
-  if (frameLayer == null) frameLayer = $(Literals.Frames.MapApp);
+  this.insertMap(extLayer.dom.querySelector(".map-container"));
 };
+
+CGViewMapLayer.prototype.insertMap = function(container) {
+  this.clearLayers();
+
+  const iframe = document.createElement("iframe");
+  iframe.className = "map";
+  iframe.style.border = "0";
+  iframe.style.padding = "0";
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.src = `${Context.Config.Url}/map.html?key=${Context.Config.Map.ApiKey}&m=${Math.random()}`;
+
+  const mapFrame = container.querySelector("iframe.map");
+  if (mapFrame != null) container.removeChild(mapFrame);
+  container.appendChild(iframe);
+}
 
 CGViewMapLayer.prototype.refresh = function (condition) {
   this.updateLayer();
@@ -118,7 +136,7 @@ CGViewMapLayer.prototype.isSameBounds = function (bounds) {
 
   if (bounds == null) return false;
 
-  var currentBounds = this.map.getBounds();
+  var currentBounds = CGViewMapLayer.map.getBounds();
   var currentNorthEast = currentBounds.getNorthEast();
   var currentSouthWest = currentBounds.getSouthWest();
   var northEast = bounds.getNorthEast();
@@ -156,7 +174,7 @@ CGViewMapLayer.prototype.atPreviousPage = function () {
 };
 
 CGViewMapLayer.prototype.getBoundsQuery = function() {
-    var bounds = this.map.getBounds();
+    var bounds = CGViewMapLayer.map.getBounds();
     var northEast = bounds.getNorthEast();
     var southWest = bounds.getSouthWest();
     return "&nex=" + northEast.lat() + "&ney=" + northEast.lng() + "&swx=" + southWest.lat() + "&swy=" + southWest.lng();
@@ -178,7 +196,7 @@ CGViewMapLayer.prototype.getSourceUrl = function() {
 };
 
 CGViewMapLayer.prototype.updateLayer = function () {
-  var bounds = this.map.getBounds();
+  var bounds = CGViewMapLayer.map.getBounds();
   if (!bounds)
     return;
 
@@ -205,9 +223,9 @@ CGViewMapLayer.prototype.loadCountCallback = function (sOptions, bSuccess, Respo
 
 CGViewMapLayer.prototype.loadLayer = function () {
 
-  if (this.layer) {
-    for (var i = 0; i < this.layer.docs.length; i++) {
-        this.layer.hideDocument(this.layer.docs[i]);
+  if (CGViewMapLayer.layer) {
+    for (var i = 0; i < CGViewMapLayer.layer.docs.length; i++) {
+        CGViewMapLayer.layer.hideDocument(CGViewMapLayer.layer.docs[i]);
     }
   }
 
@@ -234,28 +252,33 @@ CGViewMapLayer.prototype.loadHeatLayerCallback = function (sOptions, bSuccess, R
     this.lastHeatMap.setMap(null);
 
   var heatMap = new google.maps.visualization.HeatmapLayer({data: pointArray});
-  heatMap.setMap(this.map);
+  heatMap.setMap(CGViewMapLayer.map);
 
   this.lastHeatMap = heatMap;
   this.extLoading.dom.style.display = "none";
 };
 
 CGViewMapLayer.prototype.loadKmlLayer = function () {
-  if (CGViewMapLayer.loadingKml || this.map == null) return;
+  if (CGViewMapLayer.loadingKml || CGViewMapLayer.map == null) return;
 
   CGViewMapLayer.loadingKml = true;
-  this.infoWindow = new google.maps.InfoWindow();
-  this.oms = new OverlappingMarkerSpiderfier(this.map, {keepSpiderfied: true});
+  CGViewMapLayer.oms = new OverlappingMarkerSpiderfier(CGViewMapLayer.map, {keepSpiderfied: true});
+  CGViewMapLayer.projHelper = CGViewMapLayer.oms.projHelper.getProjection() != null ? CGViewMapLayer.oms.projHelper : CGViewMapLayer.projHelper;
+  if (CGViewMapLayer.projHelper != null) {
+    CGViewMapLayer.projHelper.map = CGViewMapLayer.map;
+    CGViewMapLayer.oms.projHelper = CGViewMapLayer.projHelper;
+  }
+  CGViewMapLayer.infoWindow = new google.maps.InfoWindow();
 
-  this.layer = new geoXML3.parser({
-      map: this.map,
-      overlappingMarkerSpiderfier: this.oms,
+  CGViewMapLayer.layer = new geoXML3.parser({
+      map: CGViewMapLayer.map,
+      overlappingMarkerSpiderfier: CGViewMapLayer.oms,
       zoom: false,
       processStyles: true,
       polylineOptions: LineStringOptions,
       polygonOptions: PolygonOptions,
       singleInfoWindow: true,
-      infoWindow: this.infoWindow,
+      infoWindow: CGViewMapLayer.infoWindow,
       pmParseFn: this.atPlacemarkParsed.bind(this),
       afterParse: this.atKmlLoaded.bind(this)
   });
@@ -264,14 +287,19 @@ CGViewMapLayer.prototype.loadKmlLayer = function () {
   geoXML3.onInfoWindowClosed = CGViewMapLayer.prototype.atInfoWindowClosed.bind(this);
   geoXML3.onMarkerCreated = CGViewMapLayer.prototype.atMarkerCreated.bind(this);
   geoXML3.onMarkerClick = CGViewMapLayer.prototype.atMarkerClick.bind(this);
-  google.maps.event.addListener(this.infoWindow, 'closeclick', CGViewMapLayer.prototype.atInfoWindowClosed.bind(this));
+
+  google.maps.event.addListener(CGViewMapLayer.infoWindow, 'closeclick', CGViewMapLayer.prototype.atInfoWindowClosed.bind(this));
 
   this.extLoading.dom.style.display = "block";
-  this.layer.parse(this.getSourceUrl());
+  CGViewMapLayer.layer.parse(this.getSourceUrl());
 };
 
 CGViewMapLayer.prototype.atKmlLoaded = function () {
     this.extLoading.dom.style.display = "none";
+    for (var i=0; i<CGViewMapLayer.oms.markers.length; i++) {
+        const marker = CGViewMapLayer.oms.markers[i];
+        marker.position = { lat: marker.position.lat(), lng: marker.position.lng() };
+    }
     CGViewMapLayer.loadingKml = false;
 };
 
@@ -284,7 +312,7 @@ CGViewMapLayer.prototype.idle = function () {
 };
 
 CGViewMapLayer.prototype.resize = function () {
-  google.maps.event.trigger(this.map, "resize");
+  google.maps.event.trigger(CGViewMapLayer.map, "resize");
 };
 
 // #############################################################################################################
@@ -294,6 +322,8 @@ CGViewMapLayer.prototype.atResize = function () {
 
 CGViewMapLayer.prototype.atPlacemarkParsed = function (xmlNode, placemark) {
   var aExtendedData = xmlNode.getElementsByTagName('ExtendedData');
+
+  if (placemark.point == null) placemark.point = { lat: placemark.latlng.lat(), lng: placemark.latlng.lng() };
 
   if (aExtendedData && (aExtendedData.length > 0)) {
     var extendedData = aExtendedData[0];
@@ -336,12 +366,12 @@ CGViewMapLayer.prototype.atMarkerClick = function (marker) {
 
 CGViewMapLayer.prototype.atMarkerCreated = function (marker, placemark) {
 
-  if (this.oms != null)
-    this.oms.addMarker(marker);
+  if (CGViewMapLayer.oms != null)
+    CGViewMapLayer.oms.addMarker(marker);
 
   if (this.currentNodeId && this.currentNodeId == placemark.nodeId) {
     placemark.marker.infoWindow.setContent(this.infoWindowTemplate.applyTemplate(marker.extendedData));
-    placemark.marker.infoWindow.open(this.map, placemark.marker);
+    placemark.marker.infoWindow.open(CGViewMapLayer.map, placemark.marker);
   }
 };
 
@@ -350,13 +380,12 @@ CGViewMapLayer.prototype.atClickPlace = function (position) {
 };
 
 CGViewMapLayer.prototype.atGPSPositioned = function (position) {
-  if (this.map == null) return;
+  if (CGViewMapLayer.map == null) return;
 
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
-  var pos = new google.maps.LatLng(latitude, longitude);
-  this.map.panTo(pos);
+  CGViewMapLayer.map.panTo({ lat: latitude, lng: longitude });
 };
 
 CGViewMapLayer.prototype.atLoadMapOptions = function () {
@@ -365,14 +394,49 @@ CGViewMapLayer.prototype.atLoadMapOptions = function () {
 
 CGViewMapLayer.prototype.atInitMap = function(map, googleInstance) {
   google = googleInstance;
-  this.map = map;
-  this.updateLayer();
+  CGViewMapLayer.map = map;
+  this.geocoder = new google.maps.Geocoder();
+  //this.updateLayer();
+};
+
+CGViewMapLayer.prototype.clearLayers = function () {
+    if (CGViewMapLayer.oms != null) {
+        CGViewMapLayer.oms.clearMarkers();
+        CGViewMapLayer.oms.map = null;
+    }
+    CGViewMapLayer.oms = null;
+    if (CGViewMapLayer.map != null) {
+        google.maps.event.clearListeners(CGViewMapLayer.map, 'click');
+        google.maps.event.clearListeners(CGViewMapLayer.infoWindow, 'closeclick');
+    }
+    CGViewMapLayer.loadingKml = false;
+    if (CGViewMapLayer.layer == null) return;
+    if (CGViewMapLayer.layer.docs) {
+      CGViewMapLayer.layer.docs.forEach((doc) => {
+        if (doc.markers) {
+          doc.markers.forEach(marker => marker.setMap(null));
+        }
+        if (doc.groundOverlays) {
+          doc.groundOverlays.forEach(overlay => overlay.setMap(null));
+        }
+        if (doc.polylines) {
+          doc.polylines.forEach(line => line.setMap(null));
+        }
+        if (doc.polygons) {
+          doc.polygons.forEach(poly => poly.setMap(null));
+        }
+        if (doc.infoWindows) {
+          doc.infoWindows.forEach(info => info.close());
+        }
+      });
+    }
+    CGViewMapLayer.layer = null;
 };
 
 CGViewMapLayer.prototype.atBoundsChanged = function () {
-  if (this.map == null) return;
+  if (CGViewMapLayer.map == null) return;
   this.boundsChanged = (!this.isSameBounds(this.mapBounds));
-  this.mapBounds = this.map.getBounds();
+  this.mapBounds = CGViewMapLayer.map.getBounds();
 };
 
 CGViewMapLayer.prototype.atIdle = function () {
@@ -391,7 +455,7 @@ CGViewMapLayer.prototype.atSearchClick = function () {
 
 CGViewMapLayer.prototype.atGotoPlaceInfoArrived = function (geocoderResult) {
   if (!geocoderResult || (geocoderResult.length < 1)) return;
-  this.map.setCenter(geocoderResult[0].geometry.location);
+  CGViewMapLayer.map.setCenter(geocoderResult[0].geometry.location);
   this.updateLayer();
   this.addListeners();
 };
