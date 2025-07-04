@@ -45,6 +45,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core-shared" target="1.7" />
+      <module name="monet-federation" target="1.7" />
       <module name="tomcat-shared" target="1.7" />
     </bytecodeTargetLevel>
   </component>

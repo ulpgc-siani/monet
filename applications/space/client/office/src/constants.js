@@ -372,7 +372,8 @@ Literals = {
 
   Frames: {
     History: "frameHistory",
-    SignatureApp: "frameSignatureApp"
+    SignatureApp: "frameSignatureApp",
+    MapApp: "frameMapApp"
   },
 
   Toolbars: {

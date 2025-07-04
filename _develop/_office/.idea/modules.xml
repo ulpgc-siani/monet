@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/_office.iml" filepath="$PROJECT_DIR$/_office.iml" />
       <module fileurl="file://$PROJECT_DIR$/client.iml" filepath="$PROJECT_DIR$/client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/server.iml" filepath="$PROJECT_DIR$/server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../applications/space/server/space.iml" filepath="$PROJECT_DIR$/../../applications/space/server/space.iml" />
       <module fileurl="file://$PROJECT_DIR$/theme.iml" filepath="$PROJECT_DIR$/theme.iml" />
     </modules>
   </component>

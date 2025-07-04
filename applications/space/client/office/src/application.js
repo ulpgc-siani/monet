@@ -7,6 +7,7 @@ Context.Config.Layer.iWidth = DEFAULT_WIDTH;
 Context.Config.Layer.iHeight = DEFAULT_HEIGHT;
 Context.Config.NodesBufferSize = 1;
 Context.Config.SignatureApplication = {};
+Context.Config.Map = {};
 Context.Pages = {};
 Context.Debugging = false;
 

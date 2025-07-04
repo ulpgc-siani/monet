@@ -10,7 +10,7 @@ AppTemplate.ViewNodeLocationEditionToolbar='<ul><li><a class="op point" href="ja
 AppTemplate.ViewNodeLocationNavigationToolbar='<ul><li><a class="op center" href="javascript:void(null)">::CenterLocation::</a></li></ul>';
 AppTemplate.ViewNodeLocationSearch='<label>::FindLocation::</label><input type="text"></input><a class="op accept button" href="javascript:void(null)">::Accept::</a>';
 AppTemplate.ViewPlacemarkInfoWindow='<div class="infowindow"><div class="title"><a href="javascript:CommandDispatcher.dispatch(\'shownode({id})\');">{name}</a></div><div class="description">{description}</div><div class="extradata">{extraData}</div></div>';
-AppTemplate.ViewMapLayer='<div class="view map-layer"><div class=\'toolbar\'><div class="loading-map">::Loading::</div><div class="navigator"><span><a class=\'command previous air\'>::Previous::</a></span><span class="air"><span style="margin-right:5px;">::Page::</span><span class="page"></span>/<span class=\'count\'></span></span><span class="air"><a class=\'command next\'>::Next::</a></span></div></div><div class=\'map\'></div></div>';
+AppTemplate.ViewMapLayer='<div class="view map-layer"><div class=\'toolbar\'><div class="loading-map">::Loading::</div><div class="navigator"><span><a class=\'command previous air\'>::Previous::</a></span><span class="air"><span style="margin-right:5px;">::Page::</span><span class="page"></span>/<span class=\'count\'></span></span><span class="air"><a class=\'command next\'>::Next::</a></span></div></div><iframe id="frameMapApp" name="frameMapApp" class="map" style="border:0;padding:0" width="100%" height="100%" src="::Url::/map.html?key=::ApiKey::"></iframe></div>';
 AppTemplate.ViewMapLayerSearch='<label>::FindLocation::</label><input type="text"></input><a class="op accept" href="javascript:void(null)">::Accept::</a>';
 AppTemplate.ViewerDocumentList='<div class=\'header\'><table><tr><td><a class=\'previous\' title=\'::Previous::\'></a></td><td><select class="documents"></select></td><td><a class=\'next\' title=\'::Next::\'></a></td></tr></table></div><div class="dialog add" style="display:none;"><div><div>::FileLabel::</div><input class="label" type="text"></input></div><div class="file"><div>::File::</div><form class="form" method="post" enctype="multipart/form-data"><input type="file" name="newFile" class="input file"/></form></div><div style="margin-top:15px;"><a class="button accept">::Accept::</a><a class="button cancel">::Cancel::</a></div><div class="uploading">::Uploading::</div><div class="error">::ErrorOnUpload::</div></div><div class="dialog rename" style="display:none;"><div><div>::FileLabel::</div><input class="label" type="text"></input></div><div style="margin-top:15px;"><a class="button accept">::Accept::</a><a class="button cancel">::Cancel::</a></div></div><div class="empty" style="display:none;">::NoDocuments::</div><div class=\'loading\' style=\'display:none;\'>::Loading::</div><div class=\'container\'></div>';
 AppTemplate.DialogPrintEntityAttribute='<option value="{code}" {selected}>{label}</option>';
@@ -454,7 +454,8 @@ Literals = {
 
   Frames: {
     History: "frameHistory",
-    SignatureApp: "frameSignatureApp"
+    SignatureApp: "frameSignatureApp",
+    MapApp: "frameMapApp"
   },
 
   Toolbars: {
@@ -10179,7 +10180,7 @@ LocationPicker = function () {
   this.Type = VIEW_NODE_TYPE_NODE;
   this.aEditors = new Array();
   this.Language = "es";
-  this.geocoder = (typeof google != "undefined") ? new google.maps.Geocoder() : null;
+  this.geocoder = (typeof google != "undefined" && google.maps.GeoCoder != null) ? new google.maps.Geocoder() : null;
 };
 
 LocationPicker.prototype = new CGView;
@@ -10758,7 +10759,7 @@ CGViewMapLayer = function () {
 
   this.currentNodeId = null;
   this.executeIdle = true;
-  this.geocoder = new google.maps.Geocoder();
+  this.geocoder = google.maps.GeoCoder != null ? new google.maps.Geocoder() : null;
   this.condition = null;
   this.lastHeatMap = null;
   this.centerLat = 28;
@@ -10813,6 +10814,11 @@ CGViewMapLayer.prototype.setCenter = function (latitude, longitude) {
 };
 
 CGViewMapLayer.prototype.render = function () {
+  window.monetMapOptions = this.atLoadMapOptions.bind(this);
+  window.monetMapInit = this.atInitMap.bind(this);
+  window.monetMapOnBoundsChanged = this.atBoundsChanged.bind(this);
+  window.monetMapOnIdle = this.atIdle.bind(this);
+
   this.options.zoom = 12;
 
   if (navigator.geolocation) {
@@ -10821,8 +10827,8 @@ CGViewMapLayer.prototype.render = function () {
     this.options.zoom = 10;
   }
 
-  this.options.center = new google.maps.LatLng(this.centerLat, this.centerLng);
-  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer);
+  this.options.center = { lat: parseFloat(this.centerLat), lng: parseFloat(this.centerLng) };
+  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer).replace("::ApiKey::", Context.Config.Map.ApiKey);
 
   var extLayer = Ext.get(this.DOMLayer);
   extLayer.select(".next").first().on("click", this.atNextPage.bind(this));
@@ -10832,19 +10838,13 @@ CGViewMapLayer.prototype.render = function () {
   this.extPage = extLayer.select(".page").first();
   this.extCount = extLayer.select(".count").first();
 
-  this.map = new google.maps.Map(extLayer.select(".map").first().dom, this.options);
-
-  this.updateLayer();
-  this.addListeners();
+  var frameLayer = $("#" + Literals.Frames.MapApp);
+  var frame = frames[Literals.Frames.MapApp];
+  if (frameLayer == null) frameLayer = $(Literals.Frames.MapApp);
 };
 
 CGViewMapLayer.prototype.refresh = function (condition) {
   this.updateLayer();
-};
-
-CGViewMapLayer.prototype.addListeners = function (place) {
-  google.maps.event.addListener(this.map, 'bounds_changed', this.atBoundsChanged.bind(this));
-  google.maps.event.addListener(this.map, 'idle', this.atIdle.bind(this));
 };
 
 CGViewMapLayer.prototype.gotoPlace = function (place) {
@@ -10979,7 +10979,7 @@ CGViewMapLayer.prototype.loadHeatLayerCallback = function (sOptions, bSuccess, R
 };
 
 CGViewMapLayer.prototype.loadKmlLayer = function () {
-  if (CGViewMapLayer.loadingKml) return;
+  if (CGViewMapLayer.loadingKml || this.map == null) return;
 
   CGViewMapLayer.loadingKml = true;
   this.infoWindow = new google.maps.InfoWindow();
@@ -11088,6 +11088,8 @@ CGViewMapLayer.prototype.atClickPlace = function (position) {
 };
 
 CGViewMapLayer.prototype.atGPSPositioned = function (position) {
+  if (this.map == null) return;
+
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
@@ -11095,7 +11097,18 @@ CGViewMapLayer.prototype.atGPSPositioned = function (position) {
   this.map.panTo(pos);
 };
 
+CGViewMapLayer.prototype.atLoadMapOptions = function () {
+    return this.options;
+};
+
+CGViewMapLayer.prototype.atInitMap = function(map, googleInstance) {
+  google = googleInstance;
+  this.map = map;
+  this.updateLayer();
+};
+
 CGViewMapLayer.prototype.atBoundsChanged = function () {
+  if (this.map == null) return;
   this.boundsChanged = (!this.isSameBounds(this.mapBounds));
   this.mapBounds = this.map.getBounds();
 };
@@ -26415,7 +26428,7 @@ CGWizard.prototype.atAccept = function () {
   if (this.onAccept) this.onAccept();
 };
 
-var TEMPLATE = "<div class='panel clipboard'><label>Pega aquÃ­ el texto que deseas importar:</label><textarea class='data' rows='32'></textarea></div><div class='panel options'><fieldset class='delimiters'><legend>Delimita el texto que se seleccionarÃ¡ en cada momento indicando cÃ³mo estÃ¡n separados los campos</legend><form><div><input name='delimiter' id='dparagraph' type='radio' class='command paragraph' checked><label for='dparagraph'>Cada campo es un pÃ¡rrafo</label></div><div><input name='delimiter' id='dtab' type='radio' class='command tab' ><label for='dtab'>Con tabulaciones</label></div><div><input name='delimiter' id='ddot' type='radio' class='command dot' ><label for='ddot'>Con puntos</label></div><div><input name='delimiter' id='dsemicolon' type='radio' class='command semicolon' ><label for='dsemicolon'>Con puntos y coma</label></div><div><input name='delimiter' id='dcomma' type='radio' class='command comma' ><label for='dcomma'>Con comas</label></div><div><input name='delimiter' id='dfree' type='radio' class='command free' ><span class='label'><label for='dfree'>Empiezan con </label><input type='text' class='text free startwith'><label for='dfree'> y terminan con </label><input type='text' class='text free endwith'></label></span></div><!--<div><input name='delimiter' id='dregexp' type='radio' class='command regexp' ><span class='label'><label for='dregexp'>Necesito una expresiÃ³n regular para indicar los marcadores de inicio y fin. ExpresiÃ³n: <label for='dregexp'></label><input type='text' class='text regexp'></span></div>--></form></fieldset><fieldset class='definition fields'><legend>Indica el orden en que aparecen estos campos en el texto. Esto te facilitarÃ¡ cumplimentar los formularios</legend><ul class='list'></ul></fieldset><div class='toolbar'><div class='command close'></div></div></div><div class='panel layout'><div class='identation'><label>Texto:</label><div><textarea class='data' rows='10'></textarea><div class='pattern'>PatrÃ³n: <a class='command options'><span class='type paragraph'>Cada campo es un pÃ¡rrafo</span><span class='type tab'>Cada campo se delimita por una tabulaciÃ³n</span><span class='type dot'>Cada campo se delimita por un punto</span><span class='type semicolon'>Cada campo se delimita por un punto y coma</span><span class='type comma'>Cada campo se delimita por una coma</span><span class='type free'>Cada campo empieza por '<span class='startwith'></span>' y termina con '<span class='endwith'></span>'</span><span class='type regexp'>Cada campo se delimita por la expresiÃ³n regular '<span class='regexp'></span>'</span> cambiar...</a></div></div><div class='toolbar'><div class='left'><div class='command addform'></div></div><div class='right'><div class='command search'></div><div class='fields'></div><div class='command addfieldsplit'></div></div></div></div><div class='tabs'></div></div>";
+var TEMPLATE = "<div class='panel clipboard'><label>Pega aquí el texto que deseas importar:</label><textarea class='data' rows='32'></textarea></div><div class='panel options'><fieldset class='delimiters'><legend>Delimita el texto que se seleccionará en cada momento indicando cómo están separados los campos</legend><form><div><input name='delimiter' id='dparagraph' type='radio' class='command paragraph' checked><label for='dparagraph'>Cada campo es un párrafo</label></div><div><input name='delimiter' id='dtab' type='radio' class='command tab' ><label for='dtab'>Con tabulaciones</label></div><div><input name='delimiter' id='ddot' type='radio' class='command dot' ><label for='ddot'>Con puntos</label></div><div><input name='delimiter' id='dsemicolon' type='radio' class='command semicolon' ><label for='dsemicolon'>Con puntos y coma</label></div><div><input name='delimiter' id='dcomma' type='radio' class='command comma' ><label for='dcomma'>Con comas</label></div><div><input name='delimiter' id='dfree' type='radio' class='command free' ><span class='label'><label for='dfree'>Empiezan con </label><input type='text' class='text free startwith'><label for='dfree'> y terminan con </label><input type='text' class='text free endwith'></label></span></div><!--<div><input name='delimiter' id='dregexp' type='radio' class='command regexp' ><span class='label'><label for='dregexp'>Necesito una expresión regular para indicar los marcadores de inicio y fin. Expresión: <label for='dregexp'></label><input type='text' class='text regexp'></span></div>--></form></fieldset><fieldset class='definition fields'><legend>Indica el orden en que aparecen estos campos en el texto. Esto te facilitará cumplimentar los formularios</legend><ul class='list'></ul></fieldset><div class='toolbar'><div class='command close'></div></div></div><div class='panel layout'><div class='identation'><label>Texto:</label><div><textarea class='data' rows='10'></textarea><div class='pattern'>Patrón: <a class='command options'><span class='type paragraph'>Cada campo es un párrafo</span><span class='type tab'>Cada campo se delimita por una tabulación</span><span class='type dot'>Cada campo se delimita por un punto</span><span class='type semicolon'>Cada campo se delimita por un punto y coma</span><span class='type comma'>Cada campo se delimita por una coma</span><span class='type free'>Cada campo empieza por '<span class='startwith'></span>' y termina con '<span class='endwith'></span>'</span><span class='type regexp'>Cada campo se delimita por la expresión regular '<span class='regexp'></span>'</span> cambiar...</a></div></div><div class='toolbar'><div class='left'><div class='command addform'></div></div><div class='right'><div class='command search'></div><div class='fields'></div><div class='command addfieldsplit'></div></div></div></div><div class='tabs'></div></div>";
 var TEMPLATE_FIELD = "<li class='definition field'><div class='code hidden'>#{code}</div>#{title}<a class='raise'>subir<a class='bury'>bajar</a></li>";
 var TEMPLATE_TAB = "<div class='tab'><ul class='list'>#{fields}</ul></div>";
 var TEMPLATE_TAB_FIELD = "<li class='field #{code} #{class}'><div class='code hidden'>#{code}</div><table><tr><td width='15'><div class='arrow'>&nbsp;</div></td><td width='30%'><p class='title'>#{title}</p></td><td width='6%'><a class='raise'><img class='trigger' src='#{ImagesPath}/s.gif' alt='subir' title='subir'/></a><a class='bury'><img class='trigger' src='#{ImagesPath}/s.gif' alt='bajar' title='bajar'/></a></td><td width='64%'><a class='command value showfieldeditor'>#{value}</a></td></tr></table></li>";
@@ -26424,13 +26437,13 @@ var TEMPLATE_TAB_FIELD_VALUE_EDITOR = "<div id='#{id}' class='editor'><textarea 
 
 LangDataImporter = {
   FieldEmpty: "[Haz click para cumplimentar]",
-  FieldValueEmpty: "vacÃ­o",
+  FieldValueEmpty: "vacío",
   TabTitle: "Formulario #num",
   Search: "Buscar",
   Close: "Cerrar",
-  AddForm: "Aï¿½adir formulario",
-  AddField: "Aï¿½adir",
-  AddFields: "continuar desde aquï¿½"
+  AddForm: "A�adir formulario",
+  AddField: "A�adir",
+  AddFields: "continuar desde aqu�"
 };
 
 String.prototype.indexOfDelimiter = function (sDelimiter, iStartPos) {
@@ -49696,6 +49709,7 @@ Context.Config.Layer.iWidth = DEFAULT_WIDTH;
 Context.Config.Layer.iHeight = DEFAULT_HEIGHT;
 Context.Config.NodesBufferSize = 1;
 Context.Config.SignatureApplication = {};
+Context.Config.Map = {};
 Context.Pages = {};
 Context.Debugging = false;
 

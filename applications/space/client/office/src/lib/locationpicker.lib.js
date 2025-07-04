@@ -44,7 +44,7 @@ LocationPicker = function () {
   this.Type = VIEW_NODE_TYPE_NODE;
   this.aEditors = new Array();
   this.Language = "es";
-  this.geocoder = (typeof google != "undefined") ? new google.maps.Geocoder() : null;
+  this.geocoder = (typeof google != "undefined" && google.maps.GeoCoder != null) ? new google.maps.Geocoder() : null;
 };
 
 LocationPicker.prototype = new CGView;

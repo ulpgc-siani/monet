@@ -36,7 +36,7 @@
   <script type="text/javascript" src="${JAVASCRIPT_URL}/office.js"></script>
   <script type="text/javascript" src="${JAVASCRIPT_URL}/lightbox.js"></script>
   <script type="text/javascript" src="${JAVASCRIPT_URL}/geoxml3.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.57.13&libraries=visualization&key=${GOOGLE_API_KEY}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}"></script>
   <script type="text/javascript" src="${JAVASCRIPT_URL}/gmaps_oms.min.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
@@ -144,6 +144,7 @@
   <div id="Config.SignatureApplication.DownloadUrl">${APPLICATION_SIGNATORY_URL}/app</div>
   <div id="Config.SignatureApplication.RetrieveUrl">${APPLICATION_SIGNATORY_URL}/retrieve</div>
   <div id="Config.SignatureApplication.StorageUrl">${APPLICATION_SIGNATORY_URL}/store</div>
+  <div id="Config.Map.ApiKey">${GOOGLE_API_KEY}</div>
 </div>
 
 </body>

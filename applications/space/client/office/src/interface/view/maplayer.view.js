@@ -21,7 +21,7 @@ CGViewMapLayer = function () {
 
   this.currentNodeId = null;
   this.executeIdle = true;
-  this.geocoder = new google.maps.Geocoder();
+  this.geocoder = google.maps.GeoCoder != null ? new google.maps.Geocoder() : null;
   this.condition = null;
   this.lastHeatMap = null;
   this.centerLat = 28;
@@ -76,6 +76,11 @@ CGViewMapLayer.prototype.setCenter = function (latitude, longitude) {
 };
 
 CGViewMapLayer.prototype.render = function () {
+  window.monetMapOptions = this.atLoadMapOptions.bind(this);
+  window.monetMapInit = this.atInitMap.bind(this);
+  window.monetMapOnBoundsChanged = this.atBoundsChanged.bind(this);
+  window.monetMapOnIdle = this.atIdle.bind(this);
+
   this.options.zoom = 12;
 
   if (navigator.geolocation) {
@@ -84,8 +89,8 @@ CGViewMapLayer.prototype.render = function () {
     this.options.zoom = 10;
   }
 
-  this.options.center = new google.maps.LatLng(this.centerLat, this.centerLng);
-  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer);
+  this.options.center = { lat: parseFloat(this.centerLat), lng: parseFloat(this.centerLng) };
+  this.DOMLayer.innerHTML = translate(AppTemplate.ViewMapLayer, Lang.ViewMapLayer).replace("::ApiKey::", Context.Config.Map.ApiKey);
 
   var extLayer = Ext.get(this.DOMLayer);
   extLayer.select(".next").first().on("click", this.atNextPage.bind(this));
@@ -95,19 +100,13 @@ CGViewMapLayer.prototype.render = function () {
   this.extPage = extLayer.select(".page").first();
   this.extCount = extLayer.select(".count").first();
 
-  this.map = new google.maps.Map(extLayer.select(".map").first().dom, this.options);
-
-  this.updateLayer();
-  this.addListeners();
+  var frameLayer = $("#" + Literals.Frames.MapApp);
+  var frame = frames[Literals.Frames.MapApp];
+  if (frameLayer == null) frameLayer = $(Literals.Frames.MapApp);
 };
 
 CGViewMapLayer.prototype.refresh = function (condition) {
   this.updateLayer();
-};
-
-CGViewMapLayer.prototype.addListeners = function (place) {
-  google.maps.event.addListener(this.map, 'bounds_changed', this.atBoundsChanged.bind(this));
-  google.maps.event.addListener(this.map, 'idle', this.atIdle.bind(this));
 };
 
 CGViewMapLayer.prototype.gotoPlace = function (place) {
@@ -242,7 +241,7 @@ CGViewMapLayer.prototype.loadHeatLayerCallback = function (sOptions, bSuccess, R
 };
 
 CGViewMapLayer.prototype.loadKmlLayer = function () {
-  if (CGViewMapLayer.loadingKml) return;
+  if (CGViewMapLayer.loadingKml || this.map == null) return;
 
   CGViewMapLayer.loadingKml = true;
   this.infoWindow = new google.maps.InfoWindow();
@@ -351,6 +350,8 @@ CGViewMapLayer.prototype.atClickPlace = function (position) {
 };
 
 CGViewMapLayer.prototype.atGPSPositioned = function (position) {
+  if (this.map == null) return;
+
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
@@ -358,7 +359,18 @@ CGViewMapLayer.prototype.atGPSPositioned = function (position) {
   this.map.panTo(pos);
 };
 
+CGViewMapLayer.prototype.atLoadMapOptions = function () {
+    return this.options;
+};
+
+CGViewMapLayer.prototype.atInitMap = function(map, googleInstance) {
+  google = googleInstance;
+  this.map = map;
+  this.updateLayer();
+};
+
 CGViewMapLayer.prototype.atBoundsChanged = function () {
+  if (this.map == null) return;
   this.boundsChanged = (!this.isSameBounds(this.mapBounds));
   this.mapBounds = this.map.getBounds();
 };
