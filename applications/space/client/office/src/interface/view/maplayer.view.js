@@ -407,7 +407,7 @@ CGViewMapLayer.prototype.clearLayers = function () {
     CGViewMapLayer.oms = null;
     if (CGViewMapLayer.map != null) {
         google.maps.event.clearListeners(CGViewMapLayer.map, 'click');
-        google.maps.event.clearListeners(CGViewMapLayer.infoWindow, 'closeclick');
+        if (CGViewMapLayer.infoWindow != null) google.maps.event.clearListeners(CGViewMapLayer.infoWindow, 'closeclick');
     }
     CGViewMapLayer.loadingKml = false;
     if (CGViewMapLayer.layer == null) return;
