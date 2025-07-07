@@ -11032,46 +11032,52 @@ CGViewMapLayer.prototype.loadHeatLayerCallback = function (sOptions, bSuccess, R
 CGViewMapLayer.prototype.loadKmlLayer = function () {
   if (CGViewMapLayer.loadingKml || CGViewMapLayer.map == null) return;
 
-  CGViewMapLayer.loadingKml = true;
-  CGViewMapLayer.oms = new OverlappingMarkerSpiderfier(CGViewMapLayer.map, {keepSpiderfied: true});
-  CGViewMapLayer.projHelper = CGViewMapLayer.oms.projHelper.getProjection() != null ? CGViewMapLayer.oms.projHelper : CGViewMapLayer.projHelper;
-  if (CGViewMapLayer.projHelper != null) {
-    CGViewMapLayer.projHelper.map = CGViewMapLayer.map;
-    CGViewMapLayer.oms.projHelper = CGViewMapLayer.projHelper;
+  try {
+      CGViewMapLayer.loadingKml = true;
+      CGViewMapLayer.oms = new OverlappingMarkerSpiderfier(CGViewMapLayer.map, {keepSpiderfied: true});
+      CGViewMapLayer.projHelper = CGViewMapLayer.oms.projHelper != null && CGViewMapLayer.oms.projHelper.getProjection() != null ? CGViewMapLayer.oms.projHelper : CGViewMapLayer.projHelper;
+      if (CGViewMapLayer.projHelper != null) {
+        CGViewMapLayer.projHelper.map = CGViewMapLayer.map;
+        CGViewMapLayer.oms.projHelper = CGViewMapLayer.projHelper;
+      }
+      CGViewMapLayer.infoWindow = new google.maps.InfoWindow();
+
+      CGViewMapLayer.layer = new geoXML3.parser({
+          map: CGViewMapLayer.map,
+          overlappingMarkerSpiderfier: CGViewMapLayer.oms,
+          zoom: false,
+          processStyles: true,
+          polylineOptions: LineStringOptions,
+          polygonOptions: PolygonOptions,
+          singleInfoWindow: true,
+          infoWindow: CGViewMapLayer.infoWindow,
+          pmParseFn: this.atPlacemarkParsed.bind(this),
+          afterParse: this.atKmlLoaded.bind(this)
+      });
+
+      geoXML3.onInfoWindowOpened = CGViewMapLayer.prototype.atInfoWindowOpened.bind(this);
+      geoXML3.onInfoWindowClosed = CGViewMapLayer.prototype.atInfoWindowClosed.bind(this);
+      geoXML3.onMarkerCreated = CGViewMapLayer.prototype.atMarkerCreated.bind(this);
+      geoXML3.onMarkerClick = CGViewMapLayer.prototype.atMarkerClick.bind(this);
+
+      google.maps.event.addListener(CGViewMapLayer.infoWindow, 'closeclick', CGViewMapLayer.prototype.atInfoWindowClosed.bind(this));
+
+      this.extLoading.dom.style.display = "block";
+      CGViewMapLayer.layer.parse(this.getSourceUrl());
   }
-  CGViewMapLayer.infoWindow = new google.maps.InfoWindow();
-
-  CGViewMapLayer.layer = new geoXML3.parser({
-      map: CGViewMapLayer.map,
-      overlappingMarkerSpiderfier: CGViewMapLayer.oms,
-      zoom: false,
-      processStyles: true,
-      polylineOptions: LineStringOptions,
-      polygonOptions: PolygonOptions,
-      singleInfoWindow: true,
-      infoWindow: CGViewMapLayer.infoWindow,
-      pmParseFn: this.atPlacemarkParsed.bind(this),
-      afterParse: this.atKmlLoaded.bind(this)
-  });
-
-  geoXML3.onInfoWindowOpened = CGViewMapLayer.prototype.atInfoWindowOpened.bind(this);
-  geoXML3.onInfoWindowClosed = CGViewMapLayer.prototype.atInfoWindowClosed.bind(this);
-  geoXML3.onMarkerCreated = CGViewMapLayer.prototype.atMarkerCreated.bind(this);
-  geoXML3.onMarkerClick = CGViewMapLayer.prototype.atMarkerClick.bind(this);
-
-  google.maps.event.addListener(CGViewMapLayer.infoWindow, 'closeclick', CGViewMapLayer.prototype.atInfoWindowClosed.bind(this));
-
-  this.extLoading.dom.style.display = "block";
-  CGViewMapLayer.layer.parse(this.getSourceUrl());
+  finally {
+    CGViewMapLayer.loadingKml = false;
+  }
 };
 
 CGViewMapLayer.prototype.atKmlLoaded = function () {
     this.extLoading.dom.style.display = "none";
-    for (var i=0; i<CGViewMapLayer.oms.markers.length; i++) {
-        const marker = CGViewMapLayer.oms.markers[i];
+    CGViewMapLayer.loadingKml = false;
+    const markers = CGViewMapLayer.oms.markers != null ? CGViewMapLayer.oms.markers : CGViewMapLayer.oms.a;
+    for (var i=0; i<markers.length; i++) {
+        const marker = markers[i];
         marker.position = { lat: marker.position.lat(), lng: marker.position.lng() };
     }
-    CGViewMapLayer.loadingKml = false;
 };
 
 CGViewMapLayer.prototype.idle = function () {
@@ -11171,6 +11177,7 @@ CGViewMapLayer.prototype.atInitMap = function(map, googleInstance) {
 };
 
 CGViewMapLayer.prototype.clearLayers = function () {
+    CGViewMapLayer.loadingKml = false;
     if (CGViewMapLayer.oms != null) {
         CGViewMapLayer.oms.clearMarkers();
         CGViewMapLayer.oms.map = null;
@@ -11180,7 +11187,6 @@ CGViewMapLayer.prototype.clearLayers = function () {
         google.maps.event.clearListeners(CGViewMapLayer.map, 'click');
         if (CGViewMapLayer.infoWindow != null) google.maps.event.clearListeners(CGViewMapLayer.infoWindow, 'closeclick');
     }
-    CGViewMapLayer.loadingKml = false;
     if (CGViewMapLayer.layer == null) return;
     if (CGViewMapLayer.layer.docs) {
       CGViewMapLayer.layer.docs.forEach((doc) => {
