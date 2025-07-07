@@ -371,6 +371,7 @@ CGViewMapLayer.prototype.atMarkerClick = function (marker) {
 };
 
 CGViewMapLayer.prototype.atMarkerCreated = function (marker, placemark) {
+  marker.icon = "./images/marker.png";
 
   if (CGViewMapLayer.oms != null)
     CGViewMapLayer.oms.addMarker(marker);

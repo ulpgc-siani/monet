@@ -11073,7 +11073,7 @@ CGViewMapLayer.prototype.loadKmlLayer = function () {
 CGViewMapLayer.prototype.atKmlLoaded = function () {
     this.extLoading.dom.style.display = "none";
     CGViewMapLayer.loadingKml = false;
-    const markers = CGViewMapLayer.oms.markers != null ? CGViewMapLayer.oms.markers : CGViewMapLayer.oms.a;
+    const markers = CGViewMapLayer.oms.markers;
     for (var i=0; i<markers.length; i++) {
         const marker = markers[i];
         marker.position = { lat: marker.position.lat(), lng: marker.position.lng() };
@@ -11142,6 +11142,7 @@ CGViewMapLayer.prototype.atMarkerClick = function (marker) {
 };
 
 CGViewMapLayer.prototype.atMarkerCreated = function (marker, placemark) {
+  marker.icon = "./images/marker.png";
 
   if (CGViewMapLayer.oms != null)
     CGViewMapLayer.oms.addMarker(marker);
