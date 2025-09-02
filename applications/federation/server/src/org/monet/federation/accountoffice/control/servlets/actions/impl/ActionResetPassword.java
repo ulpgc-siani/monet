@@ -1,6 +1,7 @@
 package org.monet.federation.accountoffice.control.servlets.actions.impl;
 
 import com.google.inject.Inject;
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.monet.federation.accountoffice.control.servlets.actions.Action;
 import org.monet.federation.accountoffice.core.components.templatecomponent.TemplateComponent;
@@ -47,7 +48,7 @@ public class ActionResetPassword implements Action {
                 return;
             }
 
-            SimpleEmail simpleMail = new SimpleEmail();
+            HtmlEmail simpleMail = new HtmlEmail();
             simpleMail.setHostName(this.configuration.getProperty(Configuration.SMTP_HOSTNAME));
             simpleMail.setSmtpPort(Integer.valueOf(this.configuration.getProperty(Configuration.SMTP_PORT)));
             simpleMail.setAuthentication(this.configuration.getProperty(Configuration.SMTP_USER), this.configuration.getProperty(Configuration.SMTP_PASS));
