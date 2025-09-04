@@ -8,6 +8,7 @@ import org.monet.federation.accountoffice.core.components.templatecomponent.Temp
 import org.monet.federation.accountoffice.core.configuration.Configuration;
 import org.monet.federation.accountoffice.core.layers.account.AccountLayer;
 import org.monet.federation.accountoffice.core.logger.Logger;
+import org.monet.federation.accountoffice.utils.PasswordGenerator;
 import org.monet.federation.accountoffice.utils.Utils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,8 @@ public class ActionResetPassword implements Action {
                 return;
             }
 
-            HtmlEmail simpleMail = new HtmlEmail();
+            String newPassword = PasswordGenerator.generatePassword();
+            SimpleEmail simpleMail = new SimpleEmail();
             simpleMail.setHostName(this.configuration.getProperty(Configuration.SMTP_HOSTNAME));
             simpleMail.setSmtpPort(Integer.valueOf(this.configuration.getProperty(Configuration.SMTP_PORT)));
             simpleMail.setAuthentication(this.configuration.getProperty(Configuration.SMTP_USER), this.configuration.getProperty(Configuration.SMTP_PASS));
@@ -59,36 +61,6 @@ public class ActionResetPassword implements Action {
 
             Properties props = this.configuration.getLanguage(lang);
             simpleMail.setSubject(props.getProperty(TemplateComponent.RESET_PASSWORD_TITLE));
-
-            char[] newPassword = new char[8];
-            Random random = new Random();
-
-            for (int i = 0; i < newPassword.length; i++) {
-                switch (random.nextInt(7)) {
-                    case 0: // Numbers
-                        newPassword[i] = (char) (random.nextInt(10) + 48);
-                        break;
-                    case 1: // Capital letters
-                        newPassword[i] = (char) (random.nextInt(25) + 65);
-                        break;
-                    case 2: // letters
-                        newPassword[i] = (char) (random.nextInt(25) + 97);
-                        break;
-                    case 3: // # $ % &
-                        newPassword[i] = (char) (random.nextInt(4) + 35);
-                        break;
-                    case 4: // Numbers
-                        newPassword[i] = (char) (random.nextInt(10) + 48);
-                        break;
-                    case 5: // Capital letters
-                        newPassword[i] = (char) (random.nextInt(25) + 65);
-                        break;
-                    case 6: // letters
-                        newPassword[i] = (char) (random.nextInt(25) + 97);
-                        break;
-                }
-            }
-
             simpleMail.setMsg(props.getProperty(TemplateComponent.RESET_PASSWORD_MESSAGE) + "\n" + new String(newPassword));
             simpleMail.send();
 
