@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.siani.monet</groupId>
     <artifactId>backservice</artifactId>
-    <version>4.0</version>
+    <version>4.1</version>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -13,19 +13,19 @@
         <repository>
             <id>siani-maven-releases</id>
             <name>siani-maven-releases</name>
-            <url>https://artifactory.siani.es/artifactory/libs-release</url>
+            <url>https://artifactory.egeasy.es/artifactory/libs-release</url>
         </repository>
         <repository>
             <id>siani-maven-snapshot</id>
             <name>siani-maven-snapshot</name>
-            <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
+            <url>https://artifactory.egeasy.es/artifactory/libs-snapshot</url>
         </repository>
     </repositories>
     <distributionManagement>
         <repository>
             <id>siani-maven</id>
             <name>siani-maven</name>
-            <url>https://artifactory.siani.es/artifactory/libs-release-local</url>
+            <url>https://artifactory.egeasy.es/artifactory/libs-release-local</url>
         </repository>
     </distributionManagement>
     <dependencies>

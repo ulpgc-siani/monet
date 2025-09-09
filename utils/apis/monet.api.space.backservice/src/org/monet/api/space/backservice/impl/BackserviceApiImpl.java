@@ -407,7 +407,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 		try {
 			String location = this.location + "/downloaddistribution";
 
-			InputStream inputStream = LibraryRestfull.requestStream(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			InputStream inputStream = LibraryRestfull.requestStream(location, parameters, this.loadCertificate(), this.certificatePassword);
 			zipFile = File.createTempFile("distribution", Long.toString(System.nanoTime()));
 			OutputStream outputStream = new FileOutputStream(zipFile);
 			StreamHelper.copyData(inputStream, outputStream);
@@ -453,7 +453,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 				parameters.put("scope", toStringBody(scope));
 
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			InputStream inputStream = LibraryRestfull.requestStream(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			InputStream inputStream = LibraryRestfull.requestStream(location, parameters, this.loadCertificate(), this.certificatePassword);
 			StreamHelper.copyData(inputStream, outputStream);
 
 			return outputStream.toByteArray();
@@ -564,7 +564,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			String location = this.location + "/getnodedocument";
 			parameters.put("id", toStringBody(id));
 
-			return LibraryRestfull.requestStream(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			return LibraryRestfull.requestStream(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -597,7 +597,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 			parameters.put("id", toStringBody(id));
 			parameters.put("name", toStringBody(name));
 
-			return LibraryRestfull.requestStream(this.location, parameters, this.loadCertificate(), this.certificatePassword);
+			return LibraryRestfull.requestStream(location, parameters, this.loadCertificate(), this.certificatePassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
