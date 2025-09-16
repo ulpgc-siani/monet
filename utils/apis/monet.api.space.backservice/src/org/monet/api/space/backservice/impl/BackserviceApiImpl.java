@@ -486,7 +486,7 @@ public class BackserviceApiImpl implements BackserviceApi {
 
 		try {
 			String location = this.location + "/executenodecommand";
-			parameters.put("idNode", toStringBody(idNode));
+			parameters.put("idnode", toStringBody(idNode));
 			parameters.put("command", toStringBody(encode(command)));
 
 			LibraryRestfull.request(location, parameters, this.loadCertificate(), this.certificatePassword);
