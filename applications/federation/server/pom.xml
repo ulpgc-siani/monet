@@ -108,10 +108,19 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
+<!--
     <dependency>
       <groupId>com.liferay</groupId>
       <artifactId>nl.captcha.simplecaptcha</artifactId>
       <version>1.1.1</version>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>com.liferay</groupId>
+      <artifactId>nl.captcha.simplecaptcha</artifactId>
+      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/nl.captcha.simplecaptcha-1.2.1.jar</systemPath>
+      <version>1.1.1</version>
+      <scope>system</scope>
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
