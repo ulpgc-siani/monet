@@ -485,6 +485,7 @@ public class MimeTypes {
 		this.mimeTypes.put("xhtml", "application/xhtml+xml");
 		this.mimeTypes.put("xlb", "application/vnd.ms-excel");
 		this.mimeTypes.put("xls", "application/vnd.ms-excel");
+		this.mimeTypes.put("xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		this.mimeTypes.put("xlt", "application/vnd.ms-excel");
 		this.mimeTypes.put("xml", "application/xml");
 		this.mimeTypes.put("xpi", "application/x-xpinstall");
@@ -506,7 +507,6 @@ public class MimeTypes {
 		this.mimeTypes.put("flv", "video/x-flv");
 		this.mimeTypes.put("m3u8", "application/x-mpegURL");
 		this.mimeTypes.put("ts", "video/MP2T");
-
 
 		this.mimeTypesInverted = new HashMap<String, String>();
 		for (Entry<String, String> entry : this.mimeTypes.entrySet())
