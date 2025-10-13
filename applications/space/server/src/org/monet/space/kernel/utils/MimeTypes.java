@@ -485,6 +485,7 @@ public class MimeTypes {
 		this.mimeTypes.put("xhtml", "application/xhtml+xml");
 		this.mimeTypes.put("xlb", "application/vnd.ms-excel");
 		this.mimeTypes.put("xls", "application/vnd.ms-excel");
+		this.mimeTypes.put("xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		this.mimeTypes.put("xlt", "application/vnd.ms-excel");
 		this.mimeTypes.put("xml", "application/xml");
 		this.mimeTypes.put("xpi", "application/x-xpinstall");
