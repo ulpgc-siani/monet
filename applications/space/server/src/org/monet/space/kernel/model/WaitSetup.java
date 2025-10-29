@@ -14,7 +14,7 @@ public class WaitSetup {
 	public WaitSetup(long timeDue) {
 		this.executed = false;
 		this.canceled = false;
-		this.timerDue = timerDue;
+		this.timerDue = timeDue;
 		this.timeAfter = null;
 	}
 
