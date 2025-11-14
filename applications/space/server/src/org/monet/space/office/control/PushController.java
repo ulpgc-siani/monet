@@ -76,7 +76,7 @@ public class PushController extends javax.servlet.http.HttpServlet implements ja
 		asyncContext.setTimeout(60000);
 
 		response.setContentType("application/octet-stream");
-		response.setHeader("Transfer-Encoding", "chunked");
+		//response.setHeader("Transfer-Encoding", "chunked");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setHeader("Content-type", "text/xml;charset=utf-8");
 
