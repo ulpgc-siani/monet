@@ -979,9 +979,9 @@ SELECT * FROM information_schema.tables WHERE table_name=@referencetable AND tab
   <entry key="REFERENCE_TABLE_CREATE">
     <![CDATA[
 CREATE TABLE ::referencetable:: (
-  id_node int(11) NOT NULL, 
+  id_node int(11) NOT NULL DEFAULT -1,
   id_parent int(11), 
-  code varchar(100) NOT NULL, 
+  code varchar(100) NOT NULL DEFAULT '',
   ::attributes::, 
   cache text, 
   PRIMARY KEY(id_node), 
