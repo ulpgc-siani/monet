@@ -305,7 +305,11 @@ CGViewMapLayer.prototype.atKmlLoaded = function () {
     const markers = CGViewMapLayer.oms.markers;
     for (var i=0; i<markers.length; i++) {
         const marker = markers[i];
-        marker.position = { lat: marker.position.lat(), lng: marker.position.lng() };
+        if (typeof marker.position.lat == "function") {
+        	marker.position = { lat: marker.position.lat(), lng: marker.position.lng() };
+        } else {
+        	marker.position = { lat: function() {return marker.position.lat} , lng: function() {return marker.position.lng} };
+        }
     }
 };
 
@@ -329,7 +333,11 @@ CGViewMapLayer.prototype.atResize = function () {
 CGViewMapLayer.prototype.atPlacemarkParsed = function (xmlNode, placemark) {
   var aExtendedData = xmlNode.getElementsByTagName('ExtendedData');
 
-  if (placemark.point == null) placemark.point = { lat: placemark.latlng.lat(), lng: placemark.latlng.lng() };
+  if (placemark.latlng) placemark.point = { lat: placemark.latlng.lat(), lng: placemark.latlng.lng() };
+  else if (placemark.layer && placemark.layer.getBounds) {
+    var center = placemark.layer.getBounds().getCenter();
+    placemark.point = { lat: center.lat, lng: center.lng };
+  }
 
   if (aExtendedData && (aExtendedData.length > 0)) {
     var extendedData = aExtendedData[0];
