@@ -33,6 +33,12 @@ Deploy doumentation.
       				<mock-auth />
     			</use-password>
 
+			Example Mock Setup + Google Authenticator (TOTP):
+				<use-password>
+      				<mock-auth />
+      				<totp-two-factor enabled="true" issuer="Monet" digits="6" period="30" validation-window="1" max-attempts="5"/>
+    			</use-password>
+
 			Example Database Setup:
 				<use-password>
 		    		<database-auth read-only="false"/>
@@ -45,6 +51,7 @@ Deploy doumentation.
 						<parameter name="" as=""/>
 						<parameter name="" as=""/>
 				    </ldap-auth>
+				    <totp-two-factor enabled="true" issuer="Monet" digits="6" period="30" validation-window="1" max-attempts="5"/>
 				</use-password>
 
 			Example LDAP Setup (Active Directory):
@@ -68,8 +75,11 @@ Deploy doumentation.
 			      	<custom-auth class="" read-only=""/>
 			    </use-password>
 
-			Example Password + Google Authenticator (TOTP):
+			Example Database Setup + Google Authenticator (TOTP):
 				<use-password>
 		    		<database-auth read-only="false"/>
 		    		<totp-two-factor enabled="true" issuer="Monet" digits="6" period="30" validation-window="1" max-attempts="5"/>
 			    </use-password>
+
+			Note:
+				<totp-two-factor .../> is applied to any authentication backend configured inside <use-password>, including <database-auth/>, <ldap-auth/> and <mock-auth/>.
