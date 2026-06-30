@@ -6,6 +6,8 @@ import org.monet.federation.accountoffice.control.servlets.actions.Action;
 import org.monet.federation.accountoffice.core.components.accountcomponent.SessionComponent;
 import org.monet.federation.accountoffice.core.components.requesttokencomponent.RequestTokenComponent;
 import org.monet.federation.accountoffice.core.components.templatecomponent.TemplateComponent;
+import org.monet.federation.accountoffice.core.components.totpcomponent.TotpComponent;
+import org.monet.federation.accountoffice.core.components.totpcomponent.impl.TotpComponentImpl;
 import org.monet.federation.accountoffice.core.configuration.Configuration;
 import org.monet.federation.accountoffice.core.layers.account.AccountLayer;
 import org.monet.federation.accountoffice.core.layers.account.AccountLayer.LoginMode;
@@ -26,6 +28,7 @@ public class ActionLogin implements Action {
   private TemplateComponent templateComponent;
   private RequestTokenComponent requestTokenComponent;
   private Configuration configuration;
+  private TotpComponent totpComponent;
 
   public static final class Mode {
     public static final String PASSWORD = "password";
@@ -35,13 +38,14 @@ public class ActionLogin implements Action {
   }
 
   @Inject
-  public ActionLogin(Logger logger, AccountLayer accountLayer, SessionComponent sessionComponent, TemplateComponent templateComponent, Configuration configuration, RequestTokenComponent requestTokenComponent) {
+  public ActionLogin(Logger logger, AccountLayer accountLayer, SessionComponent sessionComponent, TemplateComponent templateComponent, Configuration configuration, RequestTokenComponent requestTokenComponent, TotpComponent totpComponent) {
     this.logger = logger;
     this.accountLayer = accountLayer;
     this.sessionComponent = sessionComponent;
     this.templateComponent = templateComponent;
     this.requestTokenComponent = requestTokenComponent;
     this.configuration = configuration;
+    this.totpComponent = totpComponent;
   }
 
   @Override
@@ -55,6 +59,25 @@ public class ActionLogin implements Action {
       boolean rememberMe = request.getParameter("rememberme") != null && !request.getParameter("rememberme").equals("false");
       String remoteAddress = Utils.getAddress(request);
       String remoteUserAgent = request.getHeader("User-Agent").toLowerCase();
+
+      if (mode == LoginMode.PASSWORD && this.totpComponent.isActive()) {
+        boolean hasPendingChallenge = this.totpComponent.hasPendingChallenge(request.getSession());
+        boolean hasPrimaryCredentials = request.getParameter("username") != null || request.getParameter("password") != null;
+        String totpCode = request.getParameter("totpCode");
+
+        if (hasPendingChallenge && totpCode != null) {
+          this.verifyTotpChallenge(request, response, lang, requestToken);
+          return;
+        }
+
+        if (hasPendingChallenge && !hasPrimaryCredentials) {
+          this.showTotpPage(request, response, lang, null);
+          return;
+        }
+
+        if (hasPendingChallenge && hasPrimaryCredentials)
+          this.totpComponent.clearPendingChallenge(request.getSession());
+      }
 
       if ((request.getParameter("idsession") != null) && (!request.getParameter("idsession").equals("")) &&
               (request.getParameter("name") != null) && (!request.getParameter("name").equals("")))
@@ -103,6 +126,43 @@ public class ActionLogin implements Action {
         return;
       }
 
+      if (mode == LoginMode.PASSWORD && this.totpComponent.isActive()) {
+        this.totpComponent.beginChallenge(request, user, requestToken, rememberMe);
+        this.showTotpPage(request, response, lang, null);
+        return;
+      }
+
+      this.completeLogin(request, response, user, rememberMe, requestToken, lang, remoteAddress, remoteUserAgent);
+    } catch (Exception e) {
+      this.logger.error(e.getMessage(), e);
+    }
+  }
+
+  private void verifyTotpChallenge(HttpServletRequest request, HttpServletResponse response, String lang, String requestToken) {
+    TotpComponent.VerificationStatus status = this.totpComponent.verifyChallenge(request);
+    if (status != TotpComponent.VerificationStatus.SUCCESS) {
+      String message = TemplateComponent.TOTP_INVALID;
+      if (status == TotpComponent.VerificationStatus.REUSED)
+        message = TemplateComponent.TOTP_REUSED;
+      else if (status == TotpComponent.VerificationStatus.EXPIRED)
+        message = TemplateComponent.TOTP_EXPIRED;
+      this.showTotpPage(request, response, lang, message);
+      return;
+    }
+
+    TotpComponentImpl totpComponent = (TotpComponentImpl) this.totpComponent;
+    String userId = totpComponent.getPendingUserId(request.getSession());
+    boolean rememberMe = totpComponent.getPendingRememberMe(request.getSession());
+    User user = this.accountLayer.load(userId);
+    String remoteAddress = Utils.getAddress(request);
+    String remoteUserAgent = request.getHeader("User-Agent").toLowerCase();
+    String resolvedRequestToken = requestToken != null && !requestToken.isEmpty() ? requestToken : this.totpComponent.getPendingChallenge(request.getSession()).getRequestToken();
+    this.totpComponent.clearPendingChallenge(request.getSession());
+    this.completeLogin(request, response, user, rememberMe, resolvedRequestToken, lang, remoteAddress, remoteUserAgent);
+  }
+
+  private void completeLogin(HttpServletRequest request, HttpServletResponse response, User user, boolean rememberMe, String requestToken, String lang, String remoteAddress, String remoteUserAgent) {
+    try {
       request.getSession().setAttribute("user", user.getUsername());
       request.getSession().setAttribute("lang", user.getLang());
 
@@ -126,9 +186,8 @@ public class ActionLogin implements Action {
       String accessToken = this.sessionComponent.addUser(user.getUsername(), remoteAddress, remoteUserAgent, lang, false, false, space);
       this.requestTokenComponent.setAccessToken(requestToken, accessToken);
       SendUser.sendUser(request, response, this.requestTokenComponent, requestToken);
-
     } catch (Exception e) {
-      this.logger.error(e.getMessage(), e);
+      throw new RuntimeException("Could not complete TOTP login flow", e);
     }
   }
 
@@ -136,6 +195,12 @@ public class ActionLogin implements Action {
     String baseUrl = Utils.getBaseUrl(request);
     int tries = this.sessionComponent.getAuthTriesOfUser(username);
     this.templateComponent.createLoginTemplate(response, true, requestToken, lang, baseUrl, tries);
+  }
+
+  private void showTotpPage(HttpServletRequest request, HttpServletResponse response, String lang, String additionalMessage) {
+    TotpComponent.PendingChallenge challenge = this.totpComponent.getPendingChallenge(request.getSession());
+    String baseUrl = Utils.getBaseUrl(request);
+    this.templateComponent.createTotpLoginTemplate(response, challenge.getRequestToken(), lang, baseUrl, challenge.isSetupMode(), challenge.getSecret(), challenge.getOtpAuthUri(), additionalMessage);
   }
 
 }

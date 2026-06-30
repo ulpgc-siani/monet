@@ -54,6 +54,11 @@ public interface DataRepository {
 	public static final String LOAD_USER_FROM_EMAIL = "LOAD_USER_FROM_EMAIL";
 	public static final String CREATE_USER = "CREATE_USER";
 	public static final String SAVE_USER = "SAVE_USER";
+	public static final String LOAD_USER_TOTP = "LOAD_USER_TOTP";
+	public static final String EXISTS_USER_TOTP = "EXISTS_USER_TOTP";
+	public static final String CREATE_USER_TOTP = "CREATE_USER_TOTP";
+	public static final String SAVE_USER_TOTP = "SAVE_USER_TOTP";
+	public static final String REMOVE_USER_TOTP = "REMOVE_USER_TOTP";
 
 	public static final String SELECT_BANNED_IP = "SELECT_BANNED_IP";
 	public static final String UPDATE_BANNED_IP = "UPDATE_BANNED_IP";
@@ -118,6 +123,7 @@ public interface DataRepository {
 	public static final String PARAM_REMEMBER_ME = "remember_me";
 	public static final String PARAM_SPACE = "space";
 	public static final String PARAM_NODE = "node";
+	public static final String PARAM_LAST_USED_COUNTER = "last_used_counter";
 
 	FederationList loadFederations();
 
@@ -204,6 +210,18 @@ public interface DataRepository {
 	User createUser(User user);
 
 	void saveUser(User user);
+
+	void ensureUserTotpSchema();
+
+	UserTotpInfo loadUserTotpInfo(String userId);
+
+	boolean existsUserTotpInfo(String userId);
+
+	void createUserTotpInfo(UserTotpInfo userTotpInfo);
+
+	void saveUserTotpInfo(UserTotpInfo userTotpInfo);
+
+	void removeUserTotpInfo(String userId);
 
 	void addIpWrongAccess(String remoteAddr);
 

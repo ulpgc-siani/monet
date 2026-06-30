@@ -6,6 +6,7 @@ public interface TemplateFactory {
   
   public static enum Renders {
     LOGIN, 
+    TOTP_LOGIN,
     REGISTER, 
     BOARD, 
     RESET_PASSWORD, 

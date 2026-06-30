@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.monet.federation.accountoffice.control.servlets.actions.Action;
 import org.monet.federation.accountoffice.core.components.accountcomponent.SessionComponent;
 import org.monet.federation.accountoffice.core.components.templatecomponent.TemplateComponent;
+import org.monet.federation.accountoffice.core.components.totpcomponent.TotpComponent;
 import org.monet.federation.accountoffice.core.configuration.Configuration;
 import org.monet.federation.accountoffice.core.layers.account.AccountLayer;
 import org.monet.federation.accountoffice.core.logger.Logger;
@@ -21,14 +22,16 @@ public class ActionChangeLanguage implements Action {
   private SessionComponent  sessionComponent;
   private AccountLayer      accountLayer;
   private Configuration     configuration;
+  private TotpComponent totpComponent;
 
   @Inject
-  public ActionChangeLanguage(Logger logger, AccountLayer accountLayer, SessionComponent sessionComponent, TemplateComponent templateComponent, Configuration configuration) {
+  public ActionChangeLanguage(Logger logger, AccountLayer accountLayer, SessionComponent sessionComponent, TemplateComponent templateComponent, Configuration configuration, TotpComponent totpComponent) {
     this.logger = logger;
     this.templateComponent = templateComponent;
     this.sessionComponent = sessionComponent;
     this.accountLayer = accountLayer;
     this.configuration = configuration;
+    this.totpComponent = totpComponent;
   }
 
   @Override
@@ -45,6 +48,11 @@ public class ActionChangeLanguage implements Action {
     request.getSession().setAttribute("lang", lang);
     
     if ((username == null) || username.equals("")) {
+      if (this.totpComponent.isActive() && this.totpComponent.hasPendingChallenge(session)) {
+        TotpComponent.PendingChallenge challenge = this.totpComponent.getPendingChallenge(session);
+        this.templateComponent.createTotpLoginTemplate(response, challenge.getRequestToken(), lang, baseUrl, challenge.isSetupMode(), challenge.getSecret(), challenge.getOtpAuthUri(), null);
+        return;
+      }
       String userId = (String) request.getSession().getAttribute("nvUser");
       int tries = this.sessionComponent.getAuthTriesOfUser(userId);
       this.templateComponent.createLoginTemplate(response, false, token, lang, baseUrl, tries);

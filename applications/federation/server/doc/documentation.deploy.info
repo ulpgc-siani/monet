@@ -67,3 +67,9 @@ Deploy doumentation.
 				<use-password>
 			      	<custom-auth class="" read-only=""/>
 			    </use-password>
+
+			Example Password + Google Authenticator (TOTP):
+				<use-password>
+		    		<database-auth read-only="false"/>
+		    		<totp-two-factor enabled="true" issuer="Monet" digits="6" period="30" validation-window="1" max-attempts="5"/>
+			    </use-password>

@@ -10,6 +10,7 @@ import org.gisc.libs.io.watcherservice.watcher.PoolingFileSystemWatcher;
 import org.monet.federation.accountoffice.control.sockets.SocketListener;
 import org.monet.federation.accountoffice.core.agents.AgentSession;
 import org.monet.federation.accountoffice.core.configuration.Configuration;
+import org.monet.federation.accountoffice.core.database.DataRepository;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -58,6 +59,7 @@ public class ServletContextListener extends GuiceServletContextListener {
         super.contextInitialized(servletContextEvent);
 
         this.initializeFilesystemWatcher();
+        this.getInjector().getInstance(DataRepository.class).ensureUserTotpSchema();
 
         AgentSession agentSession = this.getInjector().getInstance(AgentSession.class);
         agentSession.init();

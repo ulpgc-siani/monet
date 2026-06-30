@@ -7,6 +7,7 @@ public interface TemplateParams {
     public static final String CANVAS_BOARD = "page.board";
     public static final String CANVAS_RESET_PASSWORD = "page.resetpassword";
     public static final String CANVAS_CHANGE_PASSWORD = "page.changepassword";
+    public static final String CANVAS_TOTP_LOGIN = "page.totp.login";
     public static final String CANVAS_FEDERATION_TRUST = "page.federationtrust";
     public static final String CANVAS_VALIDATE_FEDERATION_TRUST = "page.validatefederationtrust";
     public static final String CANVAS_BUSINESS_UNIT_PARTNER = "page.businessunitpartner";
@@ -136,5 +137,19 @@ public interface TemplateParams {
     public static final String CHANGE_PASSWORD_RESULT_ACTIONS = "changePasswordResultActions";
     public static final String CHANGE_PASSWORD = "changePassword";
     public static final String ACTION_CHANGE_PASSWORD = "actionChangePassword";
+    public static final String LOGIN_MESSAGE = "loginMessage";
+    public static final String TOTP_TITLE = "totpTitle";
+    public static final String TOTP_CODE = "totpCode";
+    public static final String TOTP_SECRET = "totpSecret";
+    public static final String TOTP_URI = "totpUri";
+    public static final String TOTP_MODE_MESSAGE = "totpModeMessage";
+    public static final String TOTP_SETUP_MESSAGE = "totpSetupMessage";
+    public static final String TOTP_VERIFICATION_MESSAGE = "totpVerificationMessage";
+    public static final String TOTP_SETUP_BLOCK = "totpSetupBlock";
+    public static final String SECRET = "secret";
+    public static final String OTP_AUTH_URI = "otpAuthUri";
+    public static final String TOTP_QR_URL = "totpQrUrl";
+
+    public static final String BLOCK_TOTP_SETUP = "totpSetupBlock";
 
 }

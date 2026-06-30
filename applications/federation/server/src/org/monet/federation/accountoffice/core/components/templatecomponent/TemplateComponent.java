@@ -75,6 +75,15 @@ public interface TemplateComponent {
     public static final String BUSINESS_UNIT_PARTNER_VALIDATION_SUCCESS = "businessUnitPartnerValidationSuccess";
     public static final String BUSINESS_UNIT_PARTNER_VALIDATION_FAILURE = "businessUnitPartnerValidationFailure";
     public static final String VALIDATION_CODE_TITLE = "validationCodeTitle";
+    public static final String TOTP_TITLE = "totpTitle";
+    public static final String TOTP_CODE = "totpCode";
+    public static final String TOTP_SECRET = "totpSecret";
+    public static final String TOTP_URI = "totpUri";
+    public static final String TOTP_SETUP_MESSAGE = "totpSetupMessage";
+    public static final String TOTP_VERIFICATION_MESSAGE = "totpVerificationMessage";
+    public static final String TOTP_INVALID = "totpInvalid";
+    public static final String TOTP_REUSED = "totpReused";
+    public static final String TOTP_EXPIRED = "totpExpired";
 
     // ERRORS
     public static final String ERROR_CREATE_USER = "errorCreateUser";
@@ -110,6 +119,8 @@ public interface TemplateComponent {
     public void createLoginTemplate(HttpServletResponse response, boolean showLoginError, String requestToken, String lang, String urlrequest, int retries);
 
     public void createRegisterTemplate(HttpServletResponse response, String path, boolean showRegisterError, String token, String lang, String requestURL, String additionalMessage);
+
+    public void createTotpLoginTemplate(HttpServletResponse response, String requestToken, String lang, String requestURL, boolean showSetupMode, String secret, String otpAuthUri, String additionalMessage);
 
     public void createLoggedTemplate(HttpServletResponse response, String user, String error, String lang, String requestURL);
 

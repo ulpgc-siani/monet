@@ -94,6 +94,27 @@ public class TemplateComponentImpl implements TemplateComponent {
     }
 
     @Override
+    public void createTotpLoginTemplate(HttpServletResponse response, String requestToken, String lang, String baseUrl, boolean showSetupMode, String secret, String otpAuthUri, String additionalMessage) {
+        try {
+            TotpLoginRender render = (TotpLoginRender) this.templateFactory.getRender(TemplateFactory.Renders.TOTP_LOGIN);
+            render.init(lang);
+            render.setParameter(FederationRender.Parameter.REQUEST_TOKEN, requestToken);
+            render.setParameter(FederationRender.Parameter.BASE_URL, baseUrl);
+            render.setParameter(FederationRender.Parameter.SHOW_SETUP_MODE, showSetupMode);
+            render.setParameter(FederationRender.Parameter.SECRET, secret);
+            render.setParameter(FederationRender.Parameter.OTP_AUTH_URI, otpAuthUri);
+            render.setParameter(FederationRender.Parameter.ADDITIONAL_MESSAGE, additionalMessage);
+
+            String output = render.getOutput();
+            PrintWriter out = response.getWriter();
+            out.println(output);
+            out.close();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public void createLoggedTemplate(HttpServletResponse response, String user, String error, String lang, String baseUrl) {
         try {
             BoardRender render = (BoardRender) this.templateFactory.getRender(TemplateFactory.Renders.BOARD);

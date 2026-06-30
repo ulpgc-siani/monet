@@ -12,6 +12,7 @@ import org.monet.federation.accountoffice.core.components.templatecomponent.impl
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.renders.LoginRender;
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.renders.RegisterRender;
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.renders.ResetPasswordRender;
+import org.monet.federation.accountoffice.core.components.templatecomponent.impl.renders.TotpLoginRender;
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.renders.ValidateBusinessUnitPartnerRender;
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.renders.ValidateFederationTrustRender;
 import org.monet.federation.accountoffice.core.configuration.Configuration;
@@ -33,6 +34,7 @@ public class TemplateFactoryImpl implements TemplateFactory{
 
     renders = new HashMap<Renders,Object>();
     renders.put(Renders.LOGIN,        LoginRender.class);
+    renders.put(Renders.TOTP_LOGIN,   TotpLoginRender.class);
     renders.put(Renders.REGISTER,     RegisterRender.class);
     renders.put(Renders.BOARD,        BoardRender.class);
     renders.put(Renders.RESET_PASSWORD,  ResetPasswordRender.class);

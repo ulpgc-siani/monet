@@ -29,6 +29,9 @@ public abstract class FederationRender extends Render {
       public static final String FEDERATION = "federation";
       public static final String RESULT = "result";
       public static final String RETRIES = "retries";
+      public static final String SHOW_SETUP_MODE = "showSetupMode";
+      public static final String SECRET = "secret";
+      public static final String OTP_AUTH_URI = "otpAuthUri";
   }
   
   private static class RenderLogger implements CanvasLogger {

@@ -328,6 +328,12 @@ public class ConfigurationImpl implements Configuration {
     }
 
     @Override
+    public FederationConfiguration.Authentication.TotpTwoFactor getPasswordTotpAuth() {
+        UserPassword userPassword = this.getUserPasswordAuth();
+        return userPassword != null ? userPassword.getTotpTwoFactor() : null;
+    }
+
+    @Override
     public long getSignTimestampInterval() {
         String sSeconds = this.properties.getProperty(Configuration.SIGN_TIMESTAMP_INTERVAL);
         if (sSeconds == null) {
@@ -431,6 +437,42 @@ public class ConfigurationImpl implements Configuration {
     @Override
     public boolean isMicvActive() {
         return this.federationConfiguration.getAuthentication().useMicv() != null;
+    }
+
+    @Override
+    public boolean isPasswordTotpActive() {
+        FederationConfiguration.Authentication.TotpTwoFactor totpTwoFactor = this.getPasswordTotpAuth();
+        return totpTwoFactor != null && totpTwoFactor.isEnabled();
+    }
+
+    @Override
+    public String getPasswordTotpIssuer() {
+        FederationConfiguration.Authentication.TotpTwoFactor totpTwoFactor = this.getPasswordTotpAuth();
+        return totpTwoFactor != null ? totpTwoFactor.getIssuer() : "Monet";
+    }
+
+    @Override
+    public int getPasswordTotpDigits() {
+        FederationConfiguration.Authentication.TotpTwoFactor totpTwoFactor = this.getPasswordTotpAuth();
+        return totpTwoFactor != null ? totpTwoFactor.getDigits() : 6;
+    }
+
+    @Override
+    public int getPasswordTotpPeriod() {
+        FederationConfiguration.Authentication.TotpTwoFactor totpTwoFactor = this.getPasswordTotpAuth();
+        return totpTwoFactor != null ? totpTwoFactor.getPeriod() : 30;
+    }
+
+    @Override
+    public int getPasswordTotpValidationWindow() {
+        FederationConfiguration.Authentication.TotpTwoFactor totpTwoFactor = this.getPasswordTotpAuth();
+        return totpTwoFactor != null ? totpTwoFactor.getValidationWindow() : 1;
+    }
+
+    @Override
+    public int getPasswordTotpMaxAttempts() {
+        FederationConfiguration.Authentication.TotpTwoFactor totpTwoFactor = this.getPasswordTotpAuth();
+        return totpTwoFactor != null ? totpTwoFactor.getMaxAttempts() : 5;
     }
 
     @Override

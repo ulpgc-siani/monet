@@ -17,6 +17,8 @@ import org.monet.federation.accountoffice.core.components.templatecomponent.Temp
 import org.monet.federation.accountoffice.core.components.templatecomponent.TemplateFactory;
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.TemplateComponentImpl;
 import org.monet.federation.accountoffice.core.components.templatecomponent.impl.TemplateFactoryImpl;
+import org.monet.federation.accountoffice.core.components.totpcomponent.TotpComponent;
+import org.monet.federation.accountoffice.core.components.totpcomponent.impl.TotpComponentImpl;
 import org.monet.federation.accountoffice.core.components.unitcomponent.BusinessUnitComponent;
 import org.monet.federation.accountoffice.core.components.unitcomponent.impl.BusinessUnitComponentImpl;
 import org.monet.federation.accountoffice.core.configuration.Configuration;
@@ -55,6 +57,7 @@ public class MainModule extends AbstractModule {
         bind(TemplateComponent.class).to(TemplateComponentImpl.class);
         bind(ActionFactory.class).to(ActionFactoryImpl.class);
         bind(RequestTokenComponent.class).to(RequestTokenImpl.class);
+        bind(TotpComponent.class).to(TotpComponentImpl.class);
         bind(BusinessUnitComponent.class).to(BusinessUnitComponentImpl.class);
         bind(TemplateFactory.class).to(TemplateFactoryImpl.class);
         bind(ActionsFactorySetupService.class);

@@ -135,6 +135,8 @@ public class FederationConfiguration {
       DatabaseAuth databaseAuth;
       @Element(name = "custom-auth", required = false)
       CustomAuth customAuth;
+      @Element(name = "totp-two-factor", required = false)
+      TotpTwoFactor totpTwoFactor;
 
       public LdapAuth getLdapAuth() {
         return ldapAuth;
@@ -150,6 +152,10 @@ public class FederationConfiguration {
 
       public MockAuth getMockAuth() {
         return mockAuth;
+      }
+
+      public TotpTwoFactor getTotpTwoFactor() {
+        return totpTwoFactor;
       }
     }
 
@@ -250,6 +256,45 @@ public class FederationConfiguration {
 
       public String getErrorUrl() {
         return error_url;
+      }
+    }
+
+    public static class TotpTwoFactor {
+      @Attribute(name = "enabled", required = false)
+      private boolean enabled = true;
+      @Attribute(name = "issuer", required = false)
+      private String issuer = "Monet";
+      @Attribute(name = "digits", required = false)
+      private int digits = 6;
+      @Attribute(name = "period", required = false)
+      private int period = 30;
+      @Attribute(name = "validation-window", required = false)
+      private int validationWindow = 1;
+      @Attribute(name = "max-attempts", required = false)
+      private int maxAttempts = 5;
+
+      public boolean isEnabled() {
+        return enabled;
+      }
+
+      public String getIssuer() {
+        return issuer;
+      }
+
+      public int getDigits() {
+        return digits;
+      }
+
+      public int getPeriod() {
+        return period;
+      }
+
+      public int getValidationWindow() {
+        return validationWindow;
+      }
+
+      public int getMaxAttempts() {
+        return maxAttempts;
       }
     }
 

@@ -1403,6 +1403,207 @@ public class DataRepositoryImpl implements DataRepository {
 	}
 
 	@Override
+	public void ensureUserTotpSchema() {
+		this.logger.debug("ensureUserTotpSchema()");
+
+		Connection connection = null;
+		Statement statement = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+			if (this.existsTable(connection, "fs$user_totp") || this.existsTable(connection, "FS$USER_TOTP")) {
+				this.logger.debug("TOTP table already exists");
+				return;
+			}
+
+			String databaseType = this.configuration.getProperty(Configuration.JDBC_DATABASE, "").toLowerCase();
+			statement = connection.createStatement();
+
+			if ("mysql".equals(databaseType)) {
+				statement.executeUpdate("CREATE TABLE `fs$user_totp` (" +
+						"`id` BIGINT(20) NOT NULL AUTO_INCREMENT," +
+						"`id_user` VARCHAR(255) NOT NULL," +
+						"`secret` VARCHAR(255) NOT NULL," +
+						"`enable` INT(1) NOT NULL DEFAULT 0," +
+						"`last_used_counter` BIGINT(20) DEFAULT NULL," +
+						"PRIMARY KEY (`id`)," +
+						"UNIQUE KEY `FS_USER_TOTP_ID_USER` (`id_user`)" +
+						") DEFAULT CHARSET=utf8");
+			} else if ("oracle".equals(databaseType)) {
+				statement.executeUpdate("CREATE TABLE FS$USER_TOTP (" +
+						"id NUMBER(10,0) NOT NULL ENABLE," +
+						"id_user VARCHAR2(255 CHAR) NOT NULL," +
+						"secret VARCHAR2(255 CHAR) NOT NULL," +
+						"enable NUMBER(10,0) DEFAULT 0 NOT NULL," +
+						"last_used_counter NUMBER(20,0)," +
+						"CONSTRAINT FS$USER_TOTP_PK PRIMARY KEY (id) ENABLE," +
+						"CONSTRAINT FS$USER_TOTP_ID_USER UNIQUE (id_user) ENABLE" +
+						")");
+				statement.executeUpdate("CREATE SEQUENCE FS$USER_TOTP_ID_SEQ MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER NOCYCLE");
+				statement.executeUpdate("CREATE OR REPLACE TRIGGER FS$USER_TOTP_ID_TRG BEFORE INSERT OR UPDATE ON FS$USER_TOTP " +
+						"FOR EACH ROW " +
+						"DECLARE " +
+						"v_newVal NUMBER(12) := 0; " +
+						"v_incval NUMBER(12) := 0; " +
+						"BEGIN " +
+						"IF INSERTING AND :new.ID IS NULL THEN " +
+						"SELECT FS$USER_TOTP_ID_SEQ.NEXTVAL INTO v_newVal FROM DUAL; " +
+						"IF v_newVal = 1 THEN " +
+						"SELECT NVL(max(ID),0) INTO v_newVal FROM FS$USER_TOTP; " +
+						"v_newVal := v_newVal + 1; " +
+						"LOOP " +
+						"EXIT WHEN v_incval>=v_newVal; " +
+						"SELECT FS$USER_TOTP_ID_SEQ.nextval INTO v_incval FROM dual; " +
+						"END LOOP; " +
+						"END IF; " +
+						":new.ID := v_newVal; " +
+						"END IF; " +
+						"END");
+				statement.executeUpdate("ALTER TRIGGER FS$USER_TOTP_ID_TRG ENABLE");
+			} else {
+				this.logger.info("Skipping TOTP schema auto-creation for unsupported database type: %s", databaseType);
+				return;
+			}
+
+			this.logger.info("Created missing TOTP table fs$user_totp");
+		} catch (Throwable e) {
+			this.logger.error("Could not ensure TOTP schema", e);
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					this.logger.error(e.getMessage(), e);
+				}
+			}
+			DBHelper.close(connection);
+		}
+	}
+
+	@Override
+	public UserTotpInfo loadUserTotpInfo(String userId) {
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+		ResultSet result = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+			statement = new NamedParameterStatement(connection, (String) this.queries.get(DataRepository.LOAD_USER_TOTP));
+			statement.setString(DataRepository.PARAM_ID_USER, userId);
+			result = statement.executeQuery();
+
+			if (!result.next())
+				return null;
+
+			UserTotpInfo userTotpInfo = new UserTotpInfo();
+			userTotpInfo.setUserId(result.getString(DataRepository.PARAM_ID_USER));
+			userTotpInfo.setSecret(result.getString(DataRepository.PARAM_SECRET));
+			userTotpInfo.setEnabled(result.getBoolean(DataRepository.PARAM_ENABLE));
+			long lastUsedCounter = result.getLong(DataRepository.PARAM_LAST_USED_COUNTER);
+			userTotpInfo.setLastUsedCounter(result.wasNull() ? null : lastUsedCounter);
+			return userTotpInfo;
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			DBHelper.close(result);
+			DBHelper.close(statement);
+			DBHelper.close(connection);
+		}
+	}
+
+	@Override
+	public boolean existsUserTotpInfo(String userId) {
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+		ResultSet result = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+			statement = new NamedParameterStatement(connection, (String) this.queries.get(DataRepository.EXISTS_USER_TOTP));
+			statement.setString(DataRepository.PARAM_ID_USER, userId);
+			result = statement.executeQuery();
+			return result.next();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			DBHelper.close(result);
+			DBHelper.close(statement);
+			DBHelper.close(connection);
+		}
+	}
+
+	@Override
+	public void createUserTotpInfo(UserTotpInfo userTotpInfo) {
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+			statement = new NamedParameterStatement(connection, (String) this.queries.get(DataRepository.CREATE_USER_TOTP));
+			statement.setString(DataRepository.PARAM_ID_USER, userTotpInfo.getUserId());
+			statement.setString(DataRepository.PARAM_SECRET, userTotpInfo.getSecret());
+			statement.setBoolean(DataRepository.PARAM_ENABLE, userTotpInfo.isEnabled());
+			if (userTotpInfo.getLastUsedCounter() != null)
+				statement.setLong(DataRepository.PARAM_LAST_USED_COUNTER, userTotpInfo.getLastUsedCounter());
+			else
+				statement.setString(DataRepository.PARAM_LAST_USED_COUNTER, null);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			DBHelper.close(statement);
+			DBHelper.close(connection);
+		}
+	}
+
+	@Override
+	public void saveUserTotpInfo(UserTotpInfo userTotpInfo) {
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+			statement = new NamedParameterStatement(connection, (String) this.queries.get(DataRepository.SAVE_USER_TOTP));
+			statement.setString(DataRepository.PARAM_ID_USER, userTotpInfo.getUserId());
+			statement.setString(DataRepository.PARAM_SECRET, userTotpInfo.getSecret());
+			statement.setBoolean(DataRepository.PARAM_ENABLE, userTotpInfo.isEnabled());
+			if (userTotpInfo.getLastUsedCounter() != null)
+				statement.setLong(DataRepository.PARAM_LAST_USED_COUNTER, userTotpInfo.getLastUsedCounter());
+			else
+				statement.setString(DataRepository.PARAM_LAST_USED_COUNTER, null);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			DBHelper.close(statement);
+			DBHelper.close(connection);
+		}
+	}
+
+	@Override
+	public void removeUserTotpInfo(String userId) {
+		Connection connection = null;
+		NamedParameterStatement statement = null;
+
+		try {
+			connection = this.dataSource.getConnection();
+			statement = new NamedParameterStatement(connection, (String) this.queries.get(DataRepository.REMOVE_USER_TOTP));
+			statement.setString(DataRepository.PARAM_ID_USER, userId);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DatabaseException(e.getMessage(), e);
+		} finally {
+			DBHelper.close(statement);
+			DBHelper.close(connection);
+		}
+	}
+
+	@Override
 	public boolean isIpBanned(String remoteAddr) {
 		this.logger.debug("isIpSuspend(%s)?", remoteAddr);
 
@@ -1962,6 +2163,33 @@ public class DataRepositoryImpl implements DataRepository {
 	private void fillDevice(Device device, ResultSet result) throws SQLException {
 		device.setId(result.getString(DataRepository.PARAM_ID));
 		device.setUserId(result.getString(DataRepository.PARAM_ID_USER));
+	}
+
+	private boolean existsTable(Connection connection, String tableName) throws SQLException {
+		DatabaseMetaData metaData = connection.getMetaData();
+		ResultSet result = null;
+		try {
+			result = metaData.getTables(connection.getCatalog(), null, tableName, null);
+			if (result.next())
+				return true;
+		} finally {
+			DBHelper.close(result);
+		}
+
+		try {
+			result = metaData.getTables(connection.getCatalog(), null, tableName.toUpperCase(), null);
+			if (result.next())
+				return true;
+		} finally {
+			DBHelper.close(result);
+		}
+
+		try {
+			result = metaData.getTables(connection.getCatalog(), null, tableName.toLowerCase(), null);
+			return result.next();
+		} finally {
+			DBHelper.close(result);
+		}
 	}
 
 	private Timestamp getDateAsTimestamp(Date date) {

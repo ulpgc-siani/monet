@@ -104,6 +104,7 @@ public interface Configuration {
 
   FederationConfiguration.Authentication.UserPassword getUserPasswordAuth();
   FederationConfiguration.Authentication.Micv getMicvAuth();
+  FederationConfiguration.Authentication.TotpTwoFactor getPasswordTotpAuth();
 
   long getSignTimestampInterval();
 
@@ -130,6 +131,18 @@ public interface Configuration {
   boolean isOpenIDActive();
 
   boolean isMicvActive();
+
+  boolean isPasswordTotpActive();
+
+  String getPasswordTotpIssuer();
+
+  int getPasswordTotpDigits();
+
+  int getPasswordTotpPeriod();
+
+  int getPasswordTotpValidationWindow();
+
+  int getPasswordTotpMaxAttempts();
 
   String getProperty(String propertyName);
 

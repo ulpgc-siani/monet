@@ -45,6 +45,11 @@ LOAD_USER_FROM_USERNAME=SELECT id, username, fullname, email, lang, human, "mode
 LOAD_USER_FROM_EMAIL=SELECT id, username, fullname, email, lang, human, "mode" FROM fs$users WHERE email=@email
 CREATE_USER=INSERT INTO fs$users (username, fullname, email, lang, human, "mode") VALUES (@username, @fullname, @email, @lang, @human, @mode)
 SAVE_USER=UPDATE fs$users SET username=@username, fullname=@fullname, email=@email, lang=@lang, human=@human, "mode"=@mode WHERE id=@id
+LOAD_USER_TOTP=SELECT id_user, secret, enable, last_used_counter FROM fs$user_totp WHERE id_user=@id_user
+EXISTS_USER_TOTP=SELECT id_user FROM fs$user_totp WHERE id_user=@id_user
+CREATE_USER_TOTP=INSERT INTO fs$user_totp (id_user, secret, enable, last_used_counter) VALUES (@id_user, @secret, @enable, @last_used_counter)
+SAVE_USER_TOTP=UPDATE fs$user_totp SET secret=@secret, enable=@enable, last_used_counter=@last_used_counter WHERE id_user=@id_user
+REMOVE_USER_TOTP=DELETE FROM fs$user_totp WHERE id_user=@id_user
 
 AUTHDB_CREATE_USER=INSERT INTO fs$authdb_users (id_user, password) VALUES (@id_user, @password)
 AUTHDB_LOGIN_USER=SELECT fs$users.id, username, fullname, email, lang, human FROM fs$authdb_users, fs$users WHERE username=@username AND password=@password AND id_user=fs$users.id

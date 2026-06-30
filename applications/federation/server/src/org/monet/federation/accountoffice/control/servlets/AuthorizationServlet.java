@@ -2,6 +2,7 @@ package org.monet.federation.accountoffice.control.servlets;
 
 import com.google.inject.Singleton;
 import org.apache.commons.lang.StringEscapeUtils;
+import org.monet.federation.accountoffice.core.components.totpcomponent.TotpComponent;
 import org.monet.federation.accountoffice.utils.Strings;
 import org.monet.federation.accountoffice.utils.Utils;
 
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 @Singleton
 public class AuthorizationServlet extends FederationServlet {
   private static final long serialVersionUID = 5942024161860017967L;
+  @com.google.inject.Inject
+  private TotpComponent totpComponent;
 
   @Override
   protected void doProcess(HttpServletRequest request, HttpServletResponse response) {
@@ -103,6 +106,12 @@ public class AuthorizationServlet extends FederationServlet {
             //Login micv
             this.actionFactory.getAction("login").execute(request, response, this.getServletContext().getRealPath(""));
           } else {
+            if (this.totpComponent.isActive() && this.totpComponent.hasPendingChallenge(request.getSession())) {
+              TotpComponent.PendingChallenge challenge = this.totpComponent.getPendingChallenge(request.getSession());
+              String baseUrl = Utils.getBaseUrl(request);
+              this.templateComponent.createTotpLoginTemplate(response, challenge.getRequestToken(), lang, baseUrl, challenge.isSetupMode(), challenge.getSecret(), challenge.getOtpAuthUri(), null);
+              return;
+            }
             if (configuration.getUserPasswordAuth() != null) {
               String baseUrl = Utils.getBaseUrl(request);
               this.templateComponent.createLoginTemplate(response, false, token, lang, baseUrl, -1);
