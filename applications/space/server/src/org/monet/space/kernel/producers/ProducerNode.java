@@ -1097,9 +1097,9 @@ public class ProducerNode extends Producer {
 				return false;
 		}
 
-		if ((from != null) && (created.compareTo(from) < 1))
+		if ((from != null) && (created.compareTo(from) < 0))
 			return false;
-		if ((to != null) && (created.compareTo(from) > 1))
+		if ((to != null) && (created.compareTo(to) >= 0))
 			return false;
 
 		return true;

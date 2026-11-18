@@ -30,6 +30,7 @@ import org.monet.space.kernel.components.layers.NodeLayer;
 import org.monet.space.kernel.constants.Strings;
 import org.monet.space.kernel.exceptions.DataException;
 import org.monet.space.kernel.exceptions.NodeAccessException;
+import org.monet.space.kernel.model.BusinessUnit;
 import org.monet.space.kernel.model.Node;
 import org.monet.space.kernel.model.NodeList;
 import org.monet.space.office.configuration.Configuration;
@@ -41,6 +42,7 @@ import org.monet.space.applications.library.LibraryRequest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ActionExportNode extends Action {
@@ -58,6 +60,8 @@ public class ActionExportNode extends Action {
 		String nodeTypes = LibraryRequest.getParameter(Parameter.NODE_TYPES, this.request);
 		Configuration configuration = Configuration.getInstance();
 		DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+		date.setLenient(false);
+		date.setTimeZone(BusinessUnit.getTimeZone());
 		Date fromDate = null, dtToDate = null;
 		String fromDateValue, toDateValue;
 		String fileName, content = Strings.EMPTY;
@@ -77,7 +81,8 @@ public class ActionExportNode extends Action {
 			if ((fromDateValue != null) && (!fromDateValue.equals(Strings.EMPTY))) fromDate = date.parse(fromDateValue);
 
 			toDateValue = LibraryRequest.getParameter(Parameter.TO_DATE, this.request);
-			if ((toDateValue != null) && (!toDateValue.equals(Strings.EMPTY))) dtToDate = date.parse(toDateValue);
+			if ((toDateValue != null) && (!toDateValue.equals(Strings.EMPTY)))
+				dtToDate = startOfFollowingDay(date.parse(toDateValue));
 		} catch (ParseException oException) {
 			this.agentException.error(oException);
 			throw new DataException(ErrorCode.INCORRECT_PARAMETERS, Actions.EXPORT_NODE, oException);
@@ -101,6 +106,13 @@ public class ActionExportNode extends Action {
 		AgentFilesystem.writeFile(fileName, content);
 
 		return Language.getInstance().getMessage(MessageCode.NODE_EXPORTED);
+	}
+
+	private Date startOfFollowingDay(Date date) {
+		Calendar calendar = Calendar.getInstance(BusinessUnit.getTimeZone());
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		return calendar.getTime();
 	}
 
 }
