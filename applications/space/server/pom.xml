@@ -273,6 +273,11 @@
     </dependency>
     <dependency>
       <groupId>org.siani.monet</groupId>
+      <artifactId>federation-shared</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.siani.monet</groupId>
       <artifactId>mobile-shared</artifactId>
       <version>1.0</version>
     </dependency>
@@ -422,6 +427,12 @@
       <groupId>dnie</groupId>
       <artifactId>xmlsec</artifactId>
       <version>1.4.2-ADSI</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

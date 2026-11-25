@@ -88,7 +88,7 @@
       <targetfile/>
       <fileset dir="web/themes/${theme-name}/styles" includes="**/*.sass" excludes="**/_*"/>
       <mapper type="glob" from="*.sass" to="*.css"/>
-      <arg value="--sourcemap=none" />
+      <arg value="--no-source-map" />
     </apply>
 
     <delete includeemptydirs="true">
