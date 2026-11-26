@@ -9,8 +9,8 @@
   <packaging>war</packaging>
 
   <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -18,12 +18,12 @@
     <repository>
       <id>siani-maven-releases</id>
       <name>siani-maven-releases</name>
-      <url>https://artifactory.siani.es/artifactory/libs-release</url>
+      <url>https://artifactory.egeasy.es/artifactory/libs-release</url>
     </repository>
     <repository>
       <id>siani-maven-snapshot</id>
       <name>siani-maven-snapshot</name>
-      <url>https://artifactory.siani.es/artifactory/libs-snapshot</url>
+      <url>https://artifactory.egeasy.es/artifactory/libs-snapshot</url>
     </repository>
   </repositories>
 
@@ -189,16 +189,17 @@
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>4.3.2</version>
-      <systemPath>${project.basedir}/WebContent/WEB-INF/lib/httpclient-4.3.2.jar</systemPath>
-      <scope>system</scope>
+      <!--<systemPath>${project.basedir}/WebContent/WEB-INF/lib/httpclient-4.3.2.jar</systemPath>
+      <scope>system</scope>-->
     </dependency>
-    <dependency>
+<!--    <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>4.3.2</version>
       <systemPath>${project.basedir}/WebContent/WEB-INF/lib/httpclient-cache-4.3.2.jar</systemPath>
       <scope>system</scope>
     </dependency>
+  -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpcore</artifactId>
@@ -213,7 +214,7 @@
       <systemPath>${project.basedir}/WebContent/WEB-INF/lib/httpmime-4.3.2.jar</systemPath>
       <scope>system</scope>
     </dependency>
-
+<!--
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
@@ -221,6 +222,7 @@
       <systemPath>${project.basedir}/WebContent/WEB-INF/lib/guice-2.0.jar</systemPath>
       <scope>system</scope>
     </dependency>
+  
     <dependency>
       <groupId>com.google.inject.extensions</groupId>
       <artifactId>guice-servlet</artifactId>
@@ -228,7 +230,7 @@
       <systemPath>${project.basedir}/WebContent/WEB-INF/lib/guice-servlet-2.0.jar</systemPath>
       <scope>system</scope>
     </dependency>
-
+  -->
     <dependency>
       <groupId>monet</groupId>
       <artifactId>fswatcher</artifactId>
@@ -299,6 +301,4 @@
       <version>2.3.2</version>
     </dependency>
   </dependencies>
-
-
 </project>
