@@ -1211,7 +1211,6 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.12.1</version>
           <configuration>
-            <release>8</release>
             <encoding>UTF-8</encoding>
           </configuration>
         </plugin>
@@ -1223,7 +1222,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.3.0</version>
           <configuration>
             <finalName>${artifactId}_${bundle.version}</finalName>
           </configuration>
@@ -1231,7 +1230,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1282,7 +1281,7 @@
       <activation>
         <os><family>linux</family><arch>x86_64</arch></os>
       </activation>
-      <properties><swt.platform>gtk.linux.x86_64</swt.platform><eclipse.swt.version>3.136.0</eclipse.swt.version></properties>
+      <properties><swt.platform>gtk.linux.x86_64</swt.platform><eclipse.swt.version>3.114.0</eclipse.swt.version></properties>
     </profile>
     <profile>
       <id>linux-aarch64</id>
