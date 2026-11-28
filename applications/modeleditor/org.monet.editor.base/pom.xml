@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.monet</groupId>
+    <artifactId>modeleditor</artifactId>
+    <version>3.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>org.monet.editor.base</artifactId>
+  <packaging>jar</packaging>
+  <name>Monet Editor Base</name>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <filtering>true</filtering>
+        <includes><include>META-INF/MANIFEST.MF</include></includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/lib</directory>
+        <filtering>false</filtering>
+        <targetPath>lib</targetPath>
+        <includes><include>commons-codec-1.5.jar</include></includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-to-site</id>
+            <phase>package</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <tasks>
+                <mkdir dir="${basedir}/../target/site/${site.subdir}"/>
+                <copy file="${project.build.directory}/${artifactId}_${bundle.version}.jar" tofile="${basedir}/../target/site/${site.subdir}/${artifactId}_${bundle.version}.jar"/>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>thirdparty</groupId>
+      <artifactId>commons-codec-1.5.jar</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/commons-codec-1.5.jar</systemPath>
+    </dependency>
+  </dependencies>
+</project>

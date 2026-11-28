@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.monet</groupId>
+    <artifactId>modeleditor</artifactId>
+    <version>3.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>org.monet.editor.dsl.ui</artifactId>
+  <packaging>jar</packaging>
+  <name>Monet Editor DSL UI</name>
+  <dependencies>
+    <dependency><groupId>org.monet</groupId><artifactId>org.monet.editor.dsl</artifactId><version>3.0.0</version></dependency>
+    <dependency><groupId>org.monet</groupId><artifactId>org.monet.metamodel</artifactId><version>3.0.0</version></dependency>
+    <dependency><groupId>org.monet</groupId><artifactId>org.monet.editor.base</artifactId><version>3.0.0</version></dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <filtering>true</filtering>
+        <includes><include>META-INF/MANIFEST.MF</include></includes>
+      </resource>
+      <resource>
+        <directory>${basedir}</directory>
+        <filtering>false</filtering>
+        <includes><include>plugin.xml</include><include>icons/**</include></includes>
+      </resource>
+      <resource>
+        <directory>${basedir}/src-gen</directory>
+        <filtering>false</filtering>
+        <includes><include>org/**/*.g</include><include>org/**/*.tokens</include></includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-sources</id>
+            <phase>generate-sources</phase>
+            <goals><goal>add-source</goal></goals>
+            <configuration>
+              <sources><source>src-gen</source></sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-to-site</id>
+            <phase>package</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <tasks>
+                <mkdir dir="${basedir}/../target/site/${site.subdir}"/>
+                <copy file="${project.build.directory}/${artifactId}_${bundle.version}.jar" tofile="${basedir}/../target/site/${site.subdir}/${artifactId}_${bundle.version}.jar"/>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: BPIStub
 Bundle-SymbolicName: org.monet.metamodel
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.0.0.${qualifier}
 Bundle-Activator: org.monet.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

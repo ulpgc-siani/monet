@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.monet.editor.dsl
 Bundle-Vendor: Monet
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.0.0.${qualifier}
 Bundle-SymbolicName: org.monet.editor.dsl;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.4.0";visibility:=reexport,

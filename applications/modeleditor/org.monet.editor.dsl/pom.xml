@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.monet</groupId>
+    <artifactId>modeleditor</artifactId>
+    <version>3.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>org.monet.editor.dsl</artifactId>
+  <packaging>jar</packaging>
+  <name>Monet Editor DSL</name>
+  <dependencies>
+    <dependency><groupId>org.monet</groupId><artifactId>org.monet.metamodel</artifactId><version>3.0.0</version></dependency>
+    <dependency><groupId>org.monet</groupId><artifactId>org.monet.editor.base</artifactId><version>3.0.0</version></dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <filtering>true</filtering>
+        <includes><include>META-INF/MANIFEST.MF</include></includes>
+      </resource>
+      <resource>
+        <directory>${basedir}</directory>
+        <filtering>false</filtering>
+        <includes><include>plugin.xml</include></includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-sources</id>
+            <phase>generate-sources</phase>
+            <goals><goal>add-source</goal></goals>
+            <configuration>
+              <sources><source>src-gen</source><source>xtend-gen</source></sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-xtend-classes</id>
+            <phase>process-resources</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <tasks>
+                <unzip src="${eclipse.target}/plugins/org.monet.editor.dsl_${bundle.version}.jar" dest="${project.build.outputDirectory}">
+                  <patternset>
+                  <include name="org/monet/editor/dsl/jvmmodel/**"/>
+                  <include name="org/monet/editor/dsl/GenerateMonetModelingLanguage.mwe2"/>
+                  <include name="org/monet/editor/dsl/MonetLocalizationLanguage.ecore"/>
+                  <include name="org/monet/editor/dsl/MonetLocalizationLanguage.genmodel"/>
+                  <include name="org/monet/editor/dsl/MonetLocalizationLanguage.xtext"/>
+                  <include name="org/monet/editor/dsl/MonetLocalizationLanguage.xtextbin"/>
+                  <include name="org/monet/editor/dsl/MonetModelingLanguage.ecore"/>
+                  <include name="org/monet/editor/dsl/MonetModelingLanguage.genmodel"/>
+                  <include name="org/monet/editor/dsl/MonetModelingLanguage.xtext"/>
+                  <include name="org/monet/editor/dsl/MonetModelingLanguage.xtextbin"/>
+                  <include name="org/monet/editor/dsl/parser/antlr/internal/Internal*.g"/>
+                  <include name="org/monet/editor/dsl/parser/antlr/internal/Internal*.tokens"/>
+                </patternset>
+                </unzip>
+              </tasks>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-to-site</id>
+            <phase>package</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <tasks>
+                <mkdir dir="${basedir}/../target/site/${site.subdir}"/>
+                <copy file="${project.build.directory}/${artifactId}_${bundle.version}.jar" tofile="${basedir}/../target/site/${site.subdir}/${artifactId}_${bundle.version}.jar"/>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
