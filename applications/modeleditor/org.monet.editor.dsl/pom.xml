@@ -53,7 +53,7 @@
             <goals><goal>run</goal></goals>
             <configuration>
               <tasks>
-                <unzip src="${eclipse.target}/plugins/org.monet.editor.dsl_${bundle.version}.jar" dest="${project.build.outputDirectory}">
+                <unzip src="${maven.multiModuleProjectDirectory}/lib/org.monet.editor.dsl_${bundle.version}.jar" dest="${project.build.outputDirectory}">
                   <patternset>
                   <include name="org/monet/editor/dsl/jvmmodel/**"/>
                   <include name="org/monet/editor/dsl/GenerateMonetModelingLanguage.mwe2"/>
