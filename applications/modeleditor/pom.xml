@@ -1281,7 +1281,7 @@
       <activation>
         <os><family>linux</family><arch>x86_64</arch></os>
       </activation>
-      <properties><swt.platform>gtk.linux.x86_64</swt.platform><eclipse.swt.version>3.114.0</eclipse.swt.version></properties>
+      <properties><swt.platform>gtk.linux.x86_64</swt.platform><eclipse.swt.version>3.114.100</eclipse.swt.version></properties>
     </profile>
     <profile>
       <id>linux-aarch64</id>
